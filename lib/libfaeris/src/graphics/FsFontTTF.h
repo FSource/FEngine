@@ -1,15 +1,18 @@
 #ifndef _FS_FONT_TTF_H_
 #define _FS_FONT_TTF_H_
+#include <set>
 #include "FsMacros.h"
 #include "mgr/FsResource.h"
-#include "graphics/FsImage2D.h"
-#include "sys/io/FsFile.h"
 
 #define FS_FONT_GLYPH_CACHE_NU 256
 
 NS_FS_BEGIN
 
-class FontTTFData;
+class Texture2D;
+class Image2D;
+class FsFile;
+class FontTTF;
+
 class FontMetrices 
 {
 	public:
@@ -19,10 +22,10 @@ class FontMetrices
 };
 
 
-class Glyph:public FsObject
+class GlyphTTF:public FsObject
 {
 	public:
-		static Glyph* create(uint16_t c,uint16_t size);
+		static GlyphTTF* create(uint16_t c,uint16_t size);
 
 	public:
 		virtual const char* className();
@@ -38,19 +41,16 @@ class Glyph:public FsObject
 		uint16_t getSize();
 
 		Image2D* getImage();
-		void setImage2D(Image2D* image);
+		void setImage(Image2D* image);
 
 		Texture2D* getTexture();
 
-		void setFont(FontTTFData* data);
+		void setFont(FontTTF* data);
 		FontTTF* getFont();
 
-
-
-
 	protected:
-		Glyph(uint16_t c,uint16_t size);
-		~Glyph();
+		GlyphTTF(uint16_t c,uint16_t size);
+		~GlyphTTF();
 
 	private:
 		/* size and char used for compare */
@@ -68,61 +68,75 @@ class Glyph:public FsObject
 		Image2D* m_bitmap;
 		Texture2D* m_texture;
 		FS_FEATURE_WEAK_REF(FontTTF*) m_mgr;
+
+		friend class FontTTF;
 };
 
 
-class PlatfromFontTTFData;
+class PlatfromFontTTF;
 class FontTTF:public Resource
 {
 	public:
-		class GlyphCompare
+		class GlyphTTFCompare
 		{
+			public:
+				bool operator()(GlyphTTF* l,GlyphTTF* r)
+				{
+					if(l->getSize()<r->getSize())
+					{
+						return true;
+					}
+					else if (l->getChar()==r->getChar())
+					{	
+						if(l->getChar()<r->getChar())
+						{
+							return true;
+						}
+					}
+					return false;
+				}
 		};
-		typedef std::set<Glyph*,GlyphCompare> GlyphSet;
+		typedef std::set<GlyphTTF*,GlyphTTFCompare> GlyphTTFSet;
 
 	public:
 		static FontTTF* create(FsFile* file);
 
 	public:
-		Glyph* getGlyph(uint16_t char_index,int size);
+		GlyphTTF* getGlyphTTF(uint16_t char_index,int size);
 		bool getFontMetrices(int size,FontMetrices* metrics);
 		void clearCache();
 
 
-
-		/* WARN: Please Don't Call It, This Interface Used To Remove Glyph,
-		 * 		 When Glyph Destory.
+		/* WARN: Please Don't Call It, This Interface Used To Remove GlyphTTF,
+		 * 		 When GlyphTTF Destory.
 		 */
-		void removeGlyph(Glyph* g);
+		void removeGlyphTTF(GlyphTTF* g);
 
 	public:
 		virtual const char* className();
-	
+
 	protected:
 		FontTTF();
 		~FontTTF();
 
 		bool init(FsFile* file);
-		bool destruct();
+		void destruct();
 
-		void addToMgr(Glyph* g);
-		void addToCache(Glyph* g);
+		void addToMgr(GlyphTTF* g);
+		void addToCache(GlyphTTF* g);
 
-		Glyph* findFromCache(uint16_t char_index,uint16_t size);
-		Glyph* findFromMgr(uint16_t char_index,uint16_t size);
-		Glyph* createGlyph(uint16_t char_index,uint16_t size);
+		GlyphTTF* findFromCache(uint16_t char_index,uint16_t size);
+		GlyphTTF* findFromMgr(uint16_t char_index,uint16_t size);
+		GlyphTTF* createGlyphTTF(uint16_t char_index,uint16_t size);
 
-		uint32_t getGlyphHashCode(Glyph* g);
+		uint32_t getGlyphTTFHashCode(GlyphTTF* g);
+		uint32_t getGlyphTTFHashCode(uint16_t char_index,uint16_t size);
 
 	private:
-		PlatfromFontTTFData* m_data;
-		GlyphSet m_glyphSet;
-		Glyph* m_caches[FS_FONT_GLYPH_CACHE_NU];
+		PlatfromFontTTF* m_data;
+		GlyphTTFSet m_glyphSet;
+		GlyphTTF* m_caches[FS_FONT_GLYPH_CACHE_NU];
 };
-
-
-
-
 
 
 NS_FS_END

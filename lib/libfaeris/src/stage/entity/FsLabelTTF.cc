@@ -13,6 +13,233 @@
 NS_FS_BEGIN
 
 
+const char*  LabelTTF::className()
+{
+	return FS_LABEL_TTF_CLASS_NAME;
+}
+
+LabelTTF* LabelTTF::create(const char* font)
+{
+	LabelTTF* ret=new LabelTTF;
+	if(!ret->init())
+	{
+		delete ret;
+		return NULL;
+	}
+	return ret;
+}
+
+LabelTTF* LabelTTF::create(const char* font,int size)
+{
+	LabelTTF* ret=new LabelTTF;
+	if(!ret->init(font,size))
+	{
+		delete ret;
+		return NULL;
+	}
+	return ret;
+}
+
+
+LabelTTF* LabelTTF::create(const char* font,int size,const char* text)
+{
+	LabelTTF* ret=new LabelTTF;
+	if(!ret->init(font,size,text))
+	{
+		delete ret;
+		return NULL;
+	}
+	return ret;
+}
+
+
+
+LabelTTF::LabelTTF()
+{
+	m_dirty=true;
+	m_utf16Str=NULL;
+	m_utf16StrLength=0;
+	m_fontName="";
+	m_alignv=FS_ALIGN_V_CENTER;
+	m_alginv=FS_ALIGN_H_LEFT;
+
+	m_width=0;
+	m_height=0;
+	m_anchorX=0.5;
+	m_anchorY=0.5;
+
+
+	m_color=Color::WHITE;
+	m_opacity=1.0f;
+
+
+	m_font=NULL;
+	m_material=Mat_V4F_T2F::shareMaterial();
+	FS_SAFE_ADD_REF(m_material);
+
+	m_textWidth=0;
+	m_textHeight=0;
+
+}
+
+
+LabelTTF::~LabelTTF()
+{
+
+	destruct();
+}
+
+bool LabelTTF::init()
+{
+	return true;
+}
+
+bool LabelTTF::init(const char* font,int size)
+{
+	setFontName(font);
+	setFontSize(size);
+	return true;
+}
+bool LabelTTF::init(const char* font,int size,char* text)
+{
+	setFontName(font);
+	setFontSize(size);
+	setString(text);
+	return true;
+}
+
+
+
+void LabelTTF::destruct()
+{
+	FS_SAFE_DELETES(m_utf16Str);
+	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_font);
+
+}
+
+
+void LabelTTF::setString(const char* str)
+{
+	FS_TRACE_WARN_ON(string==NULL,"NULL String");
+	if(m_text==str)
+	{
+		return;
+	}
+	m_text=std::string(str);
+	FS_SAFE_DELETES(m_utf16text);
+	m_utf16text=FsIconv_UTF8_to_UNICODE(str);
+	m_dirty=true;
+}
+
+const char* LabelTTF::getString()
+{
+	return m_text.c_str();
+}
+
+void LabelTTF::setFontName(const char* font_name)
+{
+	if(m_fontName==font_name)
+	{
+		return;
+	}
+
+	FontTTF* font=(FontTTF*)Global::FontTTFMgr()->load(font_name);
+	FS_SAFE_ASSIGN(m_font,font);
+	m_dirty=true;
+}
+
+const char* LabelTTF::getFontName()
+{
+	return m_fontName.c_str();
+}
+
+void LabelTTF::setFontSize(int size)
+{
+	if(m_fontSize==size)
+	{
+		return;
+	}
+	m_fontSize=size;
+	m_dirty=true;
+}
+
+int LabelTTF::getFontSize()
+{
+	return m_fontSize;
+}
+
+
+void LabelTTF::setTextAlign(int h,int v)
+{
+	if(m_alignh==h&&m_alignv==v)
+	{
+		return;
+	}
+
+	m_alignh=h;
+	m_alignv=v;
+	if(!m_dirty)
+	{
+		realignText();
+	}
+}
+
+void LabelTTF::getTextAlign(int* h,int* v)
+{
+	*h=m_alignh;
+	*v=m_alignv;
+}
+
+void LabelTTF::setSize(float width,float height)
+{
+	if(m_width==width&&m_height==height)
+	{
+		return;
+	}
+	m_width=width;
+	m_height=height;
+	m_dirty=true;
+}
+
+void LabelTTF::setAnchor(float x,float y)
+{
+	m_anchorX=x;
+	m_anchorY=y;
+}
+
+void LabelTTF::getAnchor(float* x,float* y)
+{
+	*x=m_anchorX;
+	*y=m_anchorY;
+}
+
+void LabelTTF::setColor(Color c)
+{
+	m_color=c;
+}
+
+Color LabelTTF::getColor()
+{
+	return m_color;
+}
+
+void LabelTTF::setOpacity(float opacity)
+{
+	m_opacity=opacity;
+}
+
+
+float LabelTTF::getOpacity()
+{
+	return m_opacity;
+}
+
+
+
+
+
+
 FS_FEATURE_NEW_OBJECT(Image2D*) LineTypography::typo(const char* text,FontTTF* font)
 {
 	uint16_t* unicode=FsIconv_UTF8_to_UNICODE(text);
@@ -139,267 +366,81 @@ FS_FEATURE_NEW_OBJECT(Image2D*) LineTypography::typo(const char* text,FontTTF* f
 	return dst_image;
 }
 
-const char*  LabelTTF::className()
-{
-	return FS_LABEL_TTF_CLASS_NAME;
-}
-
-LabelTTF* LabelTTF::create(const char* text,FontTTF* font)
-{
-	LabelTTF* ret=new LabelTTF;
-	ret->init(text,font);
-	return ret;
-}
-
-LabelTTF* LabelTTF::create(FontTTF* font)
-{
-	return LabelTTF::create("",font);
-}
 
 
 
-void LabelTTF::setString(const char* text)
-{
-	if(m_string!=text)
-	{
-		m_string=text;
-		m_dirty=true;
-	}
-}
-
-const char* LabelTTF::getString()
-{
-	return m_string.c_str();
-}
-
-
-void LabelTTF::setFont(FontTTF* font)
-{
-	if(font!=m_font)
-	{
-		FS_SAFE_ASSIGN(m_font,font);
-		m_dirty=true;
-	}
-}
-
-FontTTF* LabelTTF::getFont()
-{
-	return m_font;
-}
-
-
-void LabelTTF::setAlign(int h,int v)
-{
-	m_alignv=v;
-	m_alignh=h;
-}
-
-void LabelTTF::getAlign(int* h,int* v)
-{
-	*h=m_alignh;
-	*v=m_alignv;
-}
-
-
-void LabelTTF::setColor(Color c)
-{
-	m_color=c;
-}
-
-Color LabelTTF::getColor()
-{
-	return m_color;
-}
-
-void LabelTTF::setOpacity(float opacity)
-{
-	m_opacity=opacity;
-}
-
-
-float LabelTTF::getOpacity()
-{
-	return m_opacity;
-}
-
-
-Rect2D LabelTTF::getRect2D()
-{
-	if(m_dirty)
-	{
-		generateTexture();
-		m_dirty=false;
-	}
-	if(!m_texture)
-	{
-		return Rect2D(0,0,0,0);
-	}
-
-	float x=0,y=0,width,height;
-
-	width=(float)m_texture->getWidth();
-	height=(float)m_texture->getHeight();
-
-	switch(m_alignv)
-	{
-		case ALIGN_V_CENTER:
-			y=-height/2;
-			break;
-		case ALIGN_V_TOP:
-			y=0;
-			break;
-		case ALIGN_V_BOTTOM:
-			y=-height;
-			break;
-	}
-
-	switch(m_alignh)
-	{
-		case ALIGN_H_LEFT:
-			x=-width;
-			break;
-		case ALIGN_H_CENTER:
-			x=-width/2;
-			break;
-		case ALIGN_H_RIGHT:
-			x=0;
-			break;
-	}
-	return Rect2D(x,y,width,height);
-}
 
 void LabelTTF::draw(Render* render,bool updateMatrix)
 {
-	if(m_dirty)
-	{
-		generateTexture();
-		m_dirty=false;
-	}
 
-	if(!m_texture)
-	{
-		return ;
-	}
-
-	if(updateMatrix)
-	{
-		updateWorldMatrix();
-	}
-	render->pushMatrix();
-	render->mulMatrix(&m_worldMatrix);
-	m_material->setOpacity(m_opacity);
-	m_material->setColor(m_color);
-	render->setMaterial(m_material);
-
-	render->setActiveTexture(1);
-	render->disableAllAttrArray();
-	render->bindTexture(m_texture,0);
-
-
-	Rect2D rect=getRect2D();
-
-
-	Vector3 vv[4]=
-	{
-		Vector3(rect.x,rect.y,0.0f),
-		Vector3(rect.x+rect.width,rect.y,0.0f),
-		Vector3(rect.x+rect.width,rect.y+rect.height,0.0f),
-		Vector3(rect.x,rect.y+rect.height,0.0f),
-	};
-
-	static TexCoord2 vc[4]=
-	{
-		TexCoord2(0,1),
-		TexCoord2(1,1),
-		TexCoord2(1,0),
-		TexCoord2(0,0),
-	};
-
-	static Face3 faces[2]=
-	{
-		Face3(0,1,2),
-		Face3(2,3,0),
-	};
-
-	int pos_loc=m_material->getV4FLocation();
-	int pos_tex=m_material->getT2FLocation();
-
-	render->setAndEnableVertexAttrPointer(pos_loc,3,FS_FLOAT,4,0,vv);
-	render->setAndEnableVertexAttrPointer(pos_tex,2,FS_FLOAT,4,0,vc);
-
-	render->drawFace3(faces,2);
-	render->popMatrix();
 }
 
 bool LabelTTF::hit2D(float x,float y)
 {
+	if(m_width==0||m_height==0)
+	{
+		if(m_dirty) /* check dirty */
+		{
+			typoText();
+			m_dirty=false;
+		}
+	}
+
+
+	float width=m_width,height=m_height;
+	if(width==0) width=m_textWidth;
+	if(height==0) height=m_textHeight;
+
+
 	Rect2D rect=getRect2D();
 
-	Vector2 point(x,y);
 	updateWorldMatrix();
+	Vector3 v=worldToLocal(Vector3(x,y,0));
+	float diffx=x+m_anchorX*width;
+	float diffy=x+m_anchorY*height;
 
-	return Math::pointInRect2D(point,m_worldMatrix,rect);
-}
-
-
-
-
-void LabelTTF::init(const char* text,FontTTF* font)
-{
-	m_dirty=true;
-
-	m_string=text;
-	FS_SAFE_ADD_REF(font);
-	m_font=font;
-}
-
-void LabelTTF::generateTexture()
-{
-	FS_SAFE_DESTROY(m_texture);
-	m_texture=NULL;
-	if(!m_font) /* no font exist */
+	if(diffx>=0 && diffx <width)
 	{
+		if(diffy>=0 && diffy <height)
+		{
+			return true;
+		}
+
+	}
+	return false;
+
+}
+
+void LabelTTF::typoText()
+{
+	if(m_utf16text==NULL||m_fontName==NULL)
+	{
+		m_textWidth=0;
+		m_textHeight=0;
 		return;
 	}
+	uint16_t* ptext=m_utf16text;
 
-	LineTypography typo;
+	m_typoPage.typoBegin(m_width,m_height,0,m_lineGap);
 
-	Image2D* image=typo.typo(m_string.c_str(), m_font);
-	FS_NO_REF_DESTROY(image);
-
-	if(image==NULL)
+	while((!m_typoPage.done())&&(*p_text))
 	{
-		return;
+		GlyphTTF* g=m_font->getGlyphTTF(*p_text,size);
+		m_typoPage.pushText(g);
+		p_text++;
 	}
-
-	m_texture=Texture2D::create(image);
-
-	FS_NO_REF_DESTROY(m_texture);
-
-	FS_DESTROY(image);
-
+	m_typoPage.typoEnd();
+	m_typoPage.setAlign(m_alignh,m_alignv);
+	m_textWidth=m_typoPage.getTextWidth();
+	m_textHeight=m_typoPage.getTextHeight();
 }
 
-LabelTTF::LabelTTF()
+
+void LabelTTF::realignText()
 {
-	m_dirty=true;
-	m_string="";
-	m_color=Color::WHITE;
-	m_opacity=1.0f;
-	m_texture=NULL;
-	m_material=Mat_V4F_T2F::shareMaterial();
-	m_font=NULL;
-	m_alignv=ALIGN_V_BOTTOM;
-	m_alignh=ALIGN_H_RIGHT;
+	m_typoPage.setAlign(m_alignh,m_alginv);
 }
 
-LabelTTF::~LabelTTF()
-{
-	FS_SAFE_DESTROY(m_texture);
-	FS_SAFE_DEC_REF(m_font);
-
-	m_material->decRef();
-}
 
 
 NS_FS_END

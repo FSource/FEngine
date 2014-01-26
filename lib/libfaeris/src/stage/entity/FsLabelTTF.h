@@ -6,33 +6,18 @@
 #include "FsMacros.h"
 #include "stage/entity/FsEntity.h"
 #include "graphics/FsColor.h"
+#include "graphics/FsTypoPage.h"
 
 NS_FS_BEGIN
 class Image2D;
 class Texture2D;
 class Mat_V4F_T2F;
 class FontTTF;
-class LineTypography
-{
-	public:
-		Image2D* typo(const char* text,FontTTF* font);
-};
 
 class LabelTTF:public Entity
 {
 	public:
-		enum 
-		{
-			ALIGN_V_CENTER,
-			ALIGN_V_TOP,
-			ALIGN_V_BOTTOM,
-
-			ALIGN_H_LEFT,
-			ALIGN_H_RIGHT,
-			ALIGN_H_CENTER,
-
-		};
-	public:
+		static LabelTTF* creat();
 		static LabelTTF* create(const char* font,int size);
 		static LabelTTF* create(const char* font,int size,const char* text);
 
@@ -40,15 +25,21 @@ class LabelTTF:public Entity
 		void setString(const char* string);
 		const char* getString();
 
-		void setFont(const char* font);
-		const char* getFont();
+		void setFontName(const char* font);
+		const char* getFontName();
 
-		void setSize(int size);
-		int getSize();
+		void setFontSize(int size);
+		int getFontSize();
 
 
-		void setAlign(int h,int v);
-		void getAlign(int* h,int* v);
+		void setTextAlign(int h,int v);
+		void getTextAlign(int* h,int *v);
+
+		void setSize(float width,float height);
+		void getSize(float* width;float* height);
+		void setAnchor(float x,float y);
+		void getAnchor(float* x,float* y);
+
 
 		void setColor(Color c);
 		Color getColor();
@@ -65,29 +56,44 @@ class LabelTTF:public Entity
 		/* inherit FsObject */
 		virtual const char* className();
 	protected:
-		void init(const char* text,FontTTF* font);
+		bool init();
+		bool init(const char* font,int size);
+		bool init(const char* font,int size,char* text);
+
+		void destruct();
+
 		LabelTTF();
-		~LabelTTF();
+		virtual ~LabelTTF();
+
+		void typoText();
+		void realignText();
+		void clearTextLine();
 
 
 	private:
-		int m_dirty;
+		bool m_dirty;
 		std::string m_text;
-		std::string m_fontName`;
+		uint16_t* m_utf16text;
 
+		std::string m_fontName;
+		int m_fontSize;
 
-
-		int m_alignv;
-		int m_alignh;
+		int m_alignv,m_alignh;
+		
+		float m_width,m_height;
+		float m_anchorX,m_anchorY;
 
 		Color m_color;
 		float m_opacity;
 
-
-
 		FontTTF* m_font;
 		Mat_V4F_T2F* m_material;
+
+		/* compute result */
+		float m_textWidth,m_textHeight;
+		FsTypoPage<void> m_typoPage;
 };
+
 NS_FS_END
 
 #endif /*_FS_LABLE_TTF_H_*/

@@ -106,6 +106,8 @@ namespace Faeris
 #define FS_FEATURE public
 
 #define FS_FEATURE_NEW_OBJECT(v) v 
+#define FS_FEATURE_WEAK_REF(v) v
+
 
 #define FS_MAKE_NO_COPYABLE(class_name) \
 	private: \
@@ -206,6 +208,19 @@ enum
 	FS_EULER_ZYX 
 };
 
+
+/* TEXT ALIGN */
+
+enum 
+{
+	FS_ALIGN_V_CENTER,
+	FS_ALIGN_V_TOP,
+	FS_ALIGN_V_BUTTON,
+
+	FS_ALIGN_H_LEFT,
+	FS_ALIGN_H_RIGHT,
+	FS_ALIGN_H_CENTER,
+}
 
 
 
