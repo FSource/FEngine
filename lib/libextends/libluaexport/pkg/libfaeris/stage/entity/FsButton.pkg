@@ -1,4 +1,5 @@
 $#include "stage/entity/FsButton.h"
+$#include "luaext/FsLuaEntity.h"
 
 class ButtonState
 {
@@ -38,7 +39,16 @@ class ButtonState
 		FsArray* getChild();
 };
 
-class Button:public Quad2D
+class Button@__Button:public Quad2D
+{
+	public:
+		ButtonState* getNormalState();
+		ButtonState* getPressState();
+		void setStateNormal();
+		void setStatePress();
+};
+
+class LuaButton@Button:public Button
 {
 	public:
 		enum 
@@ -57,25 +67,26 @@ class Button:public Quad2D
 		};
 
 	public:
-		static Button* create();
-		static Button* create(const char* filename);
-		static Button* create(const char* filename,float width,float height);
+		static LuaButton* create();
+		static LuaButton* create(const char* image);
+		static LuaButton* create(const char* image,float width,float height);
 
 	public:
-		ButtonState* getNormalState();
-		ButtonState* getPressState();
-	public:
-		virtual void click();
-		virtual void touchMoveIn(float x,float y);
-		virtual void touchMoveOut(float x,float y);
+		void onDraw@draw(Render* r);
+		void onUpdate@update(float dt);
 
-		void setStateNormal();
-		void setStatePress();
+		bool onTouchBegin@touchBegin(float x,float y);
+		bool onTouchMove@touchMove(float x,float y);
+		bool onTouchEnd@touchEnd(float x,float y);
+		bool onHit2D@hit2D(float x,float y);
+
+		void onClick@click();
+		void onPressDown@pressDown(float x,float y);
+		void onPressMoveIn@pressMoveIn(float x,float y);
+		void onPressMoveOut@pressMoveOut(float x,float y);
+		void onPressUp@pressUp(float x,float y);
+		void onPressCancel@pressCancel(float x,float y);
 };
-
-
-
-
 
 
 

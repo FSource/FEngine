@@ -129,8 +129,13 @@ class Button:public Quad2D
 
 	public:
 		virtual void click();
-		virtual void touchMoveIn(float x,float y);
-		virtual void touchMoveOut(float x,float y);
+
+		virtual void pressDown(float x,float y);
+		virtual void pressMoveIn(float x,float y);
+		virtual void pressMoveOut(float x,float y);
+		virtual void pressUp(float x,float y);
+		virtual void pressCancel(float x,float y);
+
 
 		void setStateNormal();
 		void setStatePress();

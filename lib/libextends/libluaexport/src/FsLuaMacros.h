@@ -30,6 +30,7 @@
 
 #define FS_LUA_PANEL_CLASS_NAME					"LuaPanel"
 
+#define FS_LUA_BUTTON_CLASS_NAME 				"LuaButton"
 
 #define FS_EXPORT_LIB_FAERIS
 

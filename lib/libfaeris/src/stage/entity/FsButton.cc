@@ -67,7 +67,7 @@ ButtonState* Button::getPressState()
 bool Button::touchBegin(float x,float y)
 {
 	m_moveIn=true;
-	this->touchMoveIn(x,y);
+	this->pressDown(x,y);
 	Quad2D::touchBegin(x,y);
 	return true;
 }
@@ -80,7 +80,7 @@ bool Button::touchMove(float x,float y)
 		if(!m_moveIn)
 		{
 			m_moveIn=true;
-			this->touchMoveIn(x,y);
+			this->pressMoveIn(x,y);
 		}
 	}
 	else 
@@ -88,7 +88,7 @@ bool Button::touchMove(float x,float y)
 		if(m_moveIn)
 		{
 			m_moveIn=false;
-			this->touchMoveOut(x,y);
+			this->pressMoveOut(x,y);
 		}
 	}
 
@@ -97,25 +97,46 @@ bool Button::touchMove(float x,float y)
 
 bool Button::touchEnd(float x,float y)
 {
-	this->touchMoveOut(x,y);
 
 	bool hit=hit2D(x,y);
 	if(hit)
 	{
+		pressUp(x,y);
 		this->click();
+
 	}
+	else 
+	{
+		pressCancel(x,y);
+	}
+
 	return Quad2D::touchEnd(x,y);
 }
 
-void Button::touchMoveIn(float x,float y)
+void Button::pressDown(float x,float y)
 {
 	setStatePress();
-	
 }
-void Button::touchMoveOut(float x,float y)
+
+void Button::pressMoveIn(float x,float y)
+{
+	setStatePress();
+}
+
+void Button::pressMoveOut(float x,float y)
 {
 	setStateNormal();
 }
+
+void Button::pressUp(float x,float y)
+{
+	setStateNormal();
+}
+
+void Button::pressCancel(float x,float y)
+{
+}
+
 
 void Button::click()
 {
