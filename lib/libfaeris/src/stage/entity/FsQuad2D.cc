@@ -248,9 +248,20 @@ void Quad2D::draw(Render* render,bool updateMatrix)
 
 bool Quad2D::hit2D(float x,float y)
 {
-	Vector2 point(x,y);
-	updateWorldMatrix();
-	return Math::pointInRect2D(point,m_worldMatrix,getRect2D());
+	Vector3 t=worldToLocal(Vector3(x,y,0));
+	float diffx=t.x+m_anchorX*m_width;
+	float diffy=t.y+m_anchorY*m_height;
+
+
+	if ((diffx>=0) && (diffx<m_width))
+	{
+		if((diffy>=0)&&(diffy<m_height))
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 
