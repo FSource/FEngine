@@ -99,7 +99,7 @@ GlyphTTF* PlatfromFontTTF::createGlyphTTF(uint16_t char_index,int size)
 	GlyphTTF* ret=GlyphTTF::create(char_index,size);
 
 	/* get glyph metrics */
-	FT_GlyphTTF_Metrics* metrics=&m_face->glyph->metrics;
+	FT_Glyph_Metrics* metrics=&m_face->glyph->metrics;
 
 
 	int minx=FT_FLOOR(metrics->horiBearingX);
@@ -109,7 +109,7 @@ GlyphTTF* PlatfromFontTTF::createGlyphTTF(uint16_t char_index,int size)
 	int advance=FT_CEIL(metrics->horiAdvance);
 
 	ret->setBound(minx,miny,maxx,maxy);
-	ret->setAdvance(advance);
+	ret->setAdvanceX(advance);
 
 
 
@@ -302,6 +302,28 @@ void GlyphTTF::getBound(int* minx,int* miny,int* maxx,int* maxy)
 	*maxx=m_maxx;
 	*maxy=m_maxy;
 }
+
+int GlyphTTF::getAscend()
+{
+	FontMetrices metrics;
+	m_mgr->getFontMetrices(m_size,&metrics);
+	return metrics.m_ascend;
+}
+
+int GlyphTTF::getDescend()
+{
+	FontMetrices metrics;
+	m_mgr->getFontMetrices(m_size,&metrics);
+	return metrics.m_descend;
+}
+
+int GlyphTTF::getHeight()
+{
+	FontMetrices metrics;
+	m_mgr->getFontMetrices(m_size,&metrics);
+	return metrics.m_height;
+}
+
 
 
 Image2D* GlyphTTF::getImage()
@@ -520,28 +542,7 @@ uint32_t FontTTF::getGlyphTTFHashCode(GlyphTTF* g)
 	return size<<16|c_id;
 }
 
-
-
-
-
-
-
-
-
-
-
 NS_FS_END
-
-
-
-
-
-
-
-
-
-
-
 
 
 

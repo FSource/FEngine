@@ -250,6 +250,10 @@
 					RelativePath="..\src\graphics\FsTexture2D.h"
 					>
 				</File>
+				<File
+					RelativePath="..\src\graphics\FsTypoPage.h"
+					>
+				</File>
 				<Filter
 					Name="material"
 					>
@@ -1115,11 +1119,11 @@
 				Name="mgr"
 				>
 				<File
-					RelativePath="..\src\mgr\FsFontTTFDataMgr.cc"
+					RelativePath="..\src\mgr\FsFontTTFMgr.cc"
 					>
 				</File>
 				<File
-					RelativePath="..\src\mgr\FsFontTTFDataMgr.h"
+					RelativePath="..\src\mgr\FsFontTTFMgr.h"
 					>
 				</File>
 				<File

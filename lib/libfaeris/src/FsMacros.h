@@ -148,6 +148,12 @@ namespace Faeris
 #define FS_DELETE(v) \
 	do{ delete (v);}while(0)
 
+#define FS_SAFE_DELETES(v) \
+	do{if(v) {delete[] (v);}} while(0)
+
+#define FS_DELETES(v) \
+	do{delete[] v;}while(0)
+
 /* global Macros For Faeris */
 
 /* event part*/
@@ -220,7 +226,14 @@ enum
 	FS_ALIGN_H_LEFT,
 	FS_ALIGN_H_RIGHT,
 	FS_ALIGN_H_CENTER,
-}
+};
+
+enum 
+{
+	FS_TEXT_ALIGN_LEFT,
+	FS_TEXT_ALIGN_CENTER,
+	FS_TEXT_ALIGN_RIGHT,
+};
 
 
 

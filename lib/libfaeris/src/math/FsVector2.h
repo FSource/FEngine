@@ -31,6 +31,7 @@ class Vector2
 		float length() const;
 		float length2() const;
 		bool equal(const Vector2& v)const ;
+		void set(float _x,float _y);
 
 		/* operator */
 		Vector2 operator + (const Vector2& v)const;

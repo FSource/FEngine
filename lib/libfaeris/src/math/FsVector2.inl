@@ -64,6 +64,11 @@ inline bool Vector2::equal(const Vector2& v) const
 }
 
 
+inline void Vector2::set(float _x,float _y) 
+{
+	x=_x;
+	y=_y;
+}
 /* operator */
 
 inline Vector2 Vector2::operator+(const Vector2& v) const 

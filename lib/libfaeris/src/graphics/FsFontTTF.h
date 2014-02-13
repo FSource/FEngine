@@ -3,6 +3,7 @@
 #include <set>
 #include "FsMacros.h"
 #include "mgr/FsResource.h"
+#include "graphics/FsTypoPage.h"
 
 #define FS_FONT_GLYPH_CACHE_NU 256
 
@@ -22,7 +23,7 @@ class FontMetrices
 };
 
 
-class GlyphTTF:public FsObject
+class GlyphTTF:public TypoGlyph 
 {
 	public:
 		static GlyphTTF* create(uint16_t c,uint16_t size);
@@ -34,8 +35,13 @@ class GlyphTTF:public FsObject
 		void getBound(int* minx,int* miny,int* maxx,int* maxy);
 		void setBound(int minx,int miny,int maxx,int maxy);
 
-		void setAdvance(int advance);
-		int getAdvance();
+		void setAdvanceX(int advance);
+		int getAdvanceX();
+
+		int getAscend();
+		int getDescend();
+		int getHeight();
+
 
 		uint16_t getChar();
 		uint16_t getSize();
@@ -64,9 +70,11 @@ class GlyphTTF:public FsObject
 		int m_maxy;
 		int m_advance;
 
+
 		/* gray bit */
 		Image2D* m_bitmap;
 		Texture2D* m_texture;
+
 		FS_FEATURE_WEAK_REF(FontTTF*) m_mgr;
 
 		friend class FontTTF;

@@ -124,18 +124,40 @@ class LuaQuad2D:public TEntity<Quad2D>
 class LuaLabelTTF:public TEntity<LabelTTF>
 {
 	public:
-		static LuaLabelTTF* create(const char* text,FontTTF* font)
+		static LuaLabelTTF* create()
 		{
 			LuaLabelTTF* ret=new LuaLabelTTF();
-			ret->init(text,font);
+			if(!ret->init())
+			{
+				delete ret;
+				return NULL;
+			}
 			return ret;
 		}
-		static LuaLabelTTF* create(FontTTF* font)
+
+		static LuaLabelTTF* create(const char* font,int size)
 		{
 			LuaLabelTTF* ret=new LuaLabelTTF();
-			ret->init("",font);
+			if(!ret->init(font,size))
+			{
+				delete ret;
+				return NULL;
+			}
+
 			return ret;
 		}
+
+		static LuaLabelTTF* create(const char* font,int size,const char* text)
+		{
+			LuaLabelTTF* ret=new LuaLabelTTF();
+			if(!ret->init(font,size,text))
+			{
+				delete ret;
+				return NULL;
+			}
+			return ret;
+		}
+
 	public:
 		virtual const char* className()
 		{

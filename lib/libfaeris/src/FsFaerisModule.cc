@@ -11,7 +11,7 @@
 #include "sys/FsWindow.h"
 #include "extends/FsScriptEngine.h"
 #include "mgr/FsTextureMgr.h"
-#include "mgr/FsFontTTFDataMgr.h"
+#include "mgr/FsFontTTFMgr.h"
 #include "mgr/FsSprite2DDataMgr.h"
 
 #include "graphics/material/FsMat_V4F_T2F_A1F.h"
@@ -80,9 +80,9 @@ int FsFaeris_ModuleInit()
 	Global::setTextureMgr(tex_mgr);
 
 
-	FontTTFDataMgr* font_mgr=FontTTFDataMgr::create();
+	FontTTFMgr* font_mgr=FontTTFMgr::create();
 	FS_NO_REF_DESTROY(font_mgr);
-	Global::setFontTTFDataMgr(font_mgr);
+	Global::setFontTTFMgr(font_mgr);
 
 	Sprite2DDataMgr* sprite_mgr=Sprite2DDataMgr::create();
 	FS_NO_REF_DESTROY(sprite_mgr);
@@ -127,7 +127,7 @@ int FsFaeris_ModuleExit()
 	/* manager */
 	ObjectMgr* ob_mgr=Global::objectMgr();
 	TextureMgr* tex_mgr=Global::textureMgr();
-	FontTTFDataMgr* font_mgr=Global::fontTTFDataMgr();
+	FontTTFMgr* font_mgr=Global::fontTTFMgr();
 	Sprite2DDataMgr* sprite_mgr=Global::sprite2DDataMgr();
 
 
@@ -188,7 +188,7 @@ int FsFaeris_ModuleExit()
 	Global::dropWindow();
 	Global::dropRender();
 	Global::dropTextureMgr();
-	Global::dropFontTTFDataMgr();
+	Global::dropFontTTFMgr();
 	Global::dropSprite2DDataMgr();
 	Global::dropObjectMgr();
 	return 0;
@@ -263,7 +263,7 @@ int FsFaeris_ConfigManager(FsDict* dict)
 	FsDict* fontmgr=ScriptUtil::getDict(dict,"fontTTFDataMgr");
 	if(fontmgr)
 	{
-		FontTTFDataMgr* mgr=Global::fontTTFDataMgr();
+		FontTTFMgr* mgr=Global::fontTTFMgr();
 		if(mgr)
 		{
 			FsFaeris_ConfigResourceMgr(mgr,fontmgr);

@@ -23,7 +23,7 @@ FS_GLOBAL_CC(ScriptEngine,scriptEngine,setScriptEngine);
 
 /* mgr */
 FS_GLOBAL_CC(TextureMgr,textureMgr,setTextureMgr);
-FS_GLOBAL_CC(FontTTFDataMgr,fontTTFDataMgr,setFontTTFDataMgr);
+FS_GLOBAL_CC(FontTTFMgr,FontTTFMgr,setFontTTFMgr);
 FS_GLOBAL_CC(Sprite2DDataMgr,sprite2DDataMgr,setSprite2DDataMgr);
 FS_GLOBAL_CC(ObjectMgr,objectMgr,setObjectMgr);
 

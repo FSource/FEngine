@@ -7,11 +7,27 @@ class LabelTTF@__LabelTTF:public Entity
 		void setString(const char* str);
 		const char* getString();
 
-		void setFont(FontTTF* font);
-		FontTTF* getFont();
+		void setFontName(const char* font);
+		const char* getFontName();
 
-		void setAlign(int h,int v);
-		void getAlign(int* h=0,int* v=0);
+		void setFontSize(int size);
+		int getFontSize();
+
+
+		void setTextAlign(int align);
+		int getTextAlign();
+
+		void setBoundSize(float width,float height);
+		void getBoundSize(float* width=0,float* height=0);
+
+		float getTextWidth();
+		float getTextHeight();
+		void getTextSize(float* width=0,float* height=0);
+
+
+		void setAnchor(float x,float y);
+		void getAnchor(float* x=0,float* y=0);
+
 
 		void setColor(Color c);
 		Color getColor();
@@ -24,19 +40,9 @@ class LabelTTF@__LabelTTF:public Entity
 class LuaLabelTTF@LabelTTF:public LabelTTF
 {
 	public:
-		enum 
-		{
-			ALIGN_V_CENTER,
-			ALIGN_V_TOP,
-			ALIGN_V_BOTTOM,
-
-			ALIGN_H_LEFT,
-			ALIGN_H_RIGHT,
-			ALIGN_H_CENTER,
-		};
-	public:
-		static LuaLabelTTF* create(const char* text,FontTTF* font);
-		static LuaLabelTTF* create(FontTTF* font);
+		static LuaLabelTTF* create();
+		static LuaLabelTTF* create(const char* font,int size);
+		static LuaLabelTTF* create(const char* font,int size,const char* text);
 
 	public:
 		void onDraw@draw(Render* r);

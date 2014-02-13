@@ -7,6 +7,7 @@
 #include "stage/entity/FsEntity.h"
 #include "graphics/FsColor.h"
 #include "graphics/FsTypoPage.h"
+#include "graphics/FsFontTTF.h"
 
 NS_FS_BEGIN
 class Image2D;
@@ -17,7 +18,7 @@ class FontTTF;
 class LabelTTF:public Entity
 {
 	public:
-		static LabelTTF* creat();
+		static LabelTTF* create();
 		static LabelTTF* create(const char* font,int size);
 		static LabelTTF* create(const char* font,int size,const char* text);
 
@@ -32,11 +33,19 @@ class LabelTTF:public Entity
 		int getFontSize();
 
 
-		void setTextAlign(int h,int v);
-		void getTextAlign(int* h,int *v);
+		void setTextAlign(int align);
+		int getTextAlign();
 
-		void setSize(float width,float height);
-		void getSize(float* width;float* height);
+		void setBoundSize(float width,float height);
+		void getBoundSize(float* width,float* height);
+
+		float getTextWidth();
+		float getTextHeight();
+		void getTextSize(float* width,float* height);
+
+		void setLineGap(float line_gap);
+		float getLineGap();
+
 		void setAnchor(float x,float y);
 		void getAnchor(float* x,float* y);
 
@@ -58,7 +67,7 @@ class LabelTTF:public Entity
 	protected:
 		bool init();
 		bool init(const char* font,int size);
-		bool init(const char* font,int size,char* text);
+		bool init(const char* font,int size,const char* text);
 
 		void destruct();
 
@@ -78,10 +87,13 @@ class LabelTTF:public Entity
 		std::string m_fontName;
 		int m_fontSize;
 
-		int m_alignv,m_alignh;
+		int m_textAlign;
 		
-		float m_width,m_height;
+		float m_boundWidth,m_boundHeight;
+
 		float m_anchorX,m_anchorY;
+
+		float m_lineGap;
 
 		Color m_color;
 		float m_opacity;
@@ -91,7 +103,7 @@ class LabelTTF:public Entity
 
 		/* compute result */
 		float m_textWidth,m_textHeight;
-		FsTypoPage<void> m_typoPage;
+		TypoPage<TypoText> m_typoPage;
 };
 
 NS_FS_END

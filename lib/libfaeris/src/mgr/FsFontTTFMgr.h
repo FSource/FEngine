@@ -4,21 +4,21 @@
 #include "mgr/FsResourceMgr.h"
 
 NS_FS_BEGIN
-class FontTTFData;
-class FontTTFDataMgr:public ResourceMgr
+class FontTTF;
+class FontTTFMgr:public ResourceMgr
 {
 	public:
-		static FontTTFDataMgr* create();
+		static FontTTFMgr* create();
 
 	public:
-		FontTTFData* loadFontTTFData(const char* name);
+		FontTTF* loadFontTTF(const char* name);
 
 	public:
 		virtual const char* className();
 
 	protected:
-		FontTTFDataMgr();
-		virtual ~FontTTFDataMgr();
+		FontTTFMgr();
+		virtual ~FontTTFMgr();
 
 };
 
