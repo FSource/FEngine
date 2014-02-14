@@ -261,7 +261,7 @@ void Entity::addChild(Entity* n)
 	n->setParent(this);
 
 	m_zorderDirty=1;
-	m_addOlder=Entity::ms_olderCount++;
+	n->m_addOlder=Entity::ms_olderCount++;
 }
 
 
