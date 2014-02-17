@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "support/data/FsIconv.h"
+#include "support/data/FsUnicode.h"
 #include "stage/entity/FsLabelTTF.h"
 #include "graphics/material/FsMat_V4F_T2F.h"
 #include "graphics/FsImage2D.h"
@@ -213,6 +214,39 @@ void LabelTTF::getBoundSize(float* width,float* height)
 	*height=m_boundHeight;
 }
 
+float LabelTTF::getTextWidth()
+{
+	if(m_dirty)
+	{
+		typoText();
+		m_dirty=false;
+	}
+	return m_textWidth;
+}
+
+float LabelTTF::getTextHeight()
+{
+	if(m_dirty)
+	{
+		typoText();
+		m_dirty=false;
+	}
+	return m_textHeight;
+}
+
+void LabelTTF::getTextSize(float* width,float* height)
+{
+	if(m_dirty)
+	{
+		typoText();
+		m_dirty=false;
+	}
+
+	*width=m_textWidth;
+	*height=m_textHeight;
+}
+
+
 void LabelTTF::setLineGap(float gap)
 {
 	m_lineGap=gap;
@@ -265,6 +299,64 @@ float LabelTTF::getOpacity()
 
 void LabelTTF::draw(Render* render,bool updateMatrix)
 {
+	if(!m_font||!m_utf16text)
+	{
+		return; 
+	}
+
+	if(updateMatrix)
+	{
+		updateWorldMatrix();
+	}
+
+	if(m_dirty)
+	{
+		typoText();
+		m_dirty=false;
+	}
+
+	render->pushMatrix();
+	render->mulMatrix(&m_worldMatrix);
+	m_material->setOpacity(m_opacity);
+	m_material->setColor(m_color);
+
+	render->setMaterial(m_material);
+	render->setActiveTexture(1);
+	render->disableAllAttrArray();
+
+	int pos_loc=m_material->getV4FLocation();
+	int tex_loc=m_material->getT2FLocation();
+
+
+	static float t[8]={
+		0.0f,1.0f,
+		1.0f,1.0f,
+		0.0f,0.0f,
+		1.0f,0.0f,
+	};
+	render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,4,0,t);
+
+	int typo_lines=m_typoPage.getTypoLineNu();
+	for(int i=0;i<typo_lines;i++)
+	{
+		TypoLine<TypoText>* line=m_typoPage.getTypoLine(i);
+		int text_nu=line->getTextNu();
+		for(int j=0;j<text_nu;j++)
+		{
+			TypoText*  t=line->getText(j);
+			Texture2D* t2d=((GlyphTTF*)(t->m_glyph))->getTexture();
+			if(t2d)
+			{
+				render->bindTexture(t2d,0);
+				render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,&t->m_vertices[0]);
+				render->drawArray(Render::TRIANGLE_STRIP,0,4);
+			}
+		}
+	}
+	render->popMatrix();
+
+
+
 
 }
 
@@ -294,12 +386,22 @@ bool LabelTTF::hit2D(float x,float y)
 
 void LabelTTF::typoText()
 {
-	if(m_utf16text==NULL||m_fontName=="")
+
+	if(!m_font)
 	{
 		m_textWidth=0;
 		m_textHeight=0;
 		return;
 	}
+
+	if(m_utf16text)
+	{
+		delete[] m_utf16text;
+		m_utf16text=NULL;
+	}
+
+	m_utf16text=FsUtf8_ToUtf16(m_text.c_str());
+
 	uint16_t* p_text=m_utf16text;
 
 	m_typoPage.typoBegin(m_boundWidth,m_boundHeight,0,m_lineGap);

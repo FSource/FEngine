@@ -127,12 +127,19 @@ GlyphTTF* PlatfromFontTTF::createGlyphTTF(uint16_t char_index,int size)
 		FS_TRACE_WARN("bitmap is not 8 bit gray");
 		return ret;
 	}
-	Image2D* image=Image2D::create(width,rows,Image2D::PIXEL_GRAY8);
+	Image2D* image=Image2D::create(width,rows,Image2D::PIXEL_RGBA8888);
 
-	void* data_dst=image->getPixelData();
-	void* data_src=bitmap_src->buffer;
-
-	memcpy(data_dst,data_src,rows*width);
+	Color* data_dst=(Color*)image->getPixelData();
+	uint8_t* data_src=bitmap_src->buffer;
+	int pixel_nu=rows*width;
+	for(int i=0;i<pixel_nu;i++)
+	{
+		Color* dst=data_dst+i;
+		dst->r=255;
+		dst->g=255;
+		dst->b=255;
+		dst->a=data_src[i];
+	}
 
 	ret->setImage(image);
 
@@ -277,6 +284,7 @@ GlyphTTF::GlyphTTF(uint16_t c_id,uint16_t size)
 	m_advance=0;
 	m_bitmap=NULL;
 	m_texture=NULL;
+	m_mgr=NULL;
 }
 uint16_t GlyphTTF::getChar()
 {
@@ -323,6 +331,28 @@ int GlyphTTF::getHeight()
 	m_mgr->getFontMetrices(m_size,&metrics);
 	return metrics.m_height;
 }
+
+void GlyphTTF::setAdvanceX(int advance) 
+{
+	m_advance=advance;
+}
+
+int GlyphTTF::getAdvanceX()
+{
+	return m_advance;
+}
+
+
+void GlyphTTF::setFont(FontTTF* font)
+{
+	m_mgr=font;
+}
+
+FontTTF* GlyphTTF::getFont()
+{
+	return m_mgr;
+}
+
 
 
 
@@ -392,7 +422,7 @@ GlyphTTF* FontTTF::getGlyphTTF(uint16_t char_index,int size)
 	g=findFromMgr(char_index,size);
 	if(!g)
 	{
-		GlyphTTF* g=m_data->createGlyphTTF(char_index,size);
+		g=m_data->createGlyphTTF(char_index,size);
 		addToMgr(g);
 	}
 	if(g)
@@ -541,6 +571,16 @@ uint32_t FontTTF::getGlyphTTFHashCode(GlyphTTF* g)
 	uint32_t size=g->getSize();
 	return size<<16|c_id;
 }
+
+uint32_t FontTTF::getGlyphTTFHashCode(uint16_t c,uint16_t s)
+{
+	uint32_t c32=c;
+	uint32_t s32=s;
+
+	return s32<<16|c32;
+}
+
+
 
 NS_FS_END
 

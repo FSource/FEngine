@@ -11,7 +11,7 @@ NS_FS_BEGIN
 class TypoGlyph:public FsObject 
 {
 	public:
-		virtual uint16_t getChar();
+		virtual uint16_t getChar()=0;
 		virtual void getBound(int* minx,int* miny,int* maxx,int* maxy)=0;
 		virtual int getAdvanceX()=0;
 		virtual int getAscend()=0;
@@ -19,9 +19,10 @@ class TypoGlyph:public FsObject
 		virtual int getHeight()=0;
 
 	public:
-		TypoGlyph();
-		virtual ~TypoGlyph();
+		TypoGlyph(){}
+		virtual ~TypoGlyph(){}
 };
+
 
 
 class TypoText
@@ -35,12 +36,15 @@ class TypoText
 			m_glyph->getBound(&minx,&miny,&maxx,&maxy);
 			m_vertices[0].x=pen.x+float(minx);
 			m_vertices[0].y=pen.y+float(miny);
+
 			m_vertices[1].x=pen.x+float(maxx);
 			m_vertices[1].y=pen.y+float(miny);
+
 			m_vertices[2].x=pen.x+float(minx);
 			m_vertices[2].y=pen.y+float(maxy);
+
 			m_vertices[3].x=pen.x+float(maxx);
-			m_vertices[3].y=pen.x+float(maxy);
+			m_vertices[3].y=pen.y+float(maxy);
 		}
 		virtual ~TypoText()
 		{
@@ -65,6 +69,8 @@ class TypoText
 
 		float getAscend() {return (float)m_glyph->getAscend();}
 		float getDescend() {return (float)m_glyph->getDescend();}
+
+
 
 	public:
 		Vector2 m_vertices[4];
@@ -99,7 +105,7 @@ class TypoLine
 
 		TypoText* getText(int i)
 		{
-			return &m_texts[i];
+			return m_texts[i];
 		}
 
 		TypoText* pushText(TypoGlyph* g,const Vector2& pen)
@@ -138,7 +144,14 @@ class TypoLine
 		float getAscend(){return m_ascend;}
 		float getDescend(){return m_descend;}
 		
-		void applyShift(float x,float y);
+		void applyShift(float x,float y)
+		{
+			int size=m_texts.size();
+			for(int i=0;i<size;i++)
+			{
+				m_texts[i]->applyShift(x,y);
+			}
+		}
 
 		float getWidth()
 		{
@@ -280,10 +293,17 @@ class TypoPage
 
 		void typoEnd()
 		{
+
+			if((!m_done)&&m_current)
+			{
+				pushCurLine();
+			}
 			if(m_lines.size()==0)
 			{
 				return;
 			}
+
+
 
 			TypoLine<T_TypoText>* first_line=m_lines[0];
 			float ascend=first_line->getAscend();
@@ -349,7 +369,7 @@ class TypoPage
 			return m_relHeight;
 		}
 
-		void setAnchor(float x,float y);
+		void setAnchor(float x,float y){}
 
 		float applyShift(float x,float y)
 		{
@@ -360,7 +380,18 @@ class TypoPage
 			}
 		}
 
-		void setTextAlign(int align);
+		void setTextAlign(int align){}
+
+
+		int getTypoLineNu()
+		{
+			return m_lines.size();
+		}
+
+		TypoLine<T_TypoText>* getTypoLine(int index)
+		{
+			return m_lines[index];
+		}
 
 	protected:
 		void pushCurLine()
