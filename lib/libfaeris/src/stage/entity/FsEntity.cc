@@ -35,7 +35,7 @@ void Entity::update(float dt)
 
 void Entity::updates(float dt)
 {
-	if(m_visible) this->update(dt);
+	if(getVisible()) this->update(dt);
 	int child_nu=m_chirdren->size();
 
 	m_chirdren->lock();
