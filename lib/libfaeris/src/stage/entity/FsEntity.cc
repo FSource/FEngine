@@ -80,7 +80,7 @@ void Entity::draws(Render* r,bool updateMatrix)
 		}
 	}
 
-	if(m_visible) this->draw(r,updateMatrix);
+	if(getVisible()) this->draw(r,updateMatrix);
 
 	for(;i<child_nu;i++)
 	{
