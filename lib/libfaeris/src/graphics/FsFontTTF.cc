@@ -514,12 +514,13 @@ void FontTTF::addToCache(GlyphTTF* g)
 	int index=hash_code%(FS_FONT_GLYPH_CACHE_NU-1);
 
 	GlyphTTF* old=m_caches[index];
+	m_caches[index]=g;
+
 
 	FS_SAFE_DEC_REF(old);
 
 	FS_SAFE_ADD_REF(g);
 
-	m_caches[index]=g;
 
 }
 

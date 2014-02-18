@@ -120,7 +120,7 @@ class TypoLine
 			if(m_maxx<text->getMaxx()) { m_maxx=text->getMaxx();}
 			if(m_maxy<text->getMaxy()) { m_maxy=text->getMaxy();}
 			if(m_ascend<text->getAscend()) {m_ascend=text->getAscend();}
-			if(m_descend<text->getDescend()) {m_descend=text->getDescend();}
+			if(m_descend>text->getDescend()) {m_descend=text->getDescend();}
 			return text;
 		}
 
@@ -260,8 +260,12 @@ class TypoPage
 				}
 				int minx,miny,maxx,maxy;
 				g->getBound(&minx,&miny,&maxx,&maxy);
-				if(m_pen.x +float(minx) <0) { m_pen.x=-float(minx); }
-				float height=float(g->getAscend()+g->getDescend());
+				if( m_current->getTextNu()== 0)
+				{
+					m_pen.x=-float(minx);
+				}
+
+				float height=float(g->getHeight());
 				if(!canExpandHeight(height))
 				{
 					m_done=true;
@@ -285,8 +289,9 @@ class TypoPage
 				}
 				else 
 				{
-					m_pen.x+=g->getAdvanceX();
+				
 					T_TypoText* ret=m_current->pushText(g,m_pen);
+					m_pen.x+=g->getAdvanceX();
 
 					return ret;
 				}
@@ -376,6 +381,8 @@ class TypoPage
 			float diffx=(m_anchorX-x)*m_relWidth;
 			float diffy=(m_anchorY-y)*m_relHeight;
 			applyShift(diffx,diffy);
+			m_anchorX=x;
+			m_anchorY=y;
 		}
 
 
@@ -421,7 +428,7 @@ class TypoPage
 			}
 			else 
 			{
-				m_curHeight=m_lastHeight+m_lineGap;
+				m_curHeight+=m_lastHeight+m_lineGap;
 			}
 			if ((m_pageHeight!=0)&&(m_curHeight+m_lastHeight+m_lineGap>m_pageHeight))
 			{
