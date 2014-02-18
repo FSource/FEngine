@@ -45,8 +45,15 @@ class ColorQuad2D:public Entity
 		void setColor(Color c,int vertex=VERTEX_ALL);
 		void setRect2D(const Rect2D& rect);
 		Rect2D getRect2D();
+
 		void setOpacity(float opacity);
 		float getOpacity();
+
+		void setAnchor(float x,float y);
+		void getAnchor(float* x,float* y);
+
+		void setSize(float w,float h);
+		void getSize(float* w,float* h);
 
 	protected:
 		ColorQuad2D();
@@ -61,7 +68,9 @@ class ColorQuad2D:public Entity
 		Color m_vb;
 		Color m_vc;
 		Color m_vd;
-		Rect2D m_rect;
+		float m_anchorX,m_anchorY;
+		float m_width,m_height;
+
 		float m_opacity;
 		Mat_V4F_C4F* m_material;
 };

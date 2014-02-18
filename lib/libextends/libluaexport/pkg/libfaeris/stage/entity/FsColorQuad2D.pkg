@@ -17,6 +17,13 @@ class ColorQuad2D@__ColorQuad2D:public Entity
 		Rect2D getRect2D();
 		void setOpacity(float opacity);
 		float getOpacity();
+
+		void setAnchor(float x,float y);
+		void getAnchor(float* x,float* y);
+
+		void setSize(float w,float h);
+		void getSize(float* w,float* h);
+
 };
 
 class LuaColorQuad2D@ColorQuad2D:public ColorQuad2D 
@@ -31,6 +38,7 @@ class LuaColorQuad2D@ColorQuad2D:public ColorQuad2D
 			VERTEX_ALL,
 		};
 	public:
+		static LuaColorQuad2D* create();
 		static LuaColorQuad2D* create(const Rect2D& rect,Color c);
 		static LuaColorQuad2D* create(float width,float height,Color c);
 	public:

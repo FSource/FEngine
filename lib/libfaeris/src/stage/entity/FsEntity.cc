@@ -35,7 +35,7 @@ void Entity::update(float dt)
 
 void Entity::updates(float dt)
 {
-	if(m_visible) this->update(dt);
+	if(getVisible()) this->update(dt);
 	int child_nu=m_chirdren->size();
 
 	m_chirdren->lock();
@@ -80,12 +80,12 @@ void Entity::draws(Render* r,bool updateMatrix)
 		}
 	}
 
-	if(m_visible) this->draw(r,updateMatrix);
+	if(getVisible()) this->draw(r,updateMatrix);
 
 	for(;i<child_nu;i++)
 	{
 		Entity* e=(Entity* )m_chirdren->get(i);
-		e->draws(r,updateMatrix);
+		if(e->getVisibles()) e->draws(r,updateMatrix);
 	}
 }
 
@@ -261,7 +261,7 @@ void Entity::addChild(Entity* n)
 	n->setParent(this);
 
 	m_zorderDirty=1;
-	m_addOlder=Entity::ms_olderCount++;
+	n->m_addOlder=Entity::ms_olderCount++;
 }
 
 

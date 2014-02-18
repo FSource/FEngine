@@ -44,6 +44,12 @@ class LuaEntity:public TEntity<Entity>
 class LuaColorQuad2D:public TEntity<ColorQuad2D>
 {
 	public:
+		static LuaColorQuad2D* create()
+		{
+			LuaColorQuad2D* ret=new LuaColorQuad2D();
+			ret->init();
+			return ret;
+		}
 		static LuaColorQuad2D* create(const Rect2D& rect,Color c)
 		{
 			LuaColorQuad2D* ret=new LuaColorQuad2D;
@@ -57,10 +63,6 @@ class LuaColorQuad2D:public TEntity<ColorQuad2D>
 			return ret;
 		}
 
-		static LuaColorQuad2D* create()
-		{
-			return new LuaColorQuad2D;
-		}
 	public:
 		virtual const char* className()
 		{

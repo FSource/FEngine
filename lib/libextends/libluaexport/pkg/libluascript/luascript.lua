@@ -24,7 +24,7 @@ function  f_tabletostring(t,prefix)
 		if value_type == "string" then 
 			value_str = "\""..f_escstring(v).."\"" 
 
-		elseif value_type == "number" or value_type == "boolean" or value_type == "nil" then  
+		elseif value_type == "number" or value_type == "boolean" or value_type == "nil" or value_type=="userdata" then  
 			value_str = tostring(v)
 		elseif value_type =="table" then 
 			value_str = f_tabletostring(v,prefix.."\t")
