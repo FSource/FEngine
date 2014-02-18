@@ -85,7 +85,7 @@ void Entity::draws(Render* r,bool updateMatrix)
 	for(;i<child_nu;i++)
 	{
 		Entity* e=(Entity* )m_chirdren->get(i);
-		e->draws(r,updateMatrix);
+		if(e->getVisibles()) e->draws(r,updateMatrix);
 	}
 }
 
