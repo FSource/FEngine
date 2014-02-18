@@ -94,7 +94,7 @@ class FontTTF:public Resource
 					{
 						return true;
 					}
-					else if (l->getChar()==r->getChar())
+					else if (l->getSize()==r->getSize())
 					{	
 						if(l->getChar()<r->getChar())
 						{

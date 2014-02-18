@@ -90,6 +90,7 @@ class TypoLine
 			m_maxy=0;
 			m_ascend=0;
 			m_descend=0;
+			m_height=0;
 		}
 
 		~TypoLine()
@@ -170,7 +171,7 @@ class TypoLine
 			}
 			else 
 			{
-				return m_ascend+m_descend;
+				return m_ascend-m_descend+1;
 			}
 		}
 
@@ -249,6 +250,7 @@ class TypoPage
 			if(g->getChar()=='\n')
 			{
 				pushCurLine();
+				return NULL;
 			}
 
 			do{
@@ -369,9 +371,15 @@ class TypoPage
 			return m_relHeight;
 		}
 
-		void setAnchor(float x,float y){}
+		void setAnchor(float x,float y)
+		{
+			float diffx=(m_anchorX-x)*m_relWidth;
+			float diffy=(m_anchorY-y)*m_relHeight;
+			applyShift(diffx,diffy);
+		}
 
-		float applyShift(float x,float y)
+
+		void applyShift(float x,float y)
 		{
 			int size=m_lines.size();
 			for(int i=0;i<size;i++)
