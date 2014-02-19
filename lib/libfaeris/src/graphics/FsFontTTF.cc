@@ -429,7 +429,9 @@ GlyphTTF* FontTTF::getGlyphTTF(uint16_t char_index,int size)
 	{
 		addToCache(g);
 	}
+
 	return g;
+
 }
 
 

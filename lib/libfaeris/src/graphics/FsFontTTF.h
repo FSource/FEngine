@@ -20,6 +20,13 @@ class FontMetrices
 		int m_ascend;
 		int m_descend;
 		int m_height;
+
+	public:
+		FontMetrices()
+			:m_ascend(0),
+			m_descend(0),
+			m_height(0)
+		{ }
 };
 
 

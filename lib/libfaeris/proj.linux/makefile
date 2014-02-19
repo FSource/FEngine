@@ -46,6 +46,8 @@ SRC= FsGlobal.cc \
 	 stage/entity/FsSprite2D.cc \
 	 stage/entity/FsSprite2DData.cc \
 	 stage/entity/FsVertexPolygon.cc \
+	 stage/entity/FsPanel.cc \
+	 stage/entity/FsButton.cc \
 	 stage/layer/FsColorLayer.cc \
 	 stage/layer/FsLayer.cc \
 	 stage/layer/FsLayer2D.cc \
@@ -89,7 +91,7 @@ SRC= FsGlobal.cc \
 	 math/FsMatrix4.cc \
 	 math/FsQuaternion.cc \
 	 math/FsRect2D.cc \
-	 mgr/FsFontTTFDataMgr.cc \
+	 mgr/FsFontTTFMgr.cc \
 	 mgr/FsResource.cc \
 	 mgr/FsResourceMgr.cc \
 	 mgr/FsSprite2DDataMgr.cc \

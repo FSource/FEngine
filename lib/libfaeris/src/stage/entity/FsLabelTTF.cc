@@ -65,6 +65,8 @@ LabelTTF::LabelTTF()
 	m_text="";
 	m_utf16text=NULL;
 	m_fontName="";
+	m_fontSize=20;
+
 	m_textAlign=FS_TEXT_ALIGN_LEFT;
 
 	m_boundWidth=0;
@@ -73,10 +75,11 @@ LabelTTF::LabelTTF()
 	m_anchorX=0.5;
 	m_anchorY=0.5;
 
+	m_lineGap=0;
+
 	m_color=Color::WHITE;
 	m_opacity=1.0f;
 
-	m_lineGap=0;
 
 
 	m_font=NULL;
@@ -410,6 +413,7 @@ void LabelTTF::typoText()
 	{
 		GlyphTTF* g=m_font->getGlyphTTF(*p_text,m_fontSize);
 		m_typoPage.pushText(g);
+
 		p_text++;
 	}
 

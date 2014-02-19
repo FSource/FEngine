@@ -71,7 +71,6 @@ class TypoText
 		float getDescend() {return (float)m_glyph->getDescend();}
 
 
-
 	public:
 		Vector2 m_vertices[4];
 		TypoGlyph* m_glyph;
@@ -111,7 +110,6 @@ class TypoLine
 
 		TypoText* pushText(TypoGlyph* g,const Vector2& pen)
 		{
-			FS_SAFE_ADD_REF(g);
 			T_TypoText* text=new T_TypoText(g,pen);
 			m_texts.push_back(text);
 
@@ -240,7 +238,6 @@ class TypoPage
 
 		T_TypoText* pushText(TypoGlyph* g)
 		{
-			bool new_line=false;
 
 			if (m_current==NULL)
 			{
@@ -395,7 +392,36 @@ class TypoPage
 			}
 		}
 
-		void setTextAlign(int align){}
+		void setTextAlign(int align)
+		{
+
+
+			int line_nu=m_lines.size();
+
+			for(int i=0;i<line_nu;i++)
+			{
+				TypoLine<T_TypoText>* line=m_lines[i];
+
+				float minx=line->getMinx();
+				float maxx=line->getMaxx();
+				float line_width=maxx-minx;
+				float x_shift=0;
+				switch(align)
+				{
+					case FS_TEXT_ALIGN_LEFT:
+						x_shift=-minx;
+						break;
+					case FS_TEXT_ALIGN_CENTER:
+						x_shift=(m_relWidth-line_width)/2-minx;
+						break;
+					case FS_TEXT_ALIGN_RIGHT:
+						x_shift=m_relWidth-maxx;
+						break;
+				}
+				line->applyShift(x_shift,0);
+
+			}
+		}
 
 
 		int getTypoLineNu()
