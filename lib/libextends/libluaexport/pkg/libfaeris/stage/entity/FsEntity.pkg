@@ -19,6 +19,7 @@ class Entity@__Entity:public ActionTarget
 		int childNu();
 
 		Layer* getLayer();
+		Scene* getScene();
 
 		Matrix4* getLocalMatrix();
 		Matrix4* getWorldMatrix();
