@@ -90,6 +90,7 @@ float Sprite2D::getOpacity()
 
 void Sprite2D::setAnimation(const char*  name)
 {
+
 	Sprite2DAnimation* anim=m_data->getAnimation(name);
 	setAnimation(anim);
 }
@@ -310,6 +311,7 @@ void Sprite2D::setResourceUrl(const char* name)
 	if(m_curAnimation)
 	{
 		FS_SAFE_DEC_REF(m_curAnimation);
+		m_curAnimation=NULL;
 	}
 
 	m_curFrame=0;
@@ -446,9 +448,9 @@ Sprite2D::~Sprite2D()
 {
 	FS_SAFE_DEC_REF(m_data);
 	FS_SAFE_DEC_REF(m_curAnimation);
-
 	FS_SAFE_DEC_REF(m_textures);
 	FS_SAFE_DEC_REF(m_material);
+
 
 	FS_DESTROY(m_animationCacheData);
 }
