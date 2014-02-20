@@ -4,24 +4,37 @@
 #include <map>
 #include "FsMacros.h"
 #include "mgr/FsResource.h"
+#include "graphics/FsTypoPage.h"
 
 NS_FS_BEGIN
 class FsDict;
 class FsArray;
 class FsFile;
 class Texture2D;
+class FontBitmap;
 
 
-class GlyphBitmap:public FsObject 
+class GlyphBitmap:public TypoGlyph
 {
 	public:
 		static GlyphBitmap* create();
+
 	public:
 		GlyphBitmap();
 
 	public:
 		/* override FsObject */
 		virtual const char* className();
+
+		/* inhrite TypoGlyph */
+		virtual uint16_t getChar();
+		virtual void getBound(int* minx,int* miny,int* maxx,int* maxy);
+		virtual int getAdvanceX();
+		virtual int getAscend();
+		virtual int getDescend();
+		virtual int getHeight();
+
+
 
 	public:
 		uint16_t m_char;
@@ -33,6 +46,8 @@ class GlyphBitmap:public FsObject
 		int m_yoffset;
 		int m_xadvance;
 		int m_page;
+
+		FontBitmap* m_font;
 
 		/* info cache */
 		int m_minx;
