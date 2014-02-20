@@ -57,6 +57,19 @@ Sprite2D* Sprite2D::create(const char* name)
 	return ret;
 }
 
+
+Sprite2D* Sprite2D::create()
+{
+	Sprite2D* ret=new Sprite2D;
+	if(!ret->init())
+	{
+		delete ret;
+		ret=NULL;
+	}
+	return ret;
+}
+
+
 void Sprite2D::setColor(Color  color)
 {
 	m_color=color;
@@ -267,11 +280,49 @@ const char* Sprite2D::className()
 
 bool Sprite2D::init(const char* name)
 {
+	setResourceUrl(name);
+	return true;
+}
+bool Sprite2D::init()
+{
+	return true;
+}
+
+void Sprite2D::setResourceUrl(const char* name)
+{
+	if(m_data)
+	{
+		FS_SAFE_DEC_REF(m_data);
+		m_data=NULL;
+	}
+	if(m_textures)
+	{
+		FS_SAFE_DEC_REF(m_textures);
+		m_textures=NULL;
+	}
+
+	if(m_animationCacheData)
+	{
+		FS_DESTROY(m_animationCacheData);
+		m_animationCacheData=NULL;
+	}
+
+	if(m_curAnimation)
+	{
+		FS_SAFE_DEC_REF(m_curAnimation);
+	}
+
+	m_curFrame=0;
+	m_elapseTime=0.0f;
+	m_stop=true;
+	m_curFps=0;
+
+
 	Sprite2DData* data=Global::sprite2DDataMgr()->loadSprite2DData(name);
 	if(data==NULL)
 	{
 		FS_TRACE_WARN("Can't Find Sprite2DData(%s)",name);
-		return false;
+		return;
 	}
 
 	FS_SAFE_ASSIGN(m_data,data);
@@ -281,9 +332,9 @@ bool Sprite2D::init(const char* name)
 	m_animationCacheData=FsDict::create();
 
 	FS_NO_REF_DESTROY(m_animationCacheData);
-
-	return true;
 }
+
+
 
 void Sprite2D::setAnimation(Sprite2DAnimation* anim)
 {

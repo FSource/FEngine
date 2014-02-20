@@ -85,6 +85,10 @@ void Quad2D::setTexture(const char* filename)
 		m_height=0;
 	}
 }
+void Quad2D::setResourceUrl(const char* name)
+{
+	setTexture(name);
+}
 
 
 Texture2D* Quad2D::getTexture()

@@ -215,6 +215,16 @@ class LuaSprite2D:public TEntity<Sprite2D>
 			}
 			return ret;
 		}
+		static LuaSprite2D* create()
+		{
+			LuaSprite2D* ret=new LuaSprite2D();
+			if(!ret->init())
+			{
+				delete ret;
+				return NULL;
+			}
+			return ret;
+		}
 	public:
 		virtual const char* className()
 		{

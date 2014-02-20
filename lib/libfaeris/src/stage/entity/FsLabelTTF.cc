@@ -151,7 +151,10 @@ void LabelTTF::setFontName(const char* font_name)
 		return;
 	}
 
+
 	FontTTF* font=(FontTTF*)Global::fontTTFMgr()->load(font_name);
+	FS_TRACE_WARN_ON(font==NULL,"Load FontName %s Failed",font_name);
+
 	FS_SAFE_ASSIGN(m_font,font);
 	m_dirty=true;
 }

@@ -11,6 +11,7 @@ class Sprite2D@__Sprite2D:public Entity
 			ANIM_END,
 		};
 	public:
+		void setResourceUrl(const char* name);
 
 		/* color */
 		void setColor(Color color);
@@ -60,8 +61,11 @@ class LuaSprite2D@Sprite2D:public  Sprite2D
 			ANIM_START,
 			ANIM_END,
 		};
+
 	public:
 		static LuaSprite2D* create(const char* name);
+		static LuaSprite2D* create();
+
 	public:
 		void onDraw@draw(Render* r);
 		void onUpdate@update(float dt);

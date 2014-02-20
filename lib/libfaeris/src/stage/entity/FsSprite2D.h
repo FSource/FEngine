@@ -25,9 +25,14 @@ class Sprite2D :public Entity
 			ANIM_END,
 		};
 	public:
+
+		static Sprite2D* create();
 		static Sprite2D* create(const char* name);
 
 	public:
+
+
+		void setResourceUrl(const char* name);
 
 		/* color */
 		void setColor(Color color);
@@ -75,6 +80,7 @@ class Sprite2D :public Entity
 		virtual const char* className();
 
 	protected:
+		bool init();
 		bool init(const char* name);
 		void setAnimation(Sprite2DAnimation* anim);
 		Sprite2D();

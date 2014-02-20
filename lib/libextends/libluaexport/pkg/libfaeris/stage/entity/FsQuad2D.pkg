@@ -12,6 +12,7 @@ class Quad2D@__Quad2D:public Entity
 		float getOpacity();
 
 		/* texture */
+		void setResourceUrl(const char* name);
 		void setTexture(const char* tex);
 		void setTexture(Texture2D* tex);
 		Texture2D* getTexture();
