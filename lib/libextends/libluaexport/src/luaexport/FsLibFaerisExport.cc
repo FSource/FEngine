@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on Thu Feb 20 00:47:38 2014.
+** Generated automatically by tolua++-1.0.92 on 02/20/14 01:23:47.
 */
 
 #ifndef __cplusplus
@@ -1364,6 +1364,38 @@ static int tolua_FsLibFaeris___Entity_getLayer00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getLayer'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getScene of class  Entity */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Entity_getScene00
+static int tolua_FsLibFaeris___Entity_getScene00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Entity",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Entity* self = (Entity*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScene'", NULL);
+#endif
+  {
+   Scene* tolua_ret = (Scene*)  self->getScene();
+    toluaext_pushfsobject2(tolua_S,(void*)tolua_ret,"Scene");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getScene'.",&tolua_err);
  return 0;
 #endif
 }
@@ -16148,6 +16180,72 @@ static int tolua_FsLibFaeris___Scene_getLayer00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setEnabledFade of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Scene_setEnabledFade00
+static int tolua_FsLibFaeris___Scene_setEnabledFade00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+  bool fade = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setEnabledFade'", NULL);
+#endif
+  {
+   self->setEnabledFade(fade);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setEnabledFade'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setFadeColor of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Scene_setFadeColor00
+static int tolua_FsLibFaeris___Scene_setFadeColor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+  Color c = *((Color*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setFadeColor'", NULL);
+#endif
+  {
+   self->setFadeColor(c);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setFadeColor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: create of class  LuaScene */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Scene_create00
 static int tolua_FsLibFaeris_Scene_create00(lua_State* tolua_S)
@@ -26849,6 +26947,7 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"takeAllChild",tolua_FsLibFaeris___Entity_takeAllChild00);
    tolua_function(tolua_S,"childNu",tolua_FsLibFaeris___Entity_childNu00);
    tolua_function(tolua_S,"getLayer",tolua_FsLibFaeris___Entity_getLayer00);
+   tolua_function(tolua_S,"getScene",tolua_FsLibFaeris___Entity_getScene00);
    tolua_function(tolua_S,"getLocalMatrix",tolua_FsLibFaeris___Entity_getLocalMatrix00);
    tolua_function(tolua_S,"getWorldMatrix",tolua_FsLibFaeris___Entity_getWorldMatrix00);
    tolua_function(tolua_S,"updateLocalMatrix",tolua_FsLibFaeris___Entity_updateLocalMatrix00);
@@ -27436,6 +27535,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getLayerIndex",tolua_FsLibFaeris___Scene_getLayerIndex00);
    tolua_function(tolua_S,"top",tolua_FsLibFaeris___Scene_top00);
    tolua_function(tolua_S,"getLayer",tolua_FsLibFaeris___Scene_getLayer00);
+   tolua_function(tolua_S,"setEnabledFade",tolua_FsLibFaeris___Scene_setEnabledFade00);
+   tolua_function(tolua_S,"setFadeColor",tolua_FsLibFaeris___Scene_setFadeColor00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Scene","LuaScene","Scene",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Scene");

@@ -1,4 +1,5 @@
 $#include "luaext/FsLuaScene.h"
+
 class Scene@__Scene:public ActionTarget
 {
 	public:
@@ -14,6 +15,9 @@ class Scene@__Scene:public ActionTarget
 		Layer* top();
 		Layer* getLayer(int index);
 
+		/* fade */
+		void setEnabledFade(bool fade);
+		void setFadeColor(Color c);
 };
 
 
