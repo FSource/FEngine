@@ -79,7 +79,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/math/FsMathUtil.cc \
 					../../src/math/FsMatrix4.cc \
 					../../src/math/FsRect2D.cc \
-					../../src/mgr/FsFontTTFDataMgr.cc \
+					../../src/mgr/FsFontTTFMgr.cc \
 					../../src/mgr/FsResource.cc \
 					../../src/mgr/FsResourceMgr.cc \
 					../../src/mgr/FsTextureMgr.cc \
