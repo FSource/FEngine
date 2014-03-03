@@ -20,33 +20,21 @@ class Texture2D;
 
 class LabelBitmap:public Entity 
 {
-	public:
-		enum{ 
-			ALIGN_V_TOP,
-			ALIGN_V_CENTER,
-			ALIGN_V_BOTTOM,
-			ALIGN_V_USER_DEFINE,
-
-			ALIGN_H_LEFT,
-			ALIGN_H_RIGHT,
-			ALIGN_H_CENTER,
-			ALIGN_H_USER_DEFINE,
-		};
-		enum{
-			TEXT_ALIGN_LEFT,
-			TEXT_ALIGN_CENTER,
-			TEXT_ALIGN_RIGHT,
-		};
 
 	public:
-		static LabelBitmap* create(const char* text,FontBitmap* font);
-		static LabelBitmap* create(FontBitmap* font);
-
+		static LabelBitmap* create();
+		static LabelBitmap* create(const char* font);
+		static LabelBitmap* create(const char* font,const char* text);
 	public:
-		int setString(const char* utf8_str);
-		int setString(const char* utf8_str,int start);
-		int setString(const char* utf8_str,int start,int num);
 
+		void setFontName(const char* font);
+		const char* getFontName();
+
+		void setFontSize(float size);
+		float getFontSize();
+
+
+		void setString(const char* str);
 		const char* getString();
 
 		void setColor(Color c);
@@ -55,24 +43,19 @@ class LabelBitmap:public Entity
 		void setOpacity(float opacity);
 		float getOpacity();
 
-		void setAlign(int alignh,int alignv);
-		void setAlignOffset(float x,float y);
+		void setAnchor(float x,float y);
+		void getAnchor(float* x,float* y);
 
-		void getAlign(int* alignh,int* alignv);
-		void getAlignOffset(float* x,float* y);
+		void getTextSize(float* width,float* height);
+		float getTextWidth();
+		float getTextHeight();
 
 
-		float getWidth();
-		float getHeight();
-
-		/* NOTE: setTextAlign and setBounds will not take effect 
-		 * immediately,it will change at next setString called 
-		 */
-		void setTextAlign(int mode);
-		void setBounds(float x,float y);
-
+		void setTextAlign(int align);
 		int getTextAlign();
-		void getBounds(float* x,float* y);
+
+		void setBoundSize(float width,float height);
+		void getBoundSize(float* width,float* height);
 
 	public:
 		/* override Entity */
@@ -87,41 +70,33 @@ class LabelBitmap:public Entity
 	protected:
 		LabelBitmap();
 		virtual ~LabelBitmap();
-		bool init(FontBitmap* font);
+		bool init();
 		void destruct();
 
-		int setString(uint16_t* utf16_str,int len);
-
-		void calRelOffset();
-		void clear();
-		void generateIndices();
-
-
 	private:
-		int m_alignh,m_alignv;
-		float m_offsetx,m_offsety;
+		bool m_dirty;
+		std::string m_text;
+		uint16_t* m_utf16text;
+
+		std::string m_fontName;
+		float m_fontSize;
+
 		int m_textAlign;
 
-		float m_boundx,m_boundy;
+		float m_boundWidth,m_boundHeight;
 
-		float m_opacity;
+		float m_anchorX,m_anchorY;
+		float m_lineGap;
+
 		Color m_color;
+		float m_opacity;
+
+		float m_textWidth,m_textHeight;
 
 		FontBitmap* m_font;
 		Texture2D* m_texture;
 
 		Mat_V4F_T2F* m_material;
-
-		/* user setting */
-		uint8_t* m_utf8str;
-
-
-		/* auto generate */
-		float m_width,m_height;
-		float m_relOffsetx,m_relOffsety;
-
-		std::vector<Fs_V2F_T2F> m_vertices;
-		std::vector<Face3> m_indics;
 };
 
 
