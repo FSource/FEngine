@@ -255,14 +255,17 @@ class TypoPage
 				{
 					m_current=new TypoLine<T_TypoText>;
 				}
+
 				int minx,miny,maxx,maxy;
 				g->getBound(&minx,&miny,&maxx,&maxy);
+
 				if( m_current->getTextNu()== 0)
 				{
 					m_pen.x=-float(minx);
 				}
 
 				float height=float(g->getHeight());
+
 				if(!canExpandHeight(height))
 				{
 					m_done=true;

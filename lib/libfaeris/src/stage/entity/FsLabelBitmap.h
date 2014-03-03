@@ -25,6 +25,7 @@ class LabelBitmap:public Entity
 		static LabelBitmap* create();
 		static LabelBitmap* create(const char* font);
 		static LabelBitmap* create(const char* font,const char* text);
+
 	public:
 
 		void setFontName(const char* font);
@@ -65,15 +66,16 @@ class LabelBitmap:public Entity
 		/* override FsObject */
 		virtual const char* className();
 
-
-
 	protected:
 		LabelBitmap();
 		virtual ~LabelBitmap();
 		bool init();
 		void destruct();
+		void typoText();
+
 
 	private:
+
 		bool m_dirty;
 		std::string m_text;
 		uint16_t* m_utf16text;
