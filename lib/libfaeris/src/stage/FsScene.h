@@ -79,7 +79,9 @@ class Scene:public ActionTarget
 		Color m_fadeColor;
 		bool m_fadeEnabled;
 
+		FS_FEATURE_WEAK_REF(Layer*) m_touchFocusLayer;
 };
+
 NS_FS_END
 #endif /*_FS_SCENE_H_ */
 

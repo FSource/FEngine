@@ -36,6 +36,11 @@ void Scene::pop()
 		return;
 	}
 	Layer* ret=(Layer*)m_layers->get(size-1);
+	if( ret==m_touchFocusLayer )
+	{
+		m_touchFocusLayer=NULL;
+	}
+
 	ret->setScene(NULL);
 	m_layers->pop();
 }
@@ -58,6 +63,12 @@ void Scene::replace(int pos,Layer* layer)
 		FS_TRACE_WARN("Index(%d) Layer Out Of Range",pos);
 		return; 
 	}
+
+	if(ret==m_touchFocusLayer)
+	{
+		m_touchFocusLayer=NULL;
+	}
+
 	ret->setScene(NULL);
 	m_layers->set(pos,layer);
 }
@@ -69,6 +80,12 @@ void Scene::remove(Layer* layer)
 		FS_TRACE_WARN("Layer is not owned by scene");
 		return;
 	}
+
+	if(layer==m_touchFocusLayer)
+	{
+		m_touchFocusLayer=NULL;
+	}
+
 	layer->setScene(NULL);
 	m_layers->remove(layer);
 }
@@ -113,6 +130,7 @@ void Scene::clear()
 		layer->setScene(NULL);
 	}
 	m_layers->clear();
+	m_touchFocusLayer=NULL;
 }
 
 void Scene::setEnabledFade(bool fade)
@@ -223,64 +241,44 @@ void Scene::draw(Render* render)
 }
 void Scene::touchBegin(float x,float y)
 {
+	m_touchFocusLayer=NULL;
 	m_layers->lock();
 	int layer_nu=m_layers->size();
 	for(int i=layer_nu-1;i>=0;i--)
 	{
 		bool handle=false;
 		Layer* layer=(Layer*)m_layers->get(i);
-		if(layer->touchEnabled()&&layer->getVisible())
+		if((layer->getScene()==this)&&layer->touchEnabled()&&layer->getVisible())
 		{
 			handle=layer->touchBegin(x,y);
 		}
 		if(handle)
 		{
+			m_touchFocusLayer=layer;
 			break;
 		}
 	}
-	m_layers->unlock();
-	m_layers->flush();
-}
-void Scene::touchMove(float x,float y)
-{
-	m_layers->lock();
-	int layer_nu=m_layers->size();
-	for(int i=layer_nu-1;i>=0;i--)
-	{
-		bool handle=false;
-		Layer* layer=(Layer*)m_layers->get(i);
-		if(layer->touchEnabled()&&layer->getVisible())
-		{
-			handle=layer->touchMove(x,y);
-		}
-		if(handle)
-		{
-			break;
-		}
-	}
+
 	m_layers->unlock();
 	m_layers->flush();
 }
 
+void Scene::touchMove(float x,float y)
+{
+	if(m_touchFocusLayer&&m_touchFocusLayer->touchEnabled()&&m_touchFocusLayer->getVisible())
+	{
+		m_touchFocusLayer->touchMove(x,y);
+	}
+
+}
+
 void Scene::touchEnd(float x,float y)
 {
-	m_layers->lock();
-	int layer_nu=m_layers->size();
-	for(int i=layer_nu-1;i>=0;i--)
+	if(m_touchFocusLayer&&m_touchFocusLayer->touchEnabled()&&m_touchFocusLayer->getVisible())
 	{
-		bool handle=false;
-		Layer* layer=(Layer*)m_layers->get(i);
-		if(layer->touchEnabled()&&layer->getVisible())
-		{
-			handle=layer->touchEnd(x,y);
-		}
-		if(handle)
-		{
-			break;
-		}
+		m_touchFocusLayer->touchEnd(x,y);
 	}
-	m_layers->unlock();
-	m_layers->flush();
+	m_touchFocusLayer=NULL;
 }
 
 void Scene::touchesBegin(TouchEvent* event)
@@ -421,7 +419,10 @@ void Scene::init()
 
 	m_fadeColor=Color(255,255,255,0);
 	m_fadeEnabled=true;
+	m_touchFocusLayer=NULL;
+
 }
+
 
 
 

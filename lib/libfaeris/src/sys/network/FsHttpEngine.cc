@@ -102,7 +102,7 @@ void HttpEngine::run()
 			request->onReponse(reponse);
 
 			request->decRef();
-			reponse->decRef();
+			reponse->autoDestroy();
 		}
 
 	}
