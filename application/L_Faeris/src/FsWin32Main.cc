@@ -110,8 +110,6 @@ int main(int argc,char** argv)
 	FS_NO_REF_DESTROY(engine);
 	Global::setScriptEngine(engine);
 
-	//FsModuel_xAccessInit();
-
 
 	engine->executeFile(entry->cstr());
 	dict->decRef();

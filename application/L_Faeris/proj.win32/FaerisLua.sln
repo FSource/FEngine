@@ -14,8 +14,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "L_Faeris", "FaerisWin32.vcp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libspinesprite", "..\..\..\lib\libextends\libspinesprite\proj.vs2008\libspinesprite.vcproj", "{F409901A-8879-47CF-93F5-F247A7E760F8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxAccess", "..\..\..\lib\libxAccess\proj.vs2008\libxAccess.vcproj", "{8B67073F-B2E5-4F18-8C0A-3069EFC288F4}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib3rdextends", "..\..\..\lib\libextends\lib3rdextends\proj.win32\vs2008\lib3rdextends.vcproj", "{55B40A29-02B4-4277-A924-44FD12CF09C5}"
 EndProject
 Global
@@ -40,10 +38,6 @@ Global
 		{F409901A-8879-47CF-93F5-F247A7E760F8}.Debug|Win32.Build.0 = Debug|Win32
 		{F409901A-8879-47CF-93F5-F247A7E760F8}.Release|Win32.ActiveCfg = Release|Win32
 		{F409901A-8879-47CF-93F5-F247A7E760F8}.Release|Win32.Build.0 = Release|Win32
-		{8B67073F-B2E5-4F18-8C0A-3069EFC288F4}.Debug|Win32.ActiveCfg = Debug|Win32
-		{8B67073F-B2E5-4F18-8C0A-3069EFC288F4}.Debug|Win32.Build.0 = Debug|Win32
-		{8B67073F-B2E5-4F18-8C0A-3069EFC288F4}.Release|Win32.ActiveCfg = Release|Win32
-		{8B67073F-B2E5-4F18-8C0A-3069EFC288F4}.Release|Win32.Build.0 = Release|Win32
 		{55B40A29-02B4-4277-A924-44FD12CF09C5}.Debug|Win32.ActiveCfg = Debug|Win32
 		{55B40A29-02B4-4277-A924-44FD12CF09C5}.Debug|Win32.Build.0 = Debug|Win32
 		{55B40A29-02B4-4277-A924-44FD12CF09C5}.Release|Win32.ActiveCfg = Release|Win32
