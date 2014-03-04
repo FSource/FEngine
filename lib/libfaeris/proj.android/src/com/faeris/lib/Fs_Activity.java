@@ -7,10 +7,12 @@ import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 
@@ -21,7 +23,6 @@ public  class Fs_Activity extends Activity
 	private Fs_GLSurfaceView m_view;
 
 	/* method */
-	
 	@Override 
 	protected void onCreate(final Bundle save_state)
 	{
@@ -31,7 +32,11 @@ public  class Fs_Activity extends Activity
 		this.initEnv(); 
 		
 		this.initView();
+		
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		setScreenOrientation();
 	}
+	
 	
 	@Override 
 	protected void onResume()
@@ -93,16 +98,16 @@ public  class Fs_Activity extends Activity
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			AlertDialog.Builder builder = new Builder(Fs_Activity.this);
-			builder.setMessage("È·ÈÏÍË³öÓÎÏ·Âð?");
-			builder.setTitle("ÌáÊ¾");
-			builder.setPositiveButton("È·ÈÏ", new OnClickListener() {
+			builder.setMessage("È·ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½Ï·ï¿½ï¿½?");
+			builder.setTitle("ï¿½ï¿½Ê¾");
+			builder.setPositiveButton("È·ï¿½ï¿½", new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 						Fs_Activity.this.finish();
 					}
 			});
 
-			builder.setNegativeButton("È¡Ïû", new OnClickListener() {
+			builder.setNegativeButton("È¡ï¿½ï¿½", new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
 					}
@@ -118,6 +123,28 @@ public  class Fs_Activity extends Activity
 	{
 		return m_view;
 	}
+	
+	
+	private void setScreenOrientation()
+	{
+		if (android.os.Build.VERSION.SDK_INT >= 9)
+		{
+			int SCREEN_ORIENTATION_SENSOR_LANDSCAPE = 6;
+			int SCREEN_ORIENTATION_SENSOR_PORTRAIT = 7;
+			int orientation = getRequestedOrientation();
+			switch(orientation)
+			{
+				case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
+					setRequestedOrientation(SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+					break;
+				case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
+					setRequestedOrientation(SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+					break; 
+			}
+
+		}
+	}
+ 
 }
 
 
