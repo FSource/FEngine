@@ -18,6 +18,14 @@ class Scene@__Scene:public ActionTarget
 		/* fade */
 		void setEnabledFade(bool fade);
 		void setFadeColor(Color c);
+
+		/* touch */
+
+		void setTouchEnabled(bool enabled);
+		bool getTouchEnabled();
+
+		void setTouchesEnabled(bool enabled);
+		bool getTouchesEnabled();
 };
 
 

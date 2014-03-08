@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 02/20/14 06:00:48.
+** Generated automatically by tolua++-1.0.92 on 03/08/14 06:23:37.
 */
 
 #ifndef __cplusplus
@@ -16335,6 +16335,136 @@ static int tolua_FsLibFaeris___Scene_setFadeColor00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setTouchEnabled of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Scene_setTouchEnabled00
+static int tolua_FsLibFaeris___Scene_setTouchEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+  bool enabled = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTouchEnabled'", NULL);
+#endif
+  {
+   self->setTouchEnabled(enabled);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setTouchEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getTouchEnabled of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Scene_getTouchEnabled00
+static int tolua_FsLibFaeris___Scene_getTouchEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTouchEnabled'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getTouchEnabled();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getTouchEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setTouchesEnabled of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Scene_setTouchesEnabled00
+static int tolua_FsLibFaeris___Scene_setTouchesEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+  bool enabled = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTouchesEnabled'", NULL);
+#endif
+  {
+   self->setTouchesEnabled(enabled);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setTouchesEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getTouchesEnabled of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Scene_getTouchesEnabled00
+static int tolua_FsLibFaeris___Scene_getTouchesEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTouchesEnabled'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getTouchesEnabled();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getTouchesEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: create of class  LuaScene */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Scene_create00
 static int tolua_FsLibFaeris_Scene_create00(lua_State* tolua_S)
@@ -27629,6 +27759,10 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getLayer",tolua_FsLibFaeris___Scene_getLayer00);
    tolua_function(tolua_S,"setEnabledFade",tolua_FsLibFaeris___Scene_setEnabledFade00);
    tolua_function(tolua_S,"setFadeColor",tolua_FsLibFaeris___Scene_setFadeColor00);
+   tolua_function(tolua_S,"setTouchEnabled",tolua_FsLibFaeris___Scene_setTouchEnabled00);
+   tolua_function(tolua_S,"getTouchEnabled",tolua_FsLibFaeris___Scene_getTouchEnabled00);
+   tolua_function(tolua_S,"setTouchesEnabled",tolua_FsLibFaeris___Scene_setTouchesEnabled00);
+   tolua_function(tolua_S,"getTouchesEnabled",tolua_FsLibFaeris___Scene_getTouchesEnabled00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Scene","LuaScene","Scene",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Scene");

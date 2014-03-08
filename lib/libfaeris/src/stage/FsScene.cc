@@ -133,6 +133,31 @@ void Scene::clear()
 	m_touchFocusLayer=NULL;
 }
 
+void Scene::setTouchEnabled(bool enabled)
+{
+	m_touchEnabled=enabled;
+}
+
+bool Scene::getTouchEnabled()
+{
+	return m_touchEnabled;
+}
+
+
+void Scene::setTouchesEnabled(bool enabled)
+{
+	m_touchesEnabled=enabled;
+}
+
+bool Scene::getTouchesEnabled()
+{
+	return m_touchesEnabled;
+}
+
+
+
+
+
 void Scene::setEnabledFade(bool fade)
 {
 	m_fadeEnabled=fade;
@@ -420,6 +445,9 @@ void Scene::init()
 	m_fadeColor=Color(255,255,255,0);
 	m_fadeEnabled=true;
 	m_touchFocusLayer=NULL;
+
+	m_touchEnabled=true;
+	m_touchesEnabled=true;
 
 }
 

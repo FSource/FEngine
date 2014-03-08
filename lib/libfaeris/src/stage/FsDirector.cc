@@ -382,7 +382,7 @@ void Director::touchBegin(float x,float y)
 	if(m_stop) return;
 	if(!m_current) return;
 
-	m_current->touchBegin(x,y);
+	if(m_current->getTouchEnabled()) m_current->touchBegin(x,y);
 }
 
 void Director::touchMove(float x,float y)
@@ -390,15 +390,14 @@ void Director::touchMove(float x,float y)
 	if(m_stop) return;
 	if(!m_current) return;
 
-	m_current->touchMove(x,y);
+	if(m_current->getTouchEnabled()) m_current->touchMove(x,y);
 }
 
 void Director::touchEnd(float x,float y)
 {
 	if(m_stop) return;
 	if(!m_current) return;
-
-	m_current->touchEnd(x,y);
+	if(m_current->getTouchEnabled()) m_current->touchEnd(x,y);
 }
 
 void Director::touchesBegin(TouchEvent* event)
@@ -406,7 +405,7 @@ void Director::touchesBegin(TouchEvent* event)
 	if(m_stop) return;
 	if(!m_current) return;
 
-	m_current->touchesBegin(event);
+	if(m_current->getTouchesEnabled()) m_current->touchesBegin(event);
 }
 
 void Director::touchesPointerDown(TouchEvent* event)
@@ -414,28 +413,28 @@ void Director::touchesPointerDown(TouchEvent* event)
 	if(m_stop) return;
 	if(!m_current) return;
 
-	m_current->touchesPointerDown(event);
+	if(m_current->getTouchesEnabled()) m_current->touchesPointerDown(event);
 }
 void Director::touchesMove(TouchEvent* event)
 {
 	if(m_stop) return;
 	if(!m_current) return;
 
-	m_current->touchesMove(event);
+	if(m_current->getTouchesEnabled()) m_current->touchesMove(event);
 }
 void Director::touchesPointerUp(TouchEvent* event)
 {
 	if(m_stop) return;
 	if(!m_current) return;
 
-	m_current->touchesPointerUp(event);
+	if(m_current->getTouchesEnabled()) m_current->touchesPointerUp(event);
 }
 
 void Director::touchesEnd(TouchEvent* event)
 {
 	if(m_stop) return;
 	if(!m_current) return;
-	m_current->touchesEnd(event);
+	if(m_current->getTouchesEnabled()) m_current->touchesEnd(event);
 }
 
 void Director::keypadEvent(int type,int keycode)
@@ -452,11 +451,6 @@ void Director::inputTextEvent(const char* text,int length)
 	if(!m_current) return;
 	m_current->inputTextEvent(text,length);
 }
-
-
-
-
-
 
 
 NS_FS_END

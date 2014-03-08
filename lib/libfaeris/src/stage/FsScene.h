@@ -38,6 +38,13 @@ class Scene:public ActionTarget
 		void setEnabledFade(bool fade);
 		void setFadeColor(Color c);
 
+		void setTouchEnabled(bool enabled);
+		bool getTouchEnabled();
+
+		void setTouchesEnabled(bool enabled);
+		bool getTouchesEnabled();
+		
+
 	public:
 
 		/* event hook */
@@ -66,7 +73,6 @@ class Scene:public ActionTarget
 	public:
 		void updateLayers(float dt);
 
-
 	protected:
 		Scene();
 		~Scene();
@@ -78,6 +84,9 @@ class Scene:public ActionTarget
 
 		Color m_fadeColor;
 		bool m_fadeEnabled;
+
+		bool m_touchEnabled;
+		bool m_touchesEnabled;
 
 		FS_FEATURE_WEAK_REF(Layer*) m_touchFocusLayer;
 };
