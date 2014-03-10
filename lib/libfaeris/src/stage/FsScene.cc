@@ -277,7 +277,7 @@ void Scene::touchBegin(float x,float y)
 		{
 			handle=layer->touchBegin(x,y);
 		}
-		if(handle)
+		if(handle&&layer->getScene()==this)
 		{
 			m_touchFocusLayer=layer;
 			break;
