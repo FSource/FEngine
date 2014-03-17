@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src;../src/support;../../lib3rdparty/freetype/include;../../lib3rdparty/zlib/include;../../lib3rdparty/pthread/include;../../lib3rdparty/curl/include;&quot;../../lib3rdparty/tolua++/include&quot;;../../lib3rdparty/lua/include;../../lib3rdparty/c99/include;../../lib3rdparty/minizip/include;../../lib3rdparty/GL/include;../../lib3rdparty/fmod/include;../../lib3rdparty/libpng/include"
+				AdditionalIncludeDirectories="../src;../src/support;../../lib3rdparty/freetype/include;../../lib3rdparty/zlib/include;../../lib3rdparty/pthread/include;../../lib3rdparty/curl/include;&quot;../../lib3rdparty/tolua++/include&quot;;../../lib3rdparty/lua/include;../../lib3rdparty/c99/include;../../lib3rdparty/minizip/include;../../lib3rdparty/GL/include;../../lib3rdparty/fmod/include;../../lib3rdparty/libjpeg/src;../../lib3rdparty/libpng/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;PTW32_BUILD;_USRDLL;CURL_STATICLIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"

@@ -14,6 +14,7 @@ static bool fs_png_check(const unsigned char* buf,unsigned int len)
 	return png_sig_cmp((png_byte*)buf,(png_size_t)0,len)==0;
 }
 
+
 static void fs_png_read_data(png_structp png_ptr,png_bytep data,png_size_t length)
 {
 	png_size_t check;
@@ -406,6 +407,23 @@ Image2D* FsUtil_PngReader(const char* filename)
 	Image2D* ret=FsUtil_PngReader(file);
 	file->decRef();
 	return ret;
+}
+
+bool FsUtil_CheckPng(FsFile* file)
+{
+	int length=file->getLength();
+
+	if(length< 8 )
+	{
+		return false;
+	}
+
+
+	uint8_t data[8];
+	file->read(data,8);
+	file->seek(0,FsFile::FS_SEEK_SET);
+
+	return fs_png_check(data,8);
 }
 
 NS_FS_END

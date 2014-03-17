@@ -11,6 +11,7 @@ FS_FEATURE_NEW_OBJECT(Image2D*) FsUtil_PngReader(const char* filename);
 FS_FEATURE_NEW_OBJECT(Image2D*) FsUtil_PngReader(FsFile* file);
 
 int FsUtil_PngWriter(FsFile* file,Image2D* img);
+bool FsUtil_CheckPng(FsFile* file);
 
 NS_FS_END
 

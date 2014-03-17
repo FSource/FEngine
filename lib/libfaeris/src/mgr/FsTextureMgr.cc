@@ -6,7 +6,7 @@ NS_FS_BEGIN
 
 static Resource* textureCreateFunc(FsFile* file)
 {
-	Image2D* image=FsUtil_ImageReader(file,Image2D::IMAGE_PNG);
+	Image2D* image=FsUtil_ImageReader(file,Image2D::IMAGE_UNKWON);
 	if(image==NULL)
 	{
 		return NULL;
