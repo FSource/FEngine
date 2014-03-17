@@ -64,6 +64,7 @@ void SpineSprite::setAnimation(const char* anim)
 	{
 		m_duration=0;
 	}
+
 }
 
 

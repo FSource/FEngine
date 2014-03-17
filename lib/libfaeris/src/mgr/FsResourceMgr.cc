@@ -15,6 +15,7 @@ ResourceMgr::ResourceMgr(ResourceCreateFunc func)
 
 ResourceMgr::~ResourceMgr()
 {
+	unloadAll(true);
 	FS_DESTROY(m_caches);
 }
 
@@ -146,6 +147,11 @@ Resource* ResourceMgr::loadFromSearchPath(const char* file_name)
 
 void ResourceMgr::removeCache(FsString* key)
 {
+	Resource* res=(Resource*) m_caches->lookup(key);
+	if(res)
+	{
+		res->setMgr(NULL);
+	}
 	m_caches->remove(key);
 }
 
@@ -184,6 +190,7 @@ Resource* ResourceMgr::loadFromPath(const char* name)
 
 void ResourceMgr::addCache(FsString* name,Resource* res)
 {
+	res->setMgr(this);
 	res->setResourceName(name);
 	m_caches->insert(name,res);
 }
@@ -221,7 +228,15 @@ bool ResourceMgr::unload(const char* path,bool force)
 void ResourceMgr::unloadAll(bool force)
 {
 	if(force)
-	{
+	{	
+		FsDict::Iterator iter(m_caches);
+		while(!iter.done())
+		{
+			Resource* res=(Resource*)iter.getValue();
+			res->setMgr(NULL);
+			iter.next();
+		}
+
 		m_caches->clear();
 	}
 	else 
@@ -241,6 +256,7 @@ void ResourceMgr::unloadAll(bool force)
 		int size=need_unload.size();
 		for(int i=0;i<size;i++)
 		{
+			FS_TRACE_INFO("remove cache:%s",need_unload[i]->getResourceName()->cstr());
 			remove(need_unload[i]);
 		}
 	}
