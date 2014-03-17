@@ -64,6 +64,7 @@ void SpineSprite::setAnimation(const char* anim)
 	{
 		m_duration=0;
 	}
+
 }
 
 
@@ -125,7 +126,7 @@ void SpineSprite::setCurTime(float time)
 				m_stop=true;
 				break;
 			case ANIM_END:
-				m_elapseTime=m_duration;
+				m_elapseTime=m_duration-0.001f;
 				m_stop=true;
 				break;
 		}

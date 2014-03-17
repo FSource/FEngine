@@ -23,6 +23,7 @@ FsString* Resource::getResourceName()
 {
 	return m_resourceName;
 }
+
 Resource::~Resource() 
 {
 	assert(m_mgr==NULL);
