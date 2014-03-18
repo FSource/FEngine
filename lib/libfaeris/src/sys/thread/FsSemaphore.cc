@@ -1,5 +1,6 @@
 #include "sys/thread/FsSemaphore.h"
 #include "pthread.h"
+
 NS_FS_BEGIN
 
 Semaphore::Semaphore()
@@ -31,7 +32,26 @@ int Semaphore::wait()
 
 int Semaphore::wait(long ms)
 {
-	struct timespec time={ms/1000,(ms%1000)*1000*1000};
+
+	
+	struct timespec time={0,0};
+
+	/*FIXME: sem_timedwait Need Absolute Time to 1970 */
+	assert(0);
+	
+	/*
+	clock_gettime(CLOCK_REALTIME, &time);
+	*/
+
+	time.tv_sec+=ms/1000;
+	time.tv_nsec+=(ms%1000)*1000*1000;
+
+	if(time.tv_nsec> 1000*1000*1000)
+	{
+		time.tv_sec++;
+		time.tv_nsec-=1000*1000*1000;
+	}
+
 	int ret=sem_timedwait(&m_sem,&time);
 	if(ret<0)
 	{

@@ -53,7 +53,7 @@ void HttpEngine::run()
 {
 	while(true)
 	{
-		int ret=m_reqSem->wait(1000);
+		int ret=m_reqSem->wait();
 
 		if(m_stop)
 		{
