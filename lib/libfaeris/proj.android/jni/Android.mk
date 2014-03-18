@@ -14,6 +14,7 @@ LOCAL_CFLAGS :=     -I$(LOCAL_PATH)/../../src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/minizip/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/curl/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/fmod/include \
+ 					-I$(LOCAL_PATH)/../../../lib3rdparty/libjpeg/include.android \
 
 
 
