@@ -53,14 +53,13 @@ public class Fs_GLRender implements GLSurfaceView.Renderer
 	{
 		if(!this.m_init)
 		{
-			Log.v("key","init:"+this.m_init);
 			Fs_Jni.moduleInit();
 			this.m_init=true;
-			Log.v("key","init:"+this.m_init);
 		}
 		else 
 		{
-			Log.v("Fs_GLRender","Opengl context lost");
+			Log.v("Fs_GLRender","Opengl context lost,Kill Process");
+			Fs_Application.getContext().finish();
 		}
 		m_now=System.currentTimeMillis();
 		m_last=m_now;

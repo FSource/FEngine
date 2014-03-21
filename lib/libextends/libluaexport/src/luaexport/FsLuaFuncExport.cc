@@ -5,12 +5,14 @@
 
 #include "FsLuaExport.h"
 #include "support/data/FsEncrypt.h"
+#include "support/data/FsMd5.h"
 #include "sys/io/FsVFS.h"
 #include "sys/io/FsPackage.h"
 #include "support/util/FsLog.h"
 #include "FsLuaEngine.h"
 #include "FsGlobal.h"
 #include "sys/FsSys.h"
+
 
 
 /* all function */
@@ -238,6 +240,27 @@ int luaf_gettablehandlenu(lua_State* l)
 	return 1;
 }
 
+int luaf_md5binary(lua_State* l)
+{
+	uint32_t msg_length=0;
+	const char* msg=luaL_checklstring(l,1,&msg_length);
+
+	char ret[FS_MD5_HASHSIZE];
+	FsMd5_ToBinaryBit(msg,msg_length,ret);
+	lua_pushlstring(l,ret,FS_MD5_HASHSIZE);
+	return 1;
+}
+
+int luaf_md5string(lua_State* l)
+{
+	uint32_t msg_length=0;
+	const char* msg=luaL_checklstring(l,1,&msg_length);
+
+	char ret[FS_MD5_HASHSIZE*2+1];
+	FsMd5_ToString(msg,msg_length,ret);
+	lua_pushlstring(l,ret,FS_MD5_HASHSIZE*2);
+	return 1;
+}
 
 static const struct luaL_reg luafuncs[]=
 {
@@ -253,6 +276,8 @@ static const struct luaL_reg luafuncs[]=
 	{"f_setenv",luaf_setenv},
 	{"f_mappackage",luaf_mappackage},
 	{"f_gettablehandlenu",luaf_gettablehandlenu},
+	{"f_md5string",luaf_md5string},
+	{"f_md5binary",luaf_md5binary},
 	{NULL,NULL},
 };
 
