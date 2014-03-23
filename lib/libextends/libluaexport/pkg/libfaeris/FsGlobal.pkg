@@ -13,6 +13,7 @@ class Global@share
 		static TextureMgr* textureMgr();
 		static Sprite2DDataMgr* sprite2DDataMgr();
 		static ObjectMgr* objectMgr();
+		static ProgramMgr* programMgr();
 
 };
 

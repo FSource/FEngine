@@ -320,10 +320,8 @@ enum
 
 /* material */
 #define FS_MATERIAL_CLASS_NAME "Material"
-#define FS_QUAD_2D_MATERIAL_CLASS_NAME "Quad2DMaterial"
-#define FS_POSITION_ALPHA_TEXTURE_MATERIAL_CLASS_NAME "Mat_V4F_T2F_A1F"
-#define FS_POSITION_TEXTURE_MATERIAL_CLASS_NAME "Mat_V4F_T2F"
-#define FS_MAT_V4F_CLASS_NAME "Mat_V4F"
+#define FS_COLOR_MATERIAL_CLASS_NAME "ColorMaterial"
+#define FS_TEXTURE_MATERIAL_CLASS_NAME "TextureMaterial"
 
 
 /* sys */
@@ -361,6 +359,7 @@ enum
 #define FS_FONT_TTF_DATA_MGR_CLASS_NAME  "FontTTFDataMgr"
 #define FS_SPRITE_2D_DATA_MGR_CLASS_NAME "Sprite2DDataMgr"
 #define FS_OBJECT_MGR_CLASS_NAME "ObjectMgr"
+#define FS_PROGRAM_MGR_CLASS_NAME "ProgramMgr"
 
 
 /* action */

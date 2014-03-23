@@ -45,6 +45,7 @@ Resource* TextureMgr::load(const char* name)
 	{
 		ret->setResourceUrl(name);
 	}
+	return ret;
 }
 
 Texture2D* TextureMgr::loadTexture(const char* name)

@@ -4,9 +4,8 @@
 #include "mgr/FsTextureMgr.h"
 
 #include "FsGlobal.h"
-#include "FsProgramMgr.h"
-#include "graphics/material/FsColorMaterial.h"
-#include "graphics/FsProgram.h"
+#include "mgr/FsProgramMgr.h"
+
 NS_FS_BEGIN
 
 
@@ -38,24 +37,8 @@ Quad2D* Quad2D::create(const char* tex,float width,float height)
 	return create(tex,Rect2D(-width/2.0f,-height/2.0f,width,height));
 }
 
-void Quad2D::setColor(Color c)
-{
-	m_color=c;
-}
-Color Quad2D::getColor()
-{
-	return m_color;
-}
 
-void Quad2D::setOpacity(float opacity)
-{
-	m_opacity=opacity;
-}
 
-float Quad2D::getOpacity()
-{
-	return m_opacity;
-}
 
 void Quad2D::setTexture(Texture2D* tex)
 {
@@ -194,7 +177,7 @@ float Quad2D::getAnchorY()
 
 void Quad2D::draw(Render* render,bool updateMatrix)
 {
-	if(m_texture==NULL)
+	if(m_texture==NULL||!m_program||!m_material)
 	{
 		return;
 	}
@@ -241,8 +224,8 @@ void Quad2D::draw(Render* render,bool updateMatrix)
 
 	render->disableAllAttrArray();
 
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-	int tex_loc=r->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
+	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
 
 
 	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,vv);
@@ -283,8 +266,6 @@ const char* Quad2D::className()
 
 Quad2D::Quad2D()
 {
-	m_color=Color::WHITE;
-	m_opacity=1.0f;
 	m_texture=NULL;
 	m_material=NULL;
 	m_textureCoord.set(0,0,1,1);
@@ -293,10 +274,10 @@ Quad2D::Quad2D()
 	m_anchorX=0.5;
 	m_anchorY=0.5;
 
-	m_material=TextureMaterial:create();
+	m_material=TextureMaterial::create();
 	m_material->addRef();
 
-	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
 	FS_SAFE_ADD_REF(m_program);
 }
 

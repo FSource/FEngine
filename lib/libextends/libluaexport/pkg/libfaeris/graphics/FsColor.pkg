@@ -24,3 +24,30 @@ class Color
 		bool operator==(Color right);
 };
 
+class Color4f
+{
+	public:
+		static Color4f DEFAULT_COLOR;
+		static Color4f RED;
+		static Color4f BLUE;
+		static Color4f GREEN;
+		static Color4f WHITE;
+		static Color4f BLACK;
+
+	public:
+		Color4f(Color c);
+
+		Color4f(float red,float green,float blue,float alpha);
+		Color4f(float red,float green,float blue);
+
+		Color4f();
+
+		Color4f operator+(Color4f right);
+		Color4f operator-(Color4f right);
+		Color4f operator*(float s);
+		Color4f operator*(Color4f right);
+
+	public:
+		float r,g,b,a;
+};
+

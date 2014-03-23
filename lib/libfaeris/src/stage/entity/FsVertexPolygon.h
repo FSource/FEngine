@@ -7,11 +7,13 @@
 #include "stage/entity/FsEntity.h"
 #include "graphics/FsRender.h"
 #include "graphics/FsColor.h"
-#include "graphics/material/FsMat_V4F.h"
+
 #include "math/FsVector2.h"
 #include "math/FsVector3.h"
 
 
+#include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsProgram.h"
 NS_FS_BEGIN
 
 class ColorMaterial;
@@ -82,8 +84,6 @@ class VertexPolygon :public Entity
 		void setMode(int mode);
 		int getMode();
 
-		void setPointSize(float size);
-		float getPointSize();
 
 
 	public:

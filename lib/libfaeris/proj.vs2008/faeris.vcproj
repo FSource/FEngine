@@ -258,43 +258,11 @@
 					Name="material"
 					>
 					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F.cc"
+						RelativePath="..\src\graphics\material\FsColorMaterial.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F_C4F.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F_C4F.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F_T2F.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F_T2F.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F_T2F_A1F.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F_T2F_A1F.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F_T2F_C4F.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\src\graphics\material\FsMat_V4F_T2F_C4F.h"
+						RelativePath="..\src\graphics\material\FsColorMaterial.h"
 						>
 					</File>
 					<File
@@ -303,6 +271,14 @@
 					</File>
 					<File
 						RelativePath="..\src\graphics\material\FsMaterial.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\graphics\material\FsTextureMaterial.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\graphics\material\FsTextureMaterial.h"
 						>
 					</File>
 				</Filter>
@@ -1140,6 +1116,14 @@
 				</File>
 				<File
 					RelativePath="..\src\mgr\FsObjectMgr.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\mgr\FsProgramMgr.cc"
+					>
+				</File>
+				<File
+					RelativePath="..\src\mgr\FsProgramMgr.h"
 					>
 				</File>
 				<File

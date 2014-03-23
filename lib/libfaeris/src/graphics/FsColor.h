@@ -38,6 +38,14 @@ class Color
 class Color4f
 {
 	public:
+		static Color4f DEFAULT_COLOR;
+		static Color4f RED;
+		static Color4f BLUE;
+		static Color4f GREEN;
+		static Color4f WHITE;
+		static Color4f BLACK;
+
+	public:
 		Color4f(Color c)
 		{
 			r=float(c.r)/255.0f;
@@ -49,10 +57,20 @@ class Color4f
 		Color4f(float red,float green,float blue,float alpha)
 			:r(red),g(green),b(blue),a(alpha)
 		{}
+		Color4f(float red,float green,float blue)
+			:r(red),g(green),b(blue),a(1.0f)
+		{ }
+
 		Color4f()
-			:r(1.0),g(1.0),b(1.0),a(1.0)
+			:r(1.0f),g(1.0f),b(1.0f),a(1.0f)
 		{
 		}
+
+		Color4f operator+(Color4f right);
+		Color4f operator-(Color4f right);
+		Color4f operator*(float s);
+		Color4f operator*(Color4f right);
+
 
 	public:
 		float r,g,b,a;

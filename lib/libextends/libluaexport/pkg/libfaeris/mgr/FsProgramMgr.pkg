@@ -1,0 +1,10 @@
+$#include "mgr/FsProgramMgr.h"
+
+class ProgramMgr:public ResourceMgr 
+{
+	public:
+		Program* load(const char* vert,const char* frag);
+
+};
+
+

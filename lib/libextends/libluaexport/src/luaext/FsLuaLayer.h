@@ -37,7 +37,7 @@ class LuaColorLayer:public TLuaLayer<ColorLayer>
 		{
 			return new LuaColorLayer;
 		}
-		static LuaColorLayer* create(Color c)
+		static LuaColorLayer* create(Color4f c)
 		{
 			LuaColorLayer* layer=new LuaColorLayer;
 			layer->setColor(c);

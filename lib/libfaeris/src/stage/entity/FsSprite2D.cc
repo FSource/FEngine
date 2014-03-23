@@ -5,9 +5,8 @@
 #include "support/util/FsDict.h"
 #include "support/util/FsInteger.h"
 #include "FsGlobal.h"
-#include "FsProgramMgr.h"
-#include "graphics/material/FsColorMaterial.h"
-#include "graphics/FsProgram.h"
+#include "mgr/FsProgramMgr.h"
+
 
 NS_FS_BEGIN
 
@@ -220,7 +219,7 @@ void Sprite2D::draw(Render* render,bool update_matrix)
 	}
 
 	render->setProgram(m_program);
-	material->configRender(render);
+	m_material->configRender(render);
 
 
 	render->disableAllAttrArray();
@@ -418,7 +417,7 @@ Sprite2D::Sprite2D()
 	m_material=TextureMaterial::create();
 	m_material->addRef();
 
-	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F_A1F);
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F_A1F);
 	FS_SAFE_ADD_REF(m_program);
 }
 

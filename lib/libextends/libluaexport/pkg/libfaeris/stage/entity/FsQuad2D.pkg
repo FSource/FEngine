@@ -4,13 +4,25 @@ $#include "luaext/FsLuaEntity.h"
 class Quad2D@__Quad2D:public Entity 
 {
 	public:
+		/* material */
 		void setColor(Color c);
-		Color getColor();
+		void setColor(Color4f c);
+		Color4f getColor();
 
-		/* opacity */
 		void setOpacity(float opacity);
 		float getOpacity();
 
+		void setBlend(int eq,int src,int dst);
+		void setBlend(int src,int dst);
+
+		TextureMaterial* getMaterial();
+		void setMaterial(TextureMaterial* mat);
+
+		Program* getShader();
+		void setShader(Program* shader);
+
+
+	public:
 		/* texture */
 		void setResourceUrl(const char* name);
 		void setTexture(const char* tex);

@@ -100,16 +100,19 @@ const char* Render::className()
 {
 	return FS_RENDER_CLASS_NAME;
 }
+
 Render::Render()
 {
 	m_target=NULL;
-	m_material=NULL;
 	m_program=NULL;
 
 
 	/* cache GL State */
-	m_clearColor=Color(0,0,0);
+	m_clearColor=Color4f(0.0f,0.0f,0.0f,1.0f);
 	glClearColor(0.0f,0.0f,0.0f,1.0f);
+
+	m_color=Color4f::WHITE;
+	m_opacity=1.0f;
 
 	m_scissorEnable=false;
 	m_depthTest=false;
@@ -170,10 +173,6 @@ Render::~Render()
 		m_target->decRef();
 	}
 
-	if(m_material)
-	{
-		m_material->decRef();
-	}
 
 	if(m_program)
 	{
@@ -182,16 +181,7 @@ Render::~Render()
 	delete[] m_vertexAttrFlags;
 }
 
-void Render::setMaterial(Material* m)
-{
-	FS_SAFE_ADD_REF(m);
-	FS_SAFE_DEC_REF(m_material);
-	if(m)
-	{
-		m->onUse(this);
-	}
-	m_material=m;
-}
+
 void Render::setProgram(Program* prog)
 {
 	if(m_program==prog)
@@ -416,24 +406,12 @@ void Render::setAndEnableVertexAttrPointer(int index,int size,int type,
 
 void Render::drawFace3(Face3* f,uint num)
 {
-	if(!m_material)
-	{	
-		FS_TRACE_WARN("No Material Exist");
-		return ;
-	}
-
-
 	glDrawElements(GL_TRIANGLES,num*3,GL_UNSIGNED_SHORT,f);
 
 }
 
 void Render::drawArray(int mode,int start,uint size)
 {
-	if(!m_material)
-	{	
-		FS_TRACE_WARN("No Material Exist");
-		return ;
-	}
 
 	GLint mode_gl=FsPrimitive_ToGLEnum(mode);
 	glDrawArrays(mode_gl,start,size);
@@ -561,7 +539,7 @@ void Render::setUniform(int loc,int type,int count,void* value)
 {                                                                          
 	if(loc==-1)
 	{
-		FS_TRACE_WARN("Ivalid Uniform Loc");
+		//FS_TRACE_WARN("Ivalid Uniform Loc");
 		return ;
 	}
 

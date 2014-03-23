@@ -11,9 +11,8 @@
 
 
 #include "FsGlobal.h"
-#include "FsProgramMgr.h"
-#include "graphics/material/FsColorMaterial.h"
-#include "graphics/FsProgram.h"
+#include "mgr/FsProgramMgr.h"
+
 
 NS_FS_BEGIN
 
@@ -86,10 +85,10 @@ LabelTTF::LabelTTF()
 	m_textHeight=0;
 
 
-	m_material=ColorMaterial:create();
+	m_material=TextureMaterial::create();
 	m_material->addRef();
 
-	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
 	FS_SAFE_ADD_REF(m_program);
 
 }
@@ -313,8 +312,8 @@ void LabelTTF::draw(Render* render,bool updateMatrix)
 
 	render->disableAllAttrArray();
 
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-	int tex_loc=r->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
+	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
 
 
 	static float t[8]={

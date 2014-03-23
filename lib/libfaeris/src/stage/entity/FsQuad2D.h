@@ -6,6 +6,8 @@
 #include "math/FsRect2D.h"
 #include "graphics/FsColor.h"
 
+#include "graphics/material/FsTextureMaterial.h"
+#include "graphics/FsProgram.h"
 NS_FS_BEGIN
 class Texture2D;
 

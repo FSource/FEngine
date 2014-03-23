@@ -13,16 +13,27 @@ class SpineSprite@__SpineSprite:public Entity
 		};
 
 	public:
-		/* skin */
-		bool setSkin(const char* skin);
-
-		/* color */
+		/* material */
 		void setColor(Color c);
-		Color getColor();
+		void setColor(Color4f c);
+		Color4f getColor();
 
-		/* opacity */
 		void setOpacity(float opacity);
 		float getOpacity();
+
+		void setBlend(int eq,int src,int dst);
+		void setBlend(int src,int dst);
+
+		TextureMaterial* getMaterial();
+		void setMaterial(TextureMaterial* mat);
+
+		Program* getShader();
+		void setShader(Program* shader);
+
+
+	public:
+		/* skin */
+		bool setSkin(const char* skin);
 
 		/* animation */
 		void updateAnimation(float dt);

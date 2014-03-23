@@ -38,6 +38,7 @@ $pfile "mgr/FsTextureMgr.pkg"
 $pfile "mgr/FsSprite2DDataMgr.pkg"
 $pfile "mgr/FsResourceMgr.pkg"
 $pfile "mgr/FsObjectMgr.pkg"
+$pfile "mgr/FsProgramMgr.pkg"
 
 
 

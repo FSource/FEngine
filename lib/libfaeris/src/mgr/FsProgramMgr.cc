@@ -1,10 +1,32 @@
 #include "FsProgramMgr.h"
 #include "graphics/FsProgram.h"
 
+NS_FS_BEGIN
+
+
+const char* ProgramMgr::className()
+{
+	return FS_PROGRAM_MGR_CLASS_NAME;
+}
 
 ProgramMgr* ProgramMgr::create()
+
+{
+	ProgramMgr* ret=new ProgramMgr;
+	return ret;
+}
+
+ProgramMgr::ProgramMgr()
 	:ResourceMgr(0)
 {
+}
+ProgramMgr::~ProgramMgr()
+{
+}
+
+Resource* ProgramMgr::load(const char* name)
+{
+	return ResourceMgr::load(name);
 }
 
 
@@ -18,7 +40,7 @@ Program* ProgramMgr::load(const char* vert,const char* frag)
 	FsString* key=FsString::create(vert);
 	key->append(frag);
 
-	Program* ret=findFromCache(key);
+	Program* ret=(Program*)findFromCache(key);
 	if(ret)
 	{
 		key->autoDestroy();
@@ -49,11 +71,11 @@ Program* ProgramMgr::load(const char* vert,const char* frag)
 	frag_data_buf[frag_data_len]=0;
 
 
-	file->read(vert_data_buf,vert_data_len);
-	file->read(frag_data_buf,frag_data_len);
+	vert_file->read(vert_data_buf,vert_data_len);
+	frag_file->read(frag_data_buf,frag_data_len);
 
 
-	ret=Program:create(vert_data_buf,frag_data_buf);
+	ret=Program::create(vert_data_buf,frag_data_buf);
 
 	if(ret)
 	{
@@ -81,6 +103,40 @@ struct ST_PreDefineShader
 
 
 
+static const char* FS_PRE_SHADER_V4F_VERT=
+#include "graphics/shader/Fs_V4F.vert"
+
+static const char* FS_PRE_SHADER_V4F_FRAG=
+#include "graphics/shader/Fs_V4F.frag"
+
+static const char* FS_PRE_SHADER_V4F_C4F_VERT=
+#include "graphics/shader/Fs_V4F_C4F.vert"
+
+static const char* FS_PRE_SHADER_V4F_C4F_FRAG=
+#include "graphics/shader/Fs_V4F_C4F.frag"
+
+
+
+static const char*  FS_PRE_SHADER_V4F_T2F_VERT=
+#include "graphics/shader/Fs_V4F_T2F.vert"
+
+static const char* FS_PRE_SHADER_V4F_T2F_FRAG=
+#include "graphics/shader/Fs_V4F_T2F.frag"
+
+
+static const char* FS_PRE_SHADER_V4F_T2F_A1F_VERT=
+#include "graphics/shader/Fs_V4F_T2F_A1F.vert"
+
+static const char* FS_PRE_SHADER_V4F_T2F_A1F_FRAG=
+#include "graphics/shader/Fs_V4F_T2F_A1F.frag"
+
+
+static const char* FS_PRE_SHADER_V4F_T2F_C4F_VERT=
+#include "graphics/shader/Fs_V4F_T2F_C4F.vert"
+
+static const char* FS_PRE_SHADER_V4F_T2F_C4F_FRAG=
+#include "graphics/shader/Fs_V4F_T2F_C4F.frag"
+
 
 
 void ProgramMgr::loadPreDefineShader()
@@ -89,28 +145,28 @@ void ProgramMgr::loadPreDefineShader()
 	{
 		{
 			FS_PRE_SHADER_V4F,
-			#include "shader/Fs_V4F.vert",
-			#include "shader/Fs_V4F.frag",
+			FS_PRE_SHADER_V4F_VERT,
+			FS_PRE_SHADER_V4F_FRAG,
 		},
 		{
 			FS_PRE_SHADER_V4F_C4F,
-			#include "shader/Fs_V4F_C4F.vert",
-			#include "shader/Fs_V4F_C4F.frag",
+			FS_PRE_SHADER_V4F_C4F_VERT,
+			FS_PRE_SHADER_V4F_C4F_FRAG,
 		},
 		{
 			FS_PRE_SHADER_V4F_T2F,
-			#include "shader/Fs_V4F_T2F.vert",
-			#include "shader/Fs_V4F_T2F.frag",
+			FS_PRE_SHADER_V4F_T2F_VERT,
+			FS_PRE_SHADER_V4F_T2F_FRAG,
 		},
 		{
 			FS_PRE_SHADER_V4F_T2F_A1F,
-			#include "shader/Fs_V4F_T2F_A1F.vert",
-			#include "shader/Fs_V4F_T2F_A1F.frag",
+			FS_PRE_SHADER_V4F_T2F_A1F_VERT,
+			FS_PRE_SHADER_V4F_T2F_A1F_FRAG,
 		},
 		{
 			FS_PRE_SHADER_V4F_T2F_C4F,
-			#include "shader/Fs_V4F_T2F_C4F.vert",
-			#include "shader/Fs_V4F_T2F_C4F.frag",
+			FS_PRE_SHADER_V4F_T2F_C4F_VERT,
+			FS_PRE_SHADER_V4F_T2F_C4F_FRAG,
 		},
 
 	};
@@ -131,3 +187,5 @@ void ProgramMgr::loadPreDefineShader()
 
 }
 
+
+NS_FS_END

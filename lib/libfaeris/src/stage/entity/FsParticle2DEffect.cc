@@ -5,9 +5,8 @@
 #include "graphics/FsRender.h"
 
 #include "FsGlobal.h"
-#include "FsProgramMgr.h"
-#include "graphics/material/FsColorMaterial.h"
-#include "graphics/FsProgram.h"
+#include "mgr/FsProgramMgr.h"
+
 NS_FS_BEGIN
 
 
@@ -86,7 +85,7 @@ Particle2DEffect::Particle2DEffect()
 	m_material=TextureMaterial::create();
 	m_material->addRef();
 
-	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
 	FS_SAFE_ADD_REF(m_program);
 
 }
@@ -429,10 +428,10 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 
 	render->disableAllAttrArray();
 
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-	int tex_loc=r->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
+	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
 
-	int color_uniform=r->getCacheUniformLocation(FS_UNIFORM_COLOR_LOC,FS_UNIFORM_COLOR_NAME);
+	int color_uniform=render->getCacheUniformLocation(FS_UNIFORM_COLOR_LOC,FS_UNIFORM_COLOR_NAME);
 
 	static Face3 faces[2]=
 	{

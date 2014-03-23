@@ -4,6 +4,24 @@ $#include "stage/entity/FsParticle2DEffect.h"
 class Particle2DEffect@__Particle2DEffect:public Entity 
 {
 	public:
+		/* material */
+		void setColor(Color c);
+		void setColor(Color4f c);
+		Color4f getColor();
+
+		void setOpacity(float opacity);
+		float getOpacity();
+
+		void setBlend(int eq,int src,int dst);
+		void setBlend(int src,int dst);
+
+		TextureMaterial* getMaterial();
+		void setMaterial(TextureMaterial* mat);
+
+		Program* getShader();
+		void setShader(Program* shader);
+
+	public:
 		void start(bool restart=true);
 		void refresh();
 		void stop();
@@ -24,10 +42,6 @@ class Particle2DEffect@__Particle2DEffect:public Entity
 ;
 
 	public:
-
-		/* override entity */
-		void setOpacity(float v){m_opacity=v;}
-		float getOpacity(){return m_opacity;}
 };
 
 class LuaParticle2DEffect@Particle2DEffect:public Particle2DEffect

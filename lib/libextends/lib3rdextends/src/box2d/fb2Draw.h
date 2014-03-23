@@ -1,5 +1,7 @@
 #include "FsMacros.h"
 #include "Box2D/Common/b2Draw.h"
+#include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsProgram.h"
 
 
 NS_FS_BEGIN
@@ -33,7 +35,8 @@ class fb2Draw:public b2Draw
 
 	private:
 		float32 m_ratio;
-		Mat_V4F* m_material;
+		ColorMaterial* m_material;
+		Program* m_program;
 };
 
 

@@ -11,7 +11,9 @@
 #include "graphics/FsColor.h"
 #include "math/FsVertices.h"
 #include "math/FsFace3.h"
-#include "graphics/material/FsMat_V4F_T2F.h"
+
+#include "graphics/material/FsTextureMaterial.h"
+#include "graphics/FsProgram.h"
 
 
 NS_FS_BEGIN

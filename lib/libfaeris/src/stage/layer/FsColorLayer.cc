@@ -1,6 +1,6 @@
 #include "stage/layer/FsColorLayer.h"
 #include "graphics/FsRender.h"
-#include "graphics/material/ColorMaterial.h"
+#include "graphics/material/FsColorMaterial.h"
 #include "FsGlobal.h"
 #include "mgr/FsProgramMgr.h"
 #include "graphics/FsProgram.h"
@@ -13,7 +13,7 @@ ColorLayer* ColorLayer::create()
 	return ret;
 }
 
-ColorLayer* ColorLayer::create(Color c)
+ColorLayer* ColorLayer::create(Color4f c)
 {
 	ColorLayer* ret=new ColorLayer;
 	ret->setColor(c);
@@ -94,10 +94,10 @@ const char* ColorLayer::className()
 ColorLayer::ColorLayer()
 {
 	m_color=Color4f(1.0f,1.0f,1.0f,0.5f);
-	m_material=ColorMaterial:create();
+	m_material=ColorMaterial::create();
 	m_material->addRef();
 
-	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F);
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F);
 	FS_SAFE_ADD_REF(m_program);
 }
 

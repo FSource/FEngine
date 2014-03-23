@@ -4,17 +4,29 @@ $#include "luaext/FsLuaEntity.h"
 class LabelBitmap@__LabelBitmap:public Entity 
 {
 	public:
+		/* material */
+		void setColor(Color c);
+		void setColor(Color4f c);
+		Color4f getColor();
+
+		void setOpacity(float opacity);
+		float getOpacity();
+
+		void setBlend(int eq,int src,int dst);
+		void setBlend(int src,int dst);
+
+		TextureMaterial* getMaterial();
+		void setMaterial(TextureMaterial* mat);
+
+		Program* getShader();
+		void setShader(Program* shader);
+
+	public:
 		int setString(const char* utf8_str);
 		int setString(const char* utf8_str,int start);
 		int setString(const char* utf8_str,int start,int num);
 
 		const char* getString();
-
-		void setColor(Color c);
-		Color getColor();
-
-		void setOpacity(float opacity);
-		float getOpacity();
 
 		void setAlign(int alignh,int alignv);
 		void setAlignOffset(float x,float y);

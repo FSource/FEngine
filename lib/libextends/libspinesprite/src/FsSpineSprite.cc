@@ -1,6 +1,8 @@
 #include "FsSpineSprite.h"
 #include "FsTextureAttachment.h"
 #include "graphics/FsRender.h"
+#include "FsGlobal.h"
+#include "mgr/FsProgramMgr.h"
 
 NS_FS_BEGIN 
 
@@ -28,27 +30,6 @@ bool SpineSprite::setSkin(const char* skin)
 	return ret;
 }
 
-
-void SpineSprite::setColor(Color c)
-{
-	m_color=c;
-}
-
-Color SpineSprite::getColor()
-{
-	return m_color;
-}
-
-
-void SpineSprite::setOpacity(float opacity)
-{
-	m_opacity=opacity;
-}
-
-float SpineSprite::getOpacity()
-{
-	return m_opacity;
-}
 
 
 void SpineSprite::setAnimation(const char* anim)
@@ -155,7 +136,7 @@ void SpineSprite::update(float dt)
 
 void SpineSprite::draw(Render* render,bool update_matrix)
 {
-	if(!m_material||!m_curAnimation)
+	if(!m_program||!m_material||!m_curAnimation)
 	{
 		return;
 	}
@@ -166,11 +147,12 @@ void SpineSprite::draw(Render* render,bool update_matrix)
 	}
 
 
+	Color4f color=m_material->getColor();
 
-	m_skeleton->r=(float)m_color.r/255.0f;
-	m_skeleton->g=(float)m_color.g/255.0f;
-	m_skeleton->b=(float)m_color.b/255.0f;
-	m_skeleton->a=(float)m_color.a/255.0f;
+	m_skeleton->r=color.r;
+	m_skeleton->g=color.g;
+	m_skeleton->b=color.b;
+	m_skeleton->a=color.a;
 
 	Animation_apply(m_curAnimation,m_skeleton,m_elapseTime,true);
 	//FS_TRACE_WARN("Time is %f",m_elapseTime/1000);
@@ -179,7 +161,10 @@ void SpineSprite::draw(Render* render,bool update_matrix)
 
 	render->pushMatrix();
 	render->mulMatrix(&m_worldMatrix);
-	render->setActiveTexture(1);
+
+	render->setProgram(m_program);
+	m_material->configRender(render);
+
 	render->disableAllAttrArray();
 
 	TexCoord2 vc[4]=
@@ -196,6 +181,9 @@ void SpineSprite::draw(Render* render,bool update_matrix)
 		Face3(3,2,1),
 	};
 
+	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
+	int u_color=render->getCacheUniformLocation(FS_UNIFORM_COLOR_LOC,FS_UNIFORM_COLOR_NAME);
 
 
 	int slot_nu=m_skeleton->slotCount;
@@ -221,25 +209,20 @@ void SpineSprite::draw(Render* render,bool update_matrix)
 				slot->bone,
 				vv);
 
-		uint8_t red=   (uint8_t)(slot->skeleton->r*slot->r*255);
-		uint8_t green= (uint8_t)(slot->skeleton->g*slot->g*255);
-		uint8_t blue=  (uint8_t)(slot->skeleton->b*slot->b*255);
-		uint8_t alpha= (uint8_t)(slot->skeleton->a*slot->a*255);
+		float r= slot->skeleton->r*slot->r;
+		float g= slot->skeleton->g*slot->g;
+		float b= slot->skeleton->b*slot->b;
+		float a= slot->skeleton->a*slot->a;
 
-		m_material->setOpacity(m_opacity);
-		m_material->setColor(Color(red,green,blue,alpha));
-		render->setMaterial(m_material);
+		Color4f c(r,g,b,a);
+
 		render->bindTexture(texture,0);
 
-		int pos_loc=m_material->getV4FLocation();
-		int pos_tex=m_material->getT2FLocation();
-
-
+		render->setUniform(u_color,Render::U_F_4,1,&c);
 		render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,vv);
-		render->setAndEnableVertexAttrPointer(pos_tex,2,FS_FLOAT,4,0,vc);
-		
-
+		render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,4,0,vc);
 		render->drawFace3(faces,2);
+
 	}
 	render->popMatrix();
 }
@@ -248,8 +231,7 @@ void SpineSprite::draw(Render* render,bool update_matrix)
 
 SpineSprite::SpineSprite()
 {
-	m_color=Color::WHITE;
-	m_opacity=1.0f;
+
 	m_elapseTime=0.0f;
 	m_stop=true;
 	m_skeleton=NULL;
@@ -260,7 +242,13 @@ SpineSprite::SpineSprite()
 	m_data=NULL;
 	m_material=NULL;
 	m_mode=ANIM_START;
+
+	m_material=TextureMaterial::create();
+	FS_SAFE_ADD_REF(m_material);
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	FS_SAFE_ADD_REF(m_program);
 }
+
 SpineSprite::~SpineSprite()
 {
 	destruct();
@@ -279,8 +267,9 @@ bool SpineSprite::init(const char* name)
 	SkeletonData* sk_data=m_data->getSkeletonData();
 
 	m_skeleton=Skeleton_create(sk_data);
-	m_material=Mat_V4F_T2F::shareMaterial();
-	FS_SAFE_ADD_REF(m_material);
+
+
+
 	return true;
 
 }
@@ -293,8 +282,10 @@ void SpineSprite::destruct()
 		Skeleton_dispose(m_skeleton);
 		m_skeleton=NULL;
 	}
+
 	FS_SAFE_DEC_REF(m_data);
 	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 }
 
 

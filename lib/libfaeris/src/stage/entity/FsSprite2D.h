@@ -4,6 +4,8 @@
 #include "FsMacros.h"
 #include "stage/entity/FsEntity.h"
 #include "graphics/FsColor.h"
+#include "graphics/material/FsTextureMaterial.h"
+#include "graphics/FsProgram.h"
 
 NS_FS_BEGIN
 

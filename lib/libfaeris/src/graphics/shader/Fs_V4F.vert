@@ -14,5 +14,5 @@ void main() 						\n\
 	gl_PointSize=u_pointSize;		\n\
 	v_fragmentColor=u_color;		\n\
 }									\n\
-"
+";
 

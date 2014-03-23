@@ -5,7 +5,10 @@
 #endif 
 
 #include "graphics/FsTexture2D.h"
+#include "support/image/FsImageDecoder.h"
 
+
+NS_FS_BEGIN
 static void s_bindTexture2D(GLuint texture)
 {
 	glBindTexture(GL_TEXTURE_2D,texture);
@@ -289,6 +292,10 @@ void Texture2D::markInvaild()
 	m_platformTexture=0;
 }
 
+void Texture2D::setResourceUrl(const char* name)
+{
+	m_resourceUrl=std::string(name);
+}
 
 Texture2D::~Texture2D()
 {
@@ -322,4 +329,5 @@ const char* Texture2D::className()
 
 
 
+NS_FS_END
 

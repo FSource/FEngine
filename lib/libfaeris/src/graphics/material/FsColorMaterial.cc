@@ -1,4 +1,5 @@
 #include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsRender.h"
 
 NS_FS_BEGIN
 
@@ -19,9 +20,9 @@ ColorMaterial* ColorMaterial::create()
 void ColorMaterial::configRender(Render* r)
 {
 	Material::configRender(r);
-	int u_point_size=r->getCacheUniformLocation(FS_UNIFROM_POINT_SIZE_LOC,FS_UNIFROM_POINT_SIZE_NAME);
+	int u_point_size=r->getCacheUniformLocation(FS_UNIFORM_POINT_SIZE_LOC,FS_UNIFORM_POINT_SIZE_NAME);
 	r->setUniform(u_point_size,Render::U_F_1,1,&m_pointSize);
-	r->setActivityTexture(0);
+	r->setActiveTexture(0);
 }
 
 

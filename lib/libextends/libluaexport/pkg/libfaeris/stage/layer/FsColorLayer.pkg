@@ -4,7 +4,8 @@ class ColorLayer@__ColorLayer:public Layer
 {
 	public:
 		void setColor(Color c);
-		Color getColor();
+		void setColor(Color4f c);
+		Color4f getColor();
 
 };
 
@@ -13,6 +14,7 @@ class LuaColorLayer@ColorLayer:public ColorLayer
 {
 	public:
 		static LuaColorLayer* create();
+		static LuaColorLayer* create(Color4f c);
 		static LuaColorLayer* create(Color c);
 
 	public:

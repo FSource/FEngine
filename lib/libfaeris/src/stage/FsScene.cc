@@ -2,7 +2,7 @@
 #include "stage/layer/FsLayer.h"
 #include "support/util/FsSlowArray.h"
 #include "mgr/FsObjectMgr.h"
-#include "graphics/material/FsMat_V4F_C4F.h"
+#include "stage/layer/FsColorLayer.h"
 
 
 
@@ -220,7 +220,7 @@ void Scene::draw(Render* render)
 
 	if(m_fadeEnabled)
 	{
-		m_fadeLayer->setColor(m_fadeLayer);
+		m_fadeLayer->setColor(m_fadeColor);
 		m_fadeLayer->draw(render);
 	}
 
@@ -403,9 +403,10 @@ void Scene::init()
 	m_layers=FsSlowArray::create();
 	FS_NO_REF_DESTROY(m_layers);
 
-	m_fadeColor=Color(1.0f,1.0f,1.0f,0.5f);
-	m_fadeEnabled=true;
-	m_fadeLayer=ColorLayer:create(m_fadeColor);
+	m_fadeColor=Color4f(1.0f,1.0f,1.0f,0.5f);
+
+	m_fadeEnabled=false;
+	m_fadeLayer=ColorLayer::create(m_fadeColor);
 
 
 	m_touchFocusLayer=NULL;

@@ -7,8 +7,9 @@ class ButtonState
 		void setFlag(int flags) ;
 		void clearFlag(int flags) ;
 
-		void setColor(Color c) ;
-		Color getColor();
+		void setColor(Color c);
+		void setColor(Color4f c) ;
+		Color4f getColor();
 
 		void setOpacity(float opacity);
 		float getOpacity();

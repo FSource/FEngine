@@ -4,21 +4,28 @@
 
 #include "math/FsVector2.h"
 #include "math/FsMathUtil.h"
-#include "graphics/material/FsMat_V4F.h"
 
+#include "FsGlobal.h"
+#include "mgr/FsProgramMgr.h"
 
 NS_FS_BEGIN
 
 fb2Draw::fb2Draw(float ratio)
 {
 	m_ratio=ratio;
-	m_material=Mat_V4F::shareMaterial();
+	m_material=ColorMaterial::create();
+	m_material->addRef();
+
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F);
+	FS_SAFE_ADD_REF(m_program);
+
 }
 
 
 fb2Draw::~fb2Draw()
 {
 	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 }
 
 
@@ -39,16 +46,18 @@ void fb2Draw::DrawPolygon(const b2Vec2* old_vertices, int vertexCount,const b2Co
 
 	Render* r=Global::render();
 	r->pushMatrix();
-	m_material->setColor(Color(uint8_t(color.r*255),uint8_t(color.g*255),uint8_t(color.b*255),255));
+
+	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
 
+	r->setProgram(m_program);
+	m_material->configRender(r);
 
-	r->setMaterial(m_material);
-	r->setActiveTexture(0);
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+
 	r->disableAllAttrArray();
 
-	int pos_loc=m_material->getV4FLocation();
 	int vertex_nu=vertexCount;
 
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertices);
@@ -76,25 +85,30 @@ void fb2Draw::DrawSolidPolygon(const b2Vec2* old_vertices,int32 vertexCount,cons
 
 	Render* r=Global::render();
 	r->pushMatrix();
-	m_material->setColor(Color(uint8_t(color.r*127),uint8_t(color.g*127),uint8_t(color.b*127),127));
+
+	int vertex_nu=vertexCount;
+
+
+	/* draw inner */
+	m_material->setColor(Color4f(color.r*0.5f,color.g*0.5f,color.b*0.5f,0.5f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
 
-	r->setMaterial(m_material);
-	r->setActiveTexture(0);
+	r->setProgram(m_program);
+	m_material->configRender(r);
+
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+
 	r->disableAllAttrArray();
-
-
-
-
-	int pos_loc=m_material->getV4FLocation();
-	int vertex_nu=vertexCount;
 
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertices);
 	r->drawArray(Render::TRIANGLE_FAN,0,vertexCount);
 
-	m_material->setColor(Color(uint8_t(color.r*255),uint8_t(color.g*255),uint8_t(color.b*255),255));
-	r->setMaterial(m_material);
+
+	/* draw outline */
+	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
+	m_material->configRender(r);
+
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertices);
 	r->drawArray(Render::LINE_LOOP,0,vertex_nu);
 	r->popMatrix();
@@ -124,14 +138,14 @@ void fb2Draw::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& co
 	Render* r=Global::render();
 	r->pushMatrix();
 
-	int pos_loc=m_material->getV4FLocation();
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
 
-	m_material->setColor(Color(uint8_t(color.r*255),uint8_t(color.g*255),uint8_t(color.b*255),255));
+	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
 
-	r->setMaterial(m_material);
-	r->setActiveTexture(0);
+	m_material->configRender(r);
+
 	r->disableAllAttrArray();
 
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertexCount,0,vertex);
@@ -163,22 +177,24 @@ void fb2Draw::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2
 	Render* r=Global::render();
 	r->pushMatrix();
 
-	int pos_loc=m_material->getV4FLocation();
+	/* draw inner */
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
 
-	m_material->setColor(Color(uint8_t(color.r*127),uint8_t(color.g*127),uint8_t(color.b*127),127));
+	m_material->setColor(Color4f(color.r*0.5f,color.g*0.5f,color.b*0.5f,0.5f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
 
-	r->setMaterial(m_material);
-	r->setActiveTexture(0);
+	m_material->configRender(r);
+
 	r->disableAllAttrArray();
 
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertex);
 	r->drawArray(Render::TRIANGLE_FAN,0,vertexCount);
 
+	/* draw outline */
+	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
+	m_material->configRender(r);
 
-	m_material->setColor(Color(uint8_t(color.r*255),uint8_t(color.g*255),uint8_t(color.b*255),255));
-	r->setMaterial(m_material);
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertex);
 	r->drawArray(Render::LINE_LOOP,0,vertex_nu);
 	r->popMatrix();
@@ -197,15 +213,15 @@ void fb2Draw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& col
 	Render* r=Global::render();
 	r->pushMatrix();
 
-	int pos_loc=m_material->getV4FLocation();
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
 
-	m_material->setColor(Color(uint8_t(color.r*255),uint8_t(color.g*255),uint8_t(color.b*255),255));
+	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
 
+	m_material->configRender(r);
 
-	r->setMaterial(m_material);
-	r->setActiveTexture(0);
+
 	r->disableAllAttrArray();
 
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertex);

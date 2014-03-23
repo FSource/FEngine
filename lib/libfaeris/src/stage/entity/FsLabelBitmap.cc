@@ -1,9 +1,11 @@
 #include "stage/entity/FsLabelBitmap.h"
 #include "graphics/FsFontBitmap.h"
 #include "graphics/FsTexture2D.h"
-#include "graphics/material/FsMat_V4F_T2F.h"
 #include "support/data/FsUnicode.h"
 #include "support/data/FsIconv.h"
+#include "FsGlobal.h"
+#include "mgr/FsProgramMgr.h"
+
 NS_FS_BEGIN
 
 const char* LabelBitmap::className()
@@ -204,10 +206,10 @@ LabelBitmap::LabelBitmap()
 	m_relOffsetx=0;
 	m_relOffsety=0;
 
-	m_material=TextureMaterial:create();
+	m_material=TextureMaterial::create();
 	m_material->addRef();
 
-	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
 	FS_SAFE_ADD_REF(m_program);
 }
 

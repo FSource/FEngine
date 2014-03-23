@@ -3,6 +3,8 @@
 
 #include "stage/entity/FsEntity.h"
 #include "graphics/FsColor.h"
+#include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsProgram.h"
 
 NS_FS_BEGIN
 
@@ -13,8 +15,6 @@ NS_FS_BEGIN
  *   A ------ B
  */
 
-class ColorMaterial;
-class Program;
 
 class ColorQuad2D:public Entity
 {

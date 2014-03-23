@@ -18,12 +18,12 @@ TextureMaterial* TextureMaterial::create()
 void TextureMaterial::configRender(Render* r)
 {
 	Material::configRender(r);
-	r->setActivityTexture(m_textureNu);
+	r->setActiveTexture(m_textureNu);
 
 	if(m_textureNu==1)
 	{
 		int texture=0;
-		int u_loc=r->getCacheUnifomLocation(FS_UNIFORM_TEXTURE0_LOC,FS_UNIFORM_TEXTURE0_NAME);
+		int u_loc=r->getCacheUniformLocation(FS_UNIFORM_TEXTURE0_LOC,FS_UNIFORM_TEXTURE0_NAME);
 		r->setUniform(u_loc,Render::U_I_1,1,&texture);
 	}
 	else 
@@ -31,12 +31,19 @@ void TextureMaterial::configRender(Render* r)
 		for(int i=0;i<m_textureNu;i++)
 		{
 			char buf[128];
-			sprintf(buf,i,"u_texture%d",i);
+			sprintf(buf,"u_texture%d",i);
 			int texture=i;
-			int u_loc=r->getCacheUnifomLocation(FS_UNIFORM_TEXTURE0_LOC+i,buf);
-			r->setUniform(u_loc,Render::U_I_1,&texture);
+			int u_loc=r->getCacheUniformLocation(FS_UNIFORM_TEXTURE0_LOC+i,buf);
+			r->setUniform(u_loc,Render::U_I_1,1,&texture);
 		}
 	}
+}
+TextureMaterial::TextureMaterial()
+{
+	m_textureNu=1;
+}
+TextureMaterial::~TextureMaterial()
+{
 }
 
 

@@ -10,18 +10,27 @@ class Sprite2D@__Sprite2D:public Entity
 			ANIM_START,
 			ANIM_END,
 		};
+
 	public:
-		void setResourceUrl(const char* name);
+		/* material */
+		void setColor(Color c);
+		void setColor(Color4f c);
+		Color4f getColor();
 
-		/* color */
-		void setColor(Color color);
-		Color getColor();
-
-		/* opacity */
 		void setOpacity(float opacity);
 		float getOpacity();
 
-		void setBlendMode(int blendsrc,int blenddst);
+		void setBlend(int eq,int src,int dst);
+		void setBlend(int src,int dst);
+		void setBlend@setBlendMode(int src,int dst);
+
+		TextureMaterial* getMaterial();
+		void setMaterial(TextureMaterial* mat);
+
+		Program* getShader();
+		void setShader(Program* shader);
+	public:
+		void setResourceUrl(const char* name);
 
 		/* animation */
 		void setAnimation(const char* name);

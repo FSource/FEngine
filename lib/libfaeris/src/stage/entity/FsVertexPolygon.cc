@@ -1,8 +1,7 @@
 #include "stage/entity/FsVertexPolygon.h"
 #include "FsGlobal.h"
-#include "FsProgramMgr.h"
-#include "graphics/material/FsColorMaterial.h"
-#include "graphics/FsProgram.h"
+#include "mgr/FsProgramMgr.h"
+
 
 
 NS_FS_BEGIN
@@ -27,25 +26,7 @@ VertexPolygon* VertexPolygon::create()
 }
 
 
-void VertexPolygon::setOpacity(float opacity)
-{
-	m_opacity=opacity;
-}
 
-float VertexPolygon::getOpacity()
-{
-	return m_opacity;
-}
-
-void VertexPolygon::setColor(Color color)
-{
-	m_color=color;
-}
-
-Color VertexPolygon::getColor()
-{
-	return m_color;
-}
 
 
 void VertexPolygon::setVertex(uint index,Vector3 v)
@@ -155,26 +136,18 @@ int VertexPolygon::getMode()
 }
 
 
-void VertexPolygon::setPointSize(float size)
-{
-	m_pointSize=size;
-}
 
-float VertexPolygon::getPointSize()
-{
-	return m_pointSize;
-}
 
 VertexPolygon::VertexPolygon()
 {
-	m_opacity=1.0f;
-	m_color=Color::WHITE;
-	m_pointSize=1.0f;
+
 	m_mode=VertexPolygon::POINTS;
 
-	m_material=ColorMaterial:create();
+	m_material=ColorMaterial::create();
 	m_material->addRef();
-	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F);
+
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F);
+	FS_SAFE_ADD_REF(m_program);
 }
 
 VertexPolygon::~VertexPolygon()
@@ -213,12 +186,12 @@ void VertexPolygon::draw(Render* render,bool update_matrix)
 	render->mulMatrix(&m_worldMatrix);
 
 	render->setProgram(m_program);
-	material->configRender(render);
+	m_material->configRender(render);
 
 
 	render->disableAllAttrArray();
 
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
 
 	render->setAndEnableVertexAttrPointer(pos_loc,3,FS_FLOAT,m_vertics.size(),0,&m_vertics[0]);
 	render->drawArray(m_mode,0,m_vertics.size());

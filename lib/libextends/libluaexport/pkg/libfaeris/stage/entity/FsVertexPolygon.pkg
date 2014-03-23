@@ -4,12 +4,28 @@ $#include "luaext/FsLuaEntity.h"
 class VertexPolygon@__VertexPolygon:public Entity
 {
 	public:
+		/* material */
+		void setColor(Color c);
+		void setColor(Color4f c);
+		Color4f getColor();
 
 		void setOpacity(float opacity);
 		float getOpacity();
 
-		void setColor(Color color);
-		Color getColor();
+		void setBlend(int eq,int src,int dst);
+		void setBlend(int src,int dst);
+
+		void setPointSize(float size);
+		float getPointSize();
+
+		ColorMaterial* getMaterial();
+		void setMaterial(ColorMaterial* mat);
+
+		Program* getShader();
+		void setShader(Program* shader);
+
+	public:
+
 
 		void setVertex(uint index,Vector3 v);
 		void setVertex(uint index,Vector2 v);
@@ -36,8 +52,6 @@ class VertexPolygon@__VertexPolygon:public Entity
 		void setMode(int mode);
 		int getMode();
 
-		void setPointSize(float size);
-		float getPointSize();
 };
 
 class LuaVertexPolygon@VertexPolygon:public VertexPolygon 

@@ -13,7 +13,7 @@ enum{
 	FS_UNIFORM_OPACITY_LOC=32,
 	FS_UNIFORM_COLOR_LOC,
 	FS_UNIFORM_MVP_LOC,
-	FS_UNIFROM_POINT_SIZE_LOC,
+	FS_UNIFORM_POINT_SIZE_LOC,
 	FS_UNIFORM_USER_DEFINE_LOC=64,
 };
 
@@ -28,7 +28,7 @@ enum{
 #define FS_UNIFORM_OPACITY_NAME "u_opacity"
 #define FS_UNIFORM_COLOR_NAME "u_color"
 #define FS_UNIFORM_MVP_NAME "u_mvp" 
-#define FS_UNIFORM_POINT_SIZE "u_pointSize"
+#define FS_UNIFORM_POINT_SIZE_NAME "u_pointSize"
 
 #define FS_ATTR_V4F_NAME "a_position"
 #define FS_ATTR_T2F_NAME "a_texCoord"
@@ -53,7 +53,10 @@ class Material:public FsObject
 			:m_blendEquation(Render::EQUATION_ADD),
 			m_blendSrc(Render::FACTOR_SRC_ALPHA),
 			m_blendDst(Render::FACTOR_ONE_MINUS_SRC_ALPHA),
-			m_depthTest(false) {}
+			m_depthTest(false),
+			m_color(Color4f::WHITE),
+			m_opacity(1.0f)
+		{}
 
 		virtual ~Material();
 		virtual const char* className();
@@ -132,8 +135,6 @@ class Material:public FsObject
 
 		Color4f m_color;
 		float m_opacity;
-
-		Program* m_program;
 };
 
 

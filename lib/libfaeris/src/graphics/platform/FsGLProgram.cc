@@ -115,7 +115,7 @@ bool Program::init(const char* vertex_src,const char* fragment_src)
 
 	m_program=program;
 	m_vertSrc=std::string(vertex_src);
-	m_fragSrc=std::strin(fragment_src);
+	m_fragSrc=std::string(fragment_src);
 
 	for(int i=0;i<FS_PROGRAM_CACHE_ATTR_SUPPORT;i++)
 	{
@@ -157,7 +157,7 @@ int Program::getAttrLocation(const char* name)
 	int loc=glGetAttribLocation(m_program,name);
 	return loc;
 }
-int Program::getCacheAttLocation(int index,const char* name)
+int Program::getCacheAttrLocation(int index,const char* name)
 {
 	if(m_cacheAttrLoc[index]==-1)
 	{

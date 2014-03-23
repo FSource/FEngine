@@ -131,7 +131,7 @@ Resource* ResourceMgr::findFromCache(FsString* name)
 
 Resource* ResourceMgr::load(const char* filename)
 {
-	FsString* f_name=FsString::create(file_name);
+	FsString* f_name=FsString::create(filename);
 	Resource* ret=findFromCache(f_name);
 	if( !ret)
 	{
@@ -164,7 +164,7 @@ FsFile* ResourceMgr::createFile(const char* filename)
 	/* file is absolutePath */
 	if(PathUtil::absolutePath(filename)) 
 	{
-		ret==VFS::createFile(filename);
+		ret=VFS::createFile(filename);
 		return ret;
 	}
 

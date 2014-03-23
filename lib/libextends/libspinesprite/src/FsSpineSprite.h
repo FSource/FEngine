@@ -5,9 +5,11 @@
 #include "FsObject.h"
 #include "graphics/FsColor.h"
 #include "stage/entity/FsEntity.h"
-#include "graphics/material/FsMat_V4F_T2F.h"
 #include "FsSpineSpriteData.h"
 #include "FsSpineSpriteDataMgr.h"
+
+#include "graphics/material/FsTextureMaterial.h"
+#include "graphics/FsProgram.h"
 
 NS_FS_BEGIN
 class Render;
@@ -24,16 +26,27 @@ class SpineSprite:public Entity
 		static SpineSprite* create(const char* filename);
 
 	public:
+		/* material */
+		void setColor(Color4f c){m_material->setColor(c);}
+		Color4f getColor(){return m_material->getColor();}
+
+		void setOpacity(float opacity){m_material->setOpacity(opacity);}
+		float getOpacity(){return m_material->getOpacity();}
+
+		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
+		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
+
+		TextureMaterial* getMaterial(){return m_material;}
+		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
+
+		Program* getShader(){return m_program;}
+		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
+
+
+	public:
 		/* skin */
 		bool setSkin(const char* skin);
 
-		/* color */
-		void setColor(Color c);
-		Color getColor();
-
-		/* opacity */
-		void setOpacity(float opacity);
-		float getOpacity();
 
 		/* animation */
 		void updateAnimation(float dt);
@@ -66,8 +79,6 @@ class SpineSprite:public Entity
 		virtual ~SpineSprite();
 
 	private:
-		Color m_color;
-		float m_opacity;
 		float m_elapseTime;
 		float m_duration;
 
@@ -76,9 +87,14 @@ class SpineSprite:public Entity
 
 		Skeleton* m_skeleton;
 		SpineSpriteData* m_data;
-		Mat_V4F_T2F* m_material;
+
 
 		Animation* m_curAnimation;
+
+
+		TextureMaterial* m_material;
+		Program* m_program;
+
 };
 
 

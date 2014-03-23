@@ -11,12 +11,34 @@ class ColorQuad2D@__ColorQuad2D:public Entity
 			VERTEX_D,
 			VERTEX_ALL,
 		};
+
+
 	public:
-		void setColor(Color c,int vertex=VERTEX_ALL);
-		void setRect2D(const Rect2D& rect);
-		Rect2D getRect2D();
+		/* material */
+		void setColor(Color c);
+		void setColor(Color4f c);
+		Color4f getColor();
+
 		void setOpacity(float opacity);
 		float getOpacity();
+
+		void setBlend(int eq,int src,int dst);
+		void setBlend(int src,int dst);
+
+		ColorMaterial* getMaterial();
+		void setMaterial(ColorMaterial* mat);
+
+		Program* getShader();
+		void setShader(Program* shader);
+
+
+
+	public:
+		void setVertexColor(Color4f c,int vertex=VERTEX_ALL);	
+		void setVertexColor(Color c,int vertex=VERTEX_ALL);	
+
+		void setRect2D(const Rect2D& rect);
+		Rect2D getRect2D();
 
 		void setAnchor(float x,float y);
 		void getAnchor(float* x,float* y);
@@ -39,7 +61,9 @@ class LuaColorQuad2D@ColorQuad2D:public ColorQuad2D
 		};
 	public:
 		static LuaColorQuad2D* create();
+		static LuaColorQuad2D* create(const Rect2D& rect,Color4f c);
 		static LuaColorQuad2D* create(const Rect2D& rect,Color c);
+		static LuaColorQuad2D* create(float width,float height,Color4f c);
 		static LuaColorQuad2D* create(float width,float height,Color c);
 	public:
 		void onDraw@draw(Render* r);

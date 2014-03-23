@@ -80,7 +80,7 @@ class Texture2D:public Resource
 		PlatformTexture getPlatformTexture(){return m_platformTexture;}
 
 		void markInvaild();
-
+		void setResourceUrl(const char* name);
 
 	public:
 		virtual const char* className();

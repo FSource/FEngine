@@ -33,7 +33,7 @@ class ColorLayer:public Layer
 
 	private:
 		Color4f m_color;
-		ColorMaterial* m_materal;
+		ColorMaterial* m_material;
 		Program* m_program;
 };
 NS_FS_END

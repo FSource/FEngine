@@ -24,7 +24,16 @@ class ProgramMgr:public ResourceMgr
 		void loadPreDefineShader();
 
 	public:
-		Program* load(const char* vert,const* char* frag);
+		Resource* load(const char* name);
+		Program* load(const char* vert,const char* frag);
+	public:
+		virtual const char* className();
+
+	protected:
+		ProgramMgr();
+		~ProgramMgr();
+
+
 };
 
 NS_FS_END

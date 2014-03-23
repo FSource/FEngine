@@ -3,9 +3,8 @@
 #include "graphics/FsRender.h"
 
 #include "FsGlobal.h"
-#include "FsProgramMgr.h"
-#include "graphics/material/FsColorMaterial.h"
-#include "graphics/FsProgram.h"
+#include "mgr/FsProgramMgr.h"
+
 
 NS_FS_BEGIN
 
@@ -79,8 +78,8 @@ void ColorQuad2D::draw(Render* render,bool updateMatrix)
 		Face3(2,3,0),
 	};
 
-	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,m_colors);
-	render->setAndEnableVertexAttrPointer(color_loc,4,FS_FLOAT,4,0,vc);
+	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,vv);
+	render->setAndEnableVertexAttrPointer(color_loc,4,FS_FLOAT,4,0,m_colors);
 
 	render->drawFace3(faces,2);
 
@@ -108,17 +107,6 @@ bool ColorQuad2D::hit2D(float x,float y)
 	}
 
 	return false;
-}
-
-
-void ColorQuad2D::setColor(Color4f c)
-{
-	m_material->setColor(c);
-}
-
-Color4f ColorQuad2D::getColor()
-{
-	return m_material->getColor();
 }
 
 
@@ -157,19 +145,19 @@ void ColorQuad2D::setVertexColor(Color4f c,int vertex)
 {
 	if(vertex&VERTEX_A)
 	{
-		m_va=c;
+		m_colors[0]=c;
 	}
 	if(vertex&VERTEX_B)
 	{
-		m_vb=c;
+		m_colors[1]=c;
 	}
 	if(vertex&VERTEX_C)
 	{
-		m_vc=c;
+		m_colors[2]=c;
 	}
 	if(vertex&VERTEX_D)
 	{
-		m_vd=c;
+		m_colors[3]=c;
 	}
 }
 
@@ -194,12 +182,15 @@ ColorQuad2D::ColorQuad2D()
 	m_height=0;
 	m_anchorX=0.5;
 	m_anchorY=0.5;
+	setVertexColor(Color4f::WHITE);
 
 	m_material=ColorMaterial::create();
 	m_material->addRef();
 
-	m_program=FsGlobal::programMgr->load(FS_PRE_SHADER_V4F_C4F);
+	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_C4F);
 	FS_SAFE_ADD_REF(m_program);
+
+
 }
 
 ColorQuad2D::~ColorQuad2D()
@@ -209,27 +200,18 @@ ColorQuad2D::~ColorQuad2D()
 
 void ColorQuad2D::init(const Rect2D& rect,Color4f c)
 {
-	m_va=c;
-	m_vb=c;
-	m_vc=c;
-	m_vd=c;
-
+	setColor(c);
 	setRect2D(rect);
 
 }
 
 void ColorQuad2D::init(float width,float height,Color4f c)
 {
-	m_va=c;
-	m_vb=c;
-	m_vc=c;
-	m_vd=c;
-
+	setColor(c);
 	m_width=width;
 	m_height=height;
 	m_anchorX=0.5;
 	m_anchorY=0.5;
-
 
 
 }

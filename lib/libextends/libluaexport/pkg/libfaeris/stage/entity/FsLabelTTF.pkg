@@ -3,6 +3,25 @@ $#include "luaext/FsLuaEntity.h"
 
 class LabelTTF@__LabelTTF:public Entity
 {
+
+	public:
+		/* material */
+		void setColor(Color c);
+		void setColor(Color4f c);
+		Color4f getColor();
+
+		void setOpacity(float opacity);
+		float getOpacity();
+
+		void setBlend(int eq,int src,int dst);
+		void setBlend(int src,int dst);
+
+		TextureMaterial* getMaterial();
+		void setMaterial(TextureMaterial* mat);
+
+		Program* getShader();
+		void setShader(Program* shader);
+
 	public:
 		void setString(const char* str);
 		const char* getString();
@@ -29,11 +48,6 @@ class LabelTTF@__LabelTTF:public Entity
 		void getAnchor(float* x=0,float* y=0);
 
 
-		void setColor(Color c);
-		Color getColor();
-
-		void setOpacity(float opacity);
-		float getOpacity();
 
 };
 

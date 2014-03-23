@@ -8,6 +8,8 @@
 #include "graphics/FsColor.h"
 #include "graphics/FsTypoPage.h"
 #include "graphics/FsFontTTF.h"
+#include "graphics/material/FsTextureMaterial.h"
+#include "graphics/FsProgram.h"
 
 NS_FS_BEGIN
 class Image2D;

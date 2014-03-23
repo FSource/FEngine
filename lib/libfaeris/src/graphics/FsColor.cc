@@ -63,5 +63,61 @@ Color Color::operator*(float s)
 	return Color(red,green,blue,alpha);
 }
 
+
+Color4f Color4f::DEFAULT_COLOR=Color4f(1.0f,1.0f,1.0f,1.0f);
+Color4f Color4f::RED=Color4f(1.0f,0.0f,0.0f,1.0f);
+Color4f Color4f::GREEN=Color4f(0.0f,1.0f,0.0f,1.0f);
+Color4f Color4f::BLUE=Color4f(0.0f,0.0f,1.0f,1.0f);
+Color4f Color4f::WHITE=Color4f(1.0f,1.0f,1.0f,1.0f);
+Color4f Color4f::BLACK=Color4f(0.0f,0.0f,0.0f,1.0f);
+
+
+
+Color4f Color4f::operator+(Color4f right)
+{
+	float red=r+right.r;
+	float green=g+right.g;
+	float blue=b+right.b;
+	float alpha=a+right.a;
+
+	return Color4f(red,green,blue,alpha);
+}
+
+Color4f Color4f::operator-(Color4f right)
+{
+	float red=r-right.r;
+	float green=g-right.g;
+	float blue=b-right.b;
+	float alpha=a-right.a;
+
+	return Color4f(red,green,blue,alpha);
+}
+
+Color4f Color4f::operator*(Color4f right)
+{
+	float red=r*right.r;
+	float green=g*right.g;
+	float blue=b*right.b;
+	float alpha=a*right.a;
+
+	return Color4f(red,green,blue,alpha);
+}
+
+
+Color4f Color4f::operator*(float s)
+{
+	float red=r*s;
+	float green=g*s;
+	float blue=b*s;
+	float alpha=a*s;
+
+	return Color4f(red,green,blue,alpha);
+}
+
+
+
+
+
+
 NS_FS_END
 

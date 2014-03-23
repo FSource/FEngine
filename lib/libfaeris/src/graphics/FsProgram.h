@@ -18,7 +18,7 @@
 
 
 #define FS_PROGRAM_CACHE_UNIFORM_SUPPORT  128
-#define FS_PROGRAM_CACHE_LOC_SUPPORT 32
+#define FS_PROGRAM_CACHE_ATTR_SUPPORT 32
 
 NS_FS_BEGIN 
 
@@ -38,7 +38,7 @@ class Program:public Resource
 		int getAttrLocation(const char* name);
 		int getUniformLocation(const char* name);
 
-		int getCacheAttLocation(int index,const char* name);
+		int getCacheAttrLocation(int index,const char* name);
 		int getCacheUniformLocation(int index,const char* name);
 
 
