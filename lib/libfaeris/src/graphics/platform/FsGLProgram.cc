@@ -12,7 +12,7 @@
 
 NS_FS_BEGIN
 
-GLint s_create_shader_object(const char* source,int length,GLint type)
+GLint S_CreateShaderObject(const char* source,int length,GLint type)
 {
 	char log_info[FS_MAX_GL_SHADER_LOG_LENGTH];
 	GLint compile_result,log_length;
@@ -43,59 +43,58 @@ GLint s_create_shader_object(const char* source,int length,GLint type)
 }
 
 
-Program* Program::create(
-		const char* vertex_src,uint v_size,
-		const char* fragment_src,uint f_size
-		)
+Program* Program::create(const char* vertex_src, const char* fragment_src)
 {
+	Program* ret=new Program();
+	if(!ret->init(vertex_src,fragment_src))
+	{
+		delete ret;
+		return NULL;
+	}
+	return ret;
+}
+
+
+
+bool Program::init(const char* vertex_src,const char* fragment_src)
+{
+	if(vertex_src==NULL||fragment_src==NULL)
+	{
+		FS_TRACE_WARN("No Information About Vertex Shader Or Fragment Shader");
+		return false;
+	}
+
+	uint v_size=strlen(vertex_src);
+	uint f_size=strlen(fragment_src);
+
 	GLuint program=0;
 	GLuint vertex_shader=0;
 	GLuint fragment_shader=0;
+
 	char log_info[FS_MAX_GL_PROGRAM_LOG_LENGTH];
 	int log_length;
 	GLint link_result;
 	Program* ret=NULL;
 
-	if(vertex_src==NULL&&fragment_src==NULL)
-	{
-		FS_TRACE_WARN("No Information About Vertex Shader Or Fragment Shader");
-		return NULL;
-	}
 
-	/* create vertex shader  object */
-	if(vertex_src!=NULL)
+	vertex_shader=S_CreateShaderObject(vertex_src,v_size,GL_VERTEX_SHADER);
+	if(vertex_shader==0)
 	{
-		vertex_shader=s_create_shader_object(vertex_src,v_size,GL_VERTEX_SHADER);
-		if(vertex_shader==0)
-		{
-			goto error;
-		}
+		goto error;
 	}
 
 
-	/* create fragment shader object */
-	if(fragment_src!=NULL)
+	fragment_shader=S_CreateShaderObject(fragment_src,f_size,GL_FRAGMENT_SHADER);
+	if(fragment_shader==0)
 	{
-		fragment_shader=s_create_shader_object(fragment_src,f_size,GL_FRAGMENT_SHADER);
-		if(fragment_shader==0)
-		{
-			goto error;
-		}
+		goto error;
 	}
 
 	/* create program object */
-	program=glCreateProgram();
+	program=glCreateProgram();  /* success: non-zero */
+	glAttachShader(program,vertex_shader);
+	glAttachShader(program,fragment_shader);
 
-	/* attach vertex and fragment shader */
-	if(vertex_shader!=0)
-	{
-		glAttachShader(program,vertex_shader);
-	}
-
-	if(fragment_shader!=0)
-	{
-		glAttachShader(program,fragment_shader);
-	}
 
 	/* link program */
 	glLinkProgram(program);
@@ -110,14 +109,28 @@ Program* Program::create(
 		goto error;
 	}
 
-	ret=new Program();
-	ret->m_program=program;
-
 	/* delete  shader */
 	glDeleteShader(vertex_shader);
 	glDeleteShader(fragment_shader);
 
-	return ret;
+	m_program=program;
+	m_vertSrc=std::string(vertex_src);
+	m_fragSrc=std::strin(fragment_src);
+
+	for(int i=0;i<FS_PROGRAM_CACHE_ATTR_SUPPORT;i++)
+	{
+		m_cacheAttrLoc[i]=-1;
+	}
+
+	for(int i=0;i<FS_PROGRAM_CACHE_UNIFORM_SUPPORT;i++)
+	{
+		m_cacheUniformLoc[i]=-1;
+	}
+
+
+	return true;
+
+
 error:
 	if(vertex_shader)
 	{
@@ -131,29 +144,65 @@ error:
 	{
 		glDeleteProgram(program);
 	}
-	return NULL;
+	return false;
 }
 
-int Program::getAttributeLocation(const char* name)
+
+
+
+
+int Program::getAttrLocation(const char* name)
 {
 
 	int loc=glGetAttribLocation(m_program,name);
-
 	return loc;
 }
+int Program::getCacheAttLocation(int index,const char* name)
+{
+	if(m_cacheAttrLoc[index]==-1)
+	{
+		m_cacheAttrLoc[index]=getAttrLocation(name);
+	}
+	return m_cacheAttrLoc[index];
+}
+
+
 int Program::getUniformLocation(const char* name)
 {
 	int loc=glGetUniformLocation(m_program,name);
 	return loc;
 }
 
+int Program::getCacheUniformLocation(int index,const char* name)
+{
+	if(m_cacheUniformLoc[index]==-1)
+	{
+		m_cacheUniformLoc[index]=getUniformLocation(name);
+	}
+	return m_cacheUniformLoc[index];
+}
+
+void Program::reload()
+{
+	if(m_program!=0)
+	{
+		glDeleteProgram(m_program);
+		m_program=0;
+	}
+	init(m_vertSrc.c_str(),m_fragSrc.c_str());
+}
 
 
+void Program::markInvalid()
+{
+	m_program=0;
+}
 
 Program::Program()
 {
 	m_program=0;
 }
+
 Program::~Program()
 {
 	if(m_program!=0)

@@ -1,4 +1,8 @@
 #include "stage/entity/FsVertexPolygon.h"
+#include "FsGlobal.h"
+#include "FsProgramMgr.h"
+#include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsProgram.h"
 
 
 NS_FS_BEGIN
@@ -167,7 +171,10 @@ VertexPolygon::VertexPolygon()
 	m_color=Color::WHITE;
 	m_pointSize=1.0f;
 	m_mode=VertexPolygon::POINTS;
-	m_material=NULL;
+
+	m_material=ColorMaterial:create();
+	m_material->addRef();
+	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F);
 }
 
 VertexPolygon::~VertexPolygon()
@@ -177,7 +184,6 @@ VertexPolygon::~VertexPolygon()
 
 bool VertexPolygon::init()
 {
-	m_material=Mat_V4F::shareMaterial();
 	return true;
 
 }
@@ -186,34 +192,37 @@ void VertexPolygon::destruct()
 {
 
 	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 	m_vertics.clear();
 }
 
 
 void VertexPolygon::draw(Render* render,bool update_matrix)
 {
+	if(!m_material||!m_program)
+	{
+		return;
+	}
+
 	if(update_matrix)
 	{
 		updateWorldMatrix();
 	}
+
 	render->pushMatrix();
 	render->mulMatrix(&m_worldMatrix);
 
-	m_material->setOpacity(m_opacity);
-	m_material->setColor(m_color);
-	m_material->setPointSize(m_pointSize);
+	render->setProgram(m_program);
+	material->configRender(render);
 
 
-	render->setMaterial(m_material);
-	render->setActiveTexture(0);
 	render->disableAllAttrArray();
 
-	int pos_loc=m_material->getV4FLocation();
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
 
 	render->setAndEnableVertexAttrPointer(pos_loc,3,FS_FLOAT,m_vertics.size(),0,&m_vertics[0]);
 	render->drawArray(m_mode,0,m_vertics.size());
 	render->popMatrix();
-
 }
 
 

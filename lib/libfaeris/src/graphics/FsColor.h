@@ -38,6 +38,14 @@ class Color
 class Color4f
 {
 	public:
+		Color4f(Color c)
+		{
+			r=float(c.r)/255.0f;
+			g=float(c.g)/255.0f;
+			b=float(c.b)/255.0f;
+			a=float(c.a)/255.0f;
+		}
+
 		Color4f(float red,float green,float blue,float alpha)
 			:r(red),g(green),b(blue),a(alpha)
 		{}

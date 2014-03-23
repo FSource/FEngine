@@ -14,6 +14,7 @@ class FsSlowArray;
 class Vector2;
 class TouchEvent;
 class ObjectMgr;
+class ColorLayer;
 
 
 class Scene:public ActionTarget
@@ -82,8 +83,9 @@ class Scene:public ActionTarget
 	private:
 		FsSlowArray* m_layers;
 
-		Color m_fadeColor;
+		Color4f m_fadeColor;
 		bool m_fadeEnabled;
+		ColorLayer* m_fadeLayer;
 
 		bool m_touchEnabled;
 		bool m_touchesEnabled;

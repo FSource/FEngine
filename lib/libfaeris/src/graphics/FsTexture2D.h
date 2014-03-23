@@ -50,8 +50,11 @@ class Texture2D:public Resource
 				int wraps,
 				int wrapt);
 
+
 		/* for quick create texture from image */
 		static Texture2D* create(Image2D* image);
+		static Texture2D* create(const char* filename);
+
 	public:
 
 		/* fileter */
@@ -76,13 +79,22 @@ class Texture2D:public Resource
 		bool enableMipmap();
 		PlatformTexture getPlatformTexture(){return m_platformTexture;}
 
+		void markInvaild();
+
+
 	public:
 		virtual const char* className();
 	
 
-	private:
+	protected:
 		Texture2D();
 		virtual ~Texture2D();
+
+		bool init(Image2D* image,int filter_mag,int filter_min,int wraps,int wrapt);
+		bool init(Image2D* image);
+		bool init(const char* filename);
+
+
 	private:
 		bool m_useMipmap;
 
@@ -100,6 +112,9 @@ class Texture2D:public Resource
 
 		/* env */
 		PlatformTexture m_platformTexture;
+
+		std::string m_resourceUrl;
+
 };
 
 NS_FS_END 

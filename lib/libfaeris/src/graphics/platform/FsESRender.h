@@ -102,10 +102,7 @@ class Render:public FsObject
 		virtual const char* className();
 
 	public:
-		/* material */
-		void setMaterial(Material* m);
 		void setProgram(Program* prog);
-
 
 		/* texture */
 		void setActiveTexture(int nu);
@@ -118,9 +115,17 @@ class Render:public FsObject
 		void swapBuffers();
 
 		/* color */
-		void setClearColor(Color c){m_clearColor=c;}
-		Color getClearColor(){return  m_clearColor;}
+		void setClearColor(Color4f c){m_clearColor=c;}
+		Color4f getClearColor(){return  m_clearColor;}
 		void clear(bool color=true,bool depth=false,bool stencil=false);
+
+		void setColor(Color4f c){m_color=c;};
+		Color4f getColor(){return m_color;}
+
+		void setOpacity(float opacity){m_opacity=opacity;}
+		float getOpacity(){return m_opacity;}
+
+
 
 		/* transform */
 		void setProjectionMatrix(const Matrix4* mat);
@@ -165,8 +170,15 @@ class Render:public FsObject
 		/* blend */
 		void setBlend(int eq,int fsrc,int fdst);
 
-		/* Uniform */
+		/* Uniform  Add Attibute */
 		void setUniform(int loc,int type,int count,void* value);
+
+		int getUniformLocation(const char* name);
+		int getAttrLocation(const char* name);
+		int getCacheUniformLocation(int index,const char* name);
+		int getCacheAttrLocation(int index,const char* name);
+
+
 
 	protected:
 		Render();
@@ -175,11 +187,15 @@ class Render:public FsObject
 
 	private:
 		RenderTarget* m_target;
-		Material* m_material;
+
 		Program* m_program;
 
 		/* cache GL State */
-		Color m_clearColor;
+		Color4f m_clearColor;
+		Color4f m_color;
+		float m_opacity;
+
+
 		bool m_scissorEnable;
 		Rect2D m_scissorArea;
 		bool m_depthTest;

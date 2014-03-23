@@ -1,10 +1,12 @@
 #include "stage/entity/FsQuad2D.h"
 #include "graphics/FsTexture2D.h"
 #include "graphics/FsRender.h"
-#include "graphics/material/FsMat_V4F_T2F.h"
-#include "FsGlobal.h"
 #include "mgr/FsTextureMgr.h"
 
+#include "FsGlobal.h"
+#include "FsProgramMgr.h"
+#include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsProgram.h"
 NS_FS_BEGIN
 
 
@@ -205,19 +207,14 @@ void Quad2D::draw(Render* render,bool updateMatrix)
 	render->pushMatrix();
 	render->mulMatrix(&m_worldMatrix);
 
-	m_material->setOpacity(m_opacity);
-	m_material->setColor(m_color);
+	render->setProgram(m_program);
+	m_material->configRender(render);
 
-	render->setMaterial(m_material);
 
-	render->setActiveTexture(1);
-	render->disableAllAttrArray();
 	render->bindTexture(m_texture,0);
 
 	float x=-m_width*m_anchorX;
 	float y=-m_height*m_anchorY;
-
-
 
 	float vv[8]=
 	{
@@ -241,10 +238,16 @@ void Quad2D::draw(Render* render,bool updateMatrix)
 		Face3(2,3,0),
 	};
 
-	int pos_loc=m_material->getV4FLocation();
-	int tex_loc=m_material->getT2FLocation();
+
+	render->disableAllAttrArray();
+
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int tex_loc=r->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
+
+
 	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,vv);
 	render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,4,0,vc);
+
 	render->drawFace3(faces,2);
 
 	render->popMatrix();
@@ -290,6 +293,11 @@ Quad2D::Quad2D()
 	m_anchorX=0.5;
 	m_anchorY=0.5;
 
+	m_material=TextureMaterial:create();
+	m_material->addRef();
+
+	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	FS_SAFE_ADD_REF(m_program);
 }
 
 Quad2D::~Quad2D()
@@ -300,8 +308,6 @@ Quad2D::~Quad2D()
 bool Quad2D::init()
 {
 	m_texture=NULL;
-	m_material=Mat_V4F_T2F::shareMaterial();
-	FS_SAFE_ADD_REF(m_material);
 	return true;
 }
 
@@ -328,8 +334,6 @@ bool Quad2D::init(Texture2D* tex)
 	m_width=(float)tex->getWidth();
 	m_height=(float)tex->getHeight();
 	FS_SAFE_ASSIGN(m_texture,tex);
-	m_material=Mat_V4F_T2F::shareMaterial();
-	FS_SAFE_ADD_REF(m_material);
 	return true;
 }
 
@@ -339,6 +343,7 @@ void Quad2D::destruct()
 {
 	FS_SAFE_DEC_REF(m_texture);
 	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 }
 
 

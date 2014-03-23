@@ -1,18 +1,28 @@
 #include "stage/entity/FsColorQuad2D.h"
-#include "graphics/material/FsMat_V4F_C4F.h"
+#include "graphics/material/FsColorMaterial.h"
 #include "graphics/FsRender.h"
+
+#include "FsGlobal.h"
+#include "FsProgramMgr.h"
+#include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsProgram.h"
 
 NS_FS_BEGIN
 
+const char* ColorQuad2D::className()const 
+{
+	return FS_COLOR_QUAD2D_CLASS_NAME;
+}
 
-ColorQuad2D* ColorQuad2D::create(const Rect2D& rect,Color c)
+
+ColorQuad2D* ColorQuad2D::create(const Rect2D& rect,Color4f c)
 {
 	ColorQuad2D* quad=new ColorQuad2D();
 	quad->init(rect,c);
 	return quad;
 }
 
-ColorQuad2D* ColorQuad2D::create(float width,float height,Color c)
+ColorQuad2D* ColorQuad2D::create(float width,float height,Color4f c)
 {
 	ColorQuad2D* quad=new ColorQuad2D();
 	quad->init(width,height,c);
@@ -27,23 +37,28 @@ void ColorQuad2D::update(float dt)
 
 void ColorQuad2D::draw(Render* render,bool updateMatrix)
 {
+	if(!m_material||!m_program)
+	{
+		return;
+	}
+
 	if(updateMatrix)
 	{
 		updateWorldMatrix();
 	}
+
 	render->pushMatrix();
 	render->mulMatrix(&m_worldMatrix);
+	render->setProgram(m_program);
 
 
-	m_material->setOpacity(m_opacity);
-	render->setMaterial(m_material);
+	m_material->configRender(render);
 
-	render->setActiveTexture(0);
 	render->disableAllAttrArray();
 
 	
-	int pos_loc=m_material->getV4FLocation();
-	int color_loc=m_material->getC4FLocation();
+	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int color_loc=render->getCacheAttrLocation(FS_ATTR_C4F_LOC,FS_ATTR_C4F_NAME);
 
 
 	float x=-m_width*m_anchorX;
@@ -57,22 +72,14 @@ void ColorQuad2D::draw(Render* render,bool updateMatrix)
 		x,        y+m_height,
 	};
 	
-	float vc[16]=
-	{
-		m_va.r/255.0f,m_va.g/255.0f,m_va.b/255.0f,m_va.a/255.0f,
-		m_vb.r/255.0f,m_vb.g/255.0f,m_vb.b/255.0f,m_vb.a/255.0f,
-		m_vc.r/255.0f,m_vc.g/255.0f,m_vc.b/255.0f,m_vc.a/255.0f,
-		m_vd.r/255.0f,m_vd.g/255.0f,m_vd.b/255.0f,m_vd.a/255.0f,
-	};
-	
 
-	Face3 faces[2]=
+	static Face3 faces[2]=
 	{
 		Face3(0,1,2),
 		Face3(2,3,0),
 	};
 
-	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,vv);
+	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,m_colors);
 	render->setAndEnableVertexAttrPointer(color_loc,4,FS_FLOAT,4,0,vc);
 
 	render->drawFace3(faces,2);
@@ -82,10 +89,6 @@ void ColorQuad2D::draw(Render* render,bool updateMatrix)
 
 
 
-const char* ColorQuad2D::className()const 
-{
-	return FS_COLOR_QUAD2D_CLASS_NAME;
-}
 
 bool ColorQuad2D::hit2D(float x,float y)
 {
@@ -106,6 +109,19 @@ bool ColorQuad2D::hit2D(float x,float y)
 
 	return false;
 }
+
+
+void ColorQuad2D::setColor(Color4f c)
+{
+	m_material->setColor(c);
+}
+
+Color4f ColorQuad2D::getColor()
+{
+	return m_material->getColor();
+}
+
+
 
 
 void ColorQuad2D::setAnchor(float x,float y)
@@ -137,7 +153,7 @@ void ColorQuad2D::getSize(float* w,float* h)
 
 
 
-void ColorQuad2D::setColor(Color c,int vertex)
+void ColorQuad2D::setVertexColor(Color4f c,int vertex)
 {
 	if(vertex&VERTEX_A)
 	{
@@ -172,24 +188,18 @@ Rect2D ColorQuad2D::getRect2D()
 }
 
 
-void ColorQuad2D::setOpacity(float opacity)
-{
-	m_opacity=opacity;
-}
-float ColorQuad2D::getOpacity()
-{
-	return m_opacity;
-}
-
 ColorQuad2D::ColorQuad2D()
 {
-	m_opacity=1.0f;
 	m_width=0;
 	m_height=0;
 	m_anchorX=0.5;
 	m_anchorY=0.5;
-	setColor(Color::WHITE);
-	m_material=Mat_V4F_C4F::shareMaterial();
+
+	m_material=ColorMaterial::create();
+	m_material->addRef();
+
+	m_program=FsGlobal::programMgr->load(FS_PRE_SHADER_V4F_C4F);
+	FS_SAFE_ADD_REF(m_program);
 }
 
 ColorQuad2D::~ColorQuad2D()
@@ -197,7 +207,7 @@ ColorQuad2D::~ColorQuad2D()
 	destroy();
 }
 
-void ColorQuad2D::init(const Rect2D& rect,Color c)
+void ColorQuad2D::init(const Rect2D& rect,Color4f c)
 {
 	m_va=c;
 	m_vb=c;
@@ -206,10 +216,9 @@ void ColorQuad2D::init(const Rect2D& rect,Color c)
 
 	setRect2D(rect);
 
-	m_opacity=1.0f;
 }
 
-void ColorQuad2D::init(float width,float height,Color c)
+void ColorQuad2D::init(float width,float height,Color4f c)
 {
 	m_va=c;
 	m_vb=c;
@@ -221,7 +230,8 @@ void ColorQuad2D::init(float width,float height,Color c)
 	m_anchorX=0.5;
 	m_anchorY=0.5;
 
-	m_opacity=1.0f;
+
+
 }
 
 void ColorQuad2D::init()
@@ -231,6 +241,7 @@ void ColorQuad2D::init()
 void ColorQuad2D::destroy()
 {
 	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 }
 
 

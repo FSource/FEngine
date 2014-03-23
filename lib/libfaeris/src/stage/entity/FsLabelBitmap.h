@@ -17,6 +17,8 @@
 NS_FS_BEGIN
 class FontBitmap;
 class Texture2D;
+class TextureMaterial;
+class Program;
 
 class LabelBitmap:public Entity 
 {
@@ -42,6 +44,26 @@ class LabelBitmap:public Entity
 		static LabelBitmap* create(const char* text,FontBitmap* font);
 		static LabelBitmap* create(FontBitmap* font);
 
+
+	public:
+
+		/* material */
+		void setColor(Color4f c){m_material->setColor(c);}
+		Color4f getColor(){return m_material->getColor();}
+
+		void setOpacity(float opacity){m_material->setOpacity(opacity);}
+		float getOpacity(){return m_material->getOpacity();}
+
+		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
+		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
+
+		TextureMaterial* getMaterial(){return m_material;}
+		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
+
+		Program* getShader(){return m_program;}
+		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
+
+
 	public:
 		int setString(const char* utf8_str);
 		int setString(const char* utf8_str,int start);
@@ -49,11 +71,6 @@ class LabelBitmap:public Entity
 
 		const char* getString();
 
-		void setColor(Color c);
-		Color getColor();
-
-		void setOpacity(float opacity);
-		float getOpacity();
 
 		void setAlign(int alignh,int alignv);
 		void setAlignOffset(float x,float y);
@@ -104,13 +121,8 @@ class LabelBitmap:public Entity
 
 		float m_boundx,m_boundy;
 
-		float m_opacity;
-		Color m_color;
-
 		FontBitmap* m_font;
 		Texture2D* m_texture;
-
-		Mat_V4F_T2F* m_material;
 
 		/* user setting */
 		uint8_t* m_utf8str;
@@ -122,6 +134,11 @@ class LabelBitmap:public Entity
 
 		std::vector<Fs_V2F_T2F> m_vertices;
 		std::vector<Face3> m_indics;
+
+
+		/* material */
+		TextureMaterial* m_material;
+		Program* m_program;
 };
 
 

@@ -50,25 +50,6 @@ void ResourceMgr::removeSearchPath(const char* path)
 	m_searchPaths.erase(m_searchPaths.begin()+pos);
 }
 
-Resource* ResourceMgr::load(const char* file_name)
-{
-	/* file_name is absolute path */
-	Resource* ret=NULL;
-	if(PathUtil::absolutePath(file_name)) 
-	{
-		return loadFromPath(file_name);
-	}
-
-	/* direct load */
-	ret=loadFromPath(file_name);
-
-	if(ret==NULL)
-	{
-		ret=loadFromSearchPath(file_name);
-	}
-	return ret;
-
-}
 
 void ResourceMgr::remove(Resource* res)
 {
@@ -129,21 +110,6 @@ int ResourceMgr::pathPos(const char* path)
 	return pos;
 }
 
-Resource* ResourceMgr::loadFromSearchPath(const char* file_name)
-{
-	int path_nu=m_searchPaths.size();
-	Resource* ret=NULL;
-	for( int i=0;i<path_nu;i++)
-	{
-		std::string load_path=m_searchPaths[i]+std::string(file_name);
-		ret=loadFromPath(load_path.c_str());
-		if(ret)
-		{
-			break;
-		}
-	}
-	return ret;
-}
 
 void ResourceMgr::removeCache(FsString* key)
 {
@@ -161,19 +127,21 @@ Resource* ResourceMgr::findFromCache(FsString* name)
 	return ret;
 }
 
-Resource* ResourceMgr::loadFromPath(const char* name)
+
+
+Resource* ResourceMgr::load(const char* filename)
 {
-	//FS_TRACE_WARN("%s",name);
-	FsString* f_name=FsString::create(name);
+	FsString* f_name=FsString::create(file_name);
 	Resource* ret=findFromCache(f_name);
-	if(ret==NULL)
+	if( !ret)
 	{
-		FsFile* file=VFS::createFile(name);
-		if(file==NULL)
+		if(!m_func)
 		{
-			ret=NULL;
+			FS_TRACE_WARN("load Func Not Define");
+			return NULL;
 		}
-		else 
+		FsFile* file=createFile(filename);
+		if(file)
 		{
 			FS_SAFE_ADD_REF(file);
 			ret=m_func(file);
@@ -187,6 +155,47 @@ Resource* ResourceMgr::loadFromPath(const char* name)
 	f_name->autoDestroy();
 	return ret;
 }
+
+
+FsFile* ResourceMgr::createFile(const char* filename)
+{
+	FsFile* ret=NULL;
+
+	/* file is absolutePath */
+	if(PathUtil::absolutePath(filename)) 
+	{
+		ret==VFS::createFile(filename);
+		return ret;
+	}
+
+	/* direct load */
+	ret=VFS::createFile(filename);
+	if(ret)
+	{
+		return ret;
+	}
+
+	/* load from search path */
+
+	int path_nu=m_searchPaths.size();
+	std::string std_filename(filename);
+
+	for(int i=0;i<path_nu;i++)
+	{
+		std::string load_path=m_searchPaths[i]+std_filename;
+		ret=VFS::createFile(load_path.c_str());
+		if(ret)
+		{
+			return ret;
+		}
+
+	}
+	return NULL;
+}
+
+
+
+
 
 void ResourceMgr::addCache(FsString* name,Resource* res)
 {
@@ -267,12 +276,12 @@ void ResourceMgr::dump()
 {
 
 	/*
-	FsDict::Iterator iter(m_caches);
-	while(!iter.done())
-	{
-		FsString* key=(FsString*)iter.getKey();
+	   FsDict::Iterator iter(m_caches);
+	   while(!iter.done())
+	   {
+	   FsString* key=(FsString*)iter.getKey();
 	//	printf("\t%s\n",key->cstr());
-		iter.next();
+	iter.next();
 	}
 	//printf("%s Dump Resource End\n",className());
 	*/

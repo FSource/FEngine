@@ -38,6 +38,14 @@ TextureMgr::~TextureMgr()
 
 }
 
+Resource* TextureMgr::load(const char* name)
+{
+	Texture2D* ret=(Texture2D*)ResourceMgr::load(name);
+	if(ret)
+	{
+		ret->setResourceUrl(name);
+	}
+}
 
 Texture2D* TextureMgr::loadTexture(const char* name)
 {
@@ -47,7 +55,17 @@ Texture2D* TextureMgr::loadTexture(const char* name)
 
 
 
+
 NS_FS_END  
+
+
+
+
+
+
+
+
+
 
 
 

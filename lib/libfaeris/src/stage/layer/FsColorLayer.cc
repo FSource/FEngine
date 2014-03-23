@@ -1,6 +1,10 @@
 #include "stage/layer/FsColorLayer.h"
 #include "graphics/FsRender.h"
-#include "graphics/material/FsMat_V4F_C4F.h"
+#include "graphics/material/ColorMaterial.h"
+#include "FsGlobal.h"
+#include "mgr/FsProgramMgr.h"
+#include "graphics/FsProgram.h"
+
 
 NS_FS_BEGIN
 ColorLayer* ColorLayer::create()
@@ -16,14 +20,14 @@ ColorLayer* ColorLayer::create(Color c)
 	return ret;
 }
 
-void ColorLayer::setColor(Color c)
+void ColorLayer::setColor(Color4f c)
 {
-	m_color=c;
+	m_material->setColor(c);
 }
 
-Color ColorLayer::getColor()
+Color4f ColorLayer::getColor()
 {
-	return m_color;
+	return m_material->getColor();
 }
 
 Matrix4 ColorLayer::getProjectMatrix()
@@ -42,20 +46,19 @@ void ColorLayer::draw(Render*  r)
 		r->setScissorArea(m_scissorArea.x,m_scissorArea.y,m_scissorArea.width,m_scissorArea.height);
 	}
 
-	Mat_V4F_C4F* material=Mat_V4F_C4F::shareMaterial();
-	material->setOpacity(1.0);
 
 	Matrix4 mat;
 	mat.makeOrthographic(0,1,0,1,-100,100);
 	r->setProjectionMatrix(&mat);
 
-	r->setMaterial(material);
+	r->setProgram(m_program);
 
-	r->setActiveTexture(0);
+	m_material->configRender(r);
+
 	r->disableAllAttrArray();
 
-	int pos_loc=material->getV4FLocation();
-	int color_loc=material->getC4FLocation();
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+
 
 	static Vector3 vv[4]=
 	{
@@ -64,24 +67,18 @@ void ColorLayer::draw(Render*  r)
 		Vector3(1,1,0),
 		Vector3(0,1,0),
 	};
-	float vc[16]=
-	{
-		m_color.r/255.0f,m_color.g/255.0f,m_color.b/255.0f,m_color.a/255.0f,
-		m_color.r/255.0f,m_color.g/255.0f,m_color.b/255.0f,m_color.a/255.0f,
-		m_color.r/255.0f,m_color.g/255.0f,m_color.b/255.0f,m_color.a/255.0f,
-		m_color.r/255.0f,m_color.g/255.0f,m_color.b/255.0f,m_color.a/255.0f,
-	};
 
-	Face3 faces[2]=
+	static Face3 faces[2]=
 	{
 		Face3(0,1,2),
 		Face3(2,3,0),
 	};
 
+
 	r->setAndEnableVertexAttrPointer(pos_loc,3,FS_FLOAT,4,0,vv);
-	r->setAndEnableVertexAttrPointer(color_loc,4,FS_FLOAT,4,0,vc);
 
 	r->drawFace3(faces,2);
+
 	if(m_scissorEnabled)
 	{
 		r->setScissorEnabled(false);
@@ -96,11 +93,18 @@ const char* ColorLayer::className()
 
 ColorLayer::ColorLayer()
 {
-	m_color=Color(255,255,255,135);
+	m_color=Color4f(1.0f,1.0f,1.0f,0.5f);
+	m_material=ColorMaterial:create();
+	m_material->addRef();
+
+	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F);
+	FS_SAFE_ADD_REF(m_program);
 }
 
 ColorLayer::~ColorLayer()
 {
+	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 }
 
 NS_FS_END 

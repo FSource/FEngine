@@ -3,8 +3,11 @@
 #include "stage/entity/FsParticle2DEmitter.h"
 #include "math/FsMathUtil.h"
 #include "graphics/FsRender.h"
-#include "graphics/material/FsMat_V4F_T2F.h"
 
+#include "FsGlobal.h"
+#include "FsProgramMgr.h"
+#include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsProgram.h"
 NS_FS_BEGIN
 
 
@@ -80,9 +83,14 @@ Particle2DEffect::Particle2DEffect()
 	m_pause=false;
 	m_autoRemove=true;
 
-	m_material=Mat_V4F_T2F::shareMaterial();
+	m_material=TextureMaterial::create();
+	m_material->addRef();
+
+	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	FS_SAFE_ADD_REF(m_program);
 
 }
+
 
 Particle2DEffect::~Particle2DEffect()
 {
@@ -99,8 +107,12 @@ void Particle2DEffect::destruct()
 {
 	FS_SAFE_DEC_REF(m_emitter);
 	m_emitter=NULL;
+
 	FS_SAFE_DEC_REF(m_material);
 	m_material=NULL;
+
+	FS_SAFE_DEC_REF(m_program);
+	m_program=NULL;
 }
 
 void Particle2DEffect::start(bool restart)
@@ -380,7 +392,7 @@ void Particle2DEffect::generateParticle(float dt)
 }
 void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 {
-	if(!m_emitter)
+	if(!m_emitter||!m_material||!m_program)
 	{
 		return;
 	}
@@ -406,14 +418,9 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 	render->pushMatrix();
 	render->mulMatrix(&m_worldMatrix);
 
+	render->setProgram(m_program);
+	m_material->configRender(render);
 
-	m_material->setOpacity(m_opacity);
-	render->setMaterial(m_material);
-	//FS_TRACE_WARN("material:%d,%d,%d",m_material->getBlendEquation(), m_material->getBlendSrc(), m_material->getBlendDst());
-
-
-
-	render->setActiveTexture(1);
 	render->bindTexture(texture,0);
 	render->setBlend(Render::EQUATION_ADD,m_emitter->getBlendSrc(),m_emitter->getBlendDst());
 
@@ -422,10 +429,10 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 
 	render->disableAllAttrArray();
 
-	int pos_loc=m_material->getV4FLocation();
-	int tex_loc=m_material->getT2FLocation();
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int tex_loc=r->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
 
-	int color_uniform=m_material->getColorUniform();
+	int color_uniform=r->getCacheUniformLocation(FS_UNIFORM_COLOR_LOC,FS_UNIFORM_COLOR_NAME);
 
 	static Face3 faces[2]=
 	{

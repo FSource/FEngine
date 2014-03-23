@@ -1,6 +1,7 @@
 #ifndef _FS_PROGRAM_H_
 #define _FS_PROGRAM_H_
 
+#include <string>
 #include "FsMacros.h"
 #include "sys/io/FsFile.h"
 #include "FsConfig.h"
@@ -15,31 +16,61 @@
 	#error "Unsupport PlatformProgram"
 #endif 
 
+
+#define FS_PROGRAM_CACHE_UNIFORM_SUPPORT  128
+#define FS_PROGRAM_CACHE_LOC_SUPPORT 32
+
 NS_FS_BEGIN 
+
+
+
+
 
 class Program:public Resource
 {
 	public:
-		static Program* create(
-				const char* vertex_src,uint v_size,
-				const char* fragment_src,uint f_size);
+		static Program* create(const char* vertex_src,const char* fragment_src);
 
 	public:
 		/* return the location of the  Attribute/Uniform 
 		 * if not exist in program,-1 will returned 
 		 */
-		int getAttributeLocation(const char* name);
+		int getAttrLocation(const char* name);
 		int getUniformLocation(const char* name);
+
+		int getCacheAttLocation(int index,const char* name);
+		int getCacheUniformLocation(int index,const char* name);
+
 
 		PlatformProgram getPlatformProgram()const{return m_program;}
 		virtual const char* className();
+
+		void reload();
+		void markInvalid();
+
+
 	protected:
 		Program();
 		~Program();
+
+		bool init(const char* vertex_src,const char* fragment_src);
+
+
 	private:
 		PlatformProgram m_program;
+		int m_cacheAttrLoc[FS_PROGRAM_CACHE_ATTR_SUPPORT];
+		int m_cacheUniformLoc[FS_PROGRAM_CACHE_UNIFORM_SUPPORT];
+		std::string m_vertSrc;
+		std::string m_fragSrc;
+		
 };
+
 NS_FS_END 
 
 #endif  /*_FS_PROGRAM_H_*/
+
+
+
+
+
 

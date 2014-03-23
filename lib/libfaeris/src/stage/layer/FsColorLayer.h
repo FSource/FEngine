@@ -8,14 +8,16 @@
 NS_FS_BEGIN
 
 class Render;
+class ColorMaterial;
+class Program;
 class ColorLayer:public Layer 
 {
 	public:
 		static ColorLayer* create();
-		static ColorLayer* create(Color c);
+		static ColorLayer* create(Color4f c);
 	public:
-		void setColor(Color c);
-		Color getColor();
+		void setColor(Color4f c);
+		Color4f getColor();
 
 	public:
 		/* inherit Layer */
@@ -30,7 +32,9 @@ class ColorLayer:public Layer
 		~ColorLayer();
 
 	private:
-		Color m_color;
+		Color4f m_color;
+		ColorMaterial* m_materal;
+		Program* m_program;
 };
 NS_FS_END
 

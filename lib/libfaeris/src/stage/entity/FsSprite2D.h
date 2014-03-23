@@ -12,8 +12,9 @@ class Texture2D;
 class FsArray;
 class FsDict;
 class Sprite2DAnimation;
-class Mat_V4F_T2F_A1F;
 class AnimationCacheData;
+class TextureMaterial;
+class Program;
 
 class Sprite2D :public Entity 
 {
@@ -31,18 +32,27 @@ class Sprite2D :public Entity
 
 	public:
 
+		/* material */
+		void setColor(Color4f c){m_material->setColor(c);}
+		Color4f getColor(){return m_material->getColor();}
+
+		void setOpacity(float opacity){m_material->setOpacity(opacity);}
+		float getOpacity(){return m_material->getOpacity();}
+
+		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
+		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
+
+		TextureMaterial* getMaterial(){return m_material;}
+		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
+
+		Program* getShader(){return m_program;}
+		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
+
+
+	public:
+
 
 		void setResourceUrl(const char* name);
-
-		/* color */
-		void setColor(Color color);
-		Color getColor();
-
-		/* opacity */
-		void setOpacity(float opacity);
-		float getOpacity();
-
-		void setBlendMode(int blendsrc,int blenddst);
 
 		/* animation */
 		void setAnimation(const char* name);
@@ -87,18 +97,9 @@ class Sprite2D :public Entity
 		~Sprite2D();
 
 	private:
-		Color  m_color;
-		float m_opacity;
-		int m_blendSrc;
-		int m_blendDst;
-
-
-
 
 		int m_curFrame;
 		float m_elapseTime;
-
-
 
 
 		int m_mode;
@@ -114,8 +115,8 @@ class Sprite2D :public Entity
 		FsDict* m_animationCacheData;
 
 		/* material */
-
-		Mat_V4F_T2F_A1F* m_material;
+		TextureMaterial* m_material;
+		Program* m_program;
 };
 
 

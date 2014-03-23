@@ -121,15 +121,50 @@ static inline GLint FsImageFormat_ToGLEnum(int format)
 }
 
 
-
-Texture2D* Texture2D::create(
-		Image2D* image,
-		int filter_mag,
-		int filter_min,
-		int wraps,
-		int wrapt)
-		
+Texture2D* Texture2D::create(Image2D* image,int filter_mag,int filter_min,int wraps,int wrapt)
 {
+	Texture2D* ret=new Texture2D();
+	if(!ret->init(image,filter_mag,filter_min,wraps,wrapt))
+	{
+		delete ret;
+		return NULL;
+	}
+	return ret;
+}
+
+Texture2D* Texture2D::create(Image2D* image)
+{
+	Texture2D* ret=new Texture2D();
+	if(!ret->init(image))
+	{
+		delete ret;
+		return NULL;
+	}
+	return ret;
+
+}
+
+Texture2D* Texture2D::create(const char* filename)
+{
+	Texture2D* ret=new Texture2D();
+	if(!ret->init(filename))
+	{
+		delete ret;
+		return NULL;
+	}
+	return ret;
+}
+
+
+
+bool Texture2D::init(Image2D* image,int filter_mag,int filter_min,int wraps,int wrapt)
+{
+	if(image==NULL)
+	{
+		FS_TRACE_WARN("Image Is NULL");
+		return false;
+
+	}
 
 	GLint format_gl;
 	GLint filter_mag_gl,filter_min_gl;
@@ -185,30 +220,41 @@ Texture2D* Texture2D::create(
 			pixels
 			);
 
-	Texture2D* ret=new Texture2D();
-	ret->m_width=width;
-	ret->m_height=height;
-	ret->m_format=format_gl;
-	ret->m_filterMin=filter_min;
-	ret->m_filterMag=filter_mag;
-	ret->m_filterMipmap=FILTER_LINEAR;
-	ret->m_useMipmap=false;
-	ret->m_wrapS=wraps;
-	ret->m_wrapT=wrapt;
-	ret->m_platformTexture=texture;
+	m_width=width;
+	m_height=height;
+	m_format=format_gl;
+	m_filterMin=filter_min;
+	m_filterMag=filter_mag;
+	m_filterMipmap=FILTER_LINEAR;
+	m_useMipmap=false;
+	m_wrapS=wraps;
+	m_wrapT=wrapt;
+	m_platformTexture=texture;
+
+	return true;
+}
+
+
+bool Texture2D::init(Image2D* image)
+{
+	bool ret=init( image, FILTER_LINEAR, FILTER_LINEAR, WRAP_CLAMP_TO_EDGE, WRAP_CLAMP_TO_EDGE);
+	return ret;
+}
+
+bool Texture2D::init(const char* filename)
+{
+	Image2D* image=FsUtil_ImageReader(filename,Image2D::IMAGE_UNKWON);
+	if(image==NULL)
+	{
+		return false;
+	}
+
+	bool ret=init(image);
+	image->decRef();
 	return ret;
 }
 
 
-Texture2D* Texture2D::create(Image2D* image)
-{
-	return create(
-			image,
-			FILTER_LINEAR,
-			FILTER_LINEAR,
-			WRAP_CLAMP_TO_EDGE,
-			WRAP_CLAMP_TO_EDGE);
-}
 
 void Texture2D::setFilter(int mag,int min,int mipmap)
 {
@@ -238,6 +284,11 @@ void Texture2D::setWrap(int wraps,int wrapt)
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,gl_wrapt);
 }
 
+void Texture2D::markInvaild()
+{
+	m_platformTexture=0;
+}
+
 
 Texture2D::~Texture2D()
 {
@@ -246,6 +297,7 @@ Texture2D::~Texture2D()
 		glDeleteTextures(1,&m_platformTexture);
 	}
 }
+
 
 Texture2D::Texture2D()
 {

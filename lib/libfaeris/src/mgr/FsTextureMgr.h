@@ -11,7 +11,9 @@ class TextureMgr:public ResourceMgr
 		static TextureMgr* create();
 
 	public:
+		virtual Resource* load(const char* name);
 		Texture2D* loadTexture(const char* name);
+
 	public:
 		/* inherit FsObject */
 		virtual const char* className();

@@ -12,7 +12,10 @@
 NS_FS_BEGIN
 class Image2D;
 class Texture2D;
-class Mat_V4F_T2F;
+
+class TextureMaterial;
+class Program;
+
 class FontTTF;
 
 class LabelTTF:public Entity
@@ -21,6 +24,26 @@ class LabelTTF:public Entity
 		static LabelTTF* create();
 		static LabelTTF* create(const char* font,int size);
 		static LabelTTF* create(const char* font,int size,const char* text);
+
+
+	public:
+
+		/* material */
+		void setColor(Color4f c){m_material->setColor(c);}
+		Color4f getColor(){return m_material->getColor();}
+
+		void setOpacity(float opacity){m_material->setOpacity(opacity);}
+		float getOpacity(){return m_material->getOpacity();}
+
+		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
+		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
+
+		TextureMaterial* getMaterial(){return m_material;}
+		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
+
+		Program* getShader(){return m_program;}
+		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
+
 
 	public:
 		void setString(const char* string);
@@ -48,13 +71,6 @@ class LabelTTF:public Entity
 
 		void setAnchor(float x,float y);
 		void getAnchor(float* x,float* y);
-
-
-		void setColor(Color c);
-		Color getColor();
-
-		void setOpacity(float opacity);
-		float getOpacity();
 
 
 	public:
@@ -95,15 +111,17 @@ class LabelTTF:public Entity
 
 		float m_lineGap;
 
-		Color m_color;
-		float m_opacity;
 
 		FontTTF* m_font;
-		Mat_V4F_T2F* m_material;
 
 		/* compute result */
 		float m_textWidth,m_textHeight;
 		TypoPage<TypoText> m_typoPage;
+
+
+		/* material */
+		TextureMaterial* m_material;
+		Program* m_program;
 };
 
 NS_FS_END

@@ -14,7 +14,9 @@
 
 NS_FS_BEGIN
 
-class Mat_V4F;
+class ColorMaterial;
+class Program;
+
 
 class VertexPolygon :public Entity
 {
@@ -35,13 +37,26 @@ class VertexPolygon :public Entity
 
 	public:
 
+		/* material */
+		void setColor(Color4f c){m_material->setColor(c);}
+		Color4f getColor(){return m_material->getColor();}
 
-		void setOpacity(float opacity);
-		float getOpacity();
+		void setOpacity(float opacity){m_material->setOpacity(opacity);}
+		float getOpacity(){return m_material->getOpacity();}
 
-		void setColor(Color color);
-		Color getColor();
+		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
+		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
 
+		void setPointSize(float size){m_material->setPointSize(size);}
+		float getPointSize(){return m_material->getPointSize();}
+
+		ColorMaterial* getMaterial(){return m_material;}
+		void setMaterial(ColorMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
+
+		Program* getShader(){return m_program;}
+		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
+
+	public:
 		void setVertex(uint index,Vector3 v);
 		void setVertex(uint index,Vector2 v);
 		void setVertex(uint index,float x,float y,float z=0);
@@ -82,13 +97,10 @@ class VertexPolygon :public Entity
 		void destruct();
 
 	private:
-		float m_opacity;
-		Color m_color;
-		float m_pointSize;
 		int m_mode;
 		std::vector<Vector3> m_vertics;
-		Mat_V4F* m_material;
-
+		ColorMaterial* m_material;
+		Program* m_program;
 };
 
 NS_FS_END

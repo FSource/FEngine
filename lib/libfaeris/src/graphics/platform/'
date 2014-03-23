@@ -559,12 +559,6 @@ void Render::setBlend(int eq,int fsrc,int fdst)
 
 void Render::setUniform(int loc,int type,int count,void* value)
 {                                                                          
-	if(loc==-1)
-	{
-		FS_TRACE_WARN("Ivalid Uniform Loc");
-		return ;
-	}
-
 	switch(type)
 	{
 		/* float vec */
@@ -640,35 +634,6 @@ int Render::getUniformLocation(const char* name)
 	}
 
 	return m_program->getUniformLocation(name);
-}
-
-int Render::getAttrLocation(const char* name)
-{
-	if(!m_program)
-	{
-		return -1;
-	}
-	return m_program->getAttrLocation(name);
-}
-
-
-int Render::getCacheUniformLocation(int index,const char* name)
-{
-	if(!m_program)
-	{
-		return -1;
-	}
-
-	return m_program->getCacheUniformLocation(index,name);
-}
-
-int Render::getCacheAttrLocation(int index,const char* name)
-{
-	if(!m_program)
-	{
-		return -1;
-	}
-	return m_program->getCacheAttrLocation(index,name);
 }
 
 

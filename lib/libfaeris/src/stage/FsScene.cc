@@ -220,47 +220,8 @@ void Scene::draw(Render* render)
 
 	if(m_fadeEnabled)
 	{
-
-		Mat_V4F_C4F* material=Mat_V4F_C4F::shareMaterial();
-		material->setOpacity(1.0);
-
-		Matrix4 mat;
-		mat.makeOrthographic(0,1,0,1,-100,100);
-		render->setProjectionMatrix(&mat);
-
-		render->setMaterial(material);
-
-		render->setActiveTexture(0);
-		render->disableAllAttrArray();
-
-		int pos_loc=material->getV4FLocation();
-		int color_loc=material->getC4FLocation();
-
-		static Vector3 vv[4]=
-		{
-			Vector3(0,0,0),
-			Vector3(1,0,0),
-			Vector3(1,1,0),
-			Vector3(0,1,0),
-		};
-		float vc[16]=
-		{
-			m_fadeColor.r/255.0f,m_fadeColor.g/255.0f,m_fadeColor.b/255.0f,m_fadeColor.a/255.0f,
-			m_fadeColor.r/255.0f,m_fadeColor.g/255.0f,m_fadeColor.b/255.0f,m_fadeColor.a/255.0f,
-			m_fadeColor.r/255.0f,m_fadeColor.g/255.0f,m_fadeColor.b/255.0f,m_fadeColor.a/255.0f,
-			m_fadeColor.r/255.0f,m_fadeColor.g/255.0f,m_fadeColor.b/255.0f,m_fadeColor.a/255.0f,
-		};
-
-		Face3 faces[2]=
-		{
-			Face3(0,1,2),
-			Face3(2,3,0),
-		};
-
-		render->setAndEnableVertexAttrPointer(pos_loc,3,FS_FLOAT,4,0,vv);
-		render->setAndEnableVertexAttrPointer(color_loc,4,FS_FLOAT,4,0,vc);
-
-		render->drawFace3(faces,2);
+		m_fadeLayer->setColor(m_fadeLayer);
+		m_fadeLayer->draw(render);
 	}
 
 }
@@ -442,12 +403,17 @@ void Scene::init()
 	m_layers=FsSlowArray::create();
 	FS_NO_REF_DESTROY(m_layers);
 
-	m_fadeColor=Color(255,255,255,0);
+	m_fadeColor=Color(1.0f,1.0f,1.0f,0.5f);
 	m_fadeEnabled=true;
+	m_fadeLayer=ColorLayer:create(m_fadeColor);
+
+
 	m_touchFocusLayer=NULL;
 
 	m_touchEnabled=true;
 	m_touchesEnabled=true;
+
+
 
 }
 

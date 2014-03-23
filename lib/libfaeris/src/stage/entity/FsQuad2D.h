@@ -8,7 +8,10 @@
 
 NS_FS_BEGIN
 class Texture2D;
-class Mat_V4F_T2F;
+
+class TextureMaterial;
+class Program;
+
 class Quad2D:public Entity 
 {
 	public:
@@ -18,14 +21,24 @@ class Quad2D:public Entity
 		static Quad2D* create(const char* tex,float width,float height);
 
 	public:
+		/* material */
+		void setColor(Color4f c){m_material->setColor(c);}
+		Color4f getColor(){return m_material->getColor();}
 
-		/* color */
-		void setColor(Color c);
-		Color getColor();
+		void setOpacity(float opacity){m_material->setOpacity(opacity);}
+		float getOpacity(){return m_material->getOpacity();}
 
-		/* opacity */
-		void setOpacity(float opacity);
-		float getOpacity();
+		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
+		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
+
+		TextureMaterial* getMaterial(){return m_material;}
+		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
+
+		Program* getShader(){return m_program;}
+		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
+
+
+	public:
 
 		/* texture */
 		void setTexture(const char* tex);
@@ -81,14 +94,10 @@ class Quad2D:public Entity
 
 		Rect2D m_textureCoord;
 		Texture2D* m_texture;
-		Color m_color;
-		float m_opacity;
 
-		Mat_V4F_T2F* m_material;
+		TextureMaterial* m_material;
+		Program* m_program;
 };
-
-
-
 
 NS_FS_END 
 

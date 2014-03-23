@@ -23,7 +23,7 @@ class ButtonState
 	public:
 		ButtonState()
 		{
-			m_color=Color::WHITE;
+			m_color=Color4f::WHITE;
 			m_opacity=1.0;
 			m_texture=NULL;
 			m_width=0;
@@ -48,8 +48,8 @@ class ButtonState
 		void setFlag(uint32_t flags) { m_flags=m_flags|flags; }
 		void clearFlag(uint32_t flags) {m_flags=m_flags&(~flags);}
 
-		void setColor(Color c) {m_color=c;}
-		Color getColor(){return m_color;}
+		void setColor(Color4f c) {m_color=c;}
+		Color4f getColor(){return m_color;}
 
 		void setOpacity(float opacity){m_opacity=opacity;}
 		float getOpacity(){return m_opacity;}
@@ -86,7 +86,7 @@ class ButtonState
 
 	private:
 		uint32_t m_flags;
-		Color m_color;
+		Color4f m_color;
 		float m_opacity;
 		Texture2D* m_texture;
 		float m_width,m_height;

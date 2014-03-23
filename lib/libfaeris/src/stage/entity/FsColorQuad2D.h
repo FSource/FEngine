@@ -13,7 +13,9 @@ NS_FS_BEGIN
  *   A ------ B
  */
 
-class Mat_V4F_C4F;
+class ColorMaterial;
+class Program;
+
 class ColorQuad2D:public Entity
 {
 	public:
@@ -28,8 +30,8 @@ class ColorQuad2D:public Entity
 
 	public:
 		static ColorQuad2D* create();
-		static ColorQuad2D* create(const Rect2D& rect,Color c);
-		static ColorQuad2D* create(float width,float height,Color c);
+		static ColorQuad2D* create(const Rect2D& rect,Color4f c);
+		static ColorQuad2D* create(float width,float height,Color4f c);
 
 	public:
 		/* inherit Entity */
@@ -42,12 +44,33 @@ class ColorQuad2D:public Entity
 
 
 	public:
-		void setColor(Color c,int vertex=VERTEX_ALL);
+
+		/* material */
+		void setColor(Color4f c){m_material->setColor(c);}
+		Color4f getColor(){return m_material->getColor();}
+
+		void setOpacity(float opacity){m_material->setOpacity(opacity);}
+		float getOpacity(){return m_material->getOpacity();}
+
+		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
+		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
+
+		ColorMaterial* getMaterial(){return m_material;}
+		void setMaterial(ColorMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
+
+		Program* getShader(){return m_program;}
+		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
+
+
+	public:
+		/* --- */
+
+		void setVertexColor(Color4f,int vertex=VERTEX_ALL);
+
+
 		void setRect2D(const Rect2D& rect);
 		Rect2D getRect2D();
 
-		void setOpacity(float opacity);
-		float getOpacity();
 
 		void setAnchor(float x,float y);
 		void getAnchor(float* x,float* y);
@@ -55,24 +78,22 @@ class ColorQuad2D:public Entity
 		void setSize(float w,float h);
 		void getSize(float* w,float* h);
 
+
 	protected:
 		ColorQuad2D();
 		~ColorQuad2D();
-		void init(const Rect2D& rect,Color c);
-		void init(float width,float height,Color c);
+		void init(const Rect2D& rect,Color4f c);
+		void init(float width,float height,Color4f c);
 		void init();
 		void destroy();
 
 	private:
-		Color m_va;
-		Color m_vb;
-		Color m_vc;
-		Color m_vd;
+		Color4f m_colors[4];
 		float m_anchorX,m_anchorY;
 		float m_width,m_height;
 
-		float m_opacity;
-		Mat_V4F_C4F* m_material;
+		ColorMaterial* m_material;
+		Program* m_program;
 };
 
 NS_FS_END

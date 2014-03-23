@@ -3,15 +3,17 @@
 #include "support/data/FsIconv.h"
 #include "support/data/FsUnicode.h"
 #include "stage/entity/FsLabelTTF.h"
-#include "graphics/material/FsMat_V4F_T2F.h"
 #include "graphics/FsImage2D.h"
 #include "graphics/FsTexture2D.h"
 #include "graphics/FsFontTTF.h"
 #include "graphics/FsRender.h"
 #include "support/util/FsArray.h"
+
+
 #include "FsGlobal.h"
-
-
+#include "FsProgramMgr.h"
+#include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsProgram.h"
 
 NS_FS_BEGIN
 
@@ -77,17 +79,19 @@ LabelTTF::LabelTTF()
 
 	m_lineGap=0;
 
-	m_color=Color::WHITE;
-	m_opacity=1.0f;
-
-
 
 	m_font=NULL;
-	m_material=Mat_V4F_T2F::shareMaterial();
-	FS_SAFE_ADD_REF(m_material);
 
 	m_textWidth=0;
 	m_textHeight=0;
+
+
+	m_material=ColorMaterial:create();
+	m_material->addRef();
+
+	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	FS_SAFE_ADD_REF(m_program);
+
 }
 
 
@@ -120,8 +124,10 @@ bool LabelTTF::init(const char* font,int size,const char* text)
 void LabelTTF::destruct()
 {
 	FS_SAFE_DELETES(m_utf16text);
-	FS_SAFE_DEC_REF(m_material);
 	FS_SAFE_DEC_REF(m_font);
+
+	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 }
 
 
@@ -279,33 +285,11 @@ void LabelTTF::getAnchor(float* x,float* y)
 	*y=m_anchorY;
 }
 
-void LabelTTF::setColor(Color c)
-{
-	m_color=c;
-}
-
-Color LabelTTF::getColor()
-{
-	return m_color;
-}
-
-void LabelTTF::setOpacity(float opacity)
-{
-	m_opacity=opacity;
-}
-
-float LabelTTF::getOpacity()
-{
-	return m_opacity;
-}
-
-
-
 
 
 void LabelTTF::draw(Render* render,bool updateMatrix)
 {
-	if(!m_font||!m_utf16text)
+	if(!m_font||!m_utf16text||!m_material||!m_program)
 	{
 		return; 
 	}
@@ -323,15 +307,14 @@ void LabelTTF::draw(Render* render,bool updateMatrix)
 
 	render->pushMatrix();
 	render->mulMatrix(&m_worldMatrix);
-	m_material->setOpacity(m_opacity);
-	m_material->setColor(m_color);
 
-	render->setMaterial(m_material);
-	render->setActiveTexture(1);
+	render->setProgram(m_program);
+	m_material->configRender(render);
+
 	render->disableAllAttrArray();
 
-	int pos_loc=m_material->getV4FLocation();
-	int tex_loc=m_material->getT2FLocation();
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int tex_loc=r->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
 
 
 	static float t[8]={
@@ -360,11 +343,8 @@ void LabelTTF::draw(Render* render,bool updateMatrix)
 		}
 	}
 	render->popMatrix();
-
-
-
-
 }
+
 
 bool LabelTTF::hit2D(float x,float y)
 {

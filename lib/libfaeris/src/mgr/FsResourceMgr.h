@@ -22,13 +22,14 @@ class ResourceMgr:public FsObject
 		virtual ~ResourceMgr();
 
 	public:
+		virtual Resource* load(const char* path);
 
+	public:
 		void addSearchPath(const char* path);
 		bool existSearchPath(const char* path);
 		void removeSearchPath(const char* path);
 
 		bool preloadResource(const char* path);
-		Resource* load(const char* path);
 		bool unload(const char* path,bool force=false);
 		void unloadAll(bool force=false);
 		int getCacheResourceNu();
@@ -43,8 +44,7 @@ class ResourceMgr:public FsObject
 	protected:
 		int pathPos(const char* path);
 
-		Resource* loadFromPath(const char* path);
-		Resource* loadFromSearchPath(const char* path);
+		FsFile* createFile(const char* filename);
 
 		void removeCache(FsString* key);
 		void addCache(FsString* name,Resource* res);

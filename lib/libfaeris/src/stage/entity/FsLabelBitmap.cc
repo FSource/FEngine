@@ -74,24 +74,6 @@ const char* LabelBitmap::getString()
 	return (char*)m_utf8str;
 }
 
-void LabelBitmap::setColor(Color c)
-{
-	m_color=c;
-}
-Color LabelBitmap::getColor()
-{
-	return m_color;
-}
-
-void LabelBitmap::setOpacity(float opacity)
-{
-	m_opacity=opacity;
-}
-
-float LabelBitmap::getOpacity()
-{
-	return m_opacity;
-}
 
 void LabelBitmap::setAlign(int alignh,int alignv)
 {
@@ -151,7 +133,7 @@ float LabelBitmap::getHeight()
 
 void LabelBitmap::draw(Render* r,bool updateMatrix)
 {
-	if(!m_font||(m_vertices.size()==0)||!m_material)
+	if(!m_font||(m_vertices.size()==0)||!m_material||!m_program)
 	{
 		return;
 	}
@@ -169,23 +151,22 @@ void LabelBitmap::draw(Render* r,bool updateMatrix)
 	r->mulMatrix(&m_worldMatrix);
 	r->translate(Vector3(m_relOffsetx,m_relOffsety,0));
 
-	m_material->setOpacity(m_opacity);
-	m_material->setColor(m_color);
 
-	r->setMaterial(m_material);
+	r->setProgram(m_program);
+	m_material->configRender(r);
 
-	r->setActiveTexture(1);
 	r->disableAllAttrArray();
 	r->bindTexture(m_texture,0);
 
 
-	int pos_loc=m_material->getV4FLocation();
-	int pos_tex=m_material->getT2FLocation();
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+
+	int tex_loc=r->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
 
 	int vertex_nu=m_vertices.size();
 
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,sizeof(Fs_V2F_T2F),&m_vertices[0]);
-	r->setAndEnableVertexAttrPointer(pos_tex,2,FS_FLOAT,vertex_nu,sizeof(Fs_V2F_T2F),&(m_vertices[0].t2));
+	r->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,vertex_nu,sizeof(Fs_V2F_T2F),&(m_vertices[0].t2));
 
 	r->drawFace3(&m_indics[0],m_indics.size());
 
@@ -213,20 +194,21 @@ LabelBitmap::LabelBitmap()
 
 	m_boundx=0;
 	m_boundy=0;
-	m_opacity=1.0;
-	m_color=Color::WHITE;
 
 	m_utf8str=NULL;
 	m_font=NULL;
 	m_texture=NULL;
 
-	m_material=Mat_V4F_T2F::shareMaterial();
-	m_material->addRef();
 	m_width=0;
 	m_height=0;
 	m_relOffsetx=0;
 	m_relOffsety=0;
 
+	m_material=TextureMaterial:create();
+	m_material->addRef();
+
+	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	FS_SAFE_ADD_REF(m_program);
 }
 
 LabelBitmap::~LabelBitmap()
@@ -254,6 +236,7 @@ void LabelBitmap::destruct()
 	FS_SAFE_DEC_REF(m_font);
 	FS_SAFE_DEC_REF(m_texture);
 	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 
 }
 

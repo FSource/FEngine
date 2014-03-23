@@ -1,11 +1,13 @@
 #include "stage/entity/FsSprite2D.h"
-#include "FsGlobal.h"
 #include "stage/entity/FsSprite2DData.h"
 #include "graphics/FsTexture2D.h"
 #include "support/util/FsArray.h"
 #include "support/util/FsDict.h"
 #include "support/util/FsInteger.h"
-#include "graphics/material/FsMat_V4F_T2F_A1F.h"
+#include "FsGlobal.h"
+#include "FsProgramMgr.h"
+#include "graphics/material/FsColorMaterial.h"
+#include "graphics/FsProgram.h"
 
 NS_FS_BEGIN
 
@@ -69,24 +71,6 @@ Sprite2D* Sprite2D::create()
 	return ret;
 }
 
-
-void Sprite2D::setColor(Color  color)
-{
-	m_color=color;
-}
-Color Sprite2D::getColor()
-{
-	return m_color;
-}
-void Sprite2D::setOpacity(float opacity)
-{
-	m_opacity=opacity;
-}
-
-float Sprite2D::getOpacity()
-{
-	return m_opacity;
-}
 
 void Sprite2D::setAnimation(const char*  name)
 {
@@ -175,11 +159,6 @@ bool Sprite2D::isAnimationPlaying()
 	return !m_stop;
 }
 
-void Sprite2D::setBlendMode(int blendsrc,int blenddst)
-{
-	m_blendSrc=blendsrc;
-	m_blendDst=blenddst;
-}
 
 
 
@@ -219,7 +198,7 @@ void Sprite2D::update(float dt)
 
 void Sprite2D::draw(Render* render,bool update_matrix)
 {
-	if(!m_curAnimation)
+	if(!m_curAnimation||!m_material||!m_program)
 	{
 		return ;
 	}
@@ -230,6 +209,7 @@ void Sprite2D::draw(Render* render,bool update_matrix)
 	}
 	render->pushMatrix();
 	render->mulMatrix(&m_worldMatrix);
+
 	if(m_curAnimationCacheData) 
 	{
 		if(m_curAnimationCacheData->m_offsetx||m_curAnimationCacheData->m_offsety)
@@ -239,13 +219,10 @@ void Sprite2D::draw(Render* render,bool update_matrix)
 		}
 	}
 
-	m_material->setOpacity(m_opacity);
-	m_material->setColor(m_color);
-	render->setMaterial(m_material);
+	render->setProgram(m_program);
+	material->configRender(render);
 
-	render->setBlend(Render::EQUATION_ADD,m_blendSrc,m_blendDst);
 
-	render->setActiveTexture(1);
 	render->disableAllAttrArray();
 
 
@@ -257,9 +234,9 @@ void Sprite2D::draw(Render* render,bool update_matrix)
 		Face3(0,3,2),
 		Face3(2,1,0),
 	};
-	int pos_loc=m_material->getV4FLocation();
-	int alpha_loc=m_material->getA1FLocation();
-	int tex_loc=m_material->getT2FLocation();
+	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int alpha_loc=render->getCacheAttrLocation(FS_ATTR_A1F_LOC,FS_ATTR_A1F_NAME);
+	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
 
 	for(int i=0;i<frame->getQuadNu();i++)
 	{
@@ -422,8 +399,6 @@ void Sprite2D::getAnimationOffset(float* x,float* y)
 
 Sprite2D::Sprite2D()
 {
-	m_color=Color::WHITE;
-	m_opacity=1.0f;
 	m_curFrame=0;
 	m_elapseTime=0.0f;
 
@@ -436,12 +411,15 @@ Sprite2D::Sprite2D()
 	m_curAnimation=NULL;
 	m_curAnimationCacheData=NULL;
 
-	m_blendSrc=Render::FACTOR_SRC_ALPHA;
-	m_blendDst=Render::FACTOR_ONE_MINUS_SRC_ALPHA;
 
 	m_textures=NULL;
 	m_animationCacheData=NULL;
-	m_material=Mat_V4F_T2F_A1F::shareMaterial();
+
+	m_material=TextureMaterial::create();
+	m_material->addRef();
+
+	m_program=Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F_A1F);
+	FS_SAFE_ADD_REF(m_program);
 }
 
 Sprite2D::~Sprite2D()
@@ -449,10 +427,10 @@ Sprite2D::~Sprite2D()
 	FS_SAFE_DEC_REF(m_data);
 	FS_SAFE_DEC_REF(m_curAnimation);
 	FS_SAFE_DEC_REF(m_textures);
-	FS_SAFE_DEC_REF(m_material);
-
-
 	FS_DESTROY(m_animationCacheData);
+
+	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 }
 
 
