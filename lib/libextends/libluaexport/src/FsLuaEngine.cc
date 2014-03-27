@@ -10,6 +10,7 @@ extern "C"
 #include "lauxlib.h"
 #include "tolua_event.h"
 #include "toluaext++.h"
+#include "cjson/lua_cjson.h"
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
@@ -23,6 +24,7 @@ extern "C"
 #include "support/util/FsLog.h"
 #include "sys/io/FsVFS.h"
 #include "sys/event/FsTouchDispatcher.h"
+
 
 #define FS_LUA_ENGINE_CLASS_NAME "LuaEngine"
 
@@ -49,6 +51,7 @@ LuaEngine::LuaEngine()
 	/* init tolua++ */
 	toluaext_open(m_state);
 
+	luaopen_cjson(m_state);
 
 #if FS_CONFIG(FS_EXPORT_LIB_FAERIS)
 	/* init faeris interface */

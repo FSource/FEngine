@@ -49,12 +49,9 @@ LOCAL_SRC_FILES :=  \
 					../../src/graphics/FsProgram.cc \
 					../../src/graphics/FsTexture2D.cc \
 					../../src/graphics/FsFontBitmap.cc \
-					../../src/graphics/material/FsMat_V4F.cc \
-					../../src/graphics/material/FsMat_V4F_C4F.cc \
-					../../src/graphics/material/FsMat_V4F_T2F.cc \
-					../../src/graphics/material/FsMat_V4F_T2F_A1F.cc \
-					../../src/graphics/material/FsMat_V4F_T2F_C4F.cc \
 					../../src/graphics/material/FsMaterial.cc \
+					../../src/graphics/material/FsColorMaterial.cc \
+					../../src/graphics/material/FsTextureMaterial.cc \
 					../../src/sys/event/FsSysDispatcher.cc \
 					../../src/sys/event/FsTouchDispatcher.cc \
 					../../src/sys/event/FsKeypadDispatcher.cc \
@@ -86,6 +83,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/mgr/FsTextureMgr.cc \
 					../../src/mgr/FsSprite2DDataMgr.cc \
 					../../src/mgr/FsObjectMgr.cc \
+					../../src/mgr/FsProgramMgr.cc \
 					../../src/scheduler/FsScheduler.cc \
 					../../src/scheduler/FsSchedulerTarget.cc \
 					../../src/scheduler/FsTask.cc \
@@ -97,6 +95,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/support/data/FsZipReader.cc \
 					../../src/support/data/FsFgzReader.cc \
 					../../src/support/data/FsEncrypt.cc \
+					../../src/support/data/FsMd5.cc \
 					../../src/support/felis/sl_comment.cc \
 					../../src/support/felis/sl_double_quote_str.cc \
 					../../src/support/felis/sl_simple_str.cc \

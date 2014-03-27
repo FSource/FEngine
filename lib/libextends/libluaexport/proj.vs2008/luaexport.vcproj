@@ -271,6 +271,34 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="cjson"
+				>
+				<File
+					RelativePath="..\src\cjson\fpconv.c"
+					>
+				</File>
+				<File
+					RelativePath="..\src\cjson\fpconv.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\cjson\lua_cjson.c"
+					>
+				</File>
+				<File
+					RelativePath="..\src\cjson\lua_cjson.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\cjson\strbuf.c"
+					>
+				</File>
+				<File
+					RelativePath="..\src\cjson\strbuf.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

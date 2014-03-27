@@ -35,6 +35,9 @@ LOCAL_SRC_FILES :=  ../src/toluaext++.cc \
 					../src/luaexport/FsLibSpineSprite.cc \
 					../src/luaexport/FsLibBox2d.cc  \
 					../src/luaexport/FsLibSensorExport.cc \
+					../src/cjson/fpconv.c \
+					../src/cjson/lua_cjson.c \
+					../src/cjson/strbuf.c \
 
 
 
