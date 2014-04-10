@@ -311,6 +311,8 @@ int FsFaeris_ConfigVFS(FsDict* dict)
 						VFS::addFilter(prefix_filter);
 					}
 				}
+
+
 			}
 		}
 	}
@@ -328,6 +330,23 @@ int FsFaeris_ConfigVFS(FsDict* dict)
 			FsString*  map_path=ScriptUtil::getString(p,"mapPath");
 			FsString*  map_type=ScriptUtil::getString(p,"packageType");
 			FsString*  map_url=ScriptUtil::getString(p,"url");
+
+
+			FsString*  map_priority=ScriptUtil::getString(p,"priority");
+			int priority=VFS::FS_MAP_LOW;
+			if( map_priority)
+			{
+				if(map_priority->equal("high"))
+				{
+					priority=VFS::FS_MAP_HIGH;
+				}
+				else 
+				{
+					priority=VFS::FS_MAP_LOW;
+				}
+			}
+
+
 			if(map_path&&map_type&&map_url)
 			{
 				if(map_type->equal("zip"))
@@ -336,7 +355,7 @@ int FsFaeris_ConfigVFS(FsDict* dict)
 					Package* package=Package::create(map_url->cstr(),Package::PACKAGE_ZIP);
 					if(package)
 					{
-						VFS::mapPackage(map_path->cstr(),package);
+						VFS::mapPackage(map_path->cstr(),package,priority);
 					}
 
 				}
@@ -346,7 +365,7 @@ int FsFaeris_ConfigVFS(FsDict* dict)
 					Package* package=Package::create(map_url->cstr(),Package::PACKAGE_FGZ);
 					if(package)
 					{
-						VFS::mapPackage(map_path->cstr(),package);
+						VFS::mapPackage(map_path->cstr(),package,priority);
 					}
 
 				}

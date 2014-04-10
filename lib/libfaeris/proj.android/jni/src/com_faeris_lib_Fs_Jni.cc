@@ -49,7 +49,7 @@ extern "C" {
 	}
 	else 
 	{
-		VFS::mapPackage("",package);
+		VFS::mapPackage("",package,VFS::FS_MAP_HIGH);
 	}
 
 

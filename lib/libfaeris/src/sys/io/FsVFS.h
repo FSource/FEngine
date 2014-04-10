@@ -71,6 +71,13 @@ enum
 	FS_SEEK_END=FsFile::FS_SEEK_END,
 };
 
+enum 
+{
+	FS_MAP_LOW=0,
+	FS_MAP_HIGH,
+};
+
+
 bool moduleInit();
 bool moduleExit();
 
@@ -82,7 +89,7 @@ FsFile* createFile(const char* name,uint mode=FS_IO_RDONLY);
 
 bool addFilter(NameFilter* filter);
 bool removeFilter(NameFilter* filter);
-bool mapPackage(const char* path,Package* package);
+bool mapPackage(const char* path,Package* package,int priority=VFS::FS_MAP_LOW);
 bool unmapPackage(const char* path);
 
 FsFile* getStdout(); 

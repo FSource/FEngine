@@ -259,12 +259,22 @@ bool removeFilter(NameFilter* filter)
 	return true;
 }
 
-bool mapPackage(const char* path,Package* package)
+bool mapPackage(const char* path,Package* package,int priority)
 {
 	MapPackage* map=MapPackage::create(path,package);
 
 	if(!map) return false;
-	s_mapPackage->push(map);
+
+	if (priority == VFS::FS_MAP_HIGH) 
+	{
+		FS_TRACE_INFO("MapPackage(%s,high)",path);
+		s_mapPackage->insert(0,map);
+	}
+	else 
+	{
+		FS_TRACE_INFO("MapPackage(%s,low)",path);
+		s_mapPackage->push(map);
+	}
 
 	return true;
 
