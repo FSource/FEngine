@@ -10,7 +10,7 @@ extern "C"
 #include "lauxlib.h"
 #include "tolua_event.h"
 #include "toluaext++.h"
-#include "cjson/lua_cjson.h"
+#include "lua_cjson.h"
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

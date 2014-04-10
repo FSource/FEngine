@@ -33,11 +33,12 @@ LINK_LIB= -lluaexportd \
 		  -lX11  \
 		  -lGLEW \
 		  -lGL  \
-		  -llib3rdextends \
+		  -llib3rdextendsd \
 		  -lpthread \
 		  -lluad \
 		  -ltolua++d \
 		  -llibpngd \
+		  -llibjpegd \
 		  -lzlibd \
 		  -lcurld \
 		  -lrt \
@@ -45,6 +46,7 @@ LINK_LIB= -lluaexportd \
 		  -lfreetype \
 		  -lfmodex \
 		  -llibbox2dd \
+		  -lcjsond \
 
 
 #Source File 

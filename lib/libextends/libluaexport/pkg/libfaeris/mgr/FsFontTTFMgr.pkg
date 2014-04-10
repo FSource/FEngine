@@ -1,0 +1,6 @@
+$#include "mgr/FsFontTTFMgr.h"
+
+class FontTTFMgr:public ResourceMgr 
+{
+
+}
