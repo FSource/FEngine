@@ -11,6 +11,8 @@ NS_FS_BEGIN
 class ScriptUtil
 {
 	public:
+		static FsDict* parseJson(const char* json);
+
 		static FsDict* parseScript(FsFile* file);
 		static bool saveScript(FsFile* file,FsDict* dict,int indent=0);
 
