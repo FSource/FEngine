@@ -20,6 +20,7 @@
 #define FS_LUA_SPRITE2D_CLASS_NAME				"LuaSprite2D"
 #define FS_LUA_VERTEX_POLYGON_CLASS_NAME		"LuaVertexPolygon"
 #define FS_LUA_SPINE_SPRITE_CLASS_NAME			"LuaSpineSprite"
+#define FS_LUA_PAYMENT_CLASS_NAME				"LuaPayment"
 
 
 #define FS_LUA_HTTP_REQUEST_CLASS_NAME  		"LuaHttpRequest"
@@ -32,6 +33,12 @@
 
 #define FS_LUA_BUTTON_CLASS_NAME 				"LuaButton"
 
+
+
+
+
+/* Export Define */
+
 #define FS_EXPORT_LIB_FAERIS
 
 #define FS_EXPORT_LIB_LUA_FUNC 
@@ -39,6 +46,8 @@
 #define FS_EXPORT_LIB_SPINE_SPRITE
 
 #define FS_EXPORT_LIB_BOX2D
+
+#define FS_EXPORT_LIB_PAYMENT
 
 //#define FS_EXPORT_LIB_SENSOR
 

@@ -3,10 +3,11 @@
 #include "FsGlobal.h"
 #include "sys/platform/android/FsJniUtil.h"
 
-NS_FS_BEGIN
-const char* S_FS_JNI_PAYMENT_CLASS_NAME="com/faeris/payment/F_Payment";
 
-void Payment::inti(const char* msg)
+NS_FS_BEGIN
+
+const char* S_FS_JNI_PAYMENT_CLASS_NAME= "com/faeris/payment/Fs_Payment";
+void Payment::init(const char* msg)
 {
 	JNIEnv* env=JniUtil::getEnv();
 
@@ -17,47 +18,45 @@ void Payment::inti(const char* msg)
 				"(JLjava/lang/String;)V",
 				j_msg
 				);
-
 	env->DeleteLocalRef(j_msg);
 }
 
-void Payment::config(const char* config)
+
+void Payment::setConfig(const char* config)
 {
 	JNIEnv* env=JniUtil::getEnv();
-	jstring* j_config=env->NewStringUTF(config);
+
+	jstring j_config=env->NewStringUTF(config);
 
 
-	FS_JNI_CALL_VOID_STATIC_METHOD(S_FS_JNI_PAYMENT_CLASS_NAME,"config",
+	FS_JNI_CALL_VOID_STATIC_METHOD(S_FS_JNI_PAYMENT_CLASS_NAME,"setConfig",
 			"(Ljava/lang/String;)V",
-			j_config,
+			j_config
 			);
 
 	env->DeleteLocalRef(j_config);
-
 }
 
-int Payment::billing(const char* name,const char* msg)
+
+int Payment::billing(const char* msg)
 {
 	JNIEnv* env=JniUtil::getEnv();
-	jstring* j_name=env->NewStringUTF(name);
-	jstring* j_msg=env->NewStringUTF(msg);
+	jstring j_msg=env->NewStringUTF(msg);
 
 	jint ret;
 
-	FS_JNI_CALL_INT_STATIC_METHOD(S_FS_JNI_PAYMENT_CLASS_NAME,"billing",
+	FS_JNI_CALL_STATIC_METHOD(S_FS_JNI_PAYMENT_CLASS_NAME,"billing",
 			"(Ljava/lang/String;Ljava/lang/String)I",
 			Int,
 			ret,
-			j_name,
-			j_msg,
+			j_msg
 			);
 
-	env->DeleteLocalRef(j_name);
 	env->DeleteLocalRef(j_msg);
 
 	return ret;
-}
 
+}
 
 void Payment::billingFinish(int trade_id,int ret_code,const char* msg)
 {
@@ -67,14 +66,16 @@ void Payment::billingFinish(int trade_id,int ret_code,const char* msg)
 }
 
 
+Payment::Payment()
+{
+}
+
+Payment::~Payment()
+{
+}
+
+
 NS_FS_END
-
-
-
-
-
-
-
 
 
 

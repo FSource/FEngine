@@ -79,6 +79,11 @@ LuaEngine::LuaEngine()
 	tolua_FsLibSensor_open(m_state);
 #endif 
 
+#if FS_CONFIG(FS_EXPORT_LIB_PAYMENT)
+	tolua_FsPayment_open(m_state);
+#endif 
+
+
 }
 
 

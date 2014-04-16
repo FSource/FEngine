@@ -37,6 +37,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += lib3rdextends_static
 
 LOCAL_WHOLE_STATIC_LIBRARIES += libthirdParty_static
 LOCAL_WHOLE_STATIC_LIBRARIES += libsensor_static
+LOCAL_WHOLE_STATIC_LIBRARIES += libpayment_static
 
 
 
@@ -58,6 +59,7 @@ $(call import-module,../../../../lib/lib3rdparty/minizip/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/zlib/proj.android/jni)
 $(call import-module,../../../../lib/libextends/libluaexport/proj.android)
 $(call import-module,../../../../lib/libextends/libspinesprite/proj.android)
+$(call import-module,../../../../lib/libextends/libpayment/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/Box2D/proj.android)
 $(call import-module,../../../../lib/libextends/lib3rdextends/proj.android/jni)
 $(call import-module,../../../../lib/libextends/libsensor/proj.android)

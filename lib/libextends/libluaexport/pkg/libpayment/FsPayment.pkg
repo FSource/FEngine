@@ -1,0 +1,18 @@
+$#include "FsLuaExport.h"
+$#include "luaext/FsLuaPayment.h"
+
+
+class LuaPayment@Payment:public Payment 
+{
+	public:
+		//static LuaPayment* getInstance();
+		//static void purgeInstance();
+
+	public:
+		void init(const char* msg);
+		void setConfig(const char* config);
+		int billing(const char* msg);
+};
+
+
+
