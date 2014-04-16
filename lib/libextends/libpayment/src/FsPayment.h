@@ -12,6 +12,16 @@ enum
 
 class Payment;
 
+void FsPayment_SetGlobal(Payment* ment);
+Payment* FsPayment_GetGlobal();
+void FsPayment_DropGlobal();
+
+
+/* Note: 1.When Create Payment Class, Caller Must addRef It Before Call 
+ * 		 Any Interface To Avoid Crash 
+ * 		 2.When Create it, User Must Call FsPayment_SetGlobal();
+ */
+
 /* @interface:
  *
  *		void init(const char* msg)
