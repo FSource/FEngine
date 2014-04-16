@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="libpayment"
+	Name="libfaerisext"
 	ProjectGUID="{2377A174-2D0D-4B53-850C-E419F4514E4C}"
 	RootNamespace="libpayment"
 	Keyword="Win32Proj"
@@ -61,6 +61,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)\$(ProjectName)d.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -147,6 +148,14 @@
 		<Filter
 			Name="src"
 			>
+			<File
+				RelativePath="..\..\src\FsGpsProvider.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\FsGpsProvider.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\src\FsPayment.cc"
 				>

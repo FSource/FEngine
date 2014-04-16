@@ -6,7 +6,7 @@
 
 NS_FS_BEGIN
 
-const char* S_FS_JNI_PAYMENT_CLASS_NAME= "com/faeris/payment/Fs_Payment";
+const char* S_FS_JNI_PAYMENT_CLASS_NAME= "com/faeris/libext/Fs_Payment";
 void Payment::init(const char* msg)
 {
 	JNIEnv* env=JniUtil::getEnv();

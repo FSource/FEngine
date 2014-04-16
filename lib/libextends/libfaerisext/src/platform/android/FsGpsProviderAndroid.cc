@@ -3,7 +3,7 @@
 #include "sys/platform/android/FsJniUtil.h"
 
 
-static const char* JNI_GPS_PROVIDER_CLASS_NAME="com/faeris/lib/Fs_GpsProvider";
+static const char* JNI_GPS_PROVIDER_CLASS_NAME="com/faeris/libext/Fs_GpsProvider";
 
 static const char* JNI_LOCATION_CLASS_NAME="android/location/Location";
 
