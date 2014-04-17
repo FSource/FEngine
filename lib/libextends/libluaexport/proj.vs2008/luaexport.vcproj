@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../libextends/libsensor/src;../../../libextends/lib3rdextends/src;../src;../../../libfaeris/src/support;../../libaudio/src;../../../libfaeris/src;../../../lib3rdparty/c99/include;&quot;../../../lib3rdparty/tolua++/include&quot;;../../../lib3rdparty/Box2D;../../../lib3rdparty/pthread/include;../../libnetwork/src;../../../lib3rdparty/lua/include;../../libspinesprite/src"
+				AdditionalIncludeDirectories="../../../libextends/libfaerisext/src;../../../libextends/lib3rdextends/src;../src;../../../libfaeris/src/support;../../libaudio/src;../../../libfaeris/src;../../../lib3rdparty/c99/include;&quot;../../../lib3rdparty/tolua++/include&quot;;../../../lib3rdparty/Box2D;../../../lib3rdparty/pthread/include;../../libnetwork/src;../../../lib3rdparty/lua/include;../../libspinesprite/src"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -251,11 +251,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\src\luaexport\FsLibLuaScript.cc"
+					RelativePath="..\src\luaexport\FsLibFaerisExtExport.cc"
 					>
 				</File>
 				<File
-					RelativePath="..\src\luaexport\FsLibSensorExport.cc"
+					RelativePath="..\src\luaexport\FsLibLuaScript.cc"
 					>
 				</File>
 				<File

@@ -52,7 +52,7 @@ class Payment:public FsObject
 		 * 	}
 		 * 	@return: the trade_id used to identify  billing 
 		 */
-		int billing(const char* msg);
+		int billing(const char* name,const char* msg);
 
 	public:
 		/*@description:when Payment finish,this interface will called. 

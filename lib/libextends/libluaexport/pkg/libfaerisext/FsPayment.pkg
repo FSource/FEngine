@@ -11,7 +11,7 @@ class LuaPayment@Payment:public Payment
 	public:
 		void init(const char* msg);
 		void setConfig(const char* config);
-		int billing(const char* msg);
+		int billing(const char* name,const char* msg);
 };
 
 

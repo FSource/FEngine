@@ -38,10 +38,11 @@ void Payment::setConfig(const char* config)
 }
 
 
-int Payment::billing(const char* msg)
+int Payment::billing(const char* name,const char* msg)
 {
 	JNIEnv* env=JniUtil::getEnv();
 	jstring j_msg=env->NewStringUTF(msg);
+	jstring j_name=env->NewStringUTF(name);
 
 	jint ret;
 
@@ -49,10 +50,12 @@ int Payment::billing(const char* msg)
 			"(Ljava/lang/String;Ljava/lang/String)I",
 			Int,
 			ret,
+			j_name,
 			j_msg
 			);
 
 	env->DeleteLocalRef(j_msg);
+	env->DeleteLocalRef(j_name);
 
 	return ret;
 

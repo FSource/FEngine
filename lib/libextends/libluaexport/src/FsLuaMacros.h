@@ -47,9 +47,7 @@
 
 #define FS_EXPORT_LIB_BOX2D
 
-#define FS_EXPORT_LIB_PAYMENT
-
-//#define FS_EXPORT_LIB_SENSOR
+#define FS_EXPORT_LIB_FAERIS_EXT
 
 #endif /*_FS_LUA_MACROS_H_*/
 

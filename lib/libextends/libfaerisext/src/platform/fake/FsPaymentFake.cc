@@ -65,7 +65,7 @@ void Payment::setConfig(const char* value)
 {
 }
 
-int Payment::billing(const char* config)
+int Payment::billing(const char* name,const char* config)
 {
 	S_TradeId++;
 
@@ -110,7 +110,6 @@ int Payment::billing(const char* config)
 		const char* ret_msg="{\"msg\":\"unkown result\"";
 		S_PendBillingResult(this,S_TradeId,FS_PAYMENT_ERROR,ret_msg);
 	}
-
 
 	namecode->decRef();
 	return S_TradeId;

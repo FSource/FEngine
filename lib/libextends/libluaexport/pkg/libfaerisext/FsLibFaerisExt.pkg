@@ -2,4 +2,7 @@ $#include "FsLuaExport.h"
 
 
 $pfile "FsGpsProvider.pkg"
+$pfile "FsPayment.pkg"
+
+
 

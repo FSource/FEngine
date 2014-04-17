@@ -109,6 +109,12 @@ function f_extends(o,c)
 	end
 end
 
+function f_setattrenv(o,v)
+	o.data=v
+end
+
+
+
 
 
 
