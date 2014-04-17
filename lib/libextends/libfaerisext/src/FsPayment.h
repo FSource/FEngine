@@ -64,6 +64,7 @@ class Payment:public FsObject
 		 */
 
 		virtual void billingFinish(int trade_id,int ret_code,const char* msg);
+		const char* className();
 
 
 	protected:

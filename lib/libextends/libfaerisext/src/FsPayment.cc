@@ -36,6 +36,13 @@ void FsPayment_DropGlobal()
 	S_Payment=NULL;
 }
 
+
+const char* Payment::className()
+{
+	return "Payment";
+}
+
+
 NS_FS_END
 
 

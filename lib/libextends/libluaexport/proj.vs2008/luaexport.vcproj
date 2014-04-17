@@ -199,6 +199,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\src\luaext\FsLuaPayment.cc"
+					>
+				</File>
+				<File
+					RelativePath="..\src\luaext\FsLuaPayment.h"
+					>
+				</File>
+				<File
 					RelativePath="..\src\luaext\FsLuaScene.cc"
 					>
 				</File>

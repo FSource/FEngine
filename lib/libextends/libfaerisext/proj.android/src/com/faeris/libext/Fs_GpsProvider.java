@@ -1,4 +1,6 @@
-package com.faeris.lib;
+
+package com.faeris.libext;
+import com.faeris.lib.Fs_Application;
 
 import android.content.Context;
 import android.location.Criteria;

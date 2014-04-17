@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaerisExt
-** Generated automatically by tolua++-1.0.92 on 04/17/14 04:52:42.
+** Generated automatically by tolua++-1.0.92 on 04/17/14 07:14:54.
 */
 
 #ifndef __cplusplus
@@ -21,7 +21,6 @@ TOLUA_API int  tolua_FsLibFaerisExt_open (lua_State* tolua_S);
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"Payment");
  tolua_usertype(tolua_S,"GpsProvider");
  toluaext_usertype(tolua_S,"FsObject");
  tolua_usertype(tolua_S,"LuaPayment");
@@ -87,6 +86,61 @@ static int tolua_FsLibFaerisExt_GpsProvider_getLastKnownLocation00(lua_State* to
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getLastKnownLocation'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getInstance of class  LuaPayment */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaerisExt_Payment_getInstance00
+static int tolua_FsLibFaerisExt_Payment_getInstance00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaPayment",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   LuaPayment* tolua_ret = (LuaPayment*)  LuaPayment::getInstance();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaPayment");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getInstance'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: purgeInstance of class  LuaPayment */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaerisExt_Payment_purgeInstance00
+static int tolua_FsLibFaerisExt_Payment_purgeInstance00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaPayment",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   LuaPayment::purgeInstance();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'purgeInstance'.",&tolua_err);
  return 0;
 #endif
 }
@@ -206,8 +260,14 @@ TOLUA_API int tolua_FsLibFaerisExt_open (lua_State* tolua_S)
    tolua_function(tolua_S,"create",tolua_FsLibFaerisExt_GpsProvider_create00);
    tolua_function(tolua_S,"getLastKnownLocation",tolua_FsLibFaerisExt_GpsProvider_getLastKnownLocation00);
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"Payment","LuaPayment","Payment",NULL);
+  tolua_constant(tolua_S,"FS_PAYMENT_SUCCESS",FS_PAYMENT_SUCCESS);
+  tolua_constant(tolua_S,"FS_PAYMENT_CANCEL",FS_PAYMENT_CANCEL);
+  tolua_constant(tolua_S,"FS_PAYMENT_FAILED",FS_PAYMENT_FAILED);
+  tolua_constant(tolua_S,"FS_PAYMENT_ERROR",FS_PAYMENT_ERROR);
+  tolua_cclass(tolua_S,"Payment","LuaPayment","FsObject",NULL);
   tolua_beginmodule(tolua_S,"Payment");
+   tolua_function(tolua_S,"getInstance",tolua_FsLibFaerisExt_Payment_getInstance00);
+   tolua_function(tolua_S,"purgeInstance",tolua_FsLibFaerisExt_Payment_purgeInstance00);
    tolua_function(tolua_S,"init",tolua_FsLibFaerisExt_Payment_init00);
    tolua_function(tolua_S,"setConfig",tolua_FsLibFaerisExt_Payment_setConfig00);
    tolua_function(tolua_S,"billing",tolua_FsLibFaerisExt_Payment_billing00);

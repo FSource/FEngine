@@ -1,4 +1,4 @@
-package com.faeris.payment;
+package com.faeris.libext;
 
 public class Fs_PaymentJni {
 

@@ -1,4 +1,4 @@
-package com.faeris.payment;
+package com.faeris.libext;
 
 import com.faeris.lib.Fs_Application;
 
@@ -22,31 +22,20 @@ public class Fs_Payment {
 		return m_paymentImp;
 	}
 
-	public static void init(final String msg)
-	{
-		Fs_Application.runUiThread(new Runnable(){
-
-			@Override
-			public void run() {
-				m_paymentImp.init(Fs_Application.getContext(),msg);
-			}
-
-		});
-	}
 	
-	public static void config(final String msg)
+	public static void setConfig(final String msg)
 	{
 		Fs_Application.runUiThread(new Runnable(){
 			@Override
 			public void run() {
-				m_paymentImp.config(Fs_Application.getContext(),msg);
+				m_paymentImp.setConfig(Fs_Application.getContext(),msg);
 				
 			}
 		});
 	}
 	
 	
-	public static int billing(final String msg)
+	public static int billing(final String name, final String msg)
 	{
 		m_tradeId=m_tradeId+1;
 		final int tradeid=m_tradeId;
@@ -55,7 +44,7 @@ public class Fs_Payment {
 			@Override
 			public void run()
 			{
-				m_paymentImp.billing(Fs_Application.getContext(),msg,new Fs_PaymentListener(){
+				m_paymentImp.billing(Fs_Application.getContext(),name,msg,new Fs_PaymentListener(){
 					@Override
 					public void payResult(final int ret_code, final String msg) {
 						Fs_Application.runOnEngineThread(new Runnable(){

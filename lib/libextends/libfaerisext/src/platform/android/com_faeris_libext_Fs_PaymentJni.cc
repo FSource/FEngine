@@ -1,4 +1,4 @@
-#include "com_faeris_payment_Fs_PaymentJni.h"
+#include "com_faeris_libext_Fs_PaymentJni.h"
 
 #include "FsPayment.h"
 
@@ -8,15 +8,15 @@ NS_FS_BEGIN
 extern "C" {
 #endif
 /*
- * Class:     com_faeris_payment_Fs_PaymentJni
+ * Class:     com_faeris_libext_Fs_PaymentJni
  * Method:    billingFinish
  * Signature: (IILjava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_com_faeris_payment_Fs_1PaymentJni_billingFinish
+JNIEXPORT void JNICALL Java_com_faeris_libext_Fs_1PaymentJni_billingFinish
   (JNIEnv* env, jclass, jint trade_id, jint ret_code, jstring msg)
   {
 	  Payment* payment=FsPayment_GetGlobal();
-	  if(payment)
+	  if(!payment)
 	  {
 		  FS_TRACE_WARN("Global Payment Not Set");
 		  return;

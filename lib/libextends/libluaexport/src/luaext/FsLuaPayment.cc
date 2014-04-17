@@ -17,6 +17,10 @@ LuaPayment* LuaPayment::getInstance()
 	}
 	return (LuaPayment*)ret;
 }
+void LuaPayment::purgeInstance()
+{
+	FsPayment_DropGlobal();
+}
 
 
 void LuaPayment::billingFinish(int trade_id,int ret_code,const char* msg)

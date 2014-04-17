@@ -17,9 +17,9 @@ LOCAL_CFLAGS     :=  -I$(LOCAL_PATH)/../src \
 					 -I$(LOCAL_PATH)/../../../libextends/libpayment/src \
 					 -I$(LOCAL_PATH)/../../../libfaeris/src \
 					 -I$(LOCAL_PATH)/../../../libfaeris/src/support  \
-					 -I$(LOCAL_PATH)/../../libaudio/src \
-					 -I$(LOCAL_PATH)/../../libnetwork/src \
-					 -I$(LOCAL_PATH)/../../libspinesprite/src 
+					 -I$(LOCAL_PATH)/../../libspinesprite/src  \
+					 -I$(LOCAL_PATH)/../../libfaerisext/src  \
+
 
 
 LOCAL_SRC_FILES :=  ../src/toluaext++.cc \
@@ -36,8 +36,7 @@ LOCAL_SRC_FILES :=  ../src/toluaext++.cc \
 					../src/luaexport/FsLuaFuncExport.cc \
 					../src/luaexport/FsLibSpineSprite.cc \
 					../src/luaexport/FsLibBox2d.cc  \
-					../src/luaexport/FsLibSensorExport.cc \
-					../src/luaexport/FsLibPaymentExport.cc \
+					../src/luaexport/FsLibFaerisExtExport.cc \
 					../src/cjson/fpconv.c \
 					../src/cjson/lua_cjson.c \
 					../src/cjson/strbuf.c \

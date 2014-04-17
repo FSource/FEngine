@@ -9,6 +9,9 @@ NS_FS_BEGIN
 const char* S_FS_JNI_PAYMENT_CLASS_NAME= "com/faeris/libext/Fs_Payment";
 void Payment::init(const char* msg)
 {
+
+	/*
+
 	JNIEnv* env=JniUtil::getEnv();
 
 	jstring j_msg=env->NewStringUTF(msg);
@@ -19,6 +22,8 @@ void Payment::init(const char* msg)
 				j_msg
 				);
 	env->DeleteLocalRef(j_msg);
+	*/
+
 }
 
 
@@ -47,7 +52,7 @@ int Payment::billing(const char* name,const char* msg)
 	jint ret;
 
 	FS_JNI_CALL_STATIC_METHOD(S_FS_JNI_PAYMENT_CLASS_NAME,"billing",
-			"(Ljava/lang/String;Ljava/lang/String)I",
+			"(Ljava/lang/String;Ljava/lang/String;)I",
 			Int,
 			ret,
 			j_name,
