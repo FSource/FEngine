@@ -28,11 +28,8 @@ LOCAL_WHOLE_STATIC_LIBRARIES += libjpeg_static
 LOCAL_WHOLE_STATIC_LIBRARIES += lua_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += tolua_static
 LOCAL_WHOLE_STATIC_LIBRARIES += curl_static
-<<<<<<< HEAD
 LOCAL_WHOLE_STATIC_LIBRARIES += ljson_static
-=======
 LOCAL_WHOLE_STATIC_LIBRARIES += jsonc_static
->>>>>>> v1.3.2_pay
 
 LOCAL_WHOLE_STATIC_LIBRARIES += faeris_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += luaexport_static
