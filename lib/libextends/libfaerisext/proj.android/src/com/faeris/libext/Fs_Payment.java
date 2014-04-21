@@ -23,6 +23,8 @@ public class Fs_Payment {
 	}
 
 	
+
+	
 	public static void setConfig(final String msg)
 	{
 		Fs_Application.runUiThread(new Runnable(){
