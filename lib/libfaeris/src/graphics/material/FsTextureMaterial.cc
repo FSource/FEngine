@@ -1,3 +1,4 @@
+#include "stdio.h"
 #include "graphics/material/FsTextureMaterial.h"
 
 

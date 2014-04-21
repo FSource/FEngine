@@ -39,6 +39,8 @@ $pfile "mgr/FsSprite2DDataMgr.pkg"
 $pfile "mgr/FsResourceMgr.pkg"
 $pfile "mgr/FsObjectMgr.pkg"
 $pfile "mgr/FsProgramMgr.pkg"
+$pfile "mgr/FsFontTTFMgr.pkg"
+
 
 
 

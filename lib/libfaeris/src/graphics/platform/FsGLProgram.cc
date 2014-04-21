@@ -1,3 +1,4 @@
+#include "string.h"
 #if FS_PLATFORM_OS(FS_OS_ANDROID) 
 	#include "GL_Android/gles_2.0.h"
 #else 
@@ -74,7 +75,6 @@ bool Program::init(const char* vertex_src,const char* fragment_src)
 	char log_info[FS_MAX_GL_PROGRAM_LOG_LENGTH];
 	int log_length;
 	GLint link_result;
-	Program* ret=NULL;
 
 
 	vertex_shader=S_CreateShaderObject(vertex_src,v_size,GL_VERTEX_SHADER);

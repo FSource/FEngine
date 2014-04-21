@@ -10,7 +10,7 @@ extern "C"
 #include "lauxlib.h"
 #include "tolua_event.h"
 #include "toluaext++.h"
-#include "cjson/lua_cjson.h"
+#include "lua_cjson.h"
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
@@ -75,9 +75,11 @@ LuaEngine::LuaEngine()
 	tolua_Box2D_open(m_state);
 #endif
 
-#if FS_CONFIG(FS_EXPORT_LIB_SENSOR)
-	tolua_FsLibSensor_open(m_state);
+
+#if FS_CONFIG(FS_EXPORT_LIB_FAERIS_EXT)
+	tolua_FsLibFaerisExt_open(m_state);
 #endif 
+
 
 }
 

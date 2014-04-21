@@ -95,10 +95,13 @@ FS_FEATURE_NEW_OBJECT(Image2D*) FsUtil_JpegReader(FsFile* file)
         // we only support RGB or grayscale
         if (cinfo.jpeg_color_space != JCS_RGB)
         {
+		
             if (cinfo.jpeg_color_space == JCS_GRAYSCALE || cinfo.jpeg_color_space == JCS_YCbCr)
             {
-                cinfo.out_color_space = JCS_RGB;
+				cinfo.out_color_space = JCS_RGB;
             }
+
+
         }
         else
         {
@@ -115,7 +118,14 @@ FS_FEATURE_NEW_OBJECT(Image2D*) FsUtil_JpegReader(FsFile* file)
         height= (short)(cinfo.image_height);
 
      	row_pointer[0] = new uint8_t[cinfo.output_width*cinfo.output_components];
-		ret=Image2D::create(width,height,Image2D::PIXEL_RGB888);
+		if(cinfo.out_color_components==3)
+		{
+			ret=Image2D::create(width,height,Image2D::PIXEL_RGB888);
+		}
+		else 
+		{
+			ret=Image2D::create(width,height,Image2D::PIXEL_RGBA8888);
+		}
 
 		uint8_t* pixel_data=(uint8_t*)ret->getPixelData();
 

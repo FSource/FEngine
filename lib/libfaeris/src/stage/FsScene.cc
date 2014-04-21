@@ -407,6 +407,7 @@ void Scene::init()
 
 	m_fadeEnabled=false;
 	m_fadeLayer=ColorLayer::create(m_fadeColor);
+	FS_NO_REF_DESTROY(m_fadeLayer);
 
 
 	m_touchFocusLayer=NULL;
@@ -424,6 +425,7 @@ void Scene::init()
 void Scene::destruct()
 {
 	FS_DESTROY(m_layers);
+	FS_DESTROY(m_fadeLayer);
 }
 
 
