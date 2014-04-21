@@ -41,7 +41,11 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+<<<<<<< HEAD
 				AdditionalIncludeDirectories="../../../libextends/libsensor/src;../../../libextends/lib3rdextends/src;../src;../../../libfaeris/src/support;../../libaudio/src;../../../libfaeris/src;../../../lib3rdparty/c99/include;&quot;../../../lib3rdparty/tolua++/include&quot;;../../../lib3rdparty/Box2D;../../../lib3rdparty/ljson/src;../../../lib3rdparty/pthread/include;../../libnetwork/src;../../../lib3rdparty/lua/include;../../libspinesprite/src"
+=======
+				AdditionalIncludeDirectories="../../../libextends/libfaerisext/src;../../../libextends/lib3rdextends/src;../src;../../../libfaeris/src/support;../../libaudio/src;../../../libfaeris/src;../../../lib3rdparty/c99/include;&quot;../../../lib3rdparty/tolua++/include&quot;;../../../lib3rdparty/Box2D;../../../lib3rdparty/pthread/include;../../libnetwork/src;../../../lib3rdparty/lua/include;../../libspinesprite/src"
+>>>>>>> v1.3.2_pay
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -199,6 +203,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\src\luaext\FsLuaPayment.cc"
+					>
+				</File>
+				<File
+					RelativePath="..\src\luaext\FsLuaPayment.h"
+					>
+				</File>
+				<File
 					RelativePath="..\src\luaext\FsLuaScene.cc"
 					>
 				</File>
@@ -251,11 +263,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\src\luaexport\FsLibLuaScript.cc"
+					RelativePath="..\src\luaexport\FsLibFaerisExtExport.cc"
 					>
 				</File>
 				<File
-					RelativePath="..\src\luaexport\FsLibSensorExport.cc"
+					RelativePath="..\src\luaexport\FsLibLuaScript.cc"
 					>
 				</File>
 				<File

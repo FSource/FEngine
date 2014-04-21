@@ -61,7 +61,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+<<<<<<< HEAD
 				AdditionalDependencies="glew32.lib opengl32.lib freetyped.lib fmodex.lib zlibd.lib libpngd.lib libjpegd.lib ljsond.lib luad.lib minizipd.lib curld.lib libfaerisd.lib pthreadVC.lib tolua++d.lib libluaexportd.lib libspinesprited.lib wsock32.lib Wldap32.lib Ws2_32.lib Winmm.lib libbox2dd.lib lib3rdextendsd.lib"
+=======
+				AdditionalDependencies="glew32.lib opengl32.lib freetyped.lib fmodex.lib zlibd.lib libpngd.lib libjpegd.lib jsoncd.lib luad.lib minizipd.lib curld.lib libfaerisd.lib libfaerisextd.lib pthreadVC.lib tolua++d.lib libluaexportd.lib libspinesprited.lib wsock32.lib Wldap32.lib Ws2_32.lib Winmm.lib libbox2dd.lib lib3rdextendsd.lib"
+>>>>>>> v1.3.2_pay
 				OutputFile="$(OutDir)\$(ProjectName)_D.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../lib/library/win32/3rdparty;../../../lib/library/win32"

@@ -28,7 +28,11 @@ LOCAL_WHOLE_STATIC_LIBRARIES += libjpeg_static
 LOCAL_WHOLE_STATIC_LIBRARIES += lua_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += tolua_static
 LOCAL_WHOLE_STATIC_LIBRARIES += curl_static
+<<<<<<< HEAD
 LOCAL_WHOLE_STATIC_LIBRARIES += ljson_static
+=======
+LOCAL_WHOLE_STATIC_LIBRARIES += jsonc_static
+>>>>>>> v1.3.2_pay
 
 LOCAL_WHOLE_STATIC_LIBRARIES += faeris_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += luaexport_static
@@ -38,6 +42,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += lib3rdextends_static
 
 LOCAL_WHOLE_STATIC_LIBRARIES += libthirdParty_static
 LOCAL_WHOLE_STATIC_LIBRARIES += libsensor_static
+LOCAL_WHOLE_STATIC_LIBRARIES += libfaerisext_static
 
 
 
@@ -49,6 +54,7 @@ include $(BUILD_SHARED_LIBRARY)
 $(call import-add-path,$(IMPORT_PATH))
 
 $(call import-module,../../../../lib/libfaeris/proj.android/jni)
+
 $(call import-module,../../../../lib/lib3rdparty/curl/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/freetype/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/libpng/proj.android/jni)
@@ -58,11 +64,14 @@ $(call import-module,../../../../lib/lib3rdparty/ljson/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/tolua++/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/minizip/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/zlib/proj.android/jni)
+$(call import-module,../../../../lib/lib3rdparty/jsonc/proj.android/jni)
+$(call import-module,../../../../lib/lib3rdparty/Box2D/proj.android)
+
 $(call import-module,../../../../lib/libextends/libluaexport/proj.android)
 $(call import-module,../../../../lib/libextends/libspinesprite/proj.android)
-$(call import-module,../../../../lib/lib3rdparty/Box2D/proj.android)
+$(call import-module,../../../../lib/libextends/libfaerisext/proj.android/jni)
 $(call import-module,../../../../lib/libextends/lib3rdextends/proj.android/jni)
-$(call import-module,../../../../lib/libextends/libsensor/proj.android)
+
 
 
 

@@ -15,11 +15,12 @@ LOCAL_CFLAGS     :=  -I$(LOCAL_PATH)/../src \
 					 -I$(LOCAL_PATH)/../../../lib3rdparty/ljson/src \
 					 -I$(LOCAL_PATH)/../../../libextends/lib3rdextends/src \
 					 -I$(LOCAL_PATH)/../../../libextends/libsensor/src \
+					 -I$(LOCAL_PATH)/../../../libextends/libpayment/src \
 					 -I$(LOCAL_PATH)/../../../libfaeris/src \
 					 -I$(LOCAL_PATH)/../../../libfaeris/src/support  \
-					 -I$(LOCAL_PATH)/../../libaudio/src \
-					 -I$(LOCAL_PATH)/../../libnetwork/src \
-					 -I$(LOCAL_PATH)/../../libspinesprite/src 
+					 -I$(LOCAL_PATH)/../../libspinesprite/src  \
+					 -I$(LOCAL_PATH)/../../libfaerisext/src  \
+
 
 
 LOCAL_SRC_FILES :=  ../src/toluaext++.cc \
@@ -29,13 +30,21 @@ LOCAL_SRC_FILES :=  ../src/toluaext++.cc \
 					../src/luaext/FsLuaHttpRequest.cc \
 					../src/luaext/FsLuaSchedulerTarget.cc \
 					../src/luaext/FsLuaAction.cc \
+					../src/luaext/FsLuaPayment.cc \
 					../src/FsLuaEngine.cc \
 					../src/luaexport/FsLibFaerisExport.cc \
 					../src/luaexport/FsLibLuaScript.cc \
 					../src/luaexport/FsLuaFuncExport.cc \
 					../src/luaexport/FsLibSpineSprite.cc \
 					../src/luaexport/FsLibBox2d.cc  \
+<<<<<<< HEAD
 					../src/luaexport/FsLibSensorExport.cc \
+=======
+					../src/luaexport/FsLibFaerisExtExport.cc \
+					../src/cjson/fpconv.c \
+					../src/cjson/lua_cjson.c \
+					../src/cjson/strbuf.c \
+>>>>>>> v1.3.2_pay
 
 
 

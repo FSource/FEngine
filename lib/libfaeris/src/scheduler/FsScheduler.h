@@ -51,7 +51,11 @@ class Scheduler :public FsObject
 
 
 	public:
-		void runSyncTask(Task* t);
+
+		void runTask(Task* t);
+
+		/* used for other thread to pend task event to game */
+		void runASyncTask(Task* t);
 
 	protected:
 		Scheduler();
