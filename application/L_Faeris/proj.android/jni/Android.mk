@@ -28,6 +28,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += libjpeg_static
 LOCAL_WHOLE_STATIC_LIBRARIES += lua_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += tolua_static
 LOCAL_WHOLE_STATIC_LIBRARIES += curl_static
+LOCAL_WHOLE_STATIC_LIBRARIES += ljson_static
 
 LOCAL_WHOLE_STATIC_LIBRARIES += faeris_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += luaexport_static
@@ -53,6 +54,7 @@ $(call import-module,../../../../lib/lib3rdparty/freetype/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/libpng/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/libjpeg/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/lua/proj.android/jni)
+$(call import-module,../../../../lib/lib3rdparty/ljson/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/tolua++/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/minizip/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/zlib/proj.android/jni)
