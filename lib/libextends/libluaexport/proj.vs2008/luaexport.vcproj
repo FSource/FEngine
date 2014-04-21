@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../libextends/libsensor/src;../../../libextends/lib3rdextends/src;../src;../../../libfaeris/src/support;../../libaudio/src;../../../libfaeris/src;../../../lib3rdparty/c99/include;&quot;../../../lib3rdparty/tolua++/include&quot;;../../../lib3rdparty/Box2D;../../../lib3rdparty/pthread/include;../../libnetwork/src;../../../lib3rdparty/lua/include;../../libspinesprite/src"
+				AdditionalIncludeDirectories="../../../libextends/libsensor/src;../../../libextends/lib3rdextends/src;../src;../../../libfaeris/src/support;../../libaudio/src;../../../libfaeris/src;../../../lib3rdparty/c99/include;&quot;../../../lib3rdparty/tolua++/include&quot;;../../../lib3rdparty/Box2D;../../../lib3rdparty/ljson/src;../../../lib3rdparty/pthread/include;../../libnetwork/src;../../../lib3rdparty/lua/include;../../libspinesprite/src"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -268,34 +268,6 @@
 				</File>
 				<File
 					RelativePath="..\src\luaexport\FsLuaFuncExport.cc"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="cjson"
-				>
-				<File
-					RelativePath="..\src\cjson\fpconv.c"
-					>
-				</File>
-				<File
-					RelativePath="..\src\cjson\fpconv.h"
-					>
-				</File>
-				<File
-					RelativePath="..\src\cjson\lua_cjson.c"
-					>
-				</File>
-				<File
-					RelativePath="..\src\cjson\lua_cjson.h"
-					>
-				</File>
-				<File
-					RelativePath="..\src\cjson\strbuf.c"
-					>
-				</File>
-				<File
-					RelativePath="..\src\cjson\strbuf.h"
 					>
 				</File>
 			</Filter>

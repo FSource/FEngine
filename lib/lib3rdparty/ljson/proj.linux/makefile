@@ -7,7 +7,7 @@ FLAGS_RELEASE= -O3
 
 #Project info
 PROJECT_PATH= ../../../library/linux/3rdparty
-PROJECT=cjson
+PROJECT=ljson
 
 SRC_DIR= ../src/
 INCLUDE_DIR= -I../src/ -I../../lua/include
