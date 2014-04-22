@@ -11,9 +11,6 @@ class ActionTarget;
 
 class Action:public FsObject 
 {
-	public:
-		Action(){}
-		virtual ~Action();
 
 	public:
 
@@ -21,19 +18,18 @@ class Action:public FsObject
 		 * 		 if Return Greater Than Zero, Action Done, And finish Func Will Called
 		 */
 
-		virtual float run(ActionTarget* target,float dt)=0;
+		virtual bool run(ActionTarget* target,float dt,float* out)=0;
 
 		/* When Action Done, finish will Called  */ 
 		virtual void finish();
 
 		const char* className();
+
+	protected:
+		Action(){}
+		virtual ~Action();
 };
-
-
-
 NS_FS_END
-
-
 
 
 
