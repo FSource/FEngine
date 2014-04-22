@@ -12,7 +12,13 @@ class LinearEase:public EaseExpr
 		static LinearEase* create();
 
 	public:
+		/* inherit EaseExpr */
 		virtual float getEaseIn(float t);
+
+
+		/* inherit FsObject */
+		virtual const char* className();
+
 
 };
 

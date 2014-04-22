@@ -41,10 +41,7 @@ class EaseExpr:public FsObject
 
 };
 
-
-
 NS_FS_END 
-
-
 #endif /*_FS_EASE_EXPR_H_*/
+
 
