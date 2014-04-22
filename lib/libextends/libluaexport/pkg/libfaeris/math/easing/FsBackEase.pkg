@@ -1,0 +1,9 @@
+$#include "math/easing/FsBackEase.h"
+
+class BackEase:public EaseExpr
+{
+	public:
+		static BackEase* create();
+		static BackEase* create(int mode);
+};
+

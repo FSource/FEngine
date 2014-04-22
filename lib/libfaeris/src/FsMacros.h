@@ -326,6 +326,7 @@ enum
 /* math/easing */
 #define FS_LINEAR_EASE_CLASS_NAME "LinearEase"
 #define FS_EASE_EXPR_CLASS_NAME   "EaseExpr"
+#define FS_BACK_EASE_CLASS_NAME   "BackEase"
 
 /* sys */
 #define FS_WINDOW_CLASS_NAME "Window"
