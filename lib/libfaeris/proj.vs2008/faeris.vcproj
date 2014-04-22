@@ -1106,6 +1106,26 @@
 					RelativePath="..\src\math\FsVertices.h"
 					>
 				</File>
+				<Filter
+					Name="easing"
+					>
+					<File
+						RelativePath="..\src\math\easing\FsEaseExpr.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsEaseExpr.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsLinearEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsLinearEase.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="mgr"

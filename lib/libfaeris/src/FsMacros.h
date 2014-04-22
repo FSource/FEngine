@@ -323,6 +323,9 @@ enum
 #define FS_COLOR_MATERIAL_CLASS_NAME "ColorMaterial"
 #define FS_TEXTURE_MATERIAL_CLASS_NAME "TextureMaterial"
 
+/* math/easing */
+#define FS_LINEAR_EASE_CLASS_NAME "LinearEase"
+#define FS_EASE_EXPR_CLASS_NAME   "EaseExpr"
 
 /* sys */
 #define FS_WINDOW_CLASS_NAME "Window"

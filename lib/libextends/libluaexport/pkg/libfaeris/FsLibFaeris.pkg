@@ -74,6 +74,10 @@ $pfile "math/FsVector4.pkg"
 $pfile "math/FsMatrix4.pkg"
 $pfile "math/FsRect2D.pkg"
 
+/* math/easeing */
+$pfile "math/easing/FsEaseExpr.pkg"
+$pfile "math/easing/FsLinearEase.pkg" 
+
 
 /* sys */
 $pfile "sys/FsWindow.pkg"

@@ -1,0 +1,10 @@
+$#include "math/easing/FsLinearEase.h"
+
+class LinearEase:public EaseExpr
+{
+	public:
+		static LinearEase* create();
+		static LinearEase* create(int mode);
+};
+
+

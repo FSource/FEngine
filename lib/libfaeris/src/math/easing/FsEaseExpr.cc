@@ -30,7 +30,7 @@ float EaseExpr::getValue(float t)
 
 	FS_TRACE_WARN("Unkown Ease Mode(%d)",m_easeMode);
 
-	return m_easeMode;
+	return getEaseIn(t);
 }
 
 void EaseExpr::setMode(int mode)
@@ -59,7 +59,7 @@ float EaseExpr::getEaseInOut(float t)
 	return 0.5f+0.5f*getEaseOut(2*t-1);
 }
 
-float EaseExpr::getEaseOutIn()
+float EaseExpr::getEaseOutIn(float t)
 {
 	if (t<=0.5f)
 	{

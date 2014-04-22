@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 04/21/14 03:29:53.
+** Generated automatically by tolua++-1.0.92 on 04/22/14 03:42:18.
 */
 
 #ifndef __cplusplus
@@ -61,6 +61,8 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "math/FsVector4.h"
 #include "math/FsMatrix4.h"
 #include "math/FsRect2D.h"
+#include "math/easing/FsEaseExpr.h"
+#include "math/easing/FsLinearEase.h"
 #include "sys/FsWindow.h"
 #include "sys/FsKeyCode.h"
 #include "sys/FsSys.h"
@@ -174,40 +176,42 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Vector2");
  tolua_usertype(tolua_S,"Timer");
  tolua_usertype(tolua_S,"TextureMaterial");
+ toluaext_usertype(tolua_S,"LuaHttpRequest");
  toluaext_usertype(tolua_S,"LuaQuad2D");
+ tolua_usertype(tolua_S,"KeypadEvent");
  toluaext_usertype(tolua_S,"TextureMgr");
  toluaext_usertype(tolua_S,"LuaTouchEventListener");
- toluaext_usertype(tolua_S,"LuaHttpRequest");
- toluaext_usertype(tolua_S,"MoveByAction");
  tolua_usertype(tolua_S,"Channel");
- tolua_usertype(tolua_S,"Face3");
+ tolua_usertype(tolua_S,"LinearEase");
+ toluaext_usertype(tolua_S,"Action");
+ toluaext_usertype(tolua_S,"ScaleByAction");
  tolua_usertype(tolua_S,"RenderTarget");
- toluaext_usertype(tolua_S,"PauseAction");
+ toluaext_usertype(tolua_S,"RotateZToAction");
  tolua_usertype(tolua_S,"LuaSchedulerTarget");
  toluaext_usertype(tolua_S,"Scheduler");
- toluaext_usertype(tolua_S,"ScaleByAction");
+ toluaext_usertype(tolua_S,"PauseAction");
  toluaext_usertype(tolua_S,"Entity");
  toluaext_usertype(tolua_S,"MoveToAction");
- toluaext_usertype(tolua_S,"RotateZToAction");
+ toluaext_usertype(tolua_S,"MoveByAction");
  tolua_usertype(tolua_S,"Vector3");
- toluaext_usertype(tolua_S,"SchedulerTarget");
+ toluaext_usertype(tolua_S,"Panel");
  toluaext_usertype(tolua_S,"ScaleToAction");
  tolua_usertype(tolua_S,"Program");
  toluaext_usertype(tolua_S,"HttpEngine");
  tolua_usertype(tolua_S,"Particle2DEmitter");
- toluaext_usertype(tolua_S,"Action");
+ toluaext_usertype(tolua_S,"SysDispatcher");
  tolua_usertype(tolua_S,"FsFile");
  tolua_usertype(tolua_S,"LuaVertexPolygon");
- tolua_usertype(tolua_S,"KeypadEvent");
+ toluaext_usertype(tolua_S,"Window");
  toluaext_usertype(tolua_S,"Sprite2D");
  
- toluaext_usertype(tolua_S,"SysDispatcher");
- toluaext_usertype(tolua_S,"LuaEntity");
+ tolua_usertype(tolua_S,"TouchPoint");
+ toluaext_usertype(tolua_S,"LuaSysEventListener");
  toluaext_usertype(tolua_S,"LuaColorLayer");
  tolua_usertype(tolua_S,"Matrix4");
- tolua_usertype(tolua_S,"TouchPoint");
+ toluaext_usertype(tolua_S,"LuaEntity");
  toluaext_usertype(tolua_S,"Render");
- toluaext_usertype(tolua_S,"LuaSysEventListener");
+ tolua_usertype(tolua_S,"Face3");
  toluaext_usertype(tolua_S,"Resource");
  toluaext_usertype(tolua_S,"Quad2D");
  toluaext_usertype(tolua_S,"LabelTTF");
@@ -217,7 +221,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"Layer2D");
  tolua_usertype(tolua_S,"VertexPolygon");
  toluaext_usertype(tolua_S,"FsObject");
- toluaext_usertype(tolua_S,"Window");
+ toluaext_usertype(tolua_S,"SchedulerTarget");
  toluaext_usertype(tolua_S,"ResourceMgr");
  toluaext_usertype(tolua_S,"LuaScene");
  tolua_usertype(tolua_S,"Rect2D");
@@ -225,10 +229,10 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ColorMaterial");
  tolua_usertype(tolua_S,"Vector4");
  tolua_usertype(tolua_S,"Global");
+ tolua_usertype(tolua_S,"EaseExpr");
  toluaext_usertype(tolua_S,"LuaPanel");
  toluaext_usertype(tolua_S,"Button");
  toluaext_usertype(tolua_S,"Scene");
- toluaext_usertype(tolua_S,"Panel");
  tolua_usertype(tolua_S,"Color4f");
  toluaext_usertype(tolua_S,"LuaSprite2D");
  tolua_usertype(tolua_S,"ButtonState");
@@ -28128,6 +28132,326 @@ static int tolua_set_Rect2D_height(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: getValue of class  EaseExpr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_getValue00
+static int tolua_FsLibFaeris_EaseExpr_getValue00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getValue'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getValue(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getValue'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setMode of class  EaseExpr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_setMode00
+static int tolua_FsLibFaeris_EaseExpr_setMode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
+  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMode'", NULL);
+#endif
+  {
+   self->setMode(mode);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMode of class  EaseExpr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_getMode00
+static int tolua_FsLibFaeris_EaseExpr_getMode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMode'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getMode();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getEaseIn of class  EaseExpr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_getEaseIn00
+static int tolua_FsLibFaeris_EaseExpr_getEaseIn00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getEaseIn'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getEaseIn(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getEaseIn'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getEaseOut of class  EaseExpr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_getEaseOut00
+static int tolua_FsLibFaeris_EaseExpr_getEaseOut00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getEaseOut'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getEaseOut(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getEaseOut'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getEaseInOut of class  EaseExpr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_getEaseInOut00
+static int tolua_FsLibFaeris_EaseExpr_getEaseInOut00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getEaseInOut'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getEaseInOut(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getEaseInOut'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getEaseOutIn of class  EaseExpr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_getEaseOutIn00
+static int tolua_FsLibFaeris_EaseExpr_getEaseOutIn00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getEaseOutIn'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getEaseOutIn(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getEaseOutIn'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: className of class  EaseExpr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_className00
+static int tolua_FsLibFaeris_EaseExpr_className00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
+#endif
+  {
+   const char* tolua_ret = (const char*)  self->className();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  LinearEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_LinearEase_create00
+static int tolua_FsLibFaeris_LinearEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LinearEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   LinearEase* tolua_ret = (LinearEase*)  LinearEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LinearEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  LinearEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_LinearEase_create01
+static int tolua_FsLibFaeris_LinearEase_create01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LinearEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+  {
+   LinearEase* tolua_ret = (LinearEase*)  LinearEase::create(mode);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LinearEase");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_LinearEase_create00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setCaption of class  Window */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Window_setCaption00
 static int tolua_FsLibFaeris_Window_setCaption00(lua_State* tolua_S)
@@ -32019,6 +32343,26 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"y",tolua_get_Rect2D_y,tolua_set_Rect2D_y);
    tolua_variable(tolua_S,"width",tolua_get_Rect2D_width,tolua_set_Rect2D_width);
    tolua_variable(tolua_S,"height",tolua_get_Rect2D_height,tolua_set_Rect2D_height);
+  tolua_endmodule(tolua_S);
+  tolua_constant(tolua_S,"FS_EASE_IN",FS_EASE_IN);
+  tolua_constant(tolua_S,"FS_EASE_OUT",FS_EASE_OUT);
+  tolua_constant(tolua_S,"FS_EASE_INOUT",FS_EASE_INOUT);
+  tolua_constant(tolua_S,"FS_EASE_OUTIN",FS_EASE_OUTIN);
+  tolua_cclass(tolua_S,"EaseExpr","EaseExpr","FsObject",NULL);
+  tolua_beginmodule(tolua_S,"EaseExpr");
+   tolua_function(tolua_S,"getValue",tolua_FsLibFaeris_EaseExpr_getValue00);
+   tolua_function(tolua_S,"setMode",tolua_FsLibFaeris_EaseExpr_setMode00);
+   tolua_function(tolua_S,"getMode",tolua_FsLibFaeris_EaseExpr_getMode00);
+   tolua_function(tolua_S,"getEaseIn",tolua_FsLibFaeris_EaseExpr_getEaseIn00);
+   tolua_function(tolua_S,"getEaseOut",tolua_FsLibFaeris_EaseExpr_getEaseOut00);
+   tolua_function(tolua_S,"getEaseInOut",tolua_FsLibFaeris_EaseExpr_getEaseInOut00);
+   tolua_function(tolua_S,"getEaseOutIn",tolua_FsLibFaeris_EaseExpr_getEaseOutIn00);
+   tolua_function(tolua_S,"className",tolua_FsLibFaeris_EaseExpr_className00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"LinearEase","LinearEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"LinearEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_LinearEase_create00);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_LinearEase_create01);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Window","Window","FsObject",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Window");

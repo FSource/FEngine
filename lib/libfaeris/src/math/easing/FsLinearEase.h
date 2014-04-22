@@ -10,6 +10,7 @@ class LinearEase:public EaseExpr
 {
 	public:
 		static LinearEase* create();
+		static LinearEase* create(int mode);
 
 	public:
 		/* inherit EaseExpr */
@@ -18,9 +19,15 @@ class LinearEase:public EaseExpr
 
 		/* inherit FsObject */
 		virtual const char* className();
+		
+	protected:
+		LinearEase();
+		LinearEase(int mode);
+		virtual ~LinearEase();
 
 
 };
+
 
 
 NS_FS_END 
