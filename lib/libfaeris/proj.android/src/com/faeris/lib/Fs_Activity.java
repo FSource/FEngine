@@ -125,7 +125,7 @@ public  class Fs_Activity extends Activity
 	}
 	
 	
-	private void setScreenOrientation()
+	protected void setScreenOrientation()
 	{
 		if (android.os.Build.VERSION.SDK_INT >= 9)
 		{
