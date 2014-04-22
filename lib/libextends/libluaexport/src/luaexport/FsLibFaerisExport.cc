@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 04/22/14 03:42:18.
+** Generated automatically by tolua++-1.0.92 on 04/22/14 08:41:15.
 */
 
 #ifndef __cplusplus
@@ -63,6 +63,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "math/FsRect2D.h"
 #include "math/easing/FsEaseExpr.h"
 #include "math/easing/FsLinearEase.h"
+#include "math/easing/FsBackEase.h"
 #include "sys/FsWindow.h"
 #include "sys/FsKeyCode.h"
 #include "sys/FsSys.h"
@@ -173,20 +174,21 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"FsArray");
  toluaext_usertype(tolua_S,"FontBitmap");
  toluaext_usertype(tolua_S,"LuaAction");
+ toluaext_usertype(tolua_S,"LuaHttpRequest");
  tolua_usertype(tolua_S,"Vector2");
  tolua_usertype(tolua_S,"Timer");
  tolua_usertype(tolua_S,"TextureMaterial");
- toluaext_usertype(tolua_S,"LuaHttpRequest");
- toluaext_usertype(tolua_S,"LuaQuad2D");
  tolua_usertype(tolua_S,"KeypadEvent");
+ toluaext_usertype(tolua_S,"LuaQuad2D");
+ tolua_usertype(tolua_S,"Channel");
  toluaext_usertype(tolua_S,"TextureMgr");
  toluaext_usertype(tolua_S,"LuaTouchEventListener");
- tolua_usertype(tolua_S,"Channel");
- tolua_usertype(tolua_S,"LinearEase");
+ tolua_usertype(tolua_S,"Vector4");
  toluaext_usertype(tolua_S,"Action");
  toluaext_usertype(tolua_S,"ScaleByAction");
- tolua_usertype(tolua_S,"RenderTarget");
  toluaext_usertype(tolua_S,"RotateZToAction");
+ tolua_usertype(tolua_S,"RenderTarget");
+ tolua_usertype(tolua_S,"BackEase");
  tolua_usertype(tolua_S,"LuaSchedulerTarget");
  toluaext_usertype(tolua_S,"Scheduler");
  toluaext_usertype(tolua_S,"PauseAction");
@@ -211,7 +213,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Matrix4");
  toluaext_usertype(tolua_S,"LuaEntity");
  toluaext_usertype(tolua_S,"Render");
- tolua_usertype(tolua_S,"Face3");
+ tolua_usertype(tolua_S,"Rect2D");
  toluaext_usertype(tolua_S,"Resource");
  toluaext_usertype(tolua_S,"Quad2D");
  toluaext_usertype(tolua_S,"LabelTTF");
@@ -221,13 +223,13 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"Layer2D");
  tolua_usertype(tolua_S,"VertexPolygon");
  toluaext_usertype(tolua_S,"FsObject");
- toluaext_usertype(tolua_S,"SchedulerTarget");
+ tolua_usertype(tolua_S,"LinearEase");
  toluaext_usertype(tolua_S,"ResourceMgr");
  toluaext_usertype(tolua_S,"LuaScene");
- tolua_usertype(tolua_S,"Rect2D");
+ toluaext_usertype(tolua_S,"SchedulerTarget");
  tolua_usertype(tolua_S,"Sys");
  tolua_usertype(tolua_S,"ColorMaterial");
- tolua_usertype(tolua_S,"Vector4");
+ tolua_usertype(tolua_S,"Face3");
  tolua_usertype(tolua_S,"Global");
  tolua_usertype(tolua_S,"EaseExpr");
  toluaext_usertype(tolua_S,"LuaPanel");
@@ -28452,6 +28454,59 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: create of class  BackEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BackEase_create00
+static int tolua_FsLibFaeris_BackEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"BackEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   BackEase* tolua_ret = (BackEase*)  BackEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"BackEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  BackEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BackEase_create01
+static int tolua_FsLibFaeris_BackEase_create01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"BackEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+  {
+   BackEase* tolua_ret = (BackEase*)  BackEase::create(mode);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"BackEase");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_BackEase_create00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setCaption of class  Window */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Window_setCaption00
 static int tolua_FsLibFaeris_Window_setCaption00(lua_State* tolua_S)
@@ -32363,6 +32418,11 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_beginmodule(tolua_S,"LinearEase");
    tolua_function(tolua_S,"create",tolua_FsLibFaeris_LinearEase_create00);
    tolua_function(tolua_S,"create",tolua_FsLibFaeris_LinearEase_create01);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"BackEase","BackEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"BackEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_BackEase_create00);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_BackEase_create01);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Window","Window","FsObject",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Window");

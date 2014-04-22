@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsSpineSprite
-** Generated automatically by tolua++-1.0.92 on 04/22/14 03:42:21.
+** Generated automatically by tolua++-1.0.92 on 04/22/14 08:41:18.
 */
 
 #ifndef __cplusplus

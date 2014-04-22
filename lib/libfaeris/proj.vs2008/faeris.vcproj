@@ -1110,6 +1110,14 @@
 					Name="easing"
 					>
 					<File
+						RelativePath="..\src\math\easing\FsBackEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsBackEase.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\math\easing\FsEaseExpr.cc"
 						>
 					</File>
