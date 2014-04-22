@@ -79,6 +79,13 @@ $pfile "math/easing/FsEaseExpr.pkg"
 $pfile "math/easing/FsLinearEase.pkg" 
 $pfile "math/easing/FsBackEase.pkg" 
 
+/* math/curve */
+$pfile "math/curve/FsCurve.pkg"
+$pfile "math/curve/FsLinearCurve.pkg"
+$pfile "math/curve/FsCubicBezierCurve.pkg"
+
+
+
 
 /* sys */
 $pfile "sys/FsWindow.pkg"

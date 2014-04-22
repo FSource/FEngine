@@ -1134,6 +1134,30 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="curve"
+					>
+					<File
+						RelativePath="..\src\math\curve\FsCubicBezierCurve.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsCubicBezierCurve.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsLinearCurve.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsLinearCurve.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsTCurve.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="mgr"

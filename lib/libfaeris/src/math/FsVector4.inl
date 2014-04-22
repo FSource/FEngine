@@ -67,7 +67,49 @@ inline bool Vector4::equal(const Vector4&  v) const
 		   Math::floatEqual(w,v.w);
 }
 
+inline Vector4 Vector4::operator + (const Vector4& v)const
+{
+	return this->add(v);
+}
+
+inline Vector4 Vector4::operator - (const Vector4& v)const
+{
+	return this->sub(v);
+}
+
+inline Vector4 Vector4::operator / (float v) const 
+{
+	return this->scale(1/v);
+}
+
+inline Vector4 Vector4::operator* (float v) const 
+{
+	return this->scale(v);
+}
+
+inline Vector4& Vector4::operator +=(const Vector4& v)
+{
+	this->x+=v.x;
+	this->y+=v.y;
+	this->z+=v.z;
+	this->w+=v.w;
+	return *this;
+}
+
 #endif 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

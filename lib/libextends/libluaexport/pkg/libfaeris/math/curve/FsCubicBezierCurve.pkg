@@ -1,0 +1,74 @@
+$#include "math/curve/FsCubicBezierCurve.h"
+
+class CubicBezierCurve2:public Curve2 
+{
+	public:
+		static CubicBezierCurve2* create(const Vector2& p0,const Vector2& p1,
+				const Vector2& p2,const Vector2& p3);
+	public:
+		void setPoints(const Vector2& p0, const Vector2& p1,
+				const Vector2& p2, const Vector2& p3);
+
+		Vector2 getPoint0() ;
+		void setPoint0(const Vector2& v);
+
+		Vector2 getPoint1() ;
+		void setPoint1(const Vector2& v);
+
+		Vector2 getPoint2() ;
+		void setPoint2(const Vector2& v);
+
+		Vector2 getPoint3() ;
+		void setPoint3(const Vector2& v);
+
+
+};
+
+class CubicBezierCurve3:public Curve3 
+{
+	public:
+		static CubicBezierCurve3* create(const Vector3& p0,const Vector3& p1,
+				const Vector3& p2,const Vector3& p3);
+	public:
+		void setPoints(const Vector3& p0, const Vector3& p1,
+				const Vector3& p2, const Vector3& p3);
+
+		Vector3 getPoint0() ;
+		void setPoint0(const Vector3& v);
+
+		Vector3 getPoint1() ;
+		void setPoint1(const Vector3& v);
+
+		Vector3 getPoint2() ;
+		void setPoint2(const Vector3& v);
+
+		Vector3 getPoint3() ;
+		void setPoint3(const Vector3& v);
+
+
+};
+
+class CubicBezierCurve4:public Curve4 
+{
+	public:
+		static CubicBezierCurve4* create(const Vector4& p0,const Vector4& p1,
+				const Vector4& p2,const Vector4& p3);
+	public:
+		void setPoints(const Vector4& p0, const Vector4& p1,
+				const Vector4& p2, const Vector4& p3);
+
+		Vector4 getPoint0() ;
+		void setPoint0(const Vector4& v);
+
+		Vector4 getPoint1() ;
+		void setPoint1(const Vector4& v);
+
+		Vector4 getPoint2() ;
+		void setPoint2(const Vector4& v);
+
+		Vector4 getPoint3() ;
+		void setPoint3(const Vector4& v);
+
+
+};
+

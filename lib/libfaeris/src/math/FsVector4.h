@@ -33,6 +33,14 @@ class Vector4
 		float length2() const;
 
 		bool equal(const Vector4& v) const;
+
+
+		Vector4 operator + (const Vector4& v)const;
+		Vector4 operator - (const Vector4& v)const;
+		Vector4 operator / (float v) const ;
+		Vector4 operator * (float v) const ;
+
+		Vector4& operator +=(const Vector4& v);
 };
 
 #include"FsVector4.inl"

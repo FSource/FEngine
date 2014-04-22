@@ -1,0 +1,21 @@
+$#include "math/curve/FsTCurve.h"
+
+class Curve2:public FsObject 
+{
+	public:
+		Vector2 getValue(float t);
+};
+
+class Curve3:public FsObject 
+{
+	public:
+		Vector3 getValue(float t);
+};
+
+
+class Curve4:public FsObject 
+{
+	public:
+		Vector4 getValue(float t);
+};
+

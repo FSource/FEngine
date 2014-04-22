@@ -328,6 +328,16 @@ enum
 #define FS_EASE_EXPR_CLASS_NAME   "EaseExpr"
 #define FS_BACK_EASE_CLASS_NAME   "BackEase"
 
+/* math/curve */
+#define FS_LINEAR_CURVE_2_CLASS_NAME "LinearCurve2"
+#define FS_LINEAR_CURVE_3_CLASS_NAME "LinearCurve3"
+#define FS_LINEAR_CURVE_4_CLASS_NAME "LinearCurve4"
+
+#define FS_CUBIC_BEZIER_CURVE_2 "CubicBezierCurve2"
+#define FS_CUBIC_BEZIER_CURVE_3 "CubicBezierCurve3"
+#define FS_CUBIC_BEZIER_CURVE_4 "CubicBezierCurve4"
+
+
 /* sys */
 #define FS_WINDOW_CLASS_NAME "Window"
 
