@@ -200,6 +200,12 @@ void Scheduler::destruct()
 float Scheduler::update(float dt)
 {
 
+	if(dt<0)
+	{
+		FS_TRACE_WARN("TimeErr:dt is less than zero");
+		return 0;
+	}
+
 	float update_begin=m_timer.now();
 	/* run sync task,
 	 * swap task pending queue and handing queue 
