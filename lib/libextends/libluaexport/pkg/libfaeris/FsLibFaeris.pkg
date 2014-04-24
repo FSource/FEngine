@@ -83,6 +83,7 @@ $pfile "math/easing/FsBackEase.pkg"
 $pfile "math/curve/FsCurve.pkg"
 $pfile "math/curve/FsLinearCurve.pkg"
 $pfile "math/curve/FsCubicBezierCurve.pkg"
+$pfile "math/curve/FsCatmullRomCurve.pkg"
 
 
 

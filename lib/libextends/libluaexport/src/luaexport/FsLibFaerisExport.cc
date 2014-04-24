@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 04/23/14 08:48:27.
+** Generated automatically by tolua++-1.0.92 on 04/24/14 10:05:46.
 */
 
 #ifndef __cplusplus
@@ -67,6 +67,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "math/curve/FsTCurve.h"
 #include "math/curve/FsLinearCurve.h"
 #include "math/curve/FsCubicBezierCurve.h"
+#include "math/curve/FsCatmullRomCurve.h"
 #include "sys/FsWindow.h"
 #include "sys/FsKeyCode.h"
 #include "sys/FsSys.h"
@@ -172,48 +173,51 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"RotateZByAction");
  tolua_usertype(tolua_S,"Color");
  tolua_usertype(tolua_S,"ActionTarget");
+ tolua_usertype(tolua_S,"CatmullRomCurve2");
  toluaext_usertype(tolua_S,"LuaParticle2DEffect");
  toluaext_usertype(tolua_S,"LuaLabelTTF");
  toluaext_usertype(tolua_S,"ColorQuad2D");
+ toluaext_usertype(tolua_S,"LuaHttpRequest");
  toluaext_usertype(tolua_S,"FsArray");
  toluaext_usertype(tolua_S,"FontBitmap");
- toluaext_usertype(tolua_S,"LuaHttpRequest");
- tolua_usertype(tolua_S,"CubicBezierCurve4");
- tolua_usertype(tolua_S,"Rect2D");
+ toluaext_usertype(tolua_S,"Window");
  tolua_usertype(tolua_S,"Channel");
+ tolua_usertype(tolua_S,"CubicBezierCurve4");
  tolua_usertype(tolua_S,"Vector4");
- toluaext_usertype(tolua_S,"LuaEntity");
- toluaext_usertype(tolua_S,"LuaAction");
+ tolua_usertype(tolua_S,"Rect2D");
  toluaext_usertype(tolua_S,"ScaleByAction");
  toluaext_usertype(tolua_S,"RotateZToAction");
+ toluaext_usertype(tolua_S,"LuaAction");
  toluaext_usertype(tolua_S,"PauseAction");
+ toluaext_usertype(tolua_S,"MoveToAction");
+ toluaext_usertype(tolua_S,"MoveByAction");
  tolua_usertype(tolua_S,"Vector2");
  tolua_usertype(tolua_S,"Timer");
  tolua_usertype(tolua_S,"TextureMaterial");
- tolua_usertype(tolua_S,"TouchPoint");
+ toluaext_usertype(tolua_S,"Action");
  toluaext_usertype(tolua_S,"LuaQuad2D");
- toluaext_usertype(tolua_S,"MoveByAction");
+ tolua_usertype(tolua_S,"KeypadEvent");
  toluaext_usertype(tolua_S,"TextureMgr");
  toluaext_usertype(tolua_S,"LuaTouchEventListener");
- toluaext_usertype(tolua_S,"Action");
- tolua_usertype(tolua_S,"KeypadEvent");
  toluaext_usertype(tolua_S,"SysDispatcher");
  tolua_usertype(tolua_S,"Curve2");
+ tolua_usertype(tolua_S,"TouchEvent");
+ tolua_usertype(tolua_S,"TouchPoint");
  tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"BackEase");
  tolua_usertype(tolua_S,"LuaSchedulerTarget");
  toluaext_usertype(tolua_S,"Scheduler");
- tolua_usertype(tolua_S,"TouchEvent");
- toluaext_usertype(tolua_S,"Entity");
- toluaext_usertype(tolua_S,"MoveToAction");
  toluaext_usertype(tolua_S,"LuaSysEventListener");
+ toluaext_usertype(tolua_S,"Entity");
+ tolua_usertype(tolua_S,"CatmullRomCurve4");
+ toluaext_usertype(tolua_S,"LuaEntity");
  tolua_usertype(tolua_S,"Vector3");
  toluaext_usertype(tolua_S,"Panel");
  toluaext_usertype(tolua_S,"ScaleToAction");
  tolua_usertype(tolua_S,"Program");
  toluaext_usertype(tolua_S,"HttpEngine");
  tolua_usertype(tolua_S,"Particle2DEmitter");
- toluaext_usertype(tolua_S,"Window");
+ tolua_usertype(tolua_S,"CatmullRomCurve3");
  tolua_usertype(tolua_S,"FsFile");
  tolua_usertype(tolua_S,"LuaVertexPolygon");
  tolua_usertype(tolua_S,"CubicBezierCurve3");
@@ -30070,6 +30074,1077 @@ static int tolua_FsLibFaeris_CubicBezierCurve4_setPoint300(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: create of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_create00
+static int tolua_FsLibFaeris_CatmullRomCurve2_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   CatmullRomCurve2* tolua_ret = (CatmullRomCurve2*)  CatmullRomCurve2::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"CatmullRomCurve2");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addPoint of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_addPoint00
+static int tolua_FsLibFaeris_CatmullRomCurve2_addPoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+  const Vector2* v = ((const Vector2*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addPoint'", NULL);
+#endif
+  {
+   self->addPoint(*v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addPoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPointNu of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_getPointNu00
+static int tolua_FsLibFaeris_CatmullRomCurve2_getPointNu00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPointNu'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getPointNu();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPointNu'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: clear of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_clear00
+static int tolua_FsLibFaeris_CatmullRomCurve2_clear00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clear'", NULL);
+#endif
+  {
+   self->clear();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'clear'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: insertPoint of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_insertPoint00
+static int tolua_FsLibFaeris_CatmullRomCurve2_insertPoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  const Vector2* v = ((const Vector2*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'insertPoint'", NULL);
+#endif
+  {
+   self->insertPoint(index,*v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'insertPoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removePoint of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_removePoint00
+static int tolua_FsLibFaeris_CatmullRomCurve2_removePoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removePoint'", NULL);
+#endif
+  {
+   self->removePoint(index);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removePoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setAdditionalControlPoint of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_setAdditionalControlPoint00
+static int tolua_FsLibFaeris_CatmullRomCurve2_setAdditionalControlPoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+  const Vector2* start = ((const Vector2*)  tolua_tousertype(tolua_S,2,0));
+  const Vector2* end = ((const Vector2*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAdditionalControlPoint'", NULL);
+#endif
+  {
+   self->setAdditionalControlPoint(*start,*end);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setAdditionalControlPoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setEnableAutoTangent of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_setEnableAutoTangent00
+static int tolua_FsLibFaeris_CatmullRomCurve2_setEnableAutoTangent00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+  bool enable = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setEnableAutoTangent'", NULL);
+#endif
+  {
+   self->setEnableAutoTangent(enable);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setEnableAutoTangent'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getEnabledAutoTangle of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_getEnabledAutoTangle00
+static int tolua_FsLibFaeris_CatmullRomCurve2_getEnabledAutoTangle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getEnabledAutoTangle'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getEnabledAutoTangle();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getEnabledAutoTangle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setTension of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_setTension00
+static int tolua_FsLibFaeris_CatmullRomCurve2_setTension00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+  float tension = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTension'", NULL);
+#endif
+  {
+   self->setTension(tension);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setTension'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getTension of class  CatmullRomCurve2 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve2_getTension00
+static int tolua_FsLibFaeris_CatmullRomCurve2_getTension00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve2",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve2* self = (CatmullRomCurve2*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTension'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getTension();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getTension'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_create00
+static int tolua_FsLibFaeris_CatmullRomCurve3_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   CatmullRomCurve3* tolua_ret = (CatmullRomCurve3*)  CatmullRomCurve3::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"CatmullRomCurve3");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addPoint of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_addPoint00
+static int tolua_FsLibFaeris_CatmullRomCurve3_addPoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+  const Vector3* v = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addPoint'", NULL);
+#endif
+  {
+   self->addPoint(*v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addPoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPointNu of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_getPointNu00
+static int tolua_FsLibFaeris_CatmullRomCurve3_getPointNu00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPointNu'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getPointNu();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPointNu'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: clear of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_clear00
+static int tolua_FsLibFaeris_CatmullRomCurve3_clear00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clear'", NULL);
+#endif
+  {
+   self->clear();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'clear'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: insertPoint of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_insertPoint00
+static int tolua_FsLibFaeris_CatmullRomCurve3_insertPoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector3",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  const Vector3* v = ((const Vector3*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'insertPoint'", NULL);
+#endif
+  {
+   self->insertPoint(index,*v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'insertPoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removePoint of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_removePoint00
+static int tolua_FsLibFaeris_CatmullRomCurve3_removePoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removePoint'", NULL);
+#endif
+  {
+   self->removePoint(index);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removePoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setAdditionalControlPoint of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_setAdditionalControlPoint00
+static int tolua_FsLibFaeris_CatmullRomCurve3_setAdditionalControlPoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector3",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+  const Vector3* start = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
+  const Vector3* end = ((const Vector3*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAdditionalControlPoint'", NULL);
+#endif
+  {
+   self->setAdditionalControlPoint(*start,*end);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setAdditionalControlPoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setEnableAutoTangent of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_setEnableAutoTangent00
+static int tolua_FsLibFaeris_CatmullRomCurve3_setEnableAutoTangent00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+  bool enable = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setEnableAutoTangent'", NULL);
+#endif
+  {
+   self->setEnableAutoTangent(enable);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setEnableAutoTangent'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getEnabledAutoTangle of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_getEnabledAutoTangle00
+static int tolua_FsLibFaeris_CatmullRomCurve3_getEnabledAutoTangle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getEnabledAutoTangle'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getEnabledAutoTangle();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getEnabledAutoTangle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setTension of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_setTension00
+static int tolua_FsLibFaeris_CatmullRomCurve3_setTension00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+  float tension = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTension'", NULL);
+#endif
+  {
+   self->setTension(tension);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setTension'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getTension of class  CatmullRomCurve3 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve3_getTension00
+static int tolua_FsLibFaeris_CatmullRomCurve3_getTension00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve3",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve3* self = (CatmullRomCurve3*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTension'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getTension();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getTension'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_create00
+static int tolua_FsLibFaeris_CatmullRomCurve4_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   CatmullRomCurve4* tolua_ret = (CatmullRomCurve4*)  CatmullRomCurve4::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"CatmullRomCurve4");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addPoint of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_addPoint00
+static int tolua_FsLibFaeris_CatmullRomCurve4_addPoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+  const Vector4* v = ((const Vector4*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addPoint'", NULL);
+#endif
+  {
+   self->addPoint(*v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addPoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPointNu of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_getPointNu00
+static int tolua_FsLibFaeris_CatmullRomCurve4_getPointNu00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPointNu'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getPointNu();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPointNu'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: clear of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_clear00
+static int tolua_FsLibFaeris_CatmullRomCurve4_clear00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clear'", NULL);
+#endif
+  {
+   self->clear();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'clear'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: insertPoint of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_insertPoint00
+static int tolua_FsLibFaeris_CatmullRomCurve4_insertPoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  const Vector4* v = ((const Vector4*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'insertPoint'", NULL);
+#endif
+  {
+   self->insertPoint(index,*v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'insertPoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removePoint of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_removePoint00
+static int tolua_FsLibFaeris_CatmullRomCurve4_removePoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removePoint'", NULL);
+#endif
+  {
+   self->removePoint(index);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removePoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setAdditionalControlPoint of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_setAdditionalControlPoint00
+static int tolua_FsLibFaeris_CatmullRomCurve4_setAdditionalControlPoint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector4",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+  const Vector4* start = ((const Vector4*)  tolua_tousertype(tolua_S,2,0));
+  const Vector4* end = ((const Vector4*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAdditionalControlPoint'", NULL);
+#endif
+  {
+   self->setAdditionalControlPoint(*start,*end);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setAdditionalControlPoint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setEnableAutoTangent of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_setEnableAutoTangent00
+static int tolua_FsLibFaeris_CatmullRomCurve4_setEnableAutoTangent00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+  bool enable = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setEnableAutoTangent'", NULL);
+#endif
+  {
+   self->setEnableAutoTangent(enable);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setEnableAutoTangent'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getEnabledAutoTangle of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_getEnabledAutoTangle00
+static int tolua_FsLibFaeris_CatmullRomCurve4_getEnabledAutoTangle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getEnabledAutoTangle'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getEnabledAutoTangle();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getEnabledAutoTangle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setTension of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_setTension00
+static int tolua_FsLibFaeris_CatmullRomCurve4_setTension00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+  float tension = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTension'", NULL);
+#endif
+  {
+   self->setTension(tension);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setTension'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getTension of class  CatmullRomCurve4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CatmullRomCurve4_getTension00
+static int tolua_FsLibFaeris_CatmullRomCurve4_getTension00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"CatmullRomCurve4",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  CatmullRomCurve4* self = (CatmullRomCurve4*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTension'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getTension();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getTension'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setCaption of class  Window */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Window_setCaption00
 static int tolua_FsLibFaeris_Window_setCaption00(lua_State* tolua_S)
@@ -34055,6 +35130,48 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"setPoint2",tolua_FsLibFaeris_CubicBezierCurve4_setPoint200);
    tolua_function(tolua_S,"getPoint3",tolua_FsLibFaeris_CubicBezierCurve4_getPoint300);
    tolua_function(tolua_S,"setPoint3",tolua_FsLibFaeris_CubicBezierCurve4_setPoint300);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"CatmullRomCurve2","CatmullRomCurve2","Curve2",NULL);
+  tolua_beginmodule(tolua_S,"CatmullRomCurve2");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_CatmullRomCurve2_create00);
+   tolua_function(tolua_S,"addPoint",tolua_FsLibFaeris_CatmullRomCurve2_addPoint00);
+   tolua_function(tolua_S,"getPointNu",tolua_FsLibFaeris_CatmullRomCurve2_getPointNu00);
+   tolua_function(tolua_S,"clear",tolua_FsLibFaeris_CatmullRomCurve2_clear00);
+   tolua_function(tolua_S,"insertPoint",tolua_FsLibFaeris_CatmullRomCurve2_insertPoint00);
+   tolua_function(tolua_S,"removePoint",tolua_FsLibFaeris_CatmullRomCurve2_removePoint00);
+   tolua_function(tolua_S,"setAdditionalControlPoint",tolua_FsLibFaeris_CatmullRomCurve2_setAdditionalControlPoint00);
+   tolua_function(tolua_S,"setEnableAutoTangent",tolua_FsLibFaeris_CatmullRomCurve2_setEnableAutoTangent00);
+   tolua_function(tolua_S,"getEnabledAutoTangle",tolua_FsLibFaeris_CatmullRomCurve2_getEnabledAutoTangle00);
+   tolua_function(tolua_S,"setTension",tolua_FsLibFaeris_CatmullRomCurve2_setTension00);
+   tolua_function(tolua_S,"getTension",tolua_FsLibFaeris_CatmullRomCurve2_getTension00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"CatmullRomCurve3","CatmullRomCurve3","Curve3",NULL);
+  tolua_beginmodule(tolua_S,"CatmullRomCurve3");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_CatmullRomCurve3_create00);
+   tolua_function(tolua_S,"addPoint",tolua_FsLibFaeris_CatmullRomCurve3_addPoint00);
+   tolua_function(tolua_S,"getPointNu",tolua_FsLibFaeris_CatmullRomCurve3_getPointNu00);
+   tolua_function(tolua_S,"clear",tolua_FsLibFaeris_CatmullRomCurve3_clear00);
+   tolua_function(tolua_S,"insertPoint",tolua_FsLibFaeris_CatmullRomCurve3_insertPoint00);
+   tolua_function(tolua_S,"removePoint",tolua_FsLibFaeris_CatmullRomCurve3_removePoint00);
+   tolua_function(tolua_S,"setAdditionalControlPoint",tolua_FsLibFaeris_CatmullRomCurve3_setAdditionalControlPoint00);
+   tolua_function(tolua_S,"setEnableAutoTangent",tolua_FsLibFaeris_CatmullRomCurve3_setEnableAutoTangent00);
+   tolua_function(tolua_S,"getEnabledAutoTangle",tolua_FsLibFaeris_CatmullRomCurve3_getEnabledAutoTangle00);
+   tolua_function(tolua_S,"setTension",tolua_FsLibFaeris_CatmullRomCurve3_setTension00);
+   tolua_function(tolua_S,"getTension",tolua_FsLibFaeris_CatmullRomCurve3_getTension00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"CatmullRomCurve4","CatmullRomCurve4","Curve4",NULL);
+  tolua_beginmodule(tolua_S,"CatmullRomCurve4");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_CatmullRomCurve4_create00);
+   tolua_function(tolua_S,"addPoint",tolua_FsLibFaeris_CatmullRomCurve4_addPoint00);
+   tolua_function(tolua_S,"getPointNu",tolua_FsLibFaeris_CatmullRomCurve4_getPointNu00);
+   tolua_function(tolua_S,"clear",tolua_FsLibFaeris_CatmullRomCurve4_clear00);
+   tolua_function(tolua_S,"insertPoint",tolua_FsLibFaeris_CatmullRomCurve4_insertPoint00);
+   tolua_function(tolua_S,"removePoint",tolua_FsLibFaeris_CatmullRomCurve4_removePoint00);
+   tolua_function(tolua_S,"setAdditionalControlPoint",tolua_FsLibFaeris_CatmullRomCurve4_setAdditionalControlPoint00);
+   tolua_function(tolua_S,"setEnableAutoTangent",tolua_FsLibFaeris_CatmullRomCurve4_setEnableAutoTangent00);
+   tolua_function(tolua_S,"getEnabledAutoTangle",tolua_FsLibFaeris_CatmullRomCurve4_getEnabledAutoTangle00);
+   tolua_function(tolua_S,"setTension",tolua_FsLibFaeris_CatmullRomCurve4_setTension00);
+   tolua_function(tolua_S,"getTension",tolua_FsLibFaeris_CatmullRomCurve4_getTension00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Window","Window","FsObject",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Window");

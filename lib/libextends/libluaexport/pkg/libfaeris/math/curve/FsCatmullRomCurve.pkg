@@ -1,0 +1,62 @@
+$#include "math/curve/FsCatmullRomCurve.h"
+
+
+class CatmullRomCurve2:public Curve2
+{
+	public:
+		static CatmullRomCurve2* create();
+
+	public:
+		void addPoint(const Vector2& v);
+		int getPointNu();
+		void clear();
+		void insertPoint(int index,const Vector2& v);
+		void removePoint(int index);
+		void setAdditionalControlPoint(const Vector2& start,const Vector2& end);
+		void setEnableAutoTangent(bool enable);
+		bool getEnabledAutoTangle();
+		void setTension(float tension);
+		float getTension();
+
+};
+
+class CatmullRomCurve3:public Curve3
+{
+	public:
+		static CatmullRomCurve3* create();
+
+	public:
+		void addPoint(const Vector3& v);
+		int getPointNu();
+		void clear();
+		void insertPoint(int index,const Vector3& v);
+		void removePoint(int index);
+		void setAdditionalControlPoint(const Vector3& start,const Vector3& end);
+		void setEnableAutoTangent(bool enable);
+		bool getEnabledAutoTangle();
+		void setTension(float tension);
+		float getTension();
+
+};
+
+class CatmullRomCurve4:public Curve4
+{
+	public:
+		static CatmullRomCurve4* create();
+
+	public:
+		void addPoint(const Vector4& v);
+		int getPointNu();
+		void clear();
+		void insertPoint(int index,const Vector4& v);
+		void removePoint(int index);
+		void setAdditionalControlPoint(const Vector4& start,const Vector4& end);
+		void setEnableAutoTangent(bool enable);
+		bool getEnabledAutoTangle();
+		void setTension(float tension);
+		float getTension();
+
+};
+
+
+

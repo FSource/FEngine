@@ -337,6 +337,11 @@ enum
 #define FS_CUBIC_BEZIER_CURVE_3 "CubicBezierCurve3"
 #define FS_CUBIC_BEZIER_CURVE_4 "CubicBezierCurve4"
 
+#define FS_CATMULL_ROM_CURVE_2 "CatmullRomCurve2"
+#define FS_CATMULL_ROM_CURVE_3 "CatmullRomCurve3"
+#define FS_CATMULL_ROM_CURVE_4 "CatmullRomCurve4"
+
+
 
 /* sys */
 #define FS_WINDOW_CLASS_NAME "Window"
