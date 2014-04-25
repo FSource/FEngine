@@ -176,6 +176,10 @@ void VertexPolygon::draw(Render* render,bool update_matrix)
 	{
 		return;
 	}
+	if(m_vertics.size()==0)
+	{
+		return;
+	}
 
 	if(update_matrix)
 	{

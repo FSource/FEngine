@@ -134,7 +134,7 @@ class TCatmullRomCurve:public TCurve<T_Vector>
 			   	c1=m_points[index+2]; 
 			}
 
-			float  rt=(t-m_times[index])/(t-m_times[index+1]);
+			float  rt=(t-m_times[index])/(m_times[index+1]-m_times[index]);
 
 			return catmulRomLerp(c0,m_points[index],m_points[index+1],c1,rt);
 
@@ -154,7 +154,7 @@ class TCatmullRomCurve:public TCurve<T_Vector>
 			T_Vector p0=m_points[0];
 			float total_length=0.0f;
 
-			for(int i=1;i<point_nu;i++)
+			for(int i=0;i<point_nu;i++)
 			{
 				T_Vector p1=m_points[i];
 				T_Vector dp=p1-p0;
@@ -167,11 +167,10 @@ class TCatmullRomCurve:public TCurve<T_Vector>
 			}
 
 			m_times.clear();
-			m_times.push_back(0.0f);
 
 			float total_time=0.0f;
 
-			for(int i=1;i<point_nu;i++)
+			for(int i=0;i<point_nu;i++)
 			{
 				if(total_length==0.0f)
 				{
@@ -217,7 +216,7 @@ class TCatmullRomCurve:public TCurve<T_Vector>
 
 			float a =      (-f)*t + (2*f)  *t2  +   (-f) *t3;
 			float b =  1 +          (f-3)  *t2  +   (2-f)*t3;
-			float c=        (f)*t + (3-2*f)*t2  +  (3-2*f)*t3;
+			float c=        (f)*t + (3-2*f)*t2  +  (f-2)*t3;
 			float d=                (-f)   *t2  +     (f)*t3;
 
 			return c0*a+p0*b+p1*c+c1*d;
