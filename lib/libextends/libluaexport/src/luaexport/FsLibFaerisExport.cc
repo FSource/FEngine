@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 04/24/14 10:05:46.
+** Generated automatically by tolua++-1.0.92 on 04/25/14 08:17:55.
 */
 
 #ifndef __cplusplus
@@ -64,7 +64,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "math/easing/FsEaseExpr.h"
 #include "math/easing/FsLinearEase.h"
 #include "math/easing/FsBackEase.h"
-#include "math/curve/FsTCurve.h"
+#include "math/curve/FsCurve.h"
 #include "math/curve/FsLinearCurve.h"
 #include "math/curve/FsCubicBezierCurve.h"
 #include "math/curve/FsCatmullRomCurve.h"

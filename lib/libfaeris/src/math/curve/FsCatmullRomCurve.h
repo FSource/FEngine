@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "FsMacros.h"
-#include "FsTCurve.h"
+#include "FsCurve.h"
 
 /* CatmullRomCurve: 
  *

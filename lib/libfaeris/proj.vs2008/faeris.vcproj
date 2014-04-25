@@ -1154,15 +1154,15 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\math\curve\FsCurve.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\math\curve\FsLinearCurve.cc"
 						>
 					</File>
 					<File
 						RelativePath="..\src\math\curve\FsLinearCurve.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\math\curve\FsTCurve.h"
 						>
 					</File>
 				</Filter>

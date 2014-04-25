@@ -2,7 +2,7 @@
 #define _FS_CUBIC_BEZIER_CURVE_H_
 
 #include "FsMacros.h"
-#include "FsTCurve.h"
+#include "FsCurve.h"
 
 NS_FS_BEGIN
 /* Cubic Bezier:
