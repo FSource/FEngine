@@ -63,7 +63,7 @@ public  class Fs_Activity extends Activity
 		Log.v("Fs_Activity","onDestroy");
 		
 		super.onDestroy();
-		Fs_Jni.onDestroy();
+		Fs_Jni.onExit();
 		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 	
@@ -96,28 +96,35 @@ public  class Fs_Activity extends Activity
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			AlertDialog.Builder builder = new Builder(Fs_Activity.this);
-			builder.setMessage("是否退出游戏");
-			builder.setTitle("提示");
-			builder.setPositiveButton("确定", new OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						Fs_Activity.this.finish();
-					}
-			});
-
-			builder.setNegativeButton("取消", new OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-					}
-				});
-
-				builder.create().show();
+			this.onBackKeyDown();
 		}
 
 		return super.onKeyDown(keyCode, event);
 	}
+	
+	public void onBackKeyDown()
+	{
+		AlertDialog.Builder builder = new Builder(Fs_Activity.this);
+		builder.setMessage("是否退出游戏");
+		builder.setTitle("提示");
+		builder.setPositiveButton("确定", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					Fs_Activity.this.finish();
+				}
+		});
+
+		builder.setNegativeButton("取消", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+				}
+			});
+
+		builder.create().show();
+	}
+	
 
 	public Fs_GLSurfaceView getFsGLSurfaceView()
 	{

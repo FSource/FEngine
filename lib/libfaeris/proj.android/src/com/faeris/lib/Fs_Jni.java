@@ -11,6 +11,8 @@ public class Fs_Jni {
 	/* sys event */
 	public static native void onForeground();
 	public static native void onBackground();
+	public static native void onQuit();
+	public static native void onExit();
 	
 	/* touches event */
 	public static native void onTouchesBegin(int id,float x,float y);
@@ -33,8 +35,7 @@ public class Fs_Jni {
 	/* update event */
 	public static native float onUpdate(float dt);
 	
-	/* destory event */
-	public static native void onDestroy();
+
 	
 	
 	/* env */
