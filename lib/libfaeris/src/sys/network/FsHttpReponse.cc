@@ -67,6 +67,7 @@ void HttpReponse::setErrorBuf(uint8_t* buf,int len)
 {
 	m_error.clear();
 	m_error.insert(m_error.end(),buf,buf+len);
+	m_error.push_back(0);
 }
 
 void HttpReponse::getErrorBuf(uint8_t** buf,int* len)

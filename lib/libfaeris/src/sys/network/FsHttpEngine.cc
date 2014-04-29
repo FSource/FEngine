@@ -1,3 +1,4 @@
+#include <string.h>
 #include "FsHttpEngine.h"
 #include "FsHttpRequest.h"
 #include "FsHttpReponse.h"
@@ -6,7 +7,7 @@
 
 
 
-#define FS_REQUEST_UNKOWN_ERROR "Unkown Error Happend"
+static const char* FS_REQUEST_UNKOWN_ERROR ="Unkown Error Happend";
 
 
 NS_FS_BEGIN
@@ -95,7 +96,7 @@ void HttpEngine::run()
 			if(reponse==NULL)
 			{
 				reponse=HttpReponse::create();
-				reponse->setErrorBuf((uint8_t*)FS_REQUEST_UNKOWN_ERROR,sizeof(FS_REQUEST_UNKOWN_ERROR));
+				reponse->setErrorBuf((uint8_t*)FS_REQUEST_UNKOWN_ERROR,strlen(FS_REQUEST_UNKOWN_ERROR));
 				reponse->setReponseCode(0);
 			}
 
