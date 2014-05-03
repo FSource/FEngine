@@ -2,7 +2,7 @@
 #define _FS_LINEAR_CURVE_H_
 
 #include "FsMacros.h"
-#include "FsTCurve.h"
+#include "FsCurve.h"
 
 NS_FS_BEGIN
 template<typename T_Vector>

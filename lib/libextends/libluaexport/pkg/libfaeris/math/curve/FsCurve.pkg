@@ -1,4 +1,4 @@
-$#include "math/curve/FsTCurve.h"
+$#include "math/curve/FsCurve.h"
 
 class Curve2:public FsObject 
 {

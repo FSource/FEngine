@@ -1,6 +1,9 @@
+#include <assert.h>
+#include "math/FsMathUtil.h"
 #include "FsBackEase.h"
 
 #define FS_BACK_EASE_AMPLITUDE 1.70158f 
+#define FS_BACK_EASE_VALUE 1.525f
 
 NS_FS_BEGIN
 
@@ -19,8 +22,40 @@ BackEase* BackEase::create(int mode)
 
 float BackEase::getEaseIn(float t)
 {
+//	float s = FS_BACK_EASE_AMPLITUDE;
+//	return t * t *((s + 1) * t - s);
+		return t*t*t - t*0.6f*Math::sinr(t*FS_PI);
+}
+
+float BackEase::getEaseOut(float t)
+{
 	float s = FS_BACK_EASE_AMPLITUDE;
-	return t*t*((s+1)*t-s);
+	t = t - 1;
+	return t * t * ((s + 1)* t + s) + 1;
+}
+
+float BackEase::getEaseInOut(float t)
+{
+	float s = FS_BACK_EASE_AMPLITUDE;
+	t = t / 0.5f;
+	if(t < 1)
+	{
+		return 0.5f*(t*t*(((s*=FS_BACK_EASE_VALUE) + 1)*t - s));
+	}
+	else
+	{
+		t-=2;
+		return 0.5f*(t*t*(((s*=FS_BACK_EASE_VALUE) + 1)*t + s) + 2);
+	}
+
+	assert(0);
+	return 0;
+
+}
+
+float BackEase::getEaseOutIn(float t)
+{
+	return t;
 }
 
 const char* BackEase::className()

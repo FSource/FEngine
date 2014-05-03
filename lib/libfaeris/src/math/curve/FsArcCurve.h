@@ -2,7 +2,7 @@
 #define _FS_ARC_CURVE_H_
 
 #include "FsMacros.h"
-#include "FsTCurve.h"
+#include "FsCurve.h"
 
 NS_FS_BEGIN
 /* FIXME: How To Description Arc In 3D Space */ 

@@ -1138,6 +1138,14 @@
 					Name="curve"
 					>
 					<File
+						RelativePath="..\src\math\curve\FsCatmullRomCurve.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsCatmullRomCurve.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\math\curve\FsCubicBezierCurve.cc"
 						>
 					</File>
@@ -1146,15 +1154,15 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\math\curve\FsCurve.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\math\curve\FsLinearCurve.cc"
 						>
 					</File>
 					<File
 						RelativePath="..\src\math\curve\FsLinearCurve.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\math\curve\FsTCurve.h"
 						>
 					</File>
 				</Filter>

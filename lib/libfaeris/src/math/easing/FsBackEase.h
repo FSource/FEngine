@@ -15,6 +15,10 @@ class BackEase:public EaseExpr
 	public:
 		/*	inherit EaseExpr*/
 		virtual float getEaseIn(float t);
+		virtual float getEaseOut(float t);
+		virtual float getEaseInOut(float t);
+		virtual float getEaseOutIn(float t);
+
 	
 		/* inherit FsObject*/
 		virtual const char* className();
