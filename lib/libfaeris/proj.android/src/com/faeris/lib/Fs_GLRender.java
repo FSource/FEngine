@@ -70,7 +70,7 @@ public class Fs_GLRender implements GLSurfaceView.Renderer
 		else 
 		{
 			this.m_needupdate=false;
-			Log.v("Fs_GLRender","Opengl context lost,Kill Process");
+			Log.e("Fs_GLRender","Opengl context lost,Kill Process");
 			Fs_Application.runUiThread(new Runnable(){
 				@Override
 				public void run() {
