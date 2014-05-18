@@ -169,6 +169,7 @@ void Director::update(int priority,float dt)
 			m_current->decRef();
 		}
 
+		m_current=m_next;
 		if(m_next)
 		{
 			m_next->enter();
@@ -180,7 +181,7 @@ void Director::update(int priority,float dt)
 			sc->collectGarbage();
 		}
 
-		m_current=m_next;
+
 		m_next=NULL;
 		m_sceneChange=false;
 	}
