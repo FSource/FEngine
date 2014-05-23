@@ -78,6 +78,12 @@ LOCAL_SRC_FILES :=  \
 					../../src/math/FsMathUtil.cc \
 					../../src/math/FsMatrix4.cc \
 					../../src/math/FsRect2D.cc \
+					../../src/math/curve/FsCatmullRomCurve.cc \
+					../../src/math/curve/FsCubicBezierCurve.cc \
+					../../src/math/curve/FsLinearCurve.cc \
+					../../src/math/easing/FsBackEase.cc \
+					../../src/math/easing/FsEaseExpr.cc \
+					../../src/math/easing/FsLinearEase.cc \
 					../../src/mgr/FsFontTTFMgr.cc \
 					../../src/mgr/FsResource.cc \
 					../../src/mgr/FsResourceMgr.cc \
