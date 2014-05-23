@@ -33,7 +33,7 @@ class EaseExpr:public FsObject
 		const char* className();
 
 	protected:
-		EaseExpr(int mode);
+		EaseExpr(int mode=FS_EASE_IN);
 		virtual ~EaseExpr();
 
 	private:

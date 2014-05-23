@@ -19,10 +19,13 @@ class PowerEase:public EaseExpr
 
 	private:
 		float m_exponent;
-
 };
 
+
+
+
 NS_FS_END
+
 
 
 #endif /*_FS_POWER_EASE_H_*/

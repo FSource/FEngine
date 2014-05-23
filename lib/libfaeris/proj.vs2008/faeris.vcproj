@@ -1126,6 +1126,14 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\math\easing\FsEasingUtil.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsEasingUtil.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\math\easing\FsLinearEase.cc"
 						>
 					</File>

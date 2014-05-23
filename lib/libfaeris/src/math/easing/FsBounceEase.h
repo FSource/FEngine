@@ -10,7 +10,7 @@ class BounceEase:public EaseExpr
 {
 	public:
 		static BounceEase* create();
-		static BounceEase* create(int mode);
+		static BounceEase* create(float amplitude);
 
 	public:
 		/*inherit EaseExpr*/
@@ -19,11 +19,20 @@ class BounceEase:public EaseExpr
 		virtual float getEaseInOut(float t);
 		virtual float getEaseOutIn(float t);
 
+
 		/*inherit FsObject*/
 		virtual const char* className();
 
+	public:
+		void setAmplitude(float a){m_amplitude=a;}
+		float getAmplitude(){return m_amplitude;}
+
 	protected:
-		BounceEase();
-		BounceEase(int mode);
-		virtual ~BounceEase();
-}
+		BounceEase(float amplitude);
+
+	private:
+		float m_amplitude;
+};
+
+NS_FS_END 
+

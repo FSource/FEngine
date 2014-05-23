@@ -10,7 +10,7 @@ class BackEase:public EaseExpr
 {
 	public:
 		static BackEase* create();
-		static BackEase* create(int mode);
+		static BackEase* create(float overshoot);
 		
 	public:
 		/*	inherit EaseExpr*/
@@ -19,15 +19,18 @@ class BackEase:public EaseExpr
 		virtual float getEaseInOut(float t);
 		virtual float getEaseOutIn(float t);
 
-	
 		/* inherit FsObject*/
 		virtual const char* className();
+
+	public:
+		void setOvershoot(float a){m_overshoot=a;}
+		float getOvershoot(){return m_overshoot;}
 		
 	protected:
 		BackEase();
-		BackEase(int mode);
-		virtual ~BackEase();
 
+	private:
+		float m_overshoot;
 };
 
 NS_FS_END
