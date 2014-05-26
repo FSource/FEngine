@@ -19,6 +19,7 @@ class EaseExpr:public FsObject
 {
 	public:
 		float getValue(float t);
+		float getValue(float t,int mode);
 		void setMode(int mode);
 		int getMode();
 

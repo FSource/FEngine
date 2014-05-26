@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 05/26/14 03:58:47.
+** Generated automatically by tolua++-1.0.92 on 05/27/14 00:46:23.
 */
 
 #ifndef __cplusplus
@@ -28208,6 +28208,37 @@ static int tolua_FsLibFaeris_EaseExpr_getValue00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: getValue of class  EaseExpr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_getValue01
+static int tolua_FsLibFaeris_EaseExpr_getValue01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  int mode = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getValue'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getValue(t,mode);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_EaseExpr_getValue00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setMode of class  EaseExpr */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_setMode00
 static int tolua_FsLibFaeris_EaseExpr_setMode00(lua_State* tolua_S)
@@ -36930,6 +36961,7 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"EaseExpr","EaseExpr","FsObject",NULL);
   tolua_beginmodule(tolua_S,"EaseExpr");
    tolua_function(tolua_S,"getValue",tolua_FsLibFaeris_EaseExpr_getValue00);
+   tolua_function(tolua_S,"getValue",tolua_FsLibFaeris_EaseExpr_getValue01);
    tolua_function(tolua_S,"setMode",tolua_FsLibFaeris_EaseExpr_setMode00);
    tolua_function(tolua_S,"getMode",tolua_FsLibFaeris_EaseExpr_getMode00);
    tolua_function(tolua_S,"getEaseIn",tolua_FsLibFaeris_EaseExpr_getEaseIn00);

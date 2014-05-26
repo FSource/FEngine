@@ -39,6 +39,20 @@ float EaseExpr::getValue(float t)
 
 	return getEaseIn(t);
 }
+float EaseExpr::getValue(float t, int mode)
+{
+	switch(mode)
+	{
+		case FS_EASE_IN: return getEaseIn(t);
+		case FS_EASE_OUT: return getEaseOut(t);
+		case FS_EASE_INOUT:return getEaseInOut(t);
+		case FS_EASE_OUTIN: return getEaseOutIn(t);
+	}
+
+	FS_TRACE_WARN("Unkown Ease Mode(%d)",m_easeMode);
+
+	return getEaseIn(t);
+}
 
 void EaseExpr::setMode(int mode)
 {
