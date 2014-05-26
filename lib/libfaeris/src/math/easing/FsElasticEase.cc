@@ -10,7 +10,7 @@ const char* ElasticEase::className()
 
 ElasticEase* ElasticEase::create()
 {
-	ElasticEase* ret=new ElasticEase(0.3f,1.0f);
+	ElasticEase* ret=new ElasticEase(1.0f,0.3f);
 	return ret;
 }
 
@@ -44,7 +44,7 @@ float ElasticEase::getEaseOutIn(float t)
 
 ElasticEase::ElasticEase(float amplitude,float period)
 {
-	m_amplitude=amplitude;
+	m_amplitude=amplitude;	
 	m_period=period;
 }
 

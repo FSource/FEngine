@@ -5,9 +5,7 @@ class BackEase:public EaseExpr
 	public:
 		static BackEase* create();
 		static BackEase* create(float overshoot);
-		
 		void setOvershoot(float a){m_overshoot=a;}
 		float getOvershoot(){return m_overshoot;}
-		
 };
 
