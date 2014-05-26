@@ -324,9 +324,23 @@ enum
 #define FS_TEXTURE_MATERIAL_CLASS_NAME "TextureMaterial"
 
 /* math/easing */
-#define FS_LINEAR_EASE_CLASS_NAME "LinearEase"
 #define FS_EASE_EXPR_CLASS_NAME   "EaseExpr"
 #define FS_BACK_EASE_CLASS_NAME   "BackEase"
+#define FS_BEZIER_EASE_CLASS_NAME "BezierEase"
+#define FS_BOUNCE_EASE_CLASS_NAME "BounceEase"
+#define FS_CIRCLE_EASE_CLASS_NAME "CircleEase"
+#define FS_CUBIC_EASE_CLASS_NAME "CubicEase"
+#define FS_ELASTIC_EASE_CLASS_NAME "ElasticEase"
+#define FS_EXPONENTIAL_EASE_CLASS_NAME "ExponentialEase"
+#define FS_LINEAR_EASE_CLASS_NAME "LinearEase"
+#define FS_POWER_EASE_CLASS_NAME "PowerEase"
+#define FS_QUAD_EASE_CLASS_NAME "QuadEase"
+#define FS_QUART_EASE_CLASS_NAME "QuartEase"
+#define FS_QUINT_EASE_CLASS_NAME "QuintEase"
+#define FS_SINE_EASE_CLASS_NAME "SineEase"
+
+
+
 
 /* math/curve */
 #define FS_LINEAR_CURVE_2_CLASS_NAME "LinearCurve2"

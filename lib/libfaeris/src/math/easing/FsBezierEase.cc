@@ -1,11 +1,12 @@
 #include <math.h>
+#include "FsEasingUtil.h"
 #include "FsBezierEase.h"
 
 NS_FS_BEGIN
 
-const char* BezierEase:className()
+const char* BezierEase::className()
 {
-	return FS_BEZIER_EASE;
+	return FS_BEZIER_EASE_CLASS_NAME;
 }
 
 
@@ -41,7 +42,7 @@ BezierEase::BezierEase(float p1_x,float p1_y,float p2_x,float p2_y)
 
 
 
-void BezierEase::init(float p1x,float p1y,float p2x,float p2y)
+void BezierEase::init(float p1_x,float p1_y,float p2_x,float p2_y)
 {
 	m_cx=3.0f*p1_x;
 	m_bx=3.0f*(p2_x-p1_x)-m_cx;
@@ -67,9 +68,10 @@ float BezierEase::sampleCurveDerivativeX(float t)
 	return (3.0f*m_ax*t+2.0f*m_bx)*t+m_cx;
 }
 
-float BezierEase::solveCurveX(float x,float epsion)
+float BezierEase::solveCurveX(float x,float epsilon)
 {
 	float t0,t1,t2,x2,d2;
+	int i;
 
 	// First try a few iterations of Newton's method -- normally very fast.
 	for (t2 = x, i = 0; i < 8; i++) 

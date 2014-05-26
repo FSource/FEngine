@@ -1,4 +1,5 @@
 #include "FsElasticEase.h"
+#include "FsEasingUtil.h"
 
 NS_FS_BEGIN
 
@@ -9,7 +10,7 @@ const char* ElasticEase::className()
 
 ElasticEase* ElasticEase::create()
 {
-	ElasticEase* ret=new ElasticEase(0.3,1.0);
+	ElasticEase* ret=new ElasticEase(0.3f,1.0f);
 	return ret;
 }
 

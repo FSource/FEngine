@@ -12,12 +12,15 @@ class SineEase:public EaseExpr
 		static SineEase* create();
 
 	public:
+		/* inherit EaseExpr */
 		virtual float getEaseIn(float t);
+		virtual float getEaseOut(float t);
+		virtual float getEaseInOut(float t);
+		virtual float getEaseOutIn(float t);
+
+		/* inherit FsObject */
 		virtual const char* className();
 
-	protected:
-		SineEase();
-		virtual ~SineEase();
 
 };
 

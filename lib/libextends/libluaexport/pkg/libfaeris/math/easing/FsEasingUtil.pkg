@@ -1,9 +1,4 @@
-#ifndef _FS_EASE_UTIL_H_
-#define _FS_EASE_UTIL_H_
-
-#include "FsMacros.h"
-
-NS_FS_BEGIN
+$#include "math/easing/FsEasingUtil.h"
 
 class EasingUtil
 {
@@ -77,13 +72,6 @@ class EasingUtil
 
 
 };
-
-
-NS_FS_END
-
-
-
-#endif /*_FS_EASE_UTIL_H_*/
 
 
 

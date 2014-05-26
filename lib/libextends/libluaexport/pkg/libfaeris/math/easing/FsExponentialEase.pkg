@@ -1,0 +1,8 @@
+$#include "math/easing/FsExponentialEase.h"
+
+class ExponentialEase:public EaseExpr 
+{
+	public:
+		static ExponentialEase* create();
+};
+

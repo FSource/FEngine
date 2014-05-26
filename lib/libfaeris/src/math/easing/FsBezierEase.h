@@ -2,6 +2,8 @@
 #define _FS_BEZIER_EASE_H_
 
 #include "FsMacros.h"
+#include "math/FsVector2.h"
+#include "FsEaseExpr.h"
 
 NS_FS_BEGIN
 
@@ -25,7 +27,7 @@ class BezierEase:public EaseExpr
 		float solveCurveX(float x,float epsion);
 		float solve(float x,float epsion);
 
-		void init(float p1_x,p1_y,p2_x,p2_y);
+		void init(float p1_x,float p1_y,float p2_x,float p2_y);
 
 	private:
 		float m_ax,m_bx,m_cx;

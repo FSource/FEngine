@@ -36,3 +36,5 @@ class BounceEase:public EaseExpr
 
 NS_FS_END 
 
+#endif /*_FS_BOUNCE_EASE_H_*/
+

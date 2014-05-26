@@ -1,4 +1,5 @@
 #include "FsEaseExpr.h"
+#include "FsEasingUtil.h"
 
 
 NS_FS_BEGIN
@@ -12,6 +13,12 @@ EaseExpr::EaseExpr(int mode)
 {
 	m_easeMode=mode;
 }
+
+EaseExpr::EaseExpr()
+{
+	m_easeMode=FS_EASE_IN;
+}
+
 
 EaseExpr::~EaseExpr()
 {

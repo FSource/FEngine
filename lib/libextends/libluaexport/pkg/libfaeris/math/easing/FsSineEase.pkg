@@ -1,0 +1,11 @@
+$#include "math/easing/FsSineEase.h"
+
+class SineEase:public EaseExpr 
+{
+	public:
+		static SineEase* create();
+};
+
+
+
+

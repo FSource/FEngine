@@ -2,6 +2,7 @@
 #define _FS_POWER_EASE_H_
 
 #include "FsMacros.h"
+#include "FsEaseExpr.h"
 
 NS_FS_BEGIN
 class PowerEase:public EaseExpr
@@ -15,13 +16,10 @@ class PowerEase:public EaseExpr
 
 	protected:
 		PowerEase(float p);
-		virtual ~PowerEase();
 
 	private:
 		float m_exponent;
 };
-
-
 
 
 NS_FS_END

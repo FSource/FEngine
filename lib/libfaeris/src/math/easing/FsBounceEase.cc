@@ -1,4 +1,5 @@
 #include "FsBounceEase.h"
+#include "FsEasingUtil.h"
 
 
 
@@ -12,7 +13,7 @@ const char* BounceEase::className()
 
 BounceEase* BounceEase::create()
 {
-	BounceEase* ret=new BounceEase();
+	BounceEase* ret=new BounceEase(1.0);
 	return ret;
 }
 
@@ -33,17 +34,17 @@ float BounceEase::getEaseIn(float t)
 
 float BounceEase::getEaseOut(float t)
 {
-	return EaseUtil::easeOutBounce(t,m_amplitude);
+	return EasingUtil::easeOutBounce(t,m_amplitude);
 }
 
 float BounceEase::getEaseInOut(float t)
 {
-	return EaseUtil::easeInOutBounce(t,m_amplitude);
+	return EasingUtil::easeInOutBounce(t,m_amplitude);
 }
 
 float BounceEase::getEaseOutIn(float t)
 {
-	return EaseUtil::easeOutInBounce(t,m_amplitude);
+	return EasingUtil::easeOutInBounce(t,m_amplitude);
 }
 
 
@@ -56,3 +57,4 @@ BounceEase::BounceEase(float amplitude)
 
 
 
+NS_FS_END

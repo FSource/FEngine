@@ -1,0 +1,10 @@
+$#include "math/easing/FsPowerEase.h"
+
+class PowerEase:public EaseExpr
+{
+	public:
+		static PowerEase* create(float p);
+};
+
+
+

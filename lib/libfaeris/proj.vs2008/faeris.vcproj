@@ -1118,6 +1118,38 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\math\easing\FsBezierEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsBezierEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsBounceEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsBounceEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsCircleEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsCircleEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsCubicEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsCubicEase.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\math\easing\FsEaseExpr.cc"
 						>
 					</File>
@@ -1134,11 +1166,67 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\math\easing\FsElasticEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsElasticEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsExponentialEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsExponentialEase.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\math\easing\FsLinearEase.cc"
 						>
 					</File>
 					<File
 						RelativePath="..\src\math\easing\FsLinearEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsPowerEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsPowerEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuadEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuadEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuartEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuartEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuintEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuintEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsSineEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsSineEase.h"
 						>
 					</File>
 				</Filter>

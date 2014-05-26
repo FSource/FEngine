@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 04/25/14 08:17:55.
+** Generated automatically by tolua++-1.0.92 on 05/26/14 03:58:47.
 */
 
 #ifndef __cplusplus
@@ -62,8 +62,20 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "math/FsMatrix4.h"
 #include "math/FsRect2D.h"
 #include "math/easing/FsEaseExpr.h"
-#include "math/easing/FsLinearEase.h"
 #include "math/easing/FsBackEase.h"
+#include "math/easing/FsBezierEase.h"
+#include "math/easing/FsBounceEase.h"
+#include "math/easing/FsCircleEase.h"
+#include "math/easing/FsCubicEase.h"
+#include "math/easing/FsEasingUtil.h"
+#include "math/easing/FsElasticEase.h"
+#include "math/easing/FsExponentialEase.h"
+#include "math/easing/FsLinearEase.h"
+#include "math/easing/FsPowerEase.h"
+#include "math/easing/FsQuadEase.h"
+#include "math/easing/FsQuartEase.h"
+#include "math/easing/FsQuintEase.h"
+#include "math/easing/FsSineEase.h"
 #include "math/curve/FsCurve.h"
 #include "math/curve/FsLinearCurve.h"
 #include "math/curve/FsCubicBezierCurve.h"
@@ -158,6 +170,8 @@ static int tolua_collect_Vector3 (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
+ tolua_usertype(tolua_S,"ExponentialEase");
+ tolua_usertype(tolua_S,"BezierEase");
  toluaext_usertype(tolua_S,"TouchEventListener");
  tolua_usertype(tolua_S,"Sprite2DDataMgr");
  tolua_usertype(tolua_S,"ProgramMgr");
@@ -166,84 +180,94 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"AudioEngine");
  toluaext_usertype(tolua_S,"Layer");
  tolua_usertype(tolua_S,"FontTTFMgr");
+ toluaext_usertype(tolua_S,"LuaHttpRequest");
  toluaext_usertype(tolua_S,"Texture2D");
+ tolua_usertype(tolua_S,"Rect2D");
  tolua_usertype(tolua_S,"ObjectMgr");
  toluaext_usertype(tolua_S,"ColorLayer");
  tolua_usertype(tolua_S,"LinearCurve2");
+ tolua_usertype(tolua_S,"Channel");
  toluaext_usertype(tolua_S,"RotateZByAction");
+ toluaext_usertype(tolua_S,"SeqAction");
+ tolua_usertype(tolua_S,"Curve2");
+ toluaext_usertype(tolua_S,"ScaleByAction");
+ toluaext_usertype(tolua_S,"RotateZToAction");
  tolua_usertype(tolua_S,"Color");
  tolua_usertype(tolua_S,"ActionTarget");
+ toluaext_usertype(tolua_S,"PauseAction");
+ toluaext_usertype(tolua_S,"MoveToAction");
+ tolua_usertype(tolua_S,"CubicEase");
  tolua_usertype(tolua_S,"CatmullRomCurve2");
  toluaext_usertype(tolua_S,"LuaParticle2DEffect");
  toluaext_usertype(tolua_S,"LuaLabelTTF");
  toluaext_usertype(tolua_S,"ColorQuad2D");
- toluaext_usertype(tolua_S,"LuaHttpRequest");
+ toluaext_usertype(tolua_S,"MoveByAction");
  toluaext_usertype(tolua_S,"FsArray");
  toluaext_usertype(tolua_S,"FontBitmap");
- toluaext_usertype(tolua_S,"Window");
- tolua_usertype(tolua_S,"Channel");
+ tolua_usertype(tolua_S,"TouchPoint");
+ toluaext_usertype(tolua_S,"Action");
  tolua_usertype(tolua_S,"CubicBezierCurve4");
- tolua_usertype(tolua_S,"Vector4");
- tolua_usertype(tolua_S,"Rect2D");
- toluaext_usertype(tolua_S,"ScaleByAction");
- toluaext_usertype(tolua_S,"RotateZToAction");
+ tolua_usertype(tolua_S,"KeypadEvent");
+ toluaext_usertype(tolua_S,"SysDispatcher");
+ toluaext_usertype(tolua_S,"TouchDispatcher");
+ tolua_usertype(tolua_S,"TouchEvent");
  toluaext_usertype(tolua_S,"LuaAction");
- toluaext_usertype(tolua_S,"PauseAction");
- toluaext_usertype(tolua_S,"MoveToAction");
- toluaext_usertype(tolua_S,"MoveByAction");
+ tolua_usertype(tolua_S,"ElasticEase");
+ toluaext_usertype(tolua_S,"LuaSysEventListener");
+ toluaext_usertype(tolua_S,"LuaEntity");
  tolua_usertype(tolua_S,"Vector2");
  tolua_usertype(tolua_S,"Timer");
  tolua_usertype(tolua_S,"TextureMaterial");
- toluaext_usertype(tolua_S,"Action");
+ toluaext_usertype(tolua_S,"Window");
  toluaext_usertype(tolua_S,"LuaQuad2D");
- tolua_usertype(tolua_S,"KeypadEvent");
+ tolua_usertype(tolua_S,"Sys");
  toluaext_usertype(tolua_S,"TextureMgr");
  toluaext_usertype(tolua_S,"LuaTouchEventListener");
- toluaext_usertype(tolua_S,"SysDispatcher");
- tolua_usertype(tolua_S,"Curve2");
- tolua_usertype(tolua_S,"TouchEvent");
- tolua_usertype(tolua_S,"TouchPoint");
+ toluaext_usertype(tolua_S,"LabelBitmap");
+ tolua_usertype(tolua_S,"CatmullRomCurve3");
+ tolua_usertype(tolua_S,"CubicBezierCurve3");
+ tolua_usertype(tolua_S,"LinearCurve4");
  tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"BackEase");
  tolua_usertype(tolua_S,"LuaSchedulerTarget");
  toluaext_usertype(tolua_S,"Scheduler");
- toluaext_usertype(tolua_S,"LuaSysEventListener");
+ toluaext_usertype(tolua_S,"Button");
  toluaext_usertype(tolua_S,"Entity");
  tolua_usertype(tolua_S,"CatmullRomCurve4");
- toluaext_usertype(tolua_S,"LuaEntity");
+ tolua_usertype(tolua_S,"Curve3");
  tolua_usertype(tolua_S,"Vector3");
  toluaext_usertype(tolua_S,"Panel");
  toluaext_usertype(tolua_S,"ScaleToAction");
  tolua_usertype(tolua_S,"Program");
  toluaext_usertype(tolua_S,"HttpEngine");
  tolua_usertype(tolua_S,"Particle2DEmitter");
- tolua_usertype(tolua_S,"CatmullRomCurve3");
+ tolua_usertype(tolua_S,"QuintEase");
  tolua_usertype(tolua_S,"FsFile");
  tolua_usertype(tolua_S,"LuaVertexPolygon");
- tolua_usertype(tolua_S,"CubicBezierCurve3");
+ tolua_usertype(tolua_S,"QuartEase");
  toluaext_usertype(tolua_S,"Sprite2D");
  
- tolua_usertype(tolua_S,"LinearCurve4");
- toluaext_usertype(tolua_S,"Button");
+ tolua_usertype(tolua_S,"QuadEase");
+ tolua_usertype(tolua_S,"Color4f");
  toluaext_usertype(tolua_S,"LuaColorLayer");
  tolua_usertype(tolua_S,"Matrix4");
- toluaext_usertype(tolua_S,"LabelBitmap");
+ tolua_usertype(tolua_S,"LinearEase");
  toluaext_usertype(tolua_S,"Render");
- tolua_usertype(tolua_S,"Curve3");
+ tolua_usertype(tolua_S,"EasingUtil");
  toluaext_usertype(tolua_S,"Resource");
  toluaext_usertype(tolua_S,"Quad2D");
  toluaext_usertype(tolua_S,"LabelTTF");
  toluaext_usertype(tolua_S,"LuaLabelBitmap");
- toluaext_usertype(tolua_S,"TouchDispatcher");
- toluaext_usertype(tolua_S,"SeqAction");
+ tolua_usertype(tolua_S,"SineEase");
+ tolua_usertype(tolua_S,"PowerEase");
  toluaext_usertype(tolua_S,"Layer2D");
  tolua_usertype(tolua_S,"VertexPolygon");
  toluaext_usertype(tolua_S,"FsObject");
- tolua_usertype(tolua_S,"LinearEase");
+ tolua_usertype(tolua_S,"Vector4");
  toluaext_usertype(tolua_S,"ResourceMgr");
  toluaext_usertype(tolua_S,"LuaScene");
  toluaext_usertype(tolua_S,"SchedulerTarget");
- tolua_usertype(tolua_S,"Sys");
+ tolua_usertype(tolua_S,"CircleEase");
  tolua_usertype(tolua_S,"ColorMaterial");
  tolua_usertype(tolua_S,"Face3");
  tolua_usertype(tolua_S,"Global");
@@ -251,7 +275,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"LuaPanel");
  tolua_usertype(tolua_S,"LinearCurve3");
  toluaext_usertype(tolua_S,"Scene");
- tolua_usertype(tolua_S,"Color4f");
+ tolua_usertype(tolua_S,"BounceEase");
  toluaext_usertype(tolua_S,"LuaSprite2D");
  tolua_usertype(tolua_S,"ButtonState");
  toluaext_usertype(tolua_S,"SysEventListener");
@@ -28385,91 +28409,6 @@ static int tolua_FsLibFaeris_EaseExpr_getEaseOutIn00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: className of class  EaseExpr */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_className00
-static int tolua_FsLibFaeris_EaseExpr_className00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"EaseExpr",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  EaseExpr* self = (EaseExpr*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
-#endif
-  {
-   const char* tolua_ret = (const char*)  self->className();
-   tolua_pushstring(tolua_S,(const char*)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: create of class  LinearEase */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_LinearEase_create00
-static int tolua_FsLibFaeris_LinearEase_create00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"LinearEase",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   LinearEase* tolua_ret = (LinearEase*)  LinearEase::create();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LinearEase");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: create of class  LinearEase */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_LinearEase_create01
-static int tolua_FsLibFaeris_LinearEase_create01(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"LinearEase",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
- {
-  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
-  {
-   LinearEase* tolua_ret = (LinearEase*)  LinearEase::create(mode);
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LinearEase");
-  }
- }
- return 1;
-tolua_lerror:
- return tolua_FsLibFaeris_LinearEase_create00(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: create of class  BackEase */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BackEase_create00
 static int tolua_FsLibFaeris_BackEase_create00(lua_State* tolua_S)
@@ -28511,15 +28450,1962 @@ static int tolua_FsLibFaeris_BackEase_create01(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+  float overshoot = ((float)  tolua_tonumber(tolua_S,2,0));
   {
-   BackEase* tolua_ret = (BackEase*)  BackEase::create(mode);
+   BackEase* tolua_ret = (BackEase*)  BackEase::create(overshoot);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"BackEase");
   }
  }
  return 1;
 tolua_lerror:
  return tolua_FsLibFaeris_BackEase_create00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setOvershoot of class  BackEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BackEase_setOvershoot00
+static int tolua_FsLibFaeris_BackEase_setOvershoot00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BackEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BackEase* self = (BackEase*)  tolua_tousertype(tolua_S,1,0);
+  float a = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setOvershoot'", NULL);
+#endif
+  {
+   self->setOvershoot(a);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setOvershoot'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getOvershoot of class  BackEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BackEase_getOvershoot00
+static int tolua_FsLibFaeris_BackEase_getOvershoot00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BackEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BackEase* self = (BackEase*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getOvershoot'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getOvershoot();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getOvershoot'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  BezierEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BezierEase_create00
+static int tolua_FsLibFaeris_BezierEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"BezierEase",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector2",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Vector2* v1 = ((const Vector2*)  tolua_tousertype(tolua_S,2,0));
+  const Vector2* v2 = ((const Vector2*)  tolua_tousertype(tolua_S,3,0));
+  {
+   BezierEase* tolua_ret = (BezierEase*)  BezierEase::create(*v1,*v2);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"BezierEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  BezierEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BezierEase_create01
+static int tolua_FsLibFaeris_BezierEase_create01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"BezierEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float p1_x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float p1_y = ((float)  tolua_tonumber(tolua_S,3,0));
+  float p2_x = ((float)  tolua_tonumber(tolua_S,4,0));
+  float p2_y = ((float)  tolua_tonumber(tolua_S,5,0));
+  {
+   BezierEase* tolua_ret = (BezierEase*)  BezierEase::create(p1_x,p1_y,p2_x,p2_y);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"BezierEase");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_BezierEase_create00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  BounceEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BounceEase_create00
+static int tolua_FsLibFaeris_BounceEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"BounceEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   BounceEase* tolua_ret = (BounceEase*)  BounceEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"BounceEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  BounceEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BounceEase_create01
+static int tolua_FsLibFaeris_BounceEase_create01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"BounceEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float amplitude = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   BounceEase* tolua_ret = (BounceEase*)  BounceEase::create(amplitude);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"BounceEase");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_BounceEase_create00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setAmplitude of class  BounceEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BounceEase_setAmplitude00
+static int tolua_FsLibFaeris_BounceEase_setAmplitude00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BounceEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BounceEase* self = (BounceEase*)  tolua_tousertype(tolua_S,1,0);
+  float a = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAmplitude'", NULL);
+#endif
+  {
+   self->setAmplitude(a);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setAmplitude'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getAmplitude of class  BounceEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_BounceEase_getAmplitude00
+static int tolua_FsLibFaeris_BounceEase_getAmplitude00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BounceEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BounceEase* self = (BounceEase*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAmplitude'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getAmplitude();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getAmplitude'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  CircleEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CircleEase_create00
+static int tolua_FsLibFaeris_CircleEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"CircleEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   CircleEase* tolua_ret = (CircleEase*)  CircleEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"CircleEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  CubicEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_CubicEase_create00
+static int tolua_FsLibFaeris_CubicEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"CubicEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   CubicEase* tolua_ret = (CubicEase*)  CubicEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"CubicEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeNone of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeNone00
+static int tolua_FsLibFaeris_EasingUtil_easeNone00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeNone(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeNone'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInQuad of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInQuad00
+static int tolua_FsLibFaeris_EasingUtil_easeInQuad00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInQuad(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInQuad'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutQuad of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutQuad00
+static int tolua_FsLibFaeris_EasingUtil_easeOutQuad00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutQuad(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutQuad'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutQuad of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutQuad00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutQuad00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutQuad(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutQuad'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInQuad of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInQuad00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInQuad00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInQuad(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInQuad'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInCubic of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInCubic00
+static int tolua_FsLibFaeris_EasingUtil_easeInCubic00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInCubic(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInCubic'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutCubic of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutCubic00
+static int tolua_FsLibFaeris_EasingUtil_easeOutCubic00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutCubic(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutCubic'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutCubic of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutCubic00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutCubic00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutCubic(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutCubic'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInCubic of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInCubic00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInCubic00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInCubic(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInCubic'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInQuart of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInQuart00
+static int tolua_FsLibFaeris_EasingUtil_easeInQuart00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInQuart(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInQuart'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutQuart of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutQuart00
+static int tolua_FsLibFaeris_EasingUtil_easeOutQuart00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutQuart(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutQuart'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutQuart of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutQuart00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutQuart00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutQuart(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutQuart'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInQuart of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInQuart00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInQuart00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInQuart(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInQuart'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInQuint of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInQuint00
+static int tolua_FsLibFaeris_EasingUtil_easeInQuint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInQuint(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInQuint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutQuint of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutQuint00
+static int tolua_FsLibFaeris_EasingUtil_easeOutQuint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutQuint(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutQuint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutQuint of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutQuint00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutQuint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutQuint(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutQuint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInQuint of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInQuint00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInQuint00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInQuint(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInQuint'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInSine of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInSine00
+static int tolua_FsLibFaeris_EasingUtil_easeInSine00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInSine(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInSine'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutSine of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutSine00
+static int tolua_FsLibFaeris_EasingUtil_easeOutSine00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutSine(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutSine'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutSine of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutSine00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutSine00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutSine(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutSine'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInSine of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInSine00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInSine00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInSine(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInSine'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInExpo of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInExpo00
+static int tolua_FsLibFaeris_EasingUtil_easeInExpo00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInExpo(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInExpo'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutExpo of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutExpo00
+static int tolua_FsLibFaeris_EasingUtil_easeOutExpo00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutExpo(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutExpo'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutExpo of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutExpo00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutExpo00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutExpo(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutExpo'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInExpo of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInExpo00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInExpo00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInExpo(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInExpo'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInCirc of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInCirc00
+static int tolua_FsLibFaeris_EasingUtil_easeInCirc00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInCirc(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInCirc'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutCirc of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutCirc00
+static int tolua_FsLibFaeris_EasingUtil_easeOutCirc00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutCirc(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutCirc'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutCirc of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutCirc00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutCirc00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutCirc(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutCirc'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInCirc of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInCirc00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInCirc00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInCirc(t);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInCirc'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInElastic of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInElastic00
+static int tolua_FsLibFaeris_EasingUtil_easeInElastic00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float a = ((float)  tolua_tonumber(tolua_S,3,0));
+  float p = ((float)  tolua_tonumber(tolua_S,4,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInElastic(t,a,p);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInElastic'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutElastic of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutElastic00
+static int tolua_FsLibFaeris_EasingUtil_easeOutElastic00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float a = ((float)  tolua_tonumber(tolua_S,3,0));
+  float p = ((float)  tolua_tonumber(tolua_S,4,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutElastic(t,a,p);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutElastic'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutElastic of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutElastic00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutElastic00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float a = ((float)  tolua_tonumber(tolua_S,3,0));
+  float p = ((float)  tolua_tonumber(tolua_S,4,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutElastic(t,a,p);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutElastic'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInElastic of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInElastic00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInElastic00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float a = ((float)  tolua_tonumber(tolua_S,3,0));
+  float p = ((float)  tolua_tonumber(tolua_S,4,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInElastic(t,a,p);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInElastic'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInBack of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInBack00
+static int tolua_FsLibFaeris_EasingUtil_easeInBack00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float s = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInBack(t,s);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInBack'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutBack of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutBack00
+static int tolua_FsLibFaeris_EasingUtil_easeOutBack00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float s = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutBack(t,s);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutBack'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutBack of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutBack00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutBack00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float s = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutBack(t,s);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutBack'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInBack of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInBack00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInBack00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float s = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInBack(t,s);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInBack'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInBounce of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInBounce00
+static int tolua_FsLibFaeris_EasingUtil_easeInBounce00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float a = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInBounce(t,a);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInBounce'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutBounce of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutBounce00
+static int tolua_FsLibFaeris_EasingUtil_easeOutBounce00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float a = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutBounce(t,a);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutBounce'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeInOutBounce of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeInOutBounce00
+static int tolua_FsLibFaeris_EasingUtil_easeInOutBounce00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float a = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeInOutBounce(t,a);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeInOutBounce'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: easeOutInBounce of class  EasingUtil */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EasingUtil_easeOutInBounce00
+static int tolua_FsLibFaeris_EasingUtil_easeOutInBounce00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EasingUtil",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float t = ((float)  tolua_tonumber(tolua_S,2,0));
+  float a = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   float tolua_ret = (float)  EasingUtil::easeOutInBounce(t,a);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'easeOutInBounce'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ElasticEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ElasticEase_create00
+static int tolua_FsLibFaeris_ElasticEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ElasticEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ElasticEase* tolua_ret = (ElasticEase*)  ElasticEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ElasticEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ElasticEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ElasticEase_create01
+static int tolua_FsLibFaeris_ElasticEase_create01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ElasticEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float amplitude = ((float)  tolua_tonumber(tolua_S,2,0));
+  float period = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   ElasticEase* tolua_ret = (ElasticEase*)  ElasticEase::create(amplitude,period);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ElasticEase");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_ElasticEase_create00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setAmplitude of class  ElasticEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ElasticEase_setAmplitude00
+static int tolua_FsLibFaeris_ElasticEase_setAmplitude00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ElasticEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ElasticEase* self = (ElasticEase*)  tolua_tousertype(tolua_S,1,0);
+  float amplitude = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAmplitude'", NULL);
+#endif
+  {
+   self->setAmplitude(amplitude);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setAmplitude'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getAmplitude of class  ElasticEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ElasticEase_getAmplitude00
+static int tolua_FsLibFaeris_ElasticEase_getAmplitude00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ElasticEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ElasticEase* self = (ElasticEase*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAmplitude'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getAmplitude();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getAmplitude'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setPeriod of class  ElasticEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ElasticEase_setPeriod00
+static int tolua_FsLibFaeris_ElasticEase_setPeriod00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ElasticEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ElasticEase* self = (ElasticEase*)  tolua_tousertype(tolua_S,1,0);
+  float period = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPeriod'", NULL);
+#endif
+  {
+   self->setPeriod(period);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setPeriod'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPeriod of class  ElasticEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ElasticEase_getPeriod00
+static int tolua_FsLibFaeris_ElasticEase_getPeriod00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ElasticEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ElasticEase* self = (ElasticEase*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPeriod'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getPeriod();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPeriod'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ExponentialEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ExponentialEase_create00
+static int tolua_FsLibFaeris_ExponentialEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ExponentialEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ExponentialEase* tolua_ret = (ExponentialEase*)  ExponentialEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ExponentialEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  LinearEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_LinearEase_create00
+static int tolua_FsLibFaeris_LinearEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LinearEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   LinearEase* tolua_ret = (LinearEase*)  LinearEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LinearEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  PowerEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PowerEase_create00
+static int tolua_FsLibFaeris_PowerEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"PowerEase",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float p = ((float)  tolua_tonumber(tolua_S,2,0));
+  {
+   PowerEase* tolua_ret = (PowerEase*)  PowerEase::create(p);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PowerEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  QuadEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_QuadEase_create00
+static int tolua_FsLibFaeris_QuadEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"QuadEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   QuadEase* tolua_ret = (QuadEase*)  QuadEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"QuadEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  QuartEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_QuartEase_create00
+static int tolua_FsLibFaeris_QuartEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"QuartEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   QuartEase* tolua_ret = (QuartEase*)  QuartEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"QuartEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  QuintEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_QuintEase_create00
+static int tolua_FsLibFaeris_QuintEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"QuintEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   QuintEase* tolua_ret = (QuintEase*)  QuintEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"QuintEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  SineEase */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_SineEase_create00
+static int tolua_FsLibFaeris_SineEase_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"SineEase",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   SineEase* tolua_ret = (SineEase*)  SineEase::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"SineEase");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -35050,17 +36936,114 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getEaseOut",tolua_FsLibFaeris_EaseExpr_getEaseOut00);
    tolua_function(tolua_S,"getEaseInOut",tolua_FsLibFaeris_EaseExpr_getEaseInOut00);
    tolua_function(tolua_S,"getEaseOutIn",tolua_FsLibFaeris_EaseExpr_getEaseOutIn00);
-   tolua_function(tolua_S,"className",tolua_FsLibFaeris_EaseExpr_className00);
-  tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"LinearEase","LinearEase","EaseExpr",NULL);
-  tolua_beginmodule(tolua_S,"LinearEase");
-   tolua_function(tolua_S,"create",tolua_FsLibFaeris_LinearEase_create00);
-   tolua_function(tolua_S,"create",tolua_FsLibFaeris_LinearEase_create01);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"BackEase","BackEase","EaseExpr",NULL);
   tolua_beginmodule(tolua_S,"BackEase");
    tolua_function(tolua_S,"create",tolua_FsLibFaeris_BackEase_create00);
    tolua_function(tolua_S,"create",tolua_FsLibFaeris_BackEase_create01);
+   tolua_function(tolua_S,"setOvershoot",tolua_FsLibFaeris_BackEase_setOvershoot00);
+   tolua_function(tolua_S,"getOvershoot",tolua_FsLibFaeris_BackEase_getOvershoot00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"BezierEase","BezierEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"BezierEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_BezierEase_create00);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_BezierEase_create01);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"BounceEase","BounceEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"BounceEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_BounceEase_create00);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_BounceEase_create01);
+   tolua_function(tolua_S,"setAmplitude",tolua_FsLibFaeris_BounceEase_setAmplitude00);
+   tolua_function(tolua_S,"getAmplitude",tolua_FsLibFaeris_BounceEase_getAmplitude00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"CircleEase","CircleEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"CircleEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_CircleEase_create00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"CubicEase","CubicEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"CubicEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_CubicEase_create00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"EasingUtil","EasingUtil","",NULL);
+  tolua_beginmodule(tolua_S,"EasingUtil");
+   tolua_function(tolua_S,"easeNone",tolua_FsLibFaeris_EasingUtil_easeNone00);
+   tolua_function(tolua_S,"easeInQuad",tolua_FsLibFaeris_EasingUtil_easeInQuad00);
+   tolua_function(tolua_S,"easeOutQuad",tolua_FsLibFaeris_EasingUtil_easeOutQuad00);
+   tolua_function(tolua_S,"easeInOutQuad",tolua_FsLibFaeris_EasingUtil_easeInOutQuad00);
+   tolua_function(tolua_S,"easeOutInQuad",tolua_FsLibFaeris_EasingUtil_easeOutInQuad00);
+   tolua_function(tolua_S,"easeInCubic",tolua_FsLibFaeris_EasingUtil_easeInCubic00);
+   tolua_function(tolua_S,"easeOutCubic",tolua_FsLibFaeris_EasingUtil_easeOutCubic00);
+   tolua_function(tolua_S,"easeInOutCubic",tolua_FsLibFaeris_EasingUtil_easeInOutCubic00);
+   tolua_function(tolua_S,"easeOutInCubic",tolua_FsLibFaeris_EasingUtil_easeOutInCubic00);
+   tolua_function(tolua_S,"easeInQuart",tolua_FsLibFaeris_EasingUtil_easeInQuart00);
+   tolua_function(tolua_S,"easeOutQuart",tolua_FsLibFaeris_EasingUtil_easeOutQuart00);
+   tolua_function(tolua_S,"easeInOutQuart",tolua_FsLibFaeris_EasingUtil_easeInOutQuart00);
+   tolua_function(tolua_S,"easeOutInQuart",tolua_FsLibFaeris_EasingUtil_easeOutInQuart00);
+   tolua_function(tolua_S,"easeInQuint",tolua_FsLibFaeris_EasingUtil_easeInQuint00);
+   tolua_function(tolua_S,"easeOutQuint",tolua_FsLibFaeris_EasingUtil_easeOutQuint00);
+   tolua_function(tolua_S,"easeInOutQuint",tolua_FsLibFaeris_EasingUtil_easeInOutQuint00);
+   tolua_function(tolua_S,"easeOutInQuint",tolua_FsLibFaeris_EasingUtil_easeOutInQuint00);
+   tolua_function(tolua_S,"easeInSine",tolua_FsLibFaeris_EasingUtil_easeInSine00);
+   tolua_function(tolua_S,"easeOutSine",tolua_FsLibFaeris_EasingUtil_easeOutSine00);
+   tolua_function(tolua_S,"easeInOutSine",tolua_FsLibFaeris_EasingUtil_easeInOutSine00);
+   tolua_function(tolua_S,"easeOutInSine",tolua_FsLibFaeris_EasingUtil_easeOutInSine00);
+   tolua_function(tolua_S,"easeInExpo",tolua_FsLibFaeris_EasingUtil_easeInExpo00);
+   tolua_function(tolua_S,"easeOutExpo",tolua_FsLibFaeris_EasingUtil_easeOutExpo00);
+   tolua_function(tolua_S,"easeInOutExpo",tolua_FsLibFaeris_EasingUtil_easeInOutExpo00);
+   tolua_function(tolua_S,"easeOutInExpo",tolua_FsLibFaeris_EasingUtil_easeOutInExpo00);
+   tolua_function(tolua_S,"easeInCirc",tolua_FsLibFaeris_EasingUtil_easeInCirc00);
+   tolua_function(tolua_S,"easeOutCirc",tolua_FsLibFaeris_EasingUtil_easeOutCirc00);
+   tolua_function(tolua_S,"easeInOutCirc",tolua_FsLibFaeris_EasingUtil_easeInOutCirc00);
+   tolua_function(tolua_S,"easeOutInCirc",tolua_FsLibFaeris_EasingUtil_easeOutInCirc00);
+   tolua_function(tolua_S,"easeInElastic",tolua_FsLibFaeris_EasingUtil_easeInElastic00);
+   tolua_function(tolua_S,"easeOutElastic",tolua_FsLibFaeris_EasingUtil_easeOutElastic00);
+   tolua_function(tolua_S,"easeInOutElastic",tolua_FsLibFaeris_EasingUtil_easeInOutElastic00);
+   tolua_function(tolua_S,"easeOutInElastic",tolua_FsLibFaeris_EasingUtil_easeOutInElastic00);
+   tolua_function(tolua_S,"easeInBack",tolua_FsLibFaeris_EasingUtil_easeInBack00);
+   tolua_function(tolua_S,"easeOutBack",tolua_FsLibFaeris_EasingUtil_easeOutBack00);
+   tolua_function(tolua_S,"easeInOutBack",tolua_FsLibFaeris_EasingUtil_easeInOutBack00);
+   tolua_function(tolua_S,"easeOutInBack",tolua_FsLibFaeris_EasingUtil_easeOutInBack00);
+   tolua_function(tolua_S,"easeInBounce",tolua_FsLibFaeris_EasingUtil_easeInBounce00);
+   tolua_function(tolua_S,"easeOutBounce",tolua_FsLibFaeris_EasingUtil_easeOutBounce00);
+   tolua_function(tolua_S,"easeInOutBounce",tolua_FsLibFaeris_EasingUtil_easeInOutBounce00);
+   tolua_function(tolua_S,"easeOutInBounce",tolua_FsLibFaeris_EasingUtil_easeOutInBounce00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"ElasticEase","ElasticEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"ElasticEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ElasticEase_create00);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ElasticEase_create01);
+   tolua_function(tolua_S,"setAmplitude",tolua_FsLibFaeris_ElasticEase_setAmplitude00);
+   tolua_function(tolua_S,"getAmplitude",tolua_FsLibFaeris_ElasticEase_getAmplitude00);
+   tolua_function(tolua_S,"setPeriod",tolua_FsLibFaeris_ElasticEase_setPeriod00);
+   tolua_function(tolua_S,"getPeriod",tolua_FsLibFaeris_ElasticEase_getPeriod00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"ExponentialEase","ExponentialEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"ExponentialEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ExponentialEase_create00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"LinearEase","LinearEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"LinearEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_LinearEase_create00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"PowerEase","PowerEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"PowerEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_PowerEase_create00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"QuadEase","QuadEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"QuadEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_QuadEase_create00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"QuartEase","QuartEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"QuartEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_QuartEase_create00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"QuintEase","QuintEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"QuintEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_QuintEase_create00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"SineEase","SineEase","EaseExpr",NULL);
+  tolua_beginmodule(tolua_S,"SineEase");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_SineEase_create00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Curve2","Curve2","FsObject",NULL);
   tolua_beginmodule(tolua_S,"Curve2");

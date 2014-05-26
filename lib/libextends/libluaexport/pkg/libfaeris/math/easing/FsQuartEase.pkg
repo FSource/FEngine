@@ -1,0 +1,8 @@
+$#include "math/easing/FsQuartEase.h"
+
+class QuartEase:EaseExpr 
+{
+	public:
+		static QuartEase* create();
+};
+

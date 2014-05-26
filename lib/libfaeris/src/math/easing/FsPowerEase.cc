@@ -1,4 +1,7 @@
+#include <math.h>
 #include "FsPowerEase.h"
+#include "FsEasingUtil.h"
+
 
 NS_FS_BEGIN
 

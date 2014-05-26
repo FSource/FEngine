@@ -76,8 +76,21 @@ $pfile "math/FsRect2D.pkg"
 
 /* math/easeing */
 $pfile "math/easing/FsEaseExpr.pkg"
-$pfile "math/easing/FsLinearEase.pkg" 
 $pfile "math/easing/FsBackEase.pkg" 
+$pfile "math/easing/FsBezierEase.pkg"
+$pfile "math/easing/FsBounceEase.pkg"
+$pfile "math/easing/FsCircleEase.pkg"
+$pfile "math/easing/FsCubicEase.pkg"
+$pfile "math/easing/FsEasingUtil.pkg"
+$pfile "math/easing/FsElasticEase.pkg"
+$pfile "math/easing/FsExponentialEase.pkg"
+$pfile "math/easing/FsLinearEase.pkg"
+$pfile "math/easing/FsPowerEase.pkg"
+$pfile "math/easing/FsQuadEase.pkg"
+$pfile "math/easing/FsQuartEase.pkg"
+$pfile "math/easing/FsQuintEase.pkg"
+$pfile "math/easing/FsSineEase.pkg"
+
 
 /* math/curve */
 $pfile "math/curve/FsCurve.pkg"

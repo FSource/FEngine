@@ -28,7 +28,7 @@ class ElasticEase:public EaseExpr
 		float getPeriod(){return m_period;}
 
 	protected:
-		ElasticEase();
+		ElasticEase(float amplitude,float period);
 
 	private:
 		float m_amplitude;

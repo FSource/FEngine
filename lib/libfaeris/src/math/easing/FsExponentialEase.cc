@@ -1,4 +1,5 @@
 #include <math.h>
+#include "FsEasingUtil.h"
 #include "FsExponentialEase.h"
 
 NS_FS_BEGIN

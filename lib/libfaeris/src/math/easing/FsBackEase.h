@@ -27,7 +27,7 @@ class BackEase:public EaseExpr
 		float getOvershoot(){return m_overshoot;}
 		
 	protected:
-		BackEase();
+		BackEase(float overshoot);
 
 	private:
 		float m_overshoot;

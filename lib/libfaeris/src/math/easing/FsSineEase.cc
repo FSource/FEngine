@@ -1,4 +1,5 @@
 #include "FsSineEase.h"
+#include "FsEasingUtil.h"
 
 NS_FS_BEGIN
 
@@ -14,7 +15,23 @@ const char* SineEase::className()
 
 float SineEase::getEaseIn(float t)
 {
-	return 1.0f-sin((1.0f-t)*M_PI_2);
+	return EasingUtil::easeInSine(t);
+
+}
+float SineEase::getEaseOut(float t)
+{
+	return EasingUtil::easeOutSine(t);
+}
+
+float SineEase::getEaseInOut(float t)
+{
+	return EasingUtil::easeInOutSine(t);
+
+}
+
+float SineEase::getEaseOutIn(float t)
+{
+	return EasingUtil::easeOutInSine(t);
 }
 
 NS_FS_END 

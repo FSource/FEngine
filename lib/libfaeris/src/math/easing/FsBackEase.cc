@@ -1,5 +1,5 @@
 #include <assert.h>
-#include "math/FsMathUtil.h"
+#include "FsEasingUtil.h"
 #include "FsBackEase.h"
 
 
@@ -49,8 +49,5 @@ BackEase::BackEase(float overshoot)
 	m_overshoot=overshoot;
 }
 
-BackEase::~BackEase()
-{
-}
 
 NS_FS_END

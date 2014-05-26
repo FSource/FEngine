@@ -1,5 +1,4 @@
 $#include "math/easing/FsEaseExpr.h"
-
 enum 
 {
 	FS_EASE_IN=0,
@@ -17,13 +16,10 @@ class EaseExpr:public FsObject
 		int getMode();
 
 	public:
-		virtual float getEaseIn(float t);
+		virtual float getEaseIn(float t)=0;
 		virtual float getEaseOut(float t);
 		virtual float getEaseInOut(float t);
 		virtual float getEaseOutIn(float t);
-
-		/* inherit FsObject */
-		const char* className();
-
 };
+
 
