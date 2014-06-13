@@ -101,6 +101,8 @@ namespace Faeris
 	assert(condtion)
 
 
+#define FS_UNUSED_PARAM(x) (void)x
+
 
 /* copy able */
 #define FS_FEATURE public
