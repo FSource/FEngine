@@ -82,8 +82,20 @@ LOCAL_SRC_FILES :=  \
 					../../src/math/curve/FsCubicBezierCurve.cc \
 					../../src/math/curve/FsLinearCurve.cc \
 					../../src/math/easing/FsBackEase.cc \
+					../../src/math/easing/FsBezierEase.cc \
+					../../src/math/easing/FsBounceEase.cc \
+					../../src/math/easing/FsCircleEase.cc \
+					../../src/math/easing/FsCubicEase.cc \
 					../../src/math/easing/FsEaseExpr.cc \
+					../../src/math/easing/FsEasingUtil.cc \
+					../../src/math/easing/FsElasticEase.cc \
+					../../src/math/easing/FsExponentialEase.cc \
 					../../src/math/easing/FsLinearEase.cc \
+					../../src/math/easing/FsPowerEase.cc \
+					../../src/math/easing/FsQuadEase.cc \
+					../../src/math/easing/FsQuartEase.cc \
+					../../src/math/easing/FsQuintEase.cc \
+					../../src/math/easing/FsSineEase.cc \
 					../../src/mgr/FsFontTTFMgr.cc \
 					../../src/mgr/FsResource.cc \
 					../../src/mgr/FsResourceMgr.cc \
