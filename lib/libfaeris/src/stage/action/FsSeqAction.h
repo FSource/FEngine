@@ -13,22 +13,30 @@ class SeqAction:public Action
 		static SeqAction* create();
 
 	public:
+		/* inherit Action */
 		virtual bool run(ActionTarget* target,float dt);
+		virtual bool restart();
+
+		/* inherit FsObject  */
 		virtual const char* className();
 
 	public:
+
 		void addAction(Action* action);
 		void removeAction(Action* action);
 		void clearAction();
 
 	protected:
+
 		SeqAction();
 		virtual ~SeqAction();
+
 		bool init();
 		void destruct();
 
 	private:
 		FsArray* m_actions;
+		int m_curIndex;
 };
 
 
