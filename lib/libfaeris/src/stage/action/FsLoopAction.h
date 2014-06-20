@@ -20,23 +20,26 @@ class LoopAction:public Action
 	public:
 		/* inherit Action */
 		virtual bool update(ActionTarget* target,float dt,float* out);
-		virtual bool run(ActionTarget* target,float dt,float* out)=0;
+		virtual bool run(ActionTarget* target,float dt,float* out);
 		virtual bool restart();
 
 		/* inherit FsObject */
 		virtual const char* className();
 
 	public:
-		void getTotalLoopNu(){return m_totalLoopNu;}
+		int getTotalLoopNu(){return m_totalLoopNu;}
 		void setTotalLoopNu(int count){m_totalLoopNu=count;}
 
-		void getCurLoopNu(){return m_curLoopNu;}
+		int getCurLoopNu(){return m_curLoopNu;}
 		void setCurLoopNu(int count){m_curLoopNu=count;}
 
 
 	protected:
-		LoopAction(Action* action,int count);
+		LoopAction();
 		virtual ~LoopAction();
+
+		void init(Action* action,int count);
+
 
 	private:
 		int m_totalLoopNu;

@@ -120,14 +120,13 @@ $pfile "sys/event/FsKeypadDispatcher.pkg"
 
 /* stage/action */
 $pfile "stage/action/FsAction.pkg"
-$pfile "stage/action/FsMoveByAction.pkg"
-$pfile "stage/action/FsMoveToAction.pkg"
+$pfile "stage/action/FsFixTimeAction.pkg"
+$pfile "stage/action/FsCurve3Action.pkg"
+$pfile "stage/action/FsLoopAction.pkg"
 $pfile "stage/action/FsPauseAction.pkg"
-$pfile "stage/action/FsRotateZByAction.pkg"
-$pfile "stage/action/FsRotateZToAction.pkg"
-$pfile "stage/action/FsScaleByAction.pkg"
-$pfile "stage/action/FsScaleToAction.pkg"
-$pfile "stage/action/FsSeqAction.pkg"
+$pfile "stage/action/FsRotateAction.pkg"
+$pfile "stage/action/FsScaleAction.pkg"
+$pfile "stage/action/FsMoveAction.pkg"
 
 
 /* media */

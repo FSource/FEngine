@@ -71,13 +71,13 @@ bool SeqAction::run(ActionTarget* target,float dt,float* out)
 			*out=ret_time;
 			return true;
 		}
-		Action* a=m_actions->getItem(m_curIndex);
+		Action* a=(Action*)m_actions->get(m_curIndex);
 		bool ret=a->update(target,dt,&ret_time);
 
 		if(ret)
 		{
 			m_curIndex++;
-			if(ret_time~=0)
+			if(ret_time!=0)
 			{
 				dt=ret_time;
 				continue;
@@ -100,7 +100,7 @@ bool SeqAction::run(ActionTarget* target,float dt,float* out)
 	}while(true);
 
 	*out=0;
-	return false
+	return false;
 }
 
 bool SeqAction::restart()
@@ -109,7 +109,7 @@ bool SeqAction::restart()
 	int size=m_actions->size();
 	for(int i=0;i<size;i++)
 	{
-		Action* a=m_actions->getItem(i);
+		Action* a=(Action*)m_actions->get(i);
 		a->restart();
 	}
 	return true;

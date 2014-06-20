@@ -60,10 +60,11 @@ void ActionTarget::updateAction(float dt)
 	int action_nu=m_actions->size();
 	bool finish=false;
 
+	float rest_time=0;
 	for(int i=0;i<action_nu;i++)
 	{
 		Action* action=(Action*)m_actions->get(i);
-		finish=action->run(this,dt);
+		finish=action->update(this,dt,&rest_time);
 		if(finish)
 		{
 			m_actions->remove(action);

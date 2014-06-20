@@ -9,7 +9,9 @@ const char* PauseAction::className()
 
 PauseAction* PauseAction::create(float time)
 {
-	return new PauseAction(time);
+	PauseAction* ret=new PauseAction();
+	ret->setPauseTime(time);
+	return ret;
 }
 
 
@@ -35,10 +37,10 @@ bool PauseAction::run(ActionTarget* target,float dt,float* out)
 }
 
 
-PauseAction::PauseAction(float time)
+PauseAction::PauseAction()
 {
 	m_elapse=0.0f;
-	m_lifeTime=time;
+	m_lifeTime=0;
 }
 
 

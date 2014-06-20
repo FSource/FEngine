@@ -16,13 +16,21 @@ FixTimeAction::FixTimeAction()
 	m_reverse=false;
 }
 
+FixTimeAction::FixTimeAction(float time)
+{
+	m_totalTime=time;
+	m_curTime=0;
+	m_easing=NULL;
+	m_reverse=false;
+}
+
 FixTimeAction::~FixTimeAction()
 {
-	FS_SAFE_DEC_REF(m_reverse);
+	FS_SAFE_DEC_REF(m_easing);
 }
 
 
-bool FixTimeAction::run(Action* target,float dt,float* out)
+bool FixTimeAction::run(ActionTarget* target,float dt,float* out)
 {
 	bool ret=false;
 	*out=0;
@@ -55,6 +63,7 @@ bool FixTimeAction::restart()
 {
 	Action::restart();
 	m_curTime=0;
+	return true;
 }
 
 NS_FS_END

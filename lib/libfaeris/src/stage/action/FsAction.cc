@@ -36,8 +36,14 @@ bool Action::update(ActionTarget* target,float dt,float* out)
 	return ret;
 }
 
+bool Action::run(ActionTarget* target,float dt,float* out)
+{
+	*out=0;
+	return true;
+}
 
-void Action:finish()
+
+void Action::finish()
 {
 }
 
@@ -46,9 +52,10 @@ void Action::begin()
 }
 
 
-void Action::restart()
+bool Action::restart()
 {
 	m_begined=false;
+	return true;
 }
 
 

@@ -36,6 +36,7 @@ class FixTimeAction:public Action
 
 	protected:
 		FixTimeAction(float time);
+		FixTimeAction();
 		virtual ~FixTimeAction();
 
 	private:

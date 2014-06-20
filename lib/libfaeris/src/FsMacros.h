@@ -396,15 +396,15 @@ enum
 
 
 /* action */
-#define FS_SCALE_TO_ACTION_CLASS_NAME "ScaleToAction" 
-#define FS_SCALE_BY_ACTION_CLASS_NAME "ScaleByAction"
-#define FS_MOVE_TO_ACTION_CLASS_NAME "MoveToAction"
-#define FS_MOVE_BY_ACTION_CLASS_NAME "MoveByAction"
-#define FS_ROTATE_Z_TO_ACTION_CLASS_NAME "RotateZToAction"
-#define FS_ROTATE_Z_BY_ACTION_CLASS_NAME "RotateZByAction"
 #define FS_ACTION_CLASS_NAME "Action"
 #define FS_PAUSE_ACTION_CLASS_NAME "PauseAction"
 #define FS_SEQ_ACTION_CLASS_NAME "SeqAction"
+#define FS_CURVE3_ACTION_CLASS_NAME "Curve3Action"
+#define FS_FIX_TIME_ACTION_CLASS_NAME "FixTimeAction"
+#define FS_LOOP_ACTION_CLASS_NAME "LoopAction"
+#define FS_MOVE_ACTION_CLASS_NAME "MoveAction"
+#define FS_ROTATE_ACTION_CLASS_NAME "RotateAction"
+#define FS_SCALE_ACTION_CLASS_NAME "ScaleAction"
 
 /* io */
 #define FS_FILE_CLASS_NAME "FsFile"

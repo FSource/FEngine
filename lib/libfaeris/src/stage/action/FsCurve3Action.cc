@@ -7,13 +7,18 @@ const char* Curve3Action::className()
 	return FS_CURVE3_ACTION_CLASS_NAME;
 }
 
-
-Curve3Action::Curve3Action(Curve3* curve,float time)
-	:FixTimeAction(time)
+Curve3Action::Curve3Action()
 {
-	FS_SAFE_ASSIGN(m_curve,curve);
+	m_curve=NULL;
 	m_markBit=CurveUsedMarkBit::USED_XYZ;
 }
+
+void Curve3Action::init(Curve3* curve,float time)
+{
+	FixTimeAction::setTotalTime(time);
+	FS_SAFE_ASSIGN(m_curve,curve);
+}
+
 
 Curve3Action::~Curve3Action()
 {

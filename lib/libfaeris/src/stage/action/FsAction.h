@@ -16,7 +16,7 @@ class Action:public FsObject
 		virtual bool update(ActionTarget* target,float dt,float* out);
 
 		/* If return true, mean Action done */
-		virtual bool run(ActionTarget* target,float dt,float* out)=0;
+		virtual bool run(ActionTarget* target,float dt,float* out);
 
 		/* When action first run, begin will be called */
 		virtual void begin();
@@ -36,8 +36,7 @@ class Action:public FsObject
 		Action();
 		virtual ~Action();
 
-	private:
-		
+	protected:
 		bool m_begined;
 
 

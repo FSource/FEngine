@@ -1,14 +1,17 @@
 #ifndef _FS_ROTATE_ACTION_H_
 #define _FS_ROTATE_ACTION_H_
 
+#include "FsMacros.h"
 #include "FsCurve3Action.h"
 
-class RotateAction::Curve3Action 
+NS_FS_BEGIN
+
+class RotateAction:public Curve3Action 
 {
 	public:
-		RotateAction* createFromTo(const Vector3& from,const Vector3& to,float time);
-		RotateAction* createBy(const Vector3& from,const Vector3& to,float time);
-		RotateAction* create(Curve3* curve,float time);
+		static RotateAction* createFromTo(const Vector3& from,const Vector3& to,float time);
+		static RotateAction* createBy(const Vector3& from,const Vector3& to,float time);
+		static RotateAction* create(Curve3* curve,float time);
 
 	public:
 		/* inherit FixTimeAction */
@@ -26,6 +29,9 @@ class RotateAction::Curve3Action
 
 
 };
+
+NS_FS_END
+
 
 #endif /*_FS_ROTATE_ACTION_H_*/
 

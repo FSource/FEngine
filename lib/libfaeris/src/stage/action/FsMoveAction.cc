@@ -1,4 +1,6 @@
 #include "FsMoveAction.h"
+#include "math/curve/FsLinearCurve.h"
+#include "stage/entity/FsEntity.h"
 
 
 NS_FS_BEGIN 
@@ -8,7 +10,6 @@ const char* MoveAction::className()
 }
 
 MoveAction::MoveAction()
-	:Curve3Action(NULL,0)
 {
 }
 
@@ -19,7 +20,7 @@ MoveAction* MoveAction::createFromTo(const Vector3& from,const Vector3& to,float
 	return ret;
 }
 
-MoveAction* MoveAction::createBy(cosnt Vector3& from,const Vector3& to,float time)
+MoveAction* MoveAction::createBy(const Vector3& from,const Vector3& to,float time)
 {
 	MoveAction* ret=new MoveAction();
 	ret->initWithBy(from,to,time);
@@ -29,7 +30,7 @@ MoveAction* MoveAction::createBy(cosnt Vector3& from,const Vector3& to,float tim
 MoveAction* MoveAction::create(Curve3* curve,float time)
 {
 	MoveAction* ret= new MoveAction();
-	ret->InitWithCurve(curve,time);
+	ret->initWithCurve(curve,time);
 	return ret;
 }
 
@@ -37,42 +38,43 @@ MoveAction* MoveAction::create(Curve3* curve,float time)
 
 void MoveAction::initWithFromTo(const Vector3& from,const Vector3& to,float time)
 {
-	LinearCurve* curve=LinearCurve3::create(from,to);
+	LinearCurve3* curve=LinearCurve3::create(from,to);
 	setCurve(curve);
 	setTotalTime(time);
 }
 
 void MoveAction::initWithBy(const Vector3& from,const Vector3& by,float time)
 {
-	LinearCurve* curve=LinearCurve3::create(from,from+by);
+	LinearCurve3* curve=LinearCurve3::create(from,from+by);
 	setCurve(curve);
 	setTotalTime(time);
 }
 
-void MoveAction::InitWithCurve(Curve3* curve,float time)
+void MoveAction::initWithCurve(Curve3* curve,float time)
 {
 	setCurve(curve);
 	setTotalTime(time);
 }
 
 
-bool MoveAction::step(ActionTarget* target,float percent)
+void MoveAction::step(ActionTarget* target,float percent)
 {
+	Entity* entity=dynamic_cast<Entity*>(target);
 	Vector3 pos=getCurveValue(percent);
 
 	if(m_markBit&CurveUsedMarkBit::USED_X)
 	{
-		target->setPostionX(pos.x);
+		entity->setPositionX(pos.x);
 	}
 
 	if(m_markBit&CurveUsedMarkBit::USED_Y)
 	{
-		target->setPostionY(pos.y);
+		entity->setPositionY(pos.y);
 	}
 
 	if(m_markBit&CurveUsedMarkBit::USED_Z)
 	{
-		target->setPostionZ(pos.z);
+		entity->setPositionZ(pos.z);
 	}
 }
 

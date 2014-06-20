@@ -1,4 +1,6 @@
 #include "FsScaleAction.h"
+#include "stage/entity/FsEntity.h"
+#include "math/curve/FsLinearCurve.h"
 
 NS_FS_BEGIN 
 
@@ -8,14 +10,13 @@ const char* ScaleAction::className()
 	return FS_SCALE_ACTION_CLASS_NAME;
 }
 
-MoveAction::MoveAction()
-	:Curve3Action(NULL,0)
+ScaleAction::ScaleAction()
 {
 }
 
 
 
-ScaleAction* ScaleAction::createFromTo(const Vector3* from,const Vector3* to,float time)
+ScaleAction* ScaleAction::createFromTo(const Vector3& from,const Vector3& to,float time)
 {
 	ScaleAction* ret=new ScaleAction();
 	ret->initWithFromTo(from,to,time);
@@ -23,7 +24,7 @@ ScaleAction* ScaleAction::createFromTo(const Vector3* from,const Vector3* to,flo
 }
 
 
-ScaleAction* ScaleAction::createBy(const Vector3* from,const Vector3* by,float time)
+ScaleAction* ScaleAction::createBy(const Vector3& from,const Vector3& by,float time)
 {
 	ScaleAction* ret=new ScaleAction();
 	ret->initWithBy(from,by,time);
@@ -41,41 +42,43 @@ ScaleAction* ScaleAction::create(Curve3* curve,float time)
 
 void ScaleAction::initWithFromTo(const Vector3& from,const Vector3& to,float time)
 {
-	LinearCurve* curve=LinearCurve3::create(from,to);
+	LinearCurve3* curve=LinearCurve3::create(from,to);
 	setCurve(curve);
 	setTotalTime(time);
 }
 
 void ScaleAction::initWithBy(const Vector3& from,const Vector3& by,float time)
 {
-	LinearCurve* curve=LinearCurve3::create(from,from+by);
+	LinearCurve3* curve=LinearCurve3::create(from,from+by);
 	setCurve(curve);
 	setTotalTime(time);
 }
 
-void ScaleAction::InitWithCurve(Curve3* curve,float time)
+void ScaleAction::initWithCurve(Curve3* curve,float time)
 {
 	setCurve(curve);
 	setTotalTime(time);
 }
 
 
-bool ScaleAction::step(ActionTarget* target,float percent)
+void ScaleAction::step(ActionTarget* target,float percent)
 {
-	Vector3 s=getCurveValue();
+	Entity* entity=dynamic_cast<Entity*>(target);
+
+	Vector3 s=getCurveValue(percent);
 	if(m_markBit& CurveUsedMarkBit::USED_X)
 	{
-		target->setScaleX(s.x);
+		entity->setScaleX(s.x);
 	}
 
 	if(m_markBit&CurveUsedMarkBit::USED_Y)
 	{
-		target->setScaleY(s.y);
+		entity->setScaleY(s.y);
 	}
 
 	if(m_markBit&CurveUsedMarkBit::USED_Z)
 	{
-		target->setScaleZ(s.z);
+		entity->setScaleZ(s.z);
 	}
 }
 

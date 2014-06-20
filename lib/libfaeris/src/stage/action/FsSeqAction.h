@@ -14,7 +14,7 @@ class SeqAction:public Action
 
 	public:
 		/* inherit Action */
-		virtual bool run(ActionTarget* target,float dt);
+		virtual bool run(ActionTarget* target,float dt,float* out);
 		virtual bool restart();
 
 		/* inherit FsObject  */

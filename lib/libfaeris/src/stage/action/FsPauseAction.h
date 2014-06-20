@@ -17,8 +17,15 @@ class PauseAction:public Action
 		/* inherit FsObject */
 		virtual const char* className();
 
+	public:
+		void setPauseTime(float time){m_lifeTime=time;}
+		float getPauseTime(){return m_lifeTime;}
+
+
 	protected:
-		PauseAction(float time);
+		PauseAction();
+		void initTotalTime(float time){ m_lifeTime=time; }
+
 
 	private:
 		float m_elapse;

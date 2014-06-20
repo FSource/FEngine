@@ -1,10 +1,16 @@
 #include "FsRotateAction.h"
+#include "math/curve/FsLinearCurve.h"
+#include "stage/entity/FsEntity.h"
 
 NS_FS_BEGIN
 
 const char* RotateAction::className()
 {
 	return FS_ROTATE_ACTION_CLASS_NAME;
+}
+
+RotateAction::RotateAction()
+{
 }
 
 
@@ -32,43 +38,44 @@ RotateAction* RotateAction::create(Curve3* curve,float time)
 
 void RotateAction::initWithFromTo(const Vector3& from,const Vector3& to,float time)
 {
-	LinearCurve* curve=LinearCurve3::create(from,to);
+	LinearCurve3* curve=LinearCurve3::create(from,to);
 	setCurve(curve);
 	setTotalTime(time);
 }
 
 void RotateAction::initWithBy(const Vector3& from,const Vector3& by,float time)
 {
-	LinearCurve* curve=LinearCurve3::create(from,from+by);
+	LinearCurve3* curve=LinearCurve3::create(from,from+by);
 	setCurve(curve);
 	setTotalTime(time);
 }
 
-void RotateAction::InitWithCurve(Curve3* curve,float time)
+void RotateAction::initWithCurve(Curve3* curve,float time)
 {
 	setCurve(curve);
 	setTotalTime(time);
 }
 
 
-bool MoveAction::step(ActionTarget* target,float percent)
+void RotateAction::step(ActionTarget* target,float percent)
 {
 
+	Entity* entity=dynamic_cast<Entity*>(target);
 	Vector3 pos=getCurveValue(percent);
 
 	if(m_markBit&CurveUsedMarkBit::USED_X)
 	{
-		target->setRotateX(pos.x);
+		entity->setRotateX(pos.x);
 	}
 
 	if(m_markBit&CurveUsedMarkBit::USED_Y)
 	{
-		target->setRotateY(pos.y);
+		entity->setRotateY(pos.y);
 	}
 
 	if(m_markBit&CurveUsedMarkBit::USED_Z)
 	{
-		target->setRotateZ(pos.z);
+		entity->setRotateZ(pos.z);
 	}
 }
 

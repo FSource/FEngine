@@ -3,6 +3,8 @@
 
 #include "FsCurve3Action.h"
 
+
+NS_FS_BEGIN
 class ScaleAction:public Curve3Action 
 {
 	public:
@@ -12,19 +14,19 @@ class ScaleAction:public Curve3Action
 
 	public:
 		/* inherit FixTimeAction */
-		virtual bool step(ActionTarget* target,float percent);
+		virtual void step(ActionTarget* target,float percent);
 
 		/* inherit FsObject */
 		virtual const char* className();
 
 	public:
-		MoveAction();
+		ScaleAction();
 
 		void initWithFromTo(const Vector3& from,const Vector3& to,float time);
 		void initWithBy(const Vector3& from,const Vector3& by,float time);
 		void initWithCurve(Curve3* curve,float time);
 };
-
+NS_FS_END
 
 
 

@@ -1,15 +1,19 @@
 $#include "luaext/FsLuaAction.h"
 
 
-class LuaPauseAction@PauseAction:public Action 
+class LuaLoopAction@LoopAction:public Action 
 {
 	public:
-		static LuaPauseAction* create(float time);
+		static LuaLoopAction* create(Action* action,int loop_nu);
+		static LuaLoopAction* create(Action* action);
+
 
 	public:
-		void setPauseTime(float time);
-		float getPauseTime();
+		int getTotalLoopNu();
+		void setTotalLoopNu(int count);
 
+		int getCurLoopNu();
+		void setCurLoopNu(int count);
 	public:
 		bool onUpdate@update(ActionTarget* target,float dt,float* out=0);
 		bool onRun@run(ActionTarget* target,float dt,float* out=0);
@@ -17,5 +21,10 @@ class LuaPauseAction@PauseAction:public Action
 		void onFinish@finish();
 		void onRestart@restart();
 };
+
+
+
+
+
 
 

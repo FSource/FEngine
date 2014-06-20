@@ -175,10 +175,6 @@
 				Name="luaext"
 				>
 				<File
-					RelativePath="..\src\luaext\FsLuaAction.cc"
-					>
-				</File>
-				<File
 					RelativePath="..\src\luaext\FsLuaAction.h"
 					>
 				</File>
@@ -236,6 +232,10 @@
 				</File>
 				<File
 					RelativePath="..\src\luaext\FsLuaTouchEventListener.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\luaext\FsTAction.h"
 					>
 				</File>
 				<File

@@ -18,7 +18,7 @@ class MoveAction:public Curve3Action
 		/* inherit FsObject */
 		virtual const char* className();
 
-	public:
+	protected:
 		MoveAction();
 
 		void initWithFromTo(const Vector3& from,const Vector3& to,float time);

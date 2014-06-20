@@ -966,19 +966,35 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsMoveByAction.cc"
+						RelativePath="..\src\stage\action\FsCurve3Action.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsMoveByAction.h"
+						RelativePath="..\src\stage\action\FsCurve3Action.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsMoveToAction.cc"
+						RelativePath="..\src\stage\action\FsFixTimeAction.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsMoveToAction.h"
+						RelativePath="..\src\stage\action\FsFixTimeAction.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\action\FsLoopAction.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\action\FsLoopAction.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\action\FsMoveAction.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\action\FsMoveAction.h"
 						>
 					</File>
 					<File
@@ -990,35 +1006,19 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsRotateZByAction.cc"
+						RelativePath="..\src\stage\action\FsRotateAction.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsRotateZByAction.h"
+						RelativePath="..\src\stage\action\FsRotateAction.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsRotateZToAction.cc"
+						RelativePath="..\src\stage\action\FsScaleAction.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsRotateZToAction.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\stage\action\FsScaleByAction.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\src\stage\action\FsScaleByAction.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\stage\action\FsScaleToAction.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\src\stage\action\FsScaleToAction.h"
+						RelativePath="..\src\stage\action\FsScaleAction.h"
 						>
 					</File>
 					<File
