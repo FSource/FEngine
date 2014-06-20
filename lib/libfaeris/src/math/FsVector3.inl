@@ -125,7 +125,22 @@ inline Vector3 Vector3::operator*(float v)const
 	return this->scale(v);
 }
 
+inline Vector3& Vector3::operator +=(const Vector3& v)
+{
+	this->x+=v.x;
+	this->y+=v.y;
+	this->z+=v.z;
+	return *this;
+}
+
+
+
+
 #endif 
+
+
+
+
 
 
 

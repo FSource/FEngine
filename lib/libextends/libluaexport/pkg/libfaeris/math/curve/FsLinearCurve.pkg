@@ -1,0 +1,36 @@
+$#include "math/curve/FsLinearCurve.h"
+
+class LinearCurve2:public Curve2 
+{
+	public:
+		static LinearCurve2* create(const Vector2& b,const Vector2& e);
+
+	public:
+		void setBegin(const Vector2& v);
+		void setEnd(const Vector2& v);
+
+};
+
+class LinearCurve3:public Curve3 
+{
+	public:
+		static LinearCurve3* create(const Vector3& b,const Vector3& e);
+
+	public:
+		void setBegin(const Vector3& v);
+		void setEnd(const Vector3& v);
+};
+
+
+class LinearCurve4:public Curve4 
+{
+	public:
+		static LinearCurve4* create(const Vector4& b,const Vector4& e);
+
+	public:
+		void setBegin(const Vector4& v);
+		void setEnd(const Vector4& v);
+};
+
+
+

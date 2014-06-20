@@ -1,0 +1,11 @@
+$#include "math/easing/FsBezierEase.h"
+
+class BezierEase:public EaseExpr 
+{
+	public:
+		static BezierEase* create(const Vector2& v1,const Vector2& v2);
+		static BezierEase* create(float p1_x,float p1_y,float p2_x,float p2_y);
+};
+
+
+

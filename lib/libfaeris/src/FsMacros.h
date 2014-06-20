@@ -325,6 +325,39 @@ enum
 #define FS_COLOR_MATERIAL_CLASS_NAME "ColorMaterial"
 #define FS_TEXTURE_MATERIAL_CLASS_NAME "TextureMaterial"
 
+/* math/easing */
+#define FS_EASE_EXPR_CLASS_NAME   "EaseExpr"
+#define FS_BACK_EASE_CLASS_NAME   "BackEase"
+#define FS_BEZIER_EASE_CLASS_NAME "BezierEase"
+#define FS_BOUNCE_EASE_CLASS_NAME "BounceEase"
+#define FS_CIRCLE_EASE_CLASS_NAME "CircleEase"
+#define FS_CUBIC_EASE_CLASS_NAME "CubicEase"
+#define FS_ELASTIC_EASE_CLASS_NAME "ElasticEase"
+#define FS_EXPONENTIAL_EASE_CLASS_NAME "ExponentialEase"
+#define FS_LINEAR_EASE_CLASS_NAME "LinearEase"
+#define FS_POWER_EASE_CLASS_NAME "PowerEase"
+#define FS_QUAD_EASE_CLASS_NAME "QuadEase"
+#define FS_QUART_EASE_CLASS_NAME "QuartEase"
+#define FS_QUINT_EASE_CLASS_NAME "QuintEase"
+#define FS_SINE_EASE_CLASS_NAME "SineEase"
+
+
+
+
+/* math/curve */
+#define FS_LINEAR_CURVE_2_CLASS_NAME "LinearCurve2"
+#define FS_LINEAR_CURVE_3_CLASS_NAME "LinearCurve3"
+#define FS_LINEAR_CURVE_4_CLASS_NAME "LinearCurve4"
+
+#define FS_CUBIC_BEZIER_CURVE_2 "CubicBezierCurve2"
+#define FS_CUBIC_BEZIER_CURVE_3 "CubicBezierCurve3"
+#define FS_CUBIC_BEZIER_CURVE_4 "CubicBezierCurve4"
+
+#define FS_CATMULL_ROM_CURVE_2 "CatmullRomCurve2"
+#define FS_CATMULL_ROM_CURVE_3 "CatmullRomCurve3"
+#define FS_CATMULL_ROM_CURVE_4 "CatmullRomCurve4"
+
+
 
 /* sys */
 #define FS_WINDOW_CLASS_NAME "Window"
@@ -365,15 +398,15 @@ enum
 
 
 /* action */
-#define FS_SCALE_TO_ACTION_CLASS_NAME "ScaleToAction" 
-#define FS_SCALE_BY_ACTION_CLASS_NAME "ScaleByAction"
-#define FS_MOVE_TO_ACTION_CLASS_NAME "MoveToAction"
-#define FS_MOVE_BY_ACTION_CLASS_NAME "MoveByAction"
-#define FS_ROTATE_Z_TO_ACTION_CLASS_NAME "RotateZToAction"
-#define FS_ROTATE_Z_BY_ACTION_CLASS_NAME "RotateZByAction"
 #define FS_ACTION_CLASS_NAME "Action"
 #define FS_PAUSE_ACTION_CLASS_NAME "PauseAction"
 #define FS_SEQ_ACTION_CLASS_NAME "SeqAction"
+#define FS_CURVE3_ACTION_CLASS_NAME "Curve3Action"
+#define FS_FIX_TIME_ACTION_CLASS_NAME "FixTimeAction"
+#define FS_LOOP_ACTION_CLASS_NAME "LoopAction"
+#define FS_MOVE_ACTION_CLASS_NAME "MoveAction"
+#define FS_ROTATE_ACTION_CLASS_NAME "RotateAction"
+#define FS_SCALE_ACTION_CLASS_NAME "ScaleAction"
 
 /* io */
 #define FS_FILE_CLASS_NAME "FsFile"

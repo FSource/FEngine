@@ -1,7 +1,7 @@
 #ifndef _FS_PAUSE_ACTION_H_
 #define _FS_PAUSE_ACTION_H_
 
-#include "stage/action/FsAction.h"
+#include "FsAction.h"
 
 NS_FS_BEGIN
 class PauseAction:public Action 
@@ -10,11 +10,22 @@ class PauseAction:public Action
 		static PauseAction* create(float time);
 
 	public:
-		virtual bool run(ActionTarget* target,float dt);
+		/* inherit Action */
+		virtual bool run(ActionTarget* target,float dt,float* out);
+		virtual bool restart();
+
+		/* inherit FsObject */
 		virtual const char* className();
 
+	public:
+		void setPauseTime(float time){m_lifeTime=time;}
+		float getPauseTime(){return m_lifeTime;}
+
+
 	protected:
-		PauseAction(float time);
+		PauseAction();
+		void initTotalTime(float time){ m_lifeTime=time; }
+
 
 	private:
 		float m_elapse;

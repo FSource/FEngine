@@ -11,6 +11,8 @@
 #define FS_LUA_COLOR_LAYER_CLASS_NAME 			"LuaColorLayer"
 #define FS_LUA_LAYER2D_CLASS_NAME 				"LuaLayer2D"
 
+
+/* entity */
 #define FS_LUA_ENTITY_CLASS_NAME				"LuaEntity"
 #define FS_LUA_COLOR_LAYER_CLASS_NAME			"LuaColorLayer"
 #define FS_LUA_COLOR_QUAD2D_CLASS_NAME			"LuaColorQuad2D"
@@ -23,9 +25,22 @@
 #define FS_LUA_PAYMENT_CLASS_NAME				"LuaPayment"
 
 
+/* action */
+#define FS_LUA_ACTION_CLASS_NAME    		    "LuaAction"
+#define FS_LUA_LOOP_ACTION_CLASS_NAME			"LuaLoopAction"
+#define FS_LUA_PAUSE_ACTION_CLASS_NAME			"LuaPauseAction"
+#define FS_LUA_MOVE_ACTION_CLASS_NAME			"LuaMoveAction"
+#define FS_LUA_ROTATE_ACTION_CLASS_NAME				"LuaRotateAction"
+#define FS_LUA_SCALE_ACTION_CLASS_NAME				"LuaScaleAction"
+#define FS_LUA_SEQ_ACTION_CLASS_NAME				"LuaSeqAction"
+
+
+
+
+
 #define FS_LUA_HTTP_REQUEST_CLASS_NAME  		"LuaHttpRequest"
 
-#define FS_LUA_ACTION_CLASS_NAME    		    "LuaAction"
+
 
 #define FS_LUA_PARTICLE2D_EFFECT_CLASS_NAME     "LuaParticle2DEffect"
 

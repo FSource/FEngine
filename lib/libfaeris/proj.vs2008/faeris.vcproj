@@ -966,19 +966,35 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsMoveByAction.cc"
+						RelativePath="..\src\stage\action\FsCurve3Action.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsMoveByAction.h"
+						RelativePath="..\src\stage\action\FsCurve3Action.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsMoveToAction.cc"
+						RelativePath="..\src\stage\action\FsFixTimeAction.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsMoveToAction.h"
+						RelativePath="..\src\stage\action\FsFixTimeAction.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\action\FsLoopAction.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\action\FsLoopAction.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\action\FsMoveAction.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\action\FsMoveAction.h"
 						>
 					</File>
 					<File
@@ -990,35 +1006,19 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsRotateZByAction.cc"
+						RelativePath="..\src\stage\action\FsRotateAction.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsRotateZByAction.h"
+						RelativePath="..\src\stage\action\FsRotateAction.h"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsRotateZToAction.cc"
+						RelativePath="..\src\stage\action\FsScaleAction.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\action\FsRotateZToAction.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\stage\action\FsScaleByAction.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\src\stage\action\FsScaleByAction.h"
-						>
-					</File>
-					<File
-						RelativePath="..\src\stage\action\FsScaleToAction.cc"
-						>
-					</File>
-					<File
-						RelativePath="..\src\stage\action\FsScaleToAction.h"
+						RelativePath="..\src\stage\action\FsScaleAction.h"
 						>
 					</File>
 					<File
@@ -1106,6 +1106,162 @@
 					RelativePath="..\src\math\FsVertices.h"
 					>
 				</File>
+				<Filter
+					Name="easing"
+					>
+					<File
+						RelativePath="..\src\math\easing\FsBackEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsBackEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsBezierEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsBezierEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsBounceEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsBounceEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsCircleEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsCircleEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsCubicEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsCubicEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsEaseExpr.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsEaseExpr.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsEasingUtil.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsEasingUtil.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsElasticEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsElasticEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsExponentialEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsExponentialEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsLinearEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsLinearEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsPowerEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsPowerEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuadEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuadEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuartEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuartEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuintEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsQuintEase.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsSineEase.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\easing\FsSineEase.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="curve"
+					>
+					<File
+						RelativePath="..\src\math\curve\FsCatmullRomCurve.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsCatmullRomCurve.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsCubicBezierCurve.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsCubicBezierCurve.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsCurve.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsLinearCurve.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\math\curve\FsLinearCurve.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="mgr"

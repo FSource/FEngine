@@ -75,6 +75,8 @@ void Sprite2D::setAnimation(const char*  name)
 {
 
 	Sprite2DAnimation* anim=m_data->getAnimation(name);
+	FS_TRACE_WARN_ON(anim==NULL,"Can't Find Anim(%s)",name);
+
 	setAnimation(anim);
 }
 const char* Sprite2D::getAnimation()

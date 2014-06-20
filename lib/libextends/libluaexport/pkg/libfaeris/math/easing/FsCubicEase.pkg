@@ -1,0 +1,10 @@
+$#include "math/easing/FsCubicEase.h"
+
+
+class CubicEase:EaseExpr 
+{
+	public:
+		static CubicEase* create();
+
+};
+

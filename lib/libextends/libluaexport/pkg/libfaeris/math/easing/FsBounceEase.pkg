@@ -1,0 +1,13 @@
+$#include "math/easing/FsBounceEase.h"
+
+class BounceEase:public EaseExpr
+{
+	public:
+		static BounceEase* create();
+		static BounceEase* create(float amplitude);
+
+		void setAmplitude(float a){m_amplitude=a;}
+		float getAmplitude(){return m_amplitude;}
+};
+
+
