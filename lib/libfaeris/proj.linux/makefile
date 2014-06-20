@@ -20,6 +20,7 @@ INCLUDE_DIR=-I../src \
 		   	-I../../lib3rdparty/zlib/include \
 			-I../../lib3rdparty/curl/include \
 			-I../../lib3rdparty/fmod/include \
+			-I../../lib3rdparty/libjpeg/src \
 
 #Source File 
 SRC= FsGlobal.cc \
@@ -81,12 +82,9 @@ SRC= FsGlobal.cc \
 	 graphics/FsProgram.cc \
 	 graphics/FsRender.cc \
 	 graphics/FsTexture2D.cc \
-	 graphics/material/FsMat_V4F.cc \
-	 graphics/material/FsMat_V4F_C4F.cc \
-	 graphics/material/FsMat_V4F_T2F.cc \
-	 graphics/material/FsMat_V4F_T2F_A1F.cc \
-	 graphics/material/FsMat_V4F_T2F_C4F.cc \
 	 graphics/material/FsMaterial.cc \
+	 graphics/material/FsColorMaterial.cc \
+	 graphics/material/FsTextureMaterial.cc \
 	 math/FsMathUtil.cc \
 	 math/FsMatrix4.cc \
 	 math/FsQuaternion.cc \
@@ -97,6 +95,7 @@ SRC= FsGlobal.cc \
 	 mgr/FsSprite2DDataMgr.cc \
 	 mgr/FsTextureMgr.cc \
 	 mgr/FsObjectMgr.cc \
+	 mgr/FsProgramMgr.cc \
 	 scheduler/FsScheduler.cc \
 	 scheduler/FsSchedulerTarget.cc \
 	 scheduler/FsTask.cc \
@@ -108,6 +107,7 @@ SRC= FsGlobal.cc \
 	 support/data/FsUnicode.cc \
 	 support/data/FsFgzReader.cc \
 	 support/data/FsZipReader.cc \
+	 support/data/FsMd5.cc \
 	 support/felis/sl_comment.cc \
 	 support/felis/sl_double_quote_str.cc \
 	 support/felis/sl_simple_str.cc \
@@ -122,6 +122,7 @@ SRC= FsGlobal.cc \
 	 support/felis/xir_token.cc \
 	 support/image/FsImageDecoder.cc \
 	 support/image/FsImagePng.cc \
+	 support/image/FsImageJpeg.cc \
 	 support/util/FsArray.cc \
 	 support/util/FsDict.cc \
 	 support/util/FsInteger.cc \

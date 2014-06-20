@@ -2,7 +2,7 @@
 
 #include "support/image/FsImageDecoder.h"
 #include "support/image/FsImagePng.h"
-#include "Support/image/FsImageJpeg.h"
+#include "support/image/FsImageJpeg.h"
 
 #include "graphics/FsImage2D.h"
 #include "sys/io/FsVFS.h"

@@ -41,6 +41,22 @@ JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onBackground
 
 /*
  * Class:     com_faeris_lib_Fs_Jni
+ * Method:    onQuit
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onQuit
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_faeris_lib_Fs_Jni
+ * Method:    onExit
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onExit
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_faeris_lib_Fs_Jni
  * Method:    onTouchesBegin
  * Signature: (IFF)V
  */
@@ -100,8 +116,8 @@ JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onKeyEventMenu
  * Method:    onInputText
  * Signature: (Ljava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onInputText(JNIEnv*,jclass,jstring);
-
+JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onInputText
+  (JNIEnv *, jclass, jstring);
 
 /*
  * Class:     com_faeris_lib_Fs_Jni
@@ -118,14 +134,6 @@ JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onResize
  */
 JNIEXPORT jfloat JNICALL Java_com_faeris_lib_Fs_1Jni_onUpdate
   (JNIEnv *, jclass, jfloat);
-
-/*
- * Class:     com_faeris_lib_Fs_Jni
- * Method:    onDestroy
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onDestroy
-  (JNIEnv *, jclass);
 
 /*
  * Class:     com_faeris_lib_Fs_Jni

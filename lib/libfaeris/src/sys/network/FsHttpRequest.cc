@@ -150,7 +150,7 @@ void HttpRequest::onReponse(HttpReponse* data)
 	Scheduler* schedule=Global::scheduler();
 	if(schedule)
 	{
-		schedule->runSyncTask(task);
+		schedule->runASyncTask(task);
 	}
 }
 

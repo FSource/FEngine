@@ -19,6 +19,7 @@ INCLUDE_DIR=-I../src \
 			-I../../../libextends/libaudio/src \
 			-I../../../libextends/libnetwork/src \
 			-I../../../libextends/libspinesprite/src \
+			-I../../../lib3rdparty/cjson/src \
 
 
 #Source File 

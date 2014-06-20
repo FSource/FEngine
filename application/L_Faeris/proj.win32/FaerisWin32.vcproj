@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../lib/libxAccess/src;../../../lib/libfaeris/src/support;../../../lib/libfaeris/src/;../../../lib/libextends/libnetwork/src;../../../lib/libextends/lib3rdextends/src;../../../lib/libextends/libaudio/src;../../../lib/lib3rdparty/c99/include;../../../lib/lib3rdparty/fmod/include;../../../lib/lib3rdparty/freetype/include;../../../lib/lib3rdparty/GL/include;../../../lib/lib3rdparty/pthread/include;../../../lib/lib3rdparty/minizip/include;&quot;../../../lib/lib3rdparty/tolua++/include&quot;;../../../lib/lib3rdparty/lua/include;../../../lib/lib3rdparty/libpng/include;../../../lib/libextends/libluaexport/src"
+				AdditionalIncludeDirectories="../../../lib/libxAccess/src;../../../lib/libfaeris/src/support;../../../lib/libfaeris/src/;../../../lib/libextends/libnetwork/src;../../../lib/libextends/lib3rdextends/src;../../../lib/libextends/libaudio/src;../../../lib/lib3rdparty/c99/include;../../../lib/lib3rdparty/fmod/include;../../../lib/lib3rdparty/freetype/include;../../../lib/lib3rdparty/GL/include;../../../lib/lib3rdparty/pthread/include;../../../lib/lib3rdparty/minizip/include;&quot;../../../lib/lib3rdparty/tolua++/include&quot;;../../../lib/lib3rdparty/lua/include;../../../lib/lib3rdparty/ljson/src;../../../lib/lib3rdparty/libpng/include;../../../lib/libextends/libluaexport/src"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CONSOLE;PTW32_BUILD"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="glew32.lib opengl32.lib freetyped.lib fmodex.lib zlibd.lib libpngd.lib libjpegd.lib luad.lib minizipd.lib curld.lib libfaerisd.lib pthreadVC.lib tolua++d.lib libluaexportd.lib libspinesprited.lib wsock32.lib Wldap32.lib Ws2_32.lib Winmm.lib libbox2dd.lib lib3rdextendsd.lib"
+				AdditionalDependencies="glew32.lib opengl32.lib freetyped.lib fmodex.lib zlibd.lib libpngd.lib libjpegd.lib ljsond.lib jsoncd.lib luad.lib minizipd.lib curld.lib libfaerisd.lib libfaerisextd.lib pthreadVC.lib tolua++d.lib libluaexportd.lib libspinesprited.lib wsock32.lib Wldap32.lib Ws2_32.lib Winmm.lib libbox2dd.lib lib3rdextendsd.lib " 
 				OutputFile="$(OutDir)\$(ProjectName)_D.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../lib/library/win32/3rdparty;../../../lib/library/win32"

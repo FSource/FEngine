@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 03/23/14 21:13:11.
+** Generated automatically by tolua++-1.0.92 on 06/20/14 10:46:25.
 */
 
 #ifndef __cplusplus
@@ -44,6 +44,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "mgr/FsResourceMgr.h"
 #include "mgr/FsObjectMgr.h"
 #include "mgr/FsProgramMgr.h"
+#include "mgr/FsFontTTFMgr.h"
 #include "scheduler/FsScheduler.h"
 #include "luaext/FsLuaSchedulerTarget.h"
 #include "luaext/FsLuaScene.h"
@@ -154,12 +155,13 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Sprite2DDataMgr");
  tolua_usertype(tolua_S,"ProgramMgr");
  tolua_usertype(tolua_S,"TouchEvent");
- tolua_usertype(tolua_S,"Face3");
+ toluaext_usertype(tolua_S,"Director");
  toluaext_usertype(tolua_S,"AudioEngine");
  toluaext_usertype(tolua_S,"Layer");
+ tolua_usertype(tolua_S,"FontTTFMgr");
  toluaext_usertype(tolua_S,"Texture2D");
  tolua_usertype(tolua_S,"ObjectMgr");
- toluaext_usertype(tolua_S,"LuaEntity");
+ toluaext_usertype(tolua_S,"ColorLayer");
  toluaext_usertype(tolua_S,"RotateZByAction");
  tolua_usertype(tolua_S,"Color");
  tolua_usertype(tolua_S,"ActionTarget");
@@ -178,7 +180,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"LuaHttpRequest");
  toluaext_usertype(tolua_S,"MoveByAction");
  tolua_usertype(tolua_S,"Channel");
- toluaext_usertype(tolua_S,"LuaPanel");
+ tolua_usertype(tolua_S,"Face3");
  tolua_usertype(tolua_S,"RenderTarget");
  toluaext_usertype(tolua_S,"PauseAction");
  tolua_usertype(tolua_S,"LuaSchedulerTarget");
@@ -190,7 +192,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Vector3");
  toluaext_usertype(tolua_S,"SchedulerTarget");
  toluaext_usertype(tolua_S,"ScaleToAction");
- toluaext_usertype(tolua_S,"Scene");
+ tolua_usertype(tolua_S,"Program");
  toluaext_usertype(tolua_S,"HttpEngine");
  tolua_usertype(tolua_S,"Particle2DEmitter");
  toluaext_usertype(tolua_S,"Action");
@@ -200,7 +202,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"Sprite2D");
  
  toluaext_usertype(tolua_S,"SysDispatcher");
- tolua_usertype(tolua_S,"Color4f");
+ toluaext_usertype(tolua_S,"LuaEntity");
  toluaext_usertype(tolua_S,"LuaColorLayer");
  tolua_usertype(tolua_S,"Matrix4");
  tolua_usertype(tolua_S,"TouchPoint");
@@ -223,11 +225,11 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ColorMaterial");
  tolua_usertype(tolua_S,"Vector4");
  tolua_usertype(tolua_S,"Global");
- toluaext_usertype(tolua_S,"ColorLayer");
+ toluaext_usertype(tolua_S,"LuaPanel");
  toluaext_usertype(tolua_S,"Button");
+ toluaext_usertype(tolua_S,"Scene");
  toluaext_usertype(tolua_S,"Panel");
- toluaext_usertype(tolua_S,"Director");
- tolua_usertype(tolua_S,"Program");
+ tolua_usertype(tolua_S,"Color4f");
  toluaext_usertype(tolua_S,"LuaSprite2D");
  tolua_usertype(tolua_S,"ButtonState");
  toluaext_usertype(tolua_S,"SysEventListener");
@@ -513,6 +515,34 @@ static int tolua_FsLibFaeris_share_programMgr00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'programMgr'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: fontTTFMgr of class  Global */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_share_fontTTFMgr00
+static int tolua_FsLibFaeris_share_fontTTFMgr00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"Global",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   FontTTFMgr* tolua_ret = (FontTTFMgr*)  Global::fontTTFMgr();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"FontTTFMgr");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'fontTTFMgr'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7213,6 +7243,71 @@ static int tolua_FsLibFaeris___LabelTTF_getAnchor00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getAnchor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setLineGap of class  LabelTTF */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_setLineGap00
+static int tolua_FsLibFaeris___LabelTTF_setLineGap00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
+  float line_gap = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setLineGap'", NULL);
+#endif
+  {
+   self->setLineGap(line_gap);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setLineGap'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getLineGap of class  LabelTTF */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_getLineGap00
+static int tolua_FsLibFaeris___LabelTTF_getLineGap00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getLineGap'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getLineGap();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getLineGap'.",&tolua_err);
  return 0;
 #endif
 }
@@ -30845,6 +30940,7 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"sprite2DDataMgr",tolua_FsLibFaeris_share_sprite2DDataMgr00);
    tolua_function(tolua_S,"objectMgr",tolua_FsLibFaeris_share_objectMgr00);
    tolua_function(tolua_S,"programMgr",tolua_FsLibFaeris_share_programMgr00);
+   tolua_function(tolua_S,"fontTTFMgr",tolua_FsLibFaeris_share_fontTTFMgr00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"FsObject","FsObject","",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"FsObject");
@@ -31090,6 +31186,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getTextSize",tolua_FsLibFaeris___LabelTTF_getTextSize00);
    tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris___LabelTTF_setAnchor00);
    tolua_function(tolua_S,"getAnchor",tolua_FsLibFaeris___LabelTTF_getAnchor00);
+   tolua_function(tolua_S,"setLineGap",tolua_FsLibFaeris___LabelTTF_setLineGap00);
+   tolua_function(tolua_S,"getLineGap",tolua_FsLibFaeris___LabelTTF_getLineGap00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"LabelTTF","LuaLabelTTF","LabelTTF",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"LabelTTF");
@@ -31503,6 +31601,9 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"ProgramMgr","ProgramMgr","ResourceMgr",NULL);
   tolua_beginmodule(tolua_S,"ProgramMgr");
    tolua_function(tolua_S,"load",tolua_FsLibFaeris_ProgramMgr_load00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"FontTTFMgr","FontTTFMgr","ResourceMgr",NULL);
+  tolua_beginmodule(tolua_S,"FontTTFMgr");
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Scheduler","Scheduler","FsObject",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Scheduler");

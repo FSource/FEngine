@@ -6,6 +6,7 @@
 #include "support/util/FsDict.h"
 #include "support/util/FsString.h"
 #include "support/felis/xir_parser.h"
+#include "support/data/FsJson.h"
 
 NS_FS_BEGIN
 static bool s_ObjectWrite(FsObject* ob,FsFile* file,int indent);
@@ -216,10 +217,18 @@ static bool s_StringWrite(FsString* str,FsFile* file)
 	return true;
 }
 
+FsDict* ScriptUtil::parseJson(const char* json)
+{
+	return FsJson_Decode(json);
+}
+
 FsDict* ScriptUtil::parseScript(FsFile* file)
 {
 	return XirParser::create(file);
 }
+
+
+
 bool ScriptUtil::saveScript(FsFile* file,FsDict* dict,int indent)
 {
 	FsDict::Iterator iter(dict);
@@ -475,6 +484,7 @@ bool ScriptUtil::parseBoolean(const char* str)
 	}
 	return true;
 }
+
 
 
 

@@ -122,6 +122,7 @@ extern "C" {
 	FsFaeris_ModuleExit();
 }
 
+
 /*
  * Class:     com_faeris_lib_Fs_Jni
  * Method:    onForeground
@@ -154,10 +155,43 @@ extern "C" {
 	}
 }
 
+/*
+ * Class:     com_faeris_lib_Fs_Jni
+ * Method:    onQuit
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onQuit
+  (JNIEnv *, jclass)
+{
+	SysDispatcher* dispatcher= Global::sysDispatcher();
+	if(dispatcher)
+	{
+		dispatcher->dispatchEvent(new SysEvent(SysDispatcher::QUIT));
+		dispatcher->flush();
+	}
+}
+
+/*
+ * Class:     com_faeris_lib_Fs_Jni
+ * Method:    onExit
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onExit
+  (JNIEnv *, jclass)
+{
+	SysDispatcher* dispatcher= Global::sysDispatcher();
+	if(dispatcher)
+	{
+		dispatcher->dispatchEvent(new SysEvent(SysDispatcher::EXIT));
+		dispatcher->flush();
+	}
+}
+
+
+
 	JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onKeyEventBack
 (JNIEnv *, jclass)
 {
-
 
 }
 
@@ -320,21 +354,6 @@ JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onKeyEventMenu
 	return Global::scheduler()->update(dt);
 }
 
-/*
- * Class:     com_faeris_lib_Fs_Jni
- * Method:    onDestroy
- * Signature: ()V
- */
-	JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onDestroy
-(JNIEnv *, jclass)
-{
-	SysDispatcher* dispatcher= Global::sysDispatcher();
-	if(dispatcher)
-	{
-		dispatcher->dispatchEvent(new SysEvent(SysDispatcher::EXIT));
-		dispatcher->flush();
-	}
-}
 
 /*
  * Class:     com_faeris_lib_Fs_Jni

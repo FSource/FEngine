@@ -21,6 +21,11 @@ public class Fs_GLRender implements GLSurfaceView.Renderer
 		}
 		m_now=System.currentTimeMillis() ;
 		float diff=m_now-m_last;
+		if(diff<0)
+		{
+			Log.e("Fs_GLRender","SysTimeError:"+diff);
+			diff=1;
+		}
 		float sleep_time=Fs_Jni.onUpdate(diff/1000.0f);
 		/*
 		if(sleep_time>0)
@@ -65,7 +70,7 @@ public class Fs_GLRender implements GLSurfaceView.Renderer
 		else 
 		{
 			this.m_needupdate=false;
-			Log.v("Fs_GLRender","Opengl context lost,Kill Process");
+			Log.e("Fs_GLRender","Opengl context lost,Kill Process");
 			Fs_Application.runUiThread(new Runnable(){
 				@Override
 				public void run() {

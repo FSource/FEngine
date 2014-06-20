@@ -14,6 +14,7 @@ LOCAL_CFLAGS :=     -I$(LOCAL_PATH)/../../src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/minizip/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/curl/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/fmod/include \
+ 					-I$(LOCAL_PATH)/../../../lib3rdparty/jsonc/src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/libjpeg/include.android \
 
 
@@ -96,6 +97,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/support/data/FsFgzReader.cc \
 					../../src/support/data/FsEncrypt.cc \
 					../../src/support/data/FsMd5.cc \
+					../../src/support/data/FsJson.cc \
 					../../src/support/felis/sl_comment.cc \
 					../../src/support/felis/sl_double_quote_str.cc \
 					../../src/support/felis/sl_simple_str.cc \

@@ -46,8 +46,9 @@ class LabelTTF@__LabelTTF:public Entity
 
 		void setAnchor(float x,float y);
 		void getAnchor(float* x=0,float* y=0);
-
-
+		
+		void setLineGap(float line_gap);
+		float getLineGap();
 
 };
 

@@ -2,6 +2,7 @@
 #define _FS_RECT_2D_H_
 #include "FsMacros.h"
 #include "math/FsVector2.h"
+
 NS_FS_BEGIN
 
 class Rect2D
@@ -19,7 +20,9 @@ class Rect2D
 		float width;
 		float height;
 };
+
 NS_FS_END
 
 #endif /*_FS_RECT_2D_H_*/
+
 

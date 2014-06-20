@@ -146,12 +146,18 @@ void Scheduler::scheduleWithMiliSecond(bool enable)
 
 
 
-void Scheduler::runSyncTask(Task* t)
+void Scheduler::runASyncTask(Task* t)
 {
 	m_taskLock->lock();
 	m_taskPending->push(t);
 	m_taskLock->unlock();
 }
+
+void Scheduler::runTask(Task* t)
+{
+	m_taskHanding->push(t);
+}
+
 
 
 void Scheduler::init()
@@ -193,6 +199,12 @@ void Scheduler::destruct()
 
 float Scheduler::update(float dt)
 {
+
+	if(dt<0)
+	{
+		FS_TRACE_WARN("TimeErr:dt is less than zero");
+		return 0;
+	}
 
 	float update_begin=m_timer.now();
 	/* run sync task,

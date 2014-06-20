@@ -1,5 +1,0 @@
-$#include "FsLuaExport.h"
-
-
-$pfile "FsGpsProvider.pkg"
-
