@@ -13,7 +13,6 @@ class fb2ContactListener:public b2ContactListener
 		fb2ContactListener();
 		~fb2ContactListener();
 
-
 	public:
 		virtual void BeginContact(b2Contact* contact);
 		virtual void EndContact(b2Contact* contact);

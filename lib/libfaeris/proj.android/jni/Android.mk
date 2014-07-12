@@ -144,13 +144,13 @@ LOCAL_SRC_FILES :=  \
 					../../src/media/FsAudioEngine.cc \
 					../../src/media/FsAudioPlayer.cc \
 					../../src/stage/action/FsAction.cc \
-					../../src/stage/action/FsMoveByAction.cc \
-					../../src/stage/action/FsMoveToAction.cc \
+					../../src/stage/action/FsCurve3Action.cc \
+					../../src/stage/action/FsFixTimeAction.cc \
+					../../src/stage/action/FsLoopAction.cc \
+					../../src/stage/action/FsMoveAction.cc \
 					../../src/stage/action/FsPauseAction.cc \
-					../../src/stage/action/FsRotateZByAction.cc \
-					../../src/stage/action/FsRotateZToAction.cc \
-					../../src/stage/action/FsScaleByAction.cc \
-					../../src/stage/action/FsScaleToAction.cc \
+					../../src/stage/action/FsRotateAction.cc \
+					../../src/stage/action/FsScaleAction.cc \
 					../../src/stage/action/FsSeqAction.cc \
 
 
