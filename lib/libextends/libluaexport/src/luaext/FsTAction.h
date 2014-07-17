@@ -22,8 +22,8 @@ class TAction:public T_F
 			{
 				return T_F::update(target,dt,out);
 			}
-			bool ret=se->toBoolean(-1);
-			*out=se->toNumber(-2);
+			bool ret=se->toBoolean(-2);
+			*out=se->toNumber(-1);
 			se->pop();
 			se->pop();
 			return ret;
@@ -36,8 +36,8 @@ class TAction:public T_F
 			{
 				return T_F::run(target,dt,out);
 			}
-			bool ret=se->toBoolean(-1);
-			*out=se->toNumber(-2);
+			bool ret=se->toBoolean(-2);
+			*out=se->toNumber(-1);
 			se->pop();
 			se->pop();
 			return ret;

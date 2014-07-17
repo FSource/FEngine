@@ -127,6 +127,8 @@ $pfile "stage/action/FsPauseAction.pkg"
 $pfile "stage/action/FsRotateAction.pkg"
 $pfile "stage/action/FsScaleAction.pkg"
 $pfile "stage/action/FsMoveAction.pkg"
+$pfile "stage/action/FsSeqAction.pkg"
+
 
 
 /* media */

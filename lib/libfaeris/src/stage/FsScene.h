@@ -36,7 +36,8 @@ class Scene:public ActionTarget
 		void clear();
 
 		/* fade */
-		void setEnabledFade(bool fade);
+		void setFadeEnabled(bool fade);
+		bool getFadeEnabled();
 		void setFadeColor(Color c);
 
 		void setTouchEnabled(bool enabled);
