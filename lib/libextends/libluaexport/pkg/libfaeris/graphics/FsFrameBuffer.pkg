@@ -1,0 +1,13 @@
+$#include "graphics/FsFrameBuffer.h"
+class FrameBuffer:public RenderTarget 
+{
+	public:
+		static FrameBuffer* create(int width,int height);
+
+	public:
+		Texture2D* getColorTexture();
+		int getWidth();
+		int getHeight();
+};
+
+

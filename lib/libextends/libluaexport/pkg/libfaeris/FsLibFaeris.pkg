@@ -65,6 +65,8 @@ $pfile "graphics/FsRender.pkg"
 $pfile "graphics/FsColor.pkg"
 $pfile "graphics/FsTexture2D.pkg"
 $pfile "graphics/FsFontBitmap.pkg"
+$pfile "graphics/FsRenderTarget.pkg"
+$pfile "graphics/FsFrameBuffer.pkg"
 
 
 /* math */

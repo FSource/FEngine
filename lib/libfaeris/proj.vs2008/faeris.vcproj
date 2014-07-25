@@ -215,6 +215,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\src\graphics\FsFrameBuffer.cc"
+					>
+				</File>
+				<File
+					RelativePath="..\src\graphics\FsFrameBuffer.h"
+					>
+				</File>
+				<File
 					RelativePath="..\src\graphics\FsImage2D.cc"
 					>
 				</File>

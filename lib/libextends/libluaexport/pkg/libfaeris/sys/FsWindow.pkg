@@ -1,6 +1,6 @@
 $#include "sys/FsWindow.h"
 
-class Window:public FsObject
+class Window:public RenderTarget
 {
 		void setCaption(const char* name);
 		std::string getCaption(){return m_caption;}

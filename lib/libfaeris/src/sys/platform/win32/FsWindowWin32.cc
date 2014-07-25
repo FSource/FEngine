@@ -391,7 +391,8 @@ void Window::makeCurrent(Render* r)
 {
 	if(m_window)
 	{
-		wglMakeCurrent(m_window->hdc,m_window->hrc);
+		//wglMakeCurrent(m_window->hdc,m_window->hrc);
+		glBindFramebuffer(GL_FRAMEBUFFER,0);
 	}
 	m_render=r;
 }
@@ -400,7 +401,7 @@ void Window::loseCurrent(Render* r)
 {
 	if(m_window)
 	{
-		wglMakeCurrent(NULL,m_window->hrc);
+		//wglMakeCurrent(NULL,m_window->hrc);
 	}
 	m_render=NULL;
 }
