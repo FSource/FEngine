@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 07/24/14 17:31:52.
+** Generated automatically by tolua++-1.0.92 on 08/08/14 14:34:14.
 */
 
 #ifndef __cplusplus
@@ -21062,39 +21062,6 @@ static int tolua_FsLibFaeris_Render_setProgram00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setActiveTexture of class  Render */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setActiveTexture00
-static int tolua_FsLibFaeris_Render_setActiveTexture00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Render",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Render* self = (Render*)  tolua_tousertype(tolua_S,1,0);
-  int nu = ((int)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setActiveTexture'", NULL);
-#endif
-  {
-   self->setActiveTexture(nu);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setActiveTexture'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: bindTexture of class  Render */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_bindTexture00
 static int tolua_FsLibFaeris_Render_bindTexture00(lua_State* tolua_S)
@@ -38591,7 +38558,6 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_constant(tolua_S,"U_S_2D_SHADOW",Render::U_S_2D_SHADOW);
    tolua_constant(tolua_S,"U_MAX_NU",Render::U_MAX_NU);
    tolua_function(tolua_S,"setProgram",tolua_FsLibFaeris_Render_setProgram00);
-   tolua_function(tolua_S,"setActiveTexture",tolua_FsLibFaeris_Render_setActiveTexture00);
    tolua_function(tolua_S,"bindTexture",tolua_FsLibFaeris_Render_bindTexture00);
    tolua_function(tolua_S,"setRenderTarget",tolua_FsLibFaeris_Render_setRenderTarget00);
    tolua_function(tolua_S,"swapBuffers",tolua_FsLibFaeris_Render_swapBuffers00);
@@ -39188,6 +39154,22 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"KEY_X",KEY_X);
   tolua_constant(tolua_S,"KEY_Y",KEY_Y);
   tolua_constant(tolua_S,"KEY_Z",KEY_Z);
+  tolua_constant(tolua_S,"KEY_NUMPAD0",KEY_NUMPAD0);
+  tolua_constant(tolua_S,"KEY_NUMPAD1",KEY_NUMPAD1);
+  tolua_constant(tolua_S,"KEY_NUMPAD2",KEY_NUMPAD2);
+  tolua_constant(tolua_S,"KEY_NUMPAD3",KEY_NUMPAD3);
+  tolua_constant(tolua_S,"KEY_NUMPAD4",KEY_NUMPAD4);
+  tolua_constant(tolua_S,"KEY_NUMPAD5",KEY_NUMPAD5);
+  tolua_constant(tolua_S,"KEY_NUMPAD6",KEY_NUMPAD6);
+  tolua_constant(tolua_S,"KEY_NUMPAD7",KEY_NUMPAD7);
+  tolua_constant(tolua_S,"KEY_NUMPAD8",KEY_NUMPAD8);
+  tolua_constant(tolua_S,"KEY_NUMPAD9",KEY_NUMPAD9);
+  tolua_constant(tolua_S,"KEY_MULTIPLY",KEY_MULTIPLY);
+  tolua_constant(tolua_S,"KEY_ADD",KEY_ADD);
+  tolua_constant(tolua_S,"KEY_SEPARATOR",KEY_SEPARATOR);
+  tolua_constant(tolua_S,"KEY_SUBTRACT",KEY_SUBTRACT);
+  tolua_constant(tolua_S,"KEY_DECIMAL",KEY_DECIMAL);
+  tolua_constant(tolua_S,"KEY_DIVIDE",KEY_DIVIDE);
   tolua_constant(tolua_S,"FS_INPUT_MODE_ANY",FS_INPUT_MODE_ANY);
   tolua_constant(tolua_S,"FS_INPUT_MODE_EMAIL_ADDR",FS_INPUT_MODE_EMAIL_ADDR);
   tolua_constant(tolua_S,"FS_INPUT_MODE_NUMERIC",FS_INPUT_MODE_NUMERIC);

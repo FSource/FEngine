@@ -65,6 +65,7 @@ union b2ContactID
 /// provide reliable contact forces, especially for high speed collisions.
 struct b2ManifoldPoint
 {
+
     b2Vec2 localPoint;        ///< usage depends on manifold type
     float32 normalImpulse;    ///< the non-penetration impulse
     float32 tangentImpulse;    ///< the friction impulse
@@ -110,6 +111,7 @@ struct b2WorldManifold
     /// modest motion from the original state. This does not change the
     /// point count, impulses, etc. The radii must come from the shapes
     /// that generated the manifold.
+	b2WorldManifold();
     void Initialize(const b2Manifold* manifold,
                     const b2Transform& xfA, float32 radiusA,
                     const b2Transform& xfB, float32 radiusB);

@@ -144,9 +144,10 @@ Render::Render()
 
 
 
-
 	/* texture */
-	m_activeTexures=1;
+	m_activeTextureId=0;
+	glActiveTexture(GL_TEXTURE0);
+
 
 
 	/* vertex array */
@@ -209,20 +210,14 @@ void Render::setProgram(Program* prog)
 	m_program=prog;
 }
 
-void Render::setActiveTexture(int nu)
-{
-	/* now only support single texture */
-	assert(nu==1||nu==0);
-	if(m_activeTexures==nu)
-	{
-		return;
-	}
-
-	m_activeTexures=nu;
-}
-
 void Render::bindTexture(Texture2D* tex,int slot)
 {
+	if(m_activeTextureId != slot )
+	{
+		glActiveTexture(GL_TEXTURE0+slot);
+		m_activeTextureId=slot;
+	}
+
 	if(tex)
 	{
 		glBindTexture(GL_TEXTURE_2D,tex->getPlatformTexture());
@@ -281,7 +276,7 @@ void Render::pushMatrix()
 	if(m_stackIndex>=FS_MAX_RENDER_STACK_NU)
 	{
 		FS_TRACE_ERROR("Stack Overflow");
-		return;
+		return;	
 	}
 	m_stack[m_stackIndex+1]=m_stack[m_stackIndex];
 	m_stackIndex++;
@@ -430,6 +425,7 @@ void Render::setViewport(int x,int y,int width,int height)
 	glViewport(x,y,width,height);
 }
 
+
 void Render::setScissorArea(const Rect2D& area)
 {
 	m_scissorArea=area;
@@ -486,6 +482,7 @@ void Render::_setGLScissor(const Rect2D& scissor_area)
 	int y= (int)floor(scissor_area.y*m_viewportHeight+m_viewportY+0.5f); 
 	int width=(int)floor(scissor_area.width*m_viewportWidth+0.5f);
 	int height=(int)floor(scissor_area.height*m_viewportHeight+0.5f);
+
 	glScissor(x,y,width,height);
 }
 

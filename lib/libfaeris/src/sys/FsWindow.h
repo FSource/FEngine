@@ -28,6 +28,7 @@ class Window:public RenderTarget
 		virtual void makeCurrent(Render* r);
 		virtual void loseCurrent(Render* r);
 		virtual void swapBuffers();
+		virtual void sizeChanged(uint width,uint height);
 	public:
 		void setCaption(const char* name);
 		std::string getCaption(){return m_caption;}
@@ -54,6 +55,7 @@ class Window:public RenderTarget
 	protected:
 		Window();
 		virtual ~Window();
+		bool init();
 
 	public:
 		PlatformWindow* getPlatformWindow(){return m_window;}

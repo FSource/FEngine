@@ -5,6 +5,7 @@
 #endif 
 
 #include "FsGLFrameBuffer.h"
+#include "graphics/FsRender.h"
 
 NS_FS_BEGIN
 
@@ -46,6 +47,7 @@ FrameBuffer::~FrameBuffer()
 
 bool FrameBuffer::init(int width,int height)
 {
+	GLenum  status;
 	/* Create Frame Buffer Object */
 	glGenFramebuffers(1,&m_fboId);
 
@@ -80,14 +82,16 @@ bool FrameBuffer::init(int width,int height)
 
 
 	/* Stencil Buffer */
+	/*
 	glGenRenderbuffers(1,&m_stencilBuffer);
 	glBindRenderbuffer(GL_RENDERBUFFER, m_stencilBuffer);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_STENCIL_INDEX8, width, height);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL, GL_RENDERBUFFER, m_stencilBuffer); 
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_stencilBuffer); 
+	*/
 
 
 
-	GLenum status=glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	status=glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	 
 	if(status !=GL_FRAMEBUFFER_COMPLETE)
 	{
@@ -147,6 +151,9 @@ void FrameBuffer::swapBuffers()
 void FrameBuffer::makeCurrent(Render* r)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER,m_fboId);
+
+	r->setViewport(0,0,m_width,m_height);
+
 }
 
 void FrameBuffer::loseCurrent(Render* r)

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Box2D
-** Generated automatically by tolua++-1.0.92 on 07/24/14 17:31:57.
+** Generated automatically by tolua++-1.0.92 on 08/08/14 14:34:19.
 */
 
 #ifndef __cplusplus
@@ -184,13 +184,6 @@ static int tolua_collect_b2RayCastCallback (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_b2ClipVertex (lua_State* tolua_S)
-{
- b2ClipVertex* self = (b2ClipVertex*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
 static int tolua_collect_b2QueryCallback (lua_State* tolua_S)
 {
  b2QueryCallback* self = (b2QueryCallback*) tolua_tousertype(tolua_S,1,0);
@@ -198,9 +191,9 @@ static int tolua_collect_b2QueryCallback (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_b2PulleyJointDef (lua_State* tolua_S)
+static int tolua_collect_b2BlockAllocator (lua_State* tolua_S)
 {
- b2PulleyJointDef* self = (b2PulleyJointDef*) tolua_tousertype(tolua_S,1,0);
+ b2BlockAllocator* self = (b2BlockAllocator*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -212,9 +205,23 @@ static int tolua_collect_b2DestructionListener (lua_State* tolua_S)
 	return 0;
 }
 
+static int tolua_collect_b2PulleyJointDef (lua_State* tolua_S)
+{
+ b2PulleyJointDef* self = (b2PulleyJointDef*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_b2WheelJointDef (lua_State* tolua_S)
 {
  b2WheelJointDef* self = (b2WheelJointDef*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_b2RopeDef (lua_State* tolua_S)
+{
+ b2RopeDef* self = (b2RopeDef*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -240,16 +247,16 @@ static int tolua_collect_b2Rot (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_b2ChainAndPolygonContact (lua_State* tolua_S)
+static int tolua_collect_b2MassData (lua_State* tolua_S)
 {
- b2ChainAndPolygonContact* self = (b2ChainAndPolygonContact*) tolua_tousertype(tolua_S,1,0);
+ b2MassData* self = (b2MassData*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
 
-static int tolua_collect_b2MassData (lua_State* tolua_S)
+static int tolua_collect_b2ChainAndPolygonContact (lua_State* tolua_S)
 {
- b2MassData* self = (b2MassData*) tolua_tousertype(tolua_S,1,0);
+ b2ChainAndPolygonContact* self = (b2ChainAndPolygonContact*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -261,9 +268,9 @@ static int tolua_collect_b2PolygonShape (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_b2BlockAllocator (lua_State* tolua_S)
+static int tolua_collect_b2ChainShape (lua_State* tolua_S)
 {
- b2BlockAllocator* self = (b2BlockAllocator*) tolua_tousertype(tolua_S,1,0);
+ b2ChainShape* self = (b2ChainShape*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -296,13 +303,6 @@ static int tolua_collect_b2Filter (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_b2RopeDef (lua_State* tolua_S)
-{
- b2RopeDef* self = (b2RopeDef*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
 static int tolua_collect_b2PrismaticJointDef (lua_State* tolua_S)
 {
  b2PrismaticJointDef* self = (b2PrismaticJointDef*) tolua_tousertype(tolua_S,1,0);
@@ -324,6 +324,13 @@ static int tolua_collect_b2PolygonAndCircleContact (lua_State* tolua_S)
 	return 0;
 }
 
+static int tolua_collect_b2MouseJointDef (lua_State* tolua_S)
+{
+ b2MouseJointDef* self = (b2MouseJointDef*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_b2CircleShape (lua_State* tolua_S)
 {
  b2CircleShape* self = (b2CircleShape*) tolua_tousertype(tolua_S,1,0);
@@ -334,13 +341,6 @@ static int tolua_collect_b2CircleShape (lua_State* tolua_S)
 static int tolua_collect_b2World (lua_State* tolua_S)
 {
  b2World* self = (b2World*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
-static int tolua_collect_b2MouseJointDef (lua_State* tolua_S)
-{
- b2MouseJointDef* self = (b2MouseJointDef*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -366,6 +366,13 @@ static int tolua_collect_b2Mat22 (lua_State* tolua_S)
 	return 0;
 }
 
+static int tolua_collect_b2Island (lua_State* tolua_S)
+{
+ b2Island* self = (b2Island*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_b2BodyDef (lua_State* tolua_S)
 {
  b2BodyDef* self = (b2BodyDef*) tolua_tousertype(tolua_S,1,0);
@@ -373,9 +380,16 @@ static int tolua_collect_b2BodyDef (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_b2Island (lua_State* tolua_S)
+static int tolua_collect_b2WorldManifold (lua_State* tolua_S)
 {
- b2Island* self = (b2Island*) tolua_tousertype(tolua_S,1,0);
+ b2WorldManifold* self = (b2WorldManifold*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_b2GearJointDef (lua_State* tolua_S)
+{
+ b2GearJointDef* self = (b2GearJointDef*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -390,13 +404,6 @@ static int tolua_collect_b2ChainAndCircleContact (lua_State* tolua_S)
 static int tolua_collect_b2Shape (lua_State* tolua_S)
 {
  b2Shape* self = (b2Shape*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
-static int tolua_collect_b2GearJointDef (lua_State* tolua_S)
-{
- b2GearJointDef* self = (b2GearJointDef*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -422,9 +429,9 @@ static int tolua_collect_b2EdgeAndCircleContact (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_b2ChainShape (lua_State* tolua_S)
+static int tolua_collect_b2ClipVertex (lua_State* tolua_S)
 {
- b2ChainShape* self = (b2ChainShape*) tolua_tousertype(tolua_S,1,0);
+ b2ClipVertex* self = (b2ClipVertex*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -11171,6 +11178,63 @@ static int tolua_set_b2Manifold_pointCount(lua_State* tolua_S)
   self->pointCount = ((int32)  tolua_tonumber(tolua_S,2,0))
 ;
  return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  b2WorldManifold */
+#ifndef TOLUA_DISABLE_tolua_Box2D_b2WorldManifold_new00
+static int tolua_Box2D_b2WorldManifold_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"b2WorldManifold",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   b2WorldManifold* tolua_ret = (b2WorldManifold*)  Mtolua_new((b2WorldManifold)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"b2WorldManifold");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  b2WorldManifold */
+#ifndef TOLUA_DISABLE_tolua_Box2D_b2WorldManifold_new00_local
+static int tolua_Box2D_b2WorldManifold_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"b2WorldManifold",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   b2WorldManifold* tolua_ret = (b2WorldManifold*)  Mtolua_new((b2WorldManifold)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"b2WorldManifold");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -31628,8 +31692,15 @@ TOLUA_API int tolua_Box2D_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"type",tolua_get_b2Manifold_type,tolua_set_b2Manifold_type);
    tolua_variable(tolua_S,"pointCount",tolua_get_b2Manifold_pointCount,tolua_set_b2Manifold_pointCount);
   tolua_endmodule(tolua_S);
+  #ifdef __cplusplus
+  tolua_cclass(tolua_S,"b2WorldManifold","b2WorldManifold","",tolua_collect_b2WorldManifold);
+  #else
   tolua_cclass(tolua_S,"b2WorldManifold","b2WorldManifold","",NULL);
+  #endif
   tolua_beginmodule(tolua_S,"b2WorldManifold");
+   tolua_function(tolua_S,"new",tolua_Box2D_b2WorldManifold_new00);
+   tolua_function(tolua_S,"new_local",tolua_Box2D_b2WorldManifold_new00_local);
+   tolua_function(tolua_S,".call",tolua_Box2D_b2WorldManifold_new00_local);
    tolua_function(tolua_S,"Initialize",tolua_Box2D_b2WorldManifold_Initialize00);
    tolua_variable(tolua_S,"normal",tolua_get_b2WorldManifold_normal,tolua_set_b2WorldManifold_normal);
    tolua_array(tolua_S,"points",tolua_get_Box2D_b2WorldManifold_points,tolua_set_Box2D_b2WorldManifold_points);

@@ -26,6 +26,12 @@ extern "C" {
 
 	FsFaeris_ModuleInit();
 
+	Render* r=Global::render();
+	Window* win=Global::window();
+	r->setRenderTarget(win);
+	r->setClearColor(Color(0,0,0));
+
+
 	/* configure vfs */
 
 
@@ -302,10 +308,10 @@ JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onKeyEventMenu
 	JNIEXPORT void JNICALL Java_com_faeris_lib_Fs_1Jni_onResize
 (JNIEnv *, jclass, jint width, jint height)
 {
-	Render* render=Global::render();
-	if(render)
+	Window* window=Global::window();
+	if(window)
 	{
-		render->setViewport(0,0,width,height);
+		window->setSize(width,height);
 	}
 }
 

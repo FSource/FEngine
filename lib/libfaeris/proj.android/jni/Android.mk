@@ -48,6 +48,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/graphics/FsImage2D.cc \
 					../../src/graphics/FsRender.cc \
 					../../src/graphics/FsProgram.cc \
+					../../src/graphics/FsFrameBuffer.cc \
 					../../src/graphics/FsTexture2D.cc \
 					../../src/graphics/FsFontBitmap.cc \
 					../../src/graphics/material/FsMaterial.cc \
