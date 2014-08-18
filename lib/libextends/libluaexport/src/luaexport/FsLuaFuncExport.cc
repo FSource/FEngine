@@ -262,6 +262,14 @@ int luaf_md5string(lua_State* l)
 	return 1;
 }
 
+int luaf_tofsobject(lua_State* l)
+{
+	void* data=lua_touserdata(l,-1);
+	FsObject* fobject=(FsObject*) data;
+	toluaext_pushfsobject(l,fobject);
+	return 1;
+}
+
 static const struct luaL_reg luafuncs[]=
 {
 	{"f_xorstring",luaf_xorstring},
@@ -278,6 +286,7 @@ static const struct luaL_reg luafuncs[]=
 	{"f_gettablehandlenu",luaf_gettablehandlenu},
 	{"f_md5string",luaf_md5string},
 	{"f_md5binary",luaf_md5binary},
+	{"f_tofsobject",luaf_tofsobject},
 	{NULL,NULL},
 };
 

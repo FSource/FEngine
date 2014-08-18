@@ -1,0 +1,10 @@
+$#include "math/easing/FsQuadEase.h"
+
+class QuadEase:EaseExpr 
+{
+	public:
+		static QuadEase* create();
+
+};
+
+

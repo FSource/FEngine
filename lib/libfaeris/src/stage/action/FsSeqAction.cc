@@ -3,7 +3,6 @@
 
 
 NS_FS_BEGIN
-
 const char* SeqAction::className()
 {
 	return FS_SEQ_ACTION_CLASS_NAME;
@@ -12,6 +11,7 @@ const char* SeqAction::className()
 SeqAction::SeqAction()
 {
 	m_actions=NULL;
+	m_curIndex=0;
 }
 
 SeqAction* SeqAction::create()
@@ -48,6 +48,7 @@ void SeqAction::addAction(Action* action)
 	m_actions->push(action);
 }
 
+
 void SeqAction::removeAction(Action* action)
 {
 	m_actions->remove(action);
@@ -58,44 +59,63 @@ void SeqAction::clearAction()
 	m_actions->clear();
 }
 
-bool SeqAction::run(ActionTarget* target,float dt)
+
+bool SeqAction::run(ActionTarget* target,float dt,float* out)
 {
-	int action_nu=m_actions->size();
-	if(action_nu==0)
-	{
-		return true;
-	}
+	float ret_time=0.0f;
 
-	bool finish=false;
+	do{
+		int size=m_actions->size();
+		if(m_curIndex>=size)
+		{
+			*out=ret_time;
+			return true;
+		}
+		Action* a=(Action*)m_actions->get(m_curIndex);
+		bool ret=a->update(target,dt,&ret_time);
 
-	Action* cur=(Action*)m_actions->get(0);
-	finish=cur->run(target,dt);
-	if(finish)
-	{
-		m_actions->remove(cur);
-	}
+		if(ret)
+		{
+			m_curIndex++;
+			if(ret_time!=0)
+			{
+				dt=ret_time;
+				continue;
+			}
+			else 
+			{
+				if(m_curIndex>=size)
+				{
+					*out=0;
+					return true;
+				}
+				else 
+				{
+					*out=0;
+					return false;
+				}
+			}
+		}
+		break;
+	}while(true);
+
+	*out=0;
 	return false;
 }
 
-
+bool SeqAction::restart()
+{
+	Action::restart();
+	int size=m_actions->size();
+	for(int i=0;i<size;i++)
+	{
+		Action* a=(Action*)m_actions->get(i);
+		a->restart();
+	}
+	return true;
+}
 
 NS_FS_END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

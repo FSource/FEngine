@@ -22,7 +22,6 @@ void ColorMaterial::configRender(Render* r)
 	Material::configRender(r);
 	int u_point_size=r->getCacheUniformLocation(FS_UNIFORM_POINT_SIZE_LOC,FS_UNIFORM_POINT_SIZE_NAME);
 	r->setUniform(u_point_size,Render::U_F_1,1,&m_pointSize);
-	r->setActiveTexture(0);
 }
 
 

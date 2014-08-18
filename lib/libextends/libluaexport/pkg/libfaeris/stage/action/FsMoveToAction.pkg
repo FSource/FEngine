@@ -1,8 +1,0 @@
-$#include "stage/action/FsMoveToAction.h"
-class MoveToAction:public Action
-{
-	static MoveToAction* create(float sx,float sy,float sz,float time);
-	static MoveToAction* create(float sx,float sy,float time);
-	static MoveToAction* create(const Vector3& pos,float time);
-};
-

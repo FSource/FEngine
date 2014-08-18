@@ -1,0 +1,23 @@
+$#include "luaext/FsLuaAction.h"
+
+
+class FixTimeAction:public Action 
+{
+	public:
+		void setTotalTime(float time);
+		float getTotalTime();
+
+		void setCurTime(float time);
+		float getCurTime();
+
+		void setEasing(EaseExpr* easing);
+		EaseExpr* getEasing();
+
+		void setReverse(bool value);
+		bool getReverse();
+};
+
+
+
+
+

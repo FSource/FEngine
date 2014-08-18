@@ -15,6 +15,8 @@ local fsobject= {
 	"Texture2D",
 	"Render",
 	"Window",
+	"RenderTarget",
+	"FrameBuffer",
 
 	-- util 
 	"FsArray",

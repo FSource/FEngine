@@ -1,0 +1,21 @@
+$#include "math/easing/FsElasticEase.h"
+
+class ElasticEase:public EaseExpr 
+{
+	public:
+		static ElasticEase* create();
+		static ElasticEase* create(float amplitude,float period);
+
+		void setAmplitude(float amplitude){m_amplitude=amplitude;}
+		float getAmplitude(){return m_amplitude;}
+		void setPeriod(float period){m_period=period;}
+		float getPeriod(){return m_period;}
+
+};
+
+
+
+
+
+
+

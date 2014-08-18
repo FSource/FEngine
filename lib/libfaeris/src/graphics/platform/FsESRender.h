@@ -105,7 +105,6 @@ class Render:public FsObject
 		void setProgram(Program* prog);
 
 		/* texture */
-		void setActiveTexture(int nu);
 		void bindTexture(Texture2D* tex,int slot);
 
 
@@ -212,7 +211,7 @@ class Render:public FsObject
 		bool m_cullFace;
 
 		/* texture */
-		int m_activeTexures;
+		int m_activeTextureId;
 
 		/* vertex attr array flags[] */
 		bool* m_vertexAttrFlags;

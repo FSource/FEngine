@@ -1,0 +1,20 @@
+$#include "luaext/FsLuaAction.h"
+
+class LuaMoveAction@MoveAction:public Curve3Action
+{
+	public:
+		static LuaMoveAction* createFromTo(const Vector3& from,const Vector3& to,float time);
+		static LuaMoveAction* createBy(const Vector3& from,const Vector3& by,float time);
+		static LuaMoveAction* create(Curve3* curve,float time);
+
+	public:
+		bool onUpdate@update(ActionTarget* target,float dt,float* out=0);
+		bool onRun@run(ActionTarget* target,float dt,float* out=0);
+		void onBegin@begin();
+		void onFinish@finish();
+		void onRestart@restart();
+};
+
+
+
+

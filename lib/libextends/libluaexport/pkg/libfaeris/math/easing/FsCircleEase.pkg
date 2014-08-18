@@ -1,0 +1,10 @@
+$#include "math/easing/FsCircleEase.h"
+
+
+class CircleEase:EaseExpr 
+{
+	public:
+		static CircleEase* create();
+
+};
+

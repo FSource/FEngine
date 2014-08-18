@@ -1,0 +1,9 @@
+$#include "math/easing/FsQuintEase.h"
+
+class QuintEase:EaseExpr 
+{
+	public:
+		static QuintEase* create();
+};
+
+

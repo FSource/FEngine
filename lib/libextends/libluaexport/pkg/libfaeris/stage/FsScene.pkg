@@ -16,7 +16,9 @@ class Scene@__Scene:public ActionTarget
 		Layer* getLayer(int index);
 
 		/* fade */
-		void setEnabledFade(bool fade);
+		void setFadeEnabled(bool fade);
+		bool getFadeEnabled();
+
 		void setFadeColor(Color c);
 
 		/* touch */

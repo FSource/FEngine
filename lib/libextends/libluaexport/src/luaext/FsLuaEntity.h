@@ -4,7 +4,6 @@
 #include "FsMacros.h"
 #include "FsLuaMacros.h"
 #include "FsObject.h"
-#include "luaext/FsLuaEntity.h"
 #include "luaext/FsTEntity.h"
 #include "stage/entity/FsEntity.h"
 #include "stage/entity/FsColorQuad2D.h"

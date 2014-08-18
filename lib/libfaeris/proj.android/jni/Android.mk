@@ -48,6 +48,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/graphics/FsImage2D.cc \
 					../../src/graphics/FsRender.cc \
 					../../src/graphics/FsProgram.cc \
+					../../src/graphics/FsFrameBuffer.cc \
 					../../src/graphics/FsTexture2D.cc \
 					../../src/graphics/FsFontBitmap.cc \
 					../../src/graphics/material/FsMaterial.cc \
@@ -78,6 +79,24 @@ LOCAL_SRC_FILES :=  \
 					../../src/math/FsMathUtil.cc \
 					../../src/math/FsMatrix4.cc \
 					../../src/math/FsRect2D.cc \
+					../../src/math/curve/FsCatmullRomCurve.cc \
+					../../src/math/curve/FsCubicBezierCurve.cc \
+					../../src/math/curve/FsLinearCurve.cc \
+					../../src/math/easing/FsBackEase.cc \
+					../../src/math/easing/FsBezierEase.cc \
+					../../src/math/easing/FsBounceEase.cc \
+					../../src/math/easing/FsCircleEase.cc \
+					../../src/math/easing/FsCubicEase.cc \
+					../../src/math/easing/FsEaseExpr.cc \
+					../../src/math/easing/FsEasingUtil.cc \
+					../../src/math/easing/FsElasticEase.cc \
+					../../src/math/easing/FsExponentialEase.cc \
+					../../src/math/easing/FsLinearEase.cc \
+					../../src/math/easing/FsPowerEase.cc \
+					../../src/math/easing/FsQuadEase.cc \
+					../../src/math/easing/FsQuartEase.cc \
+					../../src/math/easing/FsQuintEase.cc \
+					../../src/math/easing/FsSineEase.cc \
 					../../src/mgr/FsFontTTFMgr.cc \
 					../../src/mgr/FsResource.cc \
 					../../src/mgr/FsResourceMgr.cc \
@@ -126,13 +145,13 @@ LOCAL_SRC_FILES :=  \
 					../../src/media/FsAudioEngine.cc \
 					../../src/media/FsAudioPlayer.cc \
 					../../src/stage/action/FsAction.cc \
-					../../src/stage/action/FsMoveByAction.cc \
-					../../src/stage/action/FsMoveToAction.cc \
+					../../src/stage/action/FsCurve3Action.cc \
+					../../src/stage/action/FsFixTimeAction.cc \
+					../../src/stage/action/FsLoopAction.cc \
+					../../src/stage/action/FsMoveAction.cc \
 					../../src/stage/action/FsPauseAction.cc \
-					../../src/stage/action/FsRotateZByAction.cc \
-					../../src/stage/action/FsRotateZToAction.cc \
-					../../src/stage/action/FsScaleByAction.cc \
-					../../src/stage/action/FsScaleToAction.cc \
+					../../src/stage/action/FsRotateAction.cc \
+					../../src/stage/action/FsScaleAction.cc \
 					../../src/stage/action/FsSeqAction.cc \
 
 

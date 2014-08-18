@@ -1,8 +1,21 @@
-$#include "stage/action/FsPauseAction.h"
-class PauseAction:public Action 
+$#include "luaext/FsLuaAction.h"
+
+
+class LuaPauseAction@PauseAction:public Action 
 {
 	public:
-		static PauseAction* create(float time);
+		static LuaPauseAction* create(float time);
+
+	public:
+		void setPauseTime(float time);
+		float getPauseTime();
+
+	public:
+		bool onUpdate@update(ActionTarget* target,float dt,float* out=0);
+		bool onRun@run(ActionTarget* target,float dt,float* out=0);
+		void onBegin@begin();
+		void onFinish@finish();
+		void onRestart@restart();
 };
 
 

@@ -19,7 +19,6 @@ TextureMaterial* TextureMaterial::create()
 void TextureMaterial::configRender(Render* r)
 {
 	Material::configRender(r);
-	r->setActiveTexture(m_textureNu);
 
 	if(m_textureNu==1)
 	{

@@ -1,0 +1,7 @@
+$#include "graphics/FsRenderTarget.h"
+
+class RenderTarget:public FsObject
+{
+
+}
+
