@@ -69,6 +69,16 @@ inline void Vector2::set(float _x,float _y)
 	x=_x;
 	y=_y;
 }
+
+inline Vector2 Vector2::lerp(const Vector2& v,float t)
+{
+	float rx=x+(v.x-x)*t;
+	float ry=y+(v.y-y)*t;
+
+	return Vector2(rx,ry);
+}
+
+
 /* operator */
 
 inline Vector2 Vector2::operator+(const Vector2& v) const 

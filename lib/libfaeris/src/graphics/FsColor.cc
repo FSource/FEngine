@@ -72,6 +72,16 @@ Color4f Color4f::WHITE=Color4f(1.0f,1.0f,1.0f,1.0f);
 Color4f Color4f::BLACK=Color4f(0.0f,0.0f,0.0f,1.0f);
 
 
+Color4f Color4f::lerp(const Color4f& value,float t)
+{
+	float red=r+(value.r-r)*t;
+	float green=g+(value.g-g)*t;
+	float blue=b+(value.b-b)*t;
+	float alpha=a+(value.a-a)*t;
+
+	return Color4f(red,green,blue,alpha);
+}
+
 
 Color4f Color4f::operator+(Color4f right)
 {

@@ -34,6 +34,8 @@ class Vector4
 
 		bool equal(const Vector4& v) const;
 
+		Vector4 lerp(const Vector4& v,float t);
+
 
 		Vector4 operator + (const Vector4& v)const;
 		Vector4 operator - (const Vector4& v)const;

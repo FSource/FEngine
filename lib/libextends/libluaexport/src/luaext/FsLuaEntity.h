@@ -15,7 +15,7 @@
 #include "stage/entity/FsParticle2DEffect.h"
 #include "stage/entity/FsParticle2DEmitter.h"
 #include "stage/entity/FsPanel.h"
-#include "stage/entity/FsButton.h"
+#include "stage/ui/FsPressButton.h"
 
 #if FS_CONFIG(FS_EXPORT_LIB_SPINE_SPRITE)
 #include "FsSpineSprite.h"
@@ -318,122 +318,95 @@ class LuaVertexPolygon:public TEntity<VertexPolygon>
 		~LuaVertexPolygon(){}
 };
 
-class LuaButton:public TEntity<Button>
+class LuaPressButton:public TEntity<PressButton>
 {
 	public:
-		static LuaButton* create()
+		static LuaPressButton* create()
 		{
-			LuaButton* ret=new LuaButton();
-			if(!ret->init())
-			{
-				delete ret;
-				return NULL;
-			}
-			return ret;
-		}
-
-		static LuaButton* create(const char* image)
-		{
-			LuaButton* ret=new LuaButton();
-			if(!ret->init(image))
-			{
-				delete ret;
-				return NULL;
-			}
-			return ret;
-
-		}
-		static LuaButton* create(const char* image,float width,float height)
-		{
-			LuaButton* ret=new LuaButton();
-			if(!ret->init(image))
-			{
-				delete ret;
-				return NULL;
-			}
-			ret->setSize(width,height);
+			LuaPressButton* ret=new LuaPressButton();
 			return ret;
 		}
 
 
 	public:
-		/* inherit Button */
+		/* inherit PressButton */
 
 		virtual void click()
 		{
 			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
-			if(!se->callFunctionInTable(TEntity<Button>::m_scriptData,"onClick",1,0,"f",this))
+			if(!se->callFunctionInTable(TEntity<PressButton>::m_scriptData,"onClick",1,0,"f",this))
 			{
-				TEntity<Button>::click();
+				TEntity<PressButton>::click();
+			}
+		}
+		virtual void cancel()
+		{
+			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
+			if(!se->callFunctionInTable(TEntity<PressButton>::m_scriptData,"onCancel",1,0,"f",this))
+			{
+				TEntity<PressButton>::cancel();
 			}
 		}
 
 		virtual void pressDown(float x,float y)
 		{
 			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
-			if(!se->callFunctionInTable(TEntity<Button>::m_scriptData,"onPressDown",3,0,"fnn",this,x,y))
+			if(!se->callFunctionInTable(TEntity<PressButton>::m_scriptData,"onPressDown",3,0,"fnn",this,x,y))
 			{
-				TEntity<Button>::pressDown(x,y);
+				TEntity<PressButton>::pressDown(x,y);
 			}
 		}
 		virtual void pressMoveIn(float x,float y)
 		{
 			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
-			if(!se->callFunctionInTable(TEntity<Button>::m_scriptData,"onPressMoveIn",3,0,"fnn",this,x,y))
+			if(!se->callFunctionInTable(TEntity<PressButton>::m_scriptData,"onPressMoveIn",3,0,"fnn",this,x,y))
 			{
-				TEntity<Button>::pressMoveIn(x,y);
+				TEntity<PressButton>::pressMoveIn(x,y);
 			}
 		}
 		virtual void pressMoveOut(float x,float y)
 		{
 			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
-			if(!se->callFunctionInTable(TEntity<Button>::m_scriptData,"onPressMoveOut",3,0,"fnn",this,x,y))
+			if(!se->callFunctionInTable(TEntity<PressButton>::m_scriptData,"onPressMoveOut",3,0,"fnn",this,x,y))
 			{
-				TEntity<Button>::pressMoveOut(x,y);
+				TEntity<PressButton>::pressMoveOut(x,y);
 			}
 		}
 		virtual void pressUp(float x,float y)
 		{
 			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
-			if(!se->callFunctionInTable(TEntity<Button>::m_scriptData,"onPressUp",3,0,"fnn",this,x,y))
+			if(!se->callFunctionInTable(TEntity<PressButton>::m_scriptData,"onPressUp",3,0,"fnn",this,x,y))
 			{
-				TEntity<Button>::pressUp(x,y);
+				TEntity<PressButton>::pressUp(x,y);
 			}
 		}
-		virtual void pressCancel(float x,float y)
-		{
-			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
-			if(!se->callFunctionInTable(TEntity<Button>::m_scriptData,"onPressCancel",3,0,"fnn",this,x,y))
-			{
-				TEntity<Button>::pressCancel(x,y);
-			}
-		}
+
 
 	public:
 		virtual void onPressDown(float x,float y)
 		{
-			TEntity<Button>::pressDown(x,y);
+			TEntity<PressButton>::pressDown(x,y);
 		}
 		virtual void onPressMoveIn(float x,float y)
 		{
-			TEntity<Button>::pressMoveIn(x,y);
+			TEntity<PressButton>::pressMoveIn(x,y);
 		}
 		virtual void onPressMoveOut(float x,float y)
 		{
-			TEntity<Button>::pressMoveOut(x,y);
+			TEntity<PressButton>::pressMoveOut(x,y);
 		}
 		virtual void onPressUp(float x,float y)
 		{
-			TEntity<Button>::pressUp(x,y);
+			TEntity<PressButton>::pressUp(x,y);
 		}
 
 		virtual void onClick()
 		{
-			TEntity<Button>::click();
+			TEntity<PressButton>::click();
 		}
-		virtual void onPressCancel(float x,float y)
+		virtual void onCancel()
 		{
-			TEntity<Button>::pressCancel(x,y);
+			TEntity<PressButton>::cancel();
 		}
 
 
@@ -444,13 +417,13 @@ class LuaButton:public TEntity<Button>
 		/* inherit FsObject */
 		virtual const char* className()
 		{
-			return FS_LUA_BUTTON_CLASS_NAME;
+			return FS_LUA_PRESS_BUTTON_CLASS_NAME;
 		}
 
 
 	protected:
-		LuaButton(){}
-		virtual ~LuaButton(){}
+		LuaPressButton(){}
+		virtual ~LuaPressButton(){}
 
 
 };

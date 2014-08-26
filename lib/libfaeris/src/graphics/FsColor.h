@@ -66,6 +66,9 @@ class Color4f
 		{
 		}
 
+		Color4f lerp(const Color4f& value,float t);
+
+
 		Color4f operator+(Color4f right);
 		Color4f operator-(Color4f right);
 		Color4f operator*(float s);
