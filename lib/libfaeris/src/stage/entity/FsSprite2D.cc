@@ -115,6 +115,11 @@ void Sprite2D::updateAnimation(float dt)
 	m_elapseTime-=forward_frame*frame_time;
 	
 	m_curFrame+=forward_frame;
+	
+	if(m_curFrame<0)
+	{
+		m_curFrame=0;
+	}
 
 	if(m_curFrame>=total_frame)
 	{

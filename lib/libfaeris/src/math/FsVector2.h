@@ -33,6 +33,8 @@ class Vector2
 		bool equal(const Vector2& v)const ;
 		void set(float _x,float _y);
 
+		Vector2 lerp(const Vector2& v,float t);
+
 		/* operator */
 		Vector2 operator + (const Vector2& v)const;
 		Vector2 operator - (const Vector2& v)const;

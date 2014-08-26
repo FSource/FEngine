@@ -1,0 +1,180 @@
+$#include "stage/ui/FsPressButton.h"
+$#include "luaext/FsLuaEntity.h"
+
+
+class PressButton@__PressButton:public Entity
+{
+	public:
+		enum 
+		{
+			FLAG_COLOR= 0x1UL,
+			FLAG_OPACITY= 0x2UL,
+			FLAG_TEXTURE= 0x4UL,
+			FLAG_SIZE=0x8UL,
+			FLAG_ANCHOR =0x10UL,
+			FLAG_ROTATE=0x20UL,
+			FLAG_SCALE=0x40UL,
+			FLAG_CHILDREN=0x80UL,
+			FLAG_ALL= 0xFFUL
+		};
+
+		enum
+		{
+			STATE_UNKOWN=-1,
+			STATE_NORMAL=0,
+			STATE_PRESS=1,
+			STATE_DISABLE=2,
+			STATE_NU=3,
+			STATE_ALL=4
+		};
+
+
+
+	public:  /* Attribut And State Attribute Setting */
+		/* color */
+		void setColor(const Color4f& value);
+		void setColor(int state,const Color4f& value);
+		Color4f getColor() const;
+		Color4f getColor(int state) const ;
+
+
+
+		/* opacity */
+		void setOpacity(float value);
+		float getOpacity() const;
+
+		void setOpacity(int state,float value);
+		float getOpacity(int state) const;
+
+
+		/* texture */
+		void setTexture(const char* filename);
+		void setTexture(const char* filename,float width,float height);
+		void setTexture(const char* filename,const Vector2& size);
+		void setTexture(Texture2D* tex);
+		void setTexture(Texture2D* tex,float width,float height);
+		void setTexture(Texture2D* tex,const Vector2& size);
+		Texture2D* getTexture() const;
+
+
+
+
+		void setTexture(int state,const char* filename);
+		void setTexture(int state,const char* filename,float width,float height);
+		void setTexture(int state,const char* filename,const Vector2& size);
+		void setTexture(int state,Texture2D* tex);
+		void setTexture(int state,Texture2D* tex,float width,float height);
+		void setTexture(int state,Texture2D* tex,const Vector2& size);
+		Texture2D* getTexture(int state) const;
+
+
+		/* size */
+		void setSize(const Vector2& size);
+		void setSize(float x,float y);
+		Vector2 getSize()const ;
+
+
+		void setSize(int state,float x,float y);
+		void setSize(int state,const Vector2& size);
+		Vector2 getSize(int state) const;
+
+
+		/* anchor */
+		void setAnchor(float x,float y);
+		void setAnchor(const Vector2& size);
+		Vector2 getAnchor()const ;
+
+		void setAnchor(int state,float x,float y);
+		void setAnchor(int state,const Vector2& size);
+		Vector2 getAnchor(int state)const ;
+
+
+
+		/* rotate */
+		void setRotate(int state,float x,float y,float z);
+		void setRotate(int state,const Vector3& value);
+		Vector3 getRotate(int state)const ;
+
+
+		/* scale */
+		void setScale(int state,float x,float y,float z);
+		void setScale(int state,const Vector3& value);
+		Vector3 getScale(int state)const ;
+
+		/* child */
+		void setChild(int state,FsArray* child);
+		FsArray* getChild(int state)const;
+
+
+		/* disabled */
+		void setDisabled(bool value);
+		bool getDisabled() const;
+
+
+	public: /* tween info */
+		void setTweenInfo(int from,int to,EaseExpr* easing,float time);
+
+		void setTweenFlags(int flags);
+		void clearTweenFlags();
+
+		void addTweenFlags(int flags);
+		void removeTweenFlags(int flags);
+
+
+};
+
+class LuaPressButton@PressButton:public PressButton 
+{
+	public:
+		enum 
+		{
+			FLAG_COLOR= 0x1UL,
+			FLAG_OPACITY= 0x2UL,
+			FLAG_TEXTURE= 0x4UL,
+			FLAG_SIZE=0x8UL,
+			FLAG_ANCHOR =0x10UL,
+			FLAG_ROTATE=0x20UL,
+			FLAG_SCALE=0x40UL,
+			FLAG_CHILDREN=0x80UL,
+			FLAG_ALL= 0xFFUL
+		};
+
+		enum 
+		{
+			STATE_UNKOWN=-1,
+			STATE_NORMAL=0,
+			STATE_PRESS=1,
+			STATE_DISABLE=2,
+			STATE_NU=3,
+			STATE_ALL=4
+		};
+
+	public:
+		static PressButton* create();
+		static PressButton* createWithDarkStyle(const char* filename,const Color4f& dark);
+		static PressButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark);
+		static PressButton* createWithScaleStyle(const char* filename,const Vector3& scale);
+		static PressButton* createWithScaleStyle(Texture2D* tex,const Vector3& scale);
+
+
+	public:
+		void onDraw@draw(Render* r);
+		void onUpdate@update(float dt);
+
+		bool onTouchBegin@touchBegin(float x,float y);
+		bool onTouchMove@touchMove(float x,float y);
+		bool onTouchEnd@touchEnd(float x,float y);
+		bool onHit2D@hit2D(float x,float y);
+
+		void onClick@click();
+		void onCancel@cancel();
+
+		void onPressDown@pressDown(float x,float y);
+		void onPressMoveIn@pressMoveIn(float x,float y);
+		void onPressMoveOut@pressMoveOut(float x,float y);
+		void onPressUp@pressUp(float x,float y);
+
+};
+
+
+

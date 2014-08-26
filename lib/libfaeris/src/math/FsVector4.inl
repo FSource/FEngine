@@ -67,6 +67,17 @@ inline bool Vector4::equal(const Vector4&  v) const
 		   Math::floatEqual(w,v.w);
 }
 
+inline Vector4 Vector4::lerp(const Vector4& v,float t)
+{
+
+	float rx=x+(v.x-x)*t;
+	float ry=y+(v.y-y)*t;
+	float rz=z+(v.z-z)*t;
+	float rw=w+(v.w-w)*t;
+
+	return Vector4(rx,ry,rz,rw);
+}
+
 inline Vector4 Vector4::operator + (const Vector4& v)const
 {
 	return this->add(v);

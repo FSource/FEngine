@@ -31,6 +31,9 @@ class Vector3
 		float length2() const;
 		bool equal(const Vector3& v) const;
 		void set(float _x,float _y,float _z);
+		Vector3 lerp(const Vector3& v,float t);
+
+
 
 		/* operator */
 

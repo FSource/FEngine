@@ -102,6 +102,17 @@ inline void Vector3::set(float _x,float _y,float _z)
 	z=_z;
 }
 
+
+
+inline Vector3 Vector3::lerp(const Vector3& v,float t)
+{
+	float rx=x+(v.x-x)*t;
+	float ry=y+(v.y-y)*t;
+	float rz=z+(v.z-z)*t;
+
+	return Vector3(rx,ry,rz);
+}
+
 inline Vector3 Vector3::operator+(const Vector3& v)const
 {
 	return this->add(v);

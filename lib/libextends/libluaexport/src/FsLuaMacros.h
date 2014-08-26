@@ -46,7 +46,7 @@
 
 #define FS_LUA_PANEL_CLASS_NAME					"LuaPanel"
 
-#define FS_LUA_BUTTON_CLASS_NAME 				"LuaButton"
+#define FS_LUA_PRESS_BUTTON_CLASS_NAME 			"LuaPressButton"
 
 
 

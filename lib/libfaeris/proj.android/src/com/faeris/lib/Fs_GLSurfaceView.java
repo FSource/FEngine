@@ -57,6 +57,7 @@ public class Fs_GLSurfaceView  extends GLSurfaceView
 			}
 		});
 	}
+	
 
 
 	@Override 

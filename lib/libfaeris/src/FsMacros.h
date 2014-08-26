@@ -101,6 +101,8 @@ namespace Faeris
 	assert(condtion)
 
 
+#define FS_UNUSED_PARAM(x) (void)x
+
 
 /* copy able */
 #define FS_FEATURE public
@@ -299,7 +301,9 @@ enum
 #define FS_PARTICLE2D_EFFECT_CLASS_NAME   "Particle2DEffect"
 #define FS_VERTEX_POLYGON_CLASS_NAME "VertexPolygon"
 #define FS_PANEL_CLASS_NAME "Panel"
-#define FS_BUTTON_CLASS_NAME "Button"
+
+/* ui */
+#define FS_PRESS_BUTTON_CLASS_NAME "PressButton"
 
 
 /* scene */
