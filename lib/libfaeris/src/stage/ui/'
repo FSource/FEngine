@@ -1,0 +1,61 @@
+#include "FsScrollWidget.h"
+
+
+NS_FS_BEGIN
+
+
+void ScrollWidget::setMargin(float l,float r,float t,float b)
+{
+	m_marginLeft=l;
+	m_marginRight=r;
+	m_marginTop=t;
+	m_marginBottom=b;
+
+	adjustScrollArea();
+}
+
+void ScrollWidget::setMarginLeft(float v)
+{
+	m_marginLeft=v;
+	adjustScrollArea();
+}
+
+void ScrollWidget::setMarginRight(float v)
+{
+	m_marginRight=v;
+	adjustScrollArea();
+}
+
+void ScrollWidget:;setMarginTop(float v)
+{
+	m_marginTop=v;
+}
+
+void ScrollWidget::setMarginBottom(float v)
+{
+	m_marginBottom=v;
+}
+
+float ScrollWidget::getMarginLeft()const 
+{
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NS_FS_END 
+
+
+
+
