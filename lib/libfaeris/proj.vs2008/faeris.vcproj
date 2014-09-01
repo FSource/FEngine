@@ -1041,6 +1041,14 @@
 						RelativePath="..\src\stage\ui\FsPressButton.h"
 						>
 					</File>
+					<File
+						RelativePath="..\src\stage\ui\UiWidget.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\UiWidget.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter

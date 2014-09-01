@@ -9,36 +9,61 @@
 class Scroller:public FsObject 
 {
 	public:
+		enum
+		{
+			SCROLL,
+			FLING,
+			BOUNCE_BACK,
+		};
+
+	public:
 		static Scroller* create();
 
 	public:
-		void startScroll(float start_x,float start_y,float dx,float dy);
-		void startScroll(float start_x,float start_y,float dx,float dy,float duration);
+
+		void startScroll(float start,float min,float max,float delta,float duration);
+		void fling(float start,float min,float max,float velocity,float accel);
+		void bounceBack(float start,float min,float max);
+
+
+		bool isFinish();
+		void abortAnimation();
+		void finishAnimation();
+
+		float getCurPos();
+
+
 
 	public:
 		virtual bool update(float dt);
 
-
-
 	private:
-		float m_startX,m_startY;
-		float m_finalX,m_finalY;
-		float m_deltaX,m_deltaY;
+		float m_mode;
 
 
-		float m_curX,m_curY;
-
-		float m_minX,m_minY;
-		float m_maxX,m_maxY;
-
+		/* common */
 		float m_duration;
 		float m_timePassed;
 
-		bool m_finished;
+		float m_curPos;
+		float m_maxPos;
+		float m_minPos;
+
+		/* scroll mode*/
+		float m_delta,m_start,m_final;
+		EaseExpr* m_scrollEasing;
 
 
-		EaseExpr* m_easing;
+		/* fling mode */
+		float m_startVelocity;
+		float m_curVelocity;
 
+		float m_accel;
+		float m_eageVelocityAccum;
+
+
+		EaseExpr* m_flingEasing;
+		/* bounceBack mode */
 
 };
 

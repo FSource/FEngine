@@ -8,56 +8,95 @@ NS_FS_BEGIN
 
 bool Scroller::update(float dt)
 {
-	if(m_finished)
-	{
-		return true;
-	}
 
-	m_timePassed+=dt;
-	if(m_timePassed< m_duration )
-	{
-		float x=m_timePassed/m_duration;
-		if(m_easing==NULL)
-		{
-			x=viscousFluid(x);
-		}
-		else
-		{
-			x=m_easing->getValue(x);
-		}
-
-		m_curX=m_startX+m_deltaX*x;
-		m_curY=m_startY+m_deltaY*x;
-	}
-	else 
-	{
-		m_curX=m_finalX;
-		m_curY=m_finalY;
-		m_finished=true;
-	}
-	return false;
 }
 
-void Scroller::startScroll(float start_x,float start_y,float dx,float dy)
-{
-	startScroll(start_x,start_y,dx,dy,FS_SCROLL_DEFAULT_DURATION);
-}
 
-void Scroller::startScroll(float start_x,float start_y,float dx,float dy,float duration)
+void Scroller::startScroll(float start,float min,float max,float detail,float duration)
 {
-	m_finished=false;
+	m_mode=SCROLL;
+
+
+	m_delta=detail;
+
+	m_start=start;
+	m_final=start+detail;
+
+	m_cur=m_start;
+
+	m_min=min;
+	m_max=max;
+
+
 	m_duration=duration;
-	m_timePassed=0.0f;
-	m_startX=start_x;
-	m_startY=start_y;
 
-	m_finalX=m_finalX+dx;
-	m_finalY=m_finalY+dy;
+	m_timePassed=0;
 
-	m_deltaX=dx;
-	m_deltaY=dy;
 
 }
+
+void Scroller::fling(float start,float min,float max,float velocity,float accel)
+{
+	m_start=start;
+	m_curPos=m_start;
+
+	m_maxPos=max;
+	m_minPos=min;
+
+	m_startVelocity=velocity;
+	m_curVelocity=m_startVelocity;
+	
+	m_accel=accel;
+	m_eageVelocityAccum=0;
+}
+
+
+void Scroller::updateFling(float dt)
+{
+	m_timePassed+=m_timePassed;
+
+	if(m_timePassed>m_duration)
+	{
+		m_timePassed=m_duration;
+		m_finish=true;
+	}
+
+	float percent=m_timePassed/m_duration;
+
+	float old_velocity=m_curVelocity;
+	m_curVelocity=m_startVelocity*percent+m_eageVelocityAccum;
+
+	if(old_velocity*m_curVelocity<0)
+	{
+		m_final=true;
+		m_curVelocity=0.0f;
+	}
+
+	float distance=(m_curVelocity+old_velocity)/2*dt;
+	m_curPos+=distance;
+
+	if(m_curPos<m_minPos||m_curPos>m_maxPos)
+	{
+		m_eageVelocityAccum+=m_accel*dt;
+	}
+}
+
+void Scroller::updateScroll(float dt)
+{
+	m_timePassed+=dt;
+
+	if(m_timePassed>m_duration)
+	{
+		m_timePassed=m_duration;
+		m_finish=true;
+	}
+	float percent=m_timePassed/m_duration;
+
+	m_curPos=m_start+m_delta*percent;
+}
+
+
+
 
 
 

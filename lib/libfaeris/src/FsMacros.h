@@ -304,6 +304,7 @@ enum
 
 /* ui */
 #define FS_PRESS_BUTTON_CLASS_NAME "PressButton"
+#define FS_UI_WIDGET_CLASS_NAME  "UiWidget"
 
 
 /* scene */
