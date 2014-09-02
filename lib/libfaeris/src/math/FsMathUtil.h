@@ -81,6 +81,22 @@ inline float clampf(float value,float min,float max)
 
 template<typename T> T abs(T f){return f<0?-f:f;}
 
+template<typename T> T sign(T f) 
+{
+	if(f<0)
+	{
+		return -1;
+	}
+	else if(f==0)
+	{
+		return 0;
+	}
+	else 
+	{
+		return 1;
+	}
+}
+
 void srand(ulong s);
 int random();
 int random(int begin,int end);
@@ -90,6 +106,10 @@ inline int floatEqual(float a,float b)
 {
 	return abs(a-b)<0.0001?1:0;
 }
+
+
+
+
 
 
 bool pointInTriangle2D(const Vector2& point,const Vector2& a,const Vector2& b,const Vector2& c);

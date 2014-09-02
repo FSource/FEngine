@@ -3,6 +3,7 @@
 
 #include "FsMacros.h"
 #include "FsObject.h"
+#include "sys/FsTimer.h"
 
 #define FS_VELOCITY_TRACE_MAX_POINT_SUPPORT 10
 NS_FS_BEGIN
@@ -42,7 +43,7 @@ class VelocityTracker:public FsObject
 	protected:
 		VelocityTracker();
 
-
+		void computeVelocity();
 
 
 	private:

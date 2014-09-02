@@ -4,7 +4,7 @@ NS_FS_BEGIN
 
 const char* VelocityTracker::className()
 {
-	return FS_VELOCITY_TRACKER_CLASS_NAME;
+	return "VelocityTracker";
 }
 
 VelocityTracker* VelocityTracker::create()
@@ -15,7 +15,7 @@ VelocityTracker* VelocityTracker::create()
 
 VelocityTracker::VelocityTracker()
 {
-	m_time.start();
+	m_time.reset();
 
 	m_curTrackIndex=0;
 	m_velocityX=0;
@@ -27,7 +27,7 @@ VelocityTracker::VelocityTracker()
 void VelocityTracker::beginTrack(float x,float y)
 {
 	m_curTrackIndex=0;
-	m_time.start();
+	m_time.reset();
 
 	addTrack(x,y);
 

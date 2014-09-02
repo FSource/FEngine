@@ -1,32 +1,23 @@
-#ifndef _FS_SCROLL_WIDGET_H_
-#define _FS_SCROLL_WIDGET_H_
+$#include "stage/ui/FsScrollWidget.h"
 
-#include "FsMacros.h"
-#include "FsUiWidget.h"
-
-NS_FS_BEGIN
-
-class VelocityTracker;
-class Scroller;
 
 class ScrollWidget:public UiWidget
 {
-	public:
-		enum 
-		{
-			SCROLL_HORIZONTAL,
-			SCROLL_VERTICAL,
-			SCROLL_ALL,
-		};
+	enum 
+	{
+		SCROLL_HORIZONTAL,
+		SCROLL_VERTICAL,
+		SCROLL_ALL,
+	};
 
-		enum
-		{
-			ALIGN_TOP,
-			ALIGN_CENTER,
-			ALIGN_BOTTOM,
-			ALIGN_LEFT,
-			ALIGN_RIGHT,
-		};
+	enum
+	{
+		ALIGN_TOP,
+		ALIGN_CENTER,
+		ALIGN_BOTTOM,
+		ALIGN_LEFT,
+		ALIGN_RIGHT,
+	};
 
 	public:
 		/* inherit Entity */
@@ -50,10 +41,13 @@ class ScrollWidget:public UiWidget
 		const char* className();
 
 
+
 	public:
 		virtual void scrollChange(float x,float y);
 		virtual void beginDrag();
 		virtual void endDrag();
+
+
 
 
 	public:
@@ -75,9 +69,8 @@ class ScrollWidget:public UiWidget
 		void setScrollMode(int mode);
 		int getScrollMode();
 
-
 	public:
-		void setContentAlign(int h,int v);
+		void setContentAlign(int w,int h);
 		void setContentSize(float width,float height);
 
 
@@ -95,62 +88,6 @@ class ScrollWidget:public UiWidget
 
 		void relayout();
 
-	protected:
-
-		ScrollWidget();
-		virtual ~ScrollWidget();
-
-		void adjustScrollArea();
-
-		void startScrollX(float cur,float min,float max,float delta);
-		void startScrollY(float cur,float min,float max,float delta);
-
-		void updateScroll(float dt);
-		void edgeCheckHandle();
-
-
-
-
-	protected:
-		float m_scrollX,m_scrollY;
-
-		float m_touchTap;
-
-		float m_contentWidth,m_contentHeight;
-
-		float m_marginLeft,m_marginRight,m_marginTop,m_marginBottom;
-
-		float m_scrollMinX,m_scrollMaxX;
-		float m_scrollMinY,m_scrollMaxY;
-
-
-		/* attr cache */
-		float m_edgeLeft,m_edgeRight,m_edgeTop,m_edgeBottom;
-		float m_edgeBLeft,m_edgeBRight,m_edgeBTop,m_edgeBBottom;
-
-
-		/* drag info */
-
-		bool m_cancelDrag,m_isDraged;
-		float m_lastMotionPosY,m_lastMotionPosX;
-
-
-		bool m_press;
-		int m_scrollState;
-
-		Scroller* m_scrollerX;
-		Scroller* m_scrollerY;
-
-		int m_scrollMode;
-
-		int m_alignh,m_alignv;
-
-		VelocityTracker* m_velocityTracker;
-
 };
-
-NS_FS_END
-
-#endif /*_FS_SCROLL_WIDGET_H_*/
 
 

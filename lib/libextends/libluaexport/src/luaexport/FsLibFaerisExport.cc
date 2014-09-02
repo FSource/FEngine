@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 08/26/14 03:28:22.
+** Generated automatically by tolua++-1.0.92 on 09/02/14 09:48:27.
 */
 
 #ifndef __cplusplus
@@ -38,6 +38,9 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "luaext/FsLuaEntity.h"
 #include "stage/ui/FsPressButton.h"
 #include "luaext/FsLuaEntity.h"
+#include "stage/ui/FsUiWidget.h"
+#include "stage/ui/FsScrollWidget.h"
+#include "stage/ui/FsScrollView.h"
 #include "mgr/FsResource.h"
 #include "mgr/FsTextureMgr.h"
 #include "mgr/FsSprite2DDataMgr.h"
@@ -181,41 +184,44 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"LuaRotateAction");
  tolua_usertype(tolua_S,"Face3");
  toluaext_usertype(tolua_S,"AudioEngine");
- toluaext_usertype(tolua_S,"Layer");
- tolua_usertype(tolua_S,"FontTTFMgr");
- toluaext_usertype(tolua_S,"Texture2D");
  toluaext_usertype(tolua_S,"LuaHttpRequest");
- tolua_usertype(tolua_S,"ObjectMgr");
- toluaext_usertype(tolua_S,"LuaEntity");
- tolua_usertype(tolua_S,"LinearCurve2");
+ toluaext_usertype(tolua_S,"Layer");
  toluaext_usertype(tolua_S,"HttpEngine");
+ tolua_usertype(tolua_S,"FontTTFMgr");
  tolua_usertype(tolua_S,"Channel");
- tolua_usertype(tolua_S,"Curve3");
- tolua_usertype(tolua_S,"TouchEvent");
+ toluaext_usertype(tolua_S,"Texture2D");
+ tolua_usertype(tolua_S,"CircleEase");
+ tolua_usertype(tolua_S,"ObjectMgr");
+ toluaext_usertype(tolua_S,"ColorLayer");
+ tolua_usertype(tolua_S,"LinearCurve2");
+ tolua_usertype(tolua_S,"Program");
  tolua_usertype(tolua_S,"LuaScaleAction");
- tolua_usertype(tolua_S,"LinearEase");
+ tolua_usertype(tolua_S,"QuartEase");
+ tolua_usertype(tolua_S,"Sys");
+ tolua_usertype(tolua_S,"Curve3Action");
+ toluaext_usertype(tolua_S,"LabelBitmap");
  tolua_usertype(tolua_S,"Color");
  tolua_usertype(tolua_S,"ActionTarget");
- tolua_usertype(tolua_S,"Program");
- tolua_usertype(tolua_S,"Curve3Action");
+ toluaext_usertype(tolua_S,"LuaAction");
+ toluaext_usertype(tolua_S,"Action");
  tolua_usertype(tolua_S,"CubicEase");
  toluaext_usertype(tolua_S,"FrameBuffer");
  toluaext_usertype(tolua_S,"LuaParticle2DEffect");
  toluaext_usertype(tolua_S,"LuaLabelTTF");
  toluaext_usertype(tolua_S,"ColorQuad2D");
- tolua_usertype(tolua_S,"Sys");
+ tolua_usertype(tolua_S,"KeypadEvent");
  toluaext_usertype(tolua_S,"FsArray");
  toluaext_usertype(tolua_S,"FontBitmap");
- tolua_usertype(tolua_S,"TouchPoint");
- toluaext_usertype(tolua_S,"Action");
- tolua_usertype(tolua_S,"CubicBezierCurve4");
- tolua_usertype(tolua_S,"KeypadEvent");
  toluaext_usertype(tolua_S,"SysDispatcher");
  toluaext_usertype(tolua_S,"TouchDispatcher");
- tolua_usertype(tolua_S,"LuaMoveAction");
- toluaext_usertype(tolua_S,"LuaAction");
- tolua_usertype(tolua_S,"ElasticEase");
+ tolua_usertype(tolua_S,"CubicBezierCurve4");
+ tolua_usertype(tolua_S,"TouchEvent");
+ tolua_usertype(tolua_S,"TouchPoint");
  toluaext_usertype(tolua_S,"LuaSysEventListener");
+ tolua_usertype(tolua_S,"LuaMoveAction");
+ tolua_usertype(tolua_S,"ScrollWidget");
+ tolua_usertype(tolua_S,"ElasticEase");
+ tolua_usertype(tolua_S,"CatmullRomCurve3");
  tolua_usertype(tolua_S,"LuaLoopAction");
  tolua_usertype(tolua_S,"Vector2");
  tolua_usertype(tolua_S,"Timer");
@@ -225,36 +231,36 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"FixTimeAction");
  toluaext_usertype(tolua_S,"TextureMgr");
  toluaext_usertype(tolua_S,"LuaTouchEventListener");
- tolua_usertype(tolua_S,"LinearCurve4");
- tolua_usertype(tolua_S,"CatmullRomCurve3");
  tolua_usertype(tolua_S,"CatmullRomCurve2");
  tolua_usertype(tolua_S,"CubicBezierCurve3");
+ tolua_usertype(tolua_S,"CubicBezierCurve2");
+ tolua_usertype(tolua_S,"LinearCurve4");
  toluaext_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"BackEase");
- toluaext_usertype(tolua_S,"LuaPanel");
+ tolua_usertype(tolua_S,"LuaSchedulerTarget");
  toluaext_usertype(tolua_S,"Scheduler");
- tolua_usertype(tolua_S,"CubicBezierCurve2");
+ tolua_usertype(tolua_S,"PressButton");
  toluaext_usertype(tolua_S,"Entity");
  tolua_usertype(tolua_S,"CatmullRomCurve4");
- tolua_usertype(tolua_S,"Color4f");
+ tolua_usertype(tolua_S,"Curve3");
  tolua_usertype(tolua_S,"Vector3");
  toluaext_usertype(tolua_S,"SchedulerTarget");
- toluaext_usertype(tolua_S,"LabelBitmap");
+ tolua_usertype(tolua_S,"Curve2");
  toluaext_usertype(tolua_S,"Scene");
  tolua_usertype(tolua_S,"LuaSeqAction");
  tolua_usertype(tolua_S,"Particle2DEmitter");
- tolua_usertype(tolua_S,"Curve2");
+ tolua_usertype(tolua_S,"QuintEase");
  tolua_usertype(tolua_S,"FsFile");
  tolua_usertype(tolua_S,"LuaVertexPolygon");
  tolua_usertype(tolua_S,"LuaPauseAction");
  toluaext_usertype(tolua_S,"Sprite2D");
  
- tolua_usertype(tolua_S,"QuintEase");
- tolua_usertype(tolua_S,"QuartEase");
+ tolua_usertype(tolua_S,"QuadEase");
+ toluaext_usertype(tolua_S,"Panel");
  toluaext_usertype(tolua_S,"LuaColorLayer");
  tolua_usertype(tolua_S,"Matrix4");
- tolua_usertype(tolua_S,"QuadEase");
- toluaext_usertype(tolua_S,"Render");
+ tolua_usertype(tolua_S,"LinearEase");
+ toluaext_usertype(tolua_S,"LuaColorQuad2D");
  tolua_usertype(tolua_S,"EasingUtil");
  toluaext_usertype(tolua_S,"Resource");
  toluaext_usertype(tolua_S,"Quad2D");
@@ -268,23 +274,23 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Vector4");
  toluaext_usertype(tolua_S,"ResourceMgr");
  toluaext_usertype(tolua_S,"LuaScene");
- toluaext_usertype(tolua_S,"Panel");
- tolua_usertype(tolua_S,"CircleEase");
+ tolua_usertype(tolua_S,"Rect2D");
+ tolua_usertype(tolua_S,"ScrollView");
  tolua_usertype(tolua_S,"ColorMaterial");
- tolua_usertype(tolua_S,"LuaSchedulerTarget");
+ toluaext_usertype(tolua_S,"Render");
  tolua_usertype(tolua_S,"Global");
  tolua_usertype(tolua_S,"EaseExpr");
- tolua_usertype(tolua_S,"Rect2D");
+ tolua_usertype(tolua_S,"Color4f");
  tolua_usertype(tolua_S,"LinearCurve3");
- tolua_usertype(tolua_S,"PressButton");
+ toluaext_usertype(tolua_S,"LuaPanel");
  tolua_usertype(tolua_S,"BounceEase");
  toluaext_usertype(tolua_S,"LuaSprite2D");
  toluaext_usertype(tolua_S,"Director");
  toluaext_usertype(tolua_S,"SysEventListener");
- toluaext_usertype(tolua_S,"ColorLayer");
- toluaext_usertype(tolua_S,"LuaColorQuad2D");
- toluaext_usertype(tolua_S,"Particle2DEffect");
+ toluaext_usertype(tolua_S,"LuaEntity");
  toluaext_usertype(tolua_S,"LuaLayer2D");
+ tolua_usertype(tolua_S,"UiWidget");
+ toluaext_usertype(tolua_S,"Particle2DEffect");
  tolua_usertype(tolua_S,"Curve4");
 }
 
@@ -17612,6 +17618,1807 @@ static int tolua_FsLibFaeris_PressButton_pressUp00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'pressUp'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_create00
+static int tolua_FsLibFaeris_UiWidget_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   UiWidget* tolua_ret = (UiWidget*)  UiWidget::create(width,height);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UiWidget");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: className of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_className00
+static int tolua_FsLibFaeris_UiWidget_className00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
+#endif
+  {
+   const char* tolua_ret = (const char*)  self->className();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: hit2D of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_hit2D00
+static int tolua_FsLibFaeris_UiWidget_hit2D00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'hit2D'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->hit2D(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'hit2D'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setSize of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setSize00
+static int tolua_FsLibFaeris_UiWidget_setSize00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setSize'", NULL);
+#endif
+  {
+   self->setSize(width,height);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setSize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getSize of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getSize00
+static int tolua_FsLibFaeris_UiWidget_getSize00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getSize'", NULL);
+#endif
+  {
+   Vector2 tolua_ret = (Vector2)  self->getSize();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((Vector2)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector2");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vector2));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector2");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getSize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getWidth of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getWidth00
+static int tolua_FsLibFaeris_UiWidget_getWidth00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getWidth'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getWidth();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getWidth'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getHeight of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getHeight00
+static int tolua_FsLibFaeris_UiWidget_getHeight00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getHeight'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getHeight();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getHeight'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setScissor of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setScissor00
+static int tolua_FsLibFaeris_UiWidget_setScissor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  bool clip = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScissor'", NULL);
+#endif
+  {
+   self->setScissor(clip);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setScissor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getScissor of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getScissor00
+static int tolua_FsLibFaeris_UiWidget_getScissor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScissor'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getScissor();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getScissor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setAnchor of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setAnchor00
+static int tolua_FsLibFaeris_UiWidget_setAnchor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchor'", NULL);
+#endif
+  {
+   self->setAnchor(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setAnchor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getAnchorX of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getAnchorX00
+static int tolua_FsLibFaeris_UiWidget_getAnchorX00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAnchorX'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getAnchorX();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getAnchorX'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getAnchorY of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getAnchorY00
+static int tolua_FsLibFaeris_UiWidget_getAnchorY00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAnchorY'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getAnchorY();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getAnchorY'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getAnchor of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getAnchor00
+static int tolua_FsLibFaeris_UiWidget_getAnchor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAnchor'", NULL);
+#endif
+  {
+   Vector2 tolua_ret = (Vector2)  self->getAnchor();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((Vector2)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector2");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vector2));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector2");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getAnchor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: touchBegin of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_touchBegin00
+static int tolua_FsLibFaeris_ScrollWidget_touchBegin00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'touchBegin'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->touchBegin(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchBegin'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: touchMove of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_touchMove00
+static int tolua_FsLibFaeris_ScrollWidget_touchMove00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'touchMove'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->touchMove(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchMove'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: touchEnd of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_touchEnd00
+static int tolua_FsLibFaeris_ScrollWidget_touchEnd00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'touchEnd'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->touchEnd(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchEnd'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: update of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_update00
+static int tolua_FsLibFaeris_ScrollWidget_update00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float dt = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'update'", NULL);
+#endif
+  {
+   self->update(dt);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'update'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: childSizeChanged of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_childSizeChanged00
+static int tolua_FsLibFaeris_ScrollWidget_childSizeChanged00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float w = ((float)  tolua_tonumber(tolua_S,2,0));
+  float h = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'childSizeChanged'", NULL);
+#endif
+  {
+   self->childSizeChanged(w,h);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'childSizeChanged'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: childAnchorChanged of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_childAnchorChanged00
+static int tolua_FsLibFaeris_ScrollWidget_childAnchorChanged00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float w = ((float)  tolua_tonumber(tolua_S,2,0));
+  float h = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'childAnchorChanged'", NULL);
+#endif
+  {
+   self->childAnchorChanged(w,h);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'childAnchorChanged'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setSize of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setSize00
+static int tolua_FsLibFaeris_ScrollWidget_setSize00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setSize'", NULL);
+#endif
+  {
+   self->setSize(width,height);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setSize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setAnchor of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setAnchor00
+static int tolua_FsLibFaeris_ScrollWidget_setAnchor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchor'", NULL);
+#endif
+  {
+   self->setAnchor(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setAnchor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: className of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_className00
+static int tolua_FsLibFaeris_ScrollWidget_className00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
+#endif
+  {
+   const char* tolua_ret = (const char*)  self->className();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: scrollChange of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_scrollChange00
+static int tolua_FsLibFaeris_ScrollWidget_scrollChange00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scrollChange'", NULL);
+#endif
+  {
+   self->scrollChange(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'scrollChange'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: beginDrag of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_beginDrag00
+static int tolua_FsLibFaeris_ScrollWidget_beginDrag00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'beginDrag'", NULL);
+#endif
+  {
+   self->beginDrag();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'beginDrag'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: endDrag of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_endDrag00
+static int tolua_FsLibFaeris_ScrollWidget_endDrag00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'endDrag'", NULL);
+#endif
+  {
+   self->endDrag();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'endDrag'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setMargin of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setMargin00
+static int tolua_FsLibFaeris_ScrollWidget_setMargin00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float l = ((float)  tolua_tonumber(tolua_S,2,0));
+  float r = ((float)  tolua_tonumber(tolua_S,3,0));
+  float t = ((float)  tolua_tonumber(tolua_S,4,0));
+  float b = ((float)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMargin'", NULL);
+#endif
+  {
+   self->setMargin(l,r,t,b);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMargin'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMargin of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getMargin00
+static int tolua_FsLibFaeris_ScrollWidget_getMargin00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float l = ((float)  tolua_tonumber(tolua_S,2,0));
+  float r = ((float)  tolua_tonumber(tolua_S,3,0));
+  float t = ((float)  tolua_tonumber(tolua_S,4,0));
+  float b = ((float)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMargin'", NULL);
+#endif
+  {
+   self->getMargin(&l,&r,&t,&b);
+   tolua_pushnumber(tolua_S,(lua_Number)l);
+   tolua_pushnumber(tolua_S,(lua_Number)r);
+   tolua_pushnumber(tolua_S,(lua_Number)t);
+   tolua_pushnumber(tolua_S,(lua_Number)b);
+  }
+ }
+ return 4;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMargin'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setMarginLeft of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setMarginLeft00
+static int tolua_FsLibFaeris_ScrollWidget_setMarginLeft00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float v = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMarginLeft'", NULL);
+#endif
+  {
+   self->setMarginLeft(v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMarginLeft'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMarginLeft of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getMarginLeft00
+static int tolua_FsLibFaeris_ScrollWidget_getMarginLeft00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const ScrollWidget* self = (const ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMarginLeft'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getMarginLeft();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMarginLeft'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setMarginRight of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setMarginRight00
+static int tolua_FsLibFaeris_ScrollWidget_setMarginRight00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float v = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMarginRight'", NULL);
+#endif
+  {
+   self->setMarginRight(v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMarginRight'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMarginRight of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getMarginRight00
+static int tolua_FsLibFaeris_ScrollWidget_getMarginRight00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const ScrollWidget* self = (const ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMarginRight'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getMarginRight();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMarginRight'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setMarginTop of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setMarginTop00
+static int tolua_FsLibFaeris_ScrollWidget_setMarginTop00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float v = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMarginTop'", NULL);
+#endif
+  {
+   self->setMarginTop(v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMarginTop'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMarginTop of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getMarginTop00
+static int tolua_FsLibFaeris_ScrollWidget_getMarginTop00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const ScrollWidget* self = (const ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMarginTop'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getMarginTop();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMarginTop'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setMarginBottom of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setMarginBottom00
+static int tolua_FsLibFaeris_ScrollWidget_setMarginBottom00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float v = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMarginBottom'", NULL);
+#endif
+  {
+   self->setMarginBottom(v);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMarginBottom'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMarginBottom of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getMarginBottom00
+static int tolua_FsLibFaeris_ScrollWidget_getMarginBottom00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const ScrollWidget* self = (const ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMarginBottom'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getMarginBottom();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMarginBottom'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setScrollMode of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setScrollMode00
+static int tolua_FsLibFaeris_ScrollWidget_setScrollMode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScrollMode'", NULL);
+#endif
+  {
+   self->setScrollMode(mode);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setScrollMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getScrollMode of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getScrollMode00
+static int tolua_FsLibFaeris_ScrollWidget_getScrollMode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScrollMode'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getScrollMode();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getScrollMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setContentAlign of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setContentAlign00
+static int tolua_FsLibFaeris_ScrollWidget_setContentAlign00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  int w = ((int)  tolua_tonumber(tolua_S,2,0));
+  int h = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setContentAlign'", NULL);
+#endif
+  {
+   self->setContentAlign(w,h);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setContentAlign'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setContentSize of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setContentSize00
+static int tolua_FsLibFaeris_ScrollWidget_setContentSize00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setContentSize'", NULL);
+#endif
+  {
+   self->setContentSize(width,height);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setContentSize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: scrollBy of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_scrollBy00
+static int tolua_FsLibFaeris_ScrollWidget_scrollBy00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scrollBy'", NULL);
+#endif
+  {
+   self->scrollBy(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'scrollBy'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: scrollTo of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_scrollTo00
+static int tolua_FsLibFaeris_ScrollWidget_scrollTo00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scrollTo'", NULL);
+#endif
+  {
+   self->scrollTo(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'scrollTo'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setScrollPercent of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setScrollPercent00
+static int tolua_FsLibFaeris_ScrollWidget_setScrollPercent00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScrollPercent'", NULL);
+#endif
+  {
+   self->setScrollPercent(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setScrollPercent'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setScrollPercentX of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setScrollPercentX00
+static int tolua_FsLibFaeris_ScrollWidget_setScrollPercentX00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScrollPercentX'", NULL);
+#endif
+  {
+   self->setScrollPercentX(x);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setScrollPercentX'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setScrollPercentY of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setScrollPercentY00
+static int tolua_FsLibFaeris_ScrollWidget_setScrollPercentY00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float y = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScrollPercentY'", NULL);
+#endif
+  {
+   self->setScrollPercentY(y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setScrollPercentY'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getScrollPercent of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getScrollPercent00
+static int tolua_FsLibFaeris_ScrollWidget_getScrollPercent00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScrollPercent'", NULL);
+#endif
+  {
+   self->getScrollPercent(&x,&y);
+   tolua_pushnumber(tolua_S,(lua_Number)x);
+   tolua_pushnumber(tolua_S,(lua_Number)y);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getScrollPercent'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getScrollPercentX of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getScrollPercentX00
+static int tolua_FsLibFaeris_ScrollWidget_getScrollPercentX00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScrollPercentX'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getScrollPercentX();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getScrollPercentX'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getScrollPercentY of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getScrollPercentY00
+static int tolua_FsLibFaeris_ScrollWidget_getScrollPercentY00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScrollPercentY'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getScrollPercentY();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getScrollPercentY'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: relayout of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_relayout00
+static int tolua_FsLibFaeris_ScrollWidget_relayout00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'relayout'", NULL);
+#endif
+  {
+   self->relayout();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'relayout'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ScrollView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollView_create00
+static int tolua_FsLibFaeris_ScrollView_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ScrollView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   ScrollView* tolua_ret = (ScrollView*)  ScrollView::create(width,height);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ScrollView");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setContentWidget of class  ScrollView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollView_setContentWidget00
+static int tolua_FsLibFaeris_ScrollView_setContentWidget00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollView* self = (ScrollView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setContentWidget'", NULL);
+#endif
+  {
+   self->setContentWidget(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setContentWidget'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getContentWidget of class  ScrollView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollView_getContentWidget00
+static int tolua_FsLibFaeris_ScrollView_getContentWidget00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollView* self = (ScrollView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getContentWidget'", NULL);
+#endif
+  {
+   UiWidget* tolua_ret = (UiWidget*)  self->getContentWidget();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UiWidget");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getContentWidget'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: className of class  ScrollView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollView_className00
+static int tolua_FsLibFaeris_ScrollView_className00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollView* self = (ScrollView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
+#endif
+  {
+   const char* tolua_ret = (const char*)  self->className();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: scrollChange of class  ScrollView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollView_scrollChange00
+static int tolua_FsLibFaeris_ScrollView_scrollChange00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollView* self = (ScrollView*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scrollChange'", NULL);
+#endif
+  {
+   self->scrollChange(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'scrollChange'.",&tolua_err);
  return 0;
 #endif
 }
@@ -39176,6 +40983,76 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"pressMoveIn",tolua_FsLibFaeris_PressButton_pressMoveIn00);
    tolua_function(tolua_S,"pressMoveOut",tolua_FsLibFaeris_PressButton_pressMoveOut00);
    tolua_function(tolua_S,"pressUp",tolua_FsLibFaeris_PressButton_pressUp00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"UiWidget","UiWidget","Entity",NULL);
+  tolua_beginmodule(tolua_S,"UiWidget");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_UiWidget_create00);
+   tolua_function(tolua_S,"className",tolua_FsLibFaeris_UiWidget_className00);
+   tolua_function(tolua_S,"hit2D",tolua_FsLibFaeris_UiWidget_hit2D00);
+   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris_UiWidget_setSize00);
+   tolua_function(tolua_S,"getSize",tolua_FsLibFaeris_UiWidget_getSize00);
+   tolua_function(tolua_S,"getWidth",tolua_FsLibFaeris_UiWidget_getWidth00);
+   tolua_function(tolua_S,"getHeight",tolua_FsLibFaeris_UiWidget_getHeight00);
+   tolua_function(tolua_S,"setScissor",tolua_FsLibFaeris_UiWidget_setScissor00);
+   tolua_function(tolua_S,"getScissor",tolua_FsLibFaeris_UiWidget_getScissor00);
+   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris_UiWidget_setAnchor00);
+   tolua_function(tolua_S,"getAnchorX",tolua_FsLibFaeris_UiWidget_getAnchorX00);
+   tolua_function(tolua_S,"getAnchorY",tolua_FsLibFaeris_UiWidget_getAnchorY00);
+   tolua_function(tolua_S,"getAnchor",tolua_FsLibFaeris_UiWidget_getAnchor00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"ScrollWidget","ScrollWidget","UiWidget",NULL);
+  tolua_beginmodule(tolua_S,"ScrollWidget");
+   tolua_constant(tolua_S,"SCROLL_HORIZONTAL",ScrollWidget::SCROLL_HORIZONTAL);
+   tolua_constant(tolua_S,"SCROLL_VERTICAL",ScrollWidget::SCROLL_VERTICAL);
+   tolua_constant(tolua_S,"SCROLL_ALL",ScrollWidget::SCROLL_ALL);
+   tolua_constant(tolua_S,"ALIGN_TOP",ScrollWidget::ALIGN_TOP);
+   tolua_constant(tolua_S,"ALIGN_CENTER",ScrollWidget::ALIGN_CENTER);
+   tolua_constant(tolua_S,"ALIGN_BOTTOM",ScrollWidget::ALIGN_BOTTOM);
+   tolua_constant(tolua_S,"ALIGN_LEFT",ScrollWidget::ALIGN_LEFT);
+   tolua_constant(tolua_S,"ALIGN_RIGHT",ScrollWidget::ALIGN_RIGHT);
+   tolua_function(tolua_S,"touchBegin",tolua_FsLibFaeris_ScrollWidget_touchBegin00);
+   tolua_function(tolua_S,"touchMove",tolua_FsLibFaeris_ScrollWidget_touchMove00);
+   tolua_function(tolua_S,"touchEnd",tolua_FsLibFaeris_ScrollWidget_touchEnd00);
+   tolua_function(tolua_S,"update",tolua_FsLibFaeris_ScrollWidget_update00);
+   tolua_function(tolua_S,"childSizeChanged",tolua_FsLibFaeris_ScrollWidget_childSizeChanged00);
+   tolua_function(tolua_S,"childAnchorChanged",tolua_FsLibFaeris_ScrollWidget_childAnchorChanged00);
+   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris_ScrollWidget_setSize00);
+   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris_ScrollWidget_setAnchor00);
+   tolua_function(tolua_S,"className",tolua_FsLibFaeris_ScrollWidget_className00);
+   tolua_function(tolua_S,"scrollChange",tolua_FsLibFaeris_ScrollWidget_scrollChange00);
+   tolua_function(tolua_S,"beginDrag",tolua_FsLibFaeris_ScrollWidget_beginDrag00);
+   tolua_function(tolua_S,"endDrag",tolua_FsLibFaeris_ScrollWidget_endDrag00);
+   tolua_function(tolua_S,"setMargin",tolua_FsLibFaeris_ScrollWidget_setMargin00);
+   tolua_function(tolua_S,"getMargin",tolua_FsLibFaeris_ScrollWidget_getMargin00);
+   tolua_function(tolua_S,"setMarginLeft",tolua_FsLibFaeris_ScrollWidget_setMarginLeft00);
+   tolua_function(tolua_S,"getMarginLeft",tolua_FsLibFaeris_ScrollWidget_getMarginLeft00);
+   tolua_function(tolua_S,"setMarginRight",tolua_FsLibFaeris_ScrollWidget_setMarginRight00);
+   tolua_function(tolua_S,"getMarginRight",tolua_FsLibFaeris_ScrollWidget_getMarginRight00);
+   tolua_function(tolua_S,"setMarginTop",tolua_FsLibFaeris_ScrollWidget_setMarginTop00);
+   tolua_function(tolua_S,"getMarginTop",tolua_FsLibFaeris_ScrollWidget_getMarginTop00);
+   tolua_function(tolua_S,"setMarginBottom",tolua_FsLibFaeris_ScrollWidget_setMarginBottom00);
+   tolua_function(tolua_S,"getMarginBottom",tolua_FsLibFaeris_ScrollWidget_getMarginBottom00);
+   tolua_function(tolua_S,"setScrollMode",tolua_FsLibFaeris_ScrollWidget_setScrollMode00);
+   tolua_function(tolua_S,"getScrollMode",tolua_FsLibFaeris_ScrollWidget_getScrollMode00);
+   tolua_function(tolua_S,"setContentAlign",tolua_FsLibFaeris_ScrollWidget_setContentAlign00);
+   tolua_function(tolua_S,"setContentSize",tolua_FsLibFaeris_ScrollWidget_setContentSize00);
+   tolua_function(tolua_S,"scrollBy",tolua_FsLibFaeris_ScrollWidget_scrollBy00);
+   tolua_function(tolua_S,"scrollTo",tolua_FsLibFaeris_ScrollWidget_scrollTo00);
+   tolua_function(tolua_S,"setScrollPercent",tolua_FsLibFaeris_ScrollWidget_setScrollPercent00);
+   tolua_function(tolua_S,"setScrollPercentX",tolua_FsLibFaeris_ScrollWidget_setScrollPercentX00);
+   tolua_function(tolua_S,"setScrollPercentY",tolua_FsLibFaeris_ScrollWidget_setScrollPercentY00);
+   tolua_function(tolua_S,"getScrollPercent",tolua_FsLibFaeris_ScrollWidget_getScrollPercent00);
+   tolua_function(tolua_S,"getScrollPercentX",tolua_FsLibFaeris_ScrollWidget_getScrollPercentX00);
+   tolua_function(tolua_S,"getScrollPercentY",tolua_FsLibFaeris_ScrollWidget_getScrollPercentY00);
+   tolua_function(tolua_S,"relayout",tolua_FsLibFaeris_ScrollWidget_relayout00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"ScrollView","ScrollView","ScrollWidget",NULL);
+  tolua_beginmodule(tolua_S,"ScrollView");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ScrollView_create00);
+   tolua_function(tolua_S,"setContentWidget",tolua_FsLibFaeris_ScrollView_setContentWidget00);
+   tolua_function(tolua_S,"getContentWidget",tolua_FsLibFaeris_ScrollView_getContentWidget00);
+   tolua_function(tolua_S,"className",tolua_FsLibFaeris_ScrollView_className00);
+   tolua_function(tolua_S,"scrollChange",tolua_FsLibFaeris_ScrollView_scrollChange00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Resource","Resource","FsObject",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Resource");

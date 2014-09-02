@@ -1042,11 +1042,43 @@
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\ui\UiWidget.cc"
+						RelativePath="..\src\stage\ui\FsScroller.cc"
 						>
 					</File>
 					<File
-						RelativePath="..\src\stage\ui\UiWidget.h"
+						RelativePath="..\src\stage\ui\FsScroller.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsScrollView.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsScrollView.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsScrollWidget.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsScrollWidget.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsUiWidget.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsUiWidget.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsVelocityTracker.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsVelocityTracker.h"
 						>
 					</File>
 				</Filter>
@@ -1372,6 +1404,10 @@
 				</File>
 			</Filter>
 		</Filter>
+		<File
+			RelativePath=".\ClassDiagram1.cd"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -4,7 +4,7 @@
 
 NS_FS_BEGIN
 
-class CubicEase:EaseExpr 
+class CubicEase:public EaseExpr 
 {
 	public:
 		static CubicEase* create();

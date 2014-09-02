@@ -4,8 +4,13 @@
 #include "FsMacros.h"
 #include "FsObject.h"
 
-#define FS_SCROLL_DEFAULT_DURATION 0.25f;
 
+#define FS_SCROLL_DEFAULT_DURATION 0.25f
+
+NS_FS_BEGIN
+
+
+class EaseExpr;
 class Scroller:public FsObject 
 {
 	public:
@@ -21,12 +26,11 @@ class Scroller:public FsObject
 
 	public:
 
-		void startScroll(float start,float min,float max,float delta,float duration);
-		void fling(float start,float min,float max,float velocity,float accel);
-		void bounceBack(float start,float min,float max);
+		void startScroll(float start,float min,float max,float delta,float duration=FS_SCROLL_DEFAULT_DURATION);
+		void fling(float start,float min,float max,float velocity,float accel,float range);
+		void bounceBack(float start,float min,float max,float range);
 
-
-		bool isFinish();
+		bool isFinished();
 		void abortAnimation();
 		void finishAnimation();
 
@@ -35,10 +39,26 @@ class Scroller:public FsObject
 
 
 	public:
+		virtual const char* className();
 		virtual bool update(float dt);
 
+
+	protected:
+		Scroller();
+		virtual ~Scroller();
+
+
+		void updateFling(float dt);
+		void updateScroll(float dt);
+		void updateBounceBack(float dt);
+
+
+
+
 	private:
-		float m_mode;
+		int m_mode;
+
+		bool m_finish;
 
 
 		/* common */
@@ -59,14 +79,22 @@ class Scroller:public FsObject
 		float m_curVelocity;
 
 		float m_accel;
-		float m_eageVelocityAccum;
+
+		bool m_flingDecrease;
+		float m_flingEdgeRange;
+
 
 
 		EaseExpr* m_flingEasing;
+
 		/* bounceBack mode */
+		EaseExpr* m_bounceExpr;
 
 };
 
+
+
+NS_FS_END
 
 
 

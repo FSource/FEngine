@@ -1,4 +1,4 @@
-#include "UiWidget.h"
+#include "FsUiWidget.h"
 
 NS_FS_BEGIN
 const char* UiWidget::className()
@@ -9,7 +9,9 @@ const char* UiWidget::className()
 
 UiWidget* UiWidget::create(float width,float height)
 {
-	return new UiWidget;
+	UiWidget* ret=new UiWidget();
+	ret->setSize(width,height);
+	return ret;
 }
 
 

@@ -50,6 +50,8 @@ class ScrollWidget:public UiWidget
 		const char* className();
 
 
+
+
 	public:
 		virtual void scrollChange(float x,float y);
 		virtual void beginDrag();
@@ -72,12 +74,8 @@ class ScrollWidget:public UiWidget
 		void setMarginBottom(float v);
 		float getMarginBottom() const;
 
-		void setScrollMode(int mode);
-		int getScrollMode();
-
-
 	public:
-		void setContentAlign(int h,int v);
+		void setContentAlign(int w,int h);
 		void setContentSize(float width,float height);
 
 
@@ -96,10 +94,6 @@ class ScrollWidget:public UiWidget
 		void relayout();
 
 	protected:
-
-		ScrollWidget();
-		virtual ~ScrollWidget();
-
 		void adjustScrollArea();
 
 		void startScrollX(float cur,float min,float max,float delta);
@@ -107,8 +101,6 @@ class ScrollWidget:public UiWidget
 
 		void updateScroll(float dt);
 		void edgeCheckHandle();
-
-
 
 
 	protected:
