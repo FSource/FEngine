@@ -16,7 +16,10 @@ class ScrollView:public ScrollWidget
 		void setContentWidget(UiWidget* widget);
 		UiWidget* getContentWidget();
 
+
+
 	public:
+
 		virtual const char* className();
 		virtual void scrollChange(float x,float y);
 
@@ -24,12 +27,12 @@ class ScrollView:public ScrollWidget
 		ScrollView(float width,float height);
 		virtual ~ScrollView();
 
+
+
 	private:
 		UiWidget* m_contentWidget;
 
 };
-
-
 
 
 NS_FS_END

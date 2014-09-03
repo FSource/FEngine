@@ -51,8 +51,8 @@ ScrollWidget::ScrollWidget()
 	m_alignh(ALIGN_CENTER),
 	m_alignv(ALIGN_TOP),
 
-	m_velocityTracker(NULL)
-
+	m_velocityTracker(NULL),
+	m_edgeBounceEnabled(true)
 {
 
 	m_scrollerX=Scroller::create();
@@ -149,6 +149,19 @@ int ScrollWidget::getScrollMode()
 	return m_scrollMode;
 }
 
+void ScrollWidget::setEdgeBounceEnabled(bool enabled)
+{
+	m_edgeBounceEnabled=enabled;
+}
+
+bool ScrollWidget::getEdgeBounceEnabled()
+{
+	return m_edgeBounceEnabled;
+}
+
+
+
+
 
 void ScrollWidget::setContentSize(float width,float height)
 {
@@ -237,6 +250,8 @@ void ScrollWidget::update(float dt)
 
 bool ScrollWidget::touchBegin(float x,float y)
 {
+	UiWidget::touchBegin(x,y);
+
 	m_cancelDrag=false;
 	m_isDraged=!m_scrollerX->isFinished();
 
@@ -260,6 +275,8 @@ bool ScrollWidget::touchBegin(float x,float y)
 
 bool ScrollWidget::touchMove(float x,float y)
 {
+	UiWidget::touchMove(x,y);
+
 	float detal_x=x-m_lastMotionPosX;
 	float detal_y=y-m_lastMotionPosY;
 
@@ -300,22 +317,38 @@ bool ScrollWidget::touchMove(float x,float y)
 			if(Math::sqrt(detal_x*detal_x+detal_y*detal_y)> m_touchTap)
 			{
 				m_isDraged=true;
-				if(detal_y>0)
+
+				if(Math::abs(detal_y)>m_touchTap)
 				{
-					detal_y=detal_y-m_touchTap;
+					if(detal_y>0)
+					{
+						detal_y=detal_y-m_touchTap;
+					}
+					else 
+					{
+						detal_y=detal_y+m_touchTap;
+					}
 				}
 				else 
 				{
-					detal_y=detal_y+m_touchTap;
+					detal_y=0;
 				}
 
-				if(detal_x>0)
+				if(Math::abs(detal_y)>m_touchTap)
 				{
-					detal_x=detal_x-m_touchTap;
+
+					if(detal_x>0)
+					{
+						detal_x=detal_x-m_touchTap;
+					}
+					else 
+					{
+						detal_x=detal_x+m_touchTap;
+					}
 				}
 				else 
 				{
-					detal_x=detal_x+m_touchTap;
+					detal_x=0;
 				}
 			}
 		}
@@ -354,6 +387,8 @@ bool ScrollWidget::touchMove(float x,float y)
 
 bool  ScrollWidget::touchEnd(float x,float y)
 {
+	UiWidget::touchEnd(x,y);
+
 	m_isDraged=false;
 	m_velocityTracker->endTrack(x,y);
 	float d_accel=200;
@@ -404,6 +439,29 @@ bool  ScrollWidget::touchEnd(float x,float y)
 
 void ScrollWidget::startScrollX(float cur,float min,float max,float detal)
 {
+	if(!m_edgeBounceEnabled)
+	{
+		float finish=cur+detal;
+		if(cur<=min&&detal<0)
+		{
+			return;
+		}
+		else if(finish<=min)
+		{
+			detal=min-cur;
+		}
+
+		if(cur>=max&&detal>0)
+		{
+			return;
+		}
+		else if(finish>=max)
+		{
+			detal=max-cur;
+		}
+	}
+
+
 	if(cur<min&&detal<0)
 	{
 		float percent=(min-cur)/(getWidth()/2);
@@ -433,6 +491,28 @@ void ScrollWidget::startScrollX(float cur,float min,float max,float detal)
 
 void ScrollWidget::startScrollY(float cur,float min,float max,float detal)
 {
+	if(!m_edgeBounceEnabled)
+	{
+		float finish=cur+detal;
+		if(cur<=min&&detal<0)
+		{
+			return;
+		}
+		else if(finish<=min)
+		{
+			detal=min-cur;
+		}
+
+		if(cur>=max&&detal>0)
+		{
+			return;
+		}
+		else if(finish>=max)
+		{
+			detal=max-cur;
+		}
+	}
+
 	float new_detal=detal;
 	if(cur<min&&detal<0)
 	{
@@ -456,7 +536,6 @@ void ScrollWidget::startScrollY(float cur,float min,float max,float detal)
 		float rp=(1-percent);
 		new_detal=detal*rp*rp*rp;
 	}
-
 	m_scrollerY->startScroll(cur,min,max,new_detal,0.1f);
 }
 
@@ -469,12 +548,21 @@ void ScrollWidget::updateScroll(float dt)
 	bool need_readjust=false;
 	if(m_scrollMode==SCROLL_HORIZONTAL||m_scrollMode==SCROLL_ALL)
 	{
+
 		if(!m_scrollerX->update(dt))
 		{
 			need_readjust=true;
 			m_scrollX=m_scrollerX->getCurPos();
-		}
 
+			if(m_scrollerX->getScrollMode()==Scroller::FLING&&!m_edgeBounceEnabled)
+			{
+				if(m_scrollX>m_scrollMaxX||m_scrollX<m_scrollMinX)
+				{
+					m_scrollX=Math::clampf(m_scrollX,m_scrollMinX,m_scrollMaxX);
+					m_scrollerX->abortAnimation();
+				}
+			}
+		}
 	}
 
 
@@ -485,9 +573,20 @@ void ScrollWidget::updateScroll(float dt)
 		{
 			need_readjust=true;
 			m_scrollY=m_scrollerY->getCurPos();
+
+			if(m_scrollerY->getScrollMode()==Scroller::FLING&&!m_edgeBounceEnabled)
+			{
+				if(m_scrollY>m_scrollMaxY||m_scrollY<m_scrollMinY)
+				{
+					m_scrollY=Math::clampf(m_scrollY,m_scrollMinY,m_scrollMaxY);
+					m_scrollerY->abortAnimation();
+				}
+			}
+
 		}
 
 	}
+
 
 	if(need_readjust)
 	{
@@ -505,8 +604,7 @@ void ScrollWidget::edgeCheckHandle()
 	}
 
 
-
-	if(m_scrollMode==SCROLL_HORIZONTAL||m_scrollMode==SCROLL_ALL)
+	if(m_scrollMode==SCROLL_HORIZONTAL)
 	{
 		if(!m_scrollerX->isFinished())
 		{
@@ -519,7 +617,7 @@ void ScrollWidget::edgeCheckHandle()
 		}
 	}
 
-	if(m_scrollMode==SCROLL_VERTICAL||m_scrollMode==SCROLL_ALL)
+	if(m_scrollMode==SCROLL_VERTICAL)
 	{
 		if(!m_scrollerY->isFinished())
 		{
@@ -530,6 +628,29 @@ void ScrollWidget::edgeCheckHandle()
 		{
 			m_scrollerY->bounceBack(m_scrollY,m_scrollMinY,m_scrollMaxY,getHeight());
 		}
+	}
+
+	if(m_scrollMode==SCROLL_ALL)
+	{
+
+		if(m_scrollerX->isFinished())
+		{
+			if(m_scrollX>m_scrollMaxX||m_scrollX<m_scrollMinX)
+			{
+				m_scrollerX->bounceBack(m_scrollX,m_scrollMinX,m_scrollMaxX,getWidth());
+			}
+		}
+
+
+		if(m_scrollerY->isFinished())
+		{
+			if(m_scrollY>m_scrollMaxY||m_scrollY<m_scrollMinY)
+			{
+				m_scrollerY->bounceBack(m_scrollY,m_scrollMinY,m_scrollMaxY,getHeight());
+			}
+		}
+
+
 	}
 
 }

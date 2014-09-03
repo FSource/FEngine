@@ -36,6 +36,7 @@ class Scroller:public FsObject
 
 		float getCurPos();
 
+		int getScrollMode();
 
 
 	public:

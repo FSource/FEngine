@@ -18,8 +18,8 @@ class UiWidget:public Entity
 		float getWidth();
 		float getHeight();
 
-		void setScissor(bool clip);
-		bool getScissor();
+		void setScissorEnabled(bool clip);
+		bool getScissorEnabled();
 
 
 		virtual void setAnchor(float x,float y);

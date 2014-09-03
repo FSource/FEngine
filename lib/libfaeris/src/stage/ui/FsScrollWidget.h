@@ -75,6 +75,9 @@ class ScrollWidget:public UiWidget
 		void setScrollMode(int mode);
 		int getScrollMode();
 
+		void setEdgeBounceEnabled(bool enabled);
+		bool getEdgeBounceEnabled();
+
 
 	public:
 		void setContentAlign(int h,int v);
@@ -93,7 +96,7 @@ class ScrollWidget:public UiWidget
 		float getScrollPercentX();
 		float getScrollPercentY();
 
-		void relayout();
+		void layout();
 
 	protected:
 
@@ -146,6 +149,8 @@ class ScrollWidget:public UiWidget
 		int m_alignh,m_alignv;
 
 		VelocityTracker* m_velocityTracker;
+
+		bool m_edgeBounceEnabled;
 
 };
 

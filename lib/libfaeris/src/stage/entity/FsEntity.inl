@@ -9,6 +9,7 @@ inline void Entity::rotate(float rx,float ry,float rz)
 	m_rotate.z+=rz;
 	m_localMatrixDirty=1;
 	m_worldMatrixDirty=1;
+
 }
 inline void Entity::rotateX(float r)
 {
@@ -63,6 +64,7 @@ inline void Entity::move(float tx,float ty,float tz)
 	m_translate.z+=tz;
 	m_localMatrixDirty=1;
 	m_worldMatrixDirty=1;
+
 }
 inline void Entity::moveX(float t)
 {

@@ -69,6 +69,9 @@ class ScrollWidget:public UiWidget
 		void setScrollMode(int mode);
 		int getScrollMode();
 
+		void setEdgeBounceEnabled(bool enabled);
+		bool getEdgeBounceEnabled();
+
 	public:
 		void setContentAlign(int w,int h);
 		void setContentSize(float width,float height);

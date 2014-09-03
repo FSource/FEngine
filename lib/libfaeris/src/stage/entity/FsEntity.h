@@ -20,14 +20,17 @@ class Entity :public ActionTarget
 		Entity* create();
 
 	public:
+		/* inherit FsObject */
+		virtual const char* className();
+
+
 		virtual void update(float dt);
 		virtual void draw(Render* r,bool updateMatrix=true);
 
 		virtual void updates(float dt);
 		virtual void draws(Render* r,bool updateMatrix=true);
 
-		/* inherit FsObject */
-		virtual const char* className();
+		virtual void detach();
 
 	public:
 
@@ -39,7 +42,7 @@ class Entity :public ActionTarget
 		void remove(Entity* n);
 		void clearChild();
 
-		void detach();
+
 		FS_FEATURE_NEW_OBJECT(FsArray*) takeAllChild();
 		int childNu();
 
@@ -57,7 +60,6 @@ class Entity :public ActionTarget
 		Layer* getLayer();
 		Entity* getParent();
 		Scene* getScene();
-
 
 
 		/* used for layer to sort */

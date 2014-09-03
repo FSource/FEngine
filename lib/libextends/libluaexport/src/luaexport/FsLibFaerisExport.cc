@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 09/02/14 09:48:27.
+** Generated automatically by tolua++-1.0.92 on 09/03/14 03:00:24.
 */
 
 #ifndef __cplusplus
@@ -17864,9 +17864,9 @@ static int tolua_FsLibFaeris_UiWidget_getHeight00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setScissor of class  UiWidget */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setScissor00
-static int tolua_FsLibFaeris_UiWidget_setScissor00(lua_State* tolua_S)
+/* method: setScissorEnabled of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setScissorEnabled00
+static int tolua_FsLibFaeris_UiWidget_setScissorEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -17882,24 +17882,24 @@ static int tolua_FsLibFaeris_UiWidget_setScissor00(lua_State* tolua_S)
   UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
   bool clip = ((bool)  tolua_toboolean(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScissor'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScissorEnabled'", NULL);
 #endif
   {
-   self->setScissor(clip);
+   self->setScissorEnabled(clip);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setScissor'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'setScissorEnabled'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getScissor of class  UiWidget */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getScissor00
-static int tolua_FsLibFaeris_UiWidget_getScissor00(lua_State* tolua_S)
+/* method: getScissorEnabled of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getScissorEnabled00
+static int tolua_FsLibFaeris_UiWidget_getScissorEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -17913,17 +17913,17 @@ static int tolua_FsLibFaeris_UiWidget_getScissor00(lua_State* tolua_S)
  {
   UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScissor'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScissorEnabled'", NULL);
 #endif
   {
-   bool tolua_ret = (bool)  self->getScissor();
+   bool tolua_ret = (bool)  self->getScissorEnabled();
    tolua_pushboolean(tolua_S,(bool)tolua_ret);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getScissor'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getScissorEnabled'.",&tolua_err);
  return 0;
 #endif
 }
@@ -18882,6 +18882,71 @@ static int tolua_FsLibFaeris_ScrollWidget_getScrollMode00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getScrollMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setEdgeBounceEnabled of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_setEdgeBounceEnabled00
+static int tolua_FsLibFaeris_ScrollWidget_setEdgeBounceEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+  bool enabled = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setEdgeBounceEnabled'", NULL);
+#endif
+  {
+   self->setEdgeBounceEnabled(enabled);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setEdgeBounceEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getEdgeBounceEnabled of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_getEdgeBounceEnabled00
+static int tolua_FsLibFaeris_ScrollWidget_getEdgeBounceEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScrollWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getEdgeBounceEnabled'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getEdgeBounceEnabled();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getEdgeBounceEnabled'.",&tolua_err);
  return 0;
 #endif
 }
@@ -40993,8 +41058,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getSize",tolua_FsLibFaeris_UiWidget_getSize00);
    tolua_function(tolua_S,"getWidth",tolua_FsLibFaeris_UiWidget_getWidth00);
    tolua_function(tolua_S,"getHeight",tolua_FsLibFaeris_UiWidget_getHeight00);
-   tolua_function(tolua_S,"setScissor",tolua_FsLibFaeris_UiWidget_setScissor00);
-   tolua_function(tolua_S,"getScissor",tolua_FsLibFaeris_UiWidget_getScissor00);
+   tolua_function(tolua_S,"setScissorEnabled",tolua_FsLibFaeris_UiWidget_setScissorEnabled00);
+   tolua_function(tolua_S,"getScissorEnabled",tolua_FsLibFaeris_UiWidget_getScissorEnabled00);
    tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris_UiWidget_setAnchor00);
    tolua_function(tolua_S,"getAnchorX",tolua_FsLibFaeris_UiWidget_getAnchorX00);
    tolua_function(tolua_S,"getAnchorY",tolua_FsLibFaeris_UiWidget_getAnchorY00);
@@ -41034,6 +41099,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getMarginBottom",tolua_FsLibFaeris_ScrollWidget_getMarginBottom00);
    tolua_function(tolua_S,"setScrollMode",tolua_FsLibFaeris_ScrollWidget_setScrollMode00);
    tolua_function(tolua_S,"getScrollMode",tolua_FsLibFaeris_ScrollWidget_getScrollMode00);
+   tolua_function(tolua_S,"setEdgeBounceEnabled",tolua_FsLibFaeris_ScrollWidget_setEdgeBounceEnabled00);
+   tolua_function(tolua_S,"getEdgeBounceEnabled",tolua_FsLibFaeris_ScrollWidget_getEdgeBounceEnabled00);
    tolua_function(tolua_S,"setContentAlign",tolua_FsLibFaeris_ScrollWidget_setContentAlign00);
    tolua_function(tolua_S,"setContentSize",tolua_FsLibFaeris_ScrollWidget_setContentSize00);
    tolua_function(tolua_S,"scrollBy",tolua_FsLibFaeris_ScrollWidget_scrollBy00);

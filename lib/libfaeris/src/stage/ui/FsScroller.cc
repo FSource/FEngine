@@ -4,6 +4,7 @@
 #include "math/easing/FsEaseExpr.h"
 #include "math/easing/FsExponentialEase.h"
 #include "math/easing/FsCubicEase.h"
+#include "math/easing/FsLinearEase.h"
 
 
 #include "math/FsMathUtil.h"
@@ -63,11 +64,6 @@ Scroller::~Scroller()
 }
 
 
-
-
-
-
-
 void Scroller::startScroll(float start,float min,float max,float detail,float duration)
 {
 	m_finish=false;
@@ -87,10 +83,6 @@ void Scroller::startScroll(float start,float min,float max,float detail,float du
 	m_timePassed=0.0f;
 
 }
-
-
-
-
 
 
 void Scroller::fling(float start,float min,float max,float velocity,float accel,float range)
@@ -122,9 +114,8 @@ void Scroller::fling(float start,float min,float max,float velocity,float accel,
 	m_accel=accel;
 
 	m_flingEdgeRange=range;
-
-
 }
+
 
 
 void Scroller::bounceBack(float start,float min,float max,float range)
@@ -301,6 +292,11 @@ void Scroller::updateBounceBack(float dt)
 }
 
 
+
+int Scroller::getScrollMode()
+{
+	return m_mode;
+}
 
 
 

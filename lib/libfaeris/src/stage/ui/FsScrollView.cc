@@ -13,7 +13,9 @@ const char* ScrollView::className()
 ScrollView::ScrollView(float width,float height)
 {
 	m_contentWidget=NULL;
+
 	setSize(width,height);
+	setScissorEnabled(true);
 
 }
 
@@ -22,12 +24,8 @@ ScrollView::~ScrollView()
 	if(m_contentWidget)
 	{
 		m_contentWidget->setParentWidget(NULL);
-
 	}
-
 }
-
-
 
 
 ScrollView* ScrollView::create(float width,float height)
@@ -41,7 +39,7 @@ void ScrollView::setContentWidget(UiWidget* widget)
 {
 	if(widget->getParentWidget()==this)
 	{
-		FS_TRACE_WARN("Widget Already Add To This Widget");
+		FS_TRACE_WARN("Widget Already Add To ScrollView");
 		return;
 	}
 
@@ -68,9 +66,13 @@ void ScrollView::setContentWidget(UiWidget* widget)
 		addChild(widget);
 
 		widget->setParentWidget(this);
-		m_contentWidth=widget->getWidth();
-		m_contentHeight=widget->getHeight();
+		float minx,maxx,miny,maxy;
+		widget->getRSBoundSize2D(&minx,&maxx,&miny,&maxy);
+
+		m_contentWidth=maxx-minx;
+		m_contentHeight=maxy-miny;
 	}
+
 
 	adjustScrollArea();
 
@@ -90,29 +92,27 @@ void ScrollView::scrollChange(float x,float y)
 		return ;
 	}
 
-	Vector2 anchor=m_contentWidget->getAnchor();
-	Vector2 size=m_contentWidget->getSize();
+	float minx,maxx,miny,maxy;
+
+	m_contentWidget->getRSBoundSize2D(&minx,&maxx,&miny,&maxy);
 
 
-	float h,w;
+	float middlex=(minx+maxx)/2;
+	float middley=(miny+maxy)/2;
 
 
 	switch(m_alignv)
 	{
 		case ALIGN_TOP:
-			
-			h=(1.0f-anchor.y)*size.y;
-			m_contentWidget->setPositionY(y-h);
+			m_contentWidget->setPositionY(y-maxy);
 			break;
 
 		case ALIGN_CENTER:
-			h=(0.5f-anchor.y)*size.y;
-			m_contentWidget->setPositionY(y-h);
+			m_contentWidget->setPositionY(y-middley);
 			break;
 
 		case ALIGN_BOTTOM:
-			h=-anchor.y*size.y;
-			m_contentWidget->setPositionY(y-h);
+			m_contentWidget->setPositionY(y-miny);
 			break;
 		default:
 			FS_TRACE_WARN("Unkown Align For Vetical");
@@ -121,18 +121,15 @@ void ScrollView::scrollChange(float x,float y)
 	switch(m_alignh)
 	{
 		case ALIGN_LEFT:
-			w=(-anchor.x)*size.x;
-			m_contentWidget->setPositionX(x-w);
+			m_contentWidget->setPositionX(x-minx);
 			break;
 
 		case ALIGN_CENTER:
-			w=(0.5f-anchor.x)*size.x;
-			m_contentWidget->setPositionX(x-w);
+			m_contentWidget->setPositionX(x-middlex);
 			break;
 
 		case ALIGN_RIGHT:
-			w=(1.0f-anchor.x)*size.x;
-			m_contentWidget->setPositionX(x-w);
+			m_contentWidget->setPositionX(x-maxx);
 			break;
 
 		default:
