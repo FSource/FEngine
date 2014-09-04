@@ -33,6 +33,8 @@ $pfile "stage/ui/FsPressButton.pkg"
 $pfile "stage/ui/FsUiWidget.pkg"
 $pfile "stage/ui/FsScrollWidget.pkg"
 $pfile "stage/ui/FsScrollView.pkg"
+$pfile "stage/ui/FsListView.pkg"
+
 
 
 

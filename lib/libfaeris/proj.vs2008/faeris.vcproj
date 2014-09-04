@@ -1034,6 +1034,14 @@
 					Name="ui"
 					>
 					<File
+						RelativePath="..\src\stage\ui\FsListView.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsListView.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\stage\ui\FsPressButton.cc"
 						>
 					</File>

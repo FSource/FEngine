@@ -7,13 +7,15 @@ class UiWidget:public Entity
 		static UiWidget* create(float width,float height);
 
 	public:
-		virtual const char* className();
-		virtual bool hit2D(float x,float y);
 
-	public:
-
-		virtual void setSize(float width,float height);
+		void setSize(float width,float height);
 		Vector2 getSize();
+
+		void getBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
+		void getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
+		void getTRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
+
+
 
 		float getWidth();
 		float getHeight();
@@ -22,10 +24,28 @@ class UiWidget:public Entity
 		bool getScissorEnabled();
 
 
-		virtual void setAnchor(float x,float y);
+		void setAnchor(float x,float y);
 		float getAnchorX();
 		float getAnchorY();
 		Vector2 getAnchor();
+
+
+		void setBgColor(const Color4f& c);
+		void setBgTexture(Texture2D* tex);
+		void setBgTexture(const char* filename);
+
+		void setBgEnabled(bool value);
+
+	public:
+		virtual void removeWidget(UiWidget* widget);
+		virtual void detach();
+		virtual void layout();
+
+
+	public:
+		void setParentWidget(UiWidget* widget);
+		UiWidget* getParentWidget();
+
 
 };
 

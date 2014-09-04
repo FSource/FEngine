@@ -1,20 +1,12 @@
-#ifndef _FS_LIST_VIEW_H_
-#define _FS_LIST_VIEW_H_
+$#include "stage/ui/FsListView.h"
 
-#include "FsMacros.h"
-#include "FsUiWidget.h"
-#include "FsScrollView.h"
-
-NS_FS_BEGIN
-
-class ListViewContentPanel;
 class ListView:public ScrollWidget
 {
 	public:
 		enum 
 		{
-			SCROLL_VERTICAL=ScrollWidget::SCROLL_VERTICAL,
-			SCROLL_HORIZONTAL=ScrollWidget::SCROLL_HORIZONTAL,
+			SCROLL_VERTICAL,
+			SCROLL_HORIZONTAL,
 		};
 
 		enum 
@@ -50,7 +42,6 @@ class ListView:public ScrollWidget
 
 		Vector2 getListItemSize();
 
-
 	public:
 		void addListItem(UiWidget* widget);
 		void addListItem(UiWidget* widget,int alignh,int alignv);
@@ -63,28 +54,6 @@ class ListView:public ScrollWidget
 	
 		int getListItemNu();
 		UiWidget* getListItem(int index);
-
 		int getListItemIndex(UiWidget* widget);
-
-	protected:
-
-		ListView(int mode,float width,float height);
-		virtual ~ListView();
-
-		virtual void childSizeChanged(float w,float h);
-		virtual void childAnchorChanged(float w,float h);
-
-		virtual void sizeChanged(float w,float h);
-		virtual void anchorChanged(float x,float y);
-
-		void adjustContentSize();
-
-
-
-	protected:
-		ListViewContentPanel* m_contentPanel;
 };
-
-NS_FS_END 
-#endif /*_FS_LIST_VIEW_H_*/
 

@@ -306,6 +306,7 @@ enum
 #define FS_PRESS_BUTTON_CLASS_NAME "PressButton"
 #define FS_UI_WIDGET_CLASS_NAME  "UiWidget"
 #define FS_SCROLL_WIDGET_CLASS_NAME "ScrollWidget"
+#define FS_LIST_VIEW_CLASS_NAME "ListView"
 
 
 /* scene */

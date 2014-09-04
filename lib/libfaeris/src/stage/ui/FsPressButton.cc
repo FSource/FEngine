@@ -31,9 +31,9 @@ PressButton* PressButton::create()
 
 PressButton* PressButton::createWithDarkStyle(const char* filename,const Color4f& dark)
 {
-	Texture2D* texture=Global::textureMgr()->loadTexture(filename);
-	FS_TRACE_WARN_ON(texture==NULL,"Can't Load Texture(%s) For PressButton",filename);
-	return createWithDarkStyle(texture,dark);
+	PressButton* ret=new PressButton();
+	ret->initWithDarkStyle(filename,dark);
+	return ret;
 }
 
 PressButton* PressButton::createWithDarkStyle(Texture2D* tex,const Color4f& dark)
@@ -48,9 +48,9 @@ PressButton* PressButton::createWithDarkStyle(Texture2D* tex,const Color4f& dark
 
 PressButton* PressButton::createWithScaleStyle(const char*  filename,const Vector3& scale)
 {
-	Texture2D* texture=Global::textureMgr()->loadTexture(filename);
-	FS_TRACE_WARN_ON(texture==NULL,"Can't loadTexture(%s) For PressButton",filename);
-	return createWithScaleStyle(texture,scale);
+	PressButton* ret=new PressButton();
+	ret->initWithScaleStyle(filename,scale);
+	return ret;
 }
 
 
@@ -100,6 +100,7 @@ bool PressButton::init()
 	FS_SAFE_ADD_REF(m_program);
 	m_texture=NULL;
 
+	setTouchEnabled(true);
 	return true;
 }
 
@@ -114,24 +115,44 @@ void PressButton::destruct()
 
 }
 
+
+void PressButton::initWithDarkStyle(const char* filename,const Color4f& dark)
+{
+	Texture2D* texture=Global::textureMgr()->loadTexture(filename);
+	FS_TRACE_WARN_ON(texture==NULL,"Can't Load Texture(%s) For PressButton",filename);
+	initWithDarkStyle(texture,dark);
+}
+
+
 void PressButton::initWithDarkStyle(Texture2D* texture,const Color4f& dark)
 {
 
 	setTexture(texture);
 
 	setTweenFlags(FLAG_COLOR);
-	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.5f);
+	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
 
 	setColor(STATE_PRESS,dark);
 	setColor(STATE_DISABLE,Color4f(0.2f,0.2f,0.2f));
 }
+
+
+void PressButton::initWithScaleStyle(const char* filename,const Vector3& scale)
+{
+
+	Texture2D* texture=Global::textureMgr()->loadTexture(filename);
+	FS_TRACE_WARN_ON(texture==NULL,"Can't loadTexture(%s) For PressButton",filename);
+	initWithScaleStyle(texture,scale);
+
+}
+
 
 void PressButton::initWithScaleStyle(Texture2D* texture,const Vector3& scale)
 {
 	setTexture(texture);
 
 	setTweenFlags(FLAG_SCALE|FLAG_COLOR);
-	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.5f);
+	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
 
 	setScale(STATE_PRESS,scale);
 	setColor(STATE_DISABLE,Color4f(0.2f,0.2f,0.2f));

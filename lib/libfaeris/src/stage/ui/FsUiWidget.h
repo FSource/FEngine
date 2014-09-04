@@ -58,13 +58,16 @@ class UiWidget:public Entity
 		virtual void detach();
 		virtual void layout();
 
+
 	public:
 		void setParentWidget(UiWidget* widget);
 		UiWidget* getParentWidget();
 
+
 	protected:
 		UiWidget();
 		virtual ~UiWidget();
+
 		virtual void sizeChanged(float w,float h);
 		virtual void anchorChanged(float x,float y);
 

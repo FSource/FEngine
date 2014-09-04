@@ -42,8 +42,8 @@ class ScrollWidget:public UiWidget
 		virtual void childSizeChanged(float w,float h);
 		virtual void childAnchorChanged(float w,float h);
 
-		virtual void setSize(float width,float height);
-		virtual void setAnchor(float x,float y);
+		virtual void sizeChanged(float width,float height);
+		virtual void anchorChanged(float x,float y);
 
 
 		/* inherit FsObject */

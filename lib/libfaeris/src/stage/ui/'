@@ -247,14 +247,13 @@ void UiWidget::draws(Render* r,bool updateMatrix)
 		}
 
 		float w=smaxx-sminx;
-		float h=smaxy-sminy;
-
 
 
 
 		r->setScissorEnabled(true);
 
-		r->setScissorArea(sminx,sminy,w<0?0:w,h<0?0:h);
+
+		r->setScissorArea(sminx,sminy,smaxx-sminx,smaxy-sminy);
 
 		Entity::draws(r,updateMatrix);
 

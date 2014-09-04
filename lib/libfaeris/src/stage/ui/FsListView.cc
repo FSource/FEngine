@@ -3,14 +3,19 @@
 
 NS_FS_BEGIN
 
-class ListViewContentPanel:public Entity()
+class ListViewContentPanel:public Entity
 {
 	class ListItemInfo:public FsObject 
 	{
 		public:
-			ListItemInfo* create(int alignh,int alignv,UiWidget* widget)
+			static ListItemInfo* create(int alignh,int alignv,UiWidget* widget)
 			{
-
+				return new ListItemInfo(alignh,alignv,widget);
+			}
+		public:
+			virtual const char* className()
+			{
+				return "ListItemInfo";
 			}
 		public:
 			int m_alignH;
@@ -45,22 +50,29 @@ class ListViewContentPanel:public Entity()
 		float m_contentWidth;
 		float m_contentHeight;
 
+		float m_width;
+		float m_height;
+
 
 	public:
-		static ListViewContentPanel* create()
+		static ListViewContentPanel* create(float width,float height)
 		{
-			return new ListViewContentPanel();
+			return new ListViewContentPanel(width,height);
 		}
 
 
 	protected:
-		ListViewContentPanel()
+		ListViewContentPanel(float width,float height)
 		{
 			m_mode=ListView::SCROLL_VERTICAL;
 			m_listItem=FsArray::create();
 			m_listGap=0;
 			m_contentWidth=0;
 			m_contentHeight=0;
+			setTouchEnabled(true);
+			setDispatchTouchEnabled(true);
+			m_width=width;
+			m_height=height;
 		}
 
 		~ListViewContentPanel()
@@ -78,7 +90,11 @@ class ListViewContentPanel:public Entity()
 
 		void addListItem(int index,UiWidget* widget,int alignh,int alignv)
 		{
-			ListItemInfo* item=ListItemInfo::create(widget,alignh,alignv);
+			ListItemInfo* item=ListItemInfo::create(alignh,alignv,widget);
+			if(index>(int)m_listItem->size())
+			{
+				index=m_listItem->size();
+			}
 			m_listItem->insert(index,item);
 			layout();
 		}
@@ -102,7 +118,7 @@ class ListViewContentPanel:public Entity()
 			return m_listItem->size();
 		}
 
-		int UiWidget* getListItem(int index)
+		UiWidget* getListItem(int index)
 		{
 			ListItemInfo* item=(ListItemInfo*)m_listItem->get(index);
 			return item->m_widget;
@@ -119,6 +135,13 @@ class ListViewContentPanel:public Entity()
 			return m_mode;
 		}
 
+		void setSize(float width,float height)
+		{
+			m_width=width;
+			m_height=height;
+
+			layout();
+		}
 
 		void setListItemAlign(int index,int alignh,int alignv)
 		{
@@ -141,11 +164,11 @@ class ListViewContentPanel:public Entity()
 								break;
 
 							case ListView::ITEM_ALIGN_CENTER:
-								item->m_widget->setPositionX(width/2-(left+right)/2);
+								item->m_widget->setPositionX(m_contentWidth/2-(left+right)/2);
 								break;
 
 							case ListView::ITEM_ALIGN_RIGHT:
-								item->m_widget->setPositionX(width-right);
+								item->m_widget->setPositionX(m_contentWidth-right);
 								break;
 
 							default:
@@ -158,18 +181,18 @@ class ListViewContentPanel:public Entity()
 
 				case ListView::SCROLL_HORIZONTAL:
 					{
-						switch(item->alignv)
+						switch(item->m_alignV)
 						{
 
 							case ListView::ITEM_ALIGN_TOP:
 								item->m_widget->setPositionY(-top);
 								break;
 							case ListView::ITEM_ALIGN_CENTER:
-								item->m_widget->setPositionY(-height/2-(top+bottom)/2);
+								item->m_widget->setPositionY(-m_contentHeight/2-(top+bottom)/2);
 								break;
 
 							case ListView::ITEM_ALIGN_BOTTOM:
-								item->m_widget->setPositionY(-height-bottom);
+								item->m_widget->setPositionY(-m_contentHeight-bottom);
 								break;
 							default:
 								FS_TRACE_WARN("Unkown Align For List Item");
@@ -197,7 +220,7 @@ class ListViewContentPanel:public Entity()
 		}
 		}
 
-		void setListItemAlign(UiWidget* widget,int alignh,int alignv);
+		void setListItemAlign(UiWidget* widget,int alignh,int alignv)
 		{
 			int index=getListItemIndex(widget);
 			setListItemAlign(index,alignh,alignv);
@@ -215,34 +238,27 @@ class ListViewContentPanel:public Entity()
 			return getListItemAlignV(index);
 		}
 
-		void getContentWidth()
+		float getContentWidth()
 		{
 			return m_contentWidth;
 		}
-		void getContentHeight()
+		float getContentHeight()
 		{
 			return m_contentHeight;
 		}
 
-	public:
-		virtual bool hit2D(float x,float y){return true;}
-		void layout()
+		void setListGap(float value)
 		{
-			switch(m_mode)
-			{
-				case SCROLL_VERTICAL:
-					layoutVertical();
-					break;
-				case SCROLL_HORIZONTAL:
-					layoutHorizontal();
-					break;
-				default:
-					FS_TRACE_WARN("Unkown Mode For ListView");
-			}
-
+			m_listGap=value;
+			layout();
 		}
-	protected:
 
+		float getListGap()
+		{
+			return m_listGap;
+		}
+
+		
 		int getListItemIndex(UiWidget* widget)
 		{
 			int size=m_listItem->size();
@@ -254,11 +270,29 @@ class ListViewContentPanel:public Entity()
 					return i;
 
 				}
-
 			}
 			return -1;
-
 		}
+
+	public:
+		virtual bool hit2D(float x,float y){return true;}
+		void layout()
+		{
+			switch(m_mode)
+			{
+				case ListView::SCROLL_VERTICAL:
+					layoutVertical();
+					break;
+				case ListView::SCROLL_HORIZONTAL:
+					layoutHorizontal();
+					break;
+				default:
+					FS_TRACE_WARN("Unkown Mode For ListView");
+			}
+		}
+
+
+	protected:
 
 		void layoutVertical()
 		{
@@ -272,7 +306,7 @@ class ListViewContentPanel:public Entity()
 			{
 				UiWidget* widget=((ListItemInfo*)m_listItem->get(i))->m_widget;
 				float left,right,top,bottom;
-				widget->getRSBoundSize2D(&left,&right,&top,&bottom);
+				widget->getRSBoundSize2D(&left,&right,&bottom,&top);
 				widget->setPositionY(start_y-top);
 				if(i==0)
 				{
@@ -282,7 +316,7 @@ class ListViewContentPanel:public Entity()
 				{
 					height+=top-bottom+m_listGap;
 				}
-				start_y+=top-bottom+m_listGap;
+				start_y-=top-bottom+m_listGap;
 
 				if(width<right-left)
 				{
@@ -295,7 +329,7 @@ class ListViewContentPanel:public Entity()
 
 				ListItemInfo* item=(ListItemInfo*)m_listItem->get(i);
 				float left,right,top,bottom;
-				item->m_widget->getRSBoundSize2D(&left,&right,&top,&bottom);
+				item->m_widget->getRSBoundSize2D(&left,&right,&bottom,&top);
 				switch(item->m_alignH)
 				{
 					case ListView::ITEM_ALIGN_LEFT:
@@ -303,11 +337,11 @@ class ListViewContentPanel:public Entity()
 						break;
 
 					case ListView::ITEM_ALIGN_CENTER:
-						item->m_widget->setPositionX(width/2-(left+right)/2);
+						item->m_widget->setPositionX(m_width/2-(left+right)/2);
 						break;
 
 					case ListView::ITEM_ALIGN_RIGHT:
-						item->m_widget->setPositionX(width-right);
+						item->m_widget->setPositionX(m_width-right);
 						break;
 
 					default:
@@ -329,7 +363,7 @@ class ListViewContentPanel:public Entity()
 			{
 				UiWidget* widget=((ListItemInfo*)m_listItem->get(i))->m_widget;
 				float left,right,top,bottom;
-				widget->getRSBoundSize2D(&left,&right,&top,&bottom);
+				widget->getRSBoundSize2D(&left,&right,&bottom,&top);
 				widget->setPositionX(start_x-left);
 				if(i==0)
 				{
@@ -340,7 +374,7 @@ class ListViewContentPanel:public Entity()
 					width+=right-left+m_listGap;
 				}
 
-				start_x=right-left+m_listGap;
+				start_x+=right-left+m_listGap;
 
 				if(height<top-bottom)
 				{
@@ -352,26 +386,27 @@ class ListViewContentPanel:public Entity()
 			{
 				ListItemInfo* item=(ListItemInfo*) m_listItem->get(i);
 				float left,right,top,bottom;
-				item->m_widget->getRSBoundSize2D(&left,&right,&top,&bottom);
+				item->m_widget->getRSBoundSize2D(&left,&right,&bottom,&top);
 				switch(item->m_alignV)
 				{
 					case ListView::ITEM_ALIGN_TOP:
 						item->m_widget->setPositionY(-top);
 						break;
 					case ListView::ITEM_ALIGN_CENTER:
-						item->m_widget->setPositionY(-height/2-(top+bottom)/2);
+						item->m_widget->setPositionY(-m_height/2-(top+bottom)/2);
 						break;
 
 					case ListView::ITEM_ALIGN_BOTTOM:
-						item->m_widget->setPositionY(-height-bottom);
+						item->m_widget->setPositionY(-m_height-bottom);
 						break;
 					default:
 						FS_TRACE_WARN("Unkown Align For List Item");
 				}
 			}
-
+			m_contentWidth=width;
+			m_contentHeight=height;
 		}
-}
+};
 
 
 const char* ListView::className()
@@ -379,23 +414,39 @@ const char* ListView::className()
 	return FS_LIST_VIEW_CLASS_NAME;
 }
 
-
-
 ListView* ListView::create(int mode,float width,float height)
 {
 	ListView* ret=new ListView(mode,width,height);
 	return ret;
 }
 
-ListView::ListView(int mode,int w,int h)
+
+ListView* ListView::create(float width,float height)
 {
-	m_contentPanel=ListViewContentPanel::create();
-	FS_NO_REF_DESTORY(m_contentPanel);
+	ListView* ret=new ListView(SCROLL_VERTICAL,width,height);
+	return ret;
+}
+
+
+ListView::ListView(int mode,float w,float h)
+{
+	m_contentPanel=ListViewContentPanel::create(w,h);
+	FS_NO_REF_DESTROY(m_contentPanel);
+
 	addChild(m_contentPanel);
 
-	m_contentPanel->setMode(mode);
+	setMode(mode);
+	if(mode==SCROLL_VERTICAL)
+	{
+		setContentAlign(ScrollWidget::ALIGN_CENTER,ScrollWidget::ALIGN_TOP);
+	}
+	else 
+	{
+		setContentAlign(ScrollWidget::ALIGN_LEFT,ScrollWidget::ALIGN_CENTER);
+	}
 
 	setSize(w,h);
+	setScissorEnabled(true);
 
 }
 
@@ -406,12 +457,12 @@ ListView::~ListView()
 
 	for(int i=0;i<size;i++)
 	{
-		UiWidget* widget=m_contentPanel->getListite(i);
+		UiWidget* widget=m_contentPanel->getListItem(i);
 		widget->setParentWidget(NULL);
 	}
-	remove(m_contentHeight);
+	remove(m_contentPanel);
 
-	FS_SAFE_DESTORY(m_contentPanel);
+	FS_SAFE_DESTROY(m_contentPanel);
 }
 
 
@@ -421,28 +472,22 @@ void ListView::removeWidget(UiWidget* widget)
 	removeListItem(widget);
 }
 
-void ListView::scrollChange(float x,float y)
-{
-}
 
 
 
 void ListView::setMode(int mode)
 {
+	setScrollMode(mode);
 	m_contentPanel->setMode(mode);
 
-	float width=m_contentPanel->getContentWidth();
-	float height=m_contentPanel->getContentHeight();
-	setContentSize(width,height);
+	adjustContentSize();
 }
 
 void ListView::setListGap(float value)
 {
 	m_contentPanel->setListGap(value);
 
-	float width=m_contentPanel->getContentWidth();
-	float height=m_contentPanel->getContentHeight();
-	setContentSize(width,height);
+	adjustContentSize();
 }
 
 float ListView::getListGap()
@@ -450,15 +495,47 @@ float ListView::getListGap()
 	return m_contentPanel->getListGap();
 }
 
+Vector2 ListView::getListItemSize()
+{
+	float w=m_contentPanel->getContentWidth();
+	float h=m_contentPanel->getContentHeight();
+
+	if(m_contentPanel->getMode()==SCROLL_VERTICAL)
+	{
+		w=m_size.x;
+	}
+	else if (m_contentPanel->getMode()==SCROLL_HORIZONTAL)
+	{
+		h=m_size.y;
+	}
+
+	return Vector2(w,h);
+}
+
 
 void ListView::addListItem(UiWidget* widget)
 {
-	int size=m_listItem->size();
-	addListItem(size,widget);
+	addListItem(widget,ListView::ITEM_ALIGN_CENTER,ListView::ITEM_ALIGN_CENTER);
+}
+
+void ListView::addListItem(UiWidget* widget,int alignh,int alignv)
+{
+	int size=m_contentPanel->getListItemNu();
+	addListItem(size,widget,alignh,alignv);
+}
+
+
+void ListView::addListItem(int index,UiWidget* widget)
+{
+	addListItem(index,widget,ListView::ITEM_ALIGN_CENTER,ListView::ITEM_ALIGN_CENTER);
 }
 
 void ListView::addListItem(int index,UiWidget* widget,int alignh,int alignv)
 {
+	float x=getScrollPercentX();
+	float y=getScrollPercentY();
+
+
 	if(widget->getParentWidget()==this)
 	{
 		FS_TRACE_WARN("widget Alread Add to ListView");
@@ -478,10 +555,13 @@ void ListView::addListItem(int index,UiWidget* widget,int alignh,int alignv)
 
 		widget->setParentWidget(this);
 
-		float width=m_contentPanel->getContentWidth();
-		float height=m_contentPanel->getContentHeight();
-		setContentSize(width,height);
+		adjustContentSize();
+
+
+		setScrollPercent(x,y);
 	}
+
+
 
 }
 
@@ -505,9 +585,8 @@ void ListView::removeListItem(UiWidget* widget)
 	m_contentPanel->removeListItem(widget);
 	m_contentPanel->remove(widget);
 
-	float width=m_contentPanel->getContentWidth();
-	float height=m_contentPanel->getContentHeight();
-	setContentSize(width,height);
+	adjustContentSize();
+
 }
 
 
@@ -517,22 +596,124 @@ int ListView::getListItemNu()
 }
 
 
-
 UiWidget* ListView::getListItem(int index)
 {
 	return m_contentPanel->getListItem(index);
 }
 
+int ListView::getListItemIndex(UiWidget* widget)
+{
+	return m_contentPanel->getListItemIndex(widget);
+}
 
 
 void ListView::layout()
 {
 	m_contentPanel->layout();
-	float width=m_contentPanel->getContentWidth();
-	float height=m_contentPanel->getContentHeight();
-	setContentSize(width,height);
+	adjustContentSize();
+
 }
 
+
+void ListView::scrollChange(float x,float y)
+{
+	//FS_TRACE_WARN("x=%f,y=%f",x,y);
+	
+	float minx,maxx,miny,maxy;
+
+	if(m_contentPanel->getMode()==SCROLL_VERTICAL)
+	{
+		minx=0;
+		maxx=m_size.x;
+		miny=m_contentPanel->getContentHeight();
+		maxy=0;
+	}
+	else if(m_contentPanel->getMode()==SCROLL_HORIZONTAL)
+	{
+		minx=0;
+		maxx=m_contentPanel->getContentWidth();
+		miny=-m_size.y;
+		maxy=0;
+
+	}
+
+	float middlex=(minx+maxx)/2;
+	float middley=(miny+maxy)/2;
+
+	switch(m_alignv)
+	{
+		case ALIGN_TOP:
+			m_contentPanel->setPositionY(y-maxy);
+			break;
+
+		case ALIGN_CENTER:
+			m_contentPanel->setPositionY(y-middley);
+			break;
+
+		case ALIGN_BOTTOM:
+			m_contentPanel->setPositionY(y-miny);
+			break;
+		default:
+			FS_TRACE_WARN("Unkown Align For Vetical");
+	}
+
+	switch(m_alignh)
+	{
+		case ALIGN_LEFT:
+			m_contentPanel->setPositionX(x-minx);
+			break;
+
+		case ALIGN_CENTER:
+			m_contentPanel->setPositionX(x-middlex);
+			break;
+
+		case ALIGN_RIGHT:
+			m_contentPanel->setPositionX(x-maxx);
+			break;
+
+		default:
+			FS_TRACE_WARN("Unkown Align For Horizontal");
+	}
+}
+
+void ListView::childSizeChanged(float w,float h)
+{
+	layout();
+}
+
+void ListView::childAnchorChanged(float x,float y)
+{
+	layout();
+}
+void ListView::adjustContentSize()
+{
+	Vector2 size=getListItemSize();
+	setContentSize(size.x,size.y);
+
+}
+
+void ListView::sizeChanged(float w,float h)
+{
+	float x=getScrollPercentX();
+	float y=getScrollPercentY();
+
+	m_contentPanel->setSize(w,h);
+
+	adjustContentSize();
+
+	setScrollPercent(x,y);
+}
+
+void ListView::anchorChanged(float w,float h)
+{
+	float x=getScrollPercentX();
+	float y=getScrollPercentY();
+
+	ScrollWidget::sizeChanged(w,h);
+
+	setScrollPercent(x,y);
+
+}
 
 
 

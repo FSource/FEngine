@@ -150,11 +150,15 @@ class LuaPressButton@PressButton:public PressButton
 		};
 
 	public:
-		static PressButton* create();
-		static PressButton* createWithDarkStyle(const char* filename,const Color4f& dark);
-		static PressButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark);
-		static PressButton* createWithScaleStyle(const char* filename,const Vector3& scale);
-		static PressButton* createWithScaleStyle(Texture2D* tex,const Vector3& scale);
+		static LuaPressButton* create();
+		static LuaPressButton* createWithDarkStyle(const char* filename,Color4f dark);
+		static LuaPressButton* createWithDarkStyle(const char* filename,Color dark);
+
+		static LuaPressButton* createWithDarkStyle(Texture2D* tex,Color4f dark);
+		static LuaPressButton* createWithDarkStyle(Texture2D* tex,Color dark);
+
+		static LuaPressButton* createWithScaleStyle(const char* filename,Vector3 scale);
+		static LuaPressButton* createWithScaleStyle(Texture2D* tex,Vector3 scale);
 
 
 	public:

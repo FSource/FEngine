@@ -236,7 +236,10 @@ class PressButton:public Entity
 
 		void markStateDirty();
 
+		void initWithDarkStyle(const char* filename,const Color4f& dark);
 		void initWithDarkStyle(Texture2D* texture,const Color4f& dark);
+
+		void initWithScaleStyle(const char* filename,const Vector3& scale);
 		void initWithScaleStyle(Texture2D* texture,const Vector3& scale);
 
 

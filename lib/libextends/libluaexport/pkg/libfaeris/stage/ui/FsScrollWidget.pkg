@@ -89,7 +89,7 @@ class ScrollWidget:public UiWidget
 		float getScrollPercentX();
 		float getScrollPercentY();
 
-		void relayout();
+		void layout();
 
 };
 

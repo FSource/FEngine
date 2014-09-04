@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 09/03/14 03:00:24.
+** Generated automatically by tolua++-1.0.92 on 09/04/14 09:01:19.
 */
 
 #ifndef __cplusplus
@@ -41,6 +41,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "stage/ui/FsUiWidget.h"
 #include "stage/ui/FsScrollWidget.h"
 #include "stage/ui/FsScrollView.h"
+#include "stage/ui/FsListView.h"
 #include "mgr/FsResource.h"
 #include "mgr/FsTextureMgr.h"
 #include "mgr/FsSprite2DDataMgr.h"
@@ -181,6 +182,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Sprite2DDataMgr");
  tolua_usertype(tolua_S,"ProgramMgr");
  tolua_usertype(tolua_S,"LuaPressButton");
+ tolua_usertype(tolua_S,"ListView");
  tolua_usertype(tolua_S,"LuaRotateAction");
  tolua_usertype(tolua_S,"Face3");
  toluaext_usertype(tolua_S,"AudioEngine");
@@ -17080,8 +17082,8 @@ static int tolua_FsLibFaeris_PressButton_create00(lua_State* tolua_S)
 #endif
  {
   {
-   PressButton* tolua_ret = (PressButton*)  LuaPressButton::create();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PressButton");
+   LuaPressButton* tolua_ret = (LuaPressButton*)  LuaPressButton::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaPressButton");
   }
  }
  return 1;
@@ -17102,7 +17104,7 @@ static int tolua_FsLibFaeris_PressButton_createWithDarkStyle00(lua_State* tolua_
  if (
      !tolua_isusertable(tolua_S,1,"LuaPressButton",0,&tolua_err) ||
      !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Color4f",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
@@ -17110,10 +17112,10 @@ static int tolua_FsLibFaeris_PressButton_createWithDarkStyle00(lua_State* tolua_
 #endif
  {
   const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
-  const Color4f* dark = ((const Color4f*)  tolua_tousertype(tolua_S,3,0));
+  Color4f dark = *((Color4f*)  tolua_tousertype(tolua_S,3,0));
   {
-   PressButton* tolua_ret = (PressButton*)  LuaPressButton::createWithDarkStyle(filename,*dark);
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PressButton");
+   LuaPressButton* tolua_ret = (LuaPressButton*)  LuaPressButton::createWithDarkStyle(filename,dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaPressButton");
   }
  }
  return 1;
@@ -17132,23 +17134,77 @@ static int tolua_FsLibFaeris_PressButton_createWithDarkStyle01(lua_State* tolua_
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"LuaPressButton",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Color",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+  Color dark = *((Color*)  tolua_tousertype(tolua_S,3,0));
+  {
+   LuaPressButton* tolua_ret = (LuaPressButton*)  LuaPressButton::createWithDarkStyle(filename,dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaPressButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_PressButton_createWithDarkStyle00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  LuaPressButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PressButton_createWithDarkStyle02
+static int tolua_FsLibFaeris_PressButton_createWithDarkStyle02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaPressButton",0,&tolua_err) ||
      !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Color4f",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
-  const Color4f* dark = ((const Color4f*)  tolua_tousertype(tolua_S,3,0));
+  Color4f dark = *((Color4f*)  tolua_tousertype(tolua_S,3,0));
   {
-   PressButton* tolua_ret = (PressButton*)  LuaPressButton::createWithDarkStyle(tex,*dark);
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PressButton");
+   LuaPressButton* tolua_ret = (LuaPressButton*)  LuaPressButton::createWithDarkStyle(tex,dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaPressButton");
   }
  }
  return 1;
 tolua_lerror:
- return tolua_FsLibFaeris_PressButton_createWithDarkStyle00(tolua_S);
+ return tolua_FsLibFaeris_PressButton_createWithDarkStyle01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  LuaPressButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PressButton_createWithDarkStyle03
+static int tolua_FsLibFaeris_PressButton_createWithDarkStyle03(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaPressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Color",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  Color dark = *((Color*)  tolua_tousertype(tolua_S,3,0));
+  {
+   LuaPressButton* tolua_ret = (LuaPressButton*)  LuaPressButton::createWithDarkStyle(tex,dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaPressButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_PressButton_createWithDarkStyle02(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -17161,7 +17217,7 @@ static int tolua_FsLibFaeris_PressButton_createWithScaleStyle00(lua_State* tolua
  if (
      !tolua_isusertable(tolua_S,1,"LuaPressButton",0,&tolua_err) ||
      !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector3",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Vector3",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
@@ -17169,10 +17225,10 @@ static int tolua_FsLibFaeris_PressButton_createWithScaleStyle00(lua_State* tolua
 #endif
  {
   const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
-  const Vector3* scale = ((const Vector3*)  tolua_tousertype(tolua_S,3,0));
+  Vector3 scale = *((Vector3*)  tolua_tousertype(tolua_S,3,0));
   {
-   PressButton* tolua_ret = (PressButton*)  LuaPressButton::createWithScaleStyle(filename,*scale);
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PressButton");
+   LuaPressButton* tolua_ret = (LuaPressButton*)  LuaPressButton::createWithScaleStyle(filename,scale);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaPressButton");
   }
  }
  return 1;
@@ -17192,17 +17248,17 @@ static int tolua_FsLibFaeris_PressButton_createWithScaleStyle01(lua_State* tolua
  if (
      !tolua_isusertable(tolua_S,1,"LuaPressButton",0,&tolua_err) ||
      !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector3",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Vector3",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
-  const Vector3* scale = ((const Vector3*)  tolua_tousertype(tolua_S,3,0));
+  Vector3 scale = *((Vector3*)  tolua_tousertype(tolua_S,3,0));
   {
-   PressButton* tolua_ret = (PressButton*)  LuaPressButton::createWithScaleStyle(tex,*scale);
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PressButton");
+   LuaPressButton* tolua_ret = (LuaPressButton*)  LuaPressButton::createWithScaleStyle(tex,scale);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaPressButton");
   }
  }
  return 1;
@@ -17655,74 +17711,6 @@ static int tolua_FsLibFaeris_UiWidget_create00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: className of class  UiWidget */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_className00
-static int tolua_FsLibFaeris_UiWidget_className00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
-#endif
-  {
-   const char* tolua_ret = (const char*)  self->className();
-   tolua_pushstring(tolua_S,(const char*)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: hit2D of class  UiWidget */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_hit2D00
-static int tolua_FsLibFaeris_UiWidget_hit2D00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
-  float x = ((float)  tolua_tonumber(tolua_S,2,0));
-  float y = ((float)  tolua_tonumber(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'hit2D'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->hit2D(x,y);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'hit2D'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: setSize of class  UiWidget */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setSize00
 static int tolua_FsLibFaeris_UiWidget_setSize00(lua_State* tolua_S)
@@ -17795,6 +17783,135 @@ static int tolua_FsLibFaeris_UiWidget_getSize00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getSize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getBoundSize2D of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getBoundSize2D00
+static int tolua_FsLibFaeris_UiWidget_getBoundSize2D00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  float minx = ((float)  tolua_tonumber(tolua_S,2,0));
+  float maxx = ((float)  tolua_tonumber(tolua_S,3,0));
+  float miny = ((float)  tolua_tonumber(tolua_S,4,0));
+  float maxy = ((float)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getBoundSize2D'", NULL);
+#endif
+  {
+   self->getBoundSize2D(&minx,&maxx,&miny,&maxy);
+   tolua_pushnumber(tolua_S,(lua_Number)minx);
+   tolua_pushnumber(tolua_S,(lua_Number)maxx);
+   tolua_pushnumber(tolua_S,(lua_Number)miny);
+   tolua_pushnumber(tolua_S,(lua_Number)maxy);
+  }
+ }
+ return 4;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getBoundSize2D'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getRSBoundSize2D of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getRSBoundSize2D00
+static int tolua_FsLibFaeris_UiWidget_getRSBoundSize2D00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  float minx = ((float)  tolua_tonumber(tolua_S,2,0));
+  float maxx = ((float)  tolua_tonumber(tolua_S,3,0));
+  float miny = ((float)  tolua_tonumber(tolua_S,4,0));
+  float maxy = ((float)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getRSBoundSize2D'", NULL);
+#endif
+  {
+   self->getRSBoundSize2D(&minx,&maxx,&miny,&maxy);
+   tolua_pushnumber(tolua_S,(lua_Number)minx);
+   tolua_pushnumber(tolua_S,(lua_Number)maxx);
+   tolua_pushnumber(tolua_S,(lua_Number)miny);
+   tolua_pushnumber(tolua_S,(lua_Number)maxy);
+  }
+ }
+ return 4;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getRSBoundSize2D'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getTRSBoundSize2D of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getTRSBoundSize2D00
+static int tolua_FsLibFaeris_UiWidget_getTRSBoundSize2D00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  float minx = ((float)  tolua_tonumber(tolua_S,2,0));
+  float maxx = ((float)  tolua_tonumber(tolua_S,3,0));
+  float miny = ((float)  tolua_tonumber(tolua_S,4,0));
+  float maxy = ((float)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTRSBoundSize2D'", NULL);
+#endif
+  {
+   self->getTRSBoundSize2D(&minx,&maxx,&miny,&maxy);
+   tolua_pushnumber(tolua_S,(lua_Number)minx);
+   tolua_pushnumber(tolua_S,(lua_Number)maxx);
+   tolua_pushnumber(tolua_S,(lua_Number)miny);
+   tolua_pushnumber(tolua_S,(lua_Number)maxy);
+  }
+ }
+ return 4;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getTRSBoundSize2D'.",&tolua_err);
  return 0;
 #endif
 }
@@ -18065,6 +18182,293 @@ static int tolua_FsLibFaeris_UiWidget_getAnchor00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getAnchor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setBgColor of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setBgColor00
+static int tolua_FsLibFaeris_UiWidget_setBgColor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color4f",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  const Color4f* c = ((const Color4f*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBgColor'", NULL);
+#endif
+  {
+   self->setBgColor(*c);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setBgColor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setBgTexture of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setBgTexture00
+static int tolua_FsLibFaeris_UiWidget_setBgTexture00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBgTexture'", NULL);
+#endif
+  {
+   self->setBgTexture(tex);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setBgTexture'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setBgTexture of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setBgTexture01
+static int tolua_FsLibFaeris_UiWidget_setBgTexture01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBgTexture'", NULL);
+#endif
+  {
+   self->setBgTexture(filename);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_UiWidget_setBgTexture00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setBgEnabled of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setBgEnabled00
+static int tolua_FsLibFaeris_UiWidget_setBgEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  bool value = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBgEnabled'", NULL);
+#endif
+  {
+   self->setBgEnabled(value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setBgEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeWidget of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_removeWidget00
+static int tolua_FsLibFaeris_UiWidget_removeWidget00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeWidget'", NULL);
+#endif
+  {
+   self->removeWidget(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeWidget'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: detach of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_detach00
+static int tolua_FsLibFaeris_UiWidget_detach00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'detach'", NULL);
+#endif
+  {
+   self->detach();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'detach'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: layout of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_layout00
+static int tolua_FsLibFaeris_UiWidget_layout00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'layout'", NULL);
+#endif
+  {
+   self->layout();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'layout'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setParentWidget of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_setParentWidget00
+static int tolua_FsLibFaeris_UiWidget_setParentWidget00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setParentWidget'", NULL);
+#endif
+  {
+   self->setParentWidget(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setParentWidget'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getParentWidget of class  UiWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_UiWidget_getParentWidget00
+static int tolua_FsLibFaeris_UiWidget_getParentWidget00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  UiWidget* self = (UiWidget*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getParentWidget'", NULL);
+#endif
+  {
+   UiWidget* tolua_ret = (UiWidget*)  self->getParentWidget();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UiWidget");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getParentWidget'.",&tolua_err);
  return 0;
 #endif
 }
@@ -19294,9 +19698,9 @@ static int tolua_FsLibFaeris_ScrollWidget_getScrollPercentY00(lua_State* tolua_S
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: relayout of class  ScrollWidget */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_relayout00
-static int tolua_FsLibFaeris_ScrollWidget_relayout00(lua_State* tolua_S)
+/* method: layout of class  ScrollWidget */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ScrollWidget_layout00
+static int tolua_FsLibFaeris_ScrollWidget_layout00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -19310,16 +19714,16 @@ static int tolua_FsLibFaeris_ScrollWidget_relayout00(lua_State* tolua_S)
  {
   ScrollWidget* self = (ScrollWidget*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'relayout'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'layout'", NULL);
 #endif
   {
-   self->relayout();
+   self->layout();
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'relayout'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'layout'.",&tolua_err);
  return 0;
 #endif
 }
@@ -19484,6 +19888,628 @@ static int tolua_FsLibFaeris_ScrollView_scrollChange00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'scrollChange'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_create00
+static int tolua_FsLibFaeris_ListView_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+  float width = ((float)  tolua_tonumber(tolua_S,3,0));
+  float height = ((float)  tolua_tonumber(tolua_S,4,0));
+  {
+   ListView* tolua_ret = (ListView*)  ListView::create(mode,width,height);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ListView");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_create01
+static int tolua_FsLibFaeris_ListView_create01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   ListView* tolua_ret = (ListView*)  ListView::create(width,height);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ListView");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_ListView_create00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: className of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_className00
+static int tolua_FsLibFaeris_ListView_className00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
+#endif
+  {
+   const char* tolua_ret = (const char*)  self->className();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeWidget of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_removeWidget00
+static int tolua_FsLibFaeris_ListView_removeWidget00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeWidget'", NULL);
+#endif
+  {
+   self->removeWidget(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeWidget'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: layout of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_layout00
+static int tolua_FsLibFaeris_ListView_layout00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'layout'", NULL);
+#endif
+  {
+   self->layout();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'layout'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: scrollChange of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_scrollChange00
+static int tolua_FsLibFaeris_ListView_scrollChange00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scrollChange'", NULL);
+#endif
+  {
+   self->scrollChange(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'scrollChange'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setMode of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_setMode00
+static int tolua_FsLibFaeris_ListView_setMode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMode'", NULL);
+#endif
+  {
+   self->setMode(mode);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setListGap of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_setListGap00
+static int tolua_FsLibFaeris_ListView_setListGap00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  float value = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setListGap'", NULL);
+#endif
+  {
+   self->setListGap(value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setListGap'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getListGap of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_getListGap00
+static int tolua_FsLibFaeris_ListView_getListGap00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getListGap'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getListGap();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getListGap'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getListItemSize of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_getListItemSize00
+static int tolua_FsLibFaeris_ListView_getListItemSize00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getListItemSize'", NULL);
+#endif
+  {
+   Vector2 tolua_ret = (Vector2)  self->getListItemSize();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((Vector2)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector2");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vector2));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector2");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getListItemSize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addListItem of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_addListItem00
+static int tolua_FsLibFaeris_ListView_addListItem00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addListItem'", NULL);
+#endif
+  {
+   self->addListItem(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addListItem'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addListItem of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_addListItem01
+static int tolua_FsLibFaeris_ListView_addListItem01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+  int alignh = ((int)  tolua_tonumber(tolua_S,3,0));
+  int alignv = ((int)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addListItem'", NULL);
+#endif
+  {
+   self->addListItem(widget,alignh,alignv);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_ListView_addListItem00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addListItem of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_addListItem02
+static int tolua_FsLibFaeris_ListView_addListItem02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addListItem'", NULL);
+#endif
+  {
+   self->addListItem(index,widget);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_ListView_addListItem01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addListItem of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_addListItem03
+static int tolua_FsLibFaeris_ListView_addListItem03(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,3,0));
+  int alignh = ((int)  tolua_tonumber(tolua_S,4,0));
+  int alignv = ((int)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addListItem'", NULL);
+#endif
+  {
+   self->addListItem(index,widget,alignh,alignv);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_ListView_addListItem02(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeListItem of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_removeListItem00
+static int tolua_FsLibFaeris_ListView_removeListItem00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeListItem'", NULL);
+#endif
+  {
+   self->removeListItem(index);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeListItem'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeListItem of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_removeListItem01
+static int tolua_FsLibFaeris_ListView_removeListItem01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeListItem'", NULL);
+#endif
+  {
+   self->removeListItem(widget);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_ListView_removeListItem00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getListItemNu of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_getListItemNu00
+static int tolua_FsLibFaeris_ListView_getListItemNu00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getListItemNu'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getListItemNu();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getListItemNu'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getListItem of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_getListItem00
+static int tolua_FsLibFaeris_ListView_getListItem00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getListItem'", NULL);
+#endif
+  {
+   UiWidget* tolua_ret = (UiWidget*)  self->getListItem(index);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UiWidget");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getListItem'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getListItemIndex of class  ListView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ListView_getListItemIndex00
+static int tolua_FsLibFaeris_ListView_getListItemIndex00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ListView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ListView* self = (ListView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getListItemIndex'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getListItemIndex(widget);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getListItemIndex'.",&tolua_err);
  return 0;
 #endif
 }
@@ -41034,6 +42060,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"create",tolua_FsLibFaeris_PressButton_create00);
    tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris_PressButton_createWithDarkStyle00);
    tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris_PressButton_createWithDarkStyle01);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris_PressButton_createWithDarkStyle02);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris_PressButton_createWithDarkStyle03);
    tolua_function(tolua_S,"createWithScaleStyle",tolua_FsLibFaeris_PressButton_createWithScaleStyle00);
    tolua_function(tolua_S,"createWithScaleStyle",tolua_FsLibFaeris_PressButton_createWithScaleStyle01);
    tolua_function(tolua_S,"draw",tolua_FsLibFaeris_PressButton_draw00);
@@ -41052,10 +42080,11 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"UiWidget","UiWidget","Entity",NULL);
   tolua_beginmodule(tolua_S,"UiWidget");
    tolua_function(tolua_S,"create",tolua_FsLibFaeris_UiWidget_create00);
-   tolua_function(tolua_S,"className",tolua_FsLibFaeris_UiWidget_className00);
-   tolua_function(tolua_S,"hit2D",tolua_FsLibFaeris_UiWidget_hit2D00);
    tolua_function(tolua_S,"setSize",tolua_FsLibFaeris_UiWidget_setSize00);
    tolua_function(tolua_S,"getSize",tolua_FsLibFaeris_UiWidget_getSize00);
+   tolua_function(tolua_S,"getBoundSize2D",tolua_FsLibFaeris_UiWidget_getBoundSize2D00);
+   tolua_function(tolua_S,"getRSBoundSize2D",tolua_FsLibFaeris_UiWidget_getRSBoundSize2D00);
+   tolua_function(tolua_S,"getTRSBoundSize2D",tolua_FsLibFaeris_UiWidget_getTRSBoundSize2D00);
    tolua_function(tolua_S,"getWidth",tolua_FsLibFaeris_UiWidget_getWidth00);
    tolua_function(tolua_S,"getHeight",tolua_FsLibFaeris_UiWidget_getHeight00);
    tolua_function(tolua_S,"setScissorEnabled",tolua_FsLibFaeris_UiWidget_setScissorEnabled00);
@@ -41064,6 +42093,15 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getAnchorX",tolua_FsLibFaeris_UiWidget_getAnchorX00);
    tolua_function(tolua_S,"getAnchorY",tolua_FsLibFaeris_UiWidget_getAnchorY00);
    tolua_function(tolua_S,"getAnchor",tolua_FsLibFaeris_UiWidget_getAnchor00);
+   tolua_function(tolua_S,"setBgColor",tolua_FsLibFaeris_UiWidget_setBgColor00);
+   tolua_function(tolua_S,"setBgTexture",tolua_FsLibFaeris_UiWidget_setBgTexture00);
+   tolua_function(tolua_S,"setBgTexture",tolua_FsLibFaeris_UiWidget_setBgTexture01);
+   tolua_function(tolua_S,"setBgEnabled",tolua_FsLibFaeris_UiWidget_setBgEnabled00);
+   tolua_function(tolua_S,"removeWidget",tolua_FsLibFaeris_UiWidget_removeWidget00);
+   tolua_function(tolua_S,"detach",tolua_FsLibFaeris_UiWidget_detach00);
+   tolua_function(tolua_S,"layout",tolua_FsLibFaeris_UiWidget_layout00);
+   tolua_function(tolua_S,"setParentWidget",tolua_FsLibFaeris_UiWidget_setParentWidget00);
+   tolua_function(tolua_S,"getParentWidget",tolua_FsLibFaeris_UiWidget_getParentWidget00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"ScrollWidget","ScrollWidget","UiWidget",NULL);
   tolua_beginmodule(tolua_S,"ScrollWidget");
@@ -41111,7 +42149,7 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getScrollPercent",tolua_FsLibFaeris_ScrollWidget_getScrollPercent00);
    tolua_function(tolua_S,"getScrollPercentX",tolua_FsLibFaeris_ScrollWidget_getScrollPercentX00);
    tolua_function(tolua_S,"getScrollPercentY",tolua_FsLibFaeris_ScrollWidget_getScrollPercentY00);
-   tolua_function(tolua_S,"relayout",tolua_FsLibFaeris_ScrollWidget_relayout00);
+   tolua_function(tolua_S,"layout",tolua_FsLibFaeris_ScrollWidget_layout00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"ScrollView","ScrollView","ScrollWidget",NULL);
   tolua_beginmodule(tolua_S,"ScrollView");
@@ -41120,6 +42158,35 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getContentWidget",tolua_FsLibFaeris_ScrollView_getContentWidget00);
    tolua_function(tolua_S,"className",tolua_FsLibFaeris_ScrollView_className00);
    tolua_function(tolua_S,"scrollChange",tolua_FsLibFaeris_ScrollView_scrollChange00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"ListView","ListView","ScrollWidget",NULL);
+  tolua_beginmodule(tolua_S,"ListView");
+   tolua_constant(tolua_S,"SCROLL_VERTICAL",ListView::SCROLL_VERTICAL);
+   tolua_constant(tolua_S,"SCROLL_HORIZONTAL",ListView::SCROLL_HORIZONTAL);
+   tolua_constant(tolua_S,"ITEM_ALIGN_LEFT",ListView::ITEM_ALIGN_LEFT);
+   tolua_constant(tolua_S,"ITEM_ALIGN_CENTER",ListView::ITEM_ALIGN_CENTER);
+   tolua_constant(tolua_S,"ITEM_ALIGN_RIGHT",ListView::ITEM_ALIGN_RIGHT);
+   tolua_constant(tolua_S,"ITEM_ALIGN_TOP",ListView::ITEM_ALIGN_TOP);
+   tolua_constant(tolua_S,"ITEM_ALIGN_BOTTOM",ListView::ITEM_ALIGN_BOTTOM);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ListView_create00);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ListView_create01);
+   tolua_function(tolua_S,"className",tolua_FsLibFaeris_ListView_className00);
+   tolua_function(tolua_S,"removeWidget",tolua_FsLibFaeris_ListView_removeWidget00);
+   tolua_function(tolua_S,"layout",tolua_FsLibFaeris_ListView_layout00);
+   tolua_function(tolua_S,"scrollChange",tolua_FsLibFaeris_ListView_scrollChange00);
+   tolua_function(tolua_S,"setMode",tolua_FsLibFaeris_ListView_setMode00);
+   tolua_function(tolua_S,"setListGap",tolua_FsLibFaeris_ListView_setListGap00);
+   tolua_function(tolua_S,"getListGap",tolua_FsLibFaeris_ListView_getListGap00);
+   tolua_function(tolua_S,"getListItemSize",tolua_FsLibFaeris_ListView_getListItemSize00);
+   tolua_function(tolua_S,"addListItem",tolua_FsLibFaeris_ListView_addListItem00);
+   tolua_function(tolua_S,"addListItem",tolua_FsLibFaeris_ListView_addListItem01);
+   tolua_function(tolua_S,"addListItem",tolua_FsLibFaeris_ListView_addListItem02);
+   tolua_function(tolua_S,"addListItem",tolua_FsLibFaeris_ListView_addListItem03);
+   tolua_function(tolua_S,"removeListItem",tolua_FsLibFaeris_ListView_removeListItem00);
+   tolua_function(tolua_S,"removeListItem",tolua_FsLibFaeris_ListView_removeListItem01);
+   tolua_function(tolua_S,"getListItemNu",tolua_FsLibFaeris_ListView_getListItemNu00);
+   tolua_function(tolua_S,"getListItem",tolua_FsLibFaeris_ListView_getListItem00);
+   tolua_function(tolua_S,"getListItemIndex",tolua_FsLibFaeris_ListView_getListItemIndex00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Resource","Resource","FsObject",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Resource");

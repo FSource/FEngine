@@ -36,7 +36,7 @@ ScrollWidget::ScrollWidget()
 	m_edgeBBottom(0.0f),
 
 	m_cancelDrag(true),
-	m_isDraged(true),
+	m_isDraged(false),
 
 	m_lastMotionPosX(0.0f),
 	m_lastMotionPosY(0.0f),
@@ -226,14 +226,27 @@ void ScrollWidget::getScrollPercent(float* x,float* y)
 
 float ScrollWidget::getScrollPercentX()
 {
-	return (m_scrollX-m_scrollMaxX)/(m_scrollMinX-m_scrollMaxX);
+	float width=m_scrollMinX-m_scrollMaxX;
+	if(width==0.0f)
+	{
+		return 0;
+	}
+
+	float ret=(m_scrollX-m_scrollMaxX)/width;
+	return Math::clampf(ret,-2,2);
 }
 
 
 
 float ScrollWidget::getScrollPercentY()
 {
-	return (m_scrollY-m_scrollMinY)/(m_scrollMaxY-m_scrollMinY);
+	float height= (m_scrollMaxY-m_scrollMinY);
+	if(height==0.0f)
+	{
+		return 0;
+	}
+	float ret=(m_scrollY-m_scrollMinY)/height;
+	return Math::clampf(ret,-2,2);
 
 }
 
@@ -253,10 +266,43 @@ bool ScrollWidget::touchBegin(float x,float y)
 	UiWidget::touchBegin(x,y);
 
 	m_cancelDrag=false;
+
+
+	if(m_scrollMode==SCROLL_HORIZONTAL)
+	{
+		if(!m_scrollerX->isFinished())
+		{
+			m_isDraged=true;
+			m_scrollerX->abortAnimation();
+			beginDrag();
+		}
+	}
+	else if(m_scrollMode==SCROLL_VERTICAL)
+	{
+		if(!m_scrollerY->isFinished())
+		{
+			m_isDraged=true;
+			m_scrollerY->abortAnimation();
+			beginDrag();
+		}
+	}
+	else if(m_scrollMode==SCROLL_ALL)
+	{
+		if(!m_scrollerX->isFinished()||!m_scrollerY->isFinished())
+		{
+			m_isDraged=true;
+			m_scrollerX->abortAnimation();
+			m_scrollerY->abortAnimation();
+			beginDrag();
+		}
+	}
+
+
 	m_isDraged=!m_scrollerX->isFinished();
 
 	if(m_isDraged)
 	{
+		m_scrollerX->abortAnimation();
 		beginDrag();
 	}
 
@@ -774,22 +820,18 @@ void ScrollWidget::childAnchorChanged(float w,float h)
 	scrollChange(m_scrollX,m_scrollY);
 }
 
-void ScrollWidget::setSize(float width,float height)
+void ScrollWidget::sizeChanged(float width,float height)
 {
-
-	UiWidget::setSize(width,height);
 	adjustScrollArea();
-
 }
 
-void ScrollWidget::setAnchor(float x,float y)
+void ScrollWidget::anchorChanged(float x,float y)
 {
-	UiWidget::setAnchor(x,y);
 	adjustScrollArea();
 }
 
 
-void ScrollWidget::relayout()
+void ScrollWidget::layout()
 {
 	adjustScrollArea();
 }

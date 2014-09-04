@@ -327,6 +327,35 @@ class LuaPressButton:public TEntity<PressButton>
 			return ret;
 		}
 
+		static LuaPressButton* createWithDarkStyle(const char* filename,const Color4f& dark)
+		{
+			LuaPressButton* ret=new LuaPressButton();
+			ret->initWithDarkStyle(filename,dark);
+			return ret;
+		}
+
+		static LuaPressButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark)
+		{
+			LuaPressButton* ret=new LuaPressButton();
+			ret->initWithDarkStyle(tex,dark);
+			return ret;
+		}
+
+		static LuaPressButton* createWithScaleStyle(const char* filename,const Vector3& scale)
+		{
+			LuaPressButton* ret=new LuaPressButton();
+			ret->initWithScaleStyle(filename,scale);
+			return ret;
+		}
+
+		static LuaPressButton* createWithScaleStyle(Texture2D* tex,const Vector3& scale)
+		{
+			LuaPressButton* ret=new LuaPressButton();
+			ret->initWithScaleStyle(tex,scale);
+			return ret;
+		}
+
+
 
 	public:
 		/* inherit PressButton */
