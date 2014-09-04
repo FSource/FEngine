@@ -204,11 +204,12 @@ LRESULT CALLBACK s_winproc(
 				}
 				int height = HIWORD( lparam );
 				int width = LOWORD( lparam );
-			//	FS_TRACE_WARN("width=%d,height=%d",width,height);
-				Render* render=Global::render();
-				if(render)
+
+
+				Window* window=Global::window();
+				if (window)
 				{
-					render->setViewport(0,0,width,height);
+					window->sizeChanged(width,height);
 				}
 				break;
 			}
@@ -391,16 +392,20 @@ void Window::makeCurrent(Render* r)
 {
 	if(m_window)
 	{
-		wglMakeCurrent(m_window->hdc,m_window->hrc);
+		//wglMakeCurrent(m_window->hdc,m_window->hrc);
+		
+		glBindFramebuffer(GL_FRAMEBUFFER,0);
+
 	}
 	m_render=r;
+	r->setViewport(0,0,getWidth(),getHeight());
 }
 
 void Window::loseCurrent(Render* r)
 {
 	if(m_window)
 	{
-		wglMakeCurrent(NULL,m_window->hrc);
+		//wglMakeCurrent(NULL,m_window->hrc);
 	}
 	m_render=NULL;
 }
@@ -458,6 +463,15 @@ void Window::setSize(uint width,uint height)
 			SWP_NOCOPYBITS|SWP_NOMOVE|SWP_NOOWNERZORDER|SWP_NOZORDER
 			);
 }
+void Window::sizeChanged(uint width,uint height)
+{
+	if(m_render)
+	{
+		m_render->setViewport(0,0,width,height);
+	}
+
+}
+
 
 void Window::show()
 {
@@ -539,6 +553,11 @@ Window::~Window()
 	delete m_window;
 	m_window=NULL;
 
+}
+
+bool Window::init()
+{
+	return true;
 }
 
 

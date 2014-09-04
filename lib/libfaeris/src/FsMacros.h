@@ -388,6 +388,7 @@ enum
 #define FS_PROGRAM_CLASS_NAME "Program"
 #define FS_GLYPH_BITMAP_CLASS_NAME "GlyphBitmap"
 #define FS_FONT_BITMAP_CLASS_NAME "FontBitmap"
+#define FS_FRAME_BUFFER_CLASS_NAME "FrameBuffer"
 
 /* mgr */
 #define FS_TEXTURE_MGR_CLASS_NAME "TextureMgr"

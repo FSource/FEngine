@@ -123,6 +123,19 @@ static inline GLint FsImageFormat_ToGLEnum(int format)
 	}
 }
 
+static inline GLint FsImageFormat_ToTextureEnum(int format)
+{
+	switch(format)
+	{
+		case Image2D::PIXEL_RGBA8888: return Texture2D::FORMAT_RGBA;
+		case Image2D::PIXEL_RGB888: return Texture2D::FORMAT_RGB;
+		default:
+			FS_TRACE_WARN("Unsupport Pixel Format To Texture2D");
+			return 0;
+
+	}
+}
+
 
 Texture2D* Texture2D::create(Image2D* image,int filter_mag,int filter_min,int wraps,int wrapt)
 {
@@ -134,6 +147,20 @@ Texture2D* Texture2D::create(Image2D* image,int filter_mag,int filter_min,int wr
 	}
 	return ret;
 }
+
+Texture2D* Texture2D::create(int format,int width,int height,void* data,
+							int filter_mag,int filter_min,
+							int wraps,int wrapt)
+{
+	Texture2D* ret=new Texture2D();
+	if(!ret->init(format,width,height,data,filter_mag,filter_min,wraps,wrapt))
+	{
+		delete ret;
+		return NULL;
+	}
+	return ret;
+}
+
 
 Texture2D* Texture2D::create(Image2D* image)
 {
@@ -160,23 +187,48 @@ Texture2D* Texture2D::create(const char* filename)
 
 
 
+
+bool Texture2D::init(const char* filename)
+{
+	Image2D* image=FsUtil_ImageReader(filename,Image2D::IMAGE_UNKWON);
+	if(image==NULL)
+	{
+		return false;
+	}
+
+	bool ret=init(image);
+	image->decRef();
+	return ret;
+}
+
+
+bool Texture2D::init(Image2D* image)
+{
+	bool ret=init( image, FILTER_LINEAR, FILTER_LINEAR, WRAP_CLAMP_TO_EDGE, WRAP_CLAMP_TO_EDGE);
+	return ret;
+}
+
 bool Texture2D::init(Image2D* image,int filter_mag,int filter_min,int wraps,int wrapt)
 {
 	if(image==NULL)
 	{
 		FS_TRACE_WARN("Image Is NULL");
 		return false;
-
 	}
+
+	return Texture2D::init(FsImageFormat_ToTextureEnum(image->getPixelFormat()),image->getWidth(),image->getHeight(),image->getPixelData(),filter_mag,filter_min,wraps,wrapt);
+
+
+}
+
+bool Texture2D::init(int format, int width,int height,void* pixels,int filter_mag,int filter_min,int wraps,int wrapt)
+{
 
 	GLint format_gl;
 	GLint filter_mag_gl,filter_min_gl;
 	GLint wraps_gl,wrapt_gl;
-	GLint width,height;
-	GLvoid* pixels;
-
 	/* pixel format */
-	format_gl =FsImageFormat_ToGLEnum(image->getPixelFormat());
+	format_gl =FsTextureFomat_ToGLEnum(format);
 
 	/* env mode */
 
@@ -206,11 +258,6 @@ bool Texture2D::init(Image2D* image,int filter_mag,int filter_min,int wraps,int 
 
 
 
-	/* set texture data */
-	height=image->getHeight();
-	width=image->getWidth();
-	pixels=image->getPixelData();
-
 	glTexImage2D(
 			GL_TEXTURE_2D,
 			0,
@@ -235,26 +282,6 @@ bool Texture2D::init(Image2D* image,int filter_mag,int filter_min,int wraps,int 
 	m_platformTexture=texture;
 
 	return true;
-}
-
-
-bool Texture2D::init(Image2D* image)
-{
-	bool ret=init( image, FILTER_LINEAR, FILTER_LINEAR, WRAP_CLAMP_TO_EDGE, WRAP_CLAMP_TO_EDGE);
-	return ret;
-}
-
-bool Texture2D::init(const char* filename)
-{
-	Image2D* image=FsUtil_ImageReader(filename,Image2D::IMAGE_UNKWON);
-	if(image==NULL)
-	{
-		return false;
-	}
-
-	bool ret=init(image);
-	image->decRef();
-	return ret;
 }
 
 

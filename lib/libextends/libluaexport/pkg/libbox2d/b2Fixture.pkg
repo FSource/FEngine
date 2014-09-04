@@ -100,7 +100,6 @@ public:
     /// number of vertices because this will crash some collision caching mechanisms.
     /// Manipulating the shape may lead to non-physical behavior.
     b2Shape* GetShape();
-    const b2Shape* GetShape();
 
     /// Set if this fixture is a sensor.
     void SetSensor(bool sensor);
@@ -123,12 +122,10 @@ public:
     /// Get the parent body of this fixture. This is NULL if the fixture is not attached.
     /// @return the parent body.
     b2Body* GetBody();
-    const b2Body* GetBody();
 
     /// Get the next fixture in the parent body's fixture list.
     /// @return the next shape.
     b2Fixture* GetNext();
-    const b2Fixture* GetNext();
 
     /// Get the user data that was assigned in the fixture definition. Use this to
     /// store your application specific data.

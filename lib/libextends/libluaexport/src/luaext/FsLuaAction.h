@@ -181,6 +181,7 @@ class LuaSeqAction:public TAction<SeqAction>
 		static LuaSeqAction* create()
 		{
 			LuaSeqAction* ret=new LuaSeqAction();
+			ret->init();
 			return ret;
 		}
 

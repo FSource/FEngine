@@ -85,8 +85,9 @@ Image2D* FsUtil_ImageReader(FsFile* file,Image2D::ImageType image_type)
 			FS_TRACE_WARN("Image Type Is Not Support");
 			return NULL;
 	}
-
+	return NULL;
 }
+
 Image2D* FsUtil_ImageReader(const char* filename,Image2D::ImageType image_type)
 {
 
@@ -97,7 +98,14 @@ Image2D* FsUtil_ImageReader(const char* filename,Image2D::ImageType image_type)
 		return NULL;
 	}
 	
-	return FsUtil_ImageReader(file,image_type);
+	Image2D* ret=FsUtil_ImageReader(file,image_type);
+	if(ret==NULL)
+	{
+		FS_TRACE_WARN("Can't Create Image2D From File(%s)",filename);
+	}
+
+	return ret;
+
 }
 
 

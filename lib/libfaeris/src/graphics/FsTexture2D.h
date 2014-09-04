@@ -49,6 +49,10 @@ class Texture2D:public Resource
 				int filter_min,
 				int wraps,
 				int wrapt);
+		
+		static Texture2D* create(int format,int width,int height,void* data,
+								 int filter_mag,int filter_min,
+								 int wraps,int wrapt);
 
 
 		/* for quick create texture from image */
@@ -91,6 +95,10 @@ class Texture2D:public Resource
 		virtual ~Texture2D();
 
 		bool init(Image2D* image,int filter_mag,int filter_min,int wraps,int wrapt);
+		bool init(int format,int width,int height,void* data,
+								 int filter_mag,int filter_min,
+								 int wraps,int wrapt);
+
 		bool init(Image2D* image);
 		bool init(const char* filename);
 

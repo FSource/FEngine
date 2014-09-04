@@ -158,10 +158,15 @@ bool Scene::getTouchesEnabled()
 
 
 
-void Scene::setEnabledFade(bool fade)
+void Scene::setFadeEnabled(bool fade)
 {
 	m_fadeEnabled=fade;
 }
+bool Scene::getFadeEnabled()
+{
+	return m_fadeEnabled;
+}
+
 
 void Scene::setFadeColor(Color c)
 {

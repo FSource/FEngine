@@ -150,6 +150,10 @@ Resource* ResourceMgr::load(const char* filename)
 			{
 				addCache(f_name,ret);
 			}
+			else
+			{
+				FS_TRACE_WARN("Can't Load Resource (%s)",filename?filename:"NULL");
+			}
 		}
 	}
 	f_name->autoDestroy();

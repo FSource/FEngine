@@ -81,7 +81,6 @@ class Render:public FsObject
 		void setProgram(Program* prog);
 
 		/* texture */
-		void setActiveTexture(int nu);
 		void bindTexture(Texture2D* tex,int slot);
 
 
