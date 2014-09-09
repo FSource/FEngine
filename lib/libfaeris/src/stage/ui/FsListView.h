@@ -71,8 +71,8 @@ class ListView:public ScrollWidget
 		ListView(int mode,float width,float height);
 		virtual ~ListView();
 
-		virtual void childSizeChanged(float w,float h);
-		virtual void childAnchorChanged(float w,float h);
+		virtual void childSizeChanged(UiWidget* widget,float w,float h);
+		virtual void childAnchorChanged(UiWidget* widget,float w,float h);
 
 		virtual void sizeChanged(float w,float h);
 		virtual void anchorChanged(float x,float y);

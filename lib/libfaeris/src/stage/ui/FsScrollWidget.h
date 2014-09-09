@@ -39,8 +39,8 @@ class ScrollWidget:public UiWidget
 
 
 		/* inherit UiWidget */
-		virtual void childSizeChanged(float w,float h);
-		virtual void childAnchorChanged(float w,float h);
+		virtual void childSizeChanged(UiWidget* widget,float w,float h);
+		virtual void childAnchorChanged(UiWidget* widget,float w,float h);
 
 		virtual void sizeChanged(float width,float height);
 		virtual void anchorChanged(float x,float y);

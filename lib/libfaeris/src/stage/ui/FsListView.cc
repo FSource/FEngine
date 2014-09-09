@@ -143,6 +143,7 @@ class ListViewContentPanel:public Entity
 			layout();
 		}
 
+
 		void setListItemAlign(int index,int alignh,int alignv)
 		{
 			ListItemInfo* item=(ListItemInfo*)m_listItem->get(index);
@@ -676,18 +677,19 @@ void ListView::scrollChange(float x,float y)
 	}
 }
 
-void ListView::childSizeChanged(float w,float h)
+void ListView::childSizeChanged(UiWidget* widget,float w,float h)
 {
 	layout();
 }
 
-void ListView::childAnchorChanged(float x,float y)
+void ListView::childAnchorChanged(UiWidget* widget,float x,float y)
 {
 	layout();
 }
 void ListView::adjustContentSize()
 {
 	Vector2 size=getListItemSize();
+
 	setContentSize(size.x,size.y);
 
 }

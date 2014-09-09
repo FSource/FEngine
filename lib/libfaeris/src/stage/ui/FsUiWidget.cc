@@ -62,7 +62,7 @@ void UiWidget::setSize(float width,float height)
 
 	if(m_parentWidget)
 	{
-		m_parentWidget->childSizeChanged(width,height);
+		m_parentWidget->childSizeChanged(this,width,height);
 	}
 }
 
@@ -100,7 +100,7 @@ void UiWidget::setAnchor(float x,float y)
 	anchorChanged(x,y);
 	if(m_parentWidget)
 	{
-		m_parentWidget->childAnchorChanged(x,y);
+		m_parentWidget->childAnchorChanged(this,x,y);
 	}
 }
 
@@ -149,12 +149,12 @@ void UiWidget::anchorChanged(float x,float y)
 
 
 
-void UiWidget::childSizeChanged(float w,float h)
+void UiWidget::childSizeChanged(UiWidget* widget,float w,float h)
 {
 
 }
 
-void UiWidget::childAnchorChanged(float x,float y)
+void UiWidget::childAnchorChanged(UiWidget* widget,float x,float y)
 {
 
 }

@@ -270,6 +270,13 @@ void FsDict::clear()
 	m_fill=0;
 }
 
+FsDict::Iterator* FsDict::takeIterator()
+{
+	Iterator* ret=new Iterator(this);
+	return ret;
+}
+
+
 
 FsDict::~FsDict()
 {
@@ -289,6 +296,7 @@ FsDict::~FsDict()
 	}
 	free(m_table);
 }
+
 
 
 

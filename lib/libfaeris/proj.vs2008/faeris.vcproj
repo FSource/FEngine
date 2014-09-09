@@ -1034,6 +1034,14 @@
 					Name="ui"
 					>
 					<File
+						RelativePath="..\src\stage\ui\FsDynamicView.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsDynamicView.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\stage\ui\FsListView.cc"
 						>
 					</File>

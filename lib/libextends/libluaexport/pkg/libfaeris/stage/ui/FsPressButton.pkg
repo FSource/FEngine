@@ -32,8 +32,11 @@ class PressButton@__PressButton:public Entity
 
 	public:  /* Attribut And State Attribute Setting */
 		/* color */
+		void setColor(Color value);
 		void setColor(const Color4f& value);
 		void setColor(int state,const Color4f& value);
+		void setColor(int state,Color value);
+
 		Color4f getColor() const;
 		Color4f getColor(int state) const ;
 

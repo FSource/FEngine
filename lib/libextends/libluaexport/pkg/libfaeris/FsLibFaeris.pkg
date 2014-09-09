@@ -18,6 +18,7 @@ $pfile "FsMacros.pkg"
 /* stage */
 $pfile "stage/FsActionTarget.pkg"
 
+
 /* entity */
 $pfile "stage/entity/FsEntity.pkg"
 $pfile "stage/entity/FsColorQuad2D.pkg"
@@ -34,7 +35,7 @@ $pfile "stage/ui/FsUiWidget.pkg"
 $pfile "stage/ui/FsScrollWidget.pkg"
 $pfile "stage/ui/FsScrollView.pkg"
 $pfile "stage/ui/FsListView.pkg"
-
+$pfile "stage/ui/FsDynamicView.pkg"
 
 
 

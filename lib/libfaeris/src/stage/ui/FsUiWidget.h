@@ -71,8 +71,8 @@ class UiWidget:public Entity
 		virtual void sizeChanged(float w,float h);
 		virtual void anchorChanged(float x,float y);
 
-		virtual void childSizeChanged(float w,float h);
-		virtual void childAnchorChanged(float x,float y);
+		virtual void childSizeChanged(UiWidget* child,float w,float h);
+		virtual void childAnchorChanged(UiWidget* child,float x,float y);
 
 
 	protected:

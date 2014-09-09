@@ -807,7 +807,7 @@ void ScrollWidget::adjustScrollArea()
 
 }
 
-void ScrollWidget::childSizeChanged(float w,float h)
+void ScrollWidget::childSizeChanged(UiWidget* widget,float w,float h)
 {
 	m_contentWidth=w;
 	m_contentHeight=h;
@@ -815,7 +815,7 @@ void ScrollWidget::childSizeChanged(float w,float h)
 }
 
 
-void ScrollWidget::childAnchorChanged(float w,float h)
+void ScrollWidget::childAnchorChanged(UiWidget* widget,float w,float h)
 {
 	scrollChange(m_scrollX,m_scrollY);
 }
