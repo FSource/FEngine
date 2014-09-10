@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 09/10/14 07:17:38.
+** Generated automatically by tolua++-1.0.92 on 09/10/14 11:02:52.
 */
 
 #ifndef __cplusplus
@@ -45,6 +45,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "stage/ui/FsScrollView.h"
 #include "stage/ui/FsListView.h"
 #include "stage/ui/FsDynamicView.h"
+#include "stage/ui/FsPageView.h"
 #include "mgr/FsResource.h"
 #include "mgr/FsTextureMgr.h"
 #include "mgr/FsSprite2DDataMgr.h"
@@ -187,6 +188,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"LuaPressButton");
  tolua_usertype(tolua_S,"ListView");
  toluaext_usertype(tolua_S,"LuaHttpRequest");
+ tolua_usertype(tolua_S,"PageView");
  tolua_usertype(tolua_S,"LuaRotateAction");
  toluaext_usertype(tolua_S,"HttpEngine");
  tolua_usertype(tolua_S,"Channel");
@@ -248,7 +250,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"BackEase");
  tolua_usertype(tolua_S,"LuaSchedulerTarget");
  toluaext_usertype(tolua_S,"Scheduler");
- toluaext_usertype(tolua_S,"LuaPanel");
+ tolua_usertype(tolua_S,"Face3");
  toluaext_usertype(tolua_S,"Entity");
  tolua_usertype(tolua_S,"CatmullRomCurve4");
  tolua_usertype(tolua_S,"QuartEase");
@@ -289,7 +291,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Color4f");
  tolua_usertype(tolua_S,"Global");
  tolua_usertype(tolua_S,"EaseExpr");
- tolua_usertype(tolua_S,"Face3");
+ toluaext_usertype(tolua_S,"LuaPanel");
  tolua_usertype(tolua_S,"LinearCurve3");
  toluaext_usertype(tolua_S,"LuaLayer2D");
  tolua_usertype(tolua_S,"BounceEase");
@@ -22544,6 +22546,1033 @@ static int tolua_FsLibFaeris_DynamicView_currentViewChanged00(lua_State* tolua_S
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: create of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_create00
+static int tolua_FsLibFaeris_PageView_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+  {
+   PageView* tolua_ret = (PageView*)  PageView::create(width,height);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PageView");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_create01
+static int tolua_FsLibFaeris_PageView_create01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+  float width = ((float)  tolua_tonumber(tolua_S,3,0));
+  float height = ((float)  tolua_tonumber(tolua_S,4,0));
+  {
+   PageView* tolua_ret = (PageView*)  PageView::create(mode,width,height);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PageView");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_PageView_create00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setMode of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_setMode00
+static int tolua_FsLibFaeris_PageView_setMode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMode'", NULL);
+#endif
+  {
+   self->setMode(mode);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMode of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_getMode00
+static int tolua_FsLibFaeris_PageView_getMode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMode'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getMode();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_addPage00
+static int tolua_FsLibFaeris_PageView_addPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addPage'", NULL);
+#endif
+  {
+   self->addPage(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addPage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_addPage01
+static int tolua_FsLibFaeris_PageView_addPage01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+  int alignh = ((int)  tolua_tonumber(tolua_S,3,0));
+  int alignv = ((int)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addPage'", NULL);
+#endif
+  {
+   self->addPage(widget,alignh,alignv);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_PageView_addPage00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_addPage02
+static int tolua_FsLibFaeris_PageView_addPage02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addPage'", NULL);
+#endif
+  {
+   self->addPage(index,widget);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_PageView_addPage01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_addPage03
+static int tolua_FsLibFaeris_PageView_addPage03(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,3,0));
+  int alignh = ((int)  tolua_tonumber(tolua_S,4,0));
+  int alignv = ((int)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addPage'", NULL);
+#endif
+  {
+   self->addPage(index,widget,alignh,alignv);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_PageView_addPage02(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setPageAlign of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_setPageAlign00
+static int tolua_FsLibFaeris_PageView_setPageAlign00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  int alignh = ((int)  tolua_tonumber(tolua_S,3,0));
+  int alignv = ((int)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPageAlign'", NULL);
+#endif
+  {
+   self->setPageAlign(index,alignh,alignv);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setPageAlign'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setPageAlign of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_setPageAlign01
+static int tolua_FsLibFaeris_PageView_setPageAlign01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+  int alignh = ((int)  tolua_tonumber(tolua_S,3,0));
+  int alignv = ((int)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPageAlign'", NULL);
+#endif
+  {
+   self->setPageAlign(widget,alignh,alignv);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_PageView_setPageAlign00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removePage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_removePage00
+static int tolua_FsLibFaeris_PageView_removePage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removePage'", NULL);
+#endif
+  {
+   self->removePage(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removePage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removePage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_removePage01
+static int tolua_FsLibFaeris_PageView_removePage01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removePage'", NULL);
+#endif
+  {
+   self->removePage(index);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_PageView_removePage00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: clearPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_clearPage00
+static int tolua_FsLibFaeris_PageView_clearPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clearPage'", NULL);
+#endif
+  {
+   self->clearPage();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'clearPage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPageNu of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_getPageNu00
+static int tolua_FsLibFaeris_PageView_getPageNu00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPageNu'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getPageNu();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPageNu'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_getPage00
+static int tolua_FsLibFaeris_PageView_getPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPage'", NULL);
+#endif
+  {
+   UiWidget* tolua_ret = (UiWidget*)  self->getPage(index);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UiWidget");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPageIndex of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_getPageIndex00
+static int tolua_FsLibFaeris_PageView_getPageIndex00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPageIndex'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getPageIndex(widget);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPageIndex'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setCurrentPageIndex of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_setCurrentPageIndex00
+static int tolua_FsLibFaeris_PageView_setCurrentPageIndex00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setCurrentPageIndex'", NULL);
+#endif
+  {
+   self->setCurrentPageIndex(index);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setCurrentPageIndex'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getCurrentPageIndex of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_getCurrentPageIndex00
+static int tolua_FsLibFaeris_PageView_getCurrentPageIndex00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getCurrentPageIndex'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getCurrentPageIndex();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getCurrentPageIndex'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setCurrentPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_setCurrentPage00
+static int tolua_FsLibFaeris_PageView_setCurrentPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setCurrentPage'", NULL);
+#endif
+  {
+   self->setCurrentPage(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setCurrentPage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getCurrentPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_getCurrentPage00
+static int tolua_FsLibFaeris_PageView_getCurrentPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getCurrentPage'", NULL);
+#endif
+  {
+   UiWidget* tolua_ret = (UiWidget*)  self->getCurrentPage();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UiWidget");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getCurrentPage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: className of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_className00
+static int tolua_FsLibFaeris_PageView_className00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
+#endif
+  {
+   const char* tolua_ret = (const char*)  self->className();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: touchBegin of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_touchBegin00
+static int tolua_FsLibFaeris_PageView_touchBegin00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'touchBegin'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->touchBegin(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchBegin'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: touchMove of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_touchMove00
+static int tolua_FsLibFaeris_PageView_touchMove00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'touchMove'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->touchMove(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchMove'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: touchEnd of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_touchEnd00
+static int tolua_FsLibFaeris_PageView_touchEnd00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'touchEnd'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->touchEnd(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchEnd'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: update of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_update00
+static int tolua_FsLibFaeris_PageView_update00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  float dt = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'update'", NULL);
+#endif
+  {
+   self->update(dt);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'update'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: childSizeChanged of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_childSizeChanged00
+static int tolua_FsLibFaeris_PageView_childSizeChanged00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+  float w = ((float)  tolua_tonumber(tolua_S,3,0));
+  float h = ((float)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'childSizeChanged'", NULL);
+#endif
+  {
+   self->childSizeChanged(widget,w,h);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'childSizeChanged'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: childAnchorChanged of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_childAnchorChanged00
+static int tolua_FsLibFaeris_PageView_childAnchorChanged00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+  float w = ((float)  tolua_tonumber(tolua_S,3,0));
+  float h = ((float)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'childAnchorChanged'", NULL);
+#endif
+  {
+   self->childAnchorChanged(widget,w,h);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'childAnchorChanged'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: sizeChanged of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_sizeChanged00
+static int tolua_FsLibFaeris_PageView_sizeChanged00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  float width = ((float)  tolua_tonumber(tolua_S,2,0));
+  float height = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'sizeChanged'", NULL);
+#endif
+  {
+   self->sizeChanged(width,height);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'sizeChanged'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: anchorChanged of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_anchorChanged00
+static int tolua_FsLibFaeris_PageView_anchorChanged00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'anchorChanged'", NULL);
+#endif
+  {
+   self->anchorChanged(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'anchorChanged'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeWidget of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_removeWidget00
+static int tolua_FsLibFaeris_PageView_removeWidget00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeWidget'", NULL);
+#endif
+  {
+   self->removeWidget(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeWidget'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: layout of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_layout00
+static int tolua_FsLibFaeris_PageView_layout00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'layout'", NULL);
+#endif
+  {
+   self->layout();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'layout'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: refCnt of class  Resource */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Resource_refCnt00
 static int tolua_FsLibFaeris_Resource_refCnt00(lua_State* tolua_S)
@@ -44314,6 +45343,47 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"layout",tolua_FsLibFaeris_DynamicView_layout00);
    tolua_function(tolua_S,"removeWidget",tolua_FsLibFaeris_DynamicView_removeWidget00);
    tolua_function(tolua_S,"currentViewChanged",tolua_FsLibFaeris_DynamicView_currentViewChanged00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"PageView","PageView","UiWidget",NULL);
+  tolua_beginmodule(tolua_S,"PageView");
+   tolua_constant(tolua_S,"SCROLL_HORIZONTAL",PageView::SCROLL_HORIZONTAL);
+   tolua_constant(tolua_S,"SCROLL_VERTICAL",PageView::SCROLL_VERTICAL);
+   tolua_constant(tolua_S,"ALIGN_LEFT",PageView::ALIGN_LEFT);
+   tolua_constant(tolua_S,"ALIGN_RIGHT",PageView::ALIGN_RIGHT);
+   tolua_constant(tolua_S,"ALIGN_CENTER",PageView::ALIGN_CENTER);
+   tolua_constant(tolua_S,"ALIGN_TOP",PageView::ALIGN_TOP);
+   tolua_constant(tolua_S,"ALIGN_BOTTOM",PageView::ALIGN_BOTTOM);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_PageView_create00);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_PageView_create01);
+   tolua_function(tolua_S,"setMode",tolua_FsLibFaeris_PageView_setMode00);
+   tolua_function(tolua_S,"getMode",tolua_FsLibFaeris_PageView_getMode00);
+   tolua_function(tolua_S,"addPage",tolua_FsLibFaeris_PageView_addPage00);
+   tolua_function(tolua_S,"addPage",tolua_FsLibFaeris_PageView_addPage01);
+   tolua_function(tolua_S,"addPage",tolua_FsLibFaeris_PageView_addPage02);
+   tolua_function(tolua_S,"addPage",tolua_FsLibFaeris_PageView_addPage03);
+   tolua_function(tolua_S,"setPageAlign",tolua_FsLibFaeris_PageView_setPageAlign00);
+   tolua_function(tolua_S,"setPageAlign",tolua_FsLibFaeris_PageView_setPageAlign01);
+   tolua_function(tolua_S,"removePage",tolua_FsLibFaeris_PageView_removePage00);
+   tolua_function(tolua_S,"removePage",tolua_FsLibFaeris_PageView_removePage01);
+   tolua_function(tolua_S,"clearPage",tolua_FsLibFaeris_PageView_clearPage00);
+   tolua_function(tolua_S,"getPageNu",tolua_FsLibFaeris_PageView_getPageNu00);
+   tolua_function(tolua_S,"getPage",tolua_FsLibFaeris_PageView_getPage00);
+   tolua_function(tolua_S,"getPageIndex",tolua_FsLibFaeris_PageView_getPageIndex00);
+   tolua_function(tolua_S,"setCurrentPageIndex",tolua_FsLibFaeris_PageView_setCurrentPageIndex00);
+   tolua_function(tolua_S,"getCurrentPageIndex",tolua_FsLibFaeris_PageView_getCurrentPageIndex00);
+   tolua_function(tolua_S,"setCurrentPage",tolua_FsLibFaeris_PageView_setCurrentPage00);
+   tolua_function(tolua_S,"getCurrentPage",tolua_FsLibFaeris_PageView_getCurrentPage00);
+   tolua_function(tolua_S,"className",tolua_FsLibFaeris_PageView_className00);
+   tolua_function(tolua_S,"touchBegin",tolua_FsLibFaeris_PageView_touchBegin00);
+   tolua_function(tolua_S,"touchMove",tolua_FsLibFaeris_PageView_touchMove00);
+   tolua_function(tolua_S,"touchEnd",tolua_FsLibFaeris_PageView_touchEnd00);
+   tolua_function(tolua_S,"update",tolua_FsLibFaeris_PageView_update00);
+   tolua_function(tolua_S,"childSizeChanged",tolua_FsLibFaeris_PageView_childSizeChanged00);
+   tolua_function(tolua_S,"childAnchorChanged",tolua_FsLibFaeris_PageView_childAnchorChanged00);
+   tolua_function(tolua_S,"sizeChanged",tolua_FsLibFaeris_PageView_sizeChanged00);
+   tolua_function(tolua_S,"anchorChanged",tolua_FsLibFaeris_PageView_anchorChanged00);
+   tolua_function(tolua_S,"removeWidget",tolua_FsLibFaeris_PageView_removeWidget00);
+   tolua_function(tolua_S,"layout",tolua_FsLibFaeris_PageView_layout00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Resource","Resource","FsObject",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Resource");

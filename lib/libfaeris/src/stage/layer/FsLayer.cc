@@ -120,7 +120,7 @@ void Layer::draw(Render* render)
 	while(!iter->done())
 	{
 		Entity* entity=(Entity*)iter->getValue();
-		if(entity->getVisibles()) entity->draws(render,false);
+		if(entity->getVisibles()) entity->draws(render,true);
 		iter->next();
 	}
 	delete iter;

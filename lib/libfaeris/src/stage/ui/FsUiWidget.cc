@@ -23,7 +23,7 @@ UiWidget::UiWidget()
 	setTouchEnabled(true);
 	setDispatchTouchEnabled(true);
 
-	m_scissorEnabled=false;
+	m_scissorEnabled=true;
 	m_size.set(0.0f,0.0f);
 	m_anchor.set(0.5f,0.5f);
 	m_parentWidget=NULL;
@@ -243,14 +243,20 @@ void UiWidget::draws(Render* r,bool updateMatrix)
 			{
 				smaxy=old_scissor_area.y+old_scissor_area.height;
 			}
-
 		}
+
+
+
+
 
 		float w=smaxx-sminx;
 		float h=smaxy-sminy;
 
-
-
+		if(w<=0||h<=0||smaxx<=0||smaxy<=0||sminx>=1.0f||sminy>=1.0f)
+		{
+			//FS_TRACE_WARN("Not Draw %d",(int)this);
+			return;
+		}
 
 		r->setScissorEnabled(true);
 

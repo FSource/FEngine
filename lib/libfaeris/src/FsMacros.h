@@ -303,11 +303,13 @@ enum
 #define FS_PANEL_CLASS_NAME "Panel"
 
 /* ui */
-#define FS_PRESS_BUTTON_CLASS_NAME "PressButton"
+
 #define FS_UI_WIDGET_CLASS_NAME  "UiWidget"
 #define FS_SCROLL_WIDGET_CLASS_NAME "ScrollWidget"
 #define FS_LIST_VIEW_CLASS_NAME "ListView"
 #define FS_DYNAMIC_VIEW_CLASS_NAME "DynamicView"
+#define FS_PAGE_VIEW_CLASS_NAME "PageView"
+#define FS_PRESS_BUTTON_CLASS_NAME "PressButton"
 #define FS_STATE_BUTTON_CLASS_NAME "StateButton"
 #define FS_TOGGLE_BUTTON_CLASS_NAME "ToggleButton"
 

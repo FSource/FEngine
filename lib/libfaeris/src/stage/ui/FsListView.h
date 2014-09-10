@@ -80,7 +80,6 @@ class ListView:public ScrollWidget
 		void adjustContentSize();
 
 
-
 	protected:
 		ListViewContentPanel* m_contentPanel;
 };

@@ -1,13 +1,5 @@
-#ifndef _FS_PAGE_VIEW_H_
-#define _FS_PAGE_VIEW_H_
+$#include "stage/ui/FsPageView.h"
 
-#include "FsMacros.h"
-#include "FsUiWidget.h"
-
-
-NS_FS_BEGIN
-
-class PageViewContentPanel;
 class PageView:public UiWidget 
 {
 	public:
@@ -82,23 +74,6 @@ class PageView:public UiWidget
 
 		virtual void removeWidget(UiWidget* widget);
 		virtual void layout();
-
-	protected:
-		PageView(int mode,float width,float height);
-		virtual ~PageView();
-
-		void adjustContentPanel();
-
-	protected:
-		PageViewContentPanel* m_contentPanel;
-		int m_currentPageIndex;
-
 };
-
-NS_FS_END 
-
-#endif /*_FS_PAGE_VIEW_H_*/
-
-
 
 

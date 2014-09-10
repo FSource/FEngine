@@ -38,6 +38,7 @@ $pfile "stage/ui/FsScrollWidget.pkg"
 $pfile "stage/ui/FsScrollView.pkg"
 $pfile "stage/ui/FsListView.pkg"
 $pfile "stage/ui/FsDynamicView.pkg"
+$pfile  "stage/ui/FsPageView.pkg"
 
 
 

@@ -5,6 +5,7 @@ NS_FS_BEGIN
 
 class ListViewContentPanel:public Entity
 {
+	protected:
 	class ListItemInfo:public FsObject 
 	{
 		public:
@@ -35,7 +36,7 @@ class ListViewContentPanel:public Entity
 			{
 				if(m_widget)
 				{
-				   	FS_SAFE_DEC_REF(m_widget);
+					FS_SAFE_DEC_REF(m_widget);
 					m_widget=NULL;
 				}
 			}
@@ -214,12 +215,10 @@ class ListViewContentPanel:public Entity
 		}
 		int getListItemAlignV(int index)
 		{
-		{
 			ListItemInfo* item=(ListItemInfo*)m_listItem->get(index);
 			return item->m_alignV;
+		}
 
-		}
-		}
 
 		void setListItemAlign(UiWidget* widget,int alignh,int alignv)
 		{
@@ -259,7 +258,7 @@ class ListViewContentPanel:public Entity
 			return m_listGap;
 		}
 
-		
+
 		int getListItemIndex(UiWidget* widget)
 		{
 			int size=m_listItem->size();
@@ -619,7 +618,7 @@ void ListView::layout()
 void ListView::scrollChange(float x,float y)
 {
 	//FS_TRACE_WARN("x=%f,y=%f",x,y);
-	
+
 	float minx,maxx,miny,maxy;
 
 	if(m_contentPanel->getMode()==SCROLL_VERTICAL)

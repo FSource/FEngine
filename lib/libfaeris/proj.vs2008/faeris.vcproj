@@ -1050,6 +1050,14 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\stage\ui\FsPageView.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsPageView.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\stage\ui\FsPressButton.cc"
 						>
 					</File>
