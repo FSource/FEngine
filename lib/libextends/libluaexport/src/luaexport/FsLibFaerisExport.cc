@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 09/09/14 10:49:30.
+** Generated automatically by tolua++-1.0.92 on 09/10/14 07:17:38.
 */
 
 #ifndef __cplusplus
@@ -36,8 +36,10 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "luaext/FsLuaEntity.h"
 #include "stage/entity/FsPanel.h"
 #include "luaext/FsLuaEntity.h"
+#include "stage/ui/FsStateButton.h"
 #include "stage/ui/FsPressButton.h"
 #include "luaext/FsLuaEntity.h"
+#include "stage/ui/FsToggleButton.h"
 #include "stage/ui/FsUiWidget.h"
 #include "stage/ui/FsScrollWidget.h"
 #include "stage/ui/FsScrollView.h"
@@ -184,88 +186,91 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ProgramMgr");
  tolua_usertype(tolua_S,"LuaPressButton");
  tolua_usertype(tolua_S,"ListView");
- tolua_usertype(tolua_S,"LuaRotateAction");
- tolua_usertype(tolua_S,"Face3");
  toluaext_usertype(tolua_S,"LuaHttpRequest");
- toluaext_usertype(tolua_S,"AudioEngine");
+ tolua_usertype(tolua_S,"LuaRotateAction");
  toluaext_usertype(tolua_S,"HttpEngine");
- toluaext_usertype(tolua_S,"Layer");
  tolua_usertype(tolua_S,"Channel");
- tolua_usertype(tolua_S,"FontTTFMgr");
- tolua_usertype(tolua_S,"QuintEase");
- toluaext_usertype(tolua_S,"Texture2D");
- tolua_usertype(tolua_S,"CatmullRomCurve2");
- tolua_usertype(tolua_S,"ObjectMgr");
- toluaext_usertype(tolua_S,"ColorLayer");
- tolua_usertype(tolua_S,"LinearCurve2");
+ toluaext_usertype(tolua_S,"Director");
+ tolua_usertype(tolua_S,"Rect2D");
+ toluaext_usertype(tolua_S,"AudioEngine");
+ toluaext_usertype(tolua_S,"Window");
+ toluaext_usertype(tolua_S,"Layer");
  tolua_usertype(tolua_S,"LuaScaleAction");
- tolua_usertype(tolua_S,"QuadEase");
- tolua_usertype(tolua_S,"Sys");
- tolua_usertype(tolua_S,"Curve3Action");
+ tolua_usertype(tolua_S,"FontTTFMgr");
+ tolua_usertype(tolua_S,"EasingUtil");
+ toluaext_usertype(tolua_S,"Texture2D");
  tolua_usertype(tolua_S,"CatmullRomCurve3");
+ tolua_usertype(tolua_S,"ObjectMgr");
+ toluaext_usertype(tolua_S,"LuaEntity");
+ tolua_usertype(tolua_S,"LinearCurve2");
+ tolua_usertype(tolua_S,"Curve3Action");
+ tolua_usertype(tolua_S,"CubicBezierCurve2");
  toluaext_usertype(tolua_S,"LuaAction");
- tolua_usertype(tolua_S,"Color");
- tolua_usertype(tolua_S,"ActionTarget");
  toluaext_usertype(tolua_S,"Action");
  tolua_usertype(tolua_S,"KeypadEvent");
+ toluaext_usertype(tolua_S,"SysDispatcher");
+ tolua_usertype(tolua_S,"Color");
+ tolua_usertype(tolua_S,"ActionTarget");
+ toluaext_usertype(tolua_S,"TouchDispatcher");
+ tolua_usertype(tolua_S,"TouchEvent");
  tolua_usertype(tolua_S,"CubicEase");
  toluaext_usertype(tolua_S,"FrameBuffer");
  toluaext_usertype(tolua_S,"LuaParticle2DEffect");
  toluaext_usertype(tolua_S,"LuaLabelTTF");
  toluaext_usertype(tolua_S,"ColorQuad2D");
- toluaext_usertype(tolua_S,"SysDispatcher");
+ tolua_usertype(tolua_S,"TouchPoint");
  toluaext_usertype(tolua_S,"FsArray");
  toluaext_usertype(tolua_S,"FontBitmap");
- toluaext_usertype(tolua_S,"TouchDispatcher");
- tolua_usertype(tolua_S,"TouchEvent");
- tolua_usertype(tolua_S,"CubicBezierCurve4");
- tolua_usertype(tolua_S,"TouchPoint");
  toluaext_usertype(tolua_S,"LuaSysEventListener");
- toluaext_usertype(tolua_S,"Render");
+ toluaext_usertype(tolua_S,"ColorLayer");
+ tolua_usertype(tolua_S,"CubicBezierCurve4");
+ tolua_usertype(tolua_S,"LinearCurve4");
+ tolua_usertype(tolua_S,"CatmullRomCurve2");
+ tolua_usertype(tolua_S,"Sys");
  tolua_usertype(tolua_S,"LuaMoveAction");
  tolua_usertype(tolua_S,"ScrollWidget");
  tolua_usertype(tolua_S,"ElasticEase");
- toluaext_usertype(tolua_S,"Window");
+ tolua_usertype(tolua_S,"QuintEase");
  tolua_usertype(tolua_S,"LuaLoopAction");
- tolua_usertype(tolua_S,"Vector2");
+ tolua_usertype(tolua_S,"LuaToggleButton");
  tolua_usertype(tolua_S,"Timer");
  tolua_usertype(tolua_S,"TextureMaterial");
- tolua_usertype(tolua_S,"Curve3");
+ tolua_usertype(tolua_S,"CubicBezierCurve3");
  toluaext_usertype(tolua_S,"LuaQuad2D");
  tolua_usertype(tolua_S,"FixTimeAction");
  toluaext_usertype(tolua_S,"TextureMgr");
  toluaext_usertype(tolua_S,"LuaTouchEventListener");
- tolua_usertype(tolua_S,"CubicBezierCurve3");
- tolua_usertype(tolua_S,"CubicBezierCurve2");
- tolua_usertype(tolua_S,"LinearCurve4");
- tolua_usertype(tolua_S,"Color4f");
+ toluaext_usertype(tolua_S,"Render");
+ toluaext_usertype(tolua_S,"LabelBitmap");
+ tolua_usertype(tolua_S,"Curve3");
+ tolua_usertype(tolua_S,"Curve2");
  toluaext_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"BackEase");
  tolua_usertype(tolua_S,"LuaSchedulerTarget");
  toluaext_usertype(tolua_S,"Scheduler");
- toluaext_usertype(tolua_S,"LabelBitmap");
+ toluaext_usertype(tolua_S,"LuaPanel");
  toluaext_usertype(tolua_S,"Entity");
  tolua_usertype(tolua_S,"CatmullRomCurve4");
- tolua_usertype(tolua_S,"Curve2");
+ tolua_usertype(tolua_S,"QuartEase");
  tolua_usertype(tolua_S,"Vector3");
  toluaext_usertype(tolua_S,"SchedulerTarget");
- tolua_usertype(tolua_S,"CircleEase");
+ tolua_usertype(tolua_S,"QuadEase");
  toluaext_usertype(tolua_S,"Scene");
  tolua_usertype(tolua_S,"LuaSeqAction");
  tolua_usertype(tolua_S,"Particle2DEmitter");
- tolua_usertype(tolua_S,"QuartEase");
+ tolua_usertype(tolua_S,"LinearEase");
  tolua_usertype(tolua_S,"FsFile");
  tolua_usertype(tolua_S,"LuaVertexPolygon");
  tolua_usertype(tolua_S,"LuaPauseAction");
- toluaext_usertype(tolua_S,"Sprite2D");
+ tolua_usertype(tolua_S,"PressButton");
  
- toluaext_usertype(tolua_S,"Director");
+ tolua_usertype(tolua_S,"StateButton");
  tolua_usertype(tolua_S,"DynamicView");
  toluaext_usertype(tolua_S,"LuaColorLayer");
  tolua_usertype(tolua_S,"Matrix4");
- tolua_usertype(tolua_S,"LinearEase");
+ tolua_usertype(tolua_S,"CircleEase");
  toluaext_usertype(tolua_S,"LuaColorQuad2D");
- tolua_usertype(tolua_S,"EasingUtil");
+ toluaext_usertype(tolua_S,"Panel");
  toluaext_usertype(tolua_S,"Resource");
  toluaext_usertype(tolua_S,"Quad2D");
  toluaext_usertype(tolua_S,"LabelTTF");
@@ -273,28 +278,28 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"SineEase");
  tolua_usertype(tolua_S,"PowerEase");
  toluaext_usertype(tolua_S,"Layer2D");
- tolua_usertype(tolua_S,"VertexPolygon");
+ tolua_usertype(tolua_S,"ToggleButton");
  toluaext_usertype(tolua_S,"FsObject");
- tolua_usertype(tolua_S,"PressButton");
+ tolua_usertype(tolua_S,"Vector4");
  toluaext_usertype(tolua_S,"ResourceMgr");
  toluaext_usertype(tolua_S,"LuaScene");
- tolua_usertype(tolua_S,"Rect2D");
+ tolua_usertype(tolua_S,"Vector2");
  tolua_usertype(tolua_S,"ScrollView");
  tolua_usertype(tolua_S,"ColorMaterial");
- tolua_usertype(tolua_S,"Vector4");
+ tolua_usertype(tolua_S,"Color4f");
  tolua_usertype(tolua_S,"Global");
  tolua_usertype(tolua_S,"EaseExpr");
- toluaext_usertype(tolua_S,"LuaPanel");
+ tolua_usertype(tolua_S,"Face3");
  tolua_usertype(tolua_S,"LinearCurve3");
- toluaext_usertype(tolua_S,"Panel");
+ toluaext_usertype(tolua_S,"LuaLayer2D");
  tolua_usertype(tolua_S,"BounceEase");
  toluaext_usertype(tolua_S,"LuaSprite2D");
  tolua_usertype(tolua_S,"Program");
  toluaext_usertype(tolua_S,"SysEventListener");
- toluaext_usertype(tolua_S,"LuaEntity");
- toluaext_usertype(tolua_S,"LuaLayer2D");
- tolua_usertype(tolua_S,"UiWidget");
+ toluaext_usertype(tolua_S,"Sprite2D");
  toluaext_usertype(tolua_S,"Particle2DEffect");
+ tolua_usertype(tolua_S,"UiWidget");
+ tolua_usertype(tolua_S,"VertexPolygon");
  tolua_usertype(tolua_S,"Curve4");
 }
 
@@ -15422,14 +15427,14 @@ static int tolua_FsLibFaeris_Panel_hit2D00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setColor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setColor00
-static int tolua_FsLibFaeris___PressButton_setColor00(lua_State* tolua_S)
+/* method: setColor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setColor00
+static int tolua_FsLibFaeris_StateButton_setColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -15437,7 +15442,7 @@ static int tolua_FsLibFaeris___PressButton_setColor00(lua_State* tolua_S)
  else
 #endif
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   Color value = *((Color*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
@@ -15455,20 +15460,20 @@ static int tolua_FsLibFaeris___PressButton_setColor00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setColor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setColor01
-static int tolua_FsLibFaeris___PressButton_setColor01(lua_State* tolua_S)
+/* method: setColor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setColor01
+static int tolua_FsLibFaeris_StateButton_setColor01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   const Color4f* value = ((const Color4f*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
@@ -15479,17 +15484,17 @@ static int tolua_FsLibFaeris___PressButton_setColor01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setColor00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setColor00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setColor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setColor02
-static int tolua_FsLibFaeris___PressButton_setColor02(lua_State* tolua_S)
+/* method: setColor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setColor02
+static int tolua_FsLibFaeris_StateButton_setColor02(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -15497,7 +15502,7 @@ static int tolua_FsLibFaeris___PressButton_setColor02(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   const Color4f* value = ((const Color4f*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -15509,17 +15514,17 @@ static int tolua_FsLibFaeris___PressButton_setColor02(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setColor01(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setColor01(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setColor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setColor03
-static int tolua_FsLibFaeris___PressButton_setColor03(lua_State* tolua_S)
+/* method: setColor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setColor03
+static int tolua_FsLibFaeris_StateButton_setColor03(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Color",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -15527,7 +15532,7 @@ static int tolua_FsLibFaeris___PressButton_setColor03(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   Color value = *((Color*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -15539,25 +15544,25 @@ static int tolua_FsLibFaeris___PressButton_setColor03(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setColor02(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setColor02(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getColor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getColor00
-static int tolua_FsLibFaeris___PressButton_getColor00(lua_State* tolua_S)
+/* method: getColor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getColor00
+static int tolua_FsLibFaeris_StateButton_getColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getColor'", NULL);
 #endif
@@ -15585,20 +15590,20 @@ static int tolua_FsLibFaeris___PressButton_getColor00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getColor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getColor01
-static int tolua_FsLibFaeris___PressButton_getColor01(lua_State* tolua_S)
+/* method: getColor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getColor01
+static int tolua_FsLibFaeris_StateButton_getColor01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getColor'", NULL);
@@ -15620,18 +15625,18 @@ static int tolua_FsLibFaeris___PressButton_getColor01(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_getColor00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_getColor00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setOpacity of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setOpacity00
-static int tolua_FsLibFaeris___PressButton_setOpacity00(lua_State* tolua_S)
+/* method: setOpacity of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setOpacity00
+static int tolua_FsLibFaeris_StateButton_setOpacity00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -15639,7 +15644,7 @@ static int tolua_FsLibFaeris___PressButton_setOpacity00(lua_State* tolua_S)
  else
 #endif
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   float value = ((float)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setOpacity'", NULL);
@@ -15657,21 +15662,21 @@ static int tolua_FsLibFaeris___PressButton_setOpacity00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getOpacity of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getOpacity00
-static int tolua_FsLibFaeris___PressButton_getOpacity00(lua_State* tolua_S)
+/* method: getOpacity of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getOpacity00
+static int tolua_FsLibFaeris_StateButton_getOpacity00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getOpacity'", NULL);
 #endif
@@ -15689,13 +15694,13 @@ static int tolua_FsLibFaeris___PressButton_getOpacity00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setOpacity of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setOpacity01
-static int tolua_FsLibFaeris___PressButton_setOpacity01(lua_State* tolua_S)
+/* method: setOpacity of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setOpacity01
+static int tolua_FsLibFaeris_StateButton_setOpacity01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -15703,7 +15708,7 @@ static int tolua_FsLibFaeris___PressButton_setOpacity01(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   float value = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -15715,24 +15720,24 @@ static int tolua_FsLibFaeris___PressButton_setOpacity01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setOpacity00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setOpacity00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getOpacity of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getOpacity01
-static int tolua_FsLibFaeris___PressButton_getOpacity01(lua_State* tolua_S)
+/* method: getOpacity of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getOpacity01
+static int tolua_FsLibFaeris_StateButton_getOpacity01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getOpacity'", NULL);
@@ -15744,18 +15749,18 @@ static int tolua_FsLibFaeris___PressButton_getOpacity01(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_getOpacity00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_getOpacity00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture00
-static int tolua_FsLibFaeris___PressButton_setTexture00(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture00
+static int tolua_FsLibFaeris_StateButton_setTexture00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isstring(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -15763,7 +15768,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture00(lua_State* tolua_S)
  else
 #endif
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTexture'", NULL);
@@ -15781,13 +15786,13 @@ static int tolua_FsLibFaeris___PressButton_setTexture00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture01
-static int tolua_FsLibFaeris___PressButton_setTexture01(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture01
+static int tolua_FsLibFaeris_StateButton_setTexture01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isstring(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
@@ -15796,7 +15801,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture01(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
   float width = ((float)  tolua_tonumber(tolua_S,3,0));
   float height = ((float)  tolua_tonumber(tolua_S,4,0));
@@ -15809,17 +15814,17 @@ static int tolua_FsLibFaeris___PressButton_setTexture01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture02
-static int tolua_FsLibFaeris___PressButton_setTexture02(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture02
+static int tolua_FsLibFaeris_StateButton_setTexture02(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isstring(tolua_S,2,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector2",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -15827,7 +15832,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture02(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
   const Vector2* size = ((const Vector2*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -15839,24 +15844,24 @@ static int tolua_FsLibFaeris___PressButton_setTexture02(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture01(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture01(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture03
-static int tolua_FsLibFaeris___PressButton_setTexture03(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture03
+static int tolua_FsLibFaeris_StateButton_setTexture03(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTexture'", NULL);
@@ -15867,17 +15872,17 @@ static int tolua_FsLibFaeris___PressButton_setTexture03(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture02(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture02(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture04
-static int tolua_FsLibFaeris___PressButton_setTexture04(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture04
+static int tolua_FsLibFaeris_StateButton_setTexture04(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
@@ -15886,7 +15891,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture04(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
   float width = ((float)  tolua_tonumber(tolua_S,3,0));
   float height = ((float)  tolua_tonumber(tolua_S,4,0));
@@ -15899,17 +15904,17 @@ static int tolua_FsLibFaeris___PressButton_setTexture04(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture03(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture03(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture05
-static int tolua_FsLibFaeris___PressButton_setTexture05(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture05
+static int tolua_FsLibFaeris_StateButton_setTexture05(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector2",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -15917,7 +15922,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture05(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
   const Vector2* size = ((const Vector2*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -15929,25 +15934,25 @@ static int tolua_FsLibFaeris___PressButton_setTexture05(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture04(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture04(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getTexture00
-static int tolua_FsLibFaeris___PressButton_getTexture00(lua_State* tolua_S)
+/* method: getTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getTexture00
+static int tolua_FsLibFaeris_StateButton_getTexture00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTexture'", NULL);
 #endif
@@ -15965,13 +15970,13 @@ static int tolua_FsLibFaeris___PressButton_getTexture00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture06
-static int tolua_FsLibFaeris___PressButton_setTexture06(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture06
+static int tolua_FsLibFaeris_StateButton_setTexture06(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isstring(tolua_S,3,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -15979,7 +15984,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture06(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   const char* filename = ((const char*)  tolua_tostring(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -15991,17 +15996,17 @@ static int tolua_FsLibFaeris___PressButton_setTexture06(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture05(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture05(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture07
-static int tolua_FsLibFaeris___PressButton_setTexture07(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture07
+static int tolua_FsLibFaeris_StateButton_setTexture07(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isstring(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
@@ -16011,7 +16016,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture07(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   const char* filename = ((const char*)  tolua_tostring(tolua_S,3,0));
   float width = ((float)  tolua_tonumber(tolua_S,4,0));
@@ -16025,17 +16030,17 @@ static int tolua_FsLibFaeris___PressButton_setTexture07(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture06(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture06(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture08
-static int tolua_FsLibFaeris___PressButton_setTexture08(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture08
+static int tolua_FsLibFaeris_StateButton_setTexture08(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isstring(tolua_S,3,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"const Vector2",0,&tolua_err)) ||
@@ -16044,7 +16049,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture08(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   const char* filename = ((const char*)  tolua_tostring(tolua_S,3,0));
   const Vector2* size = ((const Vector2*)  tolua_tousertype(tolua_S,4,0));
@@ -16057,17 +16062,17 @@ static int tolua_FsLibFaeris___PressButton_setTexture08(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture07(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture07(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture09
-static int tolua_FsLibFaeris___PressButton_setTexture09(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture09
+static int tolua_FsLibFaeris_StateButton_setTexture09(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isusertype(tolua_S,3,"Texture2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -16075,7 +16080,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture09(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -16087,17 +16092,17 @@ static int tolua_FsLibFaeris___PressButton_setTexture09(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture08(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture08(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture10
-static int tolua_FsLibFaeris___PressButton_setTexture10(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture10
+static int tolua_FsLibFaeris_StateButton_setTexture10(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isusertype(tolua_S,3,"Texture2D",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
@@ -16107,7 +16112,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture10(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,3,0));
   float width = ((float)  tolua_tonumber(tolua_S,4,0));
@@ -16121,17 +16126,17 @@ static int tolua_FsLibFaeris___PressButton_setTexture10(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture09(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture09(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTexture11
-static int tolua_FsLibFaeris___PressButton_setTexture11(lua_State* tolua_S)
+/* method: setTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTexture11
+static int tolua_FsLibFaeris_StateButton_setTexture11(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isusertype(tolua_S,3,"Texture2D",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"const Vector2",0,&tolua_err)) ||
@@ -16140,7 +16145,7 @@ static int tolua_FsLibFaeris___PressButton_setTexture11(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,3,0));
   const Vector2* size = ((const Vector2*)  tolua_tousertype(tolua_S,4,0));
@@ -16153,24 +16158,24 @@ static int tolua_FsLibFaeris___PressButton_setTexture11(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setTexture10(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setTexture10(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getTexture of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getTexture01
-static int tolua_FsLibFaeris___PressButton_getTexture01(lua_State* tolua_S)
+/* method: getTexture of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getTexture01
+static int tolua_FsLibFaeris_StateButton_getTexture01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTexture'", NULL);
@@ -16182,18 +16187,18 @@ static int tolua_FsLibFaeris___PressButton_getTexture01(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_getTexture00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_getTexture00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setSize of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setSize00
-static int tolua_FsLibFaeris___PressButton_setSize00(lua_State* tolua_S)
+/* method: setSize of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setSize00
+static int tolua_FsLibFaeris_StateButton_setSize00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector2",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -16201,7 +16206,7 @@ static int tolua_FsLibFaeris___PressButton_setSize00(lua_State* tolua_S)
  else
 #endif
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   const Vector2* size = ((const Vector2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setSize'", NULL);
@@ -16219,13 +16224,13 @@ static int tolua_FsLibFaeris___PressButton_setSize00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setSize of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setSize01
-static int tolua_FsLibFaeris___PressButton_setSize01(lua_State* tolua_S)
+/* method: setSize of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setSize01
+static int tolua_FsLibFaeris_StateButton_setSize01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -16233,7 +16238,7 @@ static int tolua_FsLibFaeris___PressButton_setSize01(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   float x = ((float)  tolua_tonumber(tolua_S,2,0));
   float y = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -16245,25 +16250,25 @@ static int tolua_FsLibFaeris___PressButton_setSize01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setSize00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setSize00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getSize of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getSize00
-static int tolua_FsLibFaeris___PressButton_getSize00(lua_State* tolua_S)
+/* method: getSize of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getSize00
+static int tolua_FsLibFaeris_StateButton_getSize00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getSize'", NULL);
 #endif
@@ -16291,13 +16296,13 @@ static int tolua_FsLibFaeris___PressButton_getSize00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setSize of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setSize02
-static int tolua_FsLibFaeris___PressButton_setSize02(lua_State* tolua_S)
+/* method: setSize of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setSize02
+static int tolua_FsLibFaeris_StateButton_setSize02(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
@@ -16306,7 +16311,7 @@ static int tolua_FsLibFaeris___PressButton_setSize02(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   float x = ((float)  tolua_tonumber(tolua_S,3,0));
   float y = ((float)  tolua_tonumber(tolua_S,4,0));
@@ -16319,17 +16324,17 @@ static int tolua_FsLibFaeris___PressButton_setSize02(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setSize01(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setSize01(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setSize of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setSize03
-static int tolua_FsLibFaeris___PressButton_setSize03(lua_State* tolua_S)
+/* method: setSize of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setSize03
+static int tolua_FsLibFaeris_StateButton_setSize03(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector2",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -16337,7 +16342,7 @@ static int tolua_FsLibFaeris___PressButton_setSize03(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   const Vector2* size = ((const Vector2*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -16349,24 +16354,24 @@ static int tolua_FsLibFaeris___PressButton_setSize03(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setSize02(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setSize02(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getSize of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getSize01
-static int tolua_FsLibFaeris___PressButton_getSize01(lua_State* tolua_S)
+/* method: getSize of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getSize01
+static int tolua_FsLibFaeris_StateButton_getSize01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getSize'", NULL);
@@ -16388,18 +16393,18 @@ static int tolua_FsLibFaeris___PressButton_getSize01(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_getSize00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_getSize00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setAnchor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setAnchor00
-static int tolua_FsLibFaeris___PressButton_setAnchor00(lua_State* tolua_S)
+/* method: setAnchor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setAnchor00
+static int tolua_FsLibFaeris_StateButton_setAnchor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -16408,7 +16413,7 @@ static int tolua_FsLibFaeris___PressButton_setAnchor00(lua_State* tolua_S)
  else
 #endif
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   float x = ((float)  tolua_tonumber(tolua_S,2,0));
   float y = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -16427,20 +16432,20 @@ static int tolua_FsLibFaeris___PressButton_setAnchor00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setAnchor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setAnchor01
-static int tolua_FsLibFaeris___PressButton_setAnchor01(lua_State* tolua_S)
+/* method: setAnchor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setAnchor01
+static int tolua_FsLibFaeris_StateButton_setAnchor01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector2",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   const Vector2* size = ((const Vector2*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setAnchor'", NULL);
@@ -16451,25 +16456,25 @@ static int tolua_FsLibFaeris___PressButton_setAnchor01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setAnchor00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setAnchor00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getAnchor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getAnchor00
-static int tolua_FsLibFaeris___PressButton_getAnchor00(lua_State* tolua_S)
+/* method: getAnchor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getAnchor00
+static int tolua_FsLibFaeris_StateButton_getAnchor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAnchor'", NULL);
 #endif
@@ -16497,13 +16502,13 @@ static int tolua_FsLibFaeris___PressButton_getAnchor00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setAnchor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setAnchor02
-static int tolua_FsLibFaeris___PressButton_setAnchor02(lua_State* tolua_S)
+/* method: setAnchor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setAnchor02
+static int tolua_FsLibFaeris_StateButton_setAnchor02(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
@@ -16512,7 +16517,7 @@ static int tolua_FsLibFaeris___PressButton_setAnchor02(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   float x = ((float)  tolua_tonumber(tolua_S,3,0));
   float y = ((float)  tolua_tonumber(tolua_S,4,0));
@@ -16525,17 +16530,17 @@ static int tolua_FsLibFaeris___PressButton_setAnchor02(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setAnchor01(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setAnchor01(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setAnchor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setAnchor03
-static int tolua_FsLibFaeris___PressButton_setAnchor03(lua_State* tolua_S)
+/* method: setAnchor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setAnchor03
+static int tolua_FsLibFaeris_StateButton_setAnchor03(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector2",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -16543,7 +16548,7 @@ static int tolua_FsLibFaeris___PressButton_setAnchor03(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   const Vector2* size = ((const Vector2*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -16555,24 +16560,24 @@ static int tolua_FsLibFaeris___PressButton_setAnchor03(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setAnchor02(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setAnchor02(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getAnchor of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getAnchor01
-static int tolua_FsLibFaeris___PressButton_getAnchor01(lua_State* tolua_S)
+/* method: getAnchor of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getAnchor01
+static int tolua_FsLibFaeris_StateButton_getAnchor01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAnchor'", NULL);
@@ -16594,18 +16599,18 @@ static int tolua_FsLibFaeris___PressButton_getAnchor01(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_getAnchor00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_getAnchor00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setRotate of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setRotate00
-static int tolua_FsLibFaeris___PressButton_setRotate00(lua_State* tolua_S)
+/* method: setRotate of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setRotate00
+static int tolua_FsLibFaeris_StateButton_setRotate00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
@@ -16616,7 +16621,7 @@ static int tolua_FsLibFaeris___PressButton_setRotate00(lua_State* tolua_S)
  else
 #endif
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   float x = ((float)  tolua_tonumber(tolua_S,3,0));
   float y = ((float)  tolua_tonumber(tolua_S,4,0));
@@ -16637,13 +16642,13 @@ static int tolua_FsLibFaeris___PressButton_setRotate00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setRotate of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setRotate01
-static int tolua_FsLibFaeris___PressButton_setRotate01(lua_State* tolua_S)
+/* method: setRotate of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setRotate01
+static int tolua_FsLibFaeris_StateButton_setRotate01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector3",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -16651,7 +16656,7 @@ static int tolua_FsLibFaeris___PressButton_setRotate01(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   const Vector3* value = ((const Vector3*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -16663,18 +16668,18 @@ static int tolua_FsLibFaeris___PressButton_setRotate01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setRotate00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setRotate00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getRotate of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getRotate00
-static int tolua_FsLibFaeris___PressButton_getRotate00(lua_State* tolua_S)
+/* method: getRotate of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getRotate00
+static int tolua_FsLibFaeris_StateButton_getRotate00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -16682,7 +16687,7 @@ static int tolua_FsLibFaeris___PressButton_getRotate00(lua_State* tolua_S)
  else
 #endif
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getRotate'", NULL);
@@ -16711,14 +16716,14 @@ static int tolua_FsLibFaeris___PressButton_getRotate00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setScale of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setScale00
-static int tolua_FsLibFaeris___PressButton_setScale00(lua_State* tolua_S)
+/* method: setScale of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setScale00
+static int tolua_FsLibFaeris_StateButton_setScale00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
@@ -16729,7 +16734,7 @@ static int tolua_FsLibFaeris___PressButton_setScale00(lua_State* tolua_S)
  else
 #endif
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   float x = ((float)  tolua_tonumber(tolua_S,3,0));
   float y = ((float)  tolua_tonumber(tolua_S,4,0));
@@ -16750,13 +16755,13 @@ static int tolua_FsLibFaeris___PressButton_setScale00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setScale of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setScale01
-static int tolua_FsLibFaeris___PressButton_setScale01(lua_State* tolua_S)
+/* method: setScale of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setScale01
+static int tolua_FsLibFaeris_StateButton_setScale01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector3",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -16764,7 +16769,7 @@ static int tolua_FsLibFaeris___PressButton_setScale01(lua_State* tolua_S)
   goto tolua_lerror;
  else
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   const Vector3* value = ((const Vector3*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -16776,18 +16781,18 @@ static int tolua_FsLibFaeris___PressButton_setScale01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___PressButton_setScale00(tolua_S);
+ return tolua_FsLibFaeris_StateButton_setScale00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getScale of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getScale00
-static int tolua_FsLibFaeris___PressButton_getScale00(lua_State* tolua_S)
+/* method: getScale of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getScale00
+static int tolua_FsLibFaeris_StateButton_getScale00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -16795,7 +16800,7 @@ static int tolua_FsLibFaeris___PressButton_getScale00(lua_State* tolua_S)
  else
 #endif
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScale'", NULL);
@@ -16824,14 +16829,14 @@ static int tolua_FsLibFaeris___PressButton_getScale00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setChild of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setChild00
-static int tolua_FsLibFaeris___PressButton_setChild00(lua_State* tolua_S)
+/* method: setChild of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setChild00
+static int tolua_FsLibFaeris_StateButton_setChild00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isusertype(tolua_S,3,"FsArray",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
@@ -16840,7 +16845,7 @@ static int tolua_FsLibFaeris___PressButton_setChild00(lua_State* tolua_S)
  else
 #endif
  {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
   FsArray* child = ((FsArray*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
@@ -16859,14 +16864,14 @@ static int tolua_FsLibFaeris___PressButton_setChild00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getChild of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_getChild00
-static int tolua_FsLibFaeris___PressButton_getChild00(lua_State* tolua_S)
+/* method: getChild of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_getChild00
+static int tolua_FsLibFaeris_StateButton_getChild00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"const PressButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const StateButton",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -16874,7 +16879,7 @@ static int tolua_FsLibFaeris___PressButton_getChild00(lua_State* tolua_S)
  else
 #endif
  {
-  const PressButton* self = (const PressButton*)  tolua_tousertype(tolua_S,1,0);
+  const StateButton* self = (const StateButton*)  tolua_tousertype(tolua_S,1,0);
   int state = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getChild'", NULL);
@@ -16888,6 +16893,175 @@ static int tolua_FsLibFaeris___PressButton_getChild00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getChild'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setTweenInfo of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTweenInfo00
+static int tolua_FsLibFaeris_StateButton_setTweenInfo00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,4,"EaseExpr",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
+  int from = ((int)  tolua_tonumber(tolua_S,2,0));
+  int to = ((int)  tolua_tonumber(tolua_S,3,0));
+  EaseExpr* easing = ((EaseExpr*)  tolua_tousertype(tolua_S,4,0));
+  float time = ((float)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTweenInfo'", NULL);
+#endif
+  {
+   self->setTweenInfo(from,to,easing,time);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setTweenInfo'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setTweenFlags of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_setTweenFlags00
+static int tolua_FsLibFaeris_StateButton_setTweenFlags00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
+  int flags = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTweenFlags'", NULL);
+#endif
+  {
+   self->setTweenFlags(flags);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setTweenFlags'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: clearTweenFlags of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_clearTweenFlags00
+static int tolua_FsLibFaeris_StateButton_clearTweenFlags00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clearTweenFlags'", NULL);
+#endif
+  {
+   self->clearTweenFlags();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'clearTweenFlags'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addTweenFlags of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_addTweenFlags00
+static int tolua_FsLibFaeris_StateButton_addTweenFlags00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
+  int flags = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addTweenFlags'", NULL);
+#endif
+  {
+   self->addTweenFlags(flags);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addTweenFlags'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeTweenFlags of class  StateButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_StateButton_removeTweenFlags00
+static int tolua_FsLibFaeris_StateButton_removeTweenFlags00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"StateButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  StateButton* self = (StateButton*)  tolua_tousertype(tolua_S,1,0);
+  int flags = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeTweenFlags'", NULL);
+#endif
+  {
+   self->removeTweenFlags(flags);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeTweenFlags'.",&tolua_err);
  return 0;
 #endif
 }
@@ -16953,175 +17127,6 @@ static int tolua_FsLibFaeris___PressButton_getDisabled00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getDisabled'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setTweenInfo of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTweenInfo00
-static int tolua_FsLibFaeris___PressButton_setTweenInfo00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,4,"EaseExpr",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
-  int from = ((int)  tolua_tonumber(tolua_S,2,0));
-  int to = ((int)  tolua_tonumber(tolua_S,3,0));
-  EaseExpr* easing = ((EaseExpr*)  tolua_tousertype(tolua_S,4,0));
-  float time = ((float)  tolua_tonumber(tolua_S,5,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTweenInfo'", NULL);
-#endif
-  {
-   self->setTweenInfo(from,to,easing,time);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setTweenInfo'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setTweenFlags of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_setTweenFlags00
-static int tolua_FsLibFaeris___PressButton_setTweenFlags00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
-  int flags = ((int)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTweenFlags'", NULL);
-#endif
-  {
-   self->setTweenFlags(flags);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setTweenFlags'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: clearTweenFlags of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_clearTweenFlags00
-static int tolua_FsLibFaeris___PressButton_clearTweenFlags00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clearTweenFlags'", NULL);
-#endif
-  {
-   self->clearTweenFlags();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'clearTweenFlags'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: addTweenFlags of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_addTweenFlags00
-static int tolua_FsLibFaeris___PressButton_addTweenFlags00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
-  int flags = ((int)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addTweenFlags'", NULL);
-#endif
-  {
-   self->addTweenFlags(flags);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'addTweenFlags'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: removeTweenFlags of class  PressButton */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___PressButton_removeTweenFlags00
-static int tolua_FsLibFaeris___PressButton_removeTweenFlags00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"PressButton",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  PressButton* self = (PressButton*)  tolua_tousertype(tolua_S,1,0);
-  int flags = ((int)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeTweenFlags'", NULL);
-#endif
-  {
-   self->removeTweenFlags(flags);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'removeTweenFlags'.",&tolua_err);
  return 0;
 #endif
 }
@@ -17734,6 +17739,990 @@ static int tolua_FsLibFaeris_PressButton_pressUp00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'pressUp'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_create00
+static int tolua_FsLibFaeris___ToggleButton_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ToggleButton* tolua_ret = (ToggleButton*)  ToggleButton::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ToggleButton");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_createWithDarkStyle00
+static int tolua_FsLibFaeris___ToggleButton_createWithDarkStyle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Color4f",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const Color4f* dark = ((const Color4f*)  tolua_tousertype(tolua_S,3,0));
+  {
+   ToggleButton* tolua_ret = (ToggleButton*)  ToggleButton::createWithDarkStyle(filename,*dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ToggleButton");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'createWithDarkStyle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_createWithDarkStyle01
+static int tolua_FsLibFaeris___ToggleButton_createWithDarkStyle01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Color",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+  Color dark = *((Color*)  tolua_tousertype(tolua_S,3,0));
+  {
+   ToggleButton* tolua_ret = (ToggleButton*)  ToggleButton::createWithDarkStyle(filename,dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ToggleButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris___ToggleButton_createWithDarkStyle00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_createWithDarkStyle02
+static int tolua_FsLibFaeris___ToggleButton_createWithDarkStyle02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Color4f",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  const Color4f* dark = ((const Color4f*)  tolua_tousertype(tolua_S,3,0));
+  {
+   ToggleButton* tolua_ret = (ToggleButton*)  ToggleButton::createWithDarkStyle(tex,*dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ToggleButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris___ToggleButton_createWithDarkStyle01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_createWithDarkStyle03
+static int tolua_FsLibFaeris___ToggleButton_createWithDarkStyle03(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Color",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  Color dark = *((Color*)  tolua_tousertype(tolua_S,3,0));
+  {
+   ToggleButton* tolua_ret = (ToggleButton*)  ToggleButton::createWithDarkStyle(tex,dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ToggleButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris___ToggleButton_createWithDarkStyle02(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithTextureStyle of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_createWithTextureStyle00
+static int tolua_FsLibFaeris___ToggleButton_createWithTextureStyle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const char* fileon = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const char* fileoff = ((const char*)  tolua_tostring(tolua_S,3,0));
+  {
+   ToggleButton* tolua_ret = (ToggleButton*)  ToggleButton::createWithTextureStyle(fileon,fileoff);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ToggleButton");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'createWithTextureStyle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithTextureStyle of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_createWithTextureStyle01
+static int tolua_FsLibFaeris___ToggleButton_createWithTextureStyle01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Texture2D* on = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  Texture2D* off = ((Texture2D*)  tolua_tousertype(tolua_S,3,0));
+  {
+   ToggleButton* tolua_ret = (ToggleButton*)  ToggleButton::createWithTextureStyle(on,off);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ToggleButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris___ToggleButton_createWithTextureStyle00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: touchBegin of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_touchBegin00
+static int tolua_FsLibFaeris___ToggleButton_touchBegin00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ToggleButton* self = (ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'touchBegin'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->touchBegin(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchBegin'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: touchMove of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_touchMove00
+static int tolua_FsLibFaeris___ToggleButton_touchMove00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ToggleButton* self = (ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'touchMove'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->touchMove(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchMove'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: touchEnd of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_touchEnd00
+static int tolua_FsLibFaeris___ToggleButton_touchEnd00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ToggleButton* self = (ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'touchEnd'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->touchEnd(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchEnd'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: hit2D of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_hit2D00
+static int tolua_FsLibFaeris___ToggleButton_hit2D00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ToggleButton* self = (ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'hit2D'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->hit2D(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'hit2D'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: className of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_className00
+static int tolua_FsLibFaeris___ToggleButton_className00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ToggleButton* self = (ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
+#endif
+  {
+   const char* tolua_ret = (const char*)  self->className();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: toggleChanged of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_toggleChanged00
+static int tolua_FsLibFaeris___ToggleButton_toggleChanged00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ToggleButton* self = (ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  bool value = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'toggleChanged'", NULL);
+#endif
+  {
+   self->toggleChanged(value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'toggleChanged'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setDisabled of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_setDisabled00
+static int tolua_FsLibFaeris___ToggleButton_setDisabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ToggleButton* self = (ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  bool value = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setDisabled'", NULL);
+#endif
+  {
+   self->setDisabled(value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setDisabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getDisabled of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_getDisabled00
+static int tolua_FsLibFaeris___ToggleButton_getDisabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const ToggleButton",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const ToggleButton* self = (const ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDisabled'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getDisabled();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getDisabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setToggle of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_setToggle00
+static int tolua_FsLibFaeris___ToggleButton_setToggle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,3,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ToggleButton* self = (ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  bool value = ((bool)  tolua_toboolean(tolua_S,2,0));
+  bool callback = ((bool)  tolua_toboolean(tolua_S,3,false));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setToggle'", NULL);
+#endif
+  {
+   self->setToggle(value,callback);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setToggle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getToggle of class  ToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ToggleButton_getToggle00
+static int tolua_FsLibFaeris___ToggleButton_getToggle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ToggleButton",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ToggleButton* self = (ToggleButton*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getToggle'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getToggle();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getToggle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: create of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_create00
+static int tolua_FsLibFaeris_ToggleButton_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   LuaToggleButton* tolua_ret = (LuaToggleButton*)  LuaToggleButton::create();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaToggleButton");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_createWithDarkStyle00
+static int tolua_FsLibFaeris_ToggleButton_createWithDarkStyle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Color4f",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const Color4f* dark = ((const Color4f*)  tolua_tousertype(tolua_S,3,0));
+  {
+   LuaToggleButton* tolua_ret = (LuaToggleButton*)  LuaToggleButton::createWithDarkStyle(filename,*dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaToggleButton");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'createWithDarkStyle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_createWithDarkStyle01
+static int tolua_FsLibFaeris_ToggleButton_createWithDarkStyle01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Color",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+  Color dark = *((Color*)  tolua_tousertype(tolua_S,3,0));
+  {
+   LuaToggleButton* tolua_ret = (LuaToggleButton*)  LuaToggleButton::createWithDarkStyle(filename,dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaToggleButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_ToggleButton_createWithDarkStyle00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_createWithDarkStyle02
+static int tolua_FsLibFaeris_ToggleButton_createWithDarkStyle02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Color4f",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  const Color4f* dark = ((const Color4f*)  tolua_tousertype(tolua_S,3,0));
+  {
+   LuaToggleButton* tolua_ret = (LuaToggleButton*)  LuaToggleButton::createWithDarkStyle(tex,*dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaToggleButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_ToggleButton_createWithDarkStyle01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithDarkStyle of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_createWithDarkStyle03
+static int tolua_FsLibFaeris_ToggleButton_createWithDarkStyle03(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"Color",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Texture2D* tex = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  Color dark = *((Color*)  tolua_tousertype(tolua_S,3,0));
+  {
+   LuaToggleButton* tolua_ret = (LuaToggleButton*)  LuaToggleButton::createWithDarkStyle(tex,dark);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaToggleButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_ToggleButton_createWithDarkStyle02(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithTextureStyle of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_createWithTextureStyle00
+static int tolua_FsLibFaeris_ToggleButton_createWithTextureStyle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const char* fileon = ((const char*)  tolua_tostring(tolua_S,2,0));
+  const char* fileoff = ((const char*)  tolua_tostring(tolua_S,3,0));
+  {
+   LuaToggleButton* tolua_ret = (LuaToggleButton*)  LuaToggleButton::createWithTextureStyle(fileon,fileoff);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaToggleButton");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'createWithTextureStyle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: createWithTextureStyle of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_createWithTextureStyle01
+static int tolua_FsLibFaeris_ToggleButton_createWithTextureStyle01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Texture2D",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Texture2D* on = ((Texture2D*)  tolua_tousertype(tolua_S,2,0));
+  Texture2D* off = ((Texture2D*)  tolua_tousertype(tolua_S,3,0));
+  {
+   LuaToggleButton* tolua_ret = (LuaToggleButton*)  LuaToggleButton::createWithTextureStyle(on,off);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LuaToggleButton");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_ToggleButton_createWithTextureStyle00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: onDraw of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_draw00
+static int tolua_FsLibFaeris_ToggleButton_draw00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Render",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LuaToggleButton* self = (LuaToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  Render* r = ((Render*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onDraw'", NULL);
+#endif
+  {
+   self->onDraw(r);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'draw'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: onUpdate of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_update00
+static int tolua_FsLibFaeris_ToggleButton_update00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LuaToggleButton* self = (LuaToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  float dt = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onUpdate'", NULL);
+#endif
+  {
+   self->onUpdate(dt);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'update'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: onTouchBegin of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_touchBegin00
+static int tolua_FsLibFaeris_ToggleButton_touchBegin00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LuaToggleButton* self = (LuaToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onTouchBegin'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->onTouchBegin(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchBegin'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: onTouchMove of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_touchMove00
+static int tolua_FsLibFaeris_ToggleButton_touchMove00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LuaToggleButton* self = (LuaToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onTouchMove'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->onTouchMove(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchMove'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: onTouchEnd of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_touchEnd00
+static int tolua_FsLibFaeris_ToggleButton_touchEnd00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LuaToggleButton* self = (LuaToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onTouchEnd'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->onTouchEnd(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'touchEnd'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: onHit2D of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_hit2D00
+static int tolua_FsLibFaeris_ToggleButton_hit2D00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LuaToggleButton* self = (LuaToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onHit2D'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->onHit2D(x,y);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'hit2D'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: onToggleChanged of class  LuaToggleButton */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ToggleButton_toggleChanged00
+static int tolua_FsLibFaeris_ToggleButton_toggleChanged00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LuaToggleButton",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LuaToggleButton* self = (LuaToggleButton*)  tolua_tousertype(tolua_S,1,0);
+  bool value = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onToggleChanged'", NULL);
+#endif
+  {
+   self->onToggleChanged(value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'toggleChanged'.",&tolua_err);
  return 0;
 #endif
 }
@@ -43013,7 +44002,68 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"touchEnd",tolua_FsLibFaeris_Panel_touchEnd00);
    tolua_function(tolua_S,"hit2D",tolua_FsLibFaeris_Panel_hit2D00);
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"__PressButton","PressButton","Entity",NULL);
+  tolua_cclass(tolua_S,"StateButton","StateButton","Entity",NULL);
+  tolua_beginmodule(tolua_S,"StateButton");
+   tolua_constant(tolua_S,"FLAG_COLOR",StateButton::FLAG_COLOR);
+   tolua_constant(tolua_S,"FLAG_OPACITY",StateButton::FLAG_OPACITY);
+   tolua_constant(tolua_S,"FLAG_TEXTURE",StateButton::FLAG_TEXTURE);
+   tolua_constant(tolua_S,"FLAG_SIZE",StateButton::FLAG_SIZE);
+   tolua_constant(tolua_S,"FLAG_ANCHOR",StateButton::FLAG_ANCHOR);
+   tolua_constant(tolua_S,"FLAG_ROTATE",StateButton::FLAG_ROTATE);
+   tolua_constant(tolua_S,"FLAG_SCALE",StateButton::FLAG_SCALE);
+   tolua_constant(tolua_S,"FLAG_CHILDREN",StateButton::FLAG_CHILDREN);
+   tolua_constant(tolua_S,"FLAG_ALL",StateButton::FLAG_ALL);
+   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris_StateButton_setColor00);
+   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris_StateButton_setColor01);
+   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris_StateButton_setColor02);
+   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris_StateButton_setColor03);
+   tolua_function(tolua_S,"getColor",tolua_FsLibFaeris_StateButton_getColor00);
+   tolua_function(tolua_S,"getColor",tolua_FsLibFaeris_StateButton_getColor01);
+   tolua_function(tolua_S,"setOpacity",tolua_FsLibFaeris_StateButton_setOpacity00);
+   tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris_StateButton_getOpacity00);
+   tolua_function(tolua_S,"setOpacity",tolua_FsLibFaeris_StateButton_setOpacity01);
+   tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris_StateButton_getOpacity01);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture00);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture01);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture02);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture03);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture04);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture05);
+   tolua_function(tolua_S,"getTexture",tolua_FsLibFaeris_StateButton_getTexture00);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture06);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture07);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture08);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture09);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture10);
+   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris_StateButton_setTexture11);
+   tolua_function(tolua_S,"getTexture",tolua_FsLibFaeris_StateButton_getTexture01);
+   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris_StateButton_setSize00);
+   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris_StateButton_setSize01);
+   tolua_function(tolua_S,"getSize",tolua_FsLibFaeris_StateButton_getSize00);
+   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris_StateButton_setSize02);
+   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris_StateButton_setSize03);
+   tolua_function(tolua_S,"getSize",tolua_FsLibFaeris_StateButton_getSize01);
+   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris_StateButton_setAnchor00);
+   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris_StateButton_setAnchor01);
+   tolua_function(tolua_S,"getAnchor",tolua_FsLibFaeris_StateButton_getAnchor00);
+   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris_StateButton_setAnchor02);
+   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris_StateButton_setAnchor03);
+   tolua_function(tolua_S,"getAnchor",tolua_FsLibFaeris_StateButton_getAnchor01);
+   tolua_function(tolua_S,"setRotate",tolua_FsLibFaeris_StateButton_setRotate00);
+   tolua_function(tolua_S,"setRotate",tolua_FsLibFaeris_StateButton_setRotate01);
+   tolua_function(tolua_S,"getRotate",tolua_FsLibFaeris_StateButton_getRotate00);
+   tolua_function(tolua_S,"setScale",tolua_FsLibFaeris_StateButton_setScale00);
+   tolua_function(tolua_S,"setScale",tolua_FsLibFaeris_StateButton_setScale01);
+   tolua_function(tolua_S,"getScale",tolua_FsLibFaeris_StateButton_getScale00);
+   tolua_function(tolua_S,"setChild",tolua_FsLibFaeris_StateButton_setChild00);
+   tolua_function(tolua_S,"getChild",tolua_FsLibFaeris_StateButton_getChild00);
+   tolua_function(tolua_S,"setTweenInfo",tolua_FsLibFaeris_StateButton_setTweenInfo00);
+   tolua_function(tolua_S,"setTweenFlags",tolua_FsLibFaeris_StateButton_setTweenFlags00);
+   tolua_function(tolua_S,"clearTweenFlags",tolua_FsLibFaeris_StateButton_clearTweenFlags00);
+   tolua_function(tolua_S,"addTweenFlags",tolua_FsLibFaeris_StateButton_addTweenFlags00);
+   tolua_function(tolua_S,"removeTweenFlags",tolua_FsLibFaeris_StateButton_removeTweenFlags00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"__PressButton","PressButton","StateButton",NULL);
   tolua_beginmodule(tolua_S,"__PressButton");
    tolua_constant(tolua_S,"FLAG_COLOR",PressButton::FLAG_COLOR);
    tolua_constant(tolua_S,"FLAG_OPACITY",PressButton::FLAG_OPACITY);
@@ -43030,57 +44080,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_constant(tolua_S,"STATE_DISABLE",PressButton::STATE_DISABLE);
    tolua_constant(tolua_S,"STATE_NU",PressButton::STATE_NU);
    tolua_constant(tolua_S,"STATE_ALL",PressButton::STATE_ALL);
-   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___PressButton_setColor00);
-   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___PressButton_setColor01);
-   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___PressButton_setColor02);
-   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___PressButton_setColor03);
-   tolua_function(tolua_S,"getColor",tolua_FsLibFaeris___PressButton_getColor00);
-   tolua_function(tolua_S,"getColor",tolua_FsLibFaeris___PressButton_getColor01);
-   tolua_function(tolua_S,"setOpacity",tolua_FsLibFaeris___PressButton_setOpacity00);
-   tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris___PressButton_getOpacity00);
-   tolua_function(tolua_S,"setOpacity",tolua_FsLibFaeris___PressButton_setOpacity01);
-   tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris___PressButton_getOpacity01);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture00);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture01);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture02);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture03);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture04);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture05);
-   tolua_function(tolua_S,"getTexture",tolua_FsLibFaeris___PressButton_getTexture00);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture06);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture07);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture08);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture09);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture10);
-   tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___PressButton_setTexture11);
-   tolua_function(tolua_S,"getTexture",tolua_FsLibFaeris___PressButton_getTexture01);
-   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris___PressButton_setSize00);
-   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris___PressButton_setSize01);
-   tolua_function(tolua_S,"getSize",tolua_FsLibFaeris___PressButton_getSize00);
-   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris___PressButton_setSize02);
-   tolua_function(tolua_S,"setSize",tolua_FsLibFaeris___PressButton_setSize03);
-   tolua_function(tolua_S,"getSize",tolua_FsLibFaeris___PressButton_getSize01);
-   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris___PressButton_setAnchor00);
-   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris___PressButton_setAnchor01);
-   tolua_function(tolua_S,"getAnchor",tolua_FsLibFaeris___PressButton_getAnchor00);
-   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris___PressButton_setAnchor02);
-   tolua_function(tolua_S,"setAnchor",tolua_FsLibFaeris___PressButton_setAnchor03);
-   tolua_function(tolua_S,"getAnchor",tolua_FsLibFaeris___PressButton_getAnchor01);
-   tolua_function(tolua_S,"setRotate",tolua_FsLibFaeris___PressButton_setRotate00);
-   tolua_function(tolua_S,"setRotate",tolua_FsLibFaeris___PressButton_setRotate01);
-   tolua_function(tolua_S,"getRotate",tolua_FsLibFaeris___PressButton_getRotate00);
-   tolua_function(tolua_S,"setScale",tolua_FsLibFaeris___PressButton_setScale00);
-   tolua_function(tolua_S,"setScale",tolua_FsLibFaeris___PressButton_setScale01);
-   tolua_function(tolua_S,"getScale",tolua_FsLibFaeris___PressButton_getScale00);
-   tolua_function(tolua_S,"setChild",tolua_FsLibFaeris___PressButton_setChild00);
-   tolua_function(tolua_S,"getChild",tolua_FsLibFaeris___PressButton_getChild00);
    tolua_function(tolua_S,"setDisabled",tolua_FsLibFaeris___PressButton_setDisabled00);
    tolua_function(tolua_S,"getDisabled",tolua_FsLibFaeris___PressButton_getDisabled00);
-   tolua_function(tolua_S,"setTweenInfo",tolua_FsLibFaeris___PressButton_setTweenInfo00);
-   tolua_function(tolua_S,"setTweenFlags",tolua_FsLibFaeris___PressButton_setTweenFlags00);
-   tolua_function(tolua_S,"clearTweenFlags",tolua_FsLibFaeris___PressButton_clearTweenFlags00);
-   tolua_function(tolua_S,"addTweenFlags",tolua_FsLibFaeris___PressButton_addTweenFlags00);
-   tolua_function(tolua_S,"removeTweenFlags",tolua_FsLibFaeris___PressButton_removeTweenFlags00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"PressButton","LuaPressButton","PressButton",NULL);
   tolua_beginmodule(tolua_S,"PressButton");
@@ -43118,6 +44119,53 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"pressMoveIn",tolua_FsLibFaeris_PressButton_pressMoveIn00);
    tolua_function(tolua_S,"pressMoveOut",tolua_FsLibFaeris_PressButton_pressMoveOut00);
    tolua_function(tolua_S,"pressUp",tolua_FsLibFaeris_PressButton_pressUp00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"__ToggleButton","ToggleButton","StateButton",NULL);
+  tolua_beginmodule(tolua_S,"__ToggleButton");
+   tolua_constant(tolua_S,"STATE_ALL",ToggleButton::STATE_ALL);
+   tolua_constant(tolua_S,"STATE_ON",ToggleButton::STATE_ON);
+   tolua_constant(tolua_S,"STATE_OFF",ToggleButton::STATE_OFF);
+   tolua_constant(tolua_S,"STATE_DISABLE",ToggleButton::STATE_DISABLE);
+   tolua_constant(tolua_S,"STATE_NU",ToggleButton::STATE_NU);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris___ToggleButton_create00);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris___ToggleButton_createWithDarkStyle00);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris___ToggleButton_createWithDarkStyle01);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris___ToggleButton_createWithDarkStyle02);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris___ToggleButton_createWithDarkStyle03);
+   tolua_function(tolua_S,"createWithTextureStyle",tolua_FsLibFaeris___ToggleButton_createWithTextureStyle00);
+   tolua_function(tolua_S,"createWithTextureStyle",tolua_FsLibFaeris___ToggleButton_createWithTextureStyle01);
+   tolua_function(tolua_S,"touchBegin",tolua_FsLibFaeris___ToggleButton_touchBegin00);
+   tolua_function(tolua_S,"touchMove",tolua_FsLibFaeris___ToggleButton_touchMove00);
+   tolua_function(tolua_S,"touchEnd",tolua_FsLibFaeris___ToggleButton_touchEnd00);
+   tolua_function(tolua_S,"hit2D",tolua_FsLibFaeris___ToggleButton_hit2D00);
+   tolua_function(tolua_S,"className",tolua_FsLibFaeris___ToggleButton_className00);
+   tolua_function(tolua_S,"toggleChanged",tolua_FsLibFaeris___ToggleButton_toggleChanged00);
+   tolua_function(tolua_S,"setDisabled",tolua_FsLibFaeris___ToggleButton_setDisabled00);
+   tolua_function(tolua_S,"getDisabled",tolua_FsLibFaeris___ToggleButton_getDisabled00);
+   tolua_function(tolua_S,"setToggle",tolua_FsLibFaeris___ToggleButton_setToggle00);
+   tolua_function(tolua_S,"getToggle",tolua_FsLibFaeris___ToggleButton_getToggle00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"ToggleButton","LuaToggleButton","ToggleButton",NULL);
+  tolua_beginmodule(tolua_S,"ToggleButton");
+   tolua_constant(tolua_S,"STATE_ALL",LuaToggleButton::STATE_ALL);
+   tolua_constant(tolua_S,"STATE_ON",LuaToggleButton::STATE_ON);
+   tolua_constant(tolua_S,"STATE_OFF",LuaToggleButton::STATE_OFF);
+   tolua_constant(tolua_S,"STATE_DISABLE",LuaToggleButton::STATE_DISABLE);
+   tolua_constant(tolua_S,"STATE_NU",LuaToggleButton::STATE_NU);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ToggleButton_create00);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris_ToggleButton_createWithDarkStyle00);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris_ToggleButton_createWithDarkStyle01);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris_ToggleButton_createWithDarkStyle02);
+   tolua_function(tolua_S,"createWithDarkStyle",tolua_FsLibFaeris_ToggleButton_createWithDarkStyle03);
+   tolua_function(tolua_S,"createWithTextureStyle",tolua_FsLibFaeris_ToggleButton_createWithTextureStyle00);
+   tolua_function(tolua_S,"createWithTextureStyle",tolua_FsLibFaeris_ToggleButton_createWithTextureStyle01);
+   tolua_function(tolua_S,"draw",tolua_FsLibFaeris_ToggleButton_draw00);
+   tolua_function(tolua_S,"update",tolua_FsLibFaeris_ToggleButton_update00);
+   tolua_function(tolua_S,"touchBegin",tolua_FsLibFaeris_ToggleButton_touchBegin00);
+   tolua_function(tolua_S,"touchMove",tolua_FsLibFaeris_ToggleButton_touchMove00);
+   tolua_function(tolua_S,"touchEnd",tolua_FsLibFaeris_ToggleButton_touchEnd00);
+   tolua_function(tolua_S,"hit2D",tolua_FsLibFaeris_ToggleButton_hit2D00);
+   tolua_function(tolua_S,"toggleChanged",tolua_FsLibFaeris_ToggleButton_toggleChanged00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"UiWidget","UiWidget","Entity",NULL);
   tolua_beginmodule(tolua_S,"UiWidget");

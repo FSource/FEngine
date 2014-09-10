@@ -16,6 +16,7 @@
 #include "stage/entity/FsParticle2DEmitter.h"
 #include "stage/entity/FsPanel.h"
 #include "stage/ui/FsPressButton.h"
+#include "stage/ui/FsToggleButton.h"
 
 #if FS_CONFIG(FS_EXPORT_LIB_SPINE_SPRITE)
 #include "FsSpineSprite.h"
@@ -317,6 +318,69 @@ class LuaVertexPolygon:public TEntity<VertexPolygon>
 		LuaVertexPolygon(){}
 		~LuaVertexPolygon(){}
 };
+
+
+class LuaToggleButton:public TEntity<ToggleButton>
+{
+	public:
+		static LuaToggleButton* create()
+		{
+			LuaToggleButton* ret= new LuaToggleButton();
+			return ret;
+		}
+
+
+		static LuaToggleButton* createWithDarkStyle(const char* filename,const Color4f& dark)
+		{
+			LuaToggleButton* ret=new LuaToggleButton();
+			ret->initWithDarkStyle(filename,dark);
+			return ret;
+		}
+
+		static LuaToggleButton* LuaToggleButton::createWithDarkStyle(Texture2D* tex,const Color4f& dark)
+		{
+			LuaToggleButton* ret=new LuaToggleButton();
+			ret->initWithDarkStyle(tex,dark);
+			return ret;
+		}
+
+		static LuaToggleButton* LuaToggleButton::createWithTextureStyle(const char* fileon,const char* fileoff)
+		{
+			LuaToggleButton* ret=new LuaToggleButton();
+			ret->initWithTextureStyle(fileon,fileoff);
+			return ret;
+		}
+
+		static LuaToggleButton* LuaToggleButton::createWithTextureStyle(Texture2D* on,Texture2D* off)
+		{
+			LuaToggleButton* ret=new LuaToggleButton();
+			ret->initWithTextureStyle(on,off);
+			return ret;
+		}
+
+	public:
+		virtual void toggleChanged(bool value)
+		{
+			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
+			if(!se->callFunctionInTable(TEntity<ToggleButton>::m_scriptData,"onToggleChanged",2,0,"fb",this,value))
+			{
+				TEntity<ToggleButton>::toggleChanged(value);
+			}
+		}
+		virtual const char* className()
+		{
+			return FS_LUA_TOGGLE_BUTTON_CLASS_NAME;
+		}
+
+	public:
+		virtual void onToggleChanged(bool value)
+		{
+			TEntity<ToggleButton>::toggleChanged(value);
+		}
+
+
+};
+
 
 class LuaPressButton:public TEntity<PressButton>
 {

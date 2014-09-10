@@ -1082,6 +1082,22 @@
 						>
 					</File>
 					<File
+						RelativePath="..\src\stage\ui\FsStateButton.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsStateButton.h"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsToggleButton.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\ui\FsToggleButton.h"
+						>
+					</File>
+					<File
 						RelativePath="..\src\stage\ui\FsUiWidget.cc"
 						>
 					</File>

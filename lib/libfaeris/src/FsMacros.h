@@ -308,6 +308,8 @@ enum
 #define FS_SCROLL_WIDGET_CLASS_NAME "ScrollWidget"
 #define FS_LIST_VIEW_CLASS_NAME "ListView"
 #define FS_DYNAMIC_VIEW_CLASS_NAME "DynamicView"
+#define FS_STATE_BUTTON_CLASS_NAME "StateButton"
+#define FS_TOGGLE_BUTTON_CLASS_NAME "ToggleButton"
 
 
 /* scene */

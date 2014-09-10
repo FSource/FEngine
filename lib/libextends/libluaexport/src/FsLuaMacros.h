@@ -47,6 +47,7 @@
 #define FS_LUA_PANEL_CLASS_NAME					"LuaPanel"
 
 #define FS_LUA_PRESS_BUTTON_CLASS_NAME 			"LuaPressButton"
+#define FS_LUA_TOGGLE_BUTTON_CLASS_NAME			"LuaToggleButton"
 
 
 
