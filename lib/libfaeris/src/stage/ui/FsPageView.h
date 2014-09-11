@@ -7,7 +7,9 @@
 
 NS_FS_BEGIN
 
+class EaseExpr;
 class PageViewContentPanel;
+class VelocityTracker;
 class PageView:public UiWidget 
 {
 	public:
@@ -83,22 +85,55 @@ class PageView:public UiWidget
 		virtual void removeWidget(UiWidget* widget);
 		virtual void layout();
 
+
+		/* Page View */
+		virtual void pageIndexChanged(int old_index,int new_index);
+
+
 	protected:
 		PageView(int mode,float width,float height);
 		virtual ~PageView();
 
 		void adjustContentPanel();
 
+		void scrollXBy(float value);
+		void scrollYBy(float value);
+		void scrollXTo(float value);
+		void scrollYTo(float value);
+		void checkPageAlign();
+		void checkPageAlign(float v);
+		void updateScroll(float dt);
+		void scrollFromTo(float start,float end);
+		void scrollFromTo(float start,float end,float duration);
+
+
+
+
 	protected:
 		PageViewContentPanel* m_contentPanel;
+
+		float m_xoffset,m_yoffset;
+		float m_lastPosX,m_lastPosY;
+		bool m_isDraged;
+
+		float m_touchTap;
+
 		int m_currentPageIndex;
+
+		bool m_scrollFinished;
+		float m_scrollBeginPos,m_scrollEndPos;
+		float m_scrollDuration;
+		float m_scrollTimeEscape;
+
+		EaseExpr* m_scrollEasing;
+
+		VelocityTracker* m_velocityTracker;
+
 
 };
 
+
 NS_FS_END 
-
 #endif /*_FS_PAGE_VIEW_H_*/
-
-
 
 

@@ -24,10 +24,24 @@ inline float angleToRadian(float  angle)
 	return angle/180.0f*FS_PI;
 }
 
-static inline float sqrt(float v)
+
+
+inline float sqrt(float v)
 {
 	return ::sqrt(v);
 }
+
+inline float floor(float v)
+{
+	return ::floor(v);
+}
+
+inline float ceil(float v)
+{
+	return ::ceil(v);
+}
+
+
 inline float cosr(float radian)
 {
 	return ::cosf(radian);

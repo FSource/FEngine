@@ -50,7 +50,7 @@ temp
 assets
 *.mp3
 
-
+`
 *.exp
 *.map
 lib/library/win32/obj

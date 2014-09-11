@@ -1,5 +1,7 @@
 #include "FsPageView.h"
-
+#include "math/easing/FsBounceEase.h"
+#include "math/easing/FsCubicEase.h"
+#include "FsVelocityTracker.h"
 
 NS_FS_BEGIN
 
@@ -283,10 +285,39 @@ PageView::PageView(int mode,float w,float h)
 	m_contentPanel=PageViewContentPanel::create(mode,w,h);
 	FS_NO_REF_DESTROY(m_contentPanel);
 	addChild(m_contentPanel);
+
+
+	m_xoffset=0;
+	m_yoffset=0;
+	m_currentPageIndex=0;
+
+	m_isDraged=false;
+	m_lastPosX=0;
+	m_lastPosY=0;
+	m_touchTap=10;
+
+
+	m_scrollFinished=true;
+	m_scrollBeginPos=0;
+	m_scrollEndPos=0;
+	m_scrollDuration=0;
+	m_scrollTimeEscape=0;
+
+
+	m_scrollEasing=CubicEase::create();
+	m_scrollEasing->setMode(FS_EASE_OUT);
+	
+
+	m_velocityTracker=VelocityTracker::create();
+
+
+
 	setMode(mode);
 
 	setSize(w,h);
 	setScissorEnabled(true);
+
+
 
 }
 
@@ -302,6 +333,7 @@ PageView::~PageView()
 
 	remove(m_contentPanel);
 	FS_SAFE_DESTROY(m_contentPanel);
+	FS_SAFE_DEC_REF(m_scrollEasing);
 }
 
 
@@ -353,6 +385,7 @@ void PageView::addPage(int index,UiWidget* widget,int alignh,int alignv)
 		m_contentPanel->addPageItem(index,widget,alignh,alignv);
 		m_contentPanel->addChild(widget);
 		widget->setParentWidget(this);
+		adjustContentPanel();
 	}
 
 }
@@ -384,6 +417,7 @@ void PageView::removePage(UiWidget* widget)
 	widget->setParentWidget(NULL);
 	m_contentPanel->removePageItem(widget);
 	m_contentPanel->remove(widget);
+	adjustContentPanel();
 }
 
 
@@ -438,21 +472,109 @@ UiWidget* PageView::getCurrentPage()
 
 bool  PageView::touchBegin(float x,float y)
 {
+	m_scrollFinished=true;
+
+	UiWidget::touchBegin(x,y);
+
+	if( !m_scrollFinished)
+	{
+		m_isDraged=true;
+	}
+
+	m_lastPosX=x;
+	m_lastPosY=y;
+	m_velocityTracker->beginTrack(x,y);
+
 	return true;
+
 }
+
+
 
 bool  PageView::touchMove(float x,float y)
 {
+	//FS_TRACE_WARN("OnTouchMove(%f,%f)",x,y);
+	UiWidget::touchMove(x,y);
+	float diffx=x-m_lastPosX;
+	float diffy=y-m_lastPosY;
+	int mode=m_contentPanel->getMode();
+
+	if(!m_isDraged)
+	{
+		if(mode==SCROLL_HORIZONTAL)
+		{
+			if(Math::abs(diffx)>=m_touchTap)
+			{
+				m_isDraged=true;
+				diffx=diffx>0? diffx-m_touchTap:diffx+m_touchTap;
+			}
+		}
+		else if(mode==SCROLL_VERTICAL)
+		{
+			if(Math::abs(diffy)>m_touchTap)
+			{
+				m_isDraged=true;
+				diffy=diffy>0?diffy-m_touchTap:diffy+m_touchTap;
+			}
+		}
+		else 
+		{
+			FS_TRACE_WARN("Unkown Mode For PageView");
+		}
+
+	}
+
+	if(m_isDraged)
+	{
+		if(mode==SCROLL_HORIZONTAL)
+		{
+			scrollXBy(diffx);
+		}
+		else if(mode==SCROLL_VERTICAL)
+		{
+			scrollYBy(diffy);
+		}
+		m_lastPosX=x;
+		m_lastPosY=y;
+	}
+	m_velocityTracker->addTrack(x,y);
+
+
 	return true;
 }
 
 bool PageView::touchEnd(float x,float y)
 {
+	m_velocityTracker->endTrack(x,y);
+
+	float v=0;
+	int mode =m_contentPanel->getMode();
+	if(mode)
+	{
+		v=m_velocityTracker->getVelocityX();
+	}
+	else 
+	{
+		v=m_velocityTracker->getVelocityY();
+	}
+
+	if(m_isDraged)
+	{
+		checkPageAlign(v);
+	}
+	m_isDraged=false;
+
 	return true;
 }
 
+
+
+
+
+
 void PageView::update(float dt)
 {
+	updateScroll(dt);
 }
 
 void PageView::childSizeChanged(UiWidget* widget,float w,float h)
@@ -465,12 +587,14 @@ void PageView::childAnchorChanged(UiWidget* widget,float w,float h)
 	m_contentPanel->setPageItemAlign(widget);
 }
 
+
 void PageView::sizeChanged(float width,float height)
 {
 	m_contentPanel->setSize(width,height);
 
 	adjustContentPanel();
 }
+
 void PageView::anchorChanged(float x,float y)
 {
 	adjustContentPanel();
@@ -487,17 +611,224 @@ void PageView::layout()
 	adjustContentPanel();
 
 }
+
+
+
+void PageView::scrollXBy(float value)
+{
+	scrollXTo(m_xoffset+value);
+}
+
+void PageView::scrollYBy(float value)
+{
+	scrollYTo(m_yoffset+value);
+}
+
+
+void PageView::scrollXTo(float value)
+{
+	m_xoffset=value;
+	adjustContentPanel();
+}
+
+void PageView::scrollYTo(float value)
+{
+	m_yoffset=value;
+	adjustContentPanel();
+}
+
+
 void PageView::adjustContentPanel()
 {
 
+	int mode=m_contentPanel->getMode();
+	float left,right,bottom,top;
+
+	getBoundSize2D(&left,&right,&bottom,&top);
+
+	float x=0,y=0;
+
+	if(mode==SCROLL_HORIZONTAL)
+	{
+		x=left+m_xoffset;
+		y=top;
+	}
+	else if(mode==SCROLL_VERTICAL)
+	{
+		x=left;
+		y=top+m_yoffset;
+	}
+	else 
+	{
+		FS_TRACE_WARN("Unkown Mode For PageView");
+	}
+
+	m_contentPanel->setPosition(x,y,0);
+	
+	//FS_TRACE_WARN("Pos(%f,%f)",x,y);
+}
+
+
+
+void PageView::checkPageAlign()
+{
+	int mode=m_contentPanel->getMode();
+
+	if(mode==SCROLL_HORIZONTAL)
+	{
+		float next_index=Math::floor(m_xoffset/m_size.x+0.5f);
+
+		next_index=Math::clampf(next_index,0,-float(m_contentPanel->getPageItemNu()-1));
+
+		float next_offset=next_index*m_size.x;
+
+		if(Math::floatEqual(m_xoffset,next_offset))
+		{
+			return;
+		}
+		scrollFromTo(m_xoffset,next_offset);
+	}
+
+} 
+
+void PageView::checkPageAlign(float v)
+{
+	FS_TRACE_WARN("V=%f",v);
+
+	float supper_v=500;
+
+	int mode=m_contentPanel->getMode();
+
+
+	if(mode==SCROLL_HORIZONTAL)
+	{
+		float cur_index=Math::floor(-m_xoffset/m_size.x);
+		float cur_ret=(-m_xoffset-cur_index*m_size.x)/m_size.x;
+
+		if(v<0)
+		{
+			if(cur_ret<0.5)
+			{
+				if(-v>supper_v)
+				{
+					cur_index=cur_index+1;
+				}
+			}
+			else 
+			{
+				cur_index=cur_index+1;
+			}
+		}
+		else 
+		{
+			if(cur_ret>0.5)
+			{
+				if(v<supper_v)
+				{
+					cur_index=cur_index+1;
+				}
+			}
+		}
+
+
+
+		cur_index=Math::clampf(-cur_index,-float(m_contentPanel->getPageItemNu()-1),0);
+
+		//FS_TRACE_WARN("CurIndex=%f",cur_index);
+
+		scrollFromTo(m_xoffset,cur_index*m_size.x);
+
+	}
+
+}
+
+
+void PageView::scrollFromTo(float start,float end)
+{
+	float time=Math::abs(start-end)/m_size.x*1.0f;
+	if(time<0.25)
+	{
+		time=0.25;
+	}
+
+	scrollFromTo(start,end,time);
+}
+
+void PageView::scrollFromTo(float start,float end,float time)
+{
+	m_scrollFinished=false;
+	m_scrollBeginPos=start;
+	m_scrollEndPos=end;
+	m_scrollTimeEscape=0;
+	m_scrollDuration=time;
+
+}
+
+void PageView::updateScroll(float dt)
+{
+	if(m_scrollFinished)
+	{
+		return ;
+	}
+
+	m_scrollTimeEscape+=dt;
+
+	if(m_scrollTimeEscape>m_scrollDuration)
+	{
+		m_scrollTimeEscape=m_scrollDuration;
+		m_scrollFinished=true;
+	}
+
+
+
+	float percent=m_scrollEasing->getValue(m_scrollTimeEscape/m_scrollDuration);
+
+
+	int mode =m_contentPanel->getMode();
+
+	if(mode == SCROLL_HORIZONTAL)
+	{
+		m_xoffset=m_scrollBeginPos+(m_scrollEndPos-m_scrollBeginPos)*percent;
+	}
+	else 
+	{
+		m_yoffset= m_scrollBeginPos+(m_scrollEndPos-m_scrollBeginPos)*percent;
+	}
+
+	adjustContentPanel();
+
+	if(m_scrollFinished)
+	{
+		if(mode==SCROLL_HORIZONTAL)
+		{
+			int index=(int)Math::floor(Math::abs(m_xoffset)/m_size.x+0.5f);
+			if(m_currentPageIndex!=index)
+			{
+				int old_index=m_currentPageIndex;
+				m_currentPageIndex=index;
+				pageIndexChanged(old_index,m_currentPageIndex);
+			}
+
+		}
+		else 
+		{
+			int index=(int)Math::floor(Math::abs(m_yoffset)/m_size.y+0.5f);
+			if(m_currentPageIndex!=index)
+			{
+				int old_index=m_currentPageIndex;
+				m_currentPageIndex=index;
+				pageIndexChanged(old_index,m_currentPageIndex);
+			}
+		}
+	}
 }
 
 
 
 
-
-
-
+void PageView::pageIndexChanged(int old_index,int new_index)
+{
+}
 
 
 
