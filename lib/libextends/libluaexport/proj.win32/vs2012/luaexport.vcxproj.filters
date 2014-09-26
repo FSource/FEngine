@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\luaext">
+      <UniqueIdentifier>{cb1a4b4f-b22d-410e-b007-8d0997be7445}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\luaexport">
+      <UniqueIdentifier>{1962acd9-0d8f-4458-816a-5b86df1a8f61}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\FsLuaEngine.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\toluaext++.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaHttpRequest.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaPayment.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaScene.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaSchedulerTarget.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaSysEventListener.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaTouchEventListener.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaexport\FsLibBox2d.cc">
+      <Filter>src\luaexport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaexport\FsLibFaerisExport.cc">
+      <Filter>src\luaexport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaexport\FsLibFaerisExtExport.cc">
+      <Filter>src\luaexport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaexport\FsLibLuaScript.cc">
+      <Filter>src\luaexport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaexport\FsLibSpineSprite.cc">
+      <Filter>src\luaexport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaexport\FsLuaFuncExport.cc">
+      <Filter>src\luaexport</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\FsLuaEngine.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsLuaMacros.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\toluaext++.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLuaAction.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLuaEntity.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLuaHttpRequest.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLuaLayer.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLuaPayment.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLuaScene.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLuaSchedulerTarget.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLuaSysEventListener.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLuaTouchEventListener.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsTAction.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsTEntity.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsTLuaLayer.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaexport\FsLuaExport.h">
+      <Filter>src\luaexport</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2013, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2014, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -59,27 +59,6 @@ typedef enum {
 #define GETSOCK_READABLE (0x00ff)
 #define GETSOCK_WRITABLE (0xff00)
 
-struct Curl_one_easy {
-  /* first, two fields for the linked list of these */
-  struct Curl_one_easy *next;
-  struct Curl_one_easy *prev;
-
-  struct SessionHandle *easy_handle; /* the easy handle for this unit */
-  struct connectdata *easy_conn;     /* the "unit's" connection */
-
-  CURLMstate state;  /* the handle's state */
-  CURLcode result;   /* previous result */
-
-  struct Curl_message msg; /* A single posted message. */
-
-  /* Array with the plain socket numbers this handle takes care of, in no
-     particular order. Note that all sockets are added to the sockhash, where
-     the state etc are also kept. This array is mostly used to detect when a
-     socket is to be removed from the hash. See singlesocket(). */
-  curl_socket_t sockets[MAX_SOCKSPEREASYHANDLE];
-  int numsocks;
-};
-
 /* This is the struct known as CURLM on the outside */
 struct Curl_multi {
   /* First a simple identifier to easier detect if a user mix up
@@ -87,13 +66,17 @@ struct Curl_multi {
   long type;
 
   /* We have a doubly-linked circular list with easy handles */
-  struct Curl_one_easy easy;
+  struct SessionHandle *easyp;
+  struct SessionHandle *easylp; /* last node */
 
   int num_easy; /* amount of entries in the linked list above. */
   int num_alive; /* amount of easy handles that are added but have not yet
                     reached COMPLETE state */
 
   struct curl_llist *msglist; /* a list of messages from completed transfers */
+
+  struct curl_llist *pending; /* SessionHandles that are in the
+                                 CURLM_STATE_CONNECT_PEND state */
 
   /* callback function and user data pointer for the *socket() API */
   curl_socket_callback socket_cb;

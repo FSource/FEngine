@@ -129,6 +129,8 @@ CURLcode Curl_SOCKS4(const char *proxy_name,
 
   curlx_nonblock(sock, FALSE);
 
+  infof(data, "SOCKS4 communication to %s:%d\n", hostname, remote_port);
+
   /*
    * Compose socks4 request
    *
@@ -181,6 +183,8 @@ CURLcode Curl_SOCKS4(const char *proxy_name,
       }
       else
         hp = NULL; /* fail! */
+
+      infof(data, "SOCKS4 connect to %s (locally resolved)\n", buf);
 
       Curl_resolv_unlock(data, dns); /* not used anymore from now on */
 
@@ -415,7 +419,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
 #if defined(HAVE_GSSAPI) || defined(USE_WINDOWS_SSPI)
   socksreq[1] = (char)(proxy_name ? 3 : 2); /* number of methods (below) */
   socksreq[2] = 0; /* no authentication */
-  socksreq[3] = 1; /* gssapi */
+  socksreq[3] = 1; /* GSS-API */
   socksreq[4] = 2; /* username/password */
 #else
   socksreq[1] = (char)(proxy_name ? 2 : 1); /* number of methods (below) */
@@ -470,7 +474,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
   else if(socksreq[1] == 1) {
     code = Curl_SOCKS5_gssapi_negotiate(sockindex, conn);
     if(code != CURLE_OK) {
-      failf(data, "Unable to negotiate SOCKS5 gssapi context.");
+      failf(data, "Unable to negotiate SOCKS5 GSS-API context.");
       return CURLE_COULDNT_CONNECT;
     }
   }
@@ -632,7 +636,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
 
 #if defined(HAVE_GSSAPI) || defined(USE_WINDOWS_SSPI)
   if(conn->socks5_gssapi_enctype) {
-    failf(data, "SOCKS5 gssapi protection not yet implemented.");
+    failf(data, "SOCKS5 GSS-API protection not yet implemented.");
   }
   else
 #endif
@@ -647,7 +651,7 @@ CURLcode Curl_SOCKS5(const char *proxy_name,
 
 #if defined(HAVE_GSSAPI) || defined(USE_WINDOWS_SSPI)
   if(conn->socks5_gssapi_enctype) {
-    failf(data, "SOCKS5 gssapi protection not yet implemented.");
+    failf(data, "SOCKS5 GSS-API protection not yet implemented.");
   }
   else
 #endif

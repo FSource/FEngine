@@ -1,0 +1,991 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\graphics">
+      <UniqueIdentifier>{3da6ad08-4372-4757-ac13-b52d189aafe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics\material">
+      <UniqueIdentifier>{44f53dbc-e3e7-4e2c-8b84-4f66e2f282b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sys">
+      <UniqueIdentifier>{d5b64b61-f477-4bd1-9832-9fc289d72158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sys\io">
+      <UniqueIdentifier>{85a85144-10b1-4bf5-82a3-d9ca89e971d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sys\thread">
+      <UniqueIdentifier>{483e29cf-0392-4368-88e2-23be59258b44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sys\event">
+      <UniqueIdentifier>{4ffb3fab-c837-4b5f-b38b-9b6ef8055aef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sys\network">
+      <UniqueIdentifier>{fcbe652d-b8da-48e0-a5b9-8896542d7115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\media">
+      <UniqueIdentifier>{3c0c4ca0-5d97-4274-afb3-38bdc546318e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\extends">
+      <UniqueIdentifier>{ae6d8d41-5cb7-4da1-b2db-e79173cdc88b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\support">
+      <UniqueIdentifier>{2ff3d8d6-bc6b-40de-825d-2973cb67b9ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\support\util">
+      <UniqueIdentifier>{7160027a-79e5-4748-921b-4e571b801814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\support\data">
+      <UniqueIdentifier>{7bd1b0c8-2abe-462c-a534-ed789358258b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\support\image">
+      <UniqueIdentifier>{4588c42b-19a2-4220-9570-563ed3a67dc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\support\felis">
+      <UniqueIdentifier>{3c77af92-951a-498f-ade1-a7f5c6478f54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stage">
+      <UniqueIdentifier>{511b6e2b-3507-48f2-a68f-9fcc166ce26c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stage\entity">
+      <UniqueIdentifier>{a4d76a9c-9753-4176-b02a-e7c786fccce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stage\layer">
+      <UniqueIdentifier>{3732c5c0-f93c-42f0-9bdf-0770c1c311e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stage\action">
+      <UniqueIdentifier>{fa0d1b4f-7cfa-43db-b86c-ce07849836f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stage\ui">
+      <UniqueIdentifier>{aaec03dc-d85f-43b8-95b9-c125897b5a40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math">
+      <UniqueIdentifier>{288a300f-2fa1-4bd8-8da7-ce5fe15ca563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math\easing">
+      <UniqueIdentifier>{5fee1536-fd51-414e-9d28-ed71962fb13d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math\curve">
+      <UniqueIdentifier>{4f631099-33b2-4813-b989-e4b9ead670d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mgr">
+      <UniqueIdentifier>{20292fb6-c165-4824-ab44-9bd52cd62deb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scheduler">
+      <UniqueIdentifier>{68e9c26e-2209-4d72-ad1e-67f569488de6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\extends\FsScriptEngine.h">
+      <Filter>src\extends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\material\FsColorMaterial.h">
+      <Filter>src\graphics\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\material\FsMaterial.h">
+      <Filter>src\graphics\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\material\FsTextureMaterial.h">
+      <Filter>src\graphics\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsColor.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsFontBitmap.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsFontTTF.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsFrameBuffer.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsImage2D.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsProgram.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsRender.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsRenderTarget.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsTexture2D.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsTypoPage.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsCamera.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsFace3.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsMathUtil.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsMatrix4.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsQuaternion.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsRect2D.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsTexCoord2.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsVector2.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsVector3.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsVector4.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\FsVertices.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsBackEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsBezierEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsBounceEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsCircleEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsCubicEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsEaseExpr.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsEasingUtil.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsElasticEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsExponentialEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsLinearEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsPowerEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsQuadEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsQuartEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsQuintEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\easing\FsSineEase.h">
+      <Filter>src\math\easing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\curve\FsArcCurve.h">
+      <Filter>src\math\curve</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\curve\FsCatmullRomCurve.h">
+      <Filter>src\math\curve</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\curve\FsCubicBezierCurve.h">
+      <Filter>src\math\curve</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\curve\FsCurve.h">
+      <Filter>src\math\curve</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\math\curve\FsLinearCurve.h">
+      <Filter>src\math\curve</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\media\FsAudioEngine.h">
+      <Filter>src\media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\media\FsAudioPlayer.h">
+      <Filter>src\media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsFontTTFMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsObjectMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsProgramMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsResource.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsResourceMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsSprite2DDataMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsTextureMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scheduler\FsScheduler.h">
+      <Filter>src\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scheduler\FsSchedulerTarget.h">
+      <Filter>src\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scheduler\FsTask.h">
+      <Filter>src\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\FsActionTarget.h">
+      <Filter>src\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\FsDirector.h">
+      <Filter>src\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\FsScene.h">
+      <Filter>src\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsDynamicView.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsListView.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsPageView.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsPressButton.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsScroller.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsScrollView.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsScrollWidget.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsStateButton.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsToggleButton.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsUiWidget.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsVelocityTracker.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\layer\FsColorLayer.h">
+      <Filter>src\stage\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\layer\FsLayer.h">
+      <Filter>src\stage\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\layer\FsLayer2D.h">
+      <Filter>src\stage\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsColorQuad2D.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsEntity.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsLabelBitmap.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsLabelTTF.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsPanel.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsParticle2DEffect.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsParticle2DEmitter.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsQuad2D.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsRichLabelTTF.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsSprite2D.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsSprite2DData.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\action\FsAction.h">
+      <Filter>src\stage\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\action\FsCurve3Action.h">
+      <Filter>src\stage\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\action\FsFixTimeAction.h">
+      <Filter>src\stage\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\action\FsLoopAction.h">
+      <Filter>src\stage\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\action\FsMoveAction.h">
+      <Filter>src\stage\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\action\FsPauseAction.h">
+      <Filter>src\stage\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\action\FsRotateAction.h">
+      <Filter>src\stage\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\action\FsScaleAction.h">
+      <Filter>src\stage\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\action\FsSeqAction.h">
+      <Filter>src\stage\action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsBase64.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsDeflate.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsEncrypt.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsFgzReader.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsHash.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsIconv.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsJson.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsMd5.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsUnicode.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\data\FsZipReader.h">
+      <Filter>src\support\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\felis\sl_state.h">
+      <Filter>src\support\felis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\felis\xir_file.h">
+      <Filter>src\support\felis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\felis\xir_parser.h">
+      <Filter>src\support\felis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\felis\xir_scanner.h">
+      <Filter>src\support\felis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\felis\xir_state.h">
+      <Filter>src\support\felis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\felis\xir_token.h">
+      <Filter>src\support\felis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\image\FsImageDecoder.h">
+      <Filter>src\support\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\image\FsImageFaw.h">
+      <Filter>src\support\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\image\FsImageJpeg.h">
+      <Filter>src\support\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\image\FsImagePng.h">
+      <Filter>src\support\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\util\FsArray.h">
+      <Filter>src\support\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\util\FsDict.h">
+      <Filter>src\support\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\util\FsInteger.h">
+      <Filter>src\support\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\util\FsLog.h">
+      <Filter>src\support\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\util\FsPathUtil.h">
+      <Filter>src\support\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\util\FsScriptUtil.h">
+      <Filter>src\support\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\util\FsSlowArray.h">
+      <Filter>src\support\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\util\FsSlowDict.h">
+      <Filter>src\support\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\support\util\FsString.h">
+      <Filter>src\support\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\FsKeyCode.h">
+      <Filter>src\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\FsSys.h">
+      <Filter>src\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\FsTimer.h">
+      <Filter>src\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\FsWindow.h">
+      <Filter>src\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\thread\FsMutex.h">
+      <Filter>src\sys\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\thread\FsSemaphore.h">
+      <Filter>src\sys\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\thread\FsThread.h">
+      <Filter>src\sys\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\network\FsHttpEngine.h">
+      <Filter>src\sys\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\network\FsHttpReponse.h">
+      <Filter>src\sys\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\network\FsHttpRequest.h">
+      <Filter>src\sys\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\io\FsFgzPackage.h">
+      <Filter>src\sys\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\io\FsFile.h">
+      <Filter>src\sys\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\io\FsMemFile.h">
+      <Filter>src\sys\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\io\FsPackage.h">
+      <Filter>src\sys\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\io\FsSegFile.h">
+      <Filter>src\sys\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\io\FsSysFile.h">
+      <Filter>src\sys\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\io\FsVFS.h">
+      <Filter>src\sys\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\io\FsZipPackage.h">
+      <Filter>src\sys\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\event\FsInputTextDispatcher.h">
+      <Filter>src\sys\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\event\FsKeypadDispatcher.h">
+      <Filter>src\sys\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\event\FsSysDispatcher.h">
+      <Filter>src\sys\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\event\FsTEventDispatcher.h">
+      <Filter>src\sys\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\event\FsTouchDispatcher.h">
+      <Filter>src\sys\event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsConfig.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsFaerisModule.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsGlobal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsMacros.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsTypes.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
+      <Filter>src\extends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\material\FsColorMaterial.cc">
+      <Filter>src\graphics\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\material\FsMaterial.cc">
+      <Filter>src\graphics\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\material\FsTextureMaterial.cc">
+      <Filter>src\graphics\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsColor.cc">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsFontBitmap.cc">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsFontTTF.cc">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsFrameBuffer.cc">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsImage2D.cc">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsProgram.cc">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsRender.cc">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsTexture2D.cc">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\FsMathUtil.cc">
+      <Filter>src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\FsMatrix4.cc">
+      <Filter>src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\FsQuaternion.cc">
+      <Filter>src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\FsRect2D.cc">
+      <Filter>src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsBackEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsBezierEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsBounceEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsCircleEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsCubicEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsEaseExpr.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsEasingUtil.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsElasticEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsExponentialEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsLinearEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsPowerEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsQuadEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsQuartEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsQuintEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\easing\FsSineEase.cc">
+      <Filter>src\math\easing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\curve\FsCatmullRomCurve.cc">
+      <Filter>src\math\curve</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\curve\FsCubicBezierCurve.cc">
+      <Filter>src\math\curve</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\curve\FsLinearCurve.cc">
+      <Filter>src\math\curve</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\media\FsAudioEngine.cc">
+      <Filter>src\media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\media\FsAudioPlayer.cc">
+      <Filter>src\media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsFontTTFMgr.cc">
+      <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsObjectMgr.cc">
+      <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsProgramMgr.cc">
+      <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsResource.cc">
+      <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsResourceMgr.cc">
+      <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsSprite2DDataMgr.cc">
+      <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsTextureMgr.cc">
+      <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scheduler\FsScheduler.cc">
+      <Filter>src\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scheduler\FsSchedulerTarget.cc">
+      <Filter>src\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scheduler\FsTask.cc">
+      <Filter>src\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\FsActionTarget.cc">
+      <Filter>src\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\FsDirector.cc">
+      <Filter>src\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\FsScene.cc">
+      <Filter>src\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsDynamicView.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsListView.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsPageView.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsPressButton.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsScroller.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsScrollView.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsScrollWidget.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsStateButton.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsToggleButton.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsUiWidget.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsVelocityTracker.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\layer\FsColorLayer.cc">
+      <Filter>src\stage\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\layer\FsLayer.cc">
+      <Filter>src\stage\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\layer\FsLayer2D.cc">
+      <Filter>src\stage\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsColorQuad2D.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsEntity.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsLabelBitmap.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsLabelTTF.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsPanel.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsParticle2DEffect.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsParticle2DEmitter.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsQuad2D.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsSprite2D.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsSprite2DData.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsVertexPolygon.cc">
+      <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\action\FsAction.cc">
+      <Filter>src\stage\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\action\FsCurve3Action.cc">
+      <Filter>src\stage\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\action\FsFixTimeAction.cc">
+      <Filter>src\stage\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\action\FsLoopAction.cc">
+      <Filter>src\stage\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\action\FsMoveAction.cc">
+      <Filter>src\stage\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\action\FsPauseAction.cc">
+      <Filter>src\stage\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\action\FsRotateAction.cc">
+      <Filter>src\stage\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\action\FsScaleAction.cc">
+      <Filter>src\stage\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\action\FsSeqAction.cc">
+      <Filter>src\stage\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsBase64.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsDeflate.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsEncrypt.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsFgzReader.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsHash.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsIconv.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsJson.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsMd5.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsUnicode.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\data\FsZipReader.cc">
+      <Filter>src\support\data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\sl_comment.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\sl_double_quote_str.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\sl_simple_str.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\sl_single_quote_str.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\sl_specific_symbol.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\sl_top.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\sl_white_space.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\xir_file.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\xir_grammer.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\xir_parser.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\xir_scanner.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\felis\xir_token.cc">
+      <Filter>src\support\felis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\image\FsImageDecoder.cc">
+      <Filter>src\support\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\image\FsImageFaw.cc">
+      <Filter>src\support\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\image\FsImageJpeg.cc">
+      <Filter>src\support\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\image\FsImagePng.cc">
+      <Filter>src\support\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\util\FsArray.cc">
+      <Filter>src\support\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\util\FsDict.cc">
+      <Filter>src\support\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\util\FsInteger.cc">
+      <Filter>src\support\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\util\FsLog.cc">
+      <Filter>src\support\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\util\FsPathUtil.cc">
+      <Filter>src\support\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\util\FsScriptUtil.cc">
+      <Filter>src\support\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\util\FsSlowArray.cc">
+      <Filter>src\support\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\util\FsSlowDict.cc">
+      <Filter>src\support\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\util\FsString.cc">
+      <Filter>src\support\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\FsSys.cc">
+      <Filter>src\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\FsTimer.cc">
+      <Filter>src\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\FsWindow.cc">
+      <Filter>src\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\thread\FsMutex.cc">
+      <Filter>src\sys\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\thread\FsSemaphore.cc">
+      <Filter>src\sys\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\thread\FsThread.cc">
+      <Filter>src\sys\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\network\FsHttpEngine.cc">
+      <Filter>src\sys\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\network\FsHttpReponse.cc">
+      <Filter>src\sys\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\network\FsHttpRequest.cc">
+      <Filter>src\sys\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\io\FsFgzPackage.cc">
+      <Filter>src\sys\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\io\FsFile.cc">
+      <Filter>src\sys\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\io\FsMemFile.cc">
+      <Filter>src\sys\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\io\FsPackage.cc">
+      <Filter>src\sys\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\io\FsSegFile.cc">
+      <Filter>src\sys\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\io\FsSysFile.cc">
+      <Filter>src\sys\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\io\FsVFS.cc">
+      <Filter>src\sys\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\io\FsZipPackage.cc">
+      <Filter>src\sys\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\event\FsInputTextDispatcher.cc">
+      <Filter>src\sys\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\event\FsKeypadDispatcher.cc">
+      <Filter>src\sys\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\event\FsSysDispatcher.cc">
+      <Filter>src\sys\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\event\FsTouchDispatcher.cc">
+      <Filter>src\sys\event</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsFaerisModule.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsGlobal.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsObject.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="..\..\src\math\FsVector2.inl">
+      <Filter>src\math</Filter>
+    </None>
+    <None Include="..\..\src\math\FsVector3.inl">
+      <Filter>src\math</Filter>
+    </None>
+    <None Include="..\..\src\math\FsVector4.inl">
+      <Filter>src\math</Filter>
+    </None>
+    <None Include="..\..\src\stage\entity\FsEntity.inl">
+      <Filter>src\stage\entity</Filter>
+    </None>
+    <None Include="..\..\src\support\felis\xir_grammer.y">
+      <Filter>src\support\felis</Filter>
+    </None>
+    <None Include="..\..\src\support\util\FsString.inl">
+      <Filter>src\support\util</Filter>
+    </None>
+  </ItemGroup>
+</Project>

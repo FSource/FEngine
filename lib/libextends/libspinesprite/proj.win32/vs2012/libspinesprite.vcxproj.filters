@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{c571dc46-3a98-43e0-92b3-9877f5d986db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\spine">
+      <UniqueIdentifier>{fb88f6a6-2a2b-492e-837b-f64e46dab0fe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\FsSpineExtention.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsSpineSprite.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsSpineSpriteData.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsSpineSpriteDataMgr.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsTextureAttachment.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsTextureAttachmentLoader.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\Animation.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\AnimationState.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\AnimationStateData.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\Atlas.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\AtlasAttachmentLoader.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\Attachment.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\AttachmentLoader.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\Bone.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\BoneData.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\extension.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\Json.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\RegionAttachment.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\Skeleton.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\SkeletonData.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\SkeletonJson.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\Skin.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\Slot.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\spine\SlotData.cc">
+      <Filter>src\spine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\FsSpineSprite.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsSpineSpriteData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsSpineSpriteDataMgr.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsTextureAttachment.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsTextureAttachmentLoader.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\Animation.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\AnimationState.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\AnimationStateData.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\Atlas.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\AtlasAttachmentLoader.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\Attachment.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\AttachmentLoader.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\Bone.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\BoneData.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\extension.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\Json.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\RegionAttachment.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\Skeleton.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\SkeletonData.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\SkeletonJson.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\Skin.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\Slot.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\SlotData.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\spine\spine.h">
+      <Filter>src\spine</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

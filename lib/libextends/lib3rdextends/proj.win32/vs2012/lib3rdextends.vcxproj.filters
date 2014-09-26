@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src\box2d">
+      <UniqueIdentifier>{a59a10b9-d999-428a-8584-e9f5e7cfc741}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\box2d\fb2ContactListener.cc">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\box2d\fb2Draw.cc">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\box2d\fb2ContactListener.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\box2d\fb2Draw.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

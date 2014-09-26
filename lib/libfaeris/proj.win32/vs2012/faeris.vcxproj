@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>libfaeris</ProjectName>
+    <ProjectGuid>{1A220C0A-1B8C-4B0D-9EF8-157B34855925}</ProjectGuid>
+    <RootNamespace>faeris</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>../../../library/win32/\</OutDir>
+    <IntDir>../../../library/win32/obj/$(ProjectName).debug\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>../../../library/win32/\</OutDir>
+    <IntDir>../../../library/win32/obj/$(ProjectName).release\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../src;../../src/support;../../../lib3rdparty/freetype/include;../../../lib3rdparty/zlib/include;../../../lib3rdparty/pthread/include;../../../lib3rdparty/curl/include;../../../lib3rdparty/tolua++/include;../../../lib3rdparty/lua/include;../../../lib3rdparty/c99/include;../../../lib3rdparty/minizip/include;../../../lib3rdparty/GL/include;../../../lib3rdparty/fmod/include;../../../lib3rdparty/jsonc/src;../../../lib3rdparty/libjpeg/src;../../../lib3rdparty/libpng/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;PTW32_BUILD;_USRDLL;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)d.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../../src;../../src/support;../../../lib3rdparty/freetype/include;../../../lib3rdparty/zlib/include;../../../lib3rdparty/pthread/include;../../../lib3rdparty/curl/include;../../../lib3rdparty/tolua++/include;../../../lib3rdparty/lua/include;../../../lib3rdparty/c99/include;../../../lib3rdparty/minizip/include;../../../lib3rdparty/GL/include;../../../lib3rdparty/fmod/include;../../../lib3rdparty/jsonc/src;../../../lib3rdparty/libjpeg/src;../../../lib3rdparty/libpng/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_USRDLL;PTW32_BUILD;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\extends\FsScriptEngine.h" />
+    <ClInclude Include="..\..\src\FsConfig.h" />
+    <ClInclude Include="..\..\src\FsFaerisModule.h" />
+    <ClInclude Include="..\..\src\FsGlobal.h" />
+    <ClInclude Include="..\..\src\FsMacros.h" />
+    <ClInclude Include="..\..\src\FsObject.h" />
+    <ClInclude Include="..\..\src\FsTypes.h" />
+    <ClInclude Include="..\..\src\graphics\FsColor.h" />
+    <ClInclude Include="..\..\src\graphics\FsFontBitmap.h" />
+    <ClInclude Include="..\..\src\graphics\FsFontTTF.h" />
+    <ClInclude Include="..\..\src\graphics\FsFrameBuffer.h" />
+    <ClInclude Include="..\..\src\graphics\FsImage2D.h" />
+    <ClInclude Include="..\..\src\graphics\FsProgram.h" />
+    <ClInclude Include="..\..\src\graphics\FsRender.h" />
+    <ClInclude Include="..\..\src\graphics\FsRenderTarget.h" />
+    <ClInclude Include="..\..\src\graphics\FsTexture2D.h" />
+    <ClInclude Include="..\..\src\graphics\FsTypoPage.h" />
+    <ClInclude Include="..\..\src\graphics\material\FsColorMaterial.h" />
+    <ClInclude Include="..\..\src\graphics\material\FsMaterial.h" />
+    <ClInclude Include="..\..\src\graphics\material\FsTextureMaterial.h" />
+    <ClInclude Include="..\..\src\math\curve\FsArcCurve.h" />
+    <ClInclude Include="..\..\src\math\curve\FsCatmullRomCurve.h" />
+    <ClInclude Include="..\..\src\math\curve\FsCubicBezierCurve.h" />
+    <ClInclude Include="..\..\src\math\curve\FsCurve.h" />
+    <ClInclude Include="..\..\src\math\curve\FsLinearCurve.h" />
+    <ClInclude Include="..\..\src\math\easing\FsBackEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsBezierEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsBounceEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsCircleEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsCubicEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsEaseExpr.h" />
+    <ClInclude Include="..\..\src\math\easing\FsEasingUtil.h" />
+    <ClInclude Include="..\..\src\math\easing\FsElasticEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsExponentialEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsLinearEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsPowerEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsQuadEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsQuartEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsQuintEase.h" />
+    <ClInclude Include="..\..\src\math\easing\FsSineEase.h" />
+    <ClInclude Include="..\..\src\math\FsCamera.h" />
+    <ClInclude Include="..\..\src\math\FsFace3.h" />
+    <ClInclude Include="..\..\src\math\FsMathUtil.h" />
+    <ClInclude Include="..\..\src\math\FsMatrix4.h" />
+    <ClInclude Include="..\..\src\math\FsQuaternion.h" />
+    <ClInclude Include="..\..\src\math\FsRect2D.h" />
+    <ClInclude Include="..\..\src\math\FsTexCoord2.h" />
+    <ClInclude Include="..\..\src\math\FsVector2.h" />
+    <ClInclude Include="..\..\src\math\FsVector3.h" />
+    <ClInclude Include="..\..\src\math\FsVector4.h" />
+    <ClInclude Include="..\..\src\math\FsVertices.h" />
+    <ClInclude Include="..\..\src\media\FsAudioEngine.h" />
+    <ClInclude Include="..\..\src\media\FsAudioPlayer.h" />
+    <ClInclude Include="..\..\src\mgr\FsFontTTFMgr.h" />
+    <ClInclude Include="..\..\src\mgr\FsObjectMgr.h" />
+    <ClInclude Include="..\..\src\mgr\FsProgramMgr.h" />
+    <ClInclude Include="..\..\src\mgr\FsResource.h" />
+    <ClInclude Include="..\..\src\mgr\FsResourceMgr.h" />
+    <ClInclude Include="..\..\src\mgr\FsSprite2DDataMgr.h" />
+    <ClInclude Include="..\..\src\mgr\FsTextureMgr.h" />
+    <ClInclude Include="..\..\src\scheduler\FsScheduler.h" />
+    <ClInclude Include="..\..\src\scheduler\FsSchedulerTarget.h" />
+    <ClInclude Include="..\..\src\scheduler\FsTask.h" />
+    <ClInclude Include="..\..\src\stage\action\FsAction.h" />
+    <ClInclude Include="..\..\src\stage\action\FsCurve3Action.h" />
+    <ClInclude Include="..\..\src\stage\action\FsFixTimeAction.h" />
+    <ClInclude Include="..\..\src\stage\action\FsLoopAction.h" />
+    <ClInclude Include="..\..\src\stage\action\FsMoveAction.h" />
+    <ClInclude Include="..\..\src\stage\action\FsPauseAction.h" />
+    <ClInclude Include="..\..\src\stage\action\FsRotateAction.h" />
+    <ClInclude Include="..\..\src\stage\action\FsScaleAction.h" />
+    <ClInclude Include="..\..\src\stage\action\FsSeqAction.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsColorQuad2D.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsEntity.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsLabelBitmap.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsLabelTTF.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsPanel.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsParticle2DEffect.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsParticle2DEmitter.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsQuad2D.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsRichLabelTTF.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsSprite2D.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsSprite2DData.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h" />
+    <ClInclude Include="..\..\src\stage\FsActionTarget.h" />
+    <ClInclude Include="..\..\src\stage\FsDirector.h" />
+    <ClInclude Include="..\..\src\stage\FsScene.h" />
+    <ClInclude Include="..\..\src\stage\layer\FsColorLayer.h" />
+    <ClInclude Include="..\..\src\stage\layer\FsLayer.h" />
+    <ClInclude Include="..\..\src\stage\layer\FsLayer2D.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsDynamicView.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsListView.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsPageView.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsPressButton.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsScroller.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsScrollView.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsScrollWidget.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsStateButton.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsToggleButton.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsUiWidget.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsVelocityTracker.h" />
+    <ClInclude Include="..\..\src\support\data\FsBase64.h" />
+    <ClInclude Include="..\..\src\support\data\FsDeflate.h" />
+    <ClInclude Include="..\..\src\support\data\FsEncrypt.h" />
+    <ClInclude Include="..\..\src\support\data\FsFgzReader.h" />
+    <ClInclude Include="..\..\src\support\data\FsHash.h" />
+    <ClInclude Include="..\..\src\support\data\FsIconv.h" />
+    <ClInclude Include="..\..\src\support\data\FsJson.h" />
+    <ClInclude Include="..\..\src\support\data\FsMd5.h" />
+    <ClInclude Include="..\..\src\support\data\FsUnicode.h" />
+    <ClInclude Include="..\..\src\support\data\FsZipReader.h" />
+    <ClInclude Include="..\..\src\support\felis\sl_state.h" />
+    <ClInclude Include="..\..\src\support\felis\xir_file.h" />
+    <ClInclude Include="..\..\src\support\felis\xir_parser.h" />
+    <ClInclude Include="..\..\src\support\felis\xir_scanner.h" />
+    <ClInclude Include="..\..\src\support\felis\xir_state.h" />
+    <ClInclude Include="..\..\src\support\felis\xir_token.h" />
+    <ClInclude Include="..\..\src\support\image\FsImageDecoder.h" />
+    <ClInclude Include="..\..\src\support\image\FsImageFaw.h" />
+    <ClInclude Include="..\..\src\support\image\FsImageJpeg.h" />
+    <ClInclude Include="..\..\src\support\image\FsImagePng.h" />
+    <ClInclude Include="..\..\src\support\util\FsArray.h" />
+    <ClInclude Include="..\..\src\support\util\FsDict.h" />
+    <ClInclude Include="..\..\src\support\util\FsInteger.h" />
+    <ClInclude Include="..\..\src\support\util\FsLog.h" />
+    <ClInclude Include="..\..\src\support\util\FsPathUtil.h" />
+    <ClInclude Include="..\..\src\support\util\FsScriptUtil.h" />
+    <ClInclude Include="..\..\src\support\util\FsSlowArray.h" />
+    <ClInclude Include="..\..\src\support\util\FsSlowDict.h" />
+    <ClInclude Include="..\..\src\support\util\FsString.h" />
+    <ClInclude Include="..\..\src\sys\event\FsInputTextDispatcher.h" />
+    <ClInclude Include="..\..\src\sys\event\FsKeypadDispatcher.h" />
+    <ClInclude Include="..\..\src\sys\event\FsSysDispatcher.h" />
+    <ClInclude Include="..\..\src\sys\event\FsTEventDispatcher.h" />
+    <ClInclude Include="..\..\src\sys\event\FsTouchDispatcher.h" />
+    <ClInclude Include="..\..\src\sys\FsKeyCode.h" />
+    <ClInclude Include="..\..\src\sys\FsSys.h" />
+    <ClInclude Include="..\..\src\sys\FsTimer.h" />
+    <ClInclude Include="..\..\src\sys\FsWindow.h" />
+    <ClInclude Include="..\..\src\sys\io\FsFgzPackage.h" />
+    <ClInclude Include="..\..\src\sys\io\FsFile.h" />
+    <ClInclude Include="..\..\src\sys\io\FsMemFile.h" />
+    <ClInclude Include="..\..\src\sys\io\FsPackage.h" />
+    <ClInclude Include="..\..\src\sys\io\FsSegFile.h" />
+    <ClInclude Include="..\..\src\sys\io\FsSysFile.h" />
+    <ClInclude Include="..\..\src\sys\io\FsVFS.h" />
+    <ClInclude Include="..\..\src\sys\io\FsZipPackage.h" />
+    <ClInclude Include="..\..\src\sys\network\FsHttpEngine.h" />
+    <ClInclude Include="..\..\src\sys\network\FsHttpReponse.h" />
+    <ClInclude Include="..\..\src\sys\network\FsHttpRequest.h" />
+    <ClInclude Include="..\..\src\sys\thread\FsMutex.h" />
+    <ClInclude Include="..\..\src\sys\thread\FsSemaphore.h" />
+    <ClInclude Include="..\..\src\sys\thread\FsThread.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\extends\FsScriptEngine.cc" />
+    <ClCompile Include="..\..\src\FsFaerisModule.cc" />
+    <ClCompile Include="..\..\src\FsGlobal.cc" />
+    <ClCompile Include="..\..\src\FsObject.cc" />
+    <ClCompile Include="..\..\src\graphics\FsColor.cc" />
+    <ClCompile Include="..\..\src\graphics\FsFontBitmap.cc" />
+    <ClCompile Include="..\..\src\graphics\FsFontTTF.cc" />
+    <ClCompile Include="..\..\src\graphics\FsFrameBuffer.cc" />
+    <ClCompile Include="..\..\src\graphics\FsImage2D.cc" />
+    <ClCompile Include="..\..\src\graphics\FsProgram.cc" />
+    <ClCompile Include="..\..\src\graphics\FsRender.cc" />
+    <ClCompile Include="..\..\src\graphics\FsTexture2D.cc" />
+    <ClCompile Include="..\..\src\graphics\material\FsColorMaterial.cc" />
+    <ClCompile Include="..\..\src\graphics\material\FsMaterial.cc" />
+    <ClCompile Include="..\..\src\graphics\material\FsTextureMaterial.cc" />
+    <ClCompile Include="..\..\src\math\curve\FsCatmullRomCurve.cc" />
+    <ClCompile Include="..\..\src\math\curve\FsCubicBezierCurve.cc" />
+    <ClCompile Include="..\..\src\math\curve\FsLinearCurve.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsBackEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsBezierEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsBounceEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsCircleEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsCubicEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsEaseExpr.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsEasingUtil.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsElasticEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsExponentialEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsLinearEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsPowerEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsQuadEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsQuartEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsQuintEase.cc" />
+    <ClCompile Include="..\..\src\math\easing\FsSineEase.cc" />
+    <ClCompile Include="..\..\src\math\FsMathUtil.cc" />
+    <ClCompile Include="..\..\src\math\FsMatrix4.cc" />
+    <ClCompile Include="..\..\src\math\FsQuaternion.cc" />
+    <ClCompile Include="..\..\src\math\FsRect2D.cc" />
+    <ClCompile Include="..\..\src\media\FsAudioEngine.cc" />
+    <ClCompile Include="..\..\src\media\FsAudioPlayer.cc" />
+    <ClCompile Include="..\..\src\mgr\FsFontTTFMgr.cc" />
+    <ClCompile Include="..\..\src\mgr\FsObjectMgr.cc" />
+    <ClCompile Include="..\..\src\mgr\FsProgramMgr.cc" />
+    <ClCompile Include="..\..\src\mgr\FsResource.cc" />
+    <ClCompile Include="..\..\src\mgr\FsResourceMgr.cc" />
+    <ClCompile Include="..\..\src\mgr\FsSprite2DDataMgr.cc" />
+    <ClCompile Include="..\..\src\mgr\FsTextureMgr.cc" />
+    <ClCompile Include="..\..\src\scheduler\FsScheduler.cc" />
+    <ClCompile Include="..\..\src\scheduler\FsSchedulerTarget.cc" />
+    <ClCompile Include="..\..\src\scheduler\FsTask.cc" />
+    <ClCompile Include="..\..\src\stage\action\FsAction.cc" />
+    <ClCompile Include="..\..\src\stage\action\FsCurve3Action.cc" />
+    <ClCompile Include="..\..\src\stage\action\FsFixTimeAction.cc" />
+    <ClCompile Include="..\..\src\stage\action\FsLoopAction.cc" />
+    <ClCompile Include="..\..\src\stage\action\FsMoveAction.cc" />
+    <ClCompile Include="..\..\src\stage\action\FsPauseAction.cc" />
+    <ClCompile Include="..\..\src\stage\action\FsRotateAction.cc" />
+    <ClCompile Include="..\..\src\stage\action\FsScaleAction.cc" />
+    <ClCompile Include="..\..\src\stage\action\FsSeqAction.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsColorQuad2D.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsEntity.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsLabelBitmap.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsLabelTTF.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsPanel.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsParticle2DEffect.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsParticle2DEmitter.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsQuad2D.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsSprite2D.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsSprite2DData.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsVertexPolygon.cc" />
+    <ClCompile Include="..\..\src\stage\FsActionTarget.cc" />
+    <ClCompile Include="..\..\src\stage\FsDirector.cc" />
+    <ClCompile Include="..\..\src\stage\FsScene.cc" />
+    <ClCompile Include="..\..\src\stage\layer\FsColorLayer.cc" />
+    <ClCompile Include="..\..\src\stage\layer\FsLayer.cc" />
+    <ClCompile Include="..\..\src\stage\layer\FsLayer2D.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsDynamicView.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsListView.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsPageView.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsPressButton.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsScroller.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsScrollView.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsScrollWidget.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsStateButton.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsToggleButton.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsUiWidget.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsVelocityTracker.cc" />
+    <ClCompile Include="..\..\src\support\data\FsBase64.cc" />
+    <ClCompile Include="..\..\src\support\data\FsDeflate.cc" />
+    <ClCompile Include="..\..\src\support\data\FsEncrypt.cc" />
+    <ClCompile Include="..\..\src\support\data\FsFgzReader.cc" />
+    <ClCompile Include="..\..\src\support\data\FsHash.cc" />
+    <ClCompile Include="..\..\src\support\data\FsIconv.cc" />
+    <ClCompile Include="..\..\src\support\data\FsJson.cc" />
+    <ClCompile Include="..\..\src\support\data\FsMd5.cc" />
+    <ClCompile Include="..\..\src\support\data\FsUnicode.cc" />
+    <ClCompile Include="..\..\src\support\data\FsZipReader.cc" />
+    <ClCompile Include="..\..\src\support\felis\sl_comment.cc" />
+    <ClCompile Include="..\..\src\support\felis\sl_double_quote_str.cc" />
+    <ClCompile Include="..\..\src\support\felis\sl_simple_str.cc" />
+    <ClCompile Include="..\..\src\support\felis\sl_single_quote_str.cc" />
+    <ClCompile Include="..\..\src\support\felis\sl_specific_symbol.cc" />
+    <ClCompile Include="..\..\src\support\felis\sl_top.cc" />
+    <ClCompile Include="..\..\src\support\felis\sl_white_space.cc" />
+    <ClCompile Include="..\..\src\support\felis\xir_file.cc" />
+    <ClCompile Include="..\..\src\support\felis\xir_grammer.cc" />
+    <ClCompile Include="..\..\src\support\felis\xir_parser.cc" />
+    <ClCompile Include="..\..\src\support\felis\xir_scanner.cc" />
+    <ClCompile Include="..\..\src\support\felis\xir_token.cc" />
+    <ClCompile Include="..\..\src\support\image\FsImageDecoder.cc" />
+    <ClCompile Include="..\..\src\support\image\FsImageFaw.cc" />
+    <ClCompile Include="..\..\src\support\image\FsImageJpeg.cc" />
+    <ClCompile Include="..\..\src\support\image\FsImagePng.cc" />
+    <ClCompile Include="..\..\src\support\util\FsArray.cc" />
+    <ClCompile Include="..\..\src\support\util\FsDict.cc" />
+    <ClCompile Include="..\..\src\support\util\FsInteger.cc" />
+    <ClCompile Include="..\..\src\support\util\FsLog.cc" />
+    <ClCompile Include="..\..\src\support\util\FsPathUtil.cc" />
+    <ClCompile Include="..\..\src\support\util\FsScriptUtil.cc" />
+    <ClCompile Include="..\..\src\support\util\FsSlowArray.cc" />
+    <ClCompile Include="..\..\src\support\util\FsSlowDict.cc" />
+    <ClCompile Include="..\..\src\support\util\FsString.cc" />
+    <ClCompile Include="..\..\src\sys\event\FsInputTextDispatcher.cc" />
+    <ClCompile Include="..\..\src\sys\event\FsKeypadDispatcher.cc" />
+    <ClCompile Include="..\..\src\sys\event\FsSysDispatcher.cc" />
+    <ClCompile Include="..\..\src\sys\event\FsTouchDispatcher.cc" />
+    <ClCompile Include="..\..\src\sys\FsSys.cc" />
+    <ClCompile Include="..\..\src\sys\FsTimer.cc" />
+    <ClCompile Include="..\..\src\sys\FsWindow.cc" />
+    <ClCompile Include="..\..\src\sys\io\FsFgzPackage.cc" />
+    <ClCompile Include="..\..\src\sys\io\FsFile.cc" />
+    <ClCompile Include="..\..\src\sys\io\FsMemFile.cc" />
+    <ClCompile Include="..\..\src\sys\io\FsPackage.cc" />
+    <ClCompile Include="..\..\src\sys\io\FsSegFile.cc" />
+    <ClCompile Include="..\..\src\sys\io\FsSysFile.cc" />
+    <ClCompile Include="..\..\src\sys\io\FsVFS.cc" />
+    <ClCompile Include="..\..\src\sys\io\FsZipPackage.cc" />
+    <ClCompile Include="..\..\src\sys\network\FsHttpEngine.cc" />
+    <ClCompile Include="..\..\src\sys\network\FsHttpReponse.cc" />
+    <ClCompile Include="..\..\src\sys\network\FsHttpRequest.cc" />
+    <ClCompile Include="..\..\src\sys\thread\FsMutex.cc" />
+    <ClCompile Include="..\..\src\sys\thread\FsSemaphore.cc" />
+    <ClCompile Include="..\..\src\sys\thread\FsThread.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\math\FsVector2.inl" />
+    <None Include="..\..\src\math\FsVector3.inl" />
+    <None Include="..\..\src\math\FsVector4.inl" />
+    <None Include="..\..\src\stage\entity\FsEntity.inl" />
+    <None Include="..\..\src\support\felis\xir_grammer.y" />
+    <None Include="..\..\src\support\util\FsString.inl" />
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

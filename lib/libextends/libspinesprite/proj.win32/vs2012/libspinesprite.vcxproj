@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F409901A-8879-47CF-93F5-F247A7E760F8}</ProjectGuid>
+    <RootNamespace>libspinesprite</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>../../../../library/win32/</OutDir>
+    <IntDir>../../../../library/win32/obj/$(ProjectName).debug\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>../../../../library/win32/</OutDir>
+    <IntDir>../../../../library/win32/obj/$(ProjectName).release\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libfaeris/src/support;../../../../libfaeris/src;../../src;../../../../lib3rdparty/pthread/include;../../../../lib3rdparty/c99/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)d.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../../../../libfaeris/src/support;../../../../libfaeris/src;../../src;../../../../lib3rdparty/pthread/include;../../../../lib3rdparty/c99/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\FsSpineExtention.cc" />
+    <ClCompile Include="..\..\src\FsSpineSprite.cc" />
+    <ClCompile Include="..\..\src\FsSpineSpriteData.cc" />
+    <ClCompile Include="..\..\src\FsSpineSpriteDataMgr.cc" />
+    <ClCompile Include="..\..\src\FsTextureAttachment.cc" />
+    <ClCompile Include="..\..\src\FsTextureAttachmentLoader.cc" />
+    <ClCompile Include="..\..\src\spine\Animation.cc" />
+    <ClCompile Include="..\..\src\spine\AnimationState.cc" />
+    <ClCompile Include="..\..\src\spine\AnimationStateData.cc" />
+    <ClCompile Include="..\..\src\spine\Atlas.cc" />
+    <ClCompile Include="..\..\src\spine\AtlasAttachmentLoader.cc" />
+    <ClCompile Include="..\..\src\spine\Attachment.cc" />
+    <ClCompile Include="..\..\src\spine\AttachmentLoader.cc" />
+    <ClCompile Include="..\..\src\spine\Bone.cc" />
+    <ClCompile Include="..\..\src\spine\BoneData.cc" />
+    <ClCompile Include="..\..\src\spine\extension.cc" />
+    <ClCompile Include="..\..\src\spine\Json.cc" />
+    <ClCompile Include="..\..\src\spine\RegionAttachment.cc" />
+    <ClCompile Include="..\..\src\spine\Skeleton.cc" />
+    <ClCompile Include="..\..\src\spine\SkeletonData.cc" />
+    <ClCompile Include="..\..\src\spine\SkeletonJson.cc" />
+    <ClCompile Include="..\..\src\spine\Skin.cc" />
+    <ClCompile Include="..\..\src\spine\Slot.cc" />
+    <ClCompile Include="..\..\src\spine\SlotData.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\FsSpineSprite.h" />
+    <ClInclude Include="..\..\src\FsSpineSpriteData.h" />
+    <ClInclude Include="..\..\src\FsSpineSpriteDataMgr.h" />
+    <ClInclude Include="..\..\src\FsTextureAttachment.h" />
+    <ClInclude Include="..\..\src\FsTextureAttachmentLoader.h" />
+    <ClInclude Include="..\..\src\spine\Animation.h" />
+    <ClInclude Include="..\..\src\spine\AnimationState.h" />
+    <ClInclude Include="..\..\src\spine\AnimationStateData.h" />
+    <ClInclude Include="..\..\src\spine\Atlas.h" />
+    <ClInclude Include="..\..\src\spine\AtlasAttachmentLoader.h" />
+    <ClInclude Include="..\..\src\spine\Attachment.h" />
+    <ClInclude Include="..\..\src\spine\AttachmentLoader.h" />
+    <ClInclude Include="..\..\src\spine\Bone.h" />
+    <ClInclude Include="..\..\src\spine\BoneData.h" />
+    <ClInclude Include="..\..\src\spine\extension.h" />
+    <ClInclude Include="..\..\src\spine\Json.h" />
+    <ClInclude Include="..\..\src\spine\RegionAttachment.h" />
+    <ClInclude Include="..\..\src\spine\Skeleton.h" />
+    <ClInclude Include="..\..\src\spine\SkeletonData.h" />
+    <ClInclude Include="..\..\src\spine\SkeletonJson.h" />
+    <ClInclude Include="..\..\src\spine\Skin.h" />
+    <ClInclude Include="..\..\src\spine\Slot.h" />
+    <ClInclude Include="..\..\src\spine\SlotData.h" />
+    <ClInclude Include="..\..\src\spine\spine.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
