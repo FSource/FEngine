@@ -409,8 +409,10 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 	{
 		updateWorldMatrix();
 	}
+	/*
 	 int t_width=texture->getWidth();
      int t_height=texture->getHeight();
+	 */
 
 
 
@@ -473,8 +475,8 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 
 		float size=m_particles[i].m_size;
 
-		float hwsize=t_width*size/2;
-		float hhsize=t_height*size/2;
+		float hwsize=size/2;
+		float hhsize=size/2;
 
 
 		float v[8]=
