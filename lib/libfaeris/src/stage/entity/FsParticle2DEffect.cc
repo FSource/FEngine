@@ -228,9 +228,18 @@ void Particle2DEffect::update(float dt)
 	while(pos<size)
 	{
 		p=&m_particles[i];
-		updateParticle(p,dt);
 
-		if(p->m_timeElapse>p->m_lifeTime)
+		float d=dt;
+		float  finish=false;
+		if(p->m_timeElapse+d>p->m_lifeTime)
+		{
+			d=p->m_lifeTime-p->m_timeElapse;
+			finish=true;
+		}
+
+		updateParticle(p,d);
+
+		if(finish)
 		{
 
 			if(m_particles.size()-1>i)
@@ -269,7 +278,12 @@ void Particle2DEffect::update(float dt)
 void Particle2DEffect::updateParticle(Particle* p,float dt)
 {
 	p->m_timeElapse+=dt;
+
 	p->m_size+=p->m_sizeDt*dt;
+	if(p->m_size<0 )
+	{
+		p->m_size=0.0f;
+	}
 
 	p->m_colorRed+=p->m_colorRedDt*dt;
 	p->m_colorGreen+=p->m_colorGreenDt*dt;
@@ -450,8 +464,7 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 	};
 	render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,4,0,t);
 
-	Vector2 cur_pos=Vector2(m_worldMatrix.m03,m_worldMatrix.m13);
-
+	
 	for(unsigned int i=0;i<m_particles.size();i++)
 	{
 		float color[4]={
@@ -464,6 +477,7 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 
 		if( m_particles[i].m_moveMode== Particle2DEmitter::MOVE_FREE)
 		{
+			Vector2 cur_pos=Vector2(m_worldMatrix.m03,m_worldMatrix.m13);
 			x=m_particles[i].m_position.x-(cur_pos.x-m_particles[i].m_startPos.x);
 			y=m_particles[i].m_position.y-(cur_pos.y-m_particles[i].m_startPos.y);
 		}
