@@ -4,6 +4,7 @@
 #include "FsMacros.h"
 #include "stage/entity/FsEntity.h"
 #include "graphics/FsColor.h"
+#include "math/FsVector2.h"
 
 NS_FS_BEGIN
 class Render;

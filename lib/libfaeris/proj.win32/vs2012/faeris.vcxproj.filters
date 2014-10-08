@@ -538,6 +538,12 @@
     <ClInclude Include="..\..\src\FsTypes.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\math\FsMath.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsVertexBuffer.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -965,6 +971,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\FsObject.cc">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\FsMath.cc">
+      <Filter>src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsVertexBuffer.cc">
+      <Filter>src\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

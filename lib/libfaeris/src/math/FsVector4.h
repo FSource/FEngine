@@ -1,51 +1,58 @@
 #ifndef FY_MATH_VECTOR4_H_
 #define FY_MATH_VECTOR4_H_
 #include "FsMacros.h"
-#include "FsMathUtil.h"
+#include "FsMath.h"
 
 NS_FS_BEGIN
-class Vector4
+template<typename T>
+class TVector4
 {
 	public:
 		union
 		{
 			struct 
 			{
-				float x;
-				float y;
-				float z;
-				float w;
+				T x;
+				T y;
+				T z;
+				T w;
 			};
-			float v[4];
+			T v[4];
 		};
 	public:
-		Vector4(float fx,float fy,float fz,float fw);
-		Vector4(float fx,float fy,float fz);
-		Vector4();
-		Vector4 add(const Vector4& v)const ;
-		Vector4 sub(const Vector4& v)const;
-		Vector4 scale(float k)const ;
-		float dot(const Vector4& v)const;
+		TVector4(T fx,T fy,T fz,T fw);
+		TVector4(T fx,T fy,T fz);
+		TVector4<T>();
+		TVector4<T> add(const TVector4<T>& v)const ;
+		TVector4<T> sub(const TVector4<T>& v)const;
+		TVector4<T> scale(T k)const ;
+		T dot(const TVector4<T>& v)const;
 
-		Vector4 normal() const ;
+		TVector4<T> normal() const ;
 		void normalize() ;
-		float length() const;
-		float length2() const;
+		T length() const;
+		T length2() const;
 
-		bool equal(const Vector4& v) const;
+		bool equal(const TVector4<T>& v) const;
 
-		Vector4 lerp(const Vector4& v,float t);
+		TVector4<T> lerp(const TVector4<T>& v,T t);
 
 
-		Vector4 operator + (const Vector4& v)const;
-		Vector4 operator - (const Vector4& v)const;
-		Vector4 operator / (float v) const ;
-		Vector4 operator * (float v) const ;
+		TVector4<T> operator + (const TVector4<T>& v)const;
+		TVector4<T> operator - (const TVector4<T>& v)const;
+		TVector4<T> operator / (T v) const ;
+		TVector4<T> operator * (T v) const ;
 
-		Vector4& operator +=(const Vector4& v);
+		TVector4<T>& operator +=(const TVector4<T>& v);
 };
 
 #include"FsVector4.inl"
+
+typedef TVector4<float> Vector4f;
+typedef TVector4<float> Vector4;
+
+typedef TVector4<uint16_t> Vector4ui;
+typedef TVector4<int16_t> Vector4i;
 
 NS_FS_END
 #endif

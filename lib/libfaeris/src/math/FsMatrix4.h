@@ -1,6 +1,9 @@
 #ifndef _FS_MATH_MATRIX4_H_
 #define _FS_MATH_MATRIX4_H_ 
+
 #include "FsMacros.h"
+
+#include "math/FsVector2.h"
 #include "math/FsVector3.h"
 #include "math/FsVector4.h"
 #include "math/FsQuaternion.h"

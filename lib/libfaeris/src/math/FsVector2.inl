@@ -1,107 +1,136 @@
 #ifndef FY_MATH_VECTOR2_INL_
 #define FY_MATH_VECTOR2_INL_
-inline Vector2::Vector2(float fx,float fy)
-	:x(fx),y(fy)
+
+
+template<typename T> 
+inline TVector2<T>::TVector2(T fx,T fy) 
+	:x(fx),y(fy) 
 {}
-inline Vector2::Vector2()
+
+template<typename T>
+inline TVector2<T>::TVector2()
 	:x(0),y(0)
 {}
 
-inline Vector2 Vector2::add(const Vector2& v) const
+template<typename T>
+inline TVector2<T> TVector2<T>::add(const TVector2<T>& v) const
 {
-	return Vector2(x+v.x,y+v.y);
+	return TVector2(x+v.x,y+v.y);
 }
 
-inline Vector2 Vector2::sub(const Vector2& v) const 
+template<typename T>
+inline TVector2<T> TVector2<T>::sub(const TVector2<T>& v) const 
 {
-	return Vector2(x-v.x,y-v.y);
+	return TVector2(x-v.x,y-v.y);
 }
 
-inline Vector2 Vector2::scale(const float k)const 
+template<typename T>
+inline TVector2<T> TVector2<T>::scale(const T k)const 
 {
-	return Vector2(x*k,y*k);
+	return TVector2(x*k,y*k);
 }
-inline float Vector2::dot(const Vector2& v)const 
+
+template<typename T>
+inline T TVector2<T>::dot(const TVector2<T>& v)const 
 {
 	return x*v.x+y*v.y;
 }
 
-inline Vector2 Vector2::normal()const 
+template<typename T>
+inline TVector2<T> TVector2<T>::normal()const 
 {
-	float l=length();
-	return Vector2(x/l,y/l);
+	T l=length();
+	return TVector2<T>(x/l,y/l);
 }
 
-inline void Vector2::normalize()
+template<typename T>
+inline void TVector2<T>::normalize()
 {
-	float l=length();
+	T l=length();
 	x=x/l;
 	y=y/l;
 }
-inline Vector2 Vector2::proj(const Vector2& v) const
+
+template<typename T>
+inline TVector2<T> TVector2<T>::proj(const TVector2<T>& v) const
 {
-	float l=v.length2();
-	float k=this->dot(v)/l;
+	T l=v.length2();
+	T k=this->dot(v)/l;
 	return v.scale(k);
 }
-inline float Vector2::angle(const Vector2& v) const
+
+template<typename T>
+inline T TVector2<T>::angle(const TVector2<T>& v) const
 {
-	float theta=dot(v)/(length()*v.length());
+	T theta=dot(v)/(length()*v.length());
 	return Math::acosr(theta)/FS_PI*180.0f;
 }
-inline float Vector2::length() const 
+
+template<typename T>
+inline T TVector2<T>::length() const 
 {
 	return Math::sqrt(length2());
 }
-inline float Vector2::length2()const 
+
+template<typename T>
+inline T TVector2<T>::length2()const 
 {
 	return x*x+y*y;
 }
 
-inline bool Vector2::equal(const Vector2& v) const 
+template<typename T>
+inline bool TVector2<T>::equal(const TVector2<T>& v) const 
 {
-	return Math::floatEqual(x,v.x)&&Math::floatEqual(y,v.y);
+	return Math::equal(x,v.x)&&Math::equal(y,v.y);
 }
 
 
-inline void Vector2::set(float _x,float _y) 
+template<typename T>
+inline void TVector2<T>::set(T _x,T _y) 
 {
 	x=_x;
 	y=_y;
 }
 
-inline Vector2 Vector2::lerp(const Vector2& v,float t)
-{
-	float rx=x+(v.x-x)*t;
-	float ry=y+(v.y-y)*t;
 
-	return Vector2(rx,ry);
+template<typename T>
+inline TVector2<T> TVector2<T>::lerp(const TVector2<T>& v,T t)
+{
+	T rx=x+(v.x-x)*t;
+	T ry=y+(v.y-y)*t;
+
+	return TVector2(rx,ry);
 }
 
 
 /* operator */
 
-inline Vector2 Vector2::operator+(const Vector2& v) const 
+template<typename T>
+inline TVector2<T> TVector2<T>::operator+(const TVector2<T>& v) const 
 {
 	return this->add(v);
 }
 
-inline Vector2 Vector2::operator-(const Vector2& v) const 
+template<typename T>
+inline TVector2<T> TVector2<T>::operator-(const TVector2<T>& v) const 
 {
 	return this->sub(v);
 }
 
-inline Vector2 Vector2::operator/(float v) const 
+template<typename T>
+inline TVector2<T> TVector2<T>::operator/(T v) const 
 {
 	return this->scale(1.0f/v);
 }
 
-inline Vector2 Vector2::operator*(float v) const 
+template<typename T>
+inline TVector2<T> TVector2<T>::operator*(T v) const 
 {
 	return this->scale(v);
 }
 
-inline Vector2& Vector2::operator +=(const Vector2& v)
+template<typename T>
+inline TVector2<T>& TVector2<T>::operator +=(const TVector2<T>& v)
 {
 	this->x+=v.x;
 	this->y+=v.y;

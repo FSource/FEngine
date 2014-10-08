@@ -1,47 +1,57 @@
 #ifndef FY_MATH_VECTOR4_INL_
 #define FY_MATH_VECTOR4_INL_
 
-inline Vector4::Vector4(float fx,float fy,float fz,float fw)
+template<typename T>
+inline TVector4<T>::TVector4(T fx,T fy,T fz,T fw)
 	:x(fx),y(fy),z(fz),w(fw)
 {}
 
-inline Vector4::Vector4(float fx,float fy,float fz)
+template<typename T>
+inline TVector4<T>::TVector4(T fx,T fy,T fz)
 	:x(fx),y(fy),z(fz),w(1)
 {}
-inline Vector4::Vector4()
+
+template<typename T>
+inline TVector4<T>::TVector4()
 	:x(0),y(0),z(0),w(1)
 {}
 
-inline Vector4 Vector4::add(const Vector4& v) const 
+template<typename T>
+inline TVector4<T> TVector4<T>::add(const TVector4<T>& v) const 
 {
-	return Vector4(x+v.x,y+v.y,z+v.z,w+v.w);
+	return TVector4<T>(x+v.x,y+v.y,z+v.z,w+v.w);
 }
 
-inline Vector4 Vector4::sub(const Vector4& v) const 
+template<typename T>
+inline TVector4<T> TVector4<T>::sub(const TVector4<T>& v) const 
 {
-	return Vector4(x-v.x,y-v.y,z-v.z,w-v.w);
+	return TVector4<T>(x-v.x,y-v.y,z-v.z,w-v.w);
 }
 
-inline Vector4 Vector4::scale(float k) const 
+template<typename T>
+inline TVector4<T> TVector4<T>::scale(T k) const 
 {
-	return Vector4(x*k,y*k,z*k,w*k);
+	return TVector4<T>(x*k,y*k,z*k,w*k);
 }
 
-inline float Vector4::dot(const Vector4& v)const 
+template<typename T>
+inline T TVector4<T>::dot(const TVector4<T>& v)const 
 {
 	return x*v.x+y*v.y+z*v.z+w*v.w;
 }
 
-inline Vector4 Vector4::normal() const 
+template<typename T>
+inline TVector4<T> TVector4<T>::normal() const 
 {
-	float l=length();
+	T l=length();
 
-	return Vector4(x/l,y/l,z/l,w/l);
+	return TVector4<T>(x/l,y/l,z/l,w/l);
 }
 
-inline void Vector4::normalize() 
+template<typename T>
+inline void TVector4<T>::normalize() 
 {
-	float l=length();
+	T l=length();
 	x=x/l;
 	y=y/l;
 	z=z/l;
@@ -49,56 +59,65 @@ inline void Vector4::normalize()
 }
 
 
-inline float Vector4::length() const 
+template<typename T>
+inline T TVector4<T>::length() const 
 {
 	return Math::sqrt(length2());
 }
 
-inline float Vector4::length2() const 
+template<typename T>
+inline T TVector4<T>::length2() const 
 {
 	return x*x+y*y+z*z+w*w;
 }
 
-inline bool Vector4::equal(const Vector4&  v) const 
+template<typename T>
+inline bool TVector4<T>::equal(const TVector4<T>&  v) const 
 {
-	return Math::floatEqual(x,v.x)&&
-		   Math::floatEqual(y,v.y)&&
-		   Math::floatEqual(z,v.z)&&
-		   Math::floatEqual(w,v.w);
+	return Math::equal(x,v.x)&&
+		   Math::equal(y,v.y)&&
+		   Math::equal(z,v.z)&&
+		   Math::equal(w,v.w);
 }
 
-inline Vector4 Vector4::lerp(const Vector4& v,float t)
+template<typename T>
+inline TVector4<T> TVector4<T>::lerp(const TVector4<T>& v,T t)
 {
 
-	float rx=x+(v.x-x)*t;
-	float ry=y+(v.y-y)*t;
-	float rz=z+(v.z-z)*t;
-	float rw=w+(v.w-w)*t;
+	T rx=x+(v.x-x)*t;
+	T ry=y+(v.y-y)*t;
+	T rz=z+(v.z-z)*t;
+	T rw=w+(v.w-w)*t;
 
-	return Vector4(rx,ry,rz,rw);
+	return TVector4<T>(rx,ry,rz,rw);
 }
 
-inline Vector4 Vector4::operator + (const Vector4& v)const
+template<typename T>
+inline TVector4<T> TVector4<T>::operator + (const TVector4<T>& v)const
 {
 	return this->add(v);
 }
 
-inline Vector4 Vector4::operator - (const Vector4& v)const
+template<typename T>
+inline TVector4<T> TVector4<T>::operator - (const TVector4<T>& v)const
 {
 	return this->sub(v);
 }
 
-inline Vector4 Vector4::operator / (float v) const 
+template<typename T>
+inline TVector4<T> TVector4<T>::operator / (T v) const 
 {
 	return this->scale(1/v);
 }
 
-inline Vector4 Vector4::operator* (float v) const 
+template<typename T>
+inline TVector4<T> TVector4<T>::operator* (T v) const 
 {
 	return this->scale(v);
 }
 
-inline Vector4& Vector4::operator +=(const Vector4& v)
+template<typename T>
+inline TVector4<T>& TVector4<T>::operator +=(const TVector4<T>& v)
 {
 	this->x+=v.x;
 	this->y+=v.y;

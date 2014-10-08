@@ -4,13 +4,15 @@
 #include "stage/FsActionTarget.h"
 #include "math/FsRect2D.h"
 #include "math/FsVector3.h"
+#include "math/FsVector2.h"
+#include "math/FsMatrix4.h"
+
 NS_FS_BEGIN
 class Entity;
 class Scene;
 class Render;
 class FsDict;
 class FsSlowDict;
-class Vector2;
 class TouchEvent;
 class Scene;
 
