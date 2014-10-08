@@ -471,20 +471,44 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 		}
 
 		float size=m_particles[i].m_size;
-		float hwsize=t_width*size/2;
-		float hhsize=t_height*size/2;
-
-
-		float v[8]=
+		
+		float hsize=size/2;
+		float dx=hsize,dy=hsize;
+		float angle=m_particles[i].m_rotation;
+		if(!Math::floatEqual(angle,0))
 		{
-			x-hwsize,y+hhsize,
-			x-hwsize,y-hhsize,
-			x+hwsize,y-hhsize,
-			x+hwsize,y+hhsize,
-		};
-		render->setUniform(color_uniform,Render::U_F_4,1,color);
-		render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,v);
-		render->drawFace3(faces,2);
+		
+			float cos_o=Math::cosa(angle);
+			float sin_o=Math::sina(angle);
+			dx=(cos_o-sin_o)*hsize;
+			dy=(cos_o+sin_o)*hsize;
+			float v[8]=
+			{
+				 x-dy,y+dx,
+				 x-dx,y-dy,
+				 x+dy,y-dx,
+				 x+dx,y+dy,
+			};
+
+			render->setUniform(color_uniform,Render::U_F_4,1,color);
+			render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,v);
+			render->drawFace3(faces,2);
+		}
+		else 
+		{
+			float v[8]=
+			{
+				 x-dy,y+dx,
+				 x-dx,y-dy,
+				 x+dy,y-dx,
+				 x+dx,y+dy,
+			};
+
+			render->setUniform(color_uniform,Render::U_F_4,1,color);
+			render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,v);
+			render->drawFace3(faces,2);
+		}
+		
 	}
 
 	render->popMatrix();
