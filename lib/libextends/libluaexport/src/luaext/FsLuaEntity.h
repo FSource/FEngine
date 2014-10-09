@@ -40,37 +40,7 @@ class LuaEntity:public TEntity<Entity>
 };
 
 
-class LuaColorQuad2D:public TEntity<ColorQuad2D>
-{
-	public:
-		static LuaColorQuad2D* create()
-		{
-			LuaColorQuad2D* ret=new LuaColorQuad2D();
-			ret->init();
-			return ret;
-		}
-		static LuaColorQuad2D* create(const Rect2D& rect,Color4f c)
-		{
-			LuaColorQuad2D* ret=new LuaColorQuad2D;
-			ret->init(rect,c);
-			return ret;
-		}
-		static LuaColorQuad2D* create(float width,float height,Color4f c)
-		{
-			LuaColorQuad2D* ret=new LuaColorQuad2D;
-			ret->init(width,height,c);
-			return ret;
-		}
 
-	public:
-		virtual const char* className()
-		{
-			return FS_LUA_COLOR_QUAD2D_CLASS_NAME;
-		}
-	protected:
-		LuaColorQuad2D(){}
-		~LuaColorQuad2D(){}
-};
 class LuaQuad2D:public TEntity<Quad2D>
 {
 	public:
@@ -110,6 +80,29 @@ class LuaQuad2D:public TEntity<Quad2D>
 		static LuaQuad2D* create(const char* name,float width,float height)
 		{
 			return create(name,Rect2D(-width/2,-height/2,width,height));
+		}
+
+		static LuaQuad2D* create(const Color4f& c,float width,float height)
+		{
+			LuaQuad2D* ret=new LuaQuad2D;
+			if(!ret->init(c))
+			{
+				delete ret;
+				return NULL;
+			}
+			ret->setSize(width,height);
+			return ret;
+		}
+		static LuaQuad2D* create(const Color4f& c,const Rect2D& rect)
+		{
+			LuaQuad2D* ret=new LuaQuad2D;
+			if(!ret->init(c))
+			{
+				delete ret;
+				return NULL;
+			}
+			ret->setRect2D(rect);
+			return ret;
 		}
 
 	public:

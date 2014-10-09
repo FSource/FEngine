@@ -38,6 +38,32 @@ Quad2D* Quad2D::create(const char* tex,float width,float height)
 }
 
 
+Quad2D* Quad2D::create(const Color4f& c,float width,float height)
+{
+	Quad2D* ret=new Quad2D;
+	if(!ret->init(c))
+	{
+		delete ret;
+		return NULL;
+	}
+	ret->setSize(width,height);
+	return ret;
+}
+
+
+Quad2D* Quad2D::create(const Color4f& c,const Rect2D& rect)
+{
+	Quad2D* ret=new Quad2D;
+	if(!ret->init(c))
+	{
+		delete ret;
+		return NULL;
+	}
+	ret->setRect2D(rect);
+	return ret;
+}
+
+
 
 
 void Quad2D::setTexture(Texture2D* tex)
@@ -488,35 +514,12 @@ void Quad2D::calFinishVertics()
 
 }
 
-
-
-
 void Quad2D::draw(Render* render,bool updateMatrix)
 {
-	if(m_texture==NULL||!m_program||!m_material)
-	{
-		return;
-	}
-
 	if(updateMatrix)
 	{
 		updateWorldMatrix();
 	}
-
-	render->pushMatrix();
-	render->mulMatrix(&m_worldMatrix);
-
-	render->setProgram(m_program);
-	m_material->configRender(render);
-
-
-	render->bindTexture(m_texture,0);
-	render->disableAllAttrArray();
-
-
-	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
-
 
 	if(m_vertiesDirty)
 	{
@@ -524,7 +527,78 @@ void Quad2D::draw(Render* render,bool updateMatrix)
 		m_vertiesDirty=false;
 	}
 
+	render->pushMatrix();
+	render->mulMatrix(&m_worldMatrix);
+	if(m_renderMode==MODE_TEXTURE)
+	{
+		drawTextureMode(render);
+	}
+	else 
+	{
+		drawColorMode(render);
+	}
+
+	render->popMatrix();
+
+}
+
+
+
+
+void Quad2D::drawColorMode(Render* render)
+{	
+	if(!m_programColor||!m_material)
+	{
+		return;
+	}
+
+	render->setProgram(m_programColor);
+	m_material->configRender(render);
+
+	render->disableAllAttrArray();
+
 	int size=m_finishVertices.size();
+
+	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+
+
+	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,size,
+										sizeof(Fs_V2F_T2F),
+										&m_finishVertices[0].v2);
+
+
+	if(m_vertiesMode==Render::TRIANGLE_INDEX)
+	{
+		render->drawFace3(&m_faces[0],m_faces.size());
+	}
+	else 
+	{
+		render->drawArray(m_vertiesMode,0,size);
+	}
+
+}
+
+
+
+void Quad2D::drawTextureMode(Render* render)
+{
+	if(m_texture==NULL||!m_programTex||!m_material)
+	{
+		return;
+	}
+
+
+
+	render->setProgram(m_programTex);
+	m_material->configRender(render);
+
+	render->bindTexture(m_texture,0);
+	render->disableAllAttrArray();
+
+	int size=m_finishVertices.size();
+
+	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
 
 
 	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,size,
@@ -545,7 +619,6 @@ void Quad2D::draw(Render* render,bool updateMatrix)
 		render->drawArray(m_vertiesMode,0,size);
 	}
 
-	render->popMatrix();
 }
 
 bool Quad2D::hit2D(float x,float y)
@@ -586,12 +659,16 @@ Quad2D::Quad2D()
 	m_anchorY=0.5;
 	m_vertiesDirty=true;
 	m_vertiesMode=Render::TRIANGLE_INDEX;
+	m_renderMode=MODE_TEXTURE;
 
 	m_material=TextureMaterial::create();
 	m_material->addRef();
 
-	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
-	FS_SAFE_ADD_REF(m_program);
+	m_programTex=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
+	FS_SAFE_ADD_REF(m_programTex);
+
+	m_programColor=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F);
+	FS_SAFE_ADD_REF(m_programColor);
 
 	setRegionRect(0,0,1,1);
 }
@@ -630,15 +707,23 @@ bool Quad2D::init(Texture2D* tex)
 	m_height=(float)tex->getHeight();
 	FS_SAFE_ASSIGN(m_texture,tex);
 	return true;
+
 }
 
+bool Quad2D::init(const Color4f& c)
+{
+	m_material->setColor(c);
+	m_renderMode=MODE_COLOR;
+	return true;
+}
 
 
 void Quad2D::destruct()
 {
 	FS_SAFE_DEC_REF(m_texture);
 	FS_SAFE_DEC_REF(m_material);
-	FS_SAFE_DEC_REF(m_program);
+	FS_SAFE_DEC_REF(m_programColor);
+	FS_SAFE_DEC_REF(m_programTex);
 }
 
 

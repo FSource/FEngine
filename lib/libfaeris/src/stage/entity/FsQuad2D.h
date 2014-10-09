@@ -22,6 +22,16 @@ class Program;
 class Quad2D:public Entity 
 {
 	public:
+		enum
+		{
+			MODE_TEXTURE,
+			MODE_COLOR
+		};
+
+	public:
+		static Quad2D* create(const Color4f& c,float width,float height);
+		static Quad2D* create(const Color4f& c,const Rect2D& rect);
+
 		static Quad2D* create();
 		static Quad2D* create(const char* tex);
 		static Quad2D* create(const char* tex,const Rect2D& rect);
@@ -29,7 +39,7 @@ class Quad2D:public Entity
 
 	public:
 		/* material */
-		void setColor(Color4f c){m_material->setColor(c);}
+		void setColor(const Color4f& c){m_material->setColor(c);}
 		Color4f getColor(){return m_material->getColor();}
 
 		void setOpacity(float opacity){m_material->setOpacity(opacity);}
@@ -41,9 +51,38 @@ class Quad2D:public Entity
 		TextureMaterial* getMaterial(){return m_material;}
 		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
 
-		Program* getShader(){return m_program;}
-		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
+		Program* getTextureShader(){return m_programTex;}
+		void setTextureShader(Program* shader){FS_SAFE_ASSIGN(m_programTex,shader);}
 
+		Program* getColorShader(){return m_programColor;}
+		void setColorShader(Program* shader){FS_SAFE_ASSIGN(m_programColor,shader);}
+
+		void setShader(Program* shader)
+		{
+			if(m_renderMode==MODE_TEXTURE)
+			{
+				setTextureShader(shader);
+			}
+			else 
+			{
+				setColorShader(shader);
+			}
+		}
+
+		Program* getShader()
+		{
+			if(m_renderMode==MODE_TEXTURE)
+			{
+				return getTextureShader();
+			}
+			return getColorShader();
+		}
+
+
+
+
+		void setRenderMode(int value){m_renderMode=value;}
+		int getRenderMode(){return m_renderMode;}
 
 	public:
 
@@ -65,7 +104,7 @@ class Quad2D:public Entity
 		float getWidth();
 		float getHeight();
 		void getSize(float* width,float* height);
-			
+
 		void setAnchorX(float x);
 		void setAnchorY(float y);
 		void setAnchor(float x,float y);
@@ -81,28 +120,30 @@ class Quad2D:public Entity
 		void setRegionCircle(float x,float y,float radius,int precision);
 		void setRegionCircle(const Vector2& center,float radius,int precision);
 		void setRegionCircle(float x,float y,float radius,
-							 float start_angle,float end_angle,
-							 int precision);
+				float start_angle,float end_angle,
+				int precision);
 		void setRegionCircle(const Vector2& center,float radius,
-							 float start_angle,float end_angle,
-							 int precision);
+				float start_angle,float end_angle,
+				int precision);
 
 
 		void setRegionEllipse(float x,float y,float a,float b,int precision);
 		void setRegionEllipse(const Vector2& center,float a,float b,int precision);
 
 		void setRegionEllipse(float x,float y,float a,float b,
-							 float start_angle,float end_angle,
-							 int precision);
+				float start_angle,float end_angle,
+				int precision);
 		void setRegionEllipse(const Vector2& center,float a,float b,
-							 float start_angle,float end_angle,
-							 int precision);
+				float start_angle,float end_angle,
+				int precision);
 
 
 		/* When Texture Size Change, You Should ReCall setRegionScale9 to Correct Region*/
 		void setRegionScale9(float edge);
 		void setRegionScale9(const Vector4& edge);
 		void setRegionScale9(float l,float r,float b,float t);
+
+
 
 
 	public:
@@ -120,9 +161,14 @@ class Quad2D:public Entity
 		bool init();
 		bool init(const char* tex);
 		bool init(Texture2D* tex);
+		bool init(const Color4f& c);
+
+
 		void destruct();
 
 		void calFinishVertics();
+		void drawTextureMode(Render*);
+		void drawColorMode(Render*);
 
 
 	private:
@@ -139,10 +185,11 @@ class Quad2D:public Entity
 		bool m_vertiesDirty;
 		int m_vertiesMode;
 
-
+		int m_renderMode;
 
 		TextureMaterial* m_material;
-		Program* m_program;
+		Program* m_programTex;
+		Program* m_programColor;
 };
 
 NS_FS_END 

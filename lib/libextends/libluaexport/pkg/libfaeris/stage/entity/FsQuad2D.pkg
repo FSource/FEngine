@@ -4,6 +4,13 @@ $#include "luaext/FsLuaEntity.h"
 class Quad2D@__Quad2D:public Entity 
 {
 	public:
+		enum
+		{
+			MODE_TEXTURE,
+			MODE_COLOR
+		};
+
+	public:
 		/* material */
 		void setColor(Color c);
 		void setColor(Color4f c);
@@ -20,6 +27,16 @@ class Quad2D@__Quad2D:public Entity
 
 		Program* getShader();
 		void setShader(Program* shader);
+
+		Program* getTextureShader();
+		void setTextureShader(Program* shader);
+
+		Program* getColorShader();
+		void setColorShader(Program* shader);
+
+
+		void setRenderMode(int value);
+		int getRenderMode();
 
 	public:
 		/* texture */
@@ -57,22 +74,22 @@ class Quad2D@__Quad2D:public Entity
 		void setRegionCircle(float x,float y,float radius,int precision);
 		void setRegionCircle(const Vector2& center,float radius,int precision);
 		void setRegionCircle(float x,float y,float radius,
-							 float start_angle,float end_angle,
-							 int precision);
+				float start_angle,float end_angle,
+				int precision);
 		void setRegionCircle(const Vector2& center,float radius,
-							 float start_angle,float end_angle,
-							 int precision);
+				float start_angle,float end_angle,
+				int precision);
 
 
 		void setRegionEllipse(float x,float y,float a,float b,int precision);
 		void setRegionEllipse(const Vector2& center,float a,float b,int precision);
 
 		void setRegionEllipse(float x,float y,float a,float b,
-							 float start_angle,float end_angle,
-							 int precision);
+				float start_angle,float end_angle,
+				int precision);
 		void setRegionEllipse(const Vector2& center,float a,float b,
-							 float start_angle,float end_angle,
-							 int precision);;
+				float start_angle,float end_angle,
+				int precision);;
 
 		/* When Texture Size Change, You Should ReCall setRegionScale9 to Correct Region*/
 		void setRegionScale9(float edge);
@@ -88,10 +105,22 @@ class Quad2D@__Quad2D:public Entity
 class LuaQuad2D@Quad2D:public Quad2D
 {
 	public:
+		enum
+		{
+			MODE_TEXTURE,
+			MODE_COLOR
+		};
+
+	public:
 		static LuaQuad2D* create();
 		static LuaQuad2D* create(const char* tex);
 		static LuaQuad2D* create(const char* tex,Rect2D);
 		static LuaQuad2D* create(const char* text,float width,float height);
+
+		static LuaQuad2D* create(const Color4f& c,float width,float height);
+		static LuaQuad2D* create(const Color& c,float width,float height);
+		static LuaQuad2D* create(const Color4f& c,const Rect2D& rect);
+		static LuaQuad2D* create(const Color& c,const Rect2D& rect);
 
 	public:
 		void onDraw@draw(Render* r);
