@@ -21,6 +21,12 @@ class Layer2D@__Layer2D:public Layer
 		/* eliminate */
 		void setEliminate(bool eliminate);
 		bool getEliminate();
+
+		/* entity */
+		void add(Entity* entity);
+		void remove(Entity* entity);
+		void clearEntity();
+		int getEntityNu();
 };
 
 class LuaLayer2D@Layer2D:public Layer2D

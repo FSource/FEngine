@@ -55,6 +55,10 @@ class Entity :public ActionTarget
 		float getZorder();
 		void setZorder(float z);
 		Layer* getLayer();
+
+		/* please don't call setLayer directly */
+		void setLayer(Layer* layer);
+		
 		Entity* getParent();
 		Scene* getScene();
 
@@ -174,6 +178,8 @@ class Entity :public ActionTarget
 		*/
 
 
+	
+
 
 	protected:
 		Entity();
@@ -185,7 +191,7 @@ class Entity :public ActionTarget
 		void getAllChild(FsArray* array);
 	
 		void setParent(Entity* parent);
-		void setLayer(Layer* layer);
+
 
 		void sortChildren();
 

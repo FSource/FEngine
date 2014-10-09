@@ -4,15 +4,17 @@
 #include "stage/FsActionTarget.h"
 #include "math/FsRect2D.h"
 #include "math/FsVector3.h"
+
+
+
 NS_FS_BEGIN
-class Entity;
 class Scene;
 class Render;
 class FsDict;
 class FsSlowDict;
 class Vector2;
 class TouchEvent;
-class Scene;
+class Entity;
 
 class Layer:public ActionTarget
 {
@@ -40,31 +42,18 @@ class Layer:public ActionTarget
 		void setScissorEnabled(bool enable){m_scissorEnabled=enable;}
 
 
-		/* project matrix */
-		virtual Matrix4 getProjectMatrix()=0;
-		virtual Vector3 toLayerCoord(const Vector3& v);
-
-
-		/* entity */
-		void add(Entity* entity);
-		void remove(Entity* entity);
-		void clearEntity();
-		int getEntityNu();
-		
-
-
-
 		/* scene */
 		Scene* getScene();
-
 		/* WARN: Please don't call this interface, it used for Scene 
 		 *       When Layer add to Scene
 		 */
 		void setScene(Scene* scene);
+
 	public:
+
 		/* event hook */
 		virtual void update(float dt);
-		virtual void draw(Render* render);
+		virtual void draw(Render* render)=0;
 
 		/* touch event */
 		virtual bool touchBegin(float x,float y);
@@ -78,6 +67,13 @@ class Layer:public ActionTarget
 		virtual bool touchesPointerUp(TouchEvent* event);
 		virtual bool touchesEnd(TouchEvent* event);
 
+		/* project matrix */
+		virtual Matrix4 getProjectMatrix()=0;
+		virtual Vector3 toLayerCoord(const Vector3& v);
+
+		virtual void add(Entity* entity);
+		virtual void remove(Entity* entity);
+		virtual void clearEntity();
 
 
 		/* inherit FsObject */
@@ -91,14 +87,8 @@ class Layer:public ActionTarget
 		virtual ~Layer();
 		void init();
 		void destruct();
-		void updateAllWorldMatrix();
-
-		void getTouchEnabledEntity(std::vector<Entity*>* e);
-		void sortEntity(std::vector<Entity*>* e);
-
 
 	protected:
-		FsSlowDict* m_entity;  /* direct add to layer */
 		bool m_visible;
 
 		bool m_touchEnabled;
@@ -108,16 +98,10 @@ class Layer:public ActionTarget
 		bool m_dispatchTouchesEnabled;
 
 
-		Entity* m_touchFocus;
-
-
-
 		Rect2D m_scissorArea;
 		bool m_scissorEnabled;
-
 		Scene* m_scene;  /* weak ref */
 
-		uint32_t m_addOlder;
 
 		friend class Scene;
 
@@ -125,3 +109,7 @@ class Layer:public ActionTarget
 NS_FS_END
 
 #endif /*_FS_LAYER_H_*/
+
+
+
+
