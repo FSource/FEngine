@@ -1,4 +1,10 @@
 tmp
+libreality
+*.idb
+*.lastbuildstate
+*.tlog
+*.sdf
+*.opensdf
 *.fgz
 *.pyc
 *.dep
@@ -49,8 +55,9 @@ temp
 *.swo
 assets
 *.mp3
-
-
+*.debug 
+*.release
+`
 *.exp
 *.map
 lib/library/win32/obj
