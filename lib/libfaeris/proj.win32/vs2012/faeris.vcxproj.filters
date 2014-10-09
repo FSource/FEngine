@@ -980,7 +980,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="..\..\src\math\FsVector2.inl">
       <Filter>src\math</Filter>
     </None>

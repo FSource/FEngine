@@ -389,7 +389,6 @@
     <None Include="..\..\src\stage\entity\FsEntity.inl" />
     <None Include="..\..\src\support\felis\xir_grammer.y" />
     <None Include="..\..\src\support\util\FsString.inl" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
