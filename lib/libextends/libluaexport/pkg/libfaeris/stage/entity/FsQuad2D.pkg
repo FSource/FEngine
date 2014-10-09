@@ -21,17 +21,12 @@ class Quad2D@__Quad2D:public Entity
 		Program* getShader();
 		void setShader(Program* shader);
 
-
 	public:
 		/* texture */
-		void setResourceUrl(const char* name);
 		void setTexture(const char* tex);
+		void setResourceUrl(const char* name);
 		void setTexture(Texture2D* tex);
 		Texture2D* getTexture();
-
-		/* texture coord */
-		void setTextureCoord(const Rect2D& coord);
-		Rect2D getTextureCoord();
 
 
 		/* Rect2D */
@@ -45,7 +40,7 @@ class Quad2D@__Quad2D:public Entity
 		float getWidth();
 		float getHeight();
 		void getSize(float* width,float* height);
-			
+
 		void setAnchorX(float x);
 		void setAnchorY(float y);
 		void setAnchor(float x,float y);
@@ -53,6 +48,39 @@ class Quad2D@__Quad2D:public Entity
 
 		float getAnchorX();
 		float getAnchorY();
+
+	public:
+		void setRegionRect(float x,float y,float w,float h);
+		void setRegionRect(const Rect2D& rect);
+
+
+		void setRegionCircle(float x,float y,float radius,int precision);
+		void setRegionCircle(const Vector2& center,float radius,int precision);
+		void setRegionCircle(float x,float y,float radius,
+							 float start_angle,float end_angle,
+							 int precision);
+		void setRegionCircle(const Vector2& center,float radius,
+							 float start_angle,float end_angle,
+							 int precision);
+
+
+		void setRegionEllipse(float x,float y,float a,float b,int precision);
+		void setRegionEllipse(const Vector2& center,float a,float b,int precision);
+
+		void setRegionEllipse(float x,float y,float a,float b,
+							 float start_angle,float end_angle,
+							 int precision);
+		void setRegionEllipse(const Vector2& center,float a,float b,
+							 float start_angle,float end_angle,
+							 int precision);;
+
+		/* When Texture Size Change, You Should ReCall setRegionScale9 to Correct Region*/
+		void setRegionScale9(float edge);
+		void setRegionScale9(const Vector4& edge);
+		void setRegionScale9(float l,float r,float b,float t);
+
+
+
 };
 
 

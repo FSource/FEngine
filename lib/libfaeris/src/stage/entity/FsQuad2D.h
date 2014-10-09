@@ -1,13 +1,18 @@
 #ifndef _FS_QUAD_2D_H_
 #define _FS_QUAD_2D_H_ 
 
+#include <vector>
 #include "FsMacros.h"
 #include "stage/entity/FsEntity.h"
 #include "math/FsRect2D.h"
 #include "graphics/FsColor.h"
+#include "math/FsVector2.h"
+#include "math/FsVector4.h"
+#include "math/FsVertices.h"
 
 #include "graphics/material/FsTextureMaterial.h"
 #include "graphics/FsProgram.h"
+
 NS_FS_BEGIN
 class Texture2D;
 
@@ -48,10 +53,6 @@ class Quad2D:public Entity
 		void setTexture(Texture2D* tex);
 		Texture2D* getTexture();
 
-		/* texture coord */
-		void setTextureCoord(const Rect2D& coord);
-		Rect2D getTextureCoord();
-
 
 		/* Rect2D */
 		void setRect2D(const Rect2D& rect);
@@ -74,6 +75,37 @@ class Quad2D:public Entity
 		float getAnchorY();
 
 	public:
+		void setRegionRect(float x,float y,float w,float h);
+		void setRegionRect(const Rect2D& rect);
+
+		void setRegionCircle(float x,float y,float radius,int precision);
+		void setRegionCircle(const Vector2& center,float radius,int precision);
+		void setRegionCircle(float x,float y,float radius,
+							 float start_angle,float end_angle,
+							 int precision);
+		void setRegionCircle(const Vector2& center,float radius,
+							 float start_angle,float end_angle,
+							 int precision);
+
+
+		void setRegionEllipse(float x,float y,float a,float b,int precision);
+		void setRegionEllipse(const Vector2& center,float a,float b,int precision);
+
+		void setRegionEllipse(float x,float y,float a,float b,
+							 float start_angle,float end_angle,
+							 int precision);
+		void setRegionEllipse(const Vector2& center,float a,float b,
+							 float start_angle,float end_angle,
+							 int precision);
+
+
+		/* When Texture Size Change, You Should ReCall setRegionScale9 to Correct Region*/
+		void setRegionScale9(float edge);
+		void setRegionScale9(const Vector4& edge);
+		void setRegionScale9(float l,float r,float b,float t);
+
+
+	public:
 		/* inherit Entity */
 		virtual void draw(Render* r,bool updateMatrix);
 		virtual bool hit2D(float x,float y);
@@ -90,12 +122,24 @@ class Quad2D:public Entity
 		bool init(Texture2D* tex);
 		void destruct();
 
+		void calFinishVertics();
+
+
 	private:
 		float m_width,m_height;
 		float m_anchorX,m_anchorY;
 
-		Rect2D m_textureCoord;
 		Texture2D* m_texture;
+
+		std::vector<Fs_V2F_T2F> m_rawVertices;
+		std::vector<Fs_V2F_T2F> m_finishVertices;
+
+		std::vector<Face3> m_faces;
+
+		bool m_vertiesDirty;
+		int m_vertiesMode;
+
+
 
 		TextureMaterial* m_material;
 		Program* m_program;
