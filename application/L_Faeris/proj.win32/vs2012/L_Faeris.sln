@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib3rdextends", "..\..\..\.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libspinesprite", "..\..\..\..\lib\libextends\libspinesprite\proj.win32\vs2012\libspinesprite.vcxproj", "{F409901A-8879-47CF-93F5-F247A7E760F8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libfaerisext", "..\..\..\..\lib\libextends\libfaerisext\proj.win32\vs2012\libfaerisext.vcxproj", "{2377A174-2D0D-4B53-850C-E419F4514E4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -43,6 +45,10 @@ Global
 		{F409901A-8879-47CF-93F5-F247A7E760F8}.Debug|Win32.Build.0 = Debug|Win32
 		{F409901A-8879-47CF-93F5-F247A7E760F8}.Release|Win32.ActiveCfg = Release|Win32
 		{F409901A-8879-47CF-93F5-F247A7E760F8}.Release|Win32.Build.0 = Release|Win32
+		{2377A174-2D0D-4B53-850C-E419F4514E4C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2377A174-2D0D-4B53-850C-E419F4514E4C}.Debug|Win32.Build.0 = Debug|Win32
+		{2377A174-2D0D-4B53-850C-E419F4514E4C}.Release|Win32.ActiveCfg = Release|Win32
+		{2377A174-2D0D-4B53-850C-E419F4514E4C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
