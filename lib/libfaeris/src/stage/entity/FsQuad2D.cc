@@ -79,6 +79,7 @@ void Quad2D::setTexture(Texture2D* tex)
 		m_width=0;
 		m_height=0;
 	}
+	m_vertiesDirty=true;
 
 }
 void Quad2D::setTexture(const char* filename)
@@ -95,6 +96,7 @@ void Quad2D::setTexture(const char* filename)
 		m_width=0;
 		m_height=0;
 	}
+	m_vertiesDirty=true;
 }
 void Quad2D::setResourceUrl(const char* name)
 {
@@ -116,6 +118,7 @@ void Quad2D::setRect2D(const Rect2D& rect)
 
 	m_anchorX=-rect.x/m_width;
 	m_anchorY=-rect.y/m_height;
+	m_vertiesDirty=true;
 }
 
 
@@ -145,6 +148,7 @@ void Quad2D::setWidth(float width)
 	}
 
 	m_width=width;
+	m_vertiesDirty=true;
 }
 void Quad2D::setHeight(float height)
 {
@@ -154,6 +158,7 @@ void Quad2D::setHeight(float height)
 	}
 
 	m_height=height;
+	m_vertiesDirty=true;
 }
 
 

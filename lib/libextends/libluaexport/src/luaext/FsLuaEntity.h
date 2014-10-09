@@ -6,7 +6,7 @@
 #include "FsObject.h"
 #include "luaext/FsTEntity.h"
 #include "stage/entity/FsEntity.h"
-#include "stage/entity/FsColorQuad2D.h"
+
 #include "stage/entity/FsQuad2D.h"
 #include "stage/entity/FsSprite2D.h"
 #include "stage/entity/FsLabelTTF.h"
