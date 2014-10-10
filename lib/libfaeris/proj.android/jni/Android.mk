@@ -12,7 +12,7 @@ LOCAL_CFLAGS :=     -I$(LOCAL_PATH)/../../src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/libpng/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/zlib/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/minizip/include \
- 					-I$(LOCAL_PATH)/../../../lib3rdparty/curl/include \
+ 					-I$(LOCAL_PATH)/../../../lib3rdparty/curl/include_android \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/fmod/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/jsonc/src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/libjpeg/include.android \
@@ -36,17 +36,17 @@ LOCAL_SRC_FILES :=  \
 					../../src/stage/entity/FsParticle2DEffect.cc \
 					../../src/stage/entity/FsVertexPolygon.cc \
 					../../src/stage/entity/FsPanel.cc \
-					../../src/stage/FsDynamicView.cc \
-					../../src/stage/FsListView.cc \
-					../../src/stage/FsPageView.cc \
-					../../src/stage/FsPressButton.cc \
-					../../src/stage/FsScroller.cc \
-					../../src/stage/FsScrollView.cc \
-					../../src/stage/FsScrollWidget.cc \
-					../../src/stage/FsStateButton.cc \
-					../../src/stage/FsToggleButton.cc \
-					../../src/stage/FsUiWidget.cc \
-					../../src/stage/FsVelocityTracker.cc \
+					../../src/stage/ui/FsDynamicView.cc \
+					../../src/stage/ui/FsListView.cc \
+					../../src/stage/ui/FsPageView.cc \
+					../../src/stage/ui/FsPressButton.cc \
+					../../src/stage/ui/FsScroller.cc \
+					../../src/stage/ui/FsScrollView.cc \
+					../../src/stage/ui/FsScrollWidget.cc \
+					../../src/stage/ui/FsStateButton.cc \
+					../../src/stage/ui/FsToggleButton.cc \
+					../../src/stage/ui/FsUiWidget.cc \
+					../../src/stage/ui/FsVelocityTracker.cc \
 					../../src/stage/layer/FsColorLayer.cc \
 					../../src/stage/layer/FsLayer.cc \
 					../../src/stage/layer/FsLayer2D.cc \

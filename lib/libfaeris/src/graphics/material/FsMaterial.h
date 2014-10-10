@@ -143,7 +143,7 @@ class Material:public FsObject
 		Color4f m_color;
 		float m_opacity;
 
-		friend Render;
+		friend class Render;
 };
 
 

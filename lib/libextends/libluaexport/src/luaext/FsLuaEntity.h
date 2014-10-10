@@ -330,21 +330,21 @@ class LuaToggleButton:public TEntity<ToggleButton>
 			return ret;
 		}
 
-		static LuaToggleButton* LuaToggleButton::createWithDarkStyle(Texture2D* tex,const Color4f& dark)
+		static LuaToggleButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark)
 		{
 			LuaToggleButton* ret=new LuaToggleButton();
 			ret->initWithDarkStyle(tex,dark);
 			return ret;
 		}
 
-		static LuaToggleButton* LuaToggleButton::createWithTextureStyle(const char* fileon,const char* fileoff)
+		static LuaToggleButton* createWithTextureStyle(const char* fileon,const char* fileoff)
 		{
 			LuaToggleButton* ret=new LuaToggleButton();
 			ret->initWithTextureStyle(fileon,fileoff);
 			return ret;
 		}
 
-		static LuaToggleButton* LuaToggleButton::createWithTextureStyle(Texture2D* on,Texture2D* off)
+		static LuaToggleButton* createWithTextureStyle(Texture2D* on,Texture2D* off)
 		{
 			LuaToggleButton* ret=new LuaToggleButton();
 			ret->initWithTextureStyle(on,off);
