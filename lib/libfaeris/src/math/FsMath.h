@@ -28,8 +28,20 @@ inline float acosr(float radian) { return ::acosf(radian); }
 inline float cosa(float angle) { return ::cosf(angleToRadian(angle)); }
 inline float sina(float angle) { return ::sinf(angleToRadian(angle)); }
 inline float tana(float angle) { return ::tanf(angleToRadian(angle)); }
-inline float acosa(float angle) { return ::acosf(angleToRadian(angle));
+inline float acosa(float angle) { return ::acosf(angleToRadian(angle)); }
+
+
+inline float minf(float a,float b)
+{
+	return a<b?a:b;
 }
+
+inline float maxf(float a,float b)
+{
+	return a<b?b:a;
+}
+
+
 
 inline float clampf(float value,float min,float max)
 {
