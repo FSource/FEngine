@@ -63,19 +63,7 @@ int random();
 int random(int begin,int end);
 float random(float begin,float end);
 
-inline int floatEqual(float a,float b)
-{
-	return abs(a-b)<0.0001?1:0;
-}
 
-template<typename T> inline int equal(T a,T b)
-{
-	return a==b;
-}
-template<> inline int equal<float>(float a,float b)
-{
-	return floatEqual(a,b);
-}
 
 
 
@@ -97,7 +85,21 @@ template<typename T> inline T sign(T f)
 	}
 }
 
+inline int floatEqual(float a,float b)
+{
+	return abs(a-b)<0.0001?1:0;
+}
 
+template<typename T> inline int equal(T a,T b)
+{
+	return a==b;
+}
+
+template<> inline int equal<float>(float a,float b)
+{
+	return floatEqual(a,b);
+
+}
 
 
 

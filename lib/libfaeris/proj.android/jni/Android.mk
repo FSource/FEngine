@@ -12,7 +12,7 @@ LOCAL_CFLAGS :=     -I$(LOCAL_PATH)/../../src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/libpng/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/zlib/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/minizip/include \
- 					-I$(LOCAL_PATH)/../../../lib3rdparty/curl/include \
+ 					-I$(LOCAL_PATH)/../../../lib3rdparty/curl/include_android \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/fmod/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/jsonc/src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/libjpeg/include.android \
@@ -26,7 +26,6 @@ LOCAL_SRC_FILES :=  \
 					../../src/FsFaerisModule.cc \
 					../../src/extends/FsScriptEngine.cc \
 					../../src/stage/FsActionTarget.cc \
-					../../src/stage/entity/FsColorQuad2D.cc \
 					../../src/stage/entity/FsEntity.cc \
 					../../src/stage/entity/FsLabelTTF.cc \
 					../../src/stage/entity/FsQuad2D.cc \
@@ -37,7 +36,17 @@ LOCAL_SRC_FILES :=  \
 					../../src/stage/entity/FsParticle2DEffect.cc \
 					../../src/stage/entity/FsVertexPolygon.cc \
 					../../src/stage/entity/FsPanel.cc \
-					../../src/stage/entity/FsButton.cc \
+					../../src/stage/ui/FsDynamicView.cc \
+					../../src/stage/ui/FsListView.cc \
+					../../src/stage/ui/FsPageView.cc \
+					../../src/stage/ui/FsPressButton.cc \
+					../../src/stage/ui/FsScroller.cc \
+					../../src/stage/ui/FsScrollView.cc \
+					../../src/stage/ui/FsScrollWidget.cc \
+					../../src/stage/ui/FsStateButton.cc \
+					../../src/stage/ui/FsToggleButton.cc \
+					../../src/stage/ui/FsUiWidget.cc \
+					../../src/stage/ui/FsVelocityTracker.cc \
 					../../src/stage/layer/FsColorLayer.cc \
 					../../src/stage/layer/FsLayer.cc \
 					../../src/stage/layer/FsLayer2D.cc \
@@ -76,6 +85,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/sys/platform/android/FsJniUtil.cc \
 					../../src/sys/FsTimer.cc \
 					../../src/sys/FsWindow.cc \
+					../../src/math/FsMath.cc \
 					../../src/math/FsMathUtil.cc \
 					../../src/math/FsMatrix4.cc \
 					../../src/math/FsRect2D.cc \
