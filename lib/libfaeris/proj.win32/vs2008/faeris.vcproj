@@ -834,11 +834,19 @@
 					Name="entity"
 					>
 					<File
+<<<<<<< HEAD:lib/libfaeris/proj.win32/vs2008/faeris.vcproj
 						RelativePath="..\src\stage\entity\FsColorQuad2D.cc"
 						>
 					</File>
 					<File
 						RelativePath="..\src\stage\entity\FsColorQuad2D.h"
+=======
+						RelativePath="..\src\stage\entity\FsButton.cc"
+						>
+					</File>
+					<File
+						RelativePath="..\src\stage\entity\FsButton.h"
+>>>>>>> v3.0:lib/libfaeris/proj.vs2008/faeris.vcproj
 						>
 					</File>
 					<File

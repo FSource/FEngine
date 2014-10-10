@@ -58,6 +58,7 @@ class Render:public FsObject
 			TRIANGLES,
 			TRIANGLE_STRIP,
 			TRIANGLE_FAN,
+			TRIANGLE_INDEX,
 
 			/* uniform */
 

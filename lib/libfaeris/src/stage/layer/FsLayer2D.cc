@@ -33,6 +33,7 @@ const char* Layer2D::className()
 {
 	return FS_LAYER_2D_CLASS_NAME;
 }
+
 Layer2D* Layer2D::create()
 {
 	Layer2D* ret=new Layer2D;
@@ -198,11 +199,213 @@ Layer2D::Layer2D()
 	m_viewArea.set(0,0,1,1);
 	m_sortMode=SORT_NONE;
 	m_eliminate=false;
-}
-Layer2D::~Layer2D()
-{
+	m_entity=FsSlowDict::create();
+	FS_NO_REF_DESTROY(m_entity);
+	m_touchFocus=NULL;
 }
 
+Layer2D::~Layer2D()
+{
+	clearEntity();
+	FS_DESTROY(m_entity);
+}
+
+
+void Layer2D::add(Entity* entity)
+{
+	FS_TRACE_WARN_ON(entity==NULL,"Entity Is NULL");
+	if(entity->getLayer()==this)
+	{
+		FS_TRACE_WARN("object all ready add to this layer");
+		return ;
+	}
+
+	if(entity->getParent()!=NULL)
+	{
+		FS_TRACE_WARN("object is indirect owner by another layer");
+		return ;
+	}
+
+	m_entity->insert(entity,entity);
+	entity->setAddOlder(m_addOlder++);
+	entity->setLayer(this);
+}
+
+
+void Layer2D::remove(Entity* entity)
+{
+	if(entity->getLayer()!=this)
+	{
+		FS_TRACE_WARN("Object is not Own by this layer");
+		return ;
+	}
+
+	if(entity->getParent()!=NULL)
+	{
+		FS_TRACE_WARN("object is indirect owner by this layer,can't remove");
+	}
+	entity->setLayer(NULL);
+	m_entity->remove(entity);
+	if(m_touchFocus==entity)
+	{
+		m_touchFocus=NULL;
+	}
+}
+
+void Layer2D::clearEntity()
+{
+	FsDict::Iterator* iter=m_entity->takeIterator();
+	while(!iter->done())
+	{
+		Entity* entity=(Entity*)iter->getValue();
+		entity->setLayer(NULL);
+		iter->next();
+	}
+	m_entity->clear();
+	delete iter;
+	m_touchFocus=NULL;
+}
+
+int Layer2D::getEntityNu()
+{
+	return m_entity->size();
+}
+
+void Layer2D::update(float dt)
+{
+	updateAction(dt);
+	updateEntity(dt);
+}
+
+void Layer2D::updateEntity(float dt)
+{
+	m_entity->lock();
+	FsDict::Iterator* iter=m_entity->takeIterator();
+	while(!iter->done())
+	{
+		Entity* entity=(Entity*)iter->getValue();
+		if(entity->getLayer()==this) 
+		{
+			if(entity->getVisibles()) entity->updates(dt);
+		}
+		iter->next();
+	}
+	delete iter;
+
+	m_entity->unlock();
+	m_entity->flush();
+
+}
+
+bool Layer2D::touchBegin(float x,float y)
+{
+	m_touchFocus=NULL;
+	m_entity->lock();
+	Vector3 tv=toLayerCoord(Vector3(x,y,0));
+	if(m_dispatchTouchEnabled)
+	{
+		std::vector<Entity*> entitys;
+		getTouchEnabledEntity(&entitys);
+		sortEntity(&entitys);
+		int entity_nu=entitys.size();
+		for(int i=entity_nu-1;i>=0;i--)
+		{
+			Entity* e=entitys[i];
+			if(e->getLayer()==this&&e->hit2D(tv.x,tv.y))
+			{
+				/* NOTE: entity will detach when called touchBegin */
+				bool ret=e->touchBegin(tv.x,tv.y);
+				/* check entity accept event and not detach */
+				if(ret&&e->getLayer()==this)
+				{
+					m_touchFocus=e;
+					break;  
+				}
+			}
+		}
+	}
+	m_entity->unlock();
+	m_entity->flush();
+	return m_touchFocus!=NULL;
+}
+bool Layer2D::touchMove(float x,float y)
+{
+	Vector3 tv=toLayerCoord(Vector3(x,y,0));
+	if(m_touchFocus) 
+	{
+		return m_touchFocus->touchMove(tv.x,tv.y);
+	}
+	return false;
+}
+bool Layer2D::touchEnd(float x,float y)
+{
+	Vector3 tv=toLayerCoord(Vector3(x,y,0));
+	if(m_touchFocus) 
+	{
+		bool ret=m_touchFocus->touchEnd(tv.x,tv.y);
+		m_touchFocus=NULL;
+		return ret;
+	}
+
+	return false;
+}
+
+
+/* touches event */
+bool Layer2D::touchesBegin(TouchEvent* event)
+{
+	return m_touchesEnabled;
+}
+
+bool Layer2D::touchesPointerDown(TouchEvent* event)
+{
+	return m_touchesEnabled;
+}
+
+bool Layer2D::touchesMove(TouchEvent* event)
+{
+	return m_touchesEnabled;
+}
+
+bool Layer2D::touchesPointerUp(TouchEvent* event)
+{
+	return m_touchesEnabled;
+}
+
+bool Layer2D::touchesEnd(TouchEvent* event)
+{
+	return m_touchesEnabled;
+}
+
+
+void Layer2D::updateAllWorldMatrix()
+{
+	FsDict::Iterator* iter= m_entity->takeIterator();
+
+	while(!iter->done())
+	{
+		Entity* entity=(Entity*) iter->getValue();
+		entity->updateAllWorldMatrix();
+		iter->next();
+	}
+	delete iter;
+}
+
+void Layer2D::getTouchEnabledEntity(std::vector<Entity*>* e)
+{
+	FsDict::Iterator* iter= m_entity->takeIterator();
+
+	while(!iter->done())
+	{
+		Entity* entity=(Entity*) iter->getValue();
+		if(entity->getTouchEnabled()&&entity->getVisible())
+		{
+			e->push_back(entity);
+		}
+		iter->next();
+	}
+	delete iter;
+}
 
 NS_FS_END
 

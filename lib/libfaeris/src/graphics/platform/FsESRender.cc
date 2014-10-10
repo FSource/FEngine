@@ -534,7 +534,7 @@ void Render::setBlend(int eq,int fsrc,int fdst)
 
 void Render::setUniform(int loc,int type,int count,void* value)
 {                                                                          
-	if(loc==-1)
+	if(loc<0)
 	{
 		//FS_TRACE_WARN("Ivalid Uniform Loc");
 		return ;

@@ -138,19 +138,22 @@ void fb2Draw::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& co
 	Render* r=Global::render();
 	r->pushMatrix();
 
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-
 	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
 
+	r->setProgram(m_program);
 	m_material->configRender(r);
+
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+
+
 
 	r->disableAllAttrArray();
 
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertexCount,0,vertex);
 	r->drawArray(Render::LINE_LOOP,0,vertexCount);
-	r->popMatrix();
+	r->popMatrix();	
 
 }
 
@@ -177,14 +180,17 @@ void fb2Draw::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2
 	Render* r=Global::render();
 	r->pushMatrix();
 
-	/* draw inner */
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-
 	m_material->setColor(Color4f(color.r*0.5f,color.g*0.5f,color.b*0.5f,0.5f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
-
+	r->setProgram(m_program);
 	m_material->configRender(r);
+
+
+	/* draw inner */
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+
+
 
 	r->disableAllAttrArray();
 
@@ -213,14 +219,15 @@ void fb2Draw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& col
 	Render* r=Global::render();
 	r->pushMatrix();
 
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	
 
 	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
+	r->setProgram(m_program);
 
 	m_material->configRender(r);
-
+	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
 
 	r->disableAllAttrArray();
 

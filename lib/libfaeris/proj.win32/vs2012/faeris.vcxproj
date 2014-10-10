@@ -154,7 +154,6 @@
     <ClInclude Include="..\..\src\stage\action\FsRotateAction.h" />
     <ClInclude Include="..\..\src\stage\action\FsScaleAction.h" />
     <ClInclude Include="..\..\src\stage\action\FsSeqAction.h" />
-    <ClInclude Include="..\..\src\stage\entity\FsColorQuad2D.h" />
     <ClInclude Include="..\..\src\stage\entity\FsEntity.h" />
     <ClInclude Include="..\..\src\stage\entity\FsLabelBitmap.h" />
     <ClInclude Include="..\..\src\stage\entity\FsLabelTTF.h" />
@@ -297,7 +296,6 @@
     <ClCompile Include="..\..\src\stage\action\FsRotateAction.cc" />
     <ClCompile Include="..\..\src\stage\action\FsScaleAction.cc" />
     <ClCompile Include="..\..\src\stage\action\FsSeqAction.cc" />
-    <ClCompile Include="..\..\src\stage\entity\FsColorQuad2D.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsEntity.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsLabelBitmap.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsLabelTTF.cc" />
