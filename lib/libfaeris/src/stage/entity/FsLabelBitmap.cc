@@ -5,6 +5,7 @@
 #include "support/data/FsIconv.h"
 #include "FsGlobal.h"
 #include "mgr/FsProgramMgr.h"
+#include "math/FsMathUtil.h"
 
 NS_FS_BEGIN
 

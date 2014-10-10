@@ -2,50 +2,72 @@
 #define  FY_MATH_VECTOR2_H_ 
 
 #include "FsMacros.h"
-#include "FsMathUtil.h"
+#include "FsMath.h"
 
 NS_FS_BEGIN
-class Vector2
+template<typename T>
+class TVector2
 {
 	public:
 		union
 		{
 			struct 
 			{
-				float x;
-				float y;
+				T x;
+				T y;
 			};
-			float v[2];
+			T v[2];
 		};
 	public:
-		Vector2(float fx,float fy);
-		Vector2();
-		Vector2 add(const Vector2& v)const;
-		Vector2 sub(const Vector2& v)const;
-		Vector2 scale(float k) const ;
-		float dot(const Vector2& v)const;
-		Vector2 normal()const;
-		void normalize();
-		Vector2 proj(const Vector2& v)const;
-		float angle(const Vector2& v)const;
-		float length() const;
-		float length2() const;
-		bool equal(const Vector2& v)const ;
-		void set(float _x,float _y);
+		TVector2(T fx,T fy);
+		TVector2();
 
-		Vector2 lerp(const Vector2& v,float t);
+		TVector2<T> add(const TVector2<T>& v)const;
+		TVector2<T> sub(const TVector2<T>& v)const;
+		TVector2<T> scale(T k) const ;
+
+		T dot(const TVector2<T>& v)const;
+
+		TVector2<T> normal()const;
+		void normalize();
+
+		TVector2<T> proj(const TVector2<T>& v)const;
+
+		T angle(const TVector2<T>& v)const;
+
+		T length() const;
+		T length2() const;
+
+		bool equal(const TVector2<T>& v)const ;
+		void set(T _x,T _y);
+
+		TVector2<T> lerp(const TVector2<T>& v,T t);
 
 		/* operator */
-		Vector2 operator + (const Vector2& v)const;
-		Vector2 operator - (const Vector2& v)const;
-		Vector2 operator / (float v) const ;
-		Vector2 operator * (float v) const ;
+		TVector2<T> operator + (const TVector2<T>& v)const;
+		TVector2<T> operator - (const TVector2<T>& v)const;
+		TVector2<T> operator / (T v) const ;
+		TVector2<T> operator * (T v) const ;
 
-		Vector2& operator +=(const Vector2& v);
+		TVector2<T>& operator +=(const TVector2<T>& v);
 };
 
 #include "FsVector2.inl"
+
+typedef TVector2<float> Vector2f;
+typedef TVector2<float> Vector2;
+
+typedef TVector2<uint16_t> Vector2ui;
+typedef TVector2<int16_t> Vector2i;
+
+
+
 NS_FS_END
 #endif 
+
+
+
+
+
 
 

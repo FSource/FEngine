@@ -10,7 +10,6 @@ class DirectorKeypadEventListener;
 class DirectorInputTextEventListener;
 
 class FsArray;
-class Vector2;
 class Render;
 class TouchEvent;
 

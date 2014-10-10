@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>libluaexport</ProjectName>
+    <ProjectGuid>{5489D600-2CBC-4EF5-803D-FEFCCFF64F98}</ProjectGuid>
+    <RootNamespace>luaexport</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>../../../../library/win32/\</OutDir>
+    <IntDir>../../../../library/win32/obj/$(ProjectName).debug\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>../../../../library/win32/\</OutDir>
+    <IntDir>../../../../library/win32/obj/$(ProjectName).release\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libextends/libfaerisext/src;../../../../libextends/lib3rdextends/src;../../src;../../../../libfaeris/src/support;../../../../libfaeris/src;../../../../lib3rdparty/c99/include;../../../../lib3rdparty/tolua++/include;../../../../lib3rdparty/Box2D;../../../../lib3rdparty/ljson/src;../../../../lib3rdparty/pthread/include;../../../../lib3rdparty/lua/include;../../../libspinesprite/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)d.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../../../../libextends/libfaerisext/src;../../../../libextends/lib3rdextends/src;../../src;../../../../libfaeris/src/support;../../../../libfaeris/src;../../../../lib3rdparty/c99/include;../../../../lib3rdparty/tolua++/include;../../../../lib3rdparty/Box2D;../../../../lib3rdparty/ljson/src;../../../../lib3rdparty/pthread/include;../../../../lib3rdparty/lua/include;../../../libspinesprite/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\FsLuaEngine.cc" />
+    <ClCompile Include="..\..\src\toluaext++.cc" />
+    <ClCompile Include="..\..\src\luaext\FsLuaHttpRequest.cc" />
+    <ClCompile Include="..\..\src\luaext\FsLuaPayment.cc" />
+    <ClCompile Include="..\..\src\luaext\FsLuaScene.cc" />
+    <ClCompile Include="..\..\src\luaext\FsLuaSchedulerTarget.cc" />
+    <ClCompile Include="..\..\src\luaext\FsLuaSysEventListener.cc" />
+    <ClCompile Include="..\..\src\luaext\FsLuaTouchEventListener.cc" />
+    <ClCompile Include="..\..\src\luaexport\FsLibBox2d.cc" />
+    <ClCompile Include="..\..\src\luaexport\FsLibFaerisExport.cc" />
+    <ClCompile Include="..\..\src\luaexport\FsLibFaerisExtExport.cc" />
+    <ClCompile Include="..\..\src\luaexport\FsLibLuaScript.cc" />
+    <ClCompile Include="..\..\src\luaexport\FsLibSpineSprite.cc" />
+    <ClCompile Include="..\..\src\luaexport\FsLuaFuncExport.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\FsLuaEngine.h" />
+    <ClInclude Include="..\..\src\FsLuaMacros.h" />
+    <ClInclude Include="..\..\src\toluaext++.h" />
+    <ClInclude Include="..\..\src\luaext\FsLuaAction.h" />
+    <ClInclude Include="..\..\src\luaext\FsLuaEntity.h" />
+    <ClInclude Include="..\..\src\luaext\FsLuaHttpRequest.h" />
+    <ClInclude Include="..\..\src\luaext\FsLuaLayer.h" />
+    <ClInclude Include="..\..\src\luaext\FsLuaPayment.h" />
+    <ClInclude Include="..\..\src\luaext\FsLuaScene.h" />
+    <ClInclude Include="..\..\src\luaext\FsLuaSchedulerTarget.h" />
+    <ClInclude Include="..\..\src\luaext\FsLuaSysEventListener.h" />
+    <ClInclude Include="..\..\src\luaext\FsLuaTouchEventListener.h" />
+    <ClInclude Include="..\..\src\luaext\FsTAction.h" />
+    <ClInclude Include="..\..\src\luaext\FsTEntity.h" />
+    <ClInclude Include="..\..\src\luaext\FsTLuaLayer.h" />
+    <ClInclude Include="..\..\src\luaexport\FsLuaExport.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

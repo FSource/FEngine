@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 2009 - 2013, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 2009 - 2014, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -43,6 +43,11 @@ typedef enum {
   IMAP_AUTHENTICATE_DIGESTMD5_RESP,
   IMAP_AUTHENTICATE_NTLM,
   IMAP_AUTHENTICATE_NTLM_TYPE2MSG,
+  IMAP_AUTHENTICATE_GSSAPI,
+  IMAP_AUTHENTICATE_GSSAPI_TOKEN,
+  IMAP_AUTHENTICATE_GSSAPI_NO_DATA,
+  IMAP_AUTHENTICATE_XOAUTH2,
+  IMAP_AUTHENTICATE_CANCEL,
   IMAP_AUTHENTICATE_FINAL,
   IMAP_LOGIN,
   IMAP_LIST,
@@ -51,6 +56,7 @@ typedef enum {
   IMAP_FETCH_FINAL,
   IMAP_APPEND,
   IMAP_APPEND_FINAL,
+  IMAP_SEARCH,
   IMAP_LOGOUT,
   IMAP_LAST          /* never used */
 } imapstate;
@@ -65,6 +71,8 @@ struct IMAP {
   char *uidvalidity;      /* UIDVALIDITY to check in select */
   char *uid;              /* Message UID to fetch */
   char *section;          /* Message SECTION to fetch */
+  char *partial;          /* Message PARTIAL to fetch */
+  char *query;            /* Query to search for */
   char *custom;           /* Custom request */
   char *custom_params;    /* Parameters for the custom request */
 };
@@ -76,6 +84,7 @@ struct imap_conn {
   imapstate state;            /* Always use imap.c:state() to change state! */
   bool ssldone;               /* Is connect() over SSL done? */
   unsigned int authmechs;     /* Accepted authentication mechanisms */
+  unsigned int preftype;      /* Preferred authentication type */
   unsigned int prefmech;      /* Preferred authentication mechanism */
   unsigned int authused;      /* Auth mechanism used for the connection */
   int cmdid;                  /* Last used command ID */
@@ -83,11 +92,20 @@ struct imap_conn {
   bool tls_supported;         /* StartTLS capability supported by server */
   bool login_disabled;        /* LOGIN command disabled by server */
   bool ir_supported;          /* Initial response supported by server */
+  bool mutual_auth;           /* Mutual authentication enabled (GSSAPI only) */
   char *mailbox;              /* The last selected mailbox */
   char *mailbox_uidvalidity;  /* UIDVALIDITY parsed from select response */
 };
 
 extern const struct Curl_handler Curl_handler_imap;
 extern const struct Curl_handler Curl_handler_imaps;
+
+/* Authentication type flags */
+#define IMAP_TYPE_CLEARTEXT (1 << 0)
+#define IMAP_TYPE_SASL      (1 << 1)
+
+/* Authentication type values */
+#define IMAP_TYPE_NONE      0
+#define IMAP_TYPE_ANY       ~0U
 
 #endif /* HEADER_CURL_IMAP_H */

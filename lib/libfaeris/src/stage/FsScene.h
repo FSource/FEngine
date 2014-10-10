@@ -7,11 +7,11 @@
 
 
 
+
 NS_FS_BEGIN
 class Render;
 class Layer;
 class FsSlowArray;
-class Vector2;
 class TouchEvent;
 class ObjectMgr;
 class ColorLayer;

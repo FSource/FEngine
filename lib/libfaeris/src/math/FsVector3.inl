@@ -1,29 +1,40 @@
 #ifndef FY_MATH_VECTORE3_INL_
 #define FY_MATH_VECTORE3_INL_
 
-inline Vector3::Vector3(float fx,float fy,float fz)
+template <typename T>
+inline TVector3<T>::TVector3(T fx,T fy,T fz)
 	:x(fx),y(fy),z(fz) {}
-inline Vector3::Vector3()
+
+
+template <typename T>
+inline TVector3<T>::TVector3()
 	:x(0),y(0),z(0)
 {}
 
-inline Vector3 Vector3::add(const Vector3& v) const
+template <typename T>
+inline TVector3<T> TVector3<T>::add(const TVector3<T>& v) const
 {
-	return Vector3(x+v.x,y+v.y,z+v.z);
+	return TVector3<T>(x+v.x,y+v.y,z+v.z);
 }
-inline Vector3 Vector3::sub(const Vector3& v) const 
+
+template <typename T>
+inline TVector3<T> TVector3<T>::sub(const TVector3<T>& v) const 
 {
-	return Vector3(x-v.x,y-v.y,z-v.z);
+	return TVector3<T>(x-v.x,y-v.y,z-v.z);
 }
-inline Vector3 Vector3::scale(float k) const 
+
+template <typename T>
+inline TVector3<T> TVector3<T>::scale(T k) const 
 {
-	return Vector3(k*x,k*y,k*z);
+	return TVector3<T>(k*x,k*y,k*z);
 }
 
 /* u dot v 
  * =u.x*v.x+u.y*v.y+u.z*v.z
  */
-inline float  Vector3::dot(const Vector3& v) const
+
+template <typename T>
+inline T  TVector3<T>::dot(const TVector3<T>& v) const
 {
 	return x*v.x+y*v.y+z*v.z;
 }
@@ -37,65 +48,75 @@ inline float  Vector3::dot(const Vector3& v) const
  * +(vz*ux-vx*uz)j
  * +(vx*uy-ux*vy)k
  */
-inline Vector3 Vector3::cross(const Vector3& u) const 
+
+template <typename T>
+inline TVector3<T> TVector3<T>::cross(const TVector3<T>& u) const 
 {
-	float rx=y*u.z-z*u.y;
-	float ry=z*u.x-x*u.z;
-	float rz=x*u.y-u.x*y;
-	return  Vector3(rx,ry,rz);
+	T rx=y*u.z-z*u.y;
+	T ry=z*u.x-x*u.z;
+	T rz=x*u.y-u.x*y;
+	return  TVector3<T>(rx,ry,rz);
 }
 
 /* normal(v)= v/|v| */
-inline Vector3 Vector3::normal() const
+template <typename T>
+inline TVector3<T> TVector3<T>::normal() const
 {
-	float l=length();
-	return Vector3(x/l,y/l,z/l);
+	T l=length();
+	return TVector3<T>(x/l,y/l,z/l);
 }
 
 
 
-inline void Vector3::normalize()
+template <typename T>
+inline void TVector3<T>::normalize()
 {
-	float l=length();
+	T l=length();
 	x=x/l;
 	y=y/l;
 	z=z/l;
 }
 
 /* project(u,v)= (dot(u,v)*u)/(|u||u|) */
-inline Vector3 Vector3::proj(const Vector3& v) const 
+template <typename T>
+inline TVector3<T> TVector3<T>::proj(const TVector3<T>& v) const 
 {
-	float l=v.x*v.x+v.y*v.y+v.z*v.z;
-	float k=this->dot(v)/(l);
+	T l=v.x*v.x+v.y*v.y+v.z*v.z;
+	T k=this->dot(v)/(l);
 	return v.scale(k);
 }
 
-inline float Vector3::angle(const Vector3& v) const 
+template <typename T>
+inline T TVector3<T>::angle(const TVector3<T>& v) const 
 {
-	float m=dot(v)/(length()*v.length());
+	T m=dot(v)/(length()*v.length());
 	return Math::acosr(m)/FS_PI*180.0f;
 }
 
 /* |u|=sqrt(x*x+y*y+z*z) */
-inline float Vector3::length() const 
+template <typename T>
+inline T TVector3<T>::length() const 
 {
-	float l=x*x+y*y+z*z;
+	T l=x*x+y*y+z*z;
 	return Math::sqrt(l);
 }
 
-inline float Vector3::length2()const
+template <typename T>
+inline T TVector3<T>::length2()const
 {
 	return x*x+y*y+z*z;
 }
 
-inline bool Vector3::equal(const Vector3& v) const 
+template <typename T>
+inline bool TVector3<T>::equal(const TVector3<T>& v) const 
 {
-	return (Math::floatEqual(x,v.x)&&
-			Math::floatEqual(y,v.y)&&
-			Math::floatEqual(z,v.z));
+	return (Math::equal(x,v.x)&&
+			Math::equal(y,v.y)&&
+			Math::equal(z,v.z));
 }
 
-inline void Vector3::set(float _x,float _y,float _z)
+template <typename T>
+inline void TVector3<T>::set(T _x,T _y,T _z)
 {
 	x=_x;
 	y=_y;
@@ -104,39 +125,45 @@ inline void Vector3::set(float _x,float _y,float _z)
 
 
 
-inline Vector3 Vector3::lerp(const Vector3& v,float t)
+template <typename T>
+inline TVector3<T> TVector3<T>::lerp(const TVector3<T>& v,T t)
 {
-	float rx=x+(v.x-x)*t;
-	float ry=y+(v.y-y)*t;
-	float rz=z+(v.z-z)*t;
+	T rx=x+(v.x-x)*t;
+	T ry=y+(v.y-y)*t;
+	T rz=z+(v.z-z)*t;
 
-	return Vector3(rx,ry,rz);
+	return TVector3<T>(rx,ry,rz);
 }
 
-inline Vector3 Vector3::operator+(const Vector3& v)const
+template <typename T>
+inline TVector3<T> TVector3<T>::operator+(const TVector3<T>& v)const
 {
 	return this->add(v);
 }
 
 
-inline Vector3 Vector3::operator-(const Vector3& v)const
+template <typename T>
+inline TVector3<T> TVector3<T>::operator-(const TVector3<T>& v)const
 {
 	return this->sub(v);
 }
 
 
-inline Vector3 Vector3::operator/(float v)const
+template <typename T>
+inline TVector3<T> TVector3<T>::operator/(T v)const
 {
 	return this->scale(1/v);
 }
 
 
-inline Vector3 Vector3::operator*(float v)const
+template <typename T>
+inline TVector3<T> TVector3<T>::operator*(T v)const
 {
 	return this->scale(v);
 }
 
-inline Vector3& Vector3::operator +=(const Vector3& v)
+template <typename T>
+inline TVector3<T>& TVector3<T>::operator +=(const TVector3<T>& v)
 {
 	this->x+=v.x;
 	this->y+=v.y;

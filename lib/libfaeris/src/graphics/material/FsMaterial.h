@@ -126,20 +126,28 @@ class Material:public FsObject
 		virtual void configRender(Render* r);
 
 	protected:
-		/* alpha blend*/
+		/* render state */
+		bool m_wireFrame;
+
 		int m_blendEquation;
 		int m_blendSrc;
 		int m_blendDst;
 
 		bool m_depthTest;
+		bool m_depthWrite;
+
+		bool m_doubleSide;
+
+		
 
 		Color4f m_color;
 		float m_opacity;
+
+		friend Render;
 };
 
 
 NS_FS_END 
 #endif /*_FS_MATTERIAL_H_*/
-
 
 

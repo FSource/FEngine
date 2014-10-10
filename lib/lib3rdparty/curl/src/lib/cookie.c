@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2013, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2014, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -89,11 +89,13 @@ Example set of cookies:
 #include "strequal.h"
 #include "strtok.h"
 #include "sendf.h"
+#include "slist.h"
 #include "curl_memory.h"
 #include "share.h"
 #include "strtoofft.h"
 #include "rawstr.h"
 #include "curl_memrchr.h"
+#include "inet_pton.h"
 
 /* The last #include file should be: */
 #include "memdebug.h"
@@ -289,6 +291,56 @@ static void strstore(char **str, const char *newstr)
   *str = strdup(newstr);
 }
 
+/*
+ * remove_expired() removes expired cookies.
+ */
+static void remove_expired(struct CookieInfo *cookies)
+{
+  struct Cookie *co, *nx, *pv;
+  curl_off_t now = (curl_off_t)time(NULL);
+
+  co = cookies->cookies;
+  pv = NULL;
+  while(co) {
+    nx = co->next;
+    if((co->expirestr || co->maxage) && co->expires < now) {
+      if(co == cookies->cookies) {
+        cookies->cookies = co->next;
+      }
+      else {
+        pv->next = co->next;
+      }
+      cookies->numcookies--;
+      freecookie(co);
+    }
+    else {
+      pv = co;
+    }
+    co = nx;
+  }
+}
+
+/*
+ * Return true if the given string is an IP(v4|v6) address.
+ */
+static bool isip(const char *domain)
+{
+  struct in_addr addr;
+#ifdef ENABLE_IPV6
+  struct in6_addr addr6;
+#endif
+
+  if(Curl_inet_pton(AF_INET, domain, &addr)
+#ifdef ENABLE_IPV6
+     || Curl_inet_pton(AF_INET6, domain, &addr6)
+#endif
+    ) {
+    /* domain name given as IP address */
+    return TRUE;
+  }
+
+  return FALSE;
+}
 
 /****************************************************************************
  *
@@ -410,24 +462,33 @@ Curl_cookie_add(struct SessionHandle *data,
           }
         }
         else if(Curl_raw_equal("domain", name)) {
+          bool is_ip;
+          const char *dotp;
+
           /* Now, we make sure that our host is within the given domain,
              or the given domain is not valid and thus cannot be set. */
 
           if('.' == whatptr[0])
             whatptr++; /* ignore preceding dot */
 
-          if(!domain || tailmatch(whatptr, domain)) {
-            const char *tailptr=whatptr;
-            if(tailptr[0] == '.')
-              tailptr++;
-            strstore(&co->domain, tailptr); /* don't prefix w/dots
-                                               internally */
+          is_ip = isip(domain ? domain : whatptr);
+
+          /* check for more dots */
+          dotp = strchr(whatptr, '.');
+          if(!dotp)
+            domain=":";
+
+          if(!domain
+             || (is_ip && !strcmp(whatptr, domain))
+             || (!is_ip && tailmatch(whatptr, domain))) {
+            strstore(&co->domain, whatptr);
             if(!co->domain) {
               badcookie = TRUE;
               break;
             }
-            co->tailmatch=TRUE; /* we always do that if the domain name was
-                                   given */
+            if(!is_ip)
+              co->tailmatch=TRUE; /* we always do that if the domain name was
+                                     given */
           }
           else {
             /* we did not get a tailmatch and then the attempted set domain
@@ -460,9 +521,6 @@ Curl_cookie_add(struct SessionHandle *data,
             badcookie = TRUE;
             break;
           }
-          co->expires =
-            strtol((*co->maxage=='\"')?&co->maxage[1]:&co->maxage[0],NULL,10)
-            + (long)now;
         }
         else if(Curl_raw_equal("expires", name)) {
           strstore(&co->expirestr, whatptr);
@@ -470,17 +528,6 @@ Curl_cookie_add(struct SessionHandle *data,
             badcookie = TRUE;
             break;
           }
-          /* Note that if the date couldn't get parsed for whatever reason,
-             the cookie will be treated as a session cookie */
-          co->expires = curl_getdate(what, &now);
-
-          /* Session cookies have expires set to 0 so if we get that back
-             from the date parser let's add a second to make it a
-             non-session cookie */
-          if(co->expires == 0)
-            co->expires = 1;
-          else if(co->expires < 0)
-            co->expires = 0;
         }
         else if(!co->name) {
           co->name = strdup(name);
@@ -514,6 +561,30 @@ Curl_cookie_add(struct SessionHandle *data,
            coming up */
         semiptr=strchr(ptr, '\0');
     } while(semiptr);
+
+    if(co->maxage) {
+      co->expires =
+        curlx_strtoofft((*co->maxage=='\"')?
+                        &co->maxage[1]:&co->maxage[0], NULL, 10);
+      if(CURL_OFF_T_MAX - now < co->expires)
+        /* avoid overflow */
+        co->expires = CURL_OFF_T_MAX;
+      else
+        co->expires += now;
+    }
+    else if(co->expirestr) {
+      /* Note that if the date couldn't get parsed for whatever reason,
+         the cookie will be treated as a session cookie */
+      co->expires = curl_getdate(co->expirestr, NULL);
+
+      /* Session cookies have expires set to 0 so if we get that back
+         from the date parser let's add a second to make it a
+         non-session cookie */
+      if(co->expires == 0)
+        co->expires = 1;
+      else if(co->expires < 0)
+        co->expires = 0;
+    }
 
     if(!badcookie && !co->domain) {
       if(domain) {
@@ -699,6 +770,9 @@ Curl_cookie_add(struct SessionHandle *data,
      superceeds an already existing cookie, which it may if the previous have
      the same domain and path as this */
 
+  /* at first, remove expired cookies */
+  remove_expired(c);
+
   clist = c->cookies;
   replace_old = FALSE;
   while(clist) {
@@ -783,7 +857,7 @@ Curl_cookie_add(struct SessionHandle *data,
   if(c->running)
     /* Only show this when NOT reading the cookies from a file */
     infof(data, "%s cookie %s=\"%s\" for domain %s, path %s, "
-          "expire %" FORMAT_OFF_T "\n",
+          "expire %" CURL_FORMAT_CURL_OFF_T "\n",
           replace_old?"Replaced":"Added", co->name, co->value,
           co->domain, co->path, co->expires);
 
@@ -926,9 +1000,16 @@ struct Cookie *Curl_cookie_getlist(struct CookieInfo *c,
   time_t now = time(NULL);
   struct Cookie *mainco=NULL;
   size_t matches = 0;
+  bool is_ip;
 
   if(!c || !c->cookies)
     return NULL; /* no cookie struct or no cookies in the struct */
+
+  /* at first, remove expired cookies */
+  remove_expired(c);
+
+  /* check if host is an IP(v4|v6) address */
+  is_ip = isip(host);
 
   co = c->cookies;
 
@@ -941,8 +1022,8 @@ struct Cookie *Curl_cookie_getlist(struct CookieInfo *c,
 
       /* now check if the domain is correct */
       if(!co->domain ||
-         (co->tailmatch && tailmatch(co->domain, host)) ||
-         (!co->tailmatch && Curl_raw_equal(host, co->domain)) ) {
+         (co->tailmatch && !is_ip && tailmatch(co->domain, host)) ||
+         ((!co->tailmatch || is_ip) && Curl_raw_equal(host, co->domain)) ) {
         /* the right part of the host matches the domain stuff in the
            cookie data */
 
@@ -1137,7 +1218,7 @@ static char *get_netscape_format(const struct Cookie *co)
     "%s\t"   /* tailmatch */
     "%s\t"   /* path */
     "%s\t"   /* secure */
-    "%" FORMAT_OFF_T "\t"   /* expires */
+    "%" CURL_FORMAT_CURL_OFF_T "\t"   /* expires */
     "%s\t"   /* name */
     "%s",    /* value */
     co->httponly?"#HttpOnly_":"",
@@ -1171,6 +1252,9 @@ static int cookie_output(struct CookieInfo *c, const char *dumphere)
     /* If there are no known cookies, we don't write or even create any
        destination file */
     return 0;
+
+  /* at first, remove expired cookies */
+  remove_expired(c);
 
   if(strequal("-", dumphere)) {
     /* use stdout */
@@ -1232,9 +1316,9 @@ struct curl_slist *Curl_cookie_list(struct SessionHandle *data)
       curl_slist_free_all(list);
       return NULL;
     }
-    beg = curl_slist_append(list, line);
-    free(line);
+    beg = Curl_slist_append_nodup(list, line);
     if(!beg) {
+      free(line);
       curl_slist_free_all(list);
       return NULL;
     }

@@ -7,7 +7,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 2009 - 2013, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 2009 - 2014, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -43,6 +43,11 @@ typedef enum {
   POP3_AUTH_DIGESTMD5_RESP,
   POP3_AUTH_NTLM,
   POP3_AUTH_NTLM_TYPE2MSG,
+  POP3_AUTH_GSSAPI,
+  POP3_AUTH_GSSAPI_TOKEN,
+  POP3_AUTH_GSSAPI_NO_DATA,
+  POP3_AUTH_XOAUTH2,
+  POP3_AUTH_CANCEL,
   POP3_AUTH_FINAL,
   POP3_APOP,
   POP3_USER,
@@ -79,6 +84,7 @@ struct pop3_conn {
   unsigned int authused;  /* SASL auth mechanism used for the connection */
   char *apoptimestamp;    /* APOP timestamp from the server greeting */
   bool tls_supported;     /* StartTLS capability supported by server */
+  bool mutual_auth;       /* Mutual authentication enabled (GSSAPI only) */
 };
 
 extern const struct Curl_handler Curl_handler_pop3;
@@ -91,7 +97,7 @@ extern const struct Curl_handler Curl_handler_pop3s;
 
 /* Authentication type values */
 #define POP3_TYPE_NONE      0
-#define POP3_TYPE_ANY       ~0
+#define POP3_TYPE_ANY       ~0U
 
 /* This is the 5-bytes End-Of-Body marker for POP3 */
 #define POP3_EOB "\x0d\x0a\x2e\x0d\x0a"

@@ -23,6 +23,9 @@ class Face3
 		{}
 		Face3(){}
 };
+typedef Face3 Face3i;
+
+
 NS_FS_END
 
 #endif 
