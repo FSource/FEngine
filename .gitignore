@@ -48,14 +48,14 @@ BuildLog.htm
 Debug
 Release
 temp
-*.idb 
+*.idb
 *.manifest
 *.DLL
 *.class
 *.swo
 assets
 *.mp3
-*.debug 
+*.debug
 *.release
 `
 *.exp

@@ -26,7 +26,6 @@ LOCAL_SRC_FILES :=  \
 					../../src/FsFaerisModule.cc \
 					../../src/extends/FsScriptEngine.cc \
 					../../src/stage/FsActionTarget.cc \
-					../../src/stage/entity/FsColorQuad2D.cc \
 					../../src/stage/entity/FsEntity.cc \
 					../../src/stage/entity/FsLabelTTF.cc \
 					../../src/stage/entity/FsQuad2D.cc \
@@ -37,7 +36,17 @@ LOCAL_SRC_FILES :=  \
 					../../src/stage/entity/FsParticle2DEffect.cc \
 					../../src/stage/entity/FsVertexPolygon.cc \
 					../../src/stage/entity/FsPanel.cc \
-					../../src/stage/entity/FsButton.cc \
+					../../src/stage/FsDynamicView.cc \
+					../../src/stage/FsListView.cc \
+					../../src/stage/FsPageView.cc \
+					../../src/stage/FsPressButton.cc \
+					../../src/stage/FsScroller.cc \
+					../../src/stage/FsScrollView.cc \
+					../../src/stage/FsScrollWidget.cc \
+					../../src/stage/FsStateButton.cc \
+					../../src/stage/FsToggleButton.cc \
+					../../src/stage/FsUiWidget.cc \
+					../../src/stage/FsVelocityTracker.cc \
 					../../src/stage/layer/FsColorLayer.cc \
 					../../src/stage/layer/FsLayer.cc \
 					../../src/stage/layer/FsLayer2D.cc \
@@ -76,6 +85,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/sys/platform/android/FsJniUtil.cc \
 					../../src/sys/FsTimer.cc \
 					../../src/sys/FsWindow.cc \
+					../../src/math/FsMath.cc \
 					../../src/math/FsMathUtil.cc \
 					../../src/math/FsMatrix4.cc \
 					../../src/math/FsRect2D.cc \
