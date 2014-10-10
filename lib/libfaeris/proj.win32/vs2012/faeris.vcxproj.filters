@@ -301,9 +301,6 @@
     <ClInclude Include="..\..\src\stage\layer\FsLayer2D.h">
       <Filter>src\stage\layer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\stage\entity\FsColorQuad2D.h">
-      <Filter>src\stage\entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\stage\entity\FsEntity.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
@@ -734,9 +731,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\stage\layer\FsLayer2D.cc">
       <Filter>src\stage\layer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\entity\FsColorQuad2D.cc">
-      <Filter>src\stage\entity</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stage\entity\FsEntity.cc">
       <Filter>src\stage\entity</Filter>

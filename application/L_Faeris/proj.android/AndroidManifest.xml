@@ -28,7 +28,7 @@
         <activity 
             android:name="com.faeris.fgame.fgame"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:configChanges="keyboard|keyboardHidden|orientation" >
            	<intent-filter>
                 <action android:name="android.intent.action.MAIN" />

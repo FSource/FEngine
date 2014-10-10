@@ -162,6 +162,10 @@ int Program::getCacheAttrLocation(int index,const char* name)
 	if(m_cacheAttrLoc[index]==-1)
 	{
 		m_cacheAttrLoc[index]=getAttrLocation(name);
+		if(m_cacheAttrLoc[index]==-1)
+		{
+			m_cacheAttrLoc[index]=-2;
+		}
 	}
 	return m_cacheAttrLoc[index];
 }
@@ -178,6 +182,11 @@ int Program::getCacheUniformLocation(int index,const char* name)
 	if(m_cacheUniformLoc[index]==-1)
 	{
 		m_cacheUniformLoc[index]=getUniformLocation(name);
+		if(m_cacheUniformLoc[index]==-1)
+		{
+			m_cacheUniformLoc[index]=-2;
+		}
+
 	}
 	return m_cacheUniformLoc[index];
 }

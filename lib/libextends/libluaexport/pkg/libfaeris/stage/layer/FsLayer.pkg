@@ -31,11 +31,6 @@ class Layer@__layer:public ActionTarget
 		Matrix4 getProjectMatrix();
 		Vector3 toLayerCoord(const Vector3& v);
 
-		/* entity */
-		void add(Entity* entity);
-		void remove(Entity* entity);
-		void clearEntity();
-		int getEntityNu();
 
 		/* scene */
 		Scene* getScene();
