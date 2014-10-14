@@ -33,7 +33,7 @@ static int tolua_collect_Color4f (lua_State* tolua_S)
 static void tolua_reg_types (lua_State* tolua_S)
 {
  toluaext_usertype(tolua_S,"SpineSprite");
- toluaext_usertype(tolua_S,"Render");
+ toluaext_usertype(tolua_S,"RenderDevice");
  tolua_usertype(tolua_S,"Program");
  toluaext_usertype(tolua_S,"LuaSpineSprite");
  tolua_usertype(tolua_S,"Color");
@@ -771,7 +771,7 @@ static int tolua_FsSpineSprite_SpineSprite_draw00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LuaSpineSprite",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Render",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"RenderDevice",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -779,7 +779,7 @@ static int tolua_FsSpineSprite_SpineSprite_draw00(lua_State* tolua_S)
 #endif
  {
   LuaSpineSprite* self = (LuaSpineSprite*)  tolua_tousertype(tolua_S,1,0);
-  Render* r = ((Render*)  tolua_tousertype(tolua_S,2,0));
+  RenderDevice* r = ((RenderDevice*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onDraw'", NULL);
 #endif

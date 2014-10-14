@@ -56,7 +56,7 @@ class Global
 
 	FS_GLOBAL_H(Director,director,setDirector);
 	FS_GLOBAL_H(Window,window,setWindow);
-	FS_GLOBAL_H(Render,render,setRender);
+	FS_GLOBAL_H(RenderDevice,renderDevice,setRenderDevice);
 	FS_GLOBAL_H(ScriptEngine,scriptEngine,setScriptEngine);
 
 	/* mgr */

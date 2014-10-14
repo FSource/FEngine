@@ -639,7 +639,7 @@ void StateButton::update(float dt)
 }
 
 
-void StateButton::draw(Render* render,bool update_matrix)
+void StateButton::draw(RenderDevice* render,bool update_matrix)
 {
 	if(!m_texture||!m_program||!m_material)
 	{
@@ -654,7 +654,7 @@ void StateButton::draw(Render* render,bool update_matrix)
 	render->mulMatrix(&m_worldMatrix);
 
 	render->setProgram(m_program);
-	m_material->configRender(render);
+	m_material->configRenderDevice(render);
 
 	render->bindTexture(m_texture,0);
 

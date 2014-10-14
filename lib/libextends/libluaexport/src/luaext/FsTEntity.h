@@ -22,7 +22,7 @@ class TEntity:public T_F
 			}
 		}
 
-		virtual void draw(Render* r,bool updateMatrix=true)
+		virtual void draw(RenderDevice* r,bool updateMatrix=true)
 		{
 			LuaEngine* se=(LuaEngine*)Global::scriptEngine();
 			if(!se->callFunctionInTable(T_F::m_scriptData,"onDraw",2,0,"ff",this,r))
@@ -82,7 +82,7 @@ class TEntity:public T_F
 		{
 			T_F::update(dt);
 		}
-		virtual void onDraw(Render* r)
+		virtual void onDraw(RenderDevice* r)
 		{
 			T_F::draw(r,true);
 		}

@@ -9,7 +9,7 @@
 
 
 NS_FS_BEGIN
-class Render;
+class RenderDevice;
 class Layer;
 class FsSlowArray;
 class TouchEvent;
@@ -53,7 +53,7 @@ class Scene:public ActionTarget
 		virtual void enter();
 		virtual void exit();
 		virtual void update(float dt);
-		virtual void draw(Render* render);
+		virtual void draw(RenderDevice* render);
 
 		virtual void touchBegin(float x,float y);
 		virtual void touchMove(float x,float y);

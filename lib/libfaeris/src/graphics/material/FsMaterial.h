@@ -8,6 +8,7 @@
 NS_FS_BEGIN
 
 enum{
+
 	FS_UNIFORM_TEXTURE0_LOC=0,
 
 	FS_UNIFORM_OPACITY_LOC=32,
@@ -46,13 +47,15 @@ enum{
 
 
 class Program;
+class ProgramFeatureDesc;
+
 class Material:public FsObject
 {
 	public:
 		Material()
-			:m_blendEquation(Render::EQUATION_ADD),
-			m_blendSrc(Render::FACTOR_SRC_ALPHA),
-			m_blendDst(Render::FACTOR_ONE_MINUS_SRC_ALPHA),
+			:m_blendEquation(RenderDevice::EQUATION_ADD),
+			m_blendSrc(RenderDevice::FACTOR_SRC_ALPHA),
+			m_blendDst(RenderDevice::FACTOR_ONE_MINUS_SRC_ALPHA),
 			m_depthTest(false),
 			m_color(Color4f::WHITE),
 			m_opacity(1.0f)
@@ -69,9 +72,10 @@ class Material:public FsObject
 			m_blendSrc=src;
 			m_blendDst=dst;
 		}
+
 		void setBlend(int src,int dst)
 		{
-			m_blendEquation=Render::EQUATION_ADD;
+			m_blendEquation=RenderDevice::EQUATION_ADD;
 			m_blendSrc=src;
 			m_blendDst=dst;
 		}
@@ -80,10 +84,12 @@ class Material:public FsObject
 		{
 			return m_blendEquation;
 		}
+
 		int getBlendSrc()
 		{
 			return m_blendSrc;
 		}
+
 		int getBlendDst()
 		{
 			return m_blendDst;
@@ -95,21 +101,22 @@ class Material:public FsObject
 		{
 			m_depthTest=enable;
 		}
+
 		bool getDepthTest()
 		{
 			return m_depthTest;
 		}
 
 		/* color */
-		void setColor(Color4f c)
+		void setColor(const Color4f& c)
 		{
 			m_color=c;
 		}
+
 		Color4f getColor()
 		{
 			return m_color;
 		}
-
 
 		void setOpacity(float opacity)
 		{
@@ -121,9 +128,9 @@ class Material:public FsObject
 			return m_opacity;
 		}
 
-
 	public:
-		virtual void configRender(Render* r);
+		virtual void configRenderDevice(RenderDevice* r);
+		virtual Program* getProgram(ProgramFeatureDesc* desc);
 
 	protected:
 		/* render state */
@@ -138,16 +145,12 @@ class Material:public FsObject
 
 		bool m_doubleSide;
 
-		
-
 		Color4f m_color;
 		float m_opacity;
 
-		friend class Render;
+		friend class RenderDevice;
 };
-
 
 NS_FS_END 
 #endif /*_FS_MATTERIAL_H_*/
-
 

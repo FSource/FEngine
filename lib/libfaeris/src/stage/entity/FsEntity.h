@@ -11,7 +11,7 @@
 #include "support/util/FsSlowArray.h"
 
 NS_FS_BEGIN
-class Render;
+class RenderDevice;
 class Layer;
 class Scene;
 class Entity :public ActionTarget
@@ -25,10 +25,10 @@ class Entity :public ActionTarget
 
 
 		virtual void update(float dt);
-		virtual void draw(Render* r,bool updateMatrix=true);
+		virtual void draw(RenderDevice* r,bool updateMatrix=true);
 
 		virtual void updates(float dt);
-		virtual void draws(Render* r,bool updateMatrix=true);
+		virtual void draws(RenderDevice* r,bool updateMatrix=true);
 
 		virtual void detach();
 

@@ -10,7 +10,7 @@ template<typename T>
 inline TVertexBuffer<T>* TVertexBuffer<T>::create(int size)
 {
 	TVertexBuffer<T>* ret=new TVertexBuffer<T>;
-	ret->setItemNU(size);
+	ret->setItemNu(size);
 	return ret;
 }
 

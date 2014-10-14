@@ -15,8 +15,8 @@ class FrameBuffer:public RenderTarget
 	public:
 		/* inherit RenderTarget */
 		virtual void swapBuffers();
-		virtual void makeCurrent(Render* render);
-		virtual void loseCurrent(Render* render);
+		virtual void makeCurrent(RenderDevice* render);
+		virtual void loseCurrent(RenderDevice* render);
 
 		/* inherit FsObject */
 		virtual const char*  className();

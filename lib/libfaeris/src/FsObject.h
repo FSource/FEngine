@@ -65,7 +65,7 @@ class FsObject
 		}
 
 		virtual ~FsObject();
-		virtual const char* className()=0;
+		virtual const char* className();
 		virtual long getHashCode();
 		virtual bool equal(FsObject* ob); 
 

@@ -1,6 +1,6 @@
 #include "FsSpineSprite.h"
 #include "FsTextureAttachment.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 #include "FsGlobal.h"
 #include "mgr/FsProgramMgr.h"
 
@@ -134,7 +134,7 @@ void SpineSprite::update(float dt)
 
 
 
-void SpineSprite::draw(Render* render,bool update_matrix)
+void SpineSprite::draw(RenderDevice* render,bool update_matrix)
 {
 	if(!m_program||!m_material||!m_curAnimation)
 	{
@@ -163,7 +163,7 @@ void SpineSprite::draw(Render* render,bool update_matrix)
 	render->mulMatrix(&m_worldMatrix);
 
 	render->setProgram(m_program);
-	m_material->configRender(render);
+	m_material->configRenderDevice(render);
 
 	render->disableAllAttrArray();
 
@@ -218,7 +218,7 @@ void SpineSprite::draw(Render* render,bool update_matrix)
 
 		render->bindTexture(texture,0);
 
-		render->setUniform(u_color,Render::U_F_4,1,&c);
+		render->setUniform(u_color,RenderDevice::U_F_4,1,&c);
 		render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,vv);
 		render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,4,0,vc);
 		render->drawFace3(faces,2);

@@ -388,7 +388,7 @@ Window* Window::create()
 	return ret;
 }
 
-void Window::makeCurrent(Render* r)
+void Window::makeCurrent(RenderDevice* r)
 {
 	if(m_window)
 	{
@@ -397,17 +397,17 @@ void Window::makeCurrent(Render* r)
 		glBindFramebuffer(GL_FRAMEBUFFER,0);
 
 	}
-	m_render=r;
+	m_renderDevice=r;
 	r->setViewport(0,0,getWidth(),getHeight());
 }
 
-void Window::loseCurrent(Render* r)
+void Window::loseCurrent(RenderDevice* r)
 {
 	if(m_window)
 	{
 		//wglMakeCurrent(NULL,m_window->hrc);
 	}
-	m_render=NULL;
+	m_renderDevice=NULL;
 }
 
 void Window::swapBuffers()
@@ -465,9 +465,9 @@ void Window::setSize(uint width,uint height)
 }
 void Window::sizeChanged(uint width,uint height)
 {
-	if(m_render)
+	if(m_renderDevice)
 	{
-		m_render->setViewport(0,0,width,height);
+		m_renderDevice->setViewport(0,0,width,height);
 	}
 
 }
@@ -545,10 +545,10 @@ int Window::getPosY()
 
 Window::~Window()
 {
-	if(m_render)
+	if(m_renderDevice)
 	{
-		m_render->setRenderTarget(NULL);
-		m_render=NULL;
+		m_renderDevice->setRenderTarget(NULL);
+		m_renderDevice=NULL;
 	}
 	delete m_window;
 	m_window=NULL;

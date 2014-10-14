@@ -255,7 +255,7 @@ void Quad2D::setRegionRect(float x,float y,float w,float h)
 	m_rawVertices[3].t2.tu=x2;
 	m_rawVertices[3].t2.tv=1-y2;
 
-	m_vertiesMode=Render::TRIANGLE_STRIP;
+	m_vertiesMode=RenderDevice::TRIANGLE_STRIP;
 
 	m_vertiesDirty=true;
 
@@ -341,7 +341,7 @@ void Quad2D::setRegionEllipse(float x,float y,float a ,float b,float a_start,flo
 	}	
 
 	m_vertiesDirty=true;
-	m_vertiesMode=Render::TRIANGLE_FAN;
+	m_vertiesMode=RenderDevice::TRIANGLE_FAN;
 
 }
 
@@ -496,7 +496,7 @@ void Quad2D::setRegionScale9(float l,float r,float b,float t)
 	}
 
 	m_vertiesDirty=true;
-	m_vertiesMode=Render::TRIANGLE_INDEX;
+	m_vertiesMode=RenderDevice::TRIANGLE_INDEX;
 
 }
 
@@ -519,7 +519,7 @@ void Quad2D::calFinishVertics()
 
 }
 
-void Quad2D::draw(Render* render,bool updateMatrix)
+void Quad2D::draw(RenderDevice* render,bool updateMatrix)
 {
 	if(updateMatrix)
 	{
@@ -550,7 +550,7 @@ void Quad2D::draw(Render* render,bool updateMatrix)
 
 
 
-void Quad2D::drawColorMode(Render* render)
+void Quad2D::drawColorMode(RenderDevice* render)
 {	
 	if(!m_programColor||!m_material)
 	{
@@ -558,7 +558,7 @@ void Quad2D::drawColorMode(Render* render)
 	}
 
 	render->setProgram(m_programColor);
-	m_material->configRender(render);
+	m_material->configRenderDevice(render);
 
 	render->disableAllAttrArray();
 
@@ -572,7 +572,7 @@ void Quad2D::drawColorMode(Render* render)
 										&m_finishVertices[0].v2);
 
 
-	if(m_vertiesMode==Render::TRIANGLE_INDEX)
+	if(m_vertiesMode==RenderDevice::TRIANGLE_INDEX)
 	{
 		render->drawFace3(&m_faces[0],m_faces.size());
 	}
@@ -585,7 +585,7 @@ void Quad2D::drawColorMode(Render* render)
 
 
 
-void Quad2D::drawTextureMode(Render* render)
+void Quad2D::drawTextureMode(RenderDevice* render)
 {
 	if(m_texture==NULL||!m_programTex||!m_material)
 	{
@@ -595,7 +595,7 @@ void Quad2D::drawTextureMode(Render* render)
 
 
 	render->setProgram(m_programTex);
-	m_material->configRender(render);
+	m_material->configRenderDevice(render);
 
 	render->bindTexture(m_texture,0);
 	render->disableAllAttrArray();
@@ -614,7 +614,7 @@ void Quad2D::drawTextureMode(Render* render)
 										sizeof(Fs_V2F_T2F),
 										&m_finishVertices[0].t2);
 
-	if(m_vertiesMode==Render::TRIANGLE_INDEX)
+	if(m_vertiesMode==RenderDevice::TRIANGLE_INDEX)
 	{
 		render->drawFace3(&m_faces[0],m_faces.size());
 		//render->drawFace3(&m_faces[0],2);
@@ -663,7 +663,7 @@ Quad2D::Quad2D()
 	m_anchorX=0.5;
 	m_anchorY=0.5;
 	m_vertiesDirty=true;
-	m_vertiesMode=Render::TRIANGLE_INDEX;
+	m_vertiesMode=RenderDevice::TRIANGLE_INDEX;
 	m_renderMode=MODE_TEXTURE;
 
 	m_material=TextureMaterial::create();

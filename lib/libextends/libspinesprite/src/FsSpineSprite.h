@@ -12,7 +12,7 @@
 #include "graphics/FsProgram.h"
 
 NS_FS_BEGIN
-class Render;
+class RenderDevice;
 class SpineSprite:public Entity 
 {
 	public:
@@ -67,7 +67,7 @@ class SpineSprite:public Entity
 
 	public:
 		virtual void update(float dt);
-		virtual void draw(Render* render,bool update_matrix=true);
+		virtual void draw(RenderDevice* render,bool update_matrix=true);
 
 		/* inherit FsObject */
 		virtual const char* className();

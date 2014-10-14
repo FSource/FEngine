@@ -78,15 +78,15 @@ class Sprite2D :public Entity
 		int getCurFrame();
 		int getTotalFrame();
 
-
 		/* fps */
 		int getFps();
 		void setFps(int fps);
 
 	public:
+
 		/* inherit Entity */
 		virtual void update(float dt);
-		virtual void draw(Render* render,bool update_matrix=true);
+		virtual void draw(RenderDevice* render,bool update_matrix=true);
 
 		/* inherit FsObject */
 		virtual const char* className();

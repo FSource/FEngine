@@ -170,7 +170,7 @@ void VertexPolygon::destruct()
 }
 
 
-void VertexPolygon::draw(Render* render,bool update_matrix)
+void VertexPolygon::draw(RenderDevice* render,bool update_matrix)
 {
 	if(!m_material||!m_program)
 	{
@@ -190,7 +190,7 @@ void VertexPolygon::draw(Render* render,bool update_matrix)
 	render->mulMatrix(&m_worldMatrix);
 
 	render->setProgram(m_program);
-	m_material->configRender(render);
+	m_material->configRenderDevice(render);
 
 
 	render->disableAllAttrArray();

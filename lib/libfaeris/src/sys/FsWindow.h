@@ -25,8 +25,8 @@ class Window:public RenderTarget
 		static Window* create();
 	public:
 		/* inherit RenderTarget */
-		virtual void makeCurrent(Render* r);
-		virtual void loseCurrent(Render* r);
+		virtual void makeCurrent(RenderDevice* r);
+		virtual void loseCurrent(RenderDevice* r);
 		virtual void swapBuffers();
 		virtual void sizeChanged(uint width,uint height);
 	public:
@@ -61,7 +61,7 @@ class Window:public RenderTarget
 		PlatformWindow* getPlatformWindow(){return m_window;}
 
 	private:
-		Render* m_render;
+		RenderDevice* m_renderDevice;
 		std::string m_caption;
 		PlatformWindow* m_window;
 };

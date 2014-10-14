@@ -52,12 +52,12 @@ void Entity::updates(float dt)
 }
 
 
-void Entity::draw(Render* r,bool updateMatrix)
+void Entity::draw(RenderDevice* r,bool updateMatrix)
 {
 
 }
 
-void Entity::draws(Render* r,bool updateMatrix)
+void Entity::draws(RenderDevice* r,bool updateMatrix)
 {
 	if(m_zorderDirty)
 	{

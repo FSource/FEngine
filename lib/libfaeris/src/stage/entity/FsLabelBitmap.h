@@ -95,7 +95,7 @@ class LabelBitmap:public Entity
 
 	public:
 		/* override Entity */
-		virtual void draw(Render* r,bool updateMatrix);
+		virtual void draw(RenderDevice* r,bool updateMatrix);
 		virtual bool hit2D(float x,float y);
 
 		/* override FsObject */

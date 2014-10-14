@@ -7,7 +7,7 @@
 #include "math/FsVector2.h"
 
 NS_FS_BEGIN
-class Render;
+class RenderDevice;
 class Texture2D;
 
 class UiWidget:public Entity 
@@ -20,8 +20,8 @@ class UiWidget:public Entity
 
 		virtual bool hit2D(float x,float y);
 
-		virtual void draws(Render* r,bool updateMatrix);
-		virtual void draw(Render* r,bool updateMatrix);
+		virtual void draws(RenderDevice* r,bool updateMatrix);
+		virtual void draw(RenderDevice* r,bool updateMatrix);
 
 
 	public:

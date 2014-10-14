@@ -16,7 +16,7 @@ FS_GLOBAL_CC(InputTextDispatcher,inputTextDispatcher,setInputTextDispatcher);
 FS_GLOBAL_CC(Director,director,setDirector);
 
 FS_GLOBAL_CC(Window,window,setWindow);
-FS_GLOBAL_CC(Render,render,setRender);
+FS_GLOBAL_CC(RenderDevice,render,setRender);
 
 FS_GLOBAL_CC(ScriptEngine,scriptEngine,setScriptEngine);
 

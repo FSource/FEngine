@@ -14,7 +14,7 @@ class LuaScene:public Scene
 		virtual void enter();
 		virtual void exit();
 		virtual void update(float dt);
-		virtual void draw(Render* render);
+		virtual void draw(RenderDevice* render);
 
 		virtual void touchBegin(float x,float y);
 		virtual void touchMove(float x,float y);
@@ -36,7 +36,7 @@ class LuaScene:public Scene
 
 		void onExit(){Scene::exit();}
 		void onUpdate(float dt){Scene::update(dt);}
-		void onDraw(Render* render){Scene::draw(render);}
+		void onDraw(RenderDevice* render){Scene::draw(render);}
 
 		void onTouchBegin(float x,float y){Scene::touchBegin(x,y);}
 		void onTouchEnd(float x,float y){Scene::touchEnd(x,y);}

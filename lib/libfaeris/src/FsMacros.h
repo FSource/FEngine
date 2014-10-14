@@ -284,6 +284,8 @@ enum
 /* class name */
 
 
+/* core */
+#define FS_FSOBJECT_CLASS_NAME "FsObject"
 /* stage */
 #define FS_ACTION_TARGET_CLASS_NAME "ActionTarget"
 
@@ -389,7 +391,7 @@ enum
 
 
 /* graphics */
-#define FS_RENDER_CLASS_NAME "Render"
+#define FS_RENDER_CLASS_NAME "RenderDevice"
 #define FS_TEXTURE2D_CLASS_NAME "Texture2D"
 #define FS_GLYPH_CLASS_NAME  "Glyph"
 #define FS_FONT_TTF_DATA_CLASS_NAME "FontTTFData"

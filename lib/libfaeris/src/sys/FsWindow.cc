@@ -8,7 +8,7 @@ NS_FS_BEGIN
 
 Window::Window()
 {
-	m_render=NULL;
+	m_renderDevice=NULL;
 	m_window=NULL;
 	m_caption=FS_DEFAULT_WINDOW_NAME;
 }

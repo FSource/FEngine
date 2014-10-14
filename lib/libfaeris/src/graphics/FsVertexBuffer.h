@@ -10,7 +10,7 @@
 
 NS_FS_BEGIN
 
-class Render;
+class RenderDevice;
 
 class VertexBuffer:public FsObject
 {
@@ -47,7 +47,7 @@ class VertexBuffer:public FsObject
 	public:
 		virtual void* getBufferData()=0;
 		virtual int getItemNu()=0;
-		virtual int setItemNU()=0;
+		virtual void setItemNu(int nu)=0;
 		virtual int getItemSize()=0;
 
 	protected:
@@ -66,7 +66,7 @@ class VertexBuffer:public FsObject
 
 		bool m_dirty;
 
-		friend Render;
+		friend RenderDevice;
 };
 
 
@@ -83,8 +83,8 @@ class TVertexBuffer:public VertexBuffer
 		/* override VertexBuffer */
 		virtual void* getBufferData(){ return &m_buffer[0]; }
 		virtual int getItemNu(){return m_buffer.size();}
-		virtual int setItemNu(int size){ m_buffer.resize(size);m_dirty=true;}
-		virtual int itemSize(){return sizeof(T);}
+		virtual void setItemNu(int size){ m_buffer.resize(size);m_dirty=true;}
+		virtual int getItemSize(){return sizeof(T);}
 
 	public:
 		T& get(int index) { return m_buffer[index]; }

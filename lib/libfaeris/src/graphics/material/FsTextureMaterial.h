@@ -26,7 +26,7 @@ class TextureMaterial:public Material
 		int getTextureNu() { return m_textureNu;}
 
 	public:
-		virtual void configRender(Render* r);
+		virtual void configRenderDevice(RenderDevice* r);
 		const char* className();
 
 	protected:

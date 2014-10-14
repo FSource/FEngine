@@ -10,7 +10,7 @@ class DirectorKeypadEventListener;
 class DirectorInputTextEventListener;
 
 class FsArray;
-class Render;
+class RenderDevice;
 class TouchEvent;
 
 class Director :public SchedulerTarget

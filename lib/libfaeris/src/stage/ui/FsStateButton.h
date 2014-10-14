@@ -165,7 +165,7 @@ class StateButton:public Entity
 
 		/* inherit Entity */
 		virtual void update(float dt);
-		virtual void draw(Render* render,bool update_matrix);
+		virtual void draw(RenderDevice* render,bool update_matrix);
 		virtual bool hit2D(float x,float y);
 
 		/* inherit FsObject */

@@ -148,7 +148,7 @@ class Quad2D:public Entity
 
 	public:
 		/* inherit Entity */
-		virtual void draw(Render* r,bool updateMatrix);
+		virtual void draw(RenderDevice* r,bool updateMatrix);
 		virtual bool hit2D(float x,float y);
 
 		/* inherit FsObject */
@@ -167,8 +167,8 @@ class Quad2D:public Entity
 		void destruct();
 
 		void calFinishVertics();
-		void drawTextureMode(Render*);
-		void drawColorMode(Render*);
+		void drawTextureMode(RenderDevice*);
+		void drawColorMode(RenderDevice*);
 
 
 	private:

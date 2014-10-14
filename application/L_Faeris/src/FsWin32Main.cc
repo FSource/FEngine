@@ -42,7 +42,7 @@ int main(int argc,char** argv)
 
 		/* get share object */
 	Window* win=Global::window();
-	Render* render=Global::render();
+	RenderDevice* render=Global::renderDevice();
 
 	win->setPosition(100,100);
 	win->show();

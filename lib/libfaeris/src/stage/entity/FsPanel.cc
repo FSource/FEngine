@@ -77,7 +77,7 @@ bool Panel::getScissorEnabled()
 }
 
 
-void Panel::draws(Render* r,bool updateMatrix)
+void Panel::draws(RenderDevice* r,bool updateMatrix)
 {
 
 	if(updateMatrix)

@@ -350,7 +350,7 @@ void Director::drawScene()
 
 	//FS_TRACE_INFO("Draw");
 
-	Render* render=Global::render();
+	RenderDevice* render=Global::renderDevice();
 	if(!render) return;
 
 	render->clear(true,true);
@@ -365,7 +365,7 @@ void Director::drawScene()
 void Director::swapBuffers()
 {
 
-	Render* render=Global::render();
+	RenderDevice* render=Global::renderDevice();
 	render->swapBuffers();
 
 }

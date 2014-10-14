@@ -170,7 +170,7 @@ UiWidget* UiWidget::getParentWidget()
 	return m_parentWidget;
 }
 
-void UiWidget::draws(Render* r,bool updateMatrix)
+void UiWidget::draws(RenderDevice* r,bool updateMatrix)
 {
 	if(updateMatrix)
 	{
@@ -369,7 +369,7 @@ void UiWidget::getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
 
 
 
-void UiWidget::draw(Render* r,bool updateMatrix)
+void UiWidget::draw(RenderDevice* r,bool updateMatrix)
 {
 
 }

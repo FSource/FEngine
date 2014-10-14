@@ -38,7 +38,7 @@ Matrix4 ColorLayer::getProjectMatrix()
 
 
 
-void ColorLayer::draw(Render*  r)
+void ColorLayer::draw(RenderDevice*  r)
 {
 	if(m_scissorEnabled)
 	{
@@ -53,7 +53,7 @@ void ColorLayer::draw(Render*  r)
 
 	r->setProgram(m_program);
 
-	m_material->configRender(r);
+	m_material->configRenderDevice(r);
 
 	r->disableAllAttrArray();
 

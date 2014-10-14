@@ -28,13 +28,13 @@ class VertexPolygon :public Entity
 	public:
 		enum 
 		{
-			POINTS=Render::POINTS,
-			LINES=Render::LINES,
-			LINE_STRIP=Render::LINE_STRIP,
-			LINE_LOOP=Render::LINE_LOOP,
-			TRIANGLES=Render::TRIANGLES,
-			TRIANGLE_FAN=Render::TRIANGLE_FAN,
-			TRIANGLE_STRIP=Render::TRIANGLE_STRIP,
+			POINTS=RenderDevice::POINTS,
+			LINES=RenderDevice::LINES,
+			LINE_STRIP=RenderDevice::LINE_STRIP,
+			LINE_LOOP=RenderDevice::LINE_LOOP,
+			TRIANGLES=RenderDevice::TRIANGLES,
+			TRIANGLE_FAN=RenderDevice::TRIANGLE_FAN,
+			TRIANGLE_STRIP=RenderDevice::TRIANGLE_STRIP,
 		};
 
 	public:
@@ -88,7 +88,7 @@ class VertexPolygon :public Entity
 
 	public:
 		virtual const char* className();
-		virtual void draw(Render* r,bool update_matrix);
+		virtual void draw(RenderDevice* r,bool update_matrix);
 
 	protected:
 		VertexPolygon();

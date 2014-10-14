@@ -202,7 +202,7 @@ void Sprite2D::update(float dt)
 }
 
 
-void Sprite2D::draw(Render* render,bool update_matrix)
+void Sprite2D::draw(RenderDevice* render,bool update_matrix)
 {
 	if(!m_curAnimation||!m_material||!m_program)
 	{
@@ -226,7 +226,7 @@ void Sprite2D::draw(Render* render,bool update_matrix)
 	}
 
 	render->setProgram(m_program);
-	m_material->configRender(render);
+	m_material->configRenderDevice(render);
 
 
 	render->disableAllAttrArray();

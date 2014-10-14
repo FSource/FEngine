@@ -7,7 +7,7 @@
 
 NS_FS_BEGIN
 
-class Render;
+class RenderDevice;
 class ColorMaterial;
 class Program;
 class ColorLayer:public Layer 
@@ -21,7 +21,7 @@ class ColorLayer:public Layer
 
 	public:
 		/* inherit Layer */
-		virtual void draw(Render*  r);
+		virtual void draw(RenderDevice*  r);
 		virtual Matrix4 getProjectMatrix();
 
 		/* inherit FsObject */

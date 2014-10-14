@@ -134,7 +134,7 @@ float LabelBitmap::getHeight()
 }
 
 
-void LabelBitmap::draw(Render* r,bool updateMatrix)
+void LabelBitmap::draw(RenderDevice* r,bool updateMatrix)
 {
 	if(!m_font||(m_vertices.size()==0)||!m_material||!m_program)
 	{
@@ -156,7 +156,7 @@ void LabelBitmap::draw(Render* r,bool updateMatrix)
 
 
 	r->setProgram(m_program);
-	m_material->configRender(r);
+	m_material->configRenderDevice(r);
 
 	r->disableAllAttrArray();
 	r->bindTexture(m_texture,0);

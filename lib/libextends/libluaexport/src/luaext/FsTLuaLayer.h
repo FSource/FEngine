@@ -17,7 +17,7 @@ class  TLuaLayer:public T_F
 				T_F::update(dt);
 			}
 		}
-		virtual void draw(Render* render)
+		virtual void draw(RenderDevice* render)
 		{
 			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
 
@@ -138,7 +138,7 @@ class  TLuaLayer:public T_F
 		{
 			return T_F::touchMove(x,y);
 		}
-		void onDraw(Render* r)
+		void onDraw(RenderDevice* r)
 		{
 			T_F::draw(r);
 		}

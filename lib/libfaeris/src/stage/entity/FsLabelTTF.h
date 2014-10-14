@@ -77,7 +77,7 @@ class LabelTTF:public Entity
 
 	public:
 		/* inherit Entity */
-		virtual void draw(Render* render,bool updateMatrix);
+		virtual void draw(RenderDevice* render,bool updateMatrix);
 		virtual bool hit2D(float x,float y);
 
 		/* inherit FsObject */

@@ -19,7 +19,7 @@ class FsString;
 class Program;
 class Texture2D;
 
-class Render:public FsObject 
+class RenderDevice:public FsObject 
 {
 	public:
 		enum 
@@ -96,7 +96,7 @@ class Render:public FsObject
 			U_MAX_NU,
 		};
 	public:
-		static Render* create();
+		static RenderDevice* create();
 		static int sizeofUniformType(int type);
 		static int uniformTypeComponent(int type);
 	public:
@@ -181,8 +181,8 @@ class Render:public FsObject
 
 
 	protected:
-		Render();
-		~Render();
+		RenderDevice();
+		~RenderDevice();
 		void _setGLScissor(const Rect2D& scissor_area);
 
 	private:

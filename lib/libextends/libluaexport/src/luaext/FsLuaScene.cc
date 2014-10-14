@@ -34,7 +34,7 @@ void LuaScene::update(float dt)
 		Scene::update(dt);
 	}
 }
-void LuaScene::draw(Render* render)
+void LuaScene::draw(RenderDevice* render)
 {
 	LuaEngine* se=(LuaEngine*) Global::scriptEngine();
 

@@ -403,7 +403,7 @@ void Particle2DEffect::generateParticle(float dt)
 
 
 }
-void Particle2DEffect::draw(Render* render,bool update_world_matrix)
+void Particle2DEffect::draw(RenderDevice* render,bool update_world_matrix)
 {
 	if(!m_emitter||!m_material||!m_program)
 	{
@@ -434,13 +434,13 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 	render->mulMatrix(&m_worldMatrix);
 
 	render->setProgram(m_program);
-	m_material->configRender(render);
+	m_material->configRenderDevice(render);
 
 	render->bindTexture(texture,0);
-	render->setBlend(Render::EQUATION_ADD,m_emitter->getBlendSrc(),m_emitter->getBlendDst());
+	render->setBlend(RenderDevice::EQUATION_ADD,m_emitter->getBlendSrc(),m_emitter->getBlendDst());
 
 
-	//FS_TRACE_WARN("emitter:%d,%d,%d",Render::EQUATION_ADD,m_emitter->getBlendSrc(),m_emitter->getBlendDst());
+	//FS_TRACE_WARN("emitter:%d,%d,%d",RenderDevice::EQUATION_ADD,m_emitter->getBlendSrc(),m_emitter->getBlendDst());
 
 	render->disableAllAttrArray();
 
@@ -508,7 +508,7 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 				x+dx,y+dy,
 			};
 
-			render->setUniform(color_uniform,Render::U_F_4,1,color);
+			render->setUniform(color_uniform,RenderDevice::U_F_4,1,color);
 			render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,v);
 			render->drawFace3(faces,2);
 		}
@@ -522,7 +522,7 @@ void Particle2DEffect::draw(Render* render,bool update_world_matrix)
 				x+dx,y+dy,
 			};
 
-			render->setUniform(color_uniform,Render::U_F_4,1,color);
+			render->setUniform(color_uniform,RenderDevice::U_F_4,1,color);
 			render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,v);
 			render->drawFace3(faces,2);
 		}

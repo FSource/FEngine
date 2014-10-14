@@ -286,7 +286,7 @@ void LabelTTF::getAnchor(float* x,float* y)
 
 
 
-void LabelTTF::draw(Render* render,bool updateMatrix)
+void LabelTTF::draw(RenderDevice* render,bool updateMatrix)
 {
 	if(!m_font||!m_utf16text||!m_material||!m_program)
 	{
@@ -308,7 +308,7 @@ void LabelTTF::draw(Render* render,bool updateMatrix)
 	render->mulMatrix(&m_worldMatrix);
 
 	render->setProgram(m_program);
-	m_material->configRender(render);
+	m_material->configRenderDevice(render);
 
 	render->disableAllAttrArray();
 
@@ -337,7 +337,7 @@ void LabelTTF::draw(Render* render,bool updateMatrix)
 			{
 				render->bindTexture(t2d,0);
 				render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,&t->m_vertices[0]);
-				render->drawArray(Render::TRIANGLE_STRIP,0,4);
+				render->drawArray(RenderDevice::TRIANGLE_STRIP,0,4);
 			}
 		}
 	}

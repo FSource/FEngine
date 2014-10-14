@@ -51,7 +51,7 @@ public:
 	public:
 		/* inherit  Layer */
 		virtual void update(float dt);
-		virtual void draw(Render *r);
+		virtual void draw(RenderDevice *r);
 		virtual Matrix4 getProjectMatrix();
 		virtual Vector3 toLayerCoord(const Vector3& v);
 

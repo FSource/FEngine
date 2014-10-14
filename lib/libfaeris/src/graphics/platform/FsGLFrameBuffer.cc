@@ -148,7 +148,7 @@ void FrameBuffer::swapBuffers()
 }
 
 
-void FrameBuffer::makeCurrent(Render* r)
+void FrameBuffer::makeCurrent(RenderDevice* r)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER,m_fboId);
 
@@ -156,7 +156,7 @@ void FrameBuffer::makeCurrent(Render* r)
 
 }
 
-void FrameBuffer::loseCurrent(Render* r)
+void FrameBuffer::loseCurrent(RenderDevice* r)
 {
 	//FS_TRACE_WARN("FrameBuffer,loseCurrent");
 	glBindFramebuffer(GL_FRAMEBUFFER,0);

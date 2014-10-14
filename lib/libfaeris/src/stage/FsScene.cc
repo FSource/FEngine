@@ -207,7 +207,7 @@ void Scene::updateLayers(float dt)
 	m_layers->flush();
 }
 
-void Scene::draw(Render* render)
+void Scene::draw(RenderDevice* render)
 {
 	m_layers->lock();
 	int layer_nu=m_layers->size();

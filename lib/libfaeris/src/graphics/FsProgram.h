@@ -24,6 +24,33 @@ NS_FS_BEGIN
 
 
 
+class ProgramFeatureDesc
+{
+	public:
+		union 
+		{
+			struct
+			{
+				ulong m_supportShaodw:1;
+				ulong m_supportAmbientLight:1;
+				ulong m_supportDirectionalLight:1;
+				ulong m_supportPointLight:1;
+				ulong m_supportSpotLight:1;
+				ulong m_supportHemiSphereLight:1;
+				ulong m_supportAlphaTest:1;
+				ulong m_supportFog:1;
+				ulong m_supportSkeleton:1;
+			};
+			ulong m_supportFlags;
+		};
+		int m_directionalLightNu;
+		int m_pointLightNu;
+		int m_SpotLightNu;
+		int m_HemiSphereLightNu;
+		int m_shadowMapNu;
+		int m_boneNu;
+		FsString* m_name;
+};
 
 
 class Program:public Resource
@@ -35,12 +62,12 @@ class Program:public Resource
 		/* return the location of the  Attribute/Uniform 
 		 * if not exist in program,-1 will returned 
 		 */
+
 		int getAttrLocation(const char* name);
 		int getUniformLocation(const char* name);
 
 		int getCacheAttrLocation(int index,const char* name);
 		int getCacheUniformLocation(int index,const char* name);
-
 
 		PlatformProgram getPlatformProgram()const{return m_program;}
 		virtual const char* className();
@@ -55,14 +82,13 @@ class Program:public Resource
 
 		bool init(const char* vertex_src,const char* fragment_src);
 
-
 	private:
 		PlatformProgram m_program;
 		int m_cacheAttrLoc[FS_PROGRAM_CACHE_ATTR_SUPPORT];
 		int m_cacheUniformLoc[FS_PROGRAM_CACHE_UNIFORM_SUPPORT];
 		std::string m_vertSrc;
 		std::string m_fragSrc;
-		
+
 };
 
 NS_FS_END 

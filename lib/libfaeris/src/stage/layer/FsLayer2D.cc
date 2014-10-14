@@ -117,7 +117,7 @@ bool Layer2D::getEliminate()
 	return m_eliminate;
 }
 
-void Layer2D::draw(Render* r)
+void Layer2D::draw(RenderDevice* r)
 {
 
 	if(m_scissorEnabled)

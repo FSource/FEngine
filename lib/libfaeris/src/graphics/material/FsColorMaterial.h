@@ -20,8 +20,11 @@ class ColorMaterial:public Material
 		void setPointSize(float size){m_pointSize=size;}
 		float getPointSize(){return m_pointSize;}
 
+
 	public:
-		virtual void configRender(Render* r);
+		virtual void configRenderDevice(RenderDevice* r);
+		virtual Program* getProgram(ProgramFeatureDesc* desc);
+
 		const char* className();
 
 	protected:

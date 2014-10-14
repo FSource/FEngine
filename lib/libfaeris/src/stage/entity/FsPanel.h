@@ -9,7 +9,7 @@
 
 NS_FS_BEGIN
 
-class Render;
+class RenderDevice;
 class Panel:public Entity 
 {
 	public:
@@ -27,7 +27,7 @@ class Panel:public Entity
 		bool getScissorEnabled();
 
 	public:
-		virtual void draws(Render* r,bool updateMatrix=true);
+		virtual void draws(RenderDevice* r,bool updateMatrix=true);
 		virtual const char* className();
 		virtual bool hit2D(float x,float y);
 

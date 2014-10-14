@@ -68,9 +68,9 @@ int FsFaeris_ModuleInit()
 	FS_NO_REF_DESTROY(window);
 	Global::setWindow(window);
 
-	Render* render=Render::create();
+	RenderDevice* render=RenderDevice::create();
 	FS_NO_REF_DESTROY(render);
-	Global::setRender(render);
+	Global::setRenderDevice(render);
 
 	TextureMgr* tex_mgr=TextureMgr::create();
 	FS_NO_REF_DESTROY(tex_mgr);
@@ -126,7 +126,7 @@ int FsFaeris_ModuleExit()
 
 	/* window and render */
 	Window* window=Global::window();
-	Render* render=Global::render();
+	RenderDevice* render=Global::renderDevice();
 
 	/* manager */
 	ObjectMgr* ob_mgr=Global::objectMgr();
@@ -185,7 +185,7 @@ int FsFaeris_ModuleExit()
 	Global::dropSysDispatcher();
 	Global::dropDirector();
 	Global::dropWindow();
-	Global::dropRender();
+	Global::dropRenderDevice();
 	Global::dropTextureMgr();
 	Global::dropFontTTFMgr();
 	Global::dropSprite2DDataMgr();

@@ -6,6 +6,12 @@
 
 NS_FS_BEGIN 
 
+const char* FsObject::className()
+{
+	return FS_FSOBJECT_CLASS_NAME;
+}
+
+
 int FsObject::m_objectNu=0;
 
 FsObject::~FsObject()
