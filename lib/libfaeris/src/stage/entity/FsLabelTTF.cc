@@ -6,7 +6,7 @@
 #include "graphics/FsImage2D.h"
 #include "graphics/FsTexture2D.h"
 #include "graphics/FsFontTTF.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 #include "support/util/FsArray.h"
 
 

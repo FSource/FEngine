@@ -13,3 +13,4 @@ void main()							\n\
 	gl_FragColor=vec4(tmp.rgb,tmp.a*u_opacity*v_alpha);	\n\
 }														\n\
 ";
+

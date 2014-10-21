@@ -3,7 +3,7 @@
 #include "support/util/FsArray.h"
 #include "support/util/FsSlowDict.h"
 #include "support/util/FsDict.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 #include "stage/entity/FsEntity.h"
 
 NS_FS_BEGIN

@@ -65,6 +65,7 @@ string:sim_str
 		$$=$1;
 	}
 ;
+
 sim_str:tSIM_STR
 	{
 		$$=CAST_PARAM->newStringObject();

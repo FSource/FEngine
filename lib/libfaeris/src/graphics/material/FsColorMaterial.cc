@@ -1,43 +1,35 @@
-#include "graphics/material/FsColorMaterial.h"
-#include "graphics/FsRenderDevice.h"
+#include "FsColorMaterial.h"
 
 NS_FS_BEGIN
 
-
 const char* ColorMaterial::className()
 {
-	return FS_COLOR_MATERIAL_CLASS_NAME;
-}
-
-
-ColorMaterial* ColorMaterial::create()
-{
-	ColorMaterial* ret=new ColorMaterial;
-	return ret;
-}
-
-
-void ColorMaterial::configRenderDevice(RenderDevice* r)
-{
-	Material::configRenderDevice(r);
-	int u_point_size=r->getCacheUniformLocation(FS_UNIFORM_POINT_SIZE_LOC,FS_UNIFORM_POINT_SIZE_NAME);
-	r->setUniform(u_point_size,RenderDevice::U_F_1,1,&m_pointSize);
+	return "ColorMaterial";
 }
 
 
 ColorMaterial::ColorMaterial()
 {
-	m_pointSize=1.0f;
+	m_color=new UniformValueC3f("u_color",E_UniformType::UT_F_3,Color3f::WHITE);
+	addUniform(m_color);
 }
 
-ColorMaterial::~ColorMaterial()
+
+static const char* FS_PRE_SHADER_
+
+Program* ColorMaterial::getProgram(ProgramFeatureDesc* desc)
 {
+	ProgramFeatureDesc* cm_desc=desc->clone();
+	cm_desc->m_name="__FsColorShader";
+
+	cm_desc->m_supportLight=0;
+	cm_desc->m_supportAlphaTest=0;
+
+
+	Program* prog=Program::create(cm_desc,
+
 }
 
 
 
-
-NS_FS_END
-
-
-
+NS_FS_END 

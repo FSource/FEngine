@@ -1,6 +1,6 @@
 #include "FsUiWidget.h"
 #include "graphics/FsTexture2D.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 #include "stage/layer/FsLayer.h"
 NS_FS_BEGIN
 const char* UiWidget::className()

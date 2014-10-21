@@ -1,6 +1,6 @@
 #include "stage/entity/FsPanel.h"
 #include "stage/layer/FsLayer.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 
 NS_FS_BEGIN
 const char* Panel::className()

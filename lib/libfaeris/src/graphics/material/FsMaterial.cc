@@ -1,37 +1,56 @@
 #include "graphics/material/FsMaterial.h"
-#include "graphics/FsRender.h"
-
+#include "graphics/Material/FsRenderDevice.h"
 NS_FS_BEGIN
+
+
 const char* Material::className()
 {
-	return FS_MATERIAL_CLASS_NAME;
+	return "Material";
 }
 
-Material::~Material(){}
 
-void Material::configRenderDevice(RenderDevice* r)
+Material::Material()
+	:m_wireFrame(false),
+	m_blendEquation(E_BlendEquation::ADD),
+	m_blendSrc(E_BlendFactor::SRC_ALPHA),
+	m_blendDst(E_BlendFactor::ONE_MINUS_SRC_ALPHA),
+	m_depthTestEnabled(false),
+	m_depthWriteEnabled(false),
+	m_doubleSideEnabled(false),
+{}
+
+
+void Material::configRenderDevice(RenderDevice* rd,bool force)
 {
-	r->setBlend(m_blendEquation,m_blendSrc,m_blendDst);
-	r->setDepthTest(m_depthTest);
+	if(force)
+	{
+		rd->setBlend(m_blendEquation,m_blendSrc,m_blendDst);
+		rd->setDepthTestEnabled(m_depthTestEnabled);
+		rd->setDepthWriteEnabled(m_depthWriteEnabled);
+		rd->setDoubleSideEnabled(m_doubleSideEnabled);
 
-	Matrix4* mat=r->getMVPMatrix();
-
-	/* blend color */
-	Color4f color=r->getColor()*m_color;
-	float opacity=r->getOpacity()*m_opacity;
-
-
-	int u_opacity=r->getCacheUniformLocation(FS_UNIFORM_OPACITY_LOC,FS_UNIFORM_OPACITY_NAME);
-	int u_color=r->getCacheUniformLocation(FS_UNIFORM_COLOR_LOC,FS_UNIFORM_COLOR_NAME);
-	int u_mvp=r->getCacheUniformLocation(FS_UNIFORM_MVP_LOC,FS_UNIFORM_MVP_NAME);
-
-	r->setUniform(u_mvp,RenderDevice::U_M_4,1,mat);
-	r->setUniform(u_color,RenderDevice::U_F_4,1,&color);
-	r->setUniform(u_opacity,RenderDevice::U_F_1,1,&opacity);
-
+		rd->setColor(m_color);
+		rd->setOpacity(m_opacity);
+	}
 }
+
+Material::~Material() 
+{
+}
+
+
 
 
 
 NS_FS_END
+
+
+
+
+
+
+
+
+
+
 

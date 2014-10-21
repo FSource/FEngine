@@ -2,7 +2,7 @@
 #include "stage/entity/FsParticle2DEffect.h"
 #include "stage/entity/FsParticle2DEmitter.h"
 #include "math/FsMathUtil.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 
 #include "FsGlobal.h"
 #include "mgr/FsProgramMgr.h"

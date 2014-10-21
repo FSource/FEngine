@@ -1,5 +1,5 @@
 #include "stage/layer/FsColorLayer.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 #include "graphics/material/FsColorMaterial.h"
 #include "FsGlobal.h"
 #include "mgr/FsProgramMgr.h"

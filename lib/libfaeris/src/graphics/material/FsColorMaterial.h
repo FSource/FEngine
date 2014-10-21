@@ -1,13 +1,10 @@
-#ifndef _FS_COLOR_MATERAL_H_
-#define _FS_COLOR_MATERAL_H_ 
+#ifndef _FS_COLOR_MATERIAL_H_
+#define _FS_COLOR_MATERIAL_H_
 
 #include "FsMacros.h"
-#include "graphics/material/FsMaterial.h"
+#include "FsMaterial.h"
 
-
-/* uniform:
- * 		u_pointSize 
- */
+#include "graphics/FsColor.h"
 
 NS_FS_BEGIN
 
@@ -17,26 +14,24 @@ class ColorMaterial:public Material
 		static ColorMaterial* create();
 
 	public:
-		void setPointSize(float size){m_pointSize=size;}
-		float getPointSize(){return m_pointSize;}
-
+		void setColor(const Color3f& c){m_color->m_data=c;}
+		const Color3f& getColor(){return m_color->m_data;}
 
 	public:
-		virtual void configRenderDevice(RenderDevice* r);
 		virtual Program* getProgram(ProgramFeatureDesc* desc);
+		virtual const char* className();
 
-		const char* className();
 
 	protected:
 		ColorMaterial();
-		virtual ~ColorMaterial();
 
-	private:
-		float m_pointSize;
+	protected:
+		UniformValueC3f* m_color;
 };
 
 NS_FS_END
 
-#endif /*_FS_COLOR_MATERAL_H_*/
+#endif /*_FS_COLOR_MATERIAL_H_*/
+
 
 

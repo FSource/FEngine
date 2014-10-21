@@ -3,7 +3,7 @@
 #include "graphics/FsProgram.h"
 #include "graphics/FsTexture2D.h"
 #include "graphics/material/FsColorMaterial.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 
 #include "mgr/FsProgramMgr.h"
 #include "mgr/FsTextureMgr.h"

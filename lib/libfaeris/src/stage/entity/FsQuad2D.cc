@@ -1,6 +1,6 @@
 #include "stage/entity/FsQuad2D.h"
 #include "graphics/FsTexture2D.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 #include "mgr/FsTextureMgr.h"
 
 #include "FsGlobal.h"

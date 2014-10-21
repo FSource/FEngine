@@ -52,6 +52,10 @@ class FsObject
 			}
 		}
 
+
+
+
+
 	public:
 		FsObject()
 			:m_refDelete(true),
@@ -68,12 +72,6 @@ class FsObject
 		virtual const char* className();
 		virtual long getHashCode();
 		virtual bool equal(FsObject* ob); 
-
-
-
-		void setObjectMgr(ObjectMgr* ob);
-		ObjectMgr* getObjectMgr();
-
 
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
 	public:

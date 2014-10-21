@@ -1,156 +1,90 @@
 #ifndef _FS_BASE_MATERIAL_H_
 #define _FS_BASE_MATERIAL_H_
+
+
+#include <vector>
+
 #include "FsMacros.h"
+#include "FsEnums.h"
 #include "mgr/FsResource.h"
 #include "FsObject.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
+
+
 
 NS_FS_BEGIN
-
-enum{
-
-	FS_UNIFORM_TEXTURE0_LOC=0,
-
-	FS_UNIFORM_OPACITY_LOC=32,
-	FS_UNIFORM_COLOR_LOC,
-	FS_UNIFORM_MVP_LOC,
-	FS_UNIFORM_POINT_SIZE_LOC,
-	FS_UNIFORM_USER_DEFINE_LOC=64,
-};
-
-enum{
-	FS_ATTR_V4F_LOC=0,
-	FS_ATTR_T2F_LOC,
-	FS_ATTR_A1F_LOC,
-	FS_ATTR_C4F_LOC,
-};
-
-#define FS_UNIFORM_TEXTURE0_NAME "u_texture0"
-#define FS_UNIFORM_OPACITY_NAME "u_opacity"
-#define FS_UNIFORM_COLOR_NAME "u_color"
-#define FS_UNIFORM_MVP_NAME "u_mvp" 
-#define FS_UNIFORM_POINT_SIZE_NAME "u_pointSize"
-
-#define FS_ATTR_V4F_NAME "a_position"
-#define FS_ATTR_T2F_NAME "a_texCoord"
-#define FS_ATTR_C4F_NAME "a_color"
-#define FS_ATTR_A1F_NAME "a_alpha"
-
-
-
-
-/* uniform:
- * 		float 		u_opacity,
- * 		vec4 		u_color,
- * 		mat4 		u_mvp,
- */
-
 
 class Program;
 class ProgramFeatureDesc;
 
+
 class Material:public FsObject
 {
 	public:
-		Material()
-			:m_blendEquation(RenderDevice::EQUATION_ADD),
-			m_blendSrc(RenderDevice::FACTOR_SRC_ALPHA),
-			m_blendDst(RenderDevice::FACTOR_ONE_MINUS_SRC_ALPHA),
-			m_depthTest(false),
-			m_color(Color4f::WHITE),
-			m_opacity(1.0f)
-		{}
-
+		Material();
 		virtual ~Material();
 		virtual const char* className();
 
 	public:
 		/* blend */
-		void setBlend(int equation,int src,int dst)
+		void setBlend(E_BlendEquation equation,E_BlendFactor src,E_BlendFactor dst)
 		{
 			m_blendEquation=equation;
 			m_blendSrc=src;
 			m_blendDst=dst;
 		}
 
-		void setBlend(int src,int dst)
+		void setBlend(E_BlendFactor src,E_BlendFactor dst)
 		{
-			m_blendEquation=RenderDevice::EQUATION_ADD;
+			m_blendEquation=E_BlendEquation::ADD;
 			m_blendSrc=src;
 			m_blendDst=dst;
 		}
 
-		int getBlendEquation()
-		{
-			return m_blendEquation;
-		}
 
-		int getBlendSrc()
-		{
-			return m_blendSrc;
-		}
+		E_BlendEquation getBlendEquation() { return m_blendEquation; }
+		E_BlendFactor getBlendSrc() { return m_blendSrc; }
+		E_BlendFactor getBlendDst() { return m_blendDst; }
 
-		int getBlendDst()
-		{
-			return m_blendDst;
-		}
+
+		void setDoubleSideEnabled(bool value) {m_doubleSideEnabled=value;}
+		bool getDoubleSideEnabled(){return m_doubleSideEnabled;}
 
 
 		/* depth test */
-		void setDepthTest(bool enable)
-		{
-			m_depthTest=enable;
-		}
+		void setDepthTestEnabled(bool enable) { m_depthTestEnabled=enable; }
+		bool getDepthTestEnabled() { return m_depthTestEnabled; }
 
-		bool getDepthTest()
-		{
-			return m_depthTest;
-		}
+		void setDepthWriteEnabled(bool enable) {m_depthWriteEnabled=enable;}
+		bool getDepthWriteEnabled(){return m_depthWriteEnabled;}
 
-		/* color */
-		void setColor(const Color4f& c)
-		{
-			m_color=c;
-		}
+		void setColor(const Color3f& color){m_color=color;}
+		Color3f getColor(){return m_color;}
 
-		Color4f getColor()
-		{
-			return m_color;
-		}
+		void setOpacity(float opacity) {m_opacity=opacity;}
+		float getOpacity(){return m_opacity;}
 
-		void setOpacity(float opacity)
-		{
-			m_opacity=opacity;
-		}
-
-		float getOpacity()
-		{
-			return m_opacity;
-		}
 
 	public:
-		virtual void configRenderDevice(RenderDevice* r);
-		virtual Program* getProgram(ProgramFeatureDesc* desc);
+		virtual Program* getProgram(ProgramFeatureDesc* desc)=0;
+		virtual void configRenderDevice(RenderDevice* rd,bool force);
 
 	protected:
 		/* render state */
-		bool m_wireFrame;
+		bool m_wireframe;
 
-		int m_blendEquation;
-		int m_blendSrc;
-		int m_blendDst;
+		E_BlendEquation m_blendEquation;
+		E_BlendFactor m_blendSrc;
+		E_BlendFactor m_blendDst;
 
-		bool m_depthTest;
-		bool m_depthWrite;
+		bool m_depthTestEnabled;
+		bool m_depthWriteEnabled;
+		bool m_doubleSideEnabled;
 
-		bool m_doubleSide;
-
-		Color4f m_color;
-		float m_opacity;
-
-		friend class RenderDevice;
 };
 
 NS_FS_END 
+
 #endif /*_FS_MATTERIAL_H_*/
+
 

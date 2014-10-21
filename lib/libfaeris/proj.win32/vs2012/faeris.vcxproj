@@ -82,6 +82,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\extends\FsScriptEngine.h" />
     <ClInclude Include="..\..\src\FsConfig.h" />
+    <ClInclude Include="..\..\src\FsEnums.h" />
     <ClInclude Include="..\..\src\FsFaerisModule.h" />
     <ClInclude Include="..\..\src\FsGlobal.h" />
     <ClInclude Include="..\..\src\FsMacros.h" />

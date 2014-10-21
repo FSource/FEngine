@@ -25,7 +25,12 @@ class ProgramMgr:public ResourceMgr
 
 	public:
 		Resource* load(const char* name);
+
 		Program* load(const char* vert,const char* frag);
+
+
+
+
 	public:
 		virtual const char* className();
 

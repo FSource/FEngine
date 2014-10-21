@@ -59,7 +59,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "stage/layer/FsLayer.h"
 #include "luaext/FsLuaLayer.h"
 #include "stage/layer/FsLayer2D.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 #include "graphics/FsColor.h"
 #include "graphics/FsTexture2D.h"
 #include "graphics/FsFontBitmap.h"

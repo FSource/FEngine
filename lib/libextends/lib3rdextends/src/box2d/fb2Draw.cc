@@ -1,6 +1,6 @@
 #include "box2d/fb2Draw.h"
 #include "FsGlobal.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 
 #include "math/FsVector2.h"
 #include "math/FsMathUtil.h"
@@ -102,7 +102,7 @@ void fb2Draw::DrawSolidPolygon(const b2Vec2* old_vertices,int32 vertexCount,cons
 	r->disableAllAttrArray();
 
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertices);
-	r->drawArray(RenderDevice::TRIANGLE_FAN,0,vertexCount);
+	r->drawArray(E_DrawMode::TRIANGLE_FAN,0,vertexCount);
 
 
 	/* draw outline */
@@ -110,7 +110,7 @@ void fb2Draw::DrawSolidPolygon(const b2Vec2* old_vertices,int32 vertexCount,cons
 	m_material->configRenderDevice(r);
 
 	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertices);
-	r->drawArray(RenderDevice::LINE_LOOP,0,vertex_nu);
+	r->drawArray(E_DrawMode::LINE_LOOP,0,vertex_nu);
 	r->popMatrix();
 
 	delete[] vertices;

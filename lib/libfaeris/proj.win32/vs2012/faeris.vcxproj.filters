@@ -541,6 +541,9 @@
     <ClInclude Include="..\..\src\graphics\FsVertexBuffer.h">
       <Filter>src\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\FsEnums.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">

@@ -3,10 +3,13 @@
 
 #include "FsMacros.h"
 #include "FsConfig.h"
+#include "graphics/FsColor.h"
 
-
+NS_FS_BEGIN 
 class Render;
 
+class FsArray;
+class Fog;
 
 class RenderState
 {
@@ -63,6 +66,8 @@ class RenderConfig
 
 
 };
+
+NS_FS_END 
 
 
 #if FS_CONFIG(FS_GLES_RENDER)

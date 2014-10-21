@@ -5,7 +5,7 @@
 #include <vector>
 #include "FsMacros.h"
 #include "stage/entity/FsEntity.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 #include "graphics/FsColor.h"
 
 #include "math/FsVector2.h"

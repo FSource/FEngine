@@ -51,6 +51,11 @@ bool FsObject::equal(FsObject* ob)
 	return this==ob;
 }
 
+void FsObject::setAttributes(FsDict* dict)
+{
+
+}
+
 
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
 void FsObject::dropScriptData()

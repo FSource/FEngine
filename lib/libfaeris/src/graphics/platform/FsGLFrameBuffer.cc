@@ -5,7 +5,7 @@
 #endif 
 
 #include "FsGLFrameBuffer.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 
 NS_FS_BEGIN
 

@@ -5,7 +5,7 @@
 
 #include "scheduler/FsScheduler.h"
 #include "stage/FsDirector.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 
 #include "sys/event/FsTouchDispatcher.h"
 #include "sys/event/FsSysDispatcher.h"

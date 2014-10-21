@@ -4,7 +4,7 @@
 #include "stage/entity/FsParticle2DEffect.h"
 #include "sys/io/FsVFS.h"
 #include "graphics/FsTexture2D.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 #include "support/util/FsDict.h"
 #include "support/util/FsScriptUtil.h"
 #include "support/util/FsArray.h"

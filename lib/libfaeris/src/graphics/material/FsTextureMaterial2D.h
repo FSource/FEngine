@@ -1,24 +1,16 @@
-#ifndef _FS_TEXTURE_MATERIAL_H_
-#define _FS_TEXTURE_MATERIAL_H_
+#ifndef _FS_TEXTURE_MATERIAL_2D_H_
+#define _FS_TEXTURE_MATERIAL_2D_H_
 
 #include "FsMacros.h"
 #include "graphics/material/FsMaterial.h"
 
-/* uniform:
- * 		sampler2D 	u_texture0,
- * 		sampler2D	u_texture1,
- * 			.
- * 			.
- * 			.
- * 		sampler2D	u_texturen
- */
 
 NS_FS_BEGIN
 
-class TextureMaterial:public Material 
+class TextureMaterial2D:public Material 
 {
 	public:
-		static TextureMaterial* create();
+		static TextureMaterial2D* create();
 
 
 	public:
