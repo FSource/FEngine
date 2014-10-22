@@ -140,7 +140,7 @@ bool Entity::updateLocalMatrix()
 {
 	if(m_localMatrixDirty)
 	{
-		m_localMatrix.makeCompose(m_translate,m_rotate,FS_EULER_XYZ,m_scale);
+		m_localMatrix.makeCompose(m_translate,m_rotate,E_EulerOrientType::XYZ,m_scale);
 		m_localMatrixDirty=0;
 		return true;
 	}

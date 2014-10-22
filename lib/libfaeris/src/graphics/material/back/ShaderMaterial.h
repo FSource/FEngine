@@ -8,34 +8,6 @@ NS_FS_BEGIN
 
 class UniformValue;
 
-class StreamValue
-{
-	public:
-		StreamValue(const char* name)
-			:m_name(name),
-			m_ref(E_StreamType::UNKOWN)
-		{ }
-	public:
-		std::string m_name;
-		E_StreamType m_ref;
-};
-
-
-class ShaderSource:public Resource
-{
-	public:
-		static ShaderSource* create();
-
-	protected:
-		ShaderSource();
-		virtual ~ShaderSource();
-
-	public:
-		std::string m_vert;
-		std::string m_frag;
-		std::vector<UniformValue*> m_defaultUniformMaps;
-		std::vector<StreamValue*> m_defaultStreamMaps;
-};
 
 
 class ShaderMaterial:public Material 

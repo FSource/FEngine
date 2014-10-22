@@ -239,7 +239,7 @@ void Matrix4::makeRotateAxis(float x,float y,float z,float theta)
 			0,			0,			0,			1);
 }
 
-void Matrix4::makeRotateFromEuler(float x,float y,float z,int type)
+void Matrix4::makeRotateFromEuler(float x,float y,float z,E_EulerOrientType type)
 {
 	rawSetRotateFromEuler(x,y,z,type);
 	m03=0;m13=0;m23=0;
@@ -326,7 +326,7 @@ void Matrix4::setTranslate(float x,float y,float z)
 	m23=z;
 }
 
-void Matrix4::setRotationFromEuler(float rx,float ry,float rz,int type)
+void Matrix4::setRotationFromEuler(float rx,float ry,float rz,E_EulerOrientType type)
 {
 	/* get scale information */
 	Vector3 scale=getScale();
@@ -505,7 +505,7 @@ void Matrix4::compose(const Vector3& translate,const Quaternion& q,const Vector3
 }
 */
 
-void Matrix4::makeCompose(const Vector3& t,const Vector3& r,int r_type,const Vector3& s)
+void Matrix4::makeCompose(const Vector3& t,const Vector3& r,E_EulerOrientType r_type,const Vector3& s)
 {
 	rawSetRotateFromEuler(r.x,r.y,r.z,r_type);
 
@@ -605,7 +605,7 @@ Quaternion Matrix4::getRotate()
 */
 
 
-void Matrix4::rawSetRotateFromEuler(float rx,float ry,float rz,int type)
+void Matrix4::rawSetRotateFromEuler(float rx,float ry,float rz,E_EulerOrientType type)
 {
 	float cx = Math::cosa( rx );  //a
 	float sx = Math::sina( rx );  //b
@@ -618,7 +618,7 @@ void Matrix4::rawSetRotateFromEuler(float rx,float ry,float rz,int type)
 
 	switch(type)
 	{
-		case FS_EULER_XYZ:
+		case E_EulerOrientType::XYZ:
 			m00=cy*cz;	
 			m01=-cy*sz;  
 			m02=sy;
@@ -631,7 +631,7 @@ void Matrix4::rawSetRotateFromEuler(float rx,float ry,float rz,int type)
 			m21=cx*sy*sz+sx*cz;
 			m22=cx*cy;
 			break;
-		case FS_EULER_XZY:
+		case E_EulerOrientType::XZY:
 			m00=cz*cy;
 			m01=-sz;
 			m02=cz*sy;
@@ -645,7 +645,7 @@ void Matrix4::rawSetRotateFromEuler(float rx,float ry,float rz,int type)
 			m22=sx*sz*sy+cx*cy;
 			break;
 
-		case FS_EULER_YXZ:
+		case E_EulerOrientType::YXZ:
 			m00=cy*cz+sy*sx*sz;
 			m01=-cy*sz+sy*sx*cz;
 			m02=sy*cx;
@@ -659,7 +659,7 @@ void Matrix4::rawSetRotateFromEuler(float rx,float ry,float rz,int type)
 			m22=cy*cx;
 			break;
 
-		case FS_EULER_YZX:
+		case E_EulerOrientType::YZX:
 			m00=cy*cz;
 			m01=-cy*sz*cx+sy*sx;
 			m02=cy*sz*sx+sy*cx;
@@ -672,7 +672,7 @@ void Matrix4::rawSetRotateFromEuler(float rx,float ry,float rz,int type)
 			m21=sy*sz*cx+cy*sx;
 			m22=-sy*sz*sx+cy*cx;
 			break;
-		case FS_EULER_ZXY:
+		case E_EulerOrientType::ZXY:
 			m00=cz*cy-sz*sx*sy;
 			m01=-sz*cx;
 			m02=cz*sy+sz*sx*cy;
@@ -686,7 +686,7 @@ void Matrix4::rawSetRotateFromEuler(float rx,float ry,float rz,int type)
 			m22=cx*cy;
 			break;
 
-		case FS_EULER_ZYX:
+		case E_EulerOrientType::ZYX:
 			m00=cz*cy;
 			m01=-sz*cx+cz*sy*sx;
 			m02=sz*sx+cz*sy*cx;

@@ -7,12 +7,14 @@
 	#include "GL/glew.h"
 #endif 
 
+#include "FsEnums.h"
 #include "graphics/material/FsMaterial.h"
 #include "FsESRenderDevice.h"
-#include "graphics/FsProgram.h"
+#include "graphics/shader/FsProgram.h"
 #include "graphics/FsTexture2D.h"
 #include "math/FsMatrix4.h"
 #include "support/util/FsString.h"
+#include "graphics/shader/FsUniformValue.h"
 
 #define S_FS_MARK_MATRIX_DIRTY(mask) \
 	m_matrixDirtyFlags|=(mask)
@@ -21,7 +23,7 @@
 	m_matrixDirtyFlags &=~(mask)
 
 #define S_FS_IS_MATRIX_DIRTY(pos) \
-	(m_matrixDirtyFlags & (1ul<<pos))
+	(m_matrixDirtyFlags & (pos))
 
 
 	
@@ -30,51 +32,51 @@
 
 
 #define S_FS_PROJECTION_MATRIX_MASK \
-	(1ul<<E_UnifomRef::PROJECTION) | \
-	(1ul<<E_UnifomRef::PROJECTION_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::PROJECTION_INVERSE) | \
-	(1ul<<E_UnifomRef::PROJECTION_INVERSE_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::VIEW_PROJECTION) | \
-	(1ul<<E_UnifomRef::VIEW_PROJECTION_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::VIEW_PROJECTION_INVERSE) | \
-	(1ul<<E_UnifomRef::VIEW_PROJECTION_INVERSE_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION_INVERSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT))  \
 
 #define S_FS_WORLD_MATRIX_MASK \
-	(1ul<<E_UnifomRef::WORLD) | \
-	(1ul<<E_UnifomRef::WORLD_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_INVERSE) | \
-	(1ul<<E_UnifomRef::WORLD_INVERSE_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_INVERSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_INVERSE_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION_INVERSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_INVERSE_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT))  \
 
 
 #define S_FS_VIEW_MATRIX_MASK \
-	(1ul<<E_UnifomRef::VIEW) | \
-	(1ul<<E_UnifomRef::VIEW_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::VIEW_INVERSE) | \
-	(1ul<<E_UnifomRef::VIEW_INVERSE_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_INVERSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_INVERSE_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::VIEW_PROJECTION) | \
-	(1ul<<E_UnifomRef::VIEW_PROJECTION_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::VIEW_PROJECTION_INVERSE) | \
-	(1ul<<E_UnifomRef::VIEW_PROJECTION_INVERSE_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION_TRANSPOSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION_INVERSE) | \
-	(1ul<<E_UnifomRef::WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_INVERSE_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT)) | \
+	(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT))  \
 
 	
 
@@ -214,7 +216,7 @@ RenderDevice::RenderDevice()
 
 	/* depth */
 	m_depthTest=false;
-	m_depthWrit=false;
+	m_depthWrite=false;
 	glClearDepth(1.0f);
 	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_DEPTH_TEST);
@@ -232,11 +234,11 @@ RenderDevice::RenderDevice()
 
 
 	/* face */
-	m_frontSided=FRONT_CCW;
-	m_doubleSided=false;
+	//m_frontSided=FRONT_CCW;
+	m_doubleSideEnabled=false;
 
 	glFrontFace(GL_CCW);
-	glDisable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 
 
 	/* texture */
@@ -442,7 +444,7 @@ void RenderDevice::_setGLScissor(const Rect2D& scissor_area)
 	glScissor(x,y,width,height);
 }
 
-void RenderDevice::setDepthTest(bool enable)
+void RenderDevice::setDepthTestEnabled(bool enable)
 {
 	if(m_depthTest!=enable)
 	{
@@ -476,7 +478,7 @@ void RenderDevice::setDepthWriteEnabled(bool enable)
 
 
 
-void RenderDevice::setBlend(int eq,int fsrc,int fdst)
+void RenderDevice::setBlend(E_BlendEquation eq,E_BlendFactor fsrc,E_BlendFactor fdst)
 {
 	if((eq==m_blendEquation) 
 		&&(fsrc==m_blendSrc )
@@ -485,13 +487,13 @@ void RenderDevice::setBlend(int eq,int fsrc,int fdst)
 		return ;
 	}
 
-	if(eq==EQUATION_NONE) 
+	if(eq==E_BlendEquation::NONE) 
 	{
 		glDisable(GL_BLEND);
 	}
 	else 
 	{
-		if(m_blendEquation==EQUATION_NONE)
+		if(m_blendEquation==E_BlendEquation::NONE)
 		{
 			glEnable(GL_BLEND);
 		}
@@ -505,7 +507,28 @@ void RenderDevice::setBlend(int eq,int fsrc,int fdst)
 	m_blendDst=fdst;
 }
 
-/* ----------------- MATRIX -------------------- */:w
+/* double side */
+void  RenderDevice::setDoubleSideEnabled(bool value)
+{
+	if(value==m_doubleSideEnabled)
+	{
+		return;
+	}
+
+	if(value)
+	{
+		glDisable(GL_CULL_FACE);
+	}
+	else 
+	{
+		glEnable(GL_CULL_FACE);
+	}
+	m_doubleSideEnabled=value;
+}
+
+
+
+/* ----------------- MATRIX -------------------- */
 
 /* transform */
 void RenderDevice::setProjectionMatrix(const Matrix4* m)
@@ -527,7 +550,7 @@ void RenderDevice::setViewMatrix(const Matrix4* m)
 
 Matrix4* RenderDevice::getViewMatrix()
 {
-	return m_viewMatrix;
+	return &m_viewMatrix;
 }
 
 
@@ -597,218 +620,218 @@ void RenderDevice::rotateWorldMatrix(const Vector3& s,float angle)
 	S_FS_MARK_MATRIX_DIRTY(S_FS_WORLD_MATRIX_MASK);
 }
 
-Matrix4* RenderDevice::getMatrix(E_UniformType t)
+Matrix4* RenderDevice::getMatrix(E_UniformRef t)
 {
 	switch(t)
 	{
 		/* world matrix */
-		case E_UniformType::WORLD:
+		case E_UniformRef::R_WORLD_MAT:
 			return &m_world[m_worldStackIndex];
 
-		case E_UniformType::WORLD_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_TRANSPOSE))
+		case E_UniformRef::R_WORLD_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_TRANSPOSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::WORLD_TRANSPOSE]=m_world[m_worldStackIndex];
-				m_cacheMatrix[E_UniformType::WORLD_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_TRANSPOSE_MAT)]=m_world[m_worldStackIndex];
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::WORLD_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_TRANSPOSE_MAT)];
 
-		case E_UniformType::WORLD_INVERSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_INVERSE)) 
+		case E_UniformRef::R_WORLD_INVERSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_INVERSE_MAT))) 
 			{
-				m_cacheMatrix[E_UniformType::WORLD_INVERSE]=m_world[m_worldStackIndex];
-				m_cacheMatrix[E_UniformType::WORLD_INVERSE].inverse();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_INVERSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_INVERSE_MAT)]=m_world[m_worldStackIndex];
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_INVERSE_MAT)].inverse();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_INVERSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::WORLD_INVERSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_INVERSE_MAT)];
 
-		case E_UniformType::WORLD_INVERSE_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_INVERSE_TRANSPOSE)) 
+		case E_UniformRef::R_WORLD_INVERSE_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_INVERSE_TRANSPOSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::WORLD_INVERSE_TRANSPOSE]=m_world[m_worldStackIndex];
-				m_cacheMatrix[E_UniformType::WORLD_INVERSE_TRANSPOSE].inverse();
-				m_cacheMatrix[E_UniformType::WORLD_INVERSE_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_INVERSE_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_INVERSE_TRANSPOSE_MAT)]=m_world[m_worldStackIndex];
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_INVERSE_TRANSPOSE_MAT)].inverse();
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_INVERSE_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_INVERSE_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::WORLD_INVERSE_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_INVERSE_TRANSPOSE_MAT)];
 
 
 		/* view matrix */
-		case E_UniformType::VIEW:
+		case E_UniformRef::R_VIEW_MAT:
 			return &m_viewMatrix;
 
-		case E_UniformType::VIEW_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_TRANSPOSE))
+		case E_UniformRef::R_VIEW_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_TRANSPOSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::VIEW_TRANSPOSE]=m_viewMatrix;
-				m_cacheMatrix[E_UniformType::VIEW_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_TRANSPOSE_MAT)]=m_viewMatrix;
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::VIEW_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_TRANSPOSE_MAT)];
 
-		case E_UniformType::VIEW_INVERSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_INVERSE)) 
+		case E_UniformRef::R_VIEW_INVERSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_INVERSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::VIEW_INVERSE]=m_viewMatrix;
-				m_cacheMatrix[E_UniformType::VIEW_INVERSE].inverse();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_INVERSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_INVERSE_MAT)]=m_viewMatrix;
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_INVERSE_MAT)].inverse();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_INVERSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::VIEW_INVERSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_INVERSE_MAT)];
 
-		case E_UniformType::VIEW_INVERSE_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_INVERSE_TRANSPOSE)) 
+		case E_UniformRef::R_VIEW_INVERSE_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_INVERSE_TRANSPOSE_MAT))) 
 			{
-				m_cacheMatrix[E_UniformType::VIEW_INVERSE_TRANSPOSE]=*getMatrix(E_UniformType::VIEW_INVERSE);
-				m_cacheMatrix[E_UniformType::VIEW_INVERSE_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_INVERSE_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_INVERSE_TRANSPOSE_MAT)]=*getMatrix(E_UniformRef::R_VIEW_INVERSE_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_INVERSE_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_INVERSE_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::VIEW_INVERSE_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_INVERSE_TRANSPOSE_MAT)];
 
 		/* projection matrix */
-		case E_UniformType::PROJECTION:
+		case E_UniformRef::R_PROJECTION_MAT:
 			return &m_projMatrix;
 
-		case E_UniformType::PROJECTION_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::PROJECTION_TRANSPOSE))
+		case E_UniformRef::R_PROJECTION_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_TRANSPOSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::PROJECTION_TRANSPOSE]=m_projMatrix;
-				m_cacheMatrix[E_UniformType::PROJECTION_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::PROJECTION_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_PROJECTION_TRANSPOSE_MAT)]=m_projMatrix;
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_PROJECTION_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::PROJECTION_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_PROJECTION_TRANSPOSE_MAT)];
 
-		case E_UniformType::PROJECTION_INVERSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::PROJECTION_INVERSE)) 
+		case E_UniformRef::R_PROJECTION_INVERSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::PROJECTION_INVERSE]=m_projMatrix;
-				m_cacheMatrix[E_UniformType::PROJECTION_INVERSE].inverse();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::PROJECTION_INVERSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_MAT)]=m_projMatrix;
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_MAT)].inverse();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::PROJECTION_INVERSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_MAT)];
 
-		case E_UniformType::PROJECTION_INVERSE_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::PROJECTION_INVERSE_TRANSPOSE)) 
+		case E_UniformRef::R_PROJECTION_INVERSE_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_TRANSPOSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::PROJECTION_INVERSE_TRANSPOSE]=*getMatrix(E_UniformType::PROJECTION_INVERSE);
-				m_cacheMatrix[E_UniformType::PROJECTION_INVERSE_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::PROJECTION_INVERSE_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_TRANSPOSE_MAT)]=*getMatrix(E_UniformRef::R_PROJECTION_INVERSE_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::PROJECTION_INVERSE_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_TRANSPOSE_MAT)];
 
 		/* world view */
-		case E_UniformType::WORLD_VIEW:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW))
+		case E_UniformRef::R_WORLD_VIEW_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::WORLD_VIEW]=m_world[m_worldStackIndex];
-				m_cacheMatrix[E_UniformType::WORLD_VIEW].mul(m_viewMatrix);
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)]=m_world[m_worldStackIndex];
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)].mul(m_viewMatrix);
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT));
 			}
-			return m_cacheMatrix[E_UniformType::WORLD_VIEW];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)];
 
 
-		case E_UniformType::WORLD_VIEW_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_TRANSPOSE))
+		case E_UniformRef::R_WORLD_VIEW_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_TRANSPOSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_TRANSPOSE]=*getMatrix(E_UniformType::WORLD_VIEW);
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_TRANSPOSE_MAT)]=*getMatrix(E_UniformRef::R_WORLD_VIEW_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::WORLD_VIEW_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_TRANSPOSE_MAT)];
 
-		case E_UniformType::WORLD_VIEW_INVERSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::PROJECTION_INVERSE)) 
+		case E_UniformRef::R_WORLD_VIEW_INVERSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_INVERSE]=*getMatrix(E_UniformType::WORLD_VIEW);
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_INVERSE].inverse();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_INVERSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_MAT)]=*getMatrix(E_UniformRef::R_WORLD_VIEW_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_MAT)].inverse();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::WORLD_VIEW_INVERSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_MAT)];
 
-		case E_UniformType::WORLD_VIEW_INVERSE_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_INVERSE_TRANSPOSE)) 
+		case E_UniformRef::R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT))) 
 			{
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_INVERSE_TRANSPOSE]=*getMatrix(E_UniformType::WORLD_VIEW_INVERSE);
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_INVERSE_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_INVERSE_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT)]=*getMatrix(E_UniformRef::R_WORLD_VIEW_INVERSE_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::WORLD_VIEW_INVERSE_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT)];
 
 		/* view  projection*/
-		case E_UniformType::VIEW_PROJECTION:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_PROJECTION))
+		case E_UniformRef::R_VIEW_PROJECTION_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::VIEW_PROJECTION]=m_viewMatrix;
-				m_cacheMatrix[E_UniformType::VIEW_PROJECTION]=mul(m_projMatrix);
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_PROJECTION);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)]=m_viewMatrix;
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)].mul(m_projMatrix);
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT));
 			}
-			return m_cacheMatrix[E_UniformType::VIEW_PROJECTION];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)];
 
 
-		case E_UniformType::VIEW_PROJECTION_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_PROJECTION_TRANSPOSE))
+		case E_UniformRef::R_VIEW_PROJECTION_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_TRANSPOSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::VIEW_PROJECTION_TRANSPOSE]=*getMatrix(E_UniformType::VIEW_PROJECTION);
-				m_cacheMatrix[E_UniformType::VIEW_PROJECTION_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_PROJECTION_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_TRANSPOSE_MAT)]=*getMatrix(E_UniformRef::R_VIEW_PROJECTION_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::VIEW_PROJECTION_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_TRANSPOSE_MAT)];
 
-		case E_UniformType::VIEW_PROJECTION_INVERSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_PROJECTION_INVERSE)) 
+		case E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT))) 
 			{
-				m_cacheMatrix[E_UniformType::VIEW_PROJECTION_INVERSE]=*getMatrix(E_UniformType::VIEW_PROJECTION);
-				m_cacheMatrix[E_UniformType::VIEW_PROJECTION_INVERSE].inverse();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_PROJECTION_INVERSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT)]=*getMatrix(E_UniformRef::R_VIEW_PROJECTION_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT)].inverse();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::VIEW_PROJECTION_INVERSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT)];
 
-		case E_UniformType::VIEW_PROJECTION_INVERSE_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_PROJECTION_INVERSE_TRANSPOSE)) 
+		case E_UniformRef::R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::VIEW_PROJECTION_INVERSE_TRANSPOSE]=*getMatrix(E_UniformType::VIEW_PROJECTION_INVERSE);
-				m_cacheMatrix[E_UniformType::VIEW_PROJECTION_INVERSE_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::VIEW_PROJECTION_INVERSE_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT)]=*getMatrix(E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::VIEW_PROJECTION_INVERSE_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT)];
 
 		/* world view  projection*/
-		case E_UniformType::WORLD_VIEW_PROJECTION:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_PROJECTION))
+		case E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION]=m_world[m_worldStackIndex];
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION]=mul(getMatrix(VIEW_PROJECTION));
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_PROJECTION);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)]=m_world[m_worldStackIndex];
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)].mul(*getMatrix(E_UniformRef::R_VIEW_PROJECTION_MAT));
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT));
 			}
-			return m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)];
 
 
-		case E_UniformType::WORLD_VIEW_PROJECTION_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_PROJECTION_TRANSPOSE))
+		case E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION_TRANSPOSE]=*getMatrix(E_UniformType::WORLD_VIEW_PROJECTION);
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_PROJECTION_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT)]=*getMatrix(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT)];
 
-		case E_UniformType::WORLD_VIEW_PROJECTION_INVERSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_PROJECTION_INVERSE)) 
+		case E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT)))
 			{
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION_INVERSE]=*getMatrix(E_UniformType::WORLD_VIEW_PROJECTION);
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION_INVERSE].inverse();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_PROJECTION_INVERSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT)]=*getMatrix(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT)].inverse();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION_INVERSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT)];
 
-		case E_UniformType::WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE:
-			if(S_FS_IS_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE)) 
+		case E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT:
+			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT))) 
 			{
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE]=*getMatrix(E_UniformType::WORLD_VIEW_PROJECTION_INVERSE);
-				m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE].transpose();
-				S_FS_CLR_MATRIX_DIRTY(1ul<<E_UniformType::WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT)]=*getMatrix(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT)].transpose();
+				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT));
 			}
-			return &m_cacheMatrix[E_UniformType::WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE];
+			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT)];
 		default:
 			FS_TRACE_WARN("Unkown Enum for Get Matrix");
 			return NULL;
@@ -923,7 +946,7 @@ int RenderDevice::getCacheUniformLocation(int index,const char* name)
 }
 
 
-void RenderDevice::setUniform(E_UniformType loc,int type,int count,void* value)
+void RenderDevice::setUniform(int loc,int type,int count,void* value)
 {                                                                          
 	if(loc<0)
 	{
@@ -1006,53 +1029,53 @@ void RenderDevice::setUniform(E_UniformType loc,int type,int count,void* value)
 			glUniform1iv(loc,count,(GLint*) value);
 			break;
 
-		case E_UniformType::UT_REF:
+		case E_UniformType::UT_REF_RD:
 			{
-				int ref_nu=*(int*)data;
-				if(ref_nu>0 && ref_nu<E_UnifomRef::MAX_MATRIX_NU)
+				E_UniformRef ref_nu=*(E_UniformRef*)value;
+				if((static_cast<int>(ref_nu) > 0) && (ref_nu < E_UniformRef::R_MAX_MATRIX_NU))
 				{
-					glUniformMatrix4fv(loc,1,getMatrix(ref_nu));
+					glUniformMatrix4fv(loc,1,GL_FALSE,(GLfloat*)getMatrix(ref_nu));
 				}
 				else 
 				{
 					switch(ref_nu)
 					{
-						case E_UnifomRef::TIME:
+						case E_UniformRef::R_TIME:
 							{
 								float t=m_timer.now();
 								glUniform1fv(loc,1,&t);
 								break;
 							}
-						case E_UnifomRef::VIEWPORT_WIDTH:
+						case E_UniformRef::R_VIEWPORT_WIDTH:
 							{
-								float width=m_viewportWidth;
+								float width=(float)m_viewportWidth;
 								glUniform1fv(loc,1,&width);
 								break;
 							}
-						case E_UnifomRef::VIEWPORT_WIDTH_INVERSE:
+						case E_UniformRef::R_VIEWPORT_WIDTH_INVERSE:
 							{
-								float w=1.0f/m_viewportWidth;
+								float w=1.0f/(float)m_viewportWidth;
 								glUniform1fv(loc,1,&w);
 								break;
 							}
-						case E_UnifomRef::VIEWPORT_HEIGHT:
+						case E_UniformRef::R_VIEWPORT_HEIGHT:
 							{
-								float height=m_viewportHeight;
+								float height=(float)m_viewportHeight;
 								glUniform1fv(loc,1,&height);
 								break;
 							}
-						case E_UnifomRef::VIEWPORT_HEIGHT_INVERSE:
+						case E_UniformRef::R_VIEWPORT_HEIGHT_INVERSE:
 							{
-								float h=1.0f/m_viewportHeight;
+								float h=1.0f/(float)m_viewportHeight;
 								glUniform1fv(loc,1,&h);
 								break;
 							}
-						case E_UnifomRef::COLOR:
+						case E_UniformRef::R_COLOR:
 							{
-								glUniform4fv(loc,1,&m_color);
+								glUniform4fv(loc,1,(GLfloat*)m_color.v);
 								break;
 							}
-						case E_UnifomRef::OPACITY:
+						case E_UniformRef::R_OPACITY:
 							{
 								glUniform1fv(loc,1,&m_opacity);
 								break;
@@ -1069,21 +1092,14 @@ void RenderDevice::setUniform(E_UniformType loc,int type,int count,void* value)
 }
 
 
-void RenderDevice::setUniform(int loc,int ref)
-{
-}
-
-
 void RenderDevice::setUniform(int loc,UniformValue* v)
 {
 	void* data=v->getData();
-	int type=v->getType();
+	E_UniformType type=v->getType();
 	int count=v->getCount();
 
-	setUniform(loc,type,count,data);
+	setUniform(loc,static_cast<int>(type),count,data);
 }
-
-
 
 
 

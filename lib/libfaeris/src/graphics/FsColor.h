@@ -35,6 +35,26 @@ class Color
 		bool operator!=(Color right){return rgba!=right.rgba;}
 };
 
+class Color3f 
+{
+	public:
+		Color3f(const Color& c)
+		{
+			r=float(c.r)/255.0f;
+			g=float(c.g)/255.0f;
+			b=float(c.b)/255.0f;
+		}
+	public:
+		union{
+			struct{
+				float r;
+				float g;
+				float b;
+			};
+			float v[3];
+		};
+};
+
 class Color4f
 {
 	public:
@@ -46,7 +66,7 @@ class Color4f
 		static Color4f BLACK;
 
 	public:
-		Color4f(Color c)
+		Color4f(const Color& c)
 		{
 			r=float(c.r)/255.0f;
 			g=float(c.g)/255.0f;
@@ -76,7 +96,15 @@ class Color4f
 
 
 	public:
-		float r,g,b,a;
+		union{
+			struct{
+				float r;
+				float g;
+				float b;
+				float a;
+			};
+			float v[4];
+		};
 };
 
 

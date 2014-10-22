@@ -1,5 +1,5 @@
 #include "FsProgramMgr.h"
-#include "graphics/FsProgram.h"
+#include "graphics/shader/FsProgram.h"
 
 NS_FS_BEGIN
 

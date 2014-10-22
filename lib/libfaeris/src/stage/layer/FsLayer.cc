@@ -4,7 +4,6 @@
 #include "stage/FsScene.h"
 #include "support/util/FsDict.h"
 #include "support/util/FsSlowDict.h"
-#include "mgr/FsObjectMgr.h"
 
 NS_FS_BEGIN
 

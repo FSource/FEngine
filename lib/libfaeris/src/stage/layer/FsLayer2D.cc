@@ -135,8 +135,7 @@ void Layer2D::draw(RenderDevice* r)
 			1024);
 	r->setProjectionMatrix(&mat);
 
-	r->pushMatrix();
-	r->loadIdentity();
+	r->loadWorldIdentity();
 
 	/* update all child matrix4 */
 	updateAllWorldMatrix();
@@ -153,7 +152,6 @@ void Layer2D::draw(RenderDevice* r)
 		if(ob->getVisibles()) ob->draws(r,false);
 	}
 
-	r->popMatrix();
 	if(m_scissorEnabled)
 	{
 		r->setScissorEnabled(false);

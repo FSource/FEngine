@@ -86,7 +86,11 @@ class RenderDevice:public FsObject
 
 
 		/* blend */
-		void setBlend(int eq,int fsrc,int fdst);
+		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor fdst);
+
+		/* double side */
+		void setDoubleSideEnabled(bool value);
+		bool getDoubleSideEnabled(){return m_doubleSideEnabled;}
 
 
 		/* projection matrix */
@@ -111,7 +115,7 @@ class RenderDevice:public FsObject
 		void scaleWorldMatrix(const Vector3& s);
 		void rotateWorldMatrix(const Vector3& v,float angle);
 
-		Matrix4* getMatrix(E_UniformType t);
+		Matrix4* getMatrix(E_UniformRef t);
 
 
 
@@ -172,13 +176,13 @@ class RenderDevice:public FsObject
 		int m_viewportX,m_viewportY,m_viewportWidth,m_viewportHeight;
 
 		/* blend */
-		int m_blendEquation;
-		int m_blendSrc;
-		int m_blendDst;
+		E_BlendEquation m_blendEquation;
+		E_BlendFactor m_blendSrc;
+		E_BlendFactor m_blendDst;
 
 		/* face */
-		int m_frontSided;
-		bool m_doubleSided;
+		//int m_frontSided;
+		bool m_doubleSideEnabled;
 
 		/* texture */
 		int m_activeTextureId;
@@ -198,7 +202,7 @@ class RenderDevice:public FsObject
 
 		/* model view projection matrix */
 		uint32_t m_matrixDirtyFlags;
-		Matrix4 m_cacheMatrix[E_UniformRef::MAX_MATRIX_NU];
+		Matrix4 m_cacheMatrix[E_UniformRef::R_MAX_MATRIX_NU];
 
 };
 

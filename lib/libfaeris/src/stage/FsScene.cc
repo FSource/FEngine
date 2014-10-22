@@ -1,7 +1,6 @@
 #include "stage/FsScene.h"
 #include "stage/layer/FsLayer.h"
 #include "support/util/FsSlowArray.h"
-#include "mgr/FsObjectMgr.h"
 #include "stage/layer/FsColorLayer.h"
 
 

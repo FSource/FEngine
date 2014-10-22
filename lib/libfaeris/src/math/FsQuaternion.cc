@@ -4,7 +4,7 @@
 
 NS_FS_BEGIN
 
-void Quaternion::makeFromEuler(const Vector3& v,int order)
+void Quaternion::makeFromEuler(const Vector3& v,E_EulerOrientType order)
 {
 	float c1=Math::cosa(v.x/2);
 	float c2=Math::cosa(v.y/2);
@@ -17,7 +17,7 @@ void Quaternion::makeFromEuler(const Vector3& v,int order)
 	switch(order)
 	{
 		/* qr=qx*qy*qz */
-		case FS_EULER_XYZ:
+		case E_EulerOrientType::XYZ:
 			x = s1 * c2 * c3 + c1 * s2 * s3;
 			y = c1 * s2 * c3 - s1 * c2 * s3;
 			z = c1 * c2 * s3 + s1 * s2 * c3;
@@ -25,7 +25,7 @@ void Quaternion::makeFromEuler(const Vector3& v,int order)
 			break;
 
 		/* qr=qx*qz*qz*/
-		case FS_EULER_XZY:
+		case E_EulerOrientType::XZY:
 			x = s1 * c2 * c3 - c1 * s2 * s3;
 			y = c1 * s2 * c3 - s1 * c2 * s3;
 			z = c1 * c2 * s3 + s1 * s2 * c3;
@@ -33,7 +33,7 @@ void Quaternion::makeFromEuler(const Vector3& v,int order)
 			break;
 
 		/* qr=qy*qx*qz */
-		case FS_EULER_YXZ:
+		case E_EulerOrientType::YXZ:
 			x = s1 * c2 * c3 + c1 * s2 * s3;
 			y = c1 * s2 * c3 - s1 * c2 * s3;
 			z = c1 * c2 * s3 - s1 * s2 * c3;
@@ -41,7 +41,7 @@ void Quaternion::makeFromEuler(const Vector3& v,int order)
 			break;
 
 		/* qr=qy*qz*qx */
-		case FS_EULER_YZX:
+		case E_EulerOrientType::YZX:
 			x = s1 * c2 * c3 + c1 * s2 * s3;
 			y = c1 * s2 * c3 + s1 * c2 * s3;
 			z = c1 * c2 * s3 - s1 * s2 * c3;
@@ -49,14 +49,14 @@ void Quaternion::makeFromEuler(const Vector3& v,int order)
 			break;
 
 		/* qr=qz*qx*qy */
-		case FS_EULER_ZXY:
+		case E_EulerOrientType::ZXY:
 			x = s1 * c2 * c3 - c1 * s2 * s3;
 			y = c1 * s2 * c3 + s1 * c2 * s3;
 			z = c1 * c2 * s3 + s1 * s2 * c3;
 			w = c1 * c2 * c3 - s1 * s2 * s3;
 			break;
 		/* qr=qz*qy*qx */
-		case FS_EULER_ZYX:
+		case E_EulerOrientType::ZYX:
 			x = s1 * c2 * c3 - c1 * s2 * s3;
 			y = c1 * s2 * c3 + s1 * c2 * s3;
 			z = c1 * c2 * s3 - s1 * s2 * c3;

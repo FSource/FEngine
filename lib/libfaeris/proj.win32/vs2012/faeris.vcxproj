@@ -53,7 +53,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../src;../../src/support;../../../lib3rdparty/freetype/include;../../../lib3rdparty/zlib/include;../../../lib3rdparty/pthread/include;../../../lib3rdparty/curl/include_win32;../../../lib3rdparty/tolua++/include;../../../lib3rdparty/lua/include;../../../lib3rdparty/c99/include;../../../lib3rdparty/minizip/include;../../../lib3rdparty/GL/include;../../../lib3rdparty/fmod/include;../../../lib3rdparty/jsonc/src;../../../lib3rdparty/libjpeg/src;../../../lib3rdparty/libpng/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src;../../src/support;../../../lib3rdparty/freetype/include;../../../lib3rdparty/zlib/include;../../../lib3rdparty/pthread/include;../../../lib3rdparty/curl/include_win32;../../../lib3rdparty/tolua++/include;../../../lib3rdparty/lua/include;../../../lib3rdparty/c99/include;../../../lib3rdparty/minizip/include;../../../lib3rdparty/GL/include;../../../lib3rdparty/fmod/include;../../../lib3rdparty/jsonc/src;../../../lib3rdparty/glslext/src;../../../lib3rdparty/libjpeg/src;../../../lib3rdparty/libpng/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;PTW32_BUILD;_USRDLL;CURL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -93,15 +93,19 @@
     <ClInclude Include="..\..\src\graphics\FsFontTTF.h" />
     <ClInclude Include="..\..\src\graphics\FsFrameBuffer.h" />
     <ClInclude Include="..\..\src\graphics\FsImage2D.h" />
-    <ClInclude Include="..\..\src\graphics\FsProgram.h" />
-    <ClInclude Include="..\..\src\graphics\FsRender.h" />
+    <ClInclude Include="..\..\src\graphics\FsRenderDevice.h" />
     <ClInclude Include="..\..\src\graphics\FsRenderTarget.h" />
     <ClInclude Include="..\..\src\graphics\FsTexture2D.h" />
     <ClInclude Include="..\..\src\graphics\FsTypoPage.h" />
     <ClInclude Include="..\..\src\graphics\FsVertexBuffer.h" />
-    <ClInclude Include="..\..\src\graphics\material\FsColorMaterial.h" />
     <ClInclude Include="..\..\src\graphics\material\FsMaterial.h" />
-    <ClInclude Include="..\..\src\graphics\material\FsTextureMaterial.h" />
+    <ClInclude Include="..\..\src\graphics\material\FsMaterial2D.h" />
+    <ClInclude Include="..\..\src\graphics\shader\FsProgram.h" />
+    <ClInclude Include="..\..\src\graphics\shader\FsProgramFeatureDesc.h" />
+    <ClInclude Include="..\..\src\graphics\shader\FsProgramSource.h" />
+    <ClInclude Include="..\..\src\graphics\shader\FsStreamMap.h" />
+    <ClInclude Include="..\..\src\graphics\shader\FsUniformMap.h" />
+    <ClInclude Include="..\..\src\graphics\shader\FsUniformValue.h" />
     <ClInclude Include="..\..\src\math\curve\FsArcCurve.h" />
     <ClInclude Include="..\..\src\math\curve\FsCatmullRomCurve.h" />
     <ClInclude Include="..\..\src\math\curve\FsCubicBezierCurve.h" />
@@ -137,7 +141,6 @@
     <ClInclude Include="..\..\src\media\FsAudioEngine.h" />
     <ClInclude Include="..\..\src\media\FsAudioPlayer.h" />
     <ClInclude Include="..\..\src\mgr\FsFontTTFMgr.h" />
-    <ClInclude Include="..\..\src\mgr\FsObjectMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsProgramMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsResource.h" />
     <ClInclude Include="..\..\src\mgr\FsResourceMgr.h" />
@@ -246,13 +249,13 @@
     <ClCompile Include="..\..\src\graphics\FsFontTTF.cc" />
     <ClCompile Include="..\..\src\graphics\FsFrameBuffer.cc" />
     <ClCompile Include="..\..\src\graphics\FsImage2D.cc" />
-    <ClCompile Include="..\..\src\graphics\FsProgram.cc" />
-    <ClCompile Include="..\..\src\graphics\FsRender.cc" />
+    <ClCompile Include="..\..\src\graphics\FsRenderDevice.cc" />
     <ClCompile Include="..\..\src\graphics\FsTexture2D.cc" />
     <ClCompile Include="..\..\src\graphics\FsVertexBuffer.cc" />
-    <ClCompile Include="..\..\src\graphics\material\FsColorMaterial.cc" />
     <ClCompile Include="..\..\src\graphics\material\FsMaterial.cc" />
-    <ClCompile Include="..\..\src\graphics\material\FsTextureMaterial.cc" />
+    <ClCompile Include="..\..\src\graphics\material\FsMaterial2D.cc" />
+    <ClCompile Include="..\..\src\graphics\shader\FsProgram.cc" />
+    <ClCompile Include="..\..\src\graphics\shader\FsProgramSource.cc" />
     <ClCompile Include="..\..\src\math\curve\FsCatmullRomCurve.cc" />
     <ClCompile Include="..\..\src\math\curve\FsCubicBezierCurve.cc" />
     <ClCompile Include="..\..\src\math\curve\FsLinearCurve.cc" />
@@ -279,7 +282,6 @@
     <ClCompile Include="..\..\src\media\FsAudioEngine.cc" />
     <ClCompile Include="..\..\src\media\FsAudioPlayer.cc" />
     <ClCompile Include="..\..\src\mgr\FsFontTTFMgr.cc" />
-    <ClCompile Include="..\..\src\mgr\FsObjectMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsProgramMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsResource.cc" />
     <ClCompile Include="..\..\src\mgr\FsResourceMgr.cc" />

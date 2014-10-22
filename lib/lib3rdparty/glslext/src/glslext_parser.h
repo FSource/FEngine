@@ -9,65 +9,34 @@
 class GlslextTypeMap
 {
 	public:
-		enum 
-		{
-			E_STRING,
-			E_VECTOR
-		};
-	public:
 		GlslextTypeMap(std::string* name,std::string* type,std::string* value)
 		{
 			m_name=name;
 			m_type=type;
-			m_stringValue=value;
-			m_valueType=E_STRING;
+			m_value=value;
+			m_extIndex=0;
 		}
 
-		GlslextTypeMap(std::string* name,std::string* type,std::vector<float>* value)
+		GlslextTypeMap(std::string* name,std::string* type,std::string* value,int index)
 		{
 			m_name=name;
 			m_type=type;
-			m_vecValue=value;
-			m_valueType=E_VECTOR;
+			m_value=value;
+			m_extIndex=index;
 		}
 
 		~GlslextTypeMap()
 		{
-			if(m_name)
-			{
-				delete m_name;
-			}
-			if(m_type)
-			{
-				delete m_type;
-			}
-
-			if(m_valueType==E_STRING)
-			{
-				if(m_stringValue)
-				{
-					delete m_stringValue;
-				}
-			}
-			else 
-			{
-				if(m_vecValue)
-				{
-					delete m_vecValue;
-				}
-			}
-		}
+			if(m_name) { delete m_name; }
+			if(m_type) { delete m_type; } 
+			if(m_value) { delete m_value; }
+	   	}
 
 	public:
 		std::string* m_name;
 		std::string* m_type;
-		int m_valueType;
-
-		union 
-		{
-			std::string* m_stringValue;
-			std::vector<float>* m_vecValue;
-		};
+		std::string* m_value;
+		int m_extIndex;
 };
 
 
@@ -91,20 +60,29 @@ class GlslextParser
 		{
 			m_uniformMap.push_back(new GlslextTypeMap(name,type,value));
 		}
-		void addUniformMap(std::string* name,std::string* type,std::vector<float>* value)
+		void addUniformMap(std::string* name,std::string* type,std::string* value,int ext_index)
 		{
-			m_uniformMap.push_back(new GlslextTypeMap(name,type,value));
+			m_uniformMap.push_back(new GlslextTypeMap(name,type,value,ext_index));
 		}
+
+		int getUniformMapNu() {return m_uniformMap.size();} 
+		GlslextTypeMap* getUniformMap(int index){return m_uniformMap[index];}
+
+
 
 		void addAttributeMap(std::string* name,std::string* type,std::string* value)
 		{
 			m_attributeMap.push_back(new GlslextTypeMap(name,type,value));
 		}
+		int getAttributeMapNu(){return m_attributeMap.size();}
+		GlslextTypeMap*  getAttributeMap(int index){return m_attributeMap[index];}
 
 
-	protected:
+	public:
 		GlslextParser();
 		~GlslextParser();
+
+	protected:
 		bool init(void* file,ReadFunc func);
 
 
@@ -122,6 +100,8 @@ class GlslextParser
 
 };
 
+
+GlslextParser* GlslextParser_Parse(void* file,GlslextParser::ReadFunc func);
 int Glslext_error(GlslextParser* param,const char* msg);
 int Glslext_parse (GlslextParser* param);
 

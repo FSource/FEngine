@@ -1,6 +1,7 @@
 #ifndef _FS_PROGRAM_H_
 #define _FS_PROGRAM_H_
 
+#include <vector>
 #include <string>
 #include "FsMacros.h"
 #include "sys/io/FsFile.h"
@@ -23,58 +24,17 @@
 
 NS_FS_BEGIN 
 
-
-
-
-class ProgramFeatureDesc:public FsObject
-{
-	public:
-		static ProgramFeatureDesc* create();
-
-	public:
-		/* inherit */
-		virtual const char* className();
-		virtual ProgramFeatureDesc* clone();
-		virtual void copy(ProgramFeatureDesc* desc);
-
-	public:
-		void setSupportFlags(ulong flag);
-		void clearSupportFlags(ulong flag);
-
-	protected:
-		ProgramFeatureDesc();
-
-	public:
-
-		/* feature support flags */
-		ulong m_supportFlags;
-
-		/* light info */
-		int m_directionalLightNu;
-		int m_pointLightNu;
-		int m_SpotLightNu;
-		int m_HemiSphereLightNu;
-
-		/* shadow info */
-		int m_shadowMapNu;
-		E_ShadowType m_shadowType;
-
-		/* fog */
-		E_FogType m_fogType;
-
-		/* bone */
-		int m_boneNu;
-
-		/* name */
-		std::string m_name;
-};
-
+class UniformMap;
+class StreamMap;
+class ProgramFeatureDesc;
+class ProgramSource;
 
 class Program:public Resource
 {
 	public:
 		static Program* create(const char* vertex_src,const char* fragment_src);
-		static Program* create(ProgramFeatureDesc* desc,const char* vertex_src,const char* fragment_src);
+		static Program* create(ProgramFeatureDesc* desc,ProgramSource* source);
+		static Program* create(ProgramSource* source);
 
 	public:
 		/* return the location of the  Attribute/Uniform 
@@ -92,8 +52,19 @@ class Program:public Resource
 		virtual const char* className();
 
 
-		const ProgramFeatureDesc&  getFeatureDesc(){return m_featureDesc;}
-		void setFeatureDesc(const ProgramFeatureDesc& desc){m_featureDesc=desc;}
+		const ProgramFeatureDesc*  getFeatureDesc(){return m_featureDesc;}
+		void setFeatureDesc(ProgramFeatureDesc* desc){m_featureDesc=desc;}
+
+		/* uniform map */
+		UniformMap* getUniformMap(int index){return m_uniformMaps[index];}
+		int getUniformMapNu(){return m_uniformMaps.size();}
+		void addUniformMap(UniformMap* map){m_uniformMaps.push_back(map);}
+
+		/* stream map */
+		StreamMap* getStreamMap(int index){return m_streamMaps[index];}
+		int getStreamMapNu(){return m_streamMaps.size();}
+		void addStreamMap(StreamMap* map){m_streamMaps.push_back(map);}
+
 
 
 	protected:
@@ -101,13 +72,17 @@ class Program:public Resource
 		~Program();
 
 		bool init(const char* vertex_src,const char* fragment_src);
+		bool init(ProgramSource* source);
 
 	private:
 
-		ProgramFeatureDesc m_featureDesc;
+		ProgramFeatureDesc* m_featureDesc;
 
 		int m_cacheUniformLoc[FS_PROGRAM_CACHE_UNIFORM_SUPPORT];
 		int m_cacheAttrLoc[FS_PROGRAM_CACHE_ATTR_SUPPORT];
+
+		std::vector<UniformMap*> m_uniformMaps;
+		std::vector<StreamMap*> m_streamMaps;
 
 		/* platform type */
 		PlatformProgram m_program;

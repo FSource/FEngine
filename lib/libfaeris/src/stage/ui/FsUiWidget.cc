@@ -327,7 +327,7 @@ void UiWidget::getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
 
 
 	Matrix4 mat;
-	mat.makeCompose(Vector3(0,0,0),m_rotate,FS_EULER_XYZ,m_scale);
+	mat.makeCompose(Vector3(0,0,0),m_rotate,E_EulerOrientType::XYZ,m_scale);
 
 	/* D-----C 
 	 * |     |

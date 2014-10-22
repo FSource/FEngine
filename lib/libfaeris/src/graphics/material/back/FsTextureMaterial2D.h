@@ -32,8 +32,6 @@ class TextureMaterial2D:public Material
 
 NS_FS_END
 
-
-
-
 #endif /*_FS_TEXTURE_MATERIAL_H_*/
+
 

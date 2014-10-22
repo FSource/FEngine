@@ -2,6 +2,7 @@
 #define _FS_MATH_MATRIX4_H_ 
 
 #include "FsMacros.h"
+#include "FsEnums.h"
 
 #include "math/FsVector2.h"
 #include "math/FsVector3.h"
@@ -76,8 +77,8 @@ class  Matrix4
 		void makeRotateAxis(const Vector3& v,float angle){makeRotateAxis(v.x,v.y,v.z,angle);}
 		void makeRotateAxis(float x,float y,float z,float angle);
 
-		void makeRotateFromEuler(float x,float y,float z,int type);
-		void makeRotateFromEuler(const Vector3& v,int type){makeRotateFromEuler(v.x,v.y,v.z,type);}
+		void makeRotateFromEuler(float x,float y,float z,E_EulerOrientType type);
+		void makeRotateFromEuler(const Vector3& v,E_EulerOrientType type){makeRotateFromEuler(v.x,v.y,v.z,type);}
 
 		void makeScale(float x,float y,float z);
 		void makeScale(const Vector3& v){makeScale(v.x,v.y,v.z);}
@@ -87,14 +88,14 @@ class  Matrix4
 		void makeFrustum(float left,float right,float bottom,float top,float near,float far);
 		void makePerspective(float fov,float aspect,float near,float far);
 		void makeOrthographic(float left,float right,float bottom,float top,float near,float far);
-		void makeCompose(const Vector3& t,const Vector3& r,int r_type,const Vector3& s);
+		void makeCompose(const Vector3& t,const Vector3& r,E_EulerOrientType r_type,const Vector3& s);
 		void makeCompose(const Vector3& t,const Quaternion& q,const Vector3& s);
 
 
 		/* set rotate,scale and translate part in Matrix4 */
 		void setTranslate(float x,float y,float z);
 		void setTranslate(const Vector3& v){setTranslate(v.x,v.y,v.z);}
-		void setRotationFromEuler(float rx,float ry,float rz,int type);
+		void setRotationFromEuler(float rx,float ry,float rz,E_EulerOrientType type);
 		void setRotationFromQuaternion(const Quaternion& q); 
 		void setScale(float sx,float sy,float sz);
 		void setScale(const Vector3& v){setScale(v.x,v.y,v.z);}
@@ -137,7 +138,7 @@ class  Matrix4
 			m30=v30;m31=v31;m32=v32;m33=v33;
 		}
 	protected:
-		void rawSetRotateFromEuler(float rx,float ry,float rz,int type);
+		void rawSetRotateFromEuler(float rx,float ry,float rz, E_EulerOrientType type);
 
 };
 NS_FS_END

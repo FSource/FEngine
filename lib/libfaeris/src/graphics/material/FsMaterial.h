@@ -58,16 +58,11 @@ class Material:public FsObject
 		void setDepthWriteEnabled(bool enable) {m_depthWriteEnabled=enable;}
 		bool getDepthWriteEnabled(){return m_depthWriteEnabled;}
 
-		void setColor(const Color3f& color){m_color=color;}
-		Color3f getColor(){return m_color;}
-
-		void setOpacity(float opacity) {m_opacity=opacity;}
-		float getOpacity(){return m_opacity;}
 
 
 	public:
 		virtual Program* getProgram(ProgramFeatureDesc* desc)=0;
-		virtual void configRenderDevice(RenderDevice* rd,bool force);
+		virtual void configRenderDevice(RenderDevice* rd);
 
 	protected:
 		/* render state */

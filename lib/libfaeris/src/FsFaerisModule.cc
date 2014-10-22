@@ -29,9 +29,6 @@ int FsFaeris_ModuleInit()
 
 	VFS::moduleInit();
 
-	ObjectMgr* ob_mgr=ObjectMgr::create();
-	FS_NO_REF_DESTROY(ob_mgr);
-	Global::setObjectMgr(ob_mgr);
 
 
 	Scheduler* scheduler=Scheduler::create();
@@ -129,7 +126,6 @@ int FsFaeris_ModuleExit()
 	RenderDevice* render=Global::renderDevice();
 
 	/* manager */
-	ObjectMgr* ob_mgr=Global::objectMgr();
 	TextureMgr* tex_mgr=Global::textureMgr();
 	FontTTFMgr* font_mgr=Global::fontTTFMgr();
 	Sprite2DDataMgr* sprite_mgr=Global::sprite2DDataMgr();
@@ -169,7 +165,6 @@ int FsFaeris_ModuleExit()
 	FS_DESTROY(tex_mgr);
 	FS_DESTROY(font_mgr);
 	FS_DESTROY(sprite_mgr);
-	FS_DESTROY(ob_mgr);
 	FS_DESTROY(prog_mgr);
 
 
@@ -189,7 +184,6 @@ int FsFaeris_ModuleExit()
 	Global::dropTextureMgr();
 	Global::dropFontTTFMgr();
 	Global::dropSprite2DDataMgr();
-	Global::dropObjectMgr();
 	Global::dropProgramMgr();
 	return 0;
 }

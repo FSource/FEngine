@@ -5,8 +5,11 @@
 	#include "GL/glew.h"
 #endif 
 
-#include "graphics/FsProgram.h"
+#include "graphics/shader/FsProgram.h"
+#include "graphics/shader/FsProgramSource.h"
 #include "support/util/FsLog.h"
+#include "graphics/shader/FsUniformMap.h"
+#include "graphics/shader/FsStreamMap.h"
 
 #define FS_MAX_GL_SHADER_LOG_LENGTH 1024
 #define FS_MAX_GL_PROGRAM_LOG_LENGTH 1024
@@ -114,8 +117,7 @@ bool Program::init(const char* vertex_src,const char* fragment_src)
 	glDeleteShader(fragment_shader);
 
 	m_program=program;
-	m_vertSrc=std::string(vertex_src);
-	m_fragSrc=std::string(fragment_src);
+
 
 	for(int i=0;i<FS_PROGRAM_CACHE_ATTR_SUPPORT;i++)
 	{
@@ -146,6 +148,44 @@ error:
 	}
 	return false;
 }
+
+bool Program::init(ProgramSource* source)
+{
+
+	bool ret=init(source->getVertexStr(),source->getFragmentStr());
+	if(!ret)
+	{
+		return false;
+	}
+	
+	int uniform_nu=source->getUniformMapNu();
+	for(int i=0;i<uniform_nu;i++)
+	{
+		UniformMap* map=source->getUniformMap(i);
+		int loc=glGetUniformLocation(m_program,map->m_name.c_str());
+		if(loc>=0)
+		{
+			UniformMap* u=map->clone();
+			u->m_location=loc;
+			m_uniformMaps.push_back(map);
+		}
+	}
+
+	int stream_nu=source->getStreamMapNu();
+	for(int i=0;i<stream_nu;i++)
+	{
+		StreamMap* map=source->getStreamMap(i);
+		int loc=glGetAttribLocation(m_program,map->m_name.c_str());
+		if(loc>=0)
+		{
+			StreamMap* s=map->clone();
+			s->m_location=loc;
+			m_streamMaps.push_back(s);
+		}
+	}
+	return true;
+}
+
 
 
 
@@ -191,21 +231,7 @@ int Program::getCacheUniformLocation(int index,const char* name)
 	return m_cacheUniformLoc[index];
 }
 
-void Program::reload()
-{
-	if(m_program!=0)
-	{
-		glDeleteProgram(m_program);
-		m_program=0;
-	}
-	init(m_vertSrc.c_str(),m_fragSrc.c_str());
-}
 
-
-void Program::markInvalid()
-{
-	m_program=0;
-}
 
 Program::Program()
 {
@@ -218,11 +244,29 @@ Program::~Program()
 	{
 		glDeleteProgram(m_program);
 	}
+
+	int size=m_uniformMaps.size();
+	for(int i=0;i<size;i++)
+	{
+		UniformMap* map=m_uniformMaps[i];
+		delete map;
+	}
+	m_uniformMaps.clear();
+
+
+	size=m_streamMaps.size();
+	for(int i=0;i<size;i++)
+	{
+		StreamMap* map=m_streamMaps[i];
+		delete map;
+	}
+	m_streamMaps.clear();
 }
+
 
 const char* Program::className()
 {
-	return FS_PROGRAM_CLASS_NAME;
+	return "Program";
 }
 
 NS_FS_END 

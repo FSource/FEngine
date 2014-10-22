@@ -77,19 +77,13 @@
     <Filter Include="src\scheduler">
       <UniqueIdentifier>{68e9c26e-2209-4d72-ad1e-67f569488de6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\graphics\shader">
+      <UniqueIdentifier>{865dfdd5-fd14-42c3-ad50-215dbc5607d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\extends\FsScriptEngine.h">
       <Filter>src\extends</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\graphics\material\FsColorMaterial.h">
-      <Filter>src\graphics\material</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\graphics\material\FsMaterial.h">
-      <Filter>src\graphics\material</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\graphics\material\FsTextureMaterial.h">
-      <Filter>src\graphics\material</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\graphics\FsColor.h">
       <Filter>src\graphics</Filter>
@@ -104,12 +98,6 @@
       <Filter>src\graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\graphics\FsImage2D.h">
-      <Filter>src\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\graphics\FsProgram.h">
-      <Filter>src\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\graphics\FsRender.h">
       <Filter>src\graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\graphics\FsRenderTarget.h">
@@ -221,9 +209,6 @@
       <Filter>src\media</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\mgr\FsFontTTFMgr.h">
-      <Filter>src\mgr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\mgr\FsObjectMgr.h">
       <Filter>src\mgr</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\mgr\FsProgramMgr.h">
@@ -544,19 +529,37 @@
     <ClInclude Include="..\..\src\FsEnums.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\graphics\shader\FsProgram.h">
+      <Filter>src\graphics\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\shader\FsProgramFeatureDesc.h">
+      <Filter>src\graphics\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\shader\FsProgramSource.h">
+      <Filter>src\graphics\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\shader\FsStreamMap.h">
+      <Filter>src\graphics\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\shader\FsUniformMap.h">
+      <Filter>src\graphics\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\shader\FsUniformValue.h">
+      <Filter>src\graphics\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\FsRenderDevice.h">
+      <Filter>src\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\material\FsMaterial.h">
+      <Filter>src\graphics\material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\graphics\material\FsMaterial2D.h">
+      <Filter>src\graphics\material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
       <Filter>src\extends</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\graphics\material\FsColorMaterial.cc">
-      <Filter>src\graphics\material</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\graphics\material\FsMaterial.cc">
-      <Filter>src\graphics\material</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\graphics\material\FsTextureMaterial.cc">
-      <Filter>src\graphics\material</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\graphics\FsColor.cc">
       <Filter>src\graphics</Filter>
@@ -571,12 +574,6 @@
       <Filter>src\graphics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\graphics\FsImage2D.cc">
-      <Filter>src\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\graphics\FsProgram.cc">
-      <Filter>src\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\graphics\FsRender.cc">
       <Filter>src\graphics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\graphics\FsTexture2D.cc">
@@ -655,9 +652,6 @@
       <Filter>src\media</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\mgr\FsFontTTFMgr.cc">
-      <Filter>src\mgr</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\mgr\FsObjectMgr.cc">
       <Filter>src\mgr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\mgr\FsProgramMgr.cc">
@@ -974,6 +968,21 @@
     </ClCompile>
     <ClCompile Include="..\..\src\graphics\FsVertexBuffer.cc">
       <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\shader\FsProgram.cc">
+      <Filter>src\graphics\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\shader\FsProgramSource.cc">
+      <Filter>src\graphics\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\FsRenderDevice.cc">
+      <Filter>src\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\material\FsMaterial.cc">
+      <Filter>src\graphics\material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\material\FsMaterial2D.cc">
+      <Filter>src\graphics\material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

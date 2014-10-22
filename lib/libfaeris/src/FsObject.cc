@@ -2,7 +2,6 @@
 #include "FsGlobal.h"
 #include "extends/FsScriptEngine.h"
 
-#include "mgr/FsObjectMgr.h"
 
 NS_FS_BEGIN 
 
@@ -16,10 +15,6 @@ int FsObject::m_objectNu=0;
 
 FsObject::~FsObject()
 {
-	if(m_objectMgr)
-	{
-		m_objectMgr->unManageObject(this);
-	}
 
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
 	finalize();
@@ -30,15 +25,6 @@ FsObject::~FsObject()
 }
 
 
-void FsObject::setObjectMgr(ObjectMgr* mgr)
-{
-	m_objectMgr=mgr;
-}
-
-ObjectMgr* FsObject::getObjectMgr()
-{
-	return m_objectMgr;
-}
 
 
 long FsObject::getHashCode() 
@@ -51,10 +37,6 @@ bool FsObject::equal(FsObject* ob)
 	return this==ob;
 }
 
-void FsObject::setAttributes(FsDict* dict)
-{
-
-}
 
 
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)

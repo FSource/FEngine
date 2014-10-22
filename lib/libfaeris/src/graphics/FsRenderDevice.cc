@@ -1,9 +1,9 @@
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 
 #if FS_CONFIG(FS_GLES_RENDER)
-	#include "platform/FsESRender.cc"
+	#include "platform/FsESRenderDevice.cc"
 #elif FS_CONFIG(FS_GL_RENDER)
-	#include "platform/FsGLRender.cc"
+	#include "platform/FsGLRenderDevice.cc"
 #else 
 	#error "UnSupport Render"
 #endif 

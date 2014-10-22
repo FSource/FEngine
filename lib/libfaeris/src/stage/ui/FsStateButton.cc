@@ -1,6 +1,6 @@
 #include "FsStateButton.h"
 
-#include "graphics/FsProgram.h"
+#include "graphics/shader/FsProgram.h"
 #include "graphics/FsTexture2D.h"
 #include "graphics/material/FsColorMaterial.h"
 #include "graphics/FsRenderDevice.h"
