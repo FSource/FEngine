@@ -1,10 +1,13 @@
 #include "stage/entity/FsQuad2D.h"
 #include "graphics/FsTexture2D.h"
 #include "graphics/FsRenderDevice.h"
+#include "graphics/shader/FsProgram.h"
+#include "graphics/shader/FsStreamMap.h"
 #include "mgr/FsTextureMgr.h"
 
 #include "FsGlobal.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
+
 
 NS_FS_BEGIN
 
@@ -255,7 +258,7 @@ void Quad2D::setRegionRect(float x,float y,float w,float h)
 	m_rawVertices[3].t2.tu=x2;
 	m_rawVertices[3].t2.tv=1-y2;
 
-	m_vertiesMode=RenderDevice::TRIANGLE_STRIP;
+	m_vertiesMode=E_DrawMode::TRIANGLE_STRIP;
 
 	m_vertiesDirty=true;
 
@@ -341,7 +344,7 @@ void Quad2D::setRegionEllipse(float x,float y,float a ,float b,float a_start,flo
 	}	
 
 	m_vertiesDirty=true;
-	m_vertiesMode=RenderDevice::TRIANGLE_FAN;
+	m_vertiesMode=E_DrawMode::TRIANGLE_FAN;
 
 }
 
@@ -496,7 +499,7 @@ void Quad2D::setRegionScale9(float l,float r,float b,float t)
 	}
 
 	m_vertiesDirty=true;
-	m_vertiesMode=RenderDevice::TRIANGLE_INDEX;
+	m_vertiesMode=E_DrawMode::TRIANGLE_INDEX;
 
 }
 
@@ -519,8 +522,24 @@ void Quad2D::calFinishVertics()
 
 }
 
-void Quad2D::draw(RenderDevice* render,bool updateMatrix)
+void Quad2D::draw(RenderDevice* rd,bool updateMatrix)
 {
+	Program* prog=getProgram(NULL);
+
+	if(!prog)
+	{
+		return;
+	}
+
+	if(m_renderMode==MODE_TEXTURE)
+	{
+		if(!m_texture)
+		{
+			return;
+		}
+	}
+
+
 	if(updateMatrix)
 	{
 		updateWorldMatrix();
@@ -532,96 +551,51 @@ void Quad2D::draw(RenderDevice* render,bool updateMatrix)
 		m_vertiesDirty=false;
 	}
 
-	render->pushMatrix();
-	render->mulMatrix(&m_worldMatrix);
+
+
+	rd->setWorldMatrix(&m_worldMatrix);
+	rd->setProgram(prog);
+	m_material->configRenderDevice(rd);
+
 	if(m_renderMode==MODE_TEXTURE)
 	{
-		drawTextureMode(render);
-	}
-	else 
-	{
-		drawColorMode(render);
+		rd->bindTexture(m_texture,0);
 	}
 
-	render->popMatrix();
 
-}
-
-
-
-
-void Quad2D::drawColorMode(RenderDevice* render)
-{	
-	if(!m_programColor||!m_material)
-	{
-		return;
-	}
-
-	render->setProgram(m_programColor);
-	m_material->configRenderDevice(render);
-
-	render->disableAllAttrArray();
+	rd->disableAllAttrArray();
 
 	int size=m_finishVertices.size();
 
-	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
 
 
-	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,size,
+	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);
+	StreamMap* map_u=prog->getStreamMap(E_StreamType::UVS);
+
+
+	if(map_v)
+	{
+		rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,size,
 										sizeof(Fs_V2F_T2F),
 										&m_finishVertices[0].v2);
+	}
 
-
-	if(m_vertiesMode==RenderDevice::TRIANGLE_INDEX)
+	if(map_u)
 	{
-		render->drawFace3(&m_faces[0],m_faces.size());
+
+		rd->setAndEnableVertexAttrPointer(map_u->m_location,2,FS_FLOAT,size,
+											sizeof(Fs_V2F_T2F),
+											&m_finishVertices[0].t2);
+	}
+
+
+	if(m_vertiesMode==E_DrawMode::TRIANGLE_INDEX)
+	{
+		rd->drawFace3(&m_faces[0],m_faces.size());
 	}
 	else 
 	{
-		render->drawArray(m_vertiesMode,0,size);
-	}
-
-}
-
-
-
-void Quad2D::drawTextureMode(RenderDevice* render)
-{
-	if(m_texture==NULL||!m_programTex||!m_material)
-	{
-		return;
-	}
-
-
-
-	render->setProgram(m_programTex);
-	m_material->configRenderDevice(render);
-
-	render->bindTexture(m_texture,0);
-	render->disableAllAttrArray();
-
-	int size=m_finishVertices.size();
-
-	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
-
-
-	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,size,
-										sizeof(Fs_V2F_T2F),
-										&m_finishVertices[0].v2);
-
-	render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,size,
-										sizeof(Fs_V2F_T2F),
-										&m_finishVertices[0].t2);
-
-	if(m_vertiesMode==RenderDevice::TRIANGLE_INDEX)
-	{
-		render->drawFace3(&m_faces[0],m_faces.size());
-		//render->drawFace3(&m_faces[0],2);
-	}
-	else 
-	{
-		render->drawArray(m_vertiesMode,0,size);
+		rd->drawArray(m_vertiesMode,0,size);
 	}
 
 }
@@ -663,17 +637,15 @@ Quad2D::Quad2D()
 	m_anchorX=0.5;
 	m_anchorY=0.5;
 	m_vertiesDirty=true;
-	m_vertiesMode=RenderDevice::TRIANGLE_INDEX;
+	m_vertiesMode=E_DrawMode::TRIANGLE_INDEX;
 	m_renderMode=MODE_TEXTURE;
 
-	m_material=TextureMaterial::create();
-	m_material->addRef();
-
-	m_programTex=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
-	FS_SAFE_ADD_REF(m_programTex);
-
-	m_programColor=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F);
-	FS_SAFE_ADD_REF(m_programColor);
+	static ProgramSource* S_programSource=NULL;
+	if(S_programSource==NULL)
+	{
+		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F);
+	}
+	setProgramSource(S_programSource);
 
 	setRegionRect(0,0,1,1);
 }
@@ -717,8 +689,21 @@ bool Quad2D::init(Texture2D* tex)
 
 bool Quad2D::init(const Color4f& c)
 {
-	m_material->setColor(c);
+
+
+	setColor(c);
+
+	static ProgramSource* S_programSource=NULL;
+
+	/* Change Shader To Color Mode */
+	if(S_programSource==NULL)
+	{
+		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_C4F);
+	}
+
+	setProgramSource(S_programSource);
 	m_renderMode=MODE_COLOR;
+
 	return true;
 }
 
@@ -726,9 +711,6 @@ bool Quad2D::init(const Color4f& c)
 void Quad2D::destruct()
 {
 	FS_SAFE_DEC_REF(m_texture);
-	FS_SAFE_DEC_REF(m_material);
-	FS_SAFE_DEC_REF(m_programColor);
-	FS_SAFE_DEC_REF(m_programTex);
 }
 
 

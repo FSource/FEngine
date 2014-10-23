@@ -4,6 +4,8 @@
 #include "FsUniformMap.h"
 #include "FsStreamMap.h"
 #include "glslext_parser.h"
+#include "support/util/FsDict.h"
+#include "graphics/shader/FsProgram.h"
 
 
 
@@ -52,7 +54,8 @@ const char* ProgramSource::className()
 
 ProgramSource::ProgramSource()
 {
-
+	m_defaultProgramCache=NULL;
+	m_programCache=FsDict::create();
 }
 
 
@@ -74,6 +77,10 @@ ProgramSource::~ProgramSource()
 		delete map;
 	}
 	m_streamMaps.clear();
+
+
+	FS_SAFE_DEC_REF(m_defaultProgramCache);
+	FS_SAFE_DEC_REF(m_programCache);
 }
 
 
@@ -270,6 +277,27 @@ bool ProgramSource::init(FsFile* file)
 	delete parser;
 	return true;
 }
+
+
+Program* ProgramSource::getProgram(ProgramFeatureDesc* desc)
+{
+	if(desc==NULL)
+	{
+		if(!m_defaultProgramCache)
+		{
+			m_defaultProgramCache=Program::create(this);
+			FS_SAFE_ADD_REF(m_defaultProgramCache);
+		}
+		return m_defaultProgramCache;
+	}
+	else 
+	{
+		/* ADD TO SUPPORT ProgramFeatureDesc to Create Program */
+		return NULL;
+	
+	}
+}
+
 
 
 

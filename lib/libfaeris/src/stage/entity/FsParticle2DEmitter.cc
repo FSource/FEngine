@@ -14,56 +14,56 @@
 
 NS_FS_BEGIN
 
-int S_StrToBlendFactor(const char* factor)
+E_BlendFactor S_StrToBlendFactor(const char* factor)
 {
 	if(strcmp(factor,"Zero")==0)
 	{
-		return RenderDevice::FACTOR_ZERO;
+		return E_BlendFactor::ONE;
 	}
 	else if(strcmp(factor,"One")==0)
 	{
-		return RenderDevice::FACTOR_ONE;
+		return E_BlendFactor::ONE;
 	}
 	else if(strcmp(factor,"SrcColor")==0)
 	{
-		return RenderDevice::FACTOR_SRC_COLOR;
+		return E_BlendFactor::SRC_COLOR;
 	}
 	else if(strcmp(factor,"OneMinusSrcColor")==0)
 	{
-		return RenderDevice::FACTOR_ONE_MINUS_SRC_COLOR;
+		return E_BlendFactor::ONE_MINUS_SRC_COLOR;
 	}
 	else if(strcmp(factor,"DstColor")==0)
 	{
-		return RenderDevice::FACTOR_DST_COLOR;
+		return E_BlendFactor::DST_COLOR;
 	}
 	else if(strcmp(factor,"OneMinusDstColor")==0)
 	{
-		return RenderDevice::FACTOR_ONE_MINUS_DST_COLOR;
+		return E_BlendFactor::ONE_MINUS_DST_COLOR;
 	}
 	else if(strcmp(factor,"SrcAlpha")==0)
 	{
-		return RenderDevice::FACTOR_SRC_ALPHA;
+		return E_BlendFactor::SRC_ALPHA;
 	}
 	else if(strcmp(factor,"OneMinusSrcAlpha")==0)
 	{
-		return RenderDevice::FACTOR_ONE_MINUS_SRC_ALPHA;
+		return E_BlendFactor::ONE_MINUS_SRC_ALPHA;
 	}
 	else if(strcmp(factor,"DstAlpha")==0)
 	{
-		return RenderDevice::FACTOR_DST_ALPHA;
+		return E_BlendFactor::DST_ALPHA;
 	}
 	else if(strcmp(factor,"OneMinusDstAlpha")==0)
 	{
-		return RenderDevice::FACTOR_ONE_MINUS_DST_ALPHA;
+		return E_BlendFactor::ONE_MINUS_DST_ALPHA;
 	}
 	else if(strcmp(factor,"SrcAlphaSaturate")==0)
 	{
-		return RenderDevice::FACTOR_SRC_ALPHA_SATURATE;
+		return E_BlendFactor::SRC_ALPHA_SATURATE;
 	}
 
 
 	FS_TRACE_WARN("Unkown Factor Str(%s)",factor);
-	return RenderDevice::FACTOR_ONE;
+	return E_BlendFactor::ONE;
 
 }
 
@@ -226,8 +226,8 @@ Particle2DEmitter::Particle2DEmitter()
 	m_position(0,0),
 	m_positionVar(0,0),
 	m_moveMode(MOVE_GROUP),
-	m_blendSrc(RenderDevice::FACTOR_SRC_ALPHA),
-	m_blendDst(RenderDevice::FACTOR_ONE_MINUS_SRC_ALPHA),
+	m_blendSrc(E_BlendFactor::SRC_ALPHA),
+	m_blendDst(E_BlendFactor::ONE_MINUS_SRC_ALPHA),
 	m_texture(NULL),
 	m_enviromentMode(ENV_GRAVITY),
 	m_speed(0),

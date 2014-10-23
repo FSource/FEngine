@@ -263,8 +263,8 @@ namespace Faeris
 
 /* material */
 #define FS_MATERIAL_CLASS_NAME "Material"
-#define FS_COLOR_MATERIAL_CLASS_NAME "ColorMaterial"
-#define FS_TEXTURE_MATERIAL_CLASS_NAME "TextureMaterial"
+#define FS_COLOR_MATERIAL_CLASS_NAME "Material2D"
+#define FS_TEXTURE_MATERIAL_CLASS_NAME "Material2D"
 
 /* math/easing */
 #define FS_EASE_EXPR_CLASS_NAME   "EaseExpr"

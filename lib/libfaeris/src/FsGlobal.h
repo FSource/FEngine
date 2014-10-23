@@ -17,7 +17,7 @@
 #include "mgr/FsTextureMgr.h"
 #include "mgr/FsFontTTFMgr.h"
 #include "mgr/FsSprite2DDataMgr.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
 
 
 #define FS_GLOBAL_H(t,get,set) \
@@ -62,7 +62,7 @@ class Global
 	FS_GLOBAL_H(TextureMgr,textureMgr,setTextureMgr);
 	FS_GLOBAL_H(FontTTFMgr,fontTTFMgr,setFontTTFMgr);
 	FS_GLOBAL_H(Sprite2DDataMgr,sprite2DDataMgr,setSprite2DDataMgr);
-	FS_GLOBAL_H(ProgramMgr,programMgr,setProgramMgr);
+	FS_GLOBAL_H(ProgramSourceMgr,programSourceMgr,setProgramSourceMgr);
 
 
 };

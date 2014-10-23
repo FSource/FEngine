@@ -118,16 +118,16 @@ bool Program::init(const char* vertex_src,const char* fragment_src)
 
 	m_program=program;
 
-
 	for(int i=0;i<FS_PROGRAM_CACHE_ATTR_SUPPORT;i++)
 	{
-		m_cacheAttrLoc[i]=-1;
+		m_cacheAttrLoc[i]=-2;
 	}
 
 	for(int i=0;i<FS_PROGRAM_CACHE_UNIFORM_SUPPORT;i++)
 	{
-		m_cacheUniformLoc[i]=-1;
+		m_cacheUniformLoc[i]=-2;
 	}
+
 
 
 	return true;
@@ -199,14 +199,11 @@ int Program::getAttrLocation(const char* name)
 }
 int Program::getCacheAttrLocation(int index,const char* name)
 {
-	if(m_cacheAttrLoc[index]==-1)
+	if(m_cacheAttrLoc[index]==-2)
 	{
 		m_cacheAttrLoc[index]=getAttrLocation(name);
-		if(m_cacheAttrLoc[index]==-1)
-		{
-			m_cacheAttrLoc[index]=-2;
-		}
 	}
+
 	return m_cacheAttrLoc[index];
 }
 
@@ -219,23 +216,44 @@ int Program::getUniformLocation(const char* name)
 
 int Program::getCacheUniformLocation(int index,const char* name)
 {
-	if(m_cacheUniformLoc[index]==-1)
+	if(m_cacheUniformLoc[index]==-2)
 	{
 		m_cacheUniformLoc[index]=getUniformLocation(name);
-		if(m_cacheUniformLoc[index]==-1)
-		{
-			m_cacheUniformLoc[index]=-2;
-		}
-
 	}
 	return m_cacheUniformLoc[index];
 }
+
+
+void Program::addStreamMap(StreamMap* map)
+{
+	m_streamMaps.push_back(map);
+	m_seqStreamMaps[static_cast<int>(map->m_refType)]=map;
+}
+
+
 
 
 
 Program::Program()
 {
 	m_program=0;
+	m_featureDesc=NULL;
+
+	for(int i=0;i<FS_PROGRAM_CACHE_ATTR_SUPPORT;i++)
+	{
+		m_cacheAttrLoc[i]=-2;
+	}
+
+	for(int i=0;i<FS_PROGRAM_CACHE_UNIFORM_SUPPORT;i++)
+	{
+		m_cacheUniformLoc[i]=-2;
+	}
+
+	for(int i=0;i<static_cast<int>(E_StreamType::MAX_NU);i++)
+	{
+		m_seqStreamMaps[i]=NULL;
+	}
+
 }
 
 Program::~Program()

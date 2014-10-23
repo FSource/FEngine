@@ -117,13 +117,13 @@ bool Layer2D::getEliminate()
 	return m_eliminate;
 }
 
-void Layer2D::draw(RenderDevice* r)
+void Layer2D::draw(RenderDevice* rd)
 {
 
 	if(m_scissorEnabled)
 	{
-		r->setScissorEnabled(true);
-		r->setScissorArea(m_scissorArea.x,m_scissorArea.y,m_scissorArea.width,m_scissorArea.height);
+		rd->setScissorEnabled(true);
+		rd->setScissorArea(m_scissorArea.x,m_scissorArea.y,m_scissorArea.width,m_scissorArea.height);
 	}
 	Matrix4 mat;
 	mat.makeOrthographic(
@@ -133,9 +133,9 @@ void Layer2D::draw(RenderDevice* r)
 			m_viewArea.y+m_viewArea.height,
 			-1024,
 			1024);
-	r->setProjectionMatrix(&mat);
+	rd->setProjectionMatrix(&mat);
 
-	r->loadWorldIdentity();
+	rd->loadWorldMatrixIdentity();
 
 	/* update all child matrix4 */
 	updateAllWorldMatrix();
@@ -149,12 +149,12 @@ void Layer2D::draw(RenderDevice* r)
 	for(int i=0;i<entity_nu;i++)
 	{
 		Entity* ob=entitys[i];
-		if(ob->getVisibles()) ob->draws(r,false);
+		if(ob->getVisibles()) ob->draws(rd,false);
 	}
 
 	if(m_scissorEnabled)
 	{
-		r->setScissorEnabled(false);
+		rd->setScissorEnabled(false);
 	}
 }
 

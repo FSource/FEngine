@@ -3,9 +3,9 @@
 
 #include "FsMacros.h"
 #include "stage/entity/FsEntity.h"
+#include "stage/Entity/FsIMaterial2DEntity.h"
 #include "graphics/FsColor.h"
-#include "graphics/material/FsTextureMaterial.h"
-#include "graphics/FsProgram.h"
+#include "graphics/material/FsMaterial2D.h"
 
 NS_FS_BEGIN
 
@@ -15,41 +15,15 @@ class FsArray;
 class FsDict;
 class Sprite2DAnimation;
 class AnimationCacheData;
-class TextureMaterial;
+class Material2D;
 class Program;
 
-class Sprite2D :public Entity 
+class Sprite2D :public Entity ,public IMaterial2DEntity
 {
-	public:
-		enum
-		{
-			ANIM_LOOP,
-			ANIM_START,
-			ANIM_END,
-		};
 	public:
 
 		static Sprite2D* create();
 		static Sprite2D* create(const char* name);
-
-	public:
-
-		/* material */
-		void setColor(Color4f c){m_material->setColor(c);}
-		Color4f getColor(){return m_material->getColor();}
-
-		void setOpacity(float opacity){m_material->setOpacity(opacity);}
-		float getOpacity(){return m_material->getOpacity();}
-
-		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
-		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
-
-		TextureMaterial* getMaterial(){return m_material;}
-		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
-
-		Program* getShader(){return m_program;}
-		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
-
 
 	public:
 
@@ -63,8 +37,8 @@ class Sprite2D :public Entity
 
 		bool hasAnimation(const char* name);
 
-		void playAnimation(int mode=ANIM_LOOP);
-		void startAnimation(int mode=ANIM_LOOP);
+		void playAnimation(E_AnimPlayMode mode=E_AnimPlayMode::LOOP);
+		void startAnimation(E_AnimPlayMode mode=E_AnimPlayMode::LOOP);
 		void stopAnimation();
 
 		bool isAnimationPlaying();
@@ -86,7 +60,7 @@ class Sprite2D :public Entity
 
 		/* inherit Entity */
 		virtual void update(float dt);
-		virtual void draw(RenderDevice* render,bool update_matrix=true);
+		virtual void draw(RenderDevice* rd,bool update_matrix=true);
 
 		/* inherit FsObject */
 		virtual const char* className();
@@ -104,7 +78,7 @@ class Sprite2D :public Entity
 		float m_elapseTime;
 
 
-		int m_mode;
+		E_AnimPlayMode m_mode;
 		int m_stop;
 
 		int m_curFps;
@@ -116,9 +90,6 @@ class Sprite2D :public Entity
 		FsArray* m_textures;
 		FsDict* m_animationCacheData;
 
-		/* material */
-		TextureMaterial* m_material;
-		Program* m_program;
 };
 
 

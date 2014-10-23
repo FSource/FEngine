@@ -1,6 +1,8 @@
 #include "stage/entity/FsVertexPolygon.h"
 #include "FsGlobal.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
+#include "graphics/shader/FsStreamMap.h"
+#include "graphics/shader/FsProgram.h"
 
 
 
@@ -124,13 +126,13 @@ int VertexPolygon::getVertexNu()
 {
 	return m_vertics.size();
 }
-void VertexPolygon::setMode(int mode)
+void VertexPolygon::setMode(E_DrawMode mode)
 {
 	m_mode=mode;
 }
 
 
-int VertexPolygon::getMode()
+E_DrawMode VertexPolygon::getMode()
 {
 	return m_mode;
 }
@@ -140,14 +142,17 @@ int VertexPolygon::getMode()
 
 VertexPolygon::VertexPolygon()
 {
+	m_mode=E_DrawMode::POINTS;
 
-	m_mode=VertexPolygon::POINTS;
+	static ProgramSource* S_programSource=NULL;
 
-	m_material=ColorMaterial::create();
-	m_material->addRef();
+	if(S_programSource==NULL)
+	{
+		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_C4F);
+	}
 
-	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F);
-	FS_SAFE_ADD_REF(m_program);
+	setProgramSource(S_programSource);
+
 }
 
 VertexPolygon::~VertexPolygon()
@@ -163,19 +168,19 @@ bool VertexPolygon::init()
 
 void VertexPolygon::destruct()
 {
-
-	FS_SAFE_DEC_REF(m_material);
-	FS_SAFE_DEC_REF(m_program);
 	m_vertics.clear();
 }
 
 
-void VertexPolygon::draw(RenderDevice* render,bool update_matrix)
+void VertexPolygon::draw(RenderDevice* rd,bool update_matrix)
 {
-	if(!m_material||!m_program)
+	Program* prog=getProgram(NULL);
+
+	if(!prog)
 	{
 		return;
 	}
+
 	if(m_vertics.size()==0)
 	{
 		return;
@@ -186,20 +191,24 @@ void VertexPolygon::draw(RenderDevice* render,bool update_matrix)
 		updateWorldMatrix();
 	}
 
-	render->pushMatrix();
-	render->mulMatrix(&m_worldMatrix);
+	rd->setWorldMatrix(&m_worldMatrix);
+	rd->setProgram(prog);
 
-	render->setProgram(m_program);
-	m_material->configRenderDevice(render);
+	m_material->configRenderDevice(rd);
 
 
-	render->disableAllAttrArray();
+	rd->disableAllAttrArray();
 
-	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
 
-	render->setAndEnableVertexAttrPointer(pos_loc,3,FS_FLOAT,m_vertics.size(),0,&m_vertics[0]);
-	render->drawArray(m_mode,0,m_vertics.size());
-	render->popMatrix();
+	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);
+
+	if(map_v)
+	{
+		rd->setAndEnableVertexAttrPointer(map_v->m_location,3,FS_FLOAT,m_vertics.size(),0,&m_vertics[0]);
+	}
+
+	rd->drawArray(m_mode,0,m_vertics.size());
+
 }
 
 

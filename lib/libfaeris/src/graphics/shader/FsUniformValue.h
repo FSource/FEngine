@@ -10,6 +10,7 @@
 #include "math/FsMatrix4.h"
 
 #include "graphics/FsColor.h"
+#include "graphics/FsTexture2D.h"
 
 
 
@@ -30,6 +31,13 @@ class UniformValue
 			m_count(1)
 		{
 		}
+		UniformValue(const char* name,E_UniformType type)
+			:m_name(name),
+			m_type(type),
+			m_count(1)
+
+		{}
+
 
 
 	public:
@@ -41,26 +49,27 @@ class UniformValue
 
 
 template <typename T> int TUniformValue_GetType() { T temp;return static_cast<int>(E_UniformType::UT_UNKOWN);}
-template<> int TUniformValue_GetType<float>()    {return static_cast<int>(E_UniformType::UT_F_1);}
-template<> int TUniformValue_GetType<Vector2f>() {return static_cast<int>(E_UniformType::UT_F_2);}
-template<> int TUniformValue_GetType<Vector3f>() {return static_cast<int>(E_UniformType::UT_F_3);}
-template<> int TUniformValue_GetType<Vector4f>() {return static_cast<int>(E_UniformType::UT_F_4);}
 
-template<> int TUniformValue_GetType<int16_t>()  {return static_cast<int>(E_UniformType::UT_I_1);}
-template<> int TUniformValue_GetType<Vector2i>() {return static_cast<int>(E_UniformType::UT_I_2);}
-template<> int TUniformValue_GetType<Vector3i>() {return static_cast<int>(E_UniformType::UT_I_3);}
-template<> int TUniformValue_GetType<Vector4i>() {return static_cast<int>(E_UniformType::UT_I_4);}
+template<> inline int TUniformValue_GetType<float>()    {return static_cast<int>(E_UniformType::UT_F_1);}
+template<> inline int TUniformValue_GetType<Vector2f>() {return static_cast<int>(E_UniformType::UT_F_2);}
+template<> inline int TUniformValue_GetType<Vector3f>() {return static_cast<int>(E_UniformType::UT_F_3);}
+template<> inline int TUniformValue_GetType<Vector4f>() {return static_cast<int>(E_UniformType::UT_F_4);}
 
-template<> int TUniformValue_GetType<uint16_t>() {return static_cast<int>(E_UniformType::UT_UI_1);}
-template<> int TUniformValue_GetType<Vector2ui>() {return static_cast<int>(E_UniformType::UT_UI_2);}
-template<> int TUniformValue_GetType<Vector3ui>() {return static_cast<int>(E_UniformType::UT_UI_3);}
-template<> int TUniformValue_GetType<Vector4ui>() {return static_cast<int>(E_UniformType::UT_UI_4);}
+template<> inline int TUniformValue_GetType<int16_t>()  {return static_cast<int>(E_UniformType::UT_I_1);}
+template<> inline int TUniformValue_GetType<Vector2i>() {return static_cast<int>(E_UniformType::UT_I_2);}
+template<> inline int TUniformValue_GetType<Vector3i>() {return static_cast<int>(E_UniformType::UT_I_3);}
+template<> inline int TUniformValue_GetType<Vector4i>() {return static_cast<int>(E_UniformType::UT_I_4);}
+
+template<> inline int TUniformValue_GetType<uint16_t>() {return static_cast<int>(E_UniformType::UT_UI_1);}
+template<> inline int TUniformValue_GetType<Vector2ui>() {return static_cast<int>(E_UniformType::UT_UI_2);}
+template<> inline int TUniformValue_GetType<Vector3ui>() {return static_cast<int>(E_UniformType::UT_UI_3);}
+template<> inline int TUniformValue_GetType<Vector4ui>() {return static_cast<int>(E_UniformType::UT_UI_4);}
 
 
-template<> int TUniformValue_GetType<Color3f>() {return static_cast<int>(E_UniformType::UT_F_3);}
-template<> int TUniformValue_GetType<Color4f>() {return static_cast<int>(E_UniformType::UT_F_4);}
+template<> inline int TUniformValue_GetType<Color3f>() {return static_cast<int>(E_UniformType::UT_F_3);}
+template<> inline int TUniformValue_GetType<Color4f>() {return static_cast<int>(E_UniformType::UT_F_4);}
 
-template<> int TUniformValue_GetType<Matrix4>() {return static_cast<int>(E_UniformType::UT_M_4);}
+template<> inline int TUniformValue_GetType<Matrix4>() {return static_cast<int>(E_UniformType::UT_M_4);}
 
 
 

@@ -2,7 +2,6 @@
 #include "support/util/FsSlowArray.h"
 #include "action/FsAction.h"
 #include "stage/FsScene.h"
-#include "mgr/FsObjectMgr.h"
 
 NS_FS_BEGIN
 

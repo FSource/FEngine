@@ -28,6 +28,13 @@ class Color
 		Color(uint8_t red,uint8_t green,uint8_t blue)
 			:r(red),g(green),b(blue),a(255){}
 
+		void set(uint8_t _r,uint8_t _g,uint8_t _b,uint8_t _a)
+		{
+			r=_r;
+			g=_g;
+			b=_b;
+			a=_a;
+		}
 		Color operator+(Color right);
 		Color operator-(Color right);
 		Color operator*(float s);
@@ -43,6 +50,13 @@ class Color3f
 			r=float(c.r)/255.0f;
 			g=float(c.g)/255.0f;
 			b=float(c.b)/255.0f;
+		}
+	public:
+		void set(float _r,float _g,float _b)
+		{
+			r=_r;
+			g=_g;
+			b=_b;
 		}
 	public:
 		union{
@@ -85,6 +99,15 @@ class Color4f
 			:r(1.0f),g(1.0f),b(1.0f),a(1.0f)
 		{
 		}
+
+		void set(float _r,float _g,float _b,float _a)
+		{
+			r=_r;
+			g=_g;
+			b=_b;
+			a=_a;
+		}
+
 
 		Color4f lerp(const Color4f& value,float t);
 

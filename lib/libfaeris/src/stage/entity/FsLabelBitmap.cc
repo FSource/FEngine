@@ -4,8 +4,11 @@
 #include "support/data/FsUnicode.h"
 #include "support/data/FsIconv.h"
 #include "FsGlobal.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
 #include "math/FsMathUtil.h"
+#include "graphics/shader/FsProgram.h"
+#include "graphics/shader/FsStreamMap.h"
+
 
 NS_FS_BEGIN
 
@@ -134,47 +137,54 @@ float LabelBitmap::getHeight()
 }
 
 
-void LabelBitmap::draw(RenderDevice* r,bool updateMatrix)
+void LabelBitmap::draw(RenderDevice* rd,bool updateMatrix)
 {
-	if(!m_font||(m_vertices.size()==0)||!m_material||!m_program)
-	{
-		return;
-	}
-	if(!m_texture)
-	{
-		return;
-	}
+	Program* prog=getProgram(NULL);
+
+	if(!m_font||(m_vertices.size()==0)||!prog||!m_texture) { return; }
+
 
 	if(updateMatrix)
 	{
 		updateWorldMatrix();
 	}
 
-	r->pushMatrix();
-	r->mulMatrix(&m_worldMatrix);
-	r->translate(Vector3(m_relOffsetx,m_relOffsety,0));
+	rd->setWorldMatrix(&m_worldMatrix);
+
+	if(!(Math::equal<float>(m_relOffsetx,0.0f)&&Math::equal<float>(m_relOffsety,0.0f)))
+	{
+		rd->translateWorldMatrix(Vector3(m_relOffsetx,m_relOffsety,0));
+	}
 
 
-	r->setProgram(m_program);
-	m_material->configRenderDevice(r);
+	rd->setProgram(prog);
+	m_material->configRenderDevice(rd);
 
-	r->disableAllAttrArray();
-	r->bindTexture(m_texture,0);
+	rd->bindTexture(m_texture,0);
 
-
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-
-	int tex_loc=r->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
-
+	rd->disableAllAttrArray();
+	int stream_nu=prog->getStreamMapNu();
 	int vertex_nu=m_vertices.size();
 
-	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,sizeof(Fs_V2F_T2F),&m_vertices[0]);
-	r->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,vertex_nu,sizeof(Fs_V2F_T2F),&(m_vertices[0].t2));
+	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);
+	StreamMap* map_u=prog->getStreamMap(E_StreamType::UVS);
 
-	r->drawFace3(&m_indics[0],m_indics.size());
+	if(map_v) 
+	{
+		rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,
+								vertex_nu,sizeof(Fs_V2F_T2F),&m_vertices[0]);
+	}
 
-	r->popMatrix();
+	if(map_u)
+	{
+	
+		rd->setAndEnableVertexAttrPointer(map_u->m_location,2,FS_FLOAT,
+								vertex_nu,sizeof(Fs_V2F_T2F),&(m_vertices[0].t2));
+	}
+
+	rd->drawFace3(&m_indics[0],m_indics.size());
 }
+
 
 bool LabelBitmap::hit2D(float x,float y)
 {
@@ -207,11 +217,13 @@ LabelBitmap::LabelBitmap()
 	m_relOffsetx=0;
 	m_relOffsety=0;
 
-	m_material=TextureMaterial::create();
-	m_material->addRef();
+	static ProgramSource* s_programSource=NULL;
+	if(s_programSource==NULL)
+	{
+		s_programSource=(ProgramSource*)Global::programSourceMgr()->load("__V4F_T2F_2D__.fshader");
+	}
+	setProgramSource(s_programSource);
 
-	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
-	FS_SAFE_ADD_REF(m_program);
 }
 
 LabelBitmap::~LabelBitmap()
@@ -233,14 +245,9 @@ bool LabelBitmap::init(FontBitmap* font)
 
 void LabelBitmap::destruct()
 {
-
 	clear();
-
 	FS_SAFE_DEC_REF(m_font);
 	FS_SAFE_DEC_REF(m_texture);
-	FS_SAFE_DEC_REF(m_material);
-	FS_SAFE_DEC_REF(m_program);
-
 }
 
 void LabelBitmap::clear()
@@ -467,7 +474,7 @@ int LabelBitmap::setString(uint16_t* utf16_str,int len)
 			m_vertices.push_back((*l_iter)->at(i));
 		}
 	}
-	
+
 	/* release memory */
 	for(l_iter=mul_line_vertices.begin();l_iter!=mul_line_vertices.end();++l_iter)  /* for every line */
 	{

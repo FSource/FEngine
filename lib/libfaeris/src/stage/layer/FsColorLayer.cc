@@ -1,9 +1,10 @@
 #include "stage/layer/FsColorLayer.h"
 #include "graphics/FsRenderDevice.h"
-#include "graphics/material/FsColorMaterial.h"
+#include "graphics/material/FsMaterial2D.h"
 #include "FsGlobal.h"
-#include "mgr/FsProgramMgr.h"
-#include "graphics/FsProgram.h"
+#include "mgr/FsProgramSourceMgr.h"
+#include "graphics/shader/FsProgram.h"
+#include "graphics/shader/FsStreamMap.h"
 
 
 NS_FS_BEGIN
@@ -38,27 +39,19 @@ Matrix4 ColorLayer::getProjectMatrix()
 
 
 
-void ColorLayer::draw(RenderDevice*  r)
+void ColorLayer::draw(RenderDevice*  rd)
 {
-	if(m_scissorEnabled)
+	Program* prog=m_material->getProgram(NULL);
+	if(!prog)
 	{
-		r->setScissorEnabled(true);
-		r->setScissorArea(m_scissorArea.x,m_scissorArea.y,m_scissorArea.width,m_scissorArea.height);
+		return ;
 	}
 
-
-	Matrix4 mat;
-	mat.makeOrthographic(0,1,0,1,-100,100);
-	r->setProjectionMatrix(&mat);
-
-	r->setProgram(m_program);
-
-	m_material->configRenderDevice(r);
-
-	r->disableAllAttrArray();
-
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-
+	if(m_scissorEnabled)
+	{
+		rd->setScissorEnabled(true);
+		rd->setScissorArea(m_scissorArea.x,m_scissorArea.y,m_scissorArea.width,m_scissorArea.height);
+	}
 
 	static Vector3 vv[4]=
 	{
@@ -75,13 +68,31 @@ void ColorLayer::draw(RenderDevice*  r)
 	};
 
 
-	r->setAndEnableVertexAttrPointer(pos_loc,3,FS_FLOAT,4,0,vv);
 
-	r->drawFace3(faces,2);
+	Matrix4 mat;
+	mat.makeOrthographic(0,1,0,1,-100,100);
+	rd->setProjectionMatrix(&mat);
+	rd->loadWorldMatrixIdentity();
+
+	rd->setProgram(prog);
+	m_material->configRenderDevice(rd);
+
+	rd->disableAllAttrArray();
+
+	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);
+
+
+	if(map_v)
+	{
+		rd->setAndEnableVertexAttrPointer(map_v->m_location,3,FS_FLOAT,4,0,vv);
+	}
+
+
+	rd->drawFace3(faces,2);
 
 	if(m_scissorEnabled)
 	{
-		r->setScissorEnabled(false);
+		rd->setScissorEnabled(false);
 	}
 
 }
@@ -94,17 +105,20 @@ const char* ColorLayer::className()
 ColorLayer::ColorLayer()
 {
 	m_color=Color4f(1.0f,1.0f,1.0f,0.5f);
-	m_material=ColorMaterial::create();
-	m_material->addRef();
+	m_material=Material2D::create();
 
-	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F);
-	FS_SAFE_ADD_REF(m_program);
+
+	static ProgramSource* S_programSource=NULL;
+	if(S_programSource)
+	{
+		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
+	}
+	m_material->setProgramSource(S_programSource);
 }
 
 ColorLayer::~ColorLayer()
 {
 	FS_SAFE_DEC_REF(m_material);
-	FS_SAFE_DEC_REF(m_program);
 }
 
 NS_FS_END 

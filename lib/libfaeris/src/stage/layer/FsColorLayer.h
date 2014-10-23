@@ -8,20 +8,21 @@
 NS_FS_BEGIN
 
 class RenderDevice;
-class ColorMaterial;
+class Material2D;
 class Program;
 class ColorLayer:public Layer 
 {
 	public:
 		static ColorLayer* create();
 		static ColorLayer* create(Color4f c);
+
 	public:
 		void setColor(Color4f c);
 		Color4f getColor();
 
 	public:
 		/* inherit Layer */
-		virtual void draw(RenderDevice*  r);
+		virtual void draw(RenderDevice*  rd);
 		virtual Matrix4 getProjectMatrix();
 
 		/* inherit FsObject */
@@ -33,8 +34,7 @@ class ColorLayer:public Layer
 
 	private:
 		Color4f m_color;
-		ColorMaterial* m_material;
-		Program* m_program;
+		Material2D* m_material;
 };
 NS_FS_END
 

@@ -3,6 +3,7 @@
 
 #include "FsMacros.h"
 #include "stage/entity/FsEntity.h"
+#include "stage/Entity/FsIMaterial2DEntity.h"
 #include "support/util/FsArray.h"
 #include "graphics/FsTexture2D.h"
 #include "FsGlobal.h"
@@ -13,10 +14,10 @@
 NS_FS_BEGIN
 
 class Program;
-class ColorMaterial;
+class Material2D;
 class Texture2D;
 
-class StateButton:public Entity
+class StateButton:public Entity,public IMaterial2DEntity
 {
 	protected:
 		class StateAttr
@@ -220,9 +221,6 @@ class StateButton:public Entity
 		Vector2 m_size;    /* When Size < 0, It Will Used Texture2D Size */
 		Vector2 m_anchor;
 
-		/* render */
-		ColorMaterial* m_material;
-		Program* m_program;
 
 };
 

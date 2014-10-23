@@ -13,20 +13,20 @@ class StreamMap
 	public:
 		StreamMap(const char* name,E_StreamType ref_type)
 			:m_name(name),
-			m_ref(ref_type),
+			m_refType(ref_type),
 			m_location(-2)
 		{ }
 
 	public:
 		StreamMap* clone()
 		{
-			StreamMap* ret=new StreamMap(m_name.c_str(),m_ref);
+			StreamMap* ret=new StreamMap(m_name.c_str(),m_refType);
 			return ret;
 		}
 
 	public:
 		std::string m_name;
-		E_StreamType m_ref;
+		E_StreamType m_refType;
 		int m_location;
 };
 

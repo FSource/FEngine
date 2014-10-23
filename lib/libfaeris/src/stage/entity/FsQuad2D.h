@@ -3,29 +3,31 @@
 
 #include <vector>
 #include "FsMacros.h"
+#include "FsEnums.h"
 #include "stage/entity/FsEntity.h"
+#include "stage/entity/FsIMaterial2DEntity.h"
 #include "math/FsRect2D.h"
 #include "graphics/FsColor.h"
 #include "math/FsVector2.h"
 #include "math/FsVector4.h"
 #include "math/FsVertices.h"
 
-#include "graphics/material/FsTextureMaterial.h"
-#include "graphics/FsProgram.h"
+#include "graphics/material/FsMaterial2D.h"
+#include "graphics/shader/FsProgram.h"
 
 NS_FS_BEGIN
 class Texture2D;
 
-class TextureMaterial;
+class Material2D;
 class Program;
 
-class Quad2D:public Entity 
+class Quad2D:public Entity,public IMaterial2DEntity
 {
 	public:
-		enum
+		enum 
 		{
-			MODE_TEXTURE,
-			MODE_COLOR
+			MODE_COLOR,
+			MODE_TEXTURE
 		};
 
 	public:
@@ -37,52 +39,6 @@ class Quad2D:public Entity
 		static Quad2D* create(const char* tex,const Rect2D& rect);
 		static Quad2D* create(const char* tex,float width,float height);
 
-	public:
-		/* material */
-		void setColor(const Color4f& c){m_material->setColor(c);}
-		Color4f getColor(){return m_material->getColor();}
-
-		void setOpacity(float opacity){m_material->setOpacity(opacity);}
-		float getOpacity(){return m_material->getOpacity();}
-
-		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
-		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
-
-		TextureMaterial* getMaterial(){return m_material;}
-		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
-
-		Program* getTextureShader(){return m_programTex;}
-		void setTextureShader(Program* shader){FS_SAFE_ASSIGN(m_programTex,shader);}
-
-		Program* getColorShader(){return m_programColor;}
-		void setColorShader(Program* shader){FS_SAFE_ASSIGN(m_programColor,shader);}
-
-		void setShader(Program* shader)
-		{
-			if(m_renderMode==MODE_TEXTURE)
-			{
-				setTextureShader(shader);
-			}
-			else 
-			{
-				setColorShader(shader);
-			}
-		}
-
-		Program* getShader()
-		{
-			if(m_renderMode==MODE_TEXTURE)
-			{
-				return getTextureShader();
-			}
-			return getColorShader();
-		}
-
-
-
-
-		void setRenderMode(int value){m_renderMode=value;}
-		int getRenderMode(){return m_renderMode;}
 
 	public:
 
@@ -148,7 +104,7 @@ class Quad2D:public Entity
 
 	public:
 		/* inherit Entity */
-		virtual void draw(RenderDevice* r,bool updateMatrix);
+		virtual void draw(RenderDevice* rd,bool updateMatrix);
 		virtual bool hit2D(float x,float y);
 
 		/* inherit FsObject */
@@ -170,6 +126,8 @@ class Quad2D:public Entity
 		void drawTextureMode(RenderDevice*);
 		void drawColorMode(RenderDevice*);
 
+		void setRenderMode(int value){m_renderMode=value;}
+		int getRenderMode(){return m_renderMode;}
 
 	private:
 		float m_width,m_height;
@@ -183,13 +141,9 @@ class Quad2D:public Entity
 		std::vector<Face3> m_faces;
 
 		bool m_vertiesDirty;
-		int m_vertiesMode;
+		E_DrawMode m_vertiesMode;
 
 		int m_renderMode;
-
-		TextureMaterial* m_material;
-		Program* m_programTex;
-		Program* m_programColor;
 };
 
 NS_FS_END 

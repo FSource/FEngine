@@ -38,7 +38,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"LuaSpineSprite");
  tolua_usertype(tolua_S,"Color");
  tolua_usertype(tolua_S,"Color4f");
- tolua_usertype(tolua_S,"TextureMaterial");
+ tolua_usertype(tolua_S,"Material2D");
  toluaext_usertype(tolua_S,"Entity");
 }
 
@@ -296,8 +296,8 @@ static int tolua_FsSpineSprite___SpineSprite_getMaterial00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
 #endif
   {
-   TextureMaterial* tolua_ret = (TextureMaterial*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TextureMaterial");
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
   }
  }
  return 1;
@@ -317,7 +317,7 @@ static int tolua_FsSpineSprite___SpineSprite_setMaterial00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"SpineSprite",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"TextureMaterial",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -325,7 +325,7 @@ static int tolua_FsSpineSprite___SpineSprite_setMaterial00(lua_State* tolua_S)
 #endif
  {
   SpineSprite* self = (SpineSprite*)  tolua_tousertype(tolua_S,1,0);
-  TextureMaterial* mat = ((TextureMaterial*)  tolua_tousertype(tolua_S,2,0));
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
 #endif

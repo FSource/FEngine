@@ -8,10 +8,11 @@
 #include "graphics/FsFontTTF.h"
 #include "graphics/FsRenderDevice.h"
 #include "support/util/FsArray.h"
+#include "graphics/shader/FsStreamMap.h"
 
 
 #include "FsGlobal.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
 
 
 NS_FS_BEGIN
@@ -84,13 +85,12 @@ LabelTTF::LabelTTF()
 	m_textWidth=0;
 	m_textHeight=0;
 
-
-	m_material=TextureMaterial::create();
-	m_material->addRef();
-
-	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
-	FS_SAFE_ADD_REF(m_program);
-
+	static ProgramSource* S_programSource=NULL;
+	if(S_programSource==NULL)
+	{
+		S_programSource=(ProgramSource* )Global::programSourceMgr()->load("__V4F_T2F__.fshader");
+	}
+	setProgramSource(S_programSource);
 }
 
 
@@ -124,9 +124,6 @@ void LabelTTF::destruct()
 {
 	FS_SAFE_DELETES(m_utf16text);
 	FS_SAFE_DEC_REF(m_font);
-
-	FS_SAFE_DEC_REF(m_material);
-	FS_SAFE_DEC_REF(m_program);
 }
 
 
@@ -286,9 +283,11 @@ void LabelTTF::getAnchor(float* x,float* y)
 
 
 
-void LabelTTF::draw(RenderDevice* render,bool updateMatrix)
+void LabelTTF::draw(RenderDevice* rd,bool updateMatrix)
 {
-	if(!m_font||!m_utf16text||!m_material||!m_program)
+	Program* prog=m_material->getProgram(NULL);
+
+	if(!m_font||!m_utf16text||!prog)
 	{
 		return; 
 	}
@@ -304,16 +303,18 @@ void LabelTTF::draw(RenderDevice* render,bool updateMatrix)
 		m_dirty=false;
 	}
 
-	render->pushMatrix();
-	render->mulMatrix(&m_worldMatrix);
+	rd->setWorldMatrix(&m_worldMatrix);
+	rd->setProgram(prog);
 
-	render->setProgram(m_program);
-	m_material->configRenderDevice(render);
+	m_material->configRenderDevice(rd);
 
-	render->disableAllAttrArray();
 
-	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
+
+	rd->disableAllAttrArray();
+
+
+	StreamMap* map_v =prog->getStreamMap(E_StreamType::VERTICES);
+	StreamMap* map_u= prog->getStreamMap(E_StreamType::UVS);
 
 
 	static float t[8]={
@@ -322,26 +323,36 @@ void LabelTTF::draw(RenderDevice* render,bool updateMatrix)
 		0.0f,0.0f,
 		1.0f,0.0f,
 	};
-	render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,4,0,t);
+
+
+	if(map_u)
+	{
+		rd->setAndEnableVertexAttrPointer(map_u->m_location,2,FS_FLOAT,4,0,t);
+	}
 
 	int typo_lines=m_typoPage.getTypoLineNu();
 	for(int i=0;i<typo_lines;i++)
 	{
 		TypoLine<TypoText>* line=m_typoPage.getTypoLine(i);
 		int text_nu=line->getTextNu();
+
 		for(int j=0;j<text_nu;j++)
 		{
 			TypoText*  t=line->getText(j);
 			Texture2D* t2d=((GlyphTTF*)(t->m_glyph))->getTexture();
 			if(t2d)
 			{
-				render->bindTexture(t2d,0);
-				render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,&t->m_vertices[0]);
-				render->drawArray(RenderDevice::TRIANGLE_STRIP,0,4);
+				rd->bindTexture(t2d,0);
+				if(map_v)
+				{
+					rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,4,0,&t->m_vertices[0]);
+				}
+
+				rd->drawArray(E_DrawMode::TRIANGLE_STRIP,0,4);
 			}
 		}
 	}
-	render->popMatrix();
+
 }
 
 

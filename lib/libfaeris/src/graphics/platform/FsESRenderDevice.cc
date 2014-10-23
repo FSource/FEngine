@@ -309,6 +309,12 @@ void RenderDevice::setProgram(Program* prog)
 	m_program=prog;
 }
 
+Program* RenderDevice::getProgram()
+{
+	return m_program;
+}
+
+
 void RenderDevice::bindTexture(Texture2D* tex,int slot)
 {
 	if(m_activeTextureId != slot )
@@ -589,7 +595,7 @@ void RenderDevice::popWorldMatrix()
 	S_FS_MARK_MATRIX_DIRTY(S_FS_WORLD_MATRIX_MASK);
 }
 
-void RenderDevice::loadWorldIdentity()
+void RenderDevice::loadWorldMatrixIdentity()
 {
 	m_world[m_worldStackIndex].makeIdentity();
 	S_FS_MARK_MATRIX_DIRTY(S_FS_WORLD_MATRIX_MASK);
@@ -946,7 +952,7 @@ int RenderDevice::getCacheUniformLocation(int index,const char* name)
 }
 
 
-void RenderDevice::setUniform(int loc,int type,int count,void* value)
+void RenderDevice::setUniform(int loc,E_UniformType type,int count,void* value)
 {                                                                          
 	if(loc<0)
 	{
@@ -1098,7 +1104,7 @@ void RenderDevice::setUniform(int loc,UniformValue* v)
 	E_UniformType type=v->getType();
 	int count=v->getCount();
 
-	setUniform(loc,static_cast<int>(type),count,data);
+	setUniform(loc,type,count,data);
 }
 
 

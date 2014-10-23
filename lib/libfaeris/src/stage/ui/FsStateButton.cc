@@ -2,10 +2,12 @@
 
 #include "graphics/shader/FsProgram.h"
 #include "graphics/FsTexture2D.h"
-#include "graphics/material/FsColorMaterial.h"
 #include "graphics/FsRenderDevice.h"
+#include "graphics/shader/FsStreamMap.h"
+#include "graphics/shader/FsProgram.h"
 
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
+
 #include "mgr/FsTextureMgr.h"
 
 #include "FsGlobal.h"
@@ -66,12 +68,15 @@ bool StateButton::init(int state_nu)
 	m_size.set(0.0f,0.0f);
 	m_anchor.set(0.5f,0.5f);
 
-	m_material=ColorMaterial::create();
-	m_material->addRef();
-
-	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
-	FS_SAFE_ADD_REF(m_program);
 	m_texture=NULL;
+
+	static ProgramSource* S_programSource=NULL;
+	if(S_programSource==NULL)
+	{
+		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F);
+
+	}
+	setProgramSource(S_programSource);
 
 	setTouchEnabled(true);
 	return true;
@@ -90,9 +95,7 @@ void StateButton::destruct()
 
 	m_tweenFromState=NULL;
 
-	FS_SAFE_DEC_REF(m_material);
 	FS_SAFE_DEC_REF(m_texture);
-	FS_SAFE_DEC_REF(m_program);
 
 }
 
@@ -639,25 +642,25 @@ void StateButton::update(float dt)
 }
 
 
-void StateButton::draw(RenderDevice* render,bool update_matrix)
+void StateButton::draw(RenderDevice* rd,bool update_matrix)
 {
-	if(!m_texture||!m_program||!m_material)
+	Program* prog=getProgram(NULL);
+	if(!m_texture||!prog)
 	{
 		return;
 	}
+
 	if(update_matrix)
 	{
 		updateWorldMatrix();
 	}
 
-	render->pushMatrix();
-	render->mulMatrix(&m_worldMatrix);
+	rd->setWorldMatrix(&m_worldMatrix);
+	rd->setProgram(prog);
 
-	render->setProgram(m_program);
-	m_material->configRenderDevice(render);
+	m_material->configRenderDevice(rd);
 
-	render->bindTexture(m_texture,0);
-
+	rd->bindTexture(m_texture,0);
 
 
 	float x=-m_size.x*m_anchor.x;
@@ -687,19 +690,21 @@ void StateButton::draw(RenderDevice* render,bool update_matrix)
 	};
 
 
-	render->disableAllAttrArray();
+	rd->disableAllAttrArray();
 
-	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
+	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);
+	StreamMap* map_u=prog->getStreamMap(E_StreamType::UVS);
 
+	if(map_v)
+	{
+		rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,4,0,vv);
+	}
+	if(map_u)
+	{
+		rd->setAndEnableVertexAttrPointer(map_u->m_location,2,FS_FLOAT,4,0,vc);
+	}
 
-	render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,vv);
-	render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,4,0,vc);
-
-	render->drawFace3(faces,2);
-
-	render->popMatrix();
-
+	rd->drawFace3(faces,2);
 
 }
 

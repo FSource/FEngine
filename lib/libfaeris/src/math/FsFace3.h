@@ -18,6 +18,14 @@ class Face3
 			uint16_t v[3];
 		};
 	public:
+		void set(uint16_t _a,uint16_t _b,uint16_t _c)
+		{
+			a=_a;
+			b=_b;
+			c=_c;
+		}
+
+	public:
 		Face3(uint16_t _a,uint16_t _b,uint16_t _c)
 			:a(_a),b(_b),c(_c)
 		{}

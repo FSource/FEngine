@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "FsMacros.h"
+#include "FsEnums.h"
 #include "sys/io/FsFile.h"
 #include "FsConfig.h"
 #include "FsObject.h"
@@ -63,8 +64,12 @@ class Program:public Resource
 		/* stream map */
 		StreamMap* getStreamMap(int index){return m_streamMaps[index];}
 		int getStreamMapNu(){return m_streamMaps.size();}
-		void addStreamMap(StreamMap* map){m_streamMaps.push_back(map);}
+		void addStreamMap(StreamMap* map);
 
+		StreamMap* getStreamMap(E_StreamType t)
+		{
+			return m_seqStreamMaps[static_cast<int>(t)];
+		}
 
 
 	protected:
@@ -83,6 +88,8 @@ class Program:public Resource
 
 		std::vector<UniformMap*> m_uniformMaps;
 		std::vector<StreamMap*> m_streamMaps;
+
+		StreamMap* m_seqStreamMaps[E_StreamType::MAX_NU];
 
 		/* platform type */
 		PlatformProgram m_program;

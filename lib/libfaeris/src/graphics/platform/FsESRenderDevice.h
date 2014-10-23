@@ -40,6 +40,7 @@ class RenderDevice:public FsObject
 
 	public:
 		void setProgram(Program* prog);
+		Program* getProgram();
 
 		/* texture */
 		void bindTexture(Texture2D* tex,int slot);
@@ -108,7 +109,7 @@ class RenderDevice:public FsObject
 		void pushWorldMatrix();
 		void popWorldMatrix();
 
-		void loadWorldIdentity();
+		void loadWorldMatrixIdentity();
 		void mulWorldMatrix(const  Matrix4* m);
 
 		void translateWorldMatrix(const Vector3& s);
@@ -137,7 +138,7 @@ class RenderDevice:public FsObject
 		int getUniformLocation(const char* name);
 		int getCacheUniformLocation(int index,const char* name);
 
-		void setUniform(int loc,int type,int count,void* value);
+		void setUniform(int loc,E_UniformType type,int count,void* value);
 		void setUniform(int loc,UniformValue* v);
 
 

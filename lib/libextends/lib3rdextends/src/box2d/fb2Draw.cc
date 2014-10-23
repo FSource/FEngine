@@ -13,7 +13,7 @@ NS_FS_BEGIN
 fb2Draw::fb2Draw(float ratio)
 {
 	m_ratio=ratio;
-	m_material=ColorMaterial::create();
+	m_material=Material2D::create();
 	m_material->addRef();
 
 	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F);

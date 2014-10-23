@@ -5,8 +5,8 @@
 #include "FsMacros.h"
 #include "FsObject.h"
 #include "stage/entity/FsEntity.h"
-#include "graphics/material/FsTextureMaterial.h"
-#include "graphics/FsProgram.h"
+#include "stage/entity/FsIMaterial2DEntity.h"
+#include "math/FsVertices.h"
 
 NS_FS_BEGIN
 
@@ -55,10 +55,11 @@ class Particle
 			float m_angle;
 
 		}m_radialMode;
+
 };
 
 
-class Particle2DEffect:public Entity 
+class Particle2DEffect:public Entity ,public IMaterial2DEntity
 {
 	public:
 
@@ -67,22 +68,7 @@ class Particle2DEffect:public Entity
 		static Particle2DEffect* create(Particle2DEmitter* emitter);
 		static Particle2DEffect* create();
 
-	public:
-		/* material */
-		void setColor(Color4f c){m_material->setColor(c);}
-		Color4f getColor(){return m_material->getColor();}
 
-		void setOpacity(float opacity){m_material->setOpacity(opacity);}
-		float getOpacity(){return m_material->getOpacity();}
-
-		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
-		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
-
-		TextureMaterial* getMaterial(){return m_material;}
-		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
-
-		Program* getShader(){return m_program;}
-		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
 	public:
 		void start(bool restart=true);
 		void refresh();
@@ -134,9 +120,8 @@ class Particle2DEffect:public Entity
 		bool m_autoRemove;
 		float m_generateParticle;
 
-		TextureMaterial* m_material;
-		Program* m_program;
-
+		std::vector<Fs_V2F_T2F_C4F> m_vertics;
+		std::vector<Face3> m_faces;
 };
 
 

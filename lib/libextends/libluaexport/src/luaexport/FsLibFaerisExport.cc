@@ -233,7 +233,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"LuaLoopAction");
  tolua_usertype(tolua_S,"LuaToggleButton");
  tolua_usertype(tolua_S,"Timer");
- tolua_usertype(tolua_S,"TextureMaterial");
+ tolua_usertype(tolua_S,"Material2D");
  tolua_usertype(tolua_S,"CatmullRomCurve2");
  toluaext_usertype(tolua_S,"LuaQuad2D");
  tolua_usertype(tolua_S,"FixTimeAction");
@@ -284,7 +284,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"LuaScene");
  tolua_usertype(tolua_S,"Vector4");
  tolua_usertype(tolua_S,"ScrollView");
- tolua_usertype(tolua_S,"ColorMaterial");
+ tolua_usertype(tolua_S,"Material2D");
  tolua_usertype(tolua_S,"Vector2");
  tolua_usertype(tolua_S,"Global");
  tolua_usertype(tolua_S,"EaseExpr");
@@ -4331,8 +4331,8 @@ static int tolua_FsLibFaeris___Quad2D_getMaterial00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
 #endif
   {
-   TextureMaterial* tolua_ret = (TextureMaterial*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TextureMaterial");
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
   }
  }
  return 1;
@@ -4352,7 +4352,7 @@ static int tolua_FsLibFaeris___Quad2D_setMaterial00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"TextureMaterial",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -4360,7 +4360,7 @@ static int tolua_FsLibFaeris___Quad2D_setMaterial00(lua_State* tolua_S)
 #endif
  {
   Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  TextureMaterial* mat = ((TextureMaterial*)  tolua_tousertype(tolua_S,2,0));
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
 #endif
@@ -6387,8 +6387,8 @@ static int tolua_FsLibFaeris___LabelTTF_getMaterial00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
 #endif
   {
-   TextureMaterial* tolua_ret = (TextureMaterial*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TextureMaterial");
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
   }
  }
  return 1;
@@ -6408,7 +6408,7 @@ static int tolua_FsLibFaeris___LabelTTF_setMaterial00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"TextureMaterial",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -6416,7 +6416,7 @@ static int tolua_FsLibFaeris___LabelTTF_setMaterial00(lua_State* tolua_S)
 #endif
  {
   LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
-  TextureMaterial* mat = ((TextureMaterial*)  tolua_tousertype(tolua_S,2,0));
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
 #endif
@@ -7651,8 +7651,8 @@ static int tolua_FsLibFaeris___Sprite2D_getMaterial00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
 #endif
   {
-   TextureMaterial* tolua_ret = (TextureMaterial*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TextureMaterial");
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
   }
  }
  return 1;
@@ -7672,7 +7672,7 @@ static int tolua_FsLibFaeris___Sprite2D_setMaterial00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"TextureMaterial",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -7680,7 +7680,7 @@ static int tolua_FsLibFaeris___Sprite2D_setMaterial00(lua_State* tolua_S)
 #endif
  {
   Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  TextureMaterial* mat = ((TextureMaterial*)  tolua_tousertype(tolua_S,2,0));
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
 #endif
@@ -8807,8 +8807,8 @@ static int tolua_FsLibFaeris___LabelBitmap_getMaterial00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
 #endif
   {
-   TextureMaterial* tolua_ret = (TextureMaterial*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TextureMaterial");
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
   }
  }
  return 1;
@@ -8828,7 +8828,7 @@ static int tolua_FsLibFaeris___LabelBitmap_setMaterial00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"TextureMaterial",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -8836,7 +8836,7 @@ static int tolua_FsLibFaeris___LabelBitmap_setMaterial00(lua_State* tolua_S)
 #endif
  {
   LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
-  TextureMaterial* mat = ((TextureMaterial*)  tolua_tousertype(tolua_S,2,0));
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
 #endif
@@ -12637,8 +12637,8 @@ static int tolua_FsLibFaeris___Particle2DEffect_getMaterial00(lua_State* tolua_S
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
 #endif
   {
-   TextureMaterial* tolua_ret = (TextureMaterial*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TextureMaterial");
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
   }
  }
  return 1;
@@ -12658,7 +12658,7 @@ static int tolua_FsLibFaeris___Particle2DEffect_setMaterial00(lua_State* tolua_S
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"TextureMaterial",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -12666,7 +12666,7 @@ static int tolua_FsLibFaeris___Particle2DEffect_setMaterial00(lua_State* tolua_S
 #endif
  {
   Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
-  TextureMaterial* mat = ((TextureMaterial*)  tolua_tousertype(tolua_S,2,0));
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
 #endif
@@ -13798,8 +13798,8 @@ static int tolua_FsLibFaeris___VertexPolygon_getMaterial00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
 #endif
   {
-   ColorMaterial* tolua_ret = (ColorMaterial*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ColorMaterial");
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
   }
  }
  return 1;
@@ -13819,7 +13819,7 @@ static int tolua_FsLibFaeris___VertexPolygon_setMaterial00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"ColorMaterial",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -13827,7 +13827,7 @@ static int tolua_FsLibFaeris___VertexPolygon_setMaterial00(lua_State* tolua_S)
 #endif
  {
   VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-  ColorMaterial* mat = ((ColorMaterial*)  tolua_tousertype(tolua_S,2,0));
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
 #endif

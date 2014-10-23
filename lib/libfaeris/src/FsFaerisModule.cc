@@ -13,7 +13,7 @@
 #include "mgr/FsTextureMgr.h"
 #include "mgr/FsFontTTFMgr.h"
 #include "mgr/FsSprite2DDataMgr.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
 
 #include "sys/io/FsVFS.h"
 #include "sys/io/FsPackage.h"
@@ -83,10 +83,10 @@ int FsFaeris_ModuleInit()
 	Global::setSprite2DDataMgr(sprite_mgr);
 
 
-	ProgramMgr* prog_mgr=ProgramMgr::create();
-	FS_NO_REF_DESTROY(prog_mgr);
-	prog_mgr->loadPreDefineShader();
-	Global::setProgramMgr(prog_mgr);
+	ProgramSourceMgr* prog_s_mgr=ProgramSourceMgr::create();
+	FS_NO_REF_DESTROY(prog_s_mgr);
+	prog_s_mgr->loadPreDefineShader();
+	Global::setProgramSourceMgr(prog_s_mgr);
 
 
 
@@ -129,7 +129,7 @@ int FsFaeris_ModuleExit()
 	TextureMgr* tex_mgr=Global::textureMgr();
 	FontTTFMgr* font_mgr=Global::fontTTFMgr();
 	Sprite2DDataMgr* sprite_mgr=Global::sprite2DDataMgr();
-	ProgramMgr* prog_mgr=Global::programMgr();
+	ProgramSourceMgr* prog_s_mgr=Global::programSourceMgr();
 
 
 
@@ -165,7 +165,7 @@ int FsFaeris_ModuleExit()
 	FS_DESTROY(tex_mgr);
 	FS_DESTROY(font_mgr);
 	FS_DESTROY(sprite_mgr);
-	FS_DESTROY(prog_mgr);
+	FS_DESTROY(prog_s_mgr);
 
 
 
@@ -184,7 +184,7 @@ int FsFaeris_ModuleExit()
 	Global::dropTextureMgr();
 	Global::dropFontTTFMgr();
 	Global::dropSprite2DDataMgr();
-	Global::dropProgramMgr();
+	Global::dropProgramSourceMgr();
 	return 0;
 }
 

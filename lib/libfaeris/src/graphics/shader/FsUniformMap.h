@@ -3,6 +3,7 @@
 #include <string>
 
 #include "FsMacros.h"
+#include "FsUniformValue.h"
 
 
 NS_FS_BEGIN
@@ -11,16 +12,14 @@ class UniformMap:public UniformValue
 {
 	public:
 		UniformMap(const char* name,E_UniformType type,E_UniformRef v)
-			:m_name(name),
-			m_type(type),
+			:UniformValue(name,type),
 			m_location(-2)
 		{
 			m_refValue=v;
 		}
 
 		UniformMap(const char* name,E_UniformType type,int index)
-			:m_name(name),
-			m_type(type),
+			:UniformValue(name,type),
 			m_location(-2)
 		{
 			m_extIndex=index;

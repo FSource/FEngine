@@ -179,6 +179,7 @@ enum  class E_UniformRef
 	R_OPACITY=32,
 
 	/* material */
+	M_POINT_SIZE,
 	M_COLOR,
 	M_OPACITY,
 	M_COLOR_MAP,
@@ -280,6 +281,13 @@ enum class E_DrawMode
 	TRIANGLE_STRIP,
 	TRIANGLE_FAN,
 	TRIANGLE_INDEX,
+};
+
+enum class E_AnimPlayMode 
+{
+	LOOP,
+	START,
+	END
 };
 
 

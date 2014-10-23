@@ -11,7 +11,7 @@
 NS_FS_BEGIN
 
 class Program;
-class ColorMaterial;
+class Material2D;
 class Texture2D;
 
 class PressButton:public StateButton

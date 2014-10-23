@@ -1,46 +1,22 @@
 #ifndef _FS_SPINE_SPRITE_H_
 #define _FS_SPINE_SPRITE_H_
+
 #include "spine/spine.h"
 #include "FsMacros.h"
-#include "FsObject.h"
-#include "graphics/FsColor.h"
+#include "FsEnums.h"
 #include "stage/entity/FsEntity.h"
 #include "FsSpineSpriteData.h"
 #include "FsSpineSpriteDataMgr.h"
+#include "stage/entity/FsIMaterial2DEntity.h"
 
-#include "graphics/material/FsTextureMaterial.h"
-#include "graphics/FsProgram.h"
 
 NS_FS_BEGIN
+
 class RenderDevice;
-class SpineSprite:public Entity 
+class SpineSprite:public Entity ,public IMaterial2DEntity
 {
 	public:
-		enum
-		{
-			ANIM_LOOP,
-			ANIM_START,
-			ANIM_END,
-		};
-	public:
 		static SpineSprite* create(const char* filename);
-
-	public:
-		/* material */
-		void setColor(Color4f c){m_material->setColor(c);}
-		Color4f getColor(){return m_material->getColor();}
-
-		void setOpacity(float opacity){m_material->setOpacity(opacity);}
-		float getOpacity(){return m_material->getOpacity();}
-
-		void setBlend(int eq,int src,int dst){m_material->setBlend(eq,src,dst);}
-		void setBlend(int src,int dst){m_material->setBlend(src,dst);}
-
-		TextureMaterial* getMaterial(){return m_material;}
-		void setMaterial(TextureMaterial* mat){FS_SAFE_ASSIGN(m_material,mat);}
-
-		Program* getShader(){return m_program;}
-		void setShader(Program* shader){FS_SAFE_ASSIGN(m_program,shader);}
 
 
 	public:
@@ -53,8 +29,8 @@ class SpineSprite:public Entity
 		void setAnimation(const char* anim);
 
 
-		void playAnimation(int mode=ANIM_LOOP);
-		void startAnimation(int mode=ANIM_LOOP);
+		void playAnimation(E_AnimPlayMode mode=E_AnimPlayMode::LOOP);
+		void startAnimation(E_AnimPlayMode mode=E_AnimPlayMode::LOOP);
 		void stopAnimation();
 		bool isAnimationPlaying();
 
@@ -82,7 +58,7 @@ class SpineSprite:public Entity
 		float m_elapseTime;
 		float m_duration;
 
-		int m_mode;
+		E_AnimPlayMode m_mode;
 		int m_stop;
 
 		Skeleton* m_skeleton;
@@ -91,9 +67,6 @@ class SpineSprite:public Entity
 
 		Animation* m_curAnimation;
 
-
-		TextureMaterial* m_material;
-		Program* m_program;
 
 };
 

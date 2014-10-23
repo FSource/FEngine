@@ -231,8 +231,7 @@ void SpineSprite::draw(RenderDevice* rd,bool update_matrix)
 			Color4f (r,g,b,a),
 			Color4f (r,g,b,a),
 			Color4f (r,g,b,a),
-		};
-
+		}
 		rd->bindTexture(texture,0);
 
 		if(map_v)
@@ -264,15 +263,7 @@ SpineSprite::SpineSprite()
 
 	m_data=NULL;
 	m_material=NULL;
-	m_mode=E_AnimPlayMode::START;
-
-	static ProgramSource* S_programSource=NULL;
-	if(S_programSource==NULL)
-	{
-		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_C4F);
-
-	}
-	setProgramSource(S_programSource);
+	m_mode=ANIM_START;
 
 }
 
@@ -311,6 +302,8 @@ void SpineSprite::destruct()
 	}
 
 	FS_SAFE_DEC_REF(m_data);
+	FS_SAFE_DEC_REF(m_material);
+	FS_SAFE_DEC_REF(m_program);
 }
 
 

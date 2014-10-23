@@ -2,10 +2,13 @@
 #include "stage/entity/FsParticle2DEffect.h"
 #include "stage/entity/FsParticle2DEmitter.h"
 #include "math/FsMathUtil.h"
+#include "math/FsVertices.h"
 #include "graphics/FsRenderDevice.h"
+#include "graphics/shader/FsStreamMap.h"
+#include "graphics/shader/FsProgram.h"
 
 #include "FsGlobal.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
 
 NS_FS_BEGIN
 
@@ -82,12 +85,16 @@ Particle2DEffect::Particle2DEffect()
 	m_pause=false;
 	m_autoRemove=true;
 
-	m_material=TextureMaterial::create();
+	m_material=Material2D::create();
 	m_material->addRef();
 
-	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F);
-	FS_SAFE_ADD_REF(m_program);
+	static ProgramSource* S_programSource=NULL;
+	if(S_programSource==NULL)
+	{
+		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F);
+	}
 
+	setProgramSource(S_programSource);
 }
 
 
@@ -107,11 +114,6 @@ void Particle2DEffect::destruct()
 	FS_SAFE_DEC_REF(m_emitter);
 	m_emitter=NULL;
 
-	FS_SAFE_DEC_REF(m_material);
-	m_material=NULL;
-
-	FS_SAFE_DEC_REF(m_program);
-	m_program=NULL;
 }
 
 void Particle2DEffect::start(bool restart)
@@ -403,9 +405,10 @@ void Particle2DEffect::generateParticle(float dt)
 
 
 }
-void Particle2DEffect::draw(RenderDevice* render,bool update_world_matrix)
+void Particle2DEffect::draw(RenderDevice* rd,bool update_world_matrix)
 {
-	if(!m_emitter||!m_material||!m_program)
+	Program* prog=getProgram(NULL);
+	if(!m_emitter||!m_material||!prog)
 	{
 		return;
 	}
@@ -423,75 +426,74 @@ void Particle2DEffect::draw(RenderDevice* render,bool update_world_matrix)
 	{
 		updateWorldMatrix();
 	}
-	/*
-	 int t_width=texture->getWidth();
-     int t_height=texture->getHeight();
-	 */
 
 
+	rd->setWorldMatrix(&m_worldMatrix);
 
-	render->pushMatrix();
-	render->mulMatrix(&m_worldMatrix);
+	rd->setProgram(prog);
 
-	render->setProgram(m_program);
-	m_material->configRenderDevice(render);
+	m_material->configRenderDevice(rd);
 
-	render->bindTexture(texture,0);
-	render->setBlend(RenderDevice::EQUATION_ADD,m_emitter->getBlendSrc(),m_emitter->getBlendDst());
+	rd->bindTexture(texture,0);
+	rd->setBlend(E_BlendEquation::ADD,m_emitter->getBlendSrc(),m_emitter->getBlendDst());
 
 
-	//FS_TRACE_WARN("emitter:%d,%d,%d",RenderDevice::EQUATION_ADD,m_emitter->getBlendSrc(),m_emitter->getBlendDst());
-
-	render->disableAllAttrArray();
-
-	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
-
-	int color_uniform=render->getCacheUniformLocation(FS_UNIFORM_COLOR_LOC,FS_UNIFORM_COLOR_NAME);
-
-	static Face3 faces[2]=
-	{
-		Face3(0,1,2),
-		Face3(2,3,0),
+	static TexCoord2 t[4]={
+		TexCoord2(0.0f,0.0f),
+		TexCoord2(0.0f,1.0f),
+		TexCoord2(1.0f,1.0f),
+		TexCoord2(1.0f,0.0f),
 	};
 
-	static float t[8]={
-		0.0f,0.0f,
-		0.0f,1.0f,
-		1.0f,1.0f,
-		1.0f,0.0f,
+	int particle_nu=m_particles.size();
+	m_vertics.resize(particle_nu*4);
 
-	};
-	render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,4,0,t);
+	int face_nu=m_faces.size();
+	int face_need_nu=particle_nu*2;
 
-	
-	for(unsigned int i=0;i<m_particles.size();i++)
+	if(face_nu<face_need_nu)
 	{
-		float color[4]={
-			m_particles[i].m_colorRed,
-			m_particles[i].m_colorGreen,
-			m_particles[i].m_colorBlue,
-			m_particles[i].m_colorAlpha,
-		};
+		m_faces.resize(face_need_nu);
+
+		int f_start=face_nu/2;
+		int f_end=particle_nu;
+
+		for(int i=f_start;i<f_end;i++)
+		{
+			int p_index=i*4;
+			m_faces[i*2].set(p_index,p_index+1,p_index+2);
+			m_faces[i*2+1].set(p_index+2,p_index+3,p_index);
+		}
+	}
+
+
+	for(int i=0;i<particle_nu;i++)
+	{
+		Particle&  p=m_particles[i];
+
 		float x,y;
 
 		if( m_particles[i].m_moveMode== Particle2DEmitter::MOVE_FREE)
 		{
 			Vector2 cur_pos=Vector2(m_worldMatrix.m03,m_worldMatrix.m13);
-			x=m_particles[i].m_position.x-(cur_pos.x-m_particles[i].m_startPos.x);
-			y=m_particles[i].m_position.y-(cur_pos.y-m_particles[i].m_startPos.y);
+			x=p.m_position.x-(cur_pos.x-p.m_startPos.x);
+			y=p.m_position.y-(cur_pos.y-p.m_startPos.y);
 		}
 		else 
 		{
-			x=m_particles[i].m_position.x;
-			y=m_particles[i].m_position.y;
+			x=p.m_position.x;
+			y=p.m_position.y;
 		}
 
-		float size=m_particles[i].m_size;
-
-		float hsize=size/2;
+		float hsize=p.m_size/2;
 		float dx=hsize,dy=hsize;
-		float angle=m_particles[i].m_rotation;
+		float angle=p.m_rotation;
+
+		for(int j=0;j<4;j++)
+		{
+			m_vertics[i*4+j].c4.set(p.m_colorRed,p.m_colorGreen,p.m_colorBlue,p.m_colorAlpha);
+			m_vertics[i*4+j].t2=t[j];
+		}
 
 		if(!Math::floatEqual(angle,0))
 		{
@@ -500,37 +502,40 @@ void Particle2DEffect::draw(RenderDevice* render,bool update_world_matrix)
 			float sin_o=Math::sina(angle);
 			dx=(cos_o-sin_o)*hsize;
 			dy=(cos_o+sin_o)*hsize;
-			float v[8]=
-			{
-				x-dy,y+dx,
-				x-dx,y-dy,
-				x+dy,y-dx,
-				x+dx,y+dy,
-			};
-
-			render->setUniform(color_uniform,RenderDevice::U_F_4,1,color);
-			render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,v);
-			render->drawFace3(faces,2);
-		}
-		else 
-		{
-			float v[8]=
-			{
-				x-dy,y+dx,
-				x-dx,y-dy,
-				x+dy,y-dx,
-				x+dx,y+dy,
-			};
-
-			render->setUniform(color_uniform,RenderDevice::U_F_4,1,color);
-			render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,v);
-			render->drawFace3(faces,2);
 		}
 
-
+		m_vertics[i*4+0].v2.set( x-dy,y+dx);
+		m_vertics[i*4+1].v2.set( x-dx,y-dy);
+		m_vertics[i*4+2].v2.set( x+dy,y-dx);
+		m_vertics[i*4+3].v2.set( x+dx,y+dy);
 	}
 
-	render->popMatrix();
+	rd->disableAllAttrArray();
+
+	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);
+	StreamMap* map_u=prog->getStreamMap(E_StreamType::UVS);
+	StreamMap* map_c=prog->getStreamMap(E_StreamType::COLORS);
+
+	int count=particle_nu*4;
+
+	if(map_v)
+	{
+		rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,
+									count,sizeof(Fs_V2F_T2F_C4F),m_vertics[0].v2.v);
+	}
+	if(map_u)
+	{
+		rd->setAndEnableVertexAttrPointer(map_u->m_location,2,FS_FLOAT,
+									count,sizeof(Fs_V2F_T2F_C4F),m_vertics[0].t2.v);
+	}
+	if(map_c)
+	{
+		rd->setAndEnableVertexAttrPointer(map_c->m_location,2,FS_FLOAT,
+									count,sizeof(Fs_V2F_T2F_C4F),m_vertics[0].c4.v);
+	}
+
+	rd->drawFace3(&m_faces[0],m_faces.size());
+
 }
 
 

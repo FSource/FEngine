@@ -2,6 +2,7 @@
 #define _FS_PARTICLE_2D_EMITTER_H_
 
 #include "FsMacros.h"
+#include "FsEnums.h"
 #include "FsObject.h"
 
 #include "graphics/FsColor.h"
@@ -278,21 +279,21 @@ class Particle2DEmitter:public FsObject
 
 
 		/* texture */
-		void setBlendSrc(int blend)
+		void setBlendSrc(E_BlendFactor blend)
 		{
 			m_blendSrc=blend;
 		}
-		int getBlendSrc()
+		E_BlendFactor getBlendSrc()
 		{
 			return m_blendSrc;
 		}
 
-		void setBlendDst(int blend)
+		void setBlendDst(E_BlendFactor blend)
 		{
 			m_blendDst=blend;
 		}
 
-		int getBlendDst()
+		E_BlendFactor getBlendDst()
 		{
 			return m_blendDst;
 		}
@@ -491,8 +492,8 @@ class Particle2DEmitter:public FsObject
 		int m_moveMode;
 
 		/* texture */
-		int m_blendSrc;
-		int m_blendDst;
+		E_BlendFactor m_blendSrc;
+		E_BlendFactor m_blendDst;
 		Texture2D* m_texture;
 
 		/* environment */

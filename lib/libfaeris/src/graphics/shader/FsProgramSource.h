@@ -12,6 +12,9 @@ NS_FS_BEGIN
 class FsFile;
 class UniformMap;
 class StreamMap;
+class ProgramFeatureDesc;
+class Program;
+class FsDict;
 
 class ProgramSource:public Resource
 {
@@ -38,6 +41,9 @@ class ProgramSource:public Resource
 		StreamMap* getStreamMap(int index){return m_streamMaps[index];}
 		int getStreamMapNu(){return m_streamMaps.size();}
 
+	public:
+		Program* getProgram(ProgramFeatureDesc* desc);
+
 	protected:
 		ProgramSource();
 		virtual ~ProgramSource();
@@ -48,12 +54,16 @@ class ProgramSource:public Resource
 		void addUniformMap(UniformMap* map){m_uniformMaps.push_back(map);}
 
 
-
 	protected:
 		std::string m_vertexSrc;
 		std::string m_fragmentSrc;
 		std::vector<UniformMap*> m_uniformMaps;
 		std::vector<StreamMap*> m_streamMaps;
+
+
+		Program* m_defaultProgramCache;
+		FsDict* m_programCache;
+
 };
 
 NS_FS_END

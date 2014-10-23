@@ -1,11 +1,16 @@
 #include "stage/entity/FsSprite2D.h"
 #include "stage/entity/FsSprite2DData.h"
+
 #include "graphics/FsTexture2D.h"
+#include "graphics/shader/FsProgram.h"
+#include "graphics/shader/FsStreamMap.h"
+
 #include "support/util/FsArray.h"
 #include "support/util/FsDict.h"
 #include "support/util/FsInteger.h"
 #include "FsGlobal.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
+
 
 
 NS_FS_BEGIN
@@ -125,14 +130,14 @@ void Sprite2D::updateAnimation(float dt)
 	{
 		switch(m_mode)
 		{
-			case ANIM_LOOP:
+			case E_AnimPlayMode::LOOP:
 				m_curFrame=m_curFrame%total_frame;
 				break;
-			case ANIM_START:
+			case E_AnimPlayMode::START:
 				m_curFrame=0;
 				m_stop=true;
 				break;
-			case ANIM_END:
+			case E_AnimPlayMode::END:
 				m_curFrame=total_frame-1;
 				m_stop=true;
 				break;
@@ -140,14 +145,14 @@ void Sprite2D::updateAnimation(float dt)
 	}
 }
 
-void Sprite2D::playAnimation(int mode)
+void Sprite2D::playAnimation(E_AnimPlayMode mode)
 {
 	m_mode=mode;
 	m_stop=false;
 }
 
 
-void Sprite2D::startAnimation(int mode)
+void Sprite2D::startAnimation(E_AnimPlayMode mode)
 {
 	m_mode=mode;
 	m_stop=false;
@@ -202,9 +207,10 @@ void Sprite2D::update(float dt)
 }
 
 
-void Sprite2D::draw(RenderDevice* render,bool update_matrix)
+void Sprite2D::draw(RenderDevice* rd,bool update_matrix)
 {
-	if(!m_curAnimation||!m_material||!m_program)
+	Program* prog=getProgram(NULL);
+	if(!m_curAnimation||!prog)
 	{
 		return ;
 	}
@@ -213,25 +219,24 @@ void Sprite2D::draw(RenderDevice* render,bool update_matrix)
 	{
 		updateWorldMatrix();
 	}
-	render->pushMatrix();
-	render->mulMatrix(&m_worldMatrix);
+
+	rd->setWorldMatrix(&m_worldMatrix);
 
 	if(m_curAnimationCacheData) 
 	{
 		if(m_curAnimationCacheData->m_offsetx||m_curAnimationCacheData->m_offsety)
 		{
-			render->translate(Vector3(m_curAnimationCacheData->m_offsetx,
+			rd->translateWorldMatrix(Vector3(m_curAnimationCacheData->m_offsetx,
 								m_curAnimationCacheData->m_offsety,0));
 		}
 	}
 
-	render->setProgram(m_program);
-	m_material->configRenderDevice(render);
+	rd->setProgram(prog);
+	m_material->configRenderDevice(rd);
 
 
-	render->disableAllAttrArray();
 
-
+	rd->disableAllAttrArray();
 
 	Sprite2DKeyFrame* frame=m_curAnimation->getKeyFrame(m_curFrame);
 
@@ -240,21 +245,33 @@ void Sprite2D::draw(RenderDevice* render,bool update_matrix)
 		Face3(0,3,2),
 		Face3(2,1,0),
 	};
-	int pos_loc=render->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-	int alpha_loc=render->getCacheAttrLocation(FS_ATTR_A1F_LOC,FS_ATTR_A1F_NAME);
-	int tex_loc=render->getCacheAttrLocation(FS_ATTR_T2F_LOC,FS_ATTR_T2F_NAME);
+
+	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);
+	StreamMap* map_u=prog->getStreamMap(E_StreamType::UVS);
+	StreamMap* map_a=prog->getStreamMap(E_StreamType::USER_DEFINE1);
+
 
 	for(int i=0;i<frame->getQuadNu();i++)
 	{
 		Sprite2DQuad* quad=frame->getQuad(i);
 		Texture2D* tex=(Texture2D*)m_textures->get(quad->texture);
-		render->bindTexture(tex,0);
-		render->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,4,0,quad->vertex);
-		render->setAndEnableVertexAttrPointer(tex_loc,2,FS_FLOAT,4,0,quad->texcoord);
-		render->setAndEnableVertexAttrPointer(alpha_loc,1,FS_FLOAT,4,0,quad->alpha);
-		render->drawFace3(faces,2);
+		rd->bindTexture(tex,0);
+		if(map_v)
+		{
+			rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,4,0,quad->vertex);
+		}
+
+		if(map_u)
+		{
+			rd->setAndEnableVertexAttrPointer(map_u->m_location,2,FS_FLOAT,4,0,quad->texcoord);
+		}
+		if(map_a)
+		{
+			rd->setAndEnableVertexAttrPointer(map_a->m_location,1,FS_FLOAT,4,0,quad->alpha);
+		}
+		rd->drawFace3(faces,2);
 	}
-	render->popMatrix();
+
 }
 
 const char* Sprite2D::className()
@@ -408,7 +425,7 @@ Sprite2D::Sprite2D()
 	m_curFrame=0;
 	m_elapseTime=0.0f;
 
-	m_mode=ANIM_LOOP;
+	m_mode=E_AnimPlayMode::LOOP;
 	m_stop=true;
 	m_curFps=0;
 
@@ -421,11 +438,12 @@ Sprite2D::Sprite2D()
 	m_textures=NULL;
 	m_animationCacheData=NULL;
 
-	m_material=TextureMaterial::create();
-	m_material->addRef();
-
-	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F_T2F_A1F);
-	FS_SAFE_ADD_REF(m_program);
+	static ProgramSource* S_programSource=NULL;
+	if(S_programSource==NULL)
+	{
+		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F_A1F);
+	}
+	setProgramSource(S_programSource);
 }
 
 Sprite2D::~Sprite2D()
@@ -434,9 +452,6 @@ Sprite2D::~Sprite2D()
 	FS_SAFE_DEC_REF(m_curAnimation);
 	FS_SAFE_DEC_REF(m_textures);
 	FS_DESTROY(m_animationCacheData);
-
-	FS_SAFE_DEC_REF(m_material);
-	FS_SAFE_DEC_REF(m_program);
 }
 
 
