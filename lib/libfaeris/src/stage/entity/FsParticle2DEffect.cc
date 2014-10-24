@@ -530,7 +530,7 @@ void Particle2DEffect::draw(RenderDevice* rd,bool update_world_matrix)
 	}
 	if(map_c)
 	{
-		rd->setAndEnableVertexAttrPointer(map_c->m_location,2,FS_FLOAT,
+		rd->setAndEnableVertexAttrPointer(map_c->m_location,4,FS_FLOAT,
 									count,sizeof(Fs_V2F_T2F_C4F),m_vertics[0].c4.v);
 	}
 
