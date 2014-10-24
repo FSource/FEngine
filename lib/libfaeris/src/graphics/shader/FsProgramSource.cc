@@ -200,6 +200,8 @@ static ProgramSource_UniformStrToType  S_uniform_to_type[]=
 
 	S_UNIFORM_ELE("R.COLOR",E_UniformRef::R_COLOR),
 	S_UNIFORM_ELE("R.OPACITY",E_UniformRef::R_OPACITY),
+
+	S_UNIFORM_ELE("M.POINT_SIZE",E_UniformRef::M_POINT_SIZE),
 	S_UNIFORM_ELE("M.COLOR",E_UniformRef::M_COLOR),
 	S_UNIFORM_ELE("M.OPACITY",E_UniformRef::M_OPACITY),
 	S_UNIFORM_ELE("M.COLOR_MAP",E_UniformRef::M_COLOR_MAP),
@@ -231,14 +233,15 @@ bool ProgramSource::init(FsFile* file)
 		{
 			if(u->m_value->compare(p->m_name)==0)
 			{
-				if(u->m_name->at(0)=='M')
+				if(u->m_value->at(0)=='M')
 				{
-					addUniformMap(new UniformMap(u->m_value->c_str(),E_UniformType::UT_REF_MAT,p->m_type));
+					addUniformMap(new UniformMap(u->m_name->c_str(),E_UniformType::UT_REF_MAT,p->m_type));
 				}
 				else 
 				{
-					addUniformMap(new UniformMap(u->m_value->c_str(),E_UniformType::UT_REF_RD,p->m_type));
+					addUniformMap(new UniformMap(u->m_name->c_str(),E_UniformType::UT_REF_RD,p->m_type));
 				}
+				break;
 			}
 			p++;
 		}
@@ -246,7 +249,7 @@ bool ProgramSource::init(FsFile* file)
 		{
 			if(u->m_value->compare("M.EXT")==0)
 			{
-				addUniformMap(new UniformMap(u->m_value->c_str(),E_UniformType::UT_REF_MAT_EXT,u->m_extIndex));
+				addUniformMap(new UniformMap(u->m_name->c_str(),E_UniformType::UT_REF_MAT_EXT,u->m_extIndex));
 			}
 			else 
 			{
@@ -265,8 +268,10 @@ bool ProgramSource::init(FsFile* file)
 		{
 			if(u->m_value->compare(p->m_name)==0)
 			{
-				addStreamMap(new StreamMap(u->m_value->c_str(),p->m_type));
+				addStreamMap(new StreamMap(u->m_name->c_str(),p->m_type));
+				break;
 			}
+			p++;
 		}
 		if(p->m_name==NULL)
 		{

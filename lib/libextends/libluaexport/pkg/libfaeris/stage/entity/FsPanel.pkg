@@ -22,7 +22,7 @@ class LuaPanel@Panel:public Panel
 		static LuaPanel* create(float width,float height);
 
 	public:
-		void onDraw@draw(Render* r);
+		void onDraw@draw(RenderDevice* r);
 		void onUpdate@update(float dt);
 
 		bool onTouchBegin@touchBegin(float x,float y);

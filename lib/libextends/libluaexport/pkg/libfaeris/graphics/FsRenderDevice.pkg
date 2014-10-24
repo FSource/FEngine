@@ -1,0 +1,119 @@
+$#include "graphics/FsRenderDevice.h"
+
+class RenderDevice:public FsObject 
+{
+	public:
+		void setProgram(Program* prog);
+		Program* getProgram();
+
+		/* texture */
+		void bindTexture(Texture2D* tex,int slot);
+
+		/* render target */
+		void setRenderTarget(RenderTarget* target);
+		RenderTarget* getRenderTarget();
+		void swapBuffers();
+
+
+		void clear(bool color=true,bool depth=false,bool stencil=false);
+
+
+		/* color */
+		void setClearColor(Color4f c){m_clearColor=c;}
+		Color4f getClearColor(){return  m_clearColor;}
+
+
+		void setColor(Color4f c){m_color=c;};
+		Color4f getColor(){return m_color;}
+
+
+		void setOpacity(float opacity){m_opacity=opacity;}
+		float getOpacity(){return m_opacity;}
+
+
+		/* set viewport */
+		void setViewport(int x,int y,int width,int height);
+
+		/* scissor area  */
+		void setScissorArea(float x,float y,float width,float height);
+		void setScissorArea(const Rect2D& area);
+		Rect2D getScissorArea();
+
+		void setScissorEnabled(bool enable);
+		bool getScissorEnabled();
+
+
+		/* depth */
+		void setDepthTestEnabled(bool enable);
+		bool getDepthTestEnabled(){return m_depthTest;}
+		void setDepthWriteEnabled(bool enable);
+		bool getDepthWrirteEnabled(){return m_depthWrite;}
+
+
+		/* blend */
+		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor fdst);
+
+		/* double side */
+		void setDoubleSideEnabled(bool value);
+		bool getDoubleSideEnabled(){return m_doubleSideEnabled;}
+
+
+		/* projection matrix */
+		void setProjectionMatrix(const Matrix4* mat);
+		Matrix4* getProjectionMatrix();
+
+		/* view matrix */
+		void setViewMatrix(const Matrix4* mat);
+		Matrix4* getViewMatrix();
+
+		/* world matrix */
+		void setWorldMatrix(const Matrix4* m);
+		Matrix4* getWorldMatrix();
+
+		void pushWorldMatrix();
+		void popWorldMatrix();
+
+		void loadWorldMatrixIdentity();
+		void mulWorldMatrix(const  Matrix4* m);
+
+		void translateWorldMatrix(const Vector3& s);
+		void scaleWorldMatrix(const Vector3& s);
+		void rotateWorldMatrix(const Vector3& v,float angle);
+
+		Matrix4* getMatrix(E_UniformRef t);
+
+
+
+		/* Attribute */
+		int getAttrLocation(const char* name);
+		int getCacheAttrLocation(int index,const char* name);
+
+		void disableAllAttrArray();
+		void enableAttrArray(int index);
+		void disableAttrArray(int index);
+		void setVertexAttrPointer(int index,int size,int type,
+				int count,int stride,void* pointer);
+		void setAndEnableVertexAttrPointer(int index,int size,int type,
+				int count,int stride,void* pointer);
+
+
+
+		/* Uniform */
+		int getUniformLocation(const char* name);
+		int getCacheUniformLocation(int index,const char* name);
+
+		void setUniform(int loc,E_UniformType type,int count,void* value);
+		void setUniform(int loc,UniformValue* v);
+
+
+
+
+		/* draw face */
+		void drawFace3(Face3* f,uint num);
+		void drawArray(E_DrawMode mode,int start,uint size);
+
+
+}
+
+
+

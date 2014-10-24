@@ -32,6 +32,10 @@
 %token tR_RB
 %token tDOLLAR
 
+%token tL_SB 
+%token tR_SB
+
+
 %token tATTRIBUTE 
 %token tUNIFROM 
 
@@ -53,7 +57,6 @@
 %token <istring> tOP_EQUAL
 
 
-%type <ivec> value
 %type <istring> word
 %type <istring> program_body
 
@@ -121,6 +124,14 @@ word: tNEW_LINE
 	{
 		$$=new std::string(")");
 	}
+	|tL_SB 
+	{
+		$$=new std::string("[");
+	}
+	|tR_SB 
+	{
+		$$=new std::string("]");
+	}
 	| tFLOAT
 	{
 		$$=$1;
@@ -158,9 +169,10 @@ word: tNEW_LINE
 		$$=new std::string(",");
 	}
 
+
 ;
 
-word: tUNIFROM tU_TYPE tWORD tASSIGN tDOLLAR tL_RB value tR_RB tSEMICOLON
+word: tUNIFROM tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tL_SB tINTEGER tR_SB tR_RB tSEMICOLON
 	{
 		std::string* ret=new std::string("uniform ");
 
@@ -172,7 +184,8 @@ word: tUNIFROM tU_TYPE tWORD tASSIGN tDOLLAR tL_RB value tR_RB tSEMICOLON
 		ret->append(*($3));
 		
 		/* add uniform map */
-		param->addUniformMap($3,$2,$7);
+		param->addUniformMap($3,$2,$7,atoi($9->c_str()));
+		delete $9;
 
 		ret->append(" ;");
 		$$=ret;
@@ -198,7 +211,7 @@ word: tUNIFROM tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tR_RB tSEMICOLON
 	}
 ;
 
-word: tUNIFROM tPRECISION tU_TYPE tWORD tASSIGN tDOLLAR tL_RB value tR_RB tSEMICOLON 
+word: tUNIFROM tPRECISION tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tL_SB tINTEGER tR_SB tR_RB tSEMICOLON 
 {
 	std::string* ret=new std::string("uniform ");
 
@@ -216,7 +229,8 @@ word: tUNIFROM tPRECISION tU_TYPE tWORD tASSIGN tDOLLAR tL_RB value tR_RB tSEMIC
 	ret->append(*($4));
 		
 	/* add uniform map */
-	param->addUniformMap($4,$3,$8);
+	param->addUniformMap($4,$3,$8,atoi($10->c_str()));
+	delete $10;
 
 	ret->append(" ;");
 	$$=ret;
@@ -248,33 +262,6 @@ word: tUNIFROM tPRECISION tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tR_RB tSEMIC
 }
 ;
 
-value: tFLOAT 
-{
-	$$=new std::vector<float>(); 
-	$$->push_back((float)atof($1->c_str()));
-	delete $1;
-};
-
-value: value tCOMMA tFLOAT 
- {
-	$1->push_back((float)atof($3->c_str()));
-	$$=$1;
-	delete $3;
-};
-
-value: tINTEGER
-{
-	$$=new std::vector<float>(); 
-	$$->push_back((float)atoi($1->c_str()));
-	delete $1;
-};
-
-value: value tCOMMA tINTEGER 
-{
-	$1->push_back((float)atoi($3->c_str()));
-	$$=$1;
-	delete $3;
-};
 
 
 word: tATTRIBUTE tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tR_RB tSEMICOLON 

@@ -30,6 +30,9 @@ GlslextParser::GlslextParser()
 {
 	m_scanner=NULL;
 	m_file=NULL;
+	m_readFunc=0;
+	m_vertexSrc=NULL;
+	m_fragmentSrc=NULL;
 }
 
 GlslextParser::~GlslextParser()
@@ -78,6 +81,19 @@ bool GlslextParser::init(void* file,ReadFunc func)
 
 
 	return true;
+
+}
+
+GlslextParser* GlslextParser_Parse(void* file,GlslextParser::ReadFunc func)
+{
+	GlslextParser* parser=GlslextParser::create(file,func);
+	if(Glslext_parse(parser)==0)
+	{
+		return parser;
+	}
+
+	delete parser;
+	return NULL;
 
 }
 

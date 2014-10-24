@@ -43,6 +43,9 @@ class Material2D:public Material
 		void setProgramSource(ProgramSource* ps);
 		ProgramSource* getProgramSource(){return m_programSource;}
 
+		void setPointSize(float size){m_pointSize=size;}
+		float getPointSize(){return m_pointSize;}
+
 	protected:
 		Material2D();
 		virtual ~Material2D();
@@ -51,6 +54,8 @@ class Material2D:public Material
 	protected:
 		Color4f m_color;
 		float m_opacity;
+		float m_pointSize;
+
 		Texture2D* m_colorMap;
 		std::vector<UniformValue*>* m_extends;
 

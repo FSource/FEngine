@@ -729,8 +729,8 @@ Matrix4* RenderDevice::getMatrix(E_UniformRef t)
 		case E_UniformRef::R_WORLD_VIEW_MAT:
 			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)))
 			{
-				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)]=m_world[m_worldStackIndex];
-				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)].mul(m_viewMatrix);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)]=m_viewMatrix;
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)].mul(m_world[m_worldStackIndex]);
 				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT));
 			}
 			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT)];
@@ -767,8 +767,8 @@ Matrix4* RenderDevice::getMatrix(E_UniformRef t)
 		case E_UniformRef::R_VIEW_PROJECTION_MAT:
 			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)))
 			{
-				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)]=m_viewMatrix;
-				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)].mul(m_projMatrix);
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)]=m_projMatrix;
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)].mul(m_viewMatrix);
 				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT));
 			}
 			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT)];
@@ -805,8 +805,8 @@ Matrix4* RenderDevice::getMatrix(E_UniformRef t)
 		case E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT:
 			if(S_FS_IS_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)))
 			{
-				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)]=m_world[m_worldStackIndex];
-				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)].mul(*getMatrix(E_UniformRef::R_VIEW_PROJECTION_MAT));
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)]=(*getMatrix(E_UniformRef::R_VIEW_PROJECTION_MAT));
+				m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)].mul(m_world[m_worldStackIndex]);
 				S_FS_CLR_MATRIX_DIRTY(1ul<<static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT));
 			}
 			return &m_cacheMatrix[static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT)];
@@ -1091,6 +1091,7 @@ void RenderDevice::setUniform(int loc,E_UniformType type,int count,void* value)
 					}
 				}
 			}
+			break;
 
 		default:
 			FS_TRACE_WARN("Unkown Uniform Type");

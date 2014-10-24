@@ -150,13 +150,10 @@ void SpineSprite::draw(RenderDevice* rd,bool update_matrix)
 		updateWorldMatrix();
 	}
 
-
-	Color4f color=m_material->getColor();
-
-	m_skeleton->r=color.r;
-	m_skeleton->g=color.g;
-	m_skeleton->b=color.b;
-	m_skeleton->a=color.a;
+	m_skeleton->r=1.0f;
+	m_skeleton->g=1.0f;
+	m_skeleton->b=1.0f;
+	m_skeleton->a=1.0f;
 
 	Animation_apply(m_curAnimation,m_skeleton,m_elapseTime,true);
 	//FS_TRACE_WARN("Time is %f",m_elapseTime/1000);
@@ -263,13 +260,12 @@ SpineSprite::SpineSprite()
 	m_duration=0.0f;
 
 	m_data=NULL;
-	m_material=NULL;
 	m_mode=E_AnimPlayMode::START;
 
 	static ProgramSource* S_programSource=NULL;
 	if(S_programSource==NULL)
 	{
-		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_C4F);
+		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F);
 
 	}
 	setProgramSource(S_programSource);

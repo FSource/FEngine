@@ -148,7 +148,7 @@ VertexPolygon::VertexPolygon()
 
 	if(S_programSource==NULL)
 	{
-		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_C4F);
+		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
 	}
 
 	setProgramSource(S_programSource);

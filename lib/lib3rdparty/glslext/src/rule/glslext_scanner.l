@@ -46,6 +46,8 @@ FRAGMENT_END 	return tFRAGMENT_END;
 ")"				return tR_RB;
 "$"				return tDOLLAR;
 ";"				return tSEMICOLON;
+"["				return tL_SB;
+"]"				return tR_SB;
 
 attribute 		return tATTRIBUTE;
 uniform 		return tUNIFROM;
@@ -54,7 +56,7 @@ uniform 		return tUNIFROM;
 "," 			return tCOMMA;
 	
 \.|"!"|"~"|"^"|"?"|:|=|"{"|"}"  				PARSE_TEXT_TO_YACC; return tOPERATOR;
-\*|\/|\%|\+|-|\<|>|&|\\|\[|\]						PARSE_TEXT_TO_YACC; return tOPERATOR;
+\*|\/|\%|\+|-|\<|>|&|\\							PARSE_TEXT_TO_YACC; return tOPERATOR;
 
 
 \+\+|--|\<=|>=|==|!=|&&|\|\||"^^"|"<<"|">>"		PARSE_TEXT_TO_YACC; return tOPERATOR;

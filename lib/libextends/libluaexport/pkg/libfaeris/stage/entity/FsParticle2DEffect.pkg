@@ -3,23 +3,25 @@ $#include "stage/entity/FsParticle2DEffect.h"
 
 class Particle2DEffect@__Particle2DEffect:public Entity 
 {
+
 	public:
+		void setMaterial(Material2D* mat);
+		Material2D* getMaterial() ;
+
 		/* material */
-		void setColor(Color c);
-		void setColor(Color4f c);
+		void setColor(const Color4f& c);
+		void setColor(const Color& c);
 		Color4f getColor();
 
 		void setOpacity(float opacity);
 		float getOpacity();
 
-		void setBlend(int eq,int src,int dst);
-		void setBlend(int src,int dst);
+		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor dst);
+		void setBlend(E_BlendFactor src,E_BlendFactor dst);
 
-		TextureMaterial* getMaterial();
-		void setMaterial(TextureMaterial* mat);
-
-		Program* getShader();
-		void setShader(Program* shader);
+		void setProgramSource(ProgramSource* ps);
+		void setProgramSource(const char* filename);
+		ProgramSource* getProgramSource();
 
 	public:
 		void start(bool restart=true);
@@ -53,7 +55,7 @@ class LuaParticle2DEffect@Particle2DEffect:public Particle2DEffect
 		static LuaParticle2DEffect* create();
 
 	public:
-		void onDraw@draw(Render* r);
+		void onDraw@draw(RenderDevice* r);
 		void onUpdate@update(float dt);
 		bool onTouchBegin@touchBegin(float x,float y);
 		bool onTouchMove@touchMove(float x,float y);

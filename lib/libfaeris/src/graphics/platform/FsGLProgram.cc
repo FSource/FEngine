@@ -58,6 +58,19 @@ Program* Program::create(const char* vertex_src, const char* fragment_src)
 	return ret;
 }
 
+Program* Program::create(ProgramSource* source)
+{
+	Program* ret=new Program();
+	if(!ret->init(source))
+	{
+		delete ret;
+		return NULL;
+	}
+
+	return ret;
+}
+
+
 
 
 bool Program::init(const char* vertex_src,const char* fragment_src)
@@ -167,7 +180,7 @@ bool Program::init(ProgramSource* source)
 		{
 			UniformMap* u=map->clone();
 			u->m_location=loc;
-			m_uniformMaps.push_back(map);
+			addUniformMap(u);
 		}
 	}
 
@@ -180,7 +193,7 @@ bool Program::init(ProgramSource* source)
 		{
 			StreamMap* s=map->clone();
 			s->m_location=loc;
-			m_streamMaps.push_back(s);
+			addStreamMap(s);
 		}
 	}
 	return true;

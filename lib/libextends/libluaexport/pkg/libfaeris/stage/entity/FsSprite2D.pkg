@@ -4,51 +4,45 @@ $#include "luaext/FsLuaEntity.h"
 class Sprite2D@__Sprite2D:public Entity 
 {
 	public:
-		enum
-		{
-			ANIM_LOOP,
-			ANIM_START,
-			ANIM_END,
-		};
+		void setMaterial(Material2D* mat);
+		Material2D* getMaterial() ;
 
-	public:
 		/* material */
-		void setColor(Color c);
-		void setColor(Color4f c);
+		void setColor(const Color4f& c);
+		void setColor(const Color& c);
 		Color4f getColor();
 
 		void setOpacity(float opacity);
 		float getOpacity();
 
-		void setBlend(int eq,int src,int dst);
-		void setBlend(int src,int dst);
-		void setBlend@setBlendMode(int src,int dst);
+		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor dst);
+		void setBlend(E_BlendFactor src,E_BlendFactor dst);
 
-		TextureMaterial* getMaterial();
-		void setMaterial(TextureMaterial* mat);
+		void setProgramSource(ProgramSource* ps);
+		void setProgramSource(const char* filename);
+		ProgramSource* getProgramSource();
 
-		Program* getShader();
-		void setShader(Program* shader);
 	public:
+
 		void setResourceUrl(const char* name);
 
 		/* animation */
 		void setAnimation(const char* name);
 		const char* getAnimation();
+		void updateAnimation(float dt);
 
 		bool hasAnimation(const char* name);
 
-		void updateAnimation(float dt);
-
-		void playAnimation(int mode=Sprite2D::ANIM_LOOP);
-		void startAnimation(int mode=Sprite2D::ANIM_LOOP);
+		void playAnimation(E_AnimPlayMode mode);
+		void playAnimation();
+		void startAnimation(E_AnimPlayMode mode);
+		void startAnimation();
 		void stopAnimation();
 
-		void setAnimationOffset(float x,float y);
-		void getAnimationOffset(float* x=0,float* y=0);
-
-
 		bool isAnimationPlaying();
+
+		void setAnimationOffset(float x,float y);
+		void getAnimationOffset(float* x,float* y);
 
 
 		/* frame */
@@ -59,24 +53,18 @@ class Sprite2D@__Sprite2D:public Entity
 		/* fps */
 		int getFps();
 		void setFps(int fps);
+
 };
 
 class LuaSprite2D@Sprite2D:public  Sprite2D 
 {
-	public:
-		enum
-		{
-			ANIM_LOOP,
-			ANIM_START,
-			ANIM_END,
-		};
 
 	public:
 		static LuaSprite2D* create(const char* name);
 		static LuaSprite2D* create();
 
 	public:
-		void onDraw@draw(Render* r);
+		void onDraw@draw(RenderDevice* r);
 		void onUpdate@update(float dt);
 		bool onTouchBegin@touchBegin(float x,float y);
 		bool onTouchMove@touchMove(float x,float y);

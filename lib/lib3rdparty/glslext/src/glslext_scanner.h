@@ -330,7 +330,7 @@ extern int Glslext_lex \
 #undef YY_DECL
 #endif
 
-#line 95 "../src/rule/glslext_scanner.l"
+#line 97 "../src/rule/glslext_scanner.l"
 
 
 #line 337 "../src/glslext_scanner.h"

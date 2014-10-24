@@ -8,10 +8,13 @@ NS_FS_BEGIN
 
 
 #define FS_PRE_PROGRAM_SOURCE_V4F "__V4F__.fshader"
-#define FS_PRE_PROGRAM_SOURCE_V4F_C4F "__V4F_C4F__.fshader"
 #define FS_PRE_PROGRAM_SOURCE_V4F_T2F "__V4F_T2F__.fshader"
 #define FS_PRE_PROGRAM_SOURCE_V4F_T2F_A1F "__V4F_T2F_A1F__.fshader"
 #define FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F "__V4F_T2F_C4F__.fshader"
+#define FS_PRE_PROGRAM_SOURCE_PARTICLE "__PARTICLE__.fshader"
+
+
+//#define FS_PRE_PROGRAM_SOURCE_V4F_C4F "__V4F_C4F__.fshader"
 
 #define FS_MAX_PRE_PROGRAM_SOURCE_NU 5
 

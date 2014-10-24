@@ -109,8 +109,8 @@ class Entity@__Entity:public ActionTarget
 
 
 		bool hit2D(float x,float y);
-		void draw(Render* render,bool update_matrix=true);
-		void draws(Render* render,bool update_matrix=true);
+		void draw(RenderDevice* render,bool update_matrix=true);
+		void draws(RenderDevice* render,bool update_matrix=true);
 
 		void update(float dt);
 		void updates(float dt);
@@ -136,7 +136,7 @@ class LuaEntity@Entity:public Entity
 		static LuaEntity* create();
 	public:
 		void onUpdate@update(float dt);
-		void onDraw@draw(Render* r);
+		void onDraw@draw(RenderDevice* r);
 		bool onTouchBegin@touchBegin(float x,float y);
 		bool onTouchMove@touchMove(float x,float y);
 		bool onTouchEnd@touchEnd(float x,float y);

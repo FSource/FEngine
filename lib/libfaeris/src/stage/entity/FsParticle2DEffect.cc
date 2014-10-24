@@ -91,7 +91,7 @@ Particle2DEffect::Particle2DEffect()
 	static ProgramSource* S_programSource=NULL;
 	if(S_programSource==NULL)
 	{
-		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F);
+		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_PARTICLE);
 	}
 
 	setProgramSource(S_programSource);
@@ -533,6 +533,7 @@ void Particle2DEffect::draw(RenderDevice* rd,bool update_world_matrix)
 		rd->setAndEnableVertexAttrPointer(map_c->m_location,2,FS_FLOAT,
 									count,sizeof(Fs_V2F_T2F_C4F),m_vertics[0].c4.v);
 	}
+
 
 	rd->drawFace3(&m_faces[0],m_faces.size());
 

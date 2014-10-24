@@ -4,25 +4,24 @@ $#include "luaext/FsLuaEntity.h"
 class VertexPolygon@__VertexPolygon:public Entity
 {
 	public:
+		void setMaterial(Material2D* mat);
+		Material2D* getMaterial() ;
+
 		/* material */
-		void setColor(Color c);
-		void setColor(Color4f c);
+		void setColor(const Color& c);
+		void setColor(const Color4f& c);
 		Color4f getColor();
 
 		void setOpacity(float opacity);
 		float getOpacity();
 
-		void setBlend(int eq,int src,int dst);
-		void setBlend(int src,int dst);
+		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor dst);
+		void setBlend(E_BlendFactor src,E_BlendFactor dst);
 
-		void setPointSize(float size);
-		float getPointSize();
+		void setProgramSource(ProgramSource* ps);
+		void setProgramSource(const char* filename);
+		ProgramSource* getProgramSource();
 
-		ColorMaterial* getMaterial();
-		void setMaterial(ColorMaterial* mat);
-
-		Program* getShader();
-		void setShader(Program* shader);
 
 	public:
 
@@ -49,7 +48,7 @@ class VertexPolygon@__VertexPolygon:public Entity
 		void resize(int nu);
 		int getVertexNu();
 
-		void setMode(int mode);
+		void setMode(E_DrawMode mode);
 		int getMode();
 
 };
@@ -57,21 +56,10 @@ class VertexPolygon@__VertexPolygon:public Entity
 class LuaVertexPolygon@VertexPolygon:public VertexPolygon 
 {
 	public:
-		enum 
-		{
-			POINTS,
-			LINES,
-			LINE_STRIP,
-			LINE_LOOP,
-			TRIANGLES,
-			TRIANGLE_FAN,
-			TRIANGLE_STRIP,
-		};
-	public:
 		static LuaVertexPolygon* create();
 
 	public:
-		void onDraw@draw(Render* r);
+		void onDraw@draw(RenderDevice* r);
 		void onUpdate@update(float dt);
 		bool onTouchBegin@touchBegin(float x,float y);
 		bool onTouchMove@touchMove(float x,float y);

@@ -9,11 +9,10 @@ class Global@share
 		static SysDispatcher* sysDispatcher();
 
 		static Window* window();
-		static Render* render();
+		static RenderDevice* renderDevice();
 		static TextureMgr* textureMgr();
 		static Sprite2DDataMgr* sprite2DDataMgr();
-		static ObjectMgr* objectMgr();
-		static ProgramMgr* programMgr();
+		static ProgramSourceMgr* programSourceMgr();
 		static FontTTFMgr* fontTTFMgr();
 
 };

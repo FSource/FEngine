@@ -179,6 +179,19 @@ TOLUA_API int toluaext_is_luatable(lua_State* L,int lo,const char* type,int def,
 	return 0;
 }
 
+TOLUA_API int toluaext_isenum(lua_State* L,int lo,const char* type,int def,tolua_Error* err)
+{
+	return tolua_isnumber(L,lo,def,err);
+}
+
+TOLUA_API int toluaext_toenum(lua_State* L,int lo,int def)
+{
+	return (int) tolua_tonumber(L,lo,def);
+}
+
+
+
+
 
 static int _table_handle_nu=0;
 

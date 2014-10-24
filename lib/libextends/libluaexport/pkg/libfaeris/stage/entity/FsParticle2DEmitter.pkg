@@ -101,9 +101,9 @@ class Particle2DEmitter:public FsObject
 
 
 		/* texture */
-		void setBlendSrc(int blend);
+		void setBlendSrc(E_BlendFactor blend);
 		int getBlendSrc();
-		void setBlendDst(int blend);
+		void setBlendDst(E_BlendFactor blend);
 		int getBlendDst();
 		void setTexture(Texture2D* texture);
 		Texture2D* getTexture();

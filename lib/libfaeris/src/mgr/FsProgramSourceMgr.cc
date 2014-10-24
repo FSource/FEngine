@@ -1,5 +1,6 @@
 #include "FsProgramSourceMgr.h"
 #include "graphics/shader/FsProgramSource.h"
+#include "sys/io/FsMemFile.h"
 
 NS_FS_BEGIN
 
@@ -40,109 +41,78 @@ Resource* ProgramSourceMgr::load(const char* name)
 }
 
 
-void ProgramSourceMgr::loadPreDefineShader()
-{
-
-}
-
-
-
-
-/*
 
 struct ST_PreDefineShader
 {
 	const char* key;
-	const char* vert;
-	const char* frag;
+	const char* source;
 };
 
 
 
-static const char* FS_PRE_SHADER_V4F_VERT=
-#include "graphics/shader/Fs_V4F.vert"
+static const char* FS_PRE_PROGRAM_SOURCE_V4F_SOURCE=
+#include "graphics/shader/buildin/Fs_V4F.fshader"
 
-static const char* FS_PRE_SHADER_V4F_FRAG=
-#include "graphics/shader/Fs_V4F.frag"
+static const char* FS_PRE_PROGRAM_SOURCE_V4F_T2F_SOURCE=
+#include "graphics/shader/buildin/Fs_V4F_T2F.fshader"
 
-static const char* FS_PRE_SHADER_V4F_C4F_VERT=
-#include "graphics/shader/Fs_V4F_C4F.vert"
-
-static const char* FS_PRE_SHADER_V4F_C4F_FRAG=
-#include "graphics/shader/Fs_V4F_C4F.frag"
+static const char* FS_PRE_PROGRAM_SOURCE_V4F_T2F_A1F_SOURCE=
+#include "graphics/shader/buildin/Fs_V4F_T2F_A1F.fshader"
 
 
-
-static const char*  FS_PRE_SHADER_V4F_T2F_VERT=
-#include "graphics/shader/Fs_V4F_T2F.vert"
-
-static const char* FS_PRE_SHADER_V4F_T2F_FRAG=
-#include "graphics/shader/Fs_V4F_T2F.frag"
+static const char* FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F_SOURCE=
+#include "graphics/shader/buildin//Fs_V4F_T2F_C4F.fshader"
 
 
-static const char* FS_PRE_SHADER_V4F_T2F_A1F_VERT=
-#include "graphics/shader/Fs_V4F_T2F_A1F.vert"
-
-static const char* FS_PRE_SHADER_V4F_T2F_A1F_FRAG=
-#include "graphics/shader/Fs_V4F_T2F_A1F.frag"
-
-
-static const char* FS_PRE_SHADER_V4F_T2F_C4F_VERT=
-#include "graphics/shader/Fs_V4F_T2F_C4F.vert"
-
-static const char* FS_PRE_SHADER_V4F_T2F_C4F_FRAG=
-#include "graphics/shader/Fs_V4F_T2F_C4F.frag"
-
+static const char* FS_PRE_PROGRAM_SOURCE_PARTICLE_SOURCE=
+#include "graphics/shader/buildin/Fs_PARTICLE.fshader"
 
 
 void ProgramSourceMgr::loadPreDefineShader()
 {
-	ST_PreDefineShader shader[FS_MAX_PRE_SHADER_NU]=
+	ST_PreDefineShader shader[FS_MAX_PRE_PROGRAM_SOURCE_NU]=
 	{
 		{
-			FS_PRE_SHADER_V4F,
-			FS_PRE_SHADER_V4F_VERT,
-			FS_PRE_SHADER_V4F_FRAG,
+			FS_PRE_PROGRAM_SOURCE_V4F,
+			FS_PRE_PROGRAM_SOURCE_V4F_SOURCE,
 		},
 		{
-			FS_PRE_SHADER_V4F_C4F,
-			FS_PRE_SHADER_V4F_C4F_VERT,
-			FS_PRE_SHADER_V4F_C4F_FRAG,
+			FS_PRE_PROGRAM_SOURCE_V4F_T2F,
+			FS_PRE_PROGRAM_SOURCE_V4F_T2F_SOURCE,
 		},
 		{
-			FS_PRE_SHADER_V4F_T2F,
-			FS_PRE_SHADER_V4F_T2F_VERT,
-			FS_PRE_SHADER_V4F_T2F_FRAG,
+			FS_PRE_PROGRAM_SOURCE_V4F_T2F_A1F,
+			FS_PRE_PROGRAM_SOURCE_V4F_T2F_A1F_SOURCE,
 		},
 		{
-			FS_PRE_SHADER_V4F_T2F_A1F,
-			FS_PRE_SHADER_V4F_T2F_A1F_VERT,
-			FS_PRE_SHADER_V4F_T2F_A1F_FRAG,
+			FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F,
+			FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F_SOURCE
 		},
 		{
-			FS_PRE_SHADER_V4F_T2F_C4F,
-			FS_PRE_SHADER_V4F_T2F_C4F_VERT,
-			FS_PRE_SHADER_V4F_T2F_C4F_FRAG,
-		},
-
+			FS_PRE_PROGRAM_SOURCE_PARTICLE,
+			FS_PRE_PROGRAM_SOURCE_PARTICLE_SOURCE,
+		}
 	};
 
-	for(int i=0;i<FS_MAX_PRE_SHADER_NU;i++)
+	for(int i=0;i<FS_MAX_PRE_PROGRAM_SOURCE_NU;i++)
 	{
-		ProgramSource* prog=ProgramSource::create(shader[i].vert,shader[i].frag);
-		if(!prog)
+		int length=strlen(shader[i].source);
+		FsFile* file=MemFile::create(shader[i].source,length);
+		ProgramSource* ps=ProgramSource::create(file);
+		file->autoDestroy();
+
+		if(!ps)
 		{
 			FS_TRACE_WARN("Can't Load PreDefine Shader(%s)",shader[i].key);
 			continue;
 		}
 
 		FsString* key=FsString::create(shader[i].key);
-		addCache(key,prog);
+
+		addCache(key,ps);
 		key->autoDestroy();
 	}
-
 }
 
-*/
 
 NS_FS_END

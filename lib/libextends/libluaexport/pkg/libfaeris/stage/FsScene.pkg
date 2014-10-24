@@ -40,7 +40,7 @@ class LuaScene@Scene:public Scene
 		void onEnter@enter();
 		void onExit@exit();
 		void onUpdate@update(float dt);
-		void onDraw@draw(Render* render);
+		void onDraw@draw(RenderDevice* render);
 
 		void onTouchBegin@touchBegin(float x,float y);
 		void onTouchEnd@touchEnd(float x,float y);

@@ -31,24 +31,12 @@ int main(int argc, char** argv)
 		for(int i=0;i<parser->m_uniformMap.size();i++)
 		{
 			GlslextTypeMap* iter=parser->m_uniformMap[i];
-			printf("<%s,%s, ",iter->m_type->c_str(),iter->m_name->c_str());
-			if(iter->m_valueType==GlslextTypeMap::E_STRING)
-			{
-				printf("%s",iter->m_stringValue->c_str());
-			}
-			else 
-			{
-				int v_size=iter->m_vecValue->size();
-				printf("(");
-				for(int j=0;j<v_size;j++)
-				{
-					float v=iter->m_vecValue->at(j);
-					printf("%f,",v);
-
-				}
-				printf(")");
-			}
-			printf(">\n");
+			printf("<%s,%s,%s,%d> \n",
+					iter->m_type->c_str(),
+					iter->m_name->c_str(),
+					iter->m_value->c_str(),
+					iter->m_extIndex
+					);
 
 		}
 		printf("\n\n===Attribute Map===\n");
@@ -56,24 +44,12 @@ int main(int argc, char** argv)
 		for(int i=0;i<parser->m_attributeMap.size();i++)
 		{
 			GlslextTypeMap* iter=parser->m_attributeMap[i];
-			printf("<%s,%s, ",iter->m_type->c_str(),iter->m_name->c_str());
-			if(iter->m_valueType==GlslextTypeMap::E_STRING)
-			{
-				printf("%s",iter->m_stringValue->c_str());
-			}
-			else 
-			{
-				int v_size=iter->m_vecValue->size();
-				printf("(");
-				for(int j=0;j<v_size;j++)
-				{
-					float v=iter->m_vecValue->at(j);
-					printf("%f,",v);
-
-				}
-				printf(")");
-			}
-			printf(">\n");
+			printf("<%s,%s,%s,%d> \n",
+					iter->m_type->c_str(),
+					iter->m_name->c_str(),
+					iter->m_value->c_str(),
+					iter->m_extIndex
+					);
 
 		}
 

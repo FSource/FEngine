@@ -13,6 +13,8 @@ $pfile "FsObject.pkg"
 
 $pfile "FsMacros.pkg"
 
+$pfile "FsEnums.pkg"
+
 
 
 /* stage */
@@ -46,8 +48,7 @@ $pfile "mgr/FsResource.pkg"
 $pfile "mgr/FsTextureMgr.pkg"
 $pfile "mgr/FsSprite2DDataMgr.pkg"
 $pfile "mgr/FsResourceMgr.pkg"
-$pfile "mgr/FsObjectMgr.pkg"
-$pfile "mgr/FsProgramMgr.pkg"
+$pfile "mgr/FsProgramSourceMgr.pkg"
 $pfile "mgr/FsFontTTFMgr.pkg"
 
 
@@ -70,7 +71,7 @@ $pfile "stage/layer/FsLayer2D.pkg"
 
 
 /* graphics */
-$pfile "graphics/FsRender.pkg"
+$pfile "graphics/FsRenderDevice.pkg"
 $pfile "graphics/FsColor.pkg"
 $pfile "graphics/FsTexture2D.pkg"
 $pfile "graphics/FsFontBitmap.pkg"

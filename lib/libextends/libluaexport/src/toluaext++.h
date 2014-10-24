@@ -34,6 +34,10 @@ TOLUA_API int toluaext_is_luafunction(lua_State* L,
 		tolua_Error* err);
 
 
+TOLUA_API int toluaext_isenum(lua_State* L,int lo,const char* type,int def,tolua_Error* err);
+TOLUA_API int toluaext_toenum(lua_State* L,int lo,int def);
+
+
 TOLUA_API int  toluaext_to_luafunction(lua_State* L,int lo,int def);
 TOLUA_API void toluaext_push_luafunction(lua_State* L,int refid);
 TOLUA_API void toluaext_remove_luafunction(lua_State* L,int refid);

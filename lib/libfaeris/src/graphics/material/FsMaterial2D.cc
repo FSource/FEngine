@@ -24,6 +24,7 @@ Material2D* Material2D::create(ProgramSource* ps)
 
 
 
+
 const char* Material2D::className()
 {
 	return "Material2D";
@@ -31,10 +32,12 @@ const char* Material2D::className()
 
 Material2D::Material2D()
 {
-	m_color=Color4f::RED;
+	m_color=Color4f::WHITE;
 	m_opacity=1.0f;
+	m_pointSize=1.0f;
 	m_colorMap=NULL;
 	m_extends=NULL;
+	m_programSource=NULL;
 }
 
 Material2D::~Material2D()
@@ -79,6 +82,10 @@ void Material2D::configRenderDevice(RenderDevice* rd)
 				{
 					switch(u->m_refValue)
 					{
+						case E_UniformRef::M_POINT_SIZE:
+							rd->setUniform(u->m_location,E_UniformType::UT_F_1,1,&m_pointSize);
+							break;
+
 						case E_UniformRef::M_COLOR:
 							rd->setUniform(u->m_location,E_UniformType::UT_F_4,1,&m_color);
 							break;

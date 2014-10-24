@@ -119,9 +119,34 @@ local fsobject= {
 }
 
 
--- register CCObject types
+local fsenums =
+{
+	"E_EulerOrientType",
+	"E_UniformType",
+	"E_UniformRef",
+	"E_StreamType",
+	"E_ProgramFeatureSupport",
+	"E_FogType",
+	"E_ShadowType",
+	"E_BlendEquation",
+	"E_BlendFactor",
+	"E_DrawMode",
+	"E_AnimPlayMode",
+}
+
+
+
+
+-- register FsObject types
 for i = 1, #fsobject do
 	_push_functions[fsobject[i]] = "toluaext_pushfsobject2"
+end
+
+--- register C++11 Strong Enum 
+for i=1 , #fsenums do 
+	_push_functions[fsenums[i]]="toluaext_pushfsenum"
+	_is_functions[fsenums[i]]="toluaext_isenum"
+	_to_functions[fsenums[i]]="toluaext_toenum"
 end
 
 -- register LUA_FUNCTION, LUA_TABLE, LUA_HANDLE type
@@ -212,6 +237,22 @@ function post_output_hook(package)
 		"tolua_usertype%(tolua_S,\""..fsobject[i].."\"%)",
 		"toluaext_usertype(tolua_S,\""..fsobject[i].."\"%)")
 	end
+
+	for i=1,#fsenums do 
+		result=string.gsub(result,
+		"tolua_constant%(tolua_S,(\"[%w_]*\"),("..fsenums[i]..")::([%w_]*)",
+		"tolua_constant%(tolua_S,%1,static_cast<int>("..fsenums[i].."::%3)")
+
+		result=string.gsub(result,
+		 " tolua_usertype%(tolua_S,\""..fsenums[i].."\"%);\n",
+		 "")
+
+		 result=string.gsub(result,
+		 "%*%(%("..fsenums[i].."%*%)",
+		 "(("..fsenums[i]..")")
+
+	end
+
 
 
 

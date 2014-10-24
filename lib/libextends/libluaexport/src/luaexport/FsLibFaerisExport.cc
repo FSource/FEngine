@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 10/10/14 03:10:17.
+** Generated automatically by tolua++-1.0.92 on 10/24/14 10:11:51.
 */
 
 #ifndef __cplusplus
@@ -17,6 +17,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "FsGlobal.h"
 #include "FsObject.h"
 #include "FsMacros.h"
+#include "FsEnums.h"
 #include "stage/FsActionTarget.h"
 #include "stage/entity/FsEntity.h"
 #include "luaext/FsLuaEntity.h"
@@ -49,8 +50,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "mgr/FsTextureMgr.h"
 #include "mgr/FsSprite2DDataMgr.h"
 #include "mgr/FsResourceMgr.h"
-#include "mgr/FsObjectMgr.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
 #include "mgr/FsFontTTFMgr.h"
 #include "scheduler/FsScheduler.h"
 #include "luaext/FsLuaSchedulerTarget.h"
@@ -118,23 +118,30 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
+static int tolua_collect_Color (lua_State* tolua_S)
+{
+ Color* self = (Color*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_Color4f (lua_State* tolua_S)
+{
+ Color4f* self = (Color4f*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_Color3f (lua_State* tolua_S)
+{
+ Color3f* self = (Color3f*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_Timer (lua_State* tolua_S)
 {
  Timer* self = (Timer*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
-static int tolua_collect_Vector4 (lua_State* tolua_S)
-{
- Vector4* self = (Vector4*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
-static int tolua_collect_Rect2D (lua_State* tolua_S)
-{
- Rect2D* self = (Rect2D*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -146,16 +153,16 @@ static int tolua_collect_Vector2 (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Color (lua_State* tolua_S)
+static int tolua_collect_Rect2D (lua_State* tolua_S)
 {
- Color* self = (Color*) tolua_tousertype(tolua_S,1,0);
+ Rect2D* self = (Rect2D*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
 
-static int tolua_collect_Color4f (lua_State* tolua_S)
+static int tolua_collect_Vector4 (lua_State* tolua_S)
 {
- Color4f* self = (Color4f*) tolua_tousertype(tolua_S,1,0);
+ Vector4* self = (Vector4*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -179,127 +186,128 @@ static int tolua_collect_Vector3 (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"ExponentialEase");
- tolua_usertype(tolua_S,"BezierEase");
- toluaext_usertype(tolua_S,"TouchEventListener");
- tolua_usertype(tolua_S,"Sprite2DDataMgr");
- tolua_usertype(tolua_S,"ProgramMgr");
- tolua_usertype(tolua_S,"LuaPressButton");
- tolua_usertype(tolua_S,"ListView");
- tolua_usertype(tolua_S,"PageView");
- tolua_usertype(tolua_S,"LuaRotateAction");
- toluaext_usertype(tolua_S,"LuaHttpRequest");
- toluaext_usertype(tolua_S,"Director");
- toluaext_usertype(tolua_S,"HttpEngine");
- toluaext_usertype(tolua_S,"AudioEngine");
- tolua_usertype(tolua_S,"Channel");
- toluaext_usertype(tolua_S,"Layer");
- tolua_usertype(tolua_S,"QuadEase");
- tolua_usertype(tolua_S,"FontTTFMgr");
- tolua_usertype(tolua_S,"Sys");
- toluaext_usertype(tolua_S,"Texture2D");
- tolua_usertype(tolua_S,"LuaScaleAction");
- tolua_usertype(tolua_S,"ObjectMgr");
- toluaext_usertype(tolua_S,"ColorLayer");
- tolua_usertype(tolua_S,"LinearCurve2");
- tolua_usertype(tolua_S,"LinearEase");
- tolua_usertype(tolua_S,"Program");
- tolua_usertype(tolua_S,"Curve3Action");
- tolua_usertype(tolua_S,"CubicBezierCurve3");
- toluaext_usertype(tolua_S,"LuaAction");
+ tolua_usertype(tolua_S,"QuartEase");
  toluaext_usertype(tolua_S,"Action");
- tolua_usertype(tolua_S,"Color");
- tolua_usertype(tolua_S,"ActionTarget");
- tolua_usertype(tolua_S,"KeypadEvent");
- toluaext_usertype(tolua_S,"SysDispatcher");
- tolua_usertype(tolua_S,"CubicEase");
- toluaext_usertype(tolua_S,"FrameBuffer");
- toluaext_usertype(tolua_S,"LuaParticle2DEffect");
- toluaext_usertype(tolua_S,"LabelBitmap");
- toluaext_usertype(tolua_S,"TouchDispatcher");
- tolua_usertype(tolua_S,"TouchEvent");
- toluaext_usertype(tolua_S,"FsArray");
- toluaext_usertype(tolua_S,"FontBitmap");
- tolua_usertype(tolua_S,"TouchPoint");
- toluaext_usertype(tolua_S,"LuaSysEventListener");
- tolua_usertype(tolua_S,"CubicBezierCurve4");
- toluaext_usertype(tolua_S,"Sprite2D");
+ tolua_usertype(tolua_S,"CubicBezierCurve3");
  tolua_usertype(tolua_S,"CubicBezierCurve2");
- tolua_usertype(tolua_S,"CatmullRomCurve3");
- tolua_usertype(tolua_S,"LuaMoveAction");
- tolua_usertype(tolua_S,"ScrollWidget");
- tolua_usertype(tolua_S,"ElasticEase");
- toluaext_usertype(tolua_S,"Window");
- tolua_usertype(tolua_S,"LuaLoopAction");
- tolua_usertype(tolua_S,"LuaToggleButton");
- tolua_usertype(tolua_S,"Timer");
- tolua_usertype(tolua_S,"Material2D");
- tolua_usertype(tolua_S,"CatmullRomCurve2");
- toluaext_usertype(tolua_S,"LuaQuad2D");
- tolua_usertype(tolua_S,"FixTimeAction");
- toluaext_usertype(tolua_S,"TextureMgr");
- toluaext_usertype(tolua_S,"LuaTouchEventListener");
- tolua_usertype(tolua_S,"LinearCurve4");
+ tolua_usertype(tolua_S,"ListView");
+ tolua_usertype(tolua_S,"LuaRotateAction");
  tolua_usertype(tolua_S,"Face3");
+ toluaext_usertype(tolua_S,"AudioEngine");
+ toluaext_usertype(tolua_S,"Layer");
+ toluaext_usertype(tolua_S,"LuaEntity");
+ tolua_usertype(tolua_S,"LinearCurve2");
+ tolua_usertype(tolua_S,"ActionTarget");
+ tolua_usertype(tolua_S,"CubicEase");
  toluaext_usertype(tolua_S,"LuaLabelTTF");
- tolua_usertype(tolua_S,"Curve3");
- toluaext_usertype(tolua_S,"RenderTarget");
- tolua_usertype(tolua_S,"BackEase");
+ toluaext_usertype(tolua_S,"FontBitmap");
+ tolua_usertype(tolua_S,"ScrollWidget");
+ tolua_usertype(tolua_S,"Color3f");
+ tolua_usertype(tolua_S,"Timer");
+ tolua_usertype(tolua_S,"FixTimeAction");
+ tolua_usertype(tolua_S,"ProgramSourceMgr");
  tolua_usertype(tolua_S,"LuaSchedulerTarget");
  toluaext_usertype(tolua_S,"Scheduler");
- tolua_usertype(tolua_S,"Curve2");
- toluaext_usertype(tolua_S,"Entity");
- tolua_usertype(tolua_S,"CatmullRomCurve4");
- tolua_usertype(tolua_S,"QuintEase");
  tolua_usertype(tolua_S,"Vector3");
- toluaext_usertype(tolua_S,"SchedulerTarget");
- tolua_usertype(tolua_S,"QuartEase");
+ toluaext_usertype(tolua_S,"Panel");
  toluaext_usertype(tolua_S,"Scene");
  tolua_usertype(tolua_S,"LuaSeqAction");
  tolua_usertype(tolua_S,"Particle2DEmitter");
- tolua_usertype(tolua_S,"Color4f");
  tolua_usertype(tolua_S,"FsFile");
- tolua_usertype(tolua_S,"LuaVertexPolygon");
  tolua_usertype(tolua_S,"LuaPauseAction");
- tolua_usertype(tolua_S,"PressButton");
+ toluaext_usertype(tolua_S,"Sprite2D");
  
  tolua_usertype(tolua_S,"StateButton");
+ tolua_usertype(tolua_S,"Matrix4");
+ toluaext_usertype(tolua_S,"Resource");
+ toluaext_usertype(tolua_S,"Particle2DEffect");
+ toluaext_usertype(tolua_S,"LabelTTF");
+ toluaext_usertype(tolua_S,"Window");
+ toluaext_usertype(tolua_S,"TouchDispatcher");
+ tolua_usertype(tolua_S,"EasingUtil");
+ tolua_usertype(tolua_S,"Material2D");
+ tolua_usertype(tolua_S,"QuintEase");
+ toluaext_usertype(tolua_S,"LuaSysEventListener");
+ tolua_usertype(tolua_S,"LinearCurve3");
+ tolua_usertype(tolua_S,"BounceEase");
+ toluaext_usertype(tolua_S,"LuaSprite2D");
+ toluaext_usertype(tolua_S,"SysEventListener");
+ tolua_usertype(tolua_S,"UiWidget");
+ tolua_usertype(tolua_S,"Curve4");
+ tolua_usertype(tolua_S,"ExponentialEase");
+ toluaext_usertype(tolua_S,"TouchEventListener");
+ tolua_usertype(tolua_S,"QuadEase");
+ tolua_usertype(tolua_S,"TouchEvent");
+ tolua_usertype(tolua_S,"FontTTFMgr");
+ toluaext_usertype(tolua_S,"Texture2D");
+ tolua_usertype(tolua_S,"Channel");
+ tolua_usertype(tolua_S,"Color");
+ tolua_usertype(tolua_S,"UniformValue");
+ tolua_usertype(tolua_S,"CatmullRomCurve2");
+ toluaext_usertype(tolua_S,"LuaParticle2DEffect");
+ toluaext_usertype(tolua_S,"LabelBitmap");
+ toluaext_usertype(tolua_S,"FsArray");
+ tolua_usertype(tolua_S,"Vector4");
+ tolua_usertype(tolua_S,"CubicBezierCurve4");
+ tolua_usertype(tolua_S,"ProgramSource");
+ tolua_usertype(tolua_S,"ElasticEase");
+ tolua_usertype(tolua_S,"LuaLoopAction");
+ tolua_usertype(tolua_S,"Vector2");
+ toluaext_usertype(tolua_S,"LuaQuad2D");
+ toluaext_usertype(tolua_S,"TextureMgr");
+ toluaext_usertype(tolua_S,"LuaTouchEventListener");
+ tolua_usertype(tolua_S,"BackEase");
+ toluaext_usertype(tolua_S,"LuaPanel");
+ toluaext_usertype(tolua_S,"LuaHttpRequest");
+ tolua_usertype(tolua_S,"Rect2D");
+ tolua_usertype(tolua_S,"CatmullRomCurve4");
+ tolua_usertype(tolua_S,"BezierEase");
+ toluaext_usertype(tolua_S,"RenderTarget");
+ tolua_usertype(tolua_S,"Sprite2DDataMgr");
+ tolua_usertype(tolua_S,"Program");
+ toluaext_usertype(tolua_S,"HttpEngine");
+ tolua_usertype(tolua_S,"CircleEase");
+ tolua_usertype(tolua_S,"LuaMoveAction");
+ tolua_usertype(tolua_S,"RenderDevice");
+ tolua_usertype(tolua_S,"LuaVertexPolygon");
+ tolua_usertype(tolua_S,"LuaScaleAction");
+ tolua_usertype(tolua_S,"PressButton");
+ tolua_usertype(tolua_S,"LuaPressButton");
+ tolua_usertype(tolua_S,"PageView");
  tolua_usertype(tolua_S,"DynamicView");
  toluaext_usertype(tolua_S,"LuaColorLayer");
- tolua_usertype(tolua_S,"Matrix4");
- tolua_usertype(tolua_S,"EasingUtil");
- toluaext_usertype(tolua_S,"RenderDevice");
- tolua_usertype(tolua_S,"CircleEase");
- toluaext_usertype(tolua_S,"Resource");
+ toluaext_usertype(tolua_S,"Director");
+ tolua_usertype(tolua_S,"Curve3Action");
+ toluaext_usertype(tolua_S,"LuaAction");
+ tolua_usertype(tolua_S,"KeypadEvent");
+ toluaext_usertype(tolua_S,"SysDispatcher");
  toluaext_usertype(tolua_S,"Quad2D");
- toluaext_usertype(tolua_S,"LabelTTF");
+ toluaext_usertype(tolua_S,"ColorLayer");
  toluaext_usertype(tolua_S,"LuaLabelBitmap");
  tolua_usertype(tolua_S,"SineEase");
  tolua_usertype(tolua_S,"PowerEase");
  toluaext_usertype(tolua_S,"Layer2D");
- tolua_usertype(tolua_S,"ToggleButton");
+ tolua_usertype(tolua_S,"VertexPolygon");
  toluaext_usertype(tolua_S,"FsObject");
- tolua_usertype(tolua_S,"Rect2D");
+ tolua_usertype(tolua_S,"TouchPoint");
  toluaext_usertype(tolua_S,"ResourceMgr");
  toluaext_usertype(tolua_S,"LuaScene");
- tolua_usertype(tolua_S,"Vector4");
  tolua_usertype(tolua_S,"ScrollView");
- tolua_usertype(tolua_S,"Material2D");
- tolua_usertype(tolua_S,"Vector2");
+ tolua_usertype(tolua_S,"LinearEase");
+ tolua_usertype(tolua_S,"Sys");
  tolua_usertype(tolua_S,"Global");
  tolua_usertype(tolua_S,"EaseExpr");
- toluaext_usertype(tolua_S,"LuaPanel");
- tolua_usertype(tolua_S,"LinearCurve3");
- toluaext_usertype(tolua_S,"Panel");
- tolua_usertype(tolua_S,"BounceEase");
- toluaext_usertype(tolua_S,"LuaSprite2D");
+ toluaext_usertype(tolua_S,"FrameBuffer");
+ tolua_usertype(tolua_S,"CatmullRomCurve3");
+ tolua_usertype(tolua_S,"LinearCurve4");
+ tolua_usertype(tolua_S,"LuaToggleButton");
+ tolua_usertype(tolua_S,"Curve3");
+ tolua_usertype(tolua_S,"Curve2");
+ tolua_usertype(tolua_S,"Color4f");
+ toluaext_usertype(tolua_S,"Entity");
+ toluaext_usertype(tolua_S,"SchedulerTarget");
+ tolua_usertype(tolua_S,"ToggleButton");
  toluaext_usertype(tolua_S,"LuaLayer2D");
- toluaext_usertype(tolua_S,"SysEventListener");
- toluaext_usertype(tolua_S,"LuaEntity");
- toluaext_usertype(tolua_S,"Particle2DEffect");
- tolua_usertype(tolua_S,"UiWidget");
- tolua_usertype(tolua_S,"VertexPolygon");
- tolua_usertype(tolua_S,"Curve4");
 }
 
 /* method: scheduler of class  Global */
@@ -442,9 +450,9 @@ static int tolua_FsLibFaeris_share_window00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: render of class  Global */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_share_render00
-static int tolua_FsLibFaeris_share_render00(lua_State* tolua_S)
+/* method: renderDevice of class  Global */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_share_renderDevice00
+static int tolua_FsLibFaeris_share_renderDevice00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -458,13 +466,13 @@ static int tolua_FsLibFaeris_share_render00(lua_State* tolua_S)
  {
   {
    RenderDevice* tolua_ret = (RenderDevice*)  Global::renderDevice();
-    toluaext_pushfsobject2(tolua_S,(void*)tolua_ret,"RenderDevice");
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"RenderDevice");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'render'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'renderDevice'.",&tolua_err);
  return 0;
 #endif
 }
@@ -526,9 +534,9 @@ static int tolua_FsLibFaeris_share_sprite2DDataMgr00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: objectMgr of class  Global */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_share_objectMgr00
-static int tolua_FsLibFaeris_share_objectMgr00(lua_State* tolua_S)
+/* method: programSourceMgr of class  Global */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_share_programSourceMgr00
+static int tolua_FsLibFaeris_share_programSourceMgr00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -541,42 +549,14 @@ static int tolua_FsLibFaeris_share_objectMgr00(lua_State* tolua_S)
 #endif
  {
   {
-   ObjectMgr* tolua_ret = (ObjectMgr*)  Global::objectMgr();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ObjectMgr");
+   ProgramSourceMgr* tolua_ret = (ProgramSourceMgr*)  Global::programSourceMgr();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ProgramSourceMgr");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'objectMgr'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: programMgr of class  Global */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_share_programMgr00
-static int tolua_FsLibFaeris_share_programMgr00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"Global",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   ProgramMgr* tolua_ret = (ProgramMgr*)  Global::programMgr();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ProgramMgr");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'programMgr'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'programSourceMgr'.",&tolua_err);
  return 0;
 #endif
 }
@@ -4077,6 +4057,71 @@ static int tolua_FsLibFaeris_Entity_hit2D00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setMaterial of class  Quad2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_setMaterial00
+static int tolua_FsLibFaeris___Quad2D_setMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
+#endif
+  {
+   self->setMaterial(mat);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMaterial of class  Quad2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_getMaterial00
+static int tolua_FsLibFaeris___Quad2D_getMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+#endif
+  {
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setColor of class  Quad2D */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_setColor00
 static int tolua_FsLibFaeris___Quad2D_setColor00(lua_State* tolua_S)
@@ -4085,7 +4130,7 @@ static int tolua_FsLibFaeris___Quad2D_setColor00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -4093,12 +4138,12 @@ static int tolua_FsLibFaeris___Quad2D_setColor00(lua_State* tolua_S)
 #endif
  {
   Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  Color c = *((Color*)  tolua_tousertype(tolua_S,2,0));
+  const Color4f* c = ((const Color4f*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -4117,19 +4162,19 @@ static int tolua_FsLibFaeris___Quad2D_setColor01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color4f",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  Color4f c = *((Color4f*)  tolua_tousertype(tolua_S,2,0));
+  const Color* c = ((const Color*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -4253,9 +4298,9 @@ static int tolua_FsLibFaeris___Quad2D_setBlend00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendEquation",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !toluaext_isenum(tolua_S,4,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
   goto tolua_lerror;
@@ -4263,9 +4308,9 @@ static int tolua_FsLibFaeris___Quad2D_setBlend00(lua_State* tolua_S)
 #endif
  {
   Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  int eq = ((int)  tolua_tonumber(tolua_S,2,0));
-  int src = ((int)  tolua_tonumber(tolua_S,3,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,4,0));
+  E_BlendEquation eq = ((E_BlendEquation)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,4,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -4289,16 +4334,16 @@ static int tolua_FsLibFaeris___Quad2D_setBlend01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  int src = ((int)  tolua_tonumber(tolua_S,2,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,3,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -4312,9 +4357,70 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getMaterial of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_getMaterial00
-static int tolua_FsLibFaeris___Quad2D_getMaterial00(lua_State* tolua_S)
+/* method: setProgramSource of class  Quad2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_setProgramSource00
+static int tolua_FsLibFaeris___Quad2D_setProgramSource00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ProgramSource",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
+  ProgramSource* ps = ((ProgramSource*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(ps);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setProgramSource'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setProgramSource of class  Quad2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_setProgramSource01
+static int tolua_FsLibFaeris___Quad2D_setProgramSource01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(filename);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris___Quad2D_setProgramSource00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getProgramSource of class  Quad2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_getProgramSource00
+static int tolua_FsLibFaeris___Quad2D_getProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -4328,310 +4434,17 @@ static int tolua_FsLibFaeris___Quad2D_getMaterial00(lua_State* tolua_S)
  {
   Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getProgramSource'", NULL);
 #endif
   {
-   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+   ProgramSource* tolua_ret = (ProgramSource*)  self->getProgramSource();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ProgramSource");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setMaterial of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_setMaterial00
-static int tolua_FsLibFaeris___Quad2D_setMaterial00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
-#endif
-  {
-   self->setMaterial(mat);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getShader of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_getShader00
-static int tolua_FsLibFaeris___Quad2D_getShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getShader'", NULL);
-#endif
-  {
-   Program* tolua_ret = (Program*)  self->getShader();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setShader of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_setShader00
-static int tolua_FsLibFaeris___Quad2D_setShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Program",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  Program* shader = ((Program*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setShader'", NULL);
-#endif
-  {
-   self->setShader(shader);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getTextureShader of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_getTextureShader00
-static int tolua_FsLibFaeris___Quad2D_getTextureShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getTextureShader'", NULL);
-#endif
-  {
-   Program* tolua_ret = (Program*)  self->getTextureShader();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getTextureShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setTextureShader of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_setTextureShader00
-static int tolua_FsLibFaeris___Quad2D_setTextureShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Program",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  Program* shader = ((Program*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTextureShader'", NULL);
-#endif
-  {
-   self->setTextureShader(shader);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setTextureShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getColorShader of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_getColorShader00
-static int tolua_FsLibFaeris___Quad2D_getColorShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getColorShader'", NULL);
-#endif
-  {
-   Program* tolua_ret = (Program*)  self->getColorShader();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getColorShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setColorShader of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_setColorShader00
-static int tolua_FsLibFaeris___Quad2D_setColorShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Program",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  Program* shader = ((Program*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColorShader'", NULL);
-#endif
-  {
-   self->setColorShader(shader);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setColorShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setRenderMode of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_setRenderMode00
-static int tolua_FsLibFaeris___Quad2D_setRenderMode00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-  int value = ((int)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setRenderMode'", NULL);
-#endif
-  {
-   self->setRenderMode(value);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setRenderMode'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getRenderMode of class  Quad2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Quad2D_getRenderMode00
-static int tolua_FsLibFaeris___Quad2D_getRenderMode00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Quad2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Quad2D* self = (Quad2D*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getRenderMode'", NULL);
-#endif
-  {
-   int tolua_ret = (int)  self->getRenderMode();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getRenderMode'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getProgramSource'.",&tolua_err);
  return 0;
 #endif
 }
@@ -6133,6 +5946,71 @@ static int tolua_FsLibFaeris_Quad2D_hit2D00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setMaterial of class  LabelTTF */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_setMaterial00
+static int tolua_FsLibFaeris___LabelTTF_setMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
+#endif
+  {
+   self->setMaterial(mat);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMaterial of class  LabelTTF */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_getMaterial00
+static int tolua_FsLibFaeris___LabelTTF_getMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+#endif
+  {
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setColor of class  LabelTTF */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_setColor00
 static int tolua_FsLibFaeris___LabelTTF_setColor00(lua_State* tolua_S)
@@ -6141,7 +6019,7 @@ static int tolua_FsLibFaeris___LabelTTF_setColor00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -6149,12 +6027,12 @@ static int tolua_FsLibFaeris___LabelTTF_setColor00(lua_State* tolua_S)
 #endif
  {
   LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
-  Color c = *((Color*)  tolua_tousertype(tolua_S,2,0));
+  const Color* c = ((const Color*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -6173,19 +6051,19 @@ static int tolua_FsLibFaeris___LabelTTF_setColor01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color4f",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
-  Color4f c = *((Color4f*)  tolua_tousertype(tolua_S,2,0));
+  const Color4f* c = ((const Color4f*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -6309,9 +6187,9 @@ static int tolua_FsLibFaeris___LabelTTF_setBlend00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendEquation",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !toluaext_isenum(tolua_S,4,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
   goto tolua_lerror;
@@ -6319,9 +6197,9 @@ static int tolua_FsLibFaeris___LabelTTF_setBlend00(lua_State* tolua_S)
 #endif
  {
   LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
-  int eq = ((int)  tolua_tonumber(tolua_S,2,0));
-  int src = ((int)  tolua_tonumber(tolua_S,3,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,4,0));
+  E_BlendEquation eq = ((E_BlendEquation)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,4,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -6345,16 +6223,16 @@ static int tolua_FsLibFaeris___LabelTTF_setBlend01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
-  int src = ((int)  tolua_tonumber(tolua_S,2,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,3,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -6368,9 +6246,70 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getMaterial of class  LabelTTF */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_getMaterial00
-static int tolua_FsLibFaeris___LabelTTF_getMaterial00(lua_State* tolua_S)
+/* method: setProgramSource of class  LabelTTF */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_setProgramSource00
+static int tolua_FsLibFaeris___LabelTTF_setProgramSource00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ProgramSource",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
+  ProgramSource* ps = ((ProgramSource*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(ps);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setProgramSource'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setProgramSource of class  LabelTTF */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_setProgramSource01
+static int tolua_FsLibFaeris___LabelTTF_setProgramSource01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(filename);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris___LabelTTF_setProgramSource00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getProgramSource of class  LabelTTF */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_getProgramSource00
+static int tolua_FsLibFaeris___LabelTTF_getProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6384,115 +6323,17 @@ static int tolua_FsLibFaeris___LabelTTF_getMaterial00(lua_State* tolua_S)
  {
   LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getProgramSource'", NULL);
 #endif
   {
-   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+   ProgramSource* tolua_ret = (ProgramSource*)  self->getProgramSource();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ProgramSource");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setMaterial of class  LabelTTF */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_setMaterial00
-static int tolua_FsLibFaeris___LabelTTF_setMaterial00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
-  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
-#endif
-  {
-   self->setMaterial(mat);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getShader of class  LabelTTF */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_getShader00
-static int tolua_FsLibFaeris___LabelTTF_getShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getShader'", NULL);
-#endif
-  {
-   Program* tolua_ret = (Program*)  self->getShader();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setShader of class  LabelTTF */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelTTF_setShader00
-static int tolua_FsLibFaeris___LabelTTF_setShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Program",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
-  Program* shader = ((Program*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setShader'", NULL);
-#endif
-  {
-   self->setShader(shader);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setShader'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getProgramSource'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7362,6 +7203,71 @@ static int tolua_FsLibFaeris_LabelTTF_hit2D00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setMaterial of class  Sprite2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_setMaterial00
+static int tolua_FsLibFaeris___Sprite2D_setMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
+#endif
+  {
+   self->setMaterial(mat);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMaterial of class  Sprite2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_getMaterial00
+static int tolua_FsLibFaeris___Sprite2D_getMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+#endif
+  {
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setColor of class  Sprite2D */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_setColor00
 static int tolua_FsLibFaeris___Sprite2D_setColor00(lua_State* tolua_S)
@@ -7370,7 +7276,7 @@ static int tolua_FsLibFaeris___Sprite2D_setColor00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -7378,12 +7284,12 @@ static int tolua_FsLibFaeris___Sprite2D_setColor00(lua_State* tolua_S)
 #endif
  {
   Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  Color c = *((Color*)  tolua_tousertype(tolua_S,2,0));
+  const Color4f* c = ((const Color4f*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -7402,19 +7308,19 @@ static int tolua_FsLibFaeris___Sprite2D_setColor01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color4f",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  Color4f c = *((Color4f*)  tolua_tousertype(tolua_S,2,0));
+  const Color* c = ((const Color*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -7538,9 +7444,9 @@ static int tolua_FsLibFaeris___Sprite2D_setBlend00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendEquation",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !toluaext_isenum(tolua_S,4,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
   goto tolua_lerror;
@@ -7548,9 +7454,9 @@ static int tolua_FsLibFaeris___Sprite2D_setBlend00(lua_State* tolua_S)
 #endif
  {
   Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  int eq = ((int)  tolua_tonumber(tolua_S,2,0));
-  int src = ((int)  tolua_tonumber(tolua_S,3,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,4,0));
+  E_BlendEquation eq = ((E_BlendEquation)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,4,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -7574,16 +7480,16 @@ static int tolua_FsLibFaeris___Sprite2D_setBlend01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  int src = ((int)  tolua_tonumber(tolua_S,2,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,3,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -7597,44 +7503,70 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setBlend of class  Sprite2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_setBlendMode00
-static int tolua_FsLibFaeris___Sprite2D_setBlendMode00(lua_State* tolua_S)
+/* method: setProgramSource of class  Sprite2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_setProgramSource00
+static int tolua_FsLibFaeris___Sprite2D_setProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
+     !tolua_isusertype(tolua_S,2,"ProgramSource",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
   Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  int src = ((int)  tolua_tonumber(tolua_S,2,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,3,0));
+  ProgramSource* ps = ((ProgramSource*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
 #endif
   {
-   self->setBlend(src,dst);
+   self->setProgramSource(ps);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setBlendMode'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'setProgramSource'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getMaterial of class  Sprite2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_getMaterial00
-static int tolua_FsLibFaeris___Sprite2D_getMaterial00(lua_State* tolua_S)
+/* method: setProgramSource of class  Sprite2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_setProgramSource01
+static int tolua_FsLibFaeris___Sprite2D_setProgramSource01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(filename);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris___Sprite2D_setProgramSource00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getProgramSource of class  Sprite2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_getProgramSource00
+static int tolua_FsLibFaeris___Sprite2D_getProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -7648,115 +7580,17 @@ static int tolua_FsLibFaeris___Sprite2D_getMaterial00(lua_State* tolua_S)
  {
   Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getProgramSource'", NULL);
 #endif
   {
-   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+   ProgramSource* tolua_ret = (ProgramSource*)  self->getProgramSource();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ProgramSource");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setMaterial of class  Sprite2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_setMaterial00
-static int tolua_FsLibFaeris___Sprite2D_setMaterial00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
-#endif
-  {
-   self->setMaterial(mat);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getShader of class  Sprite2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_getShader00
-static int tolua_FsLibFaeris___Sprite2D_getShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getShader'", NULL);
-#endif
-  {
-   Program* tolua_ret = (Program*)  self->getShader();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setShader of class  Sprite2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_setShader00
-static int tolua_FsLibFaeris___Sprite2D_setShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Program",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  Program* shader = ((Program*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setShader'", NULL);
-#endif
-  {
-   self->setShader(shader);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setShader'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getProgramSource'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7860,6 +7694,39 @@ static int tolua_FsLibFaeris___Sprite2D_getAnimation00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: updateAnimation of class  Sprite2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_updateAnimation00
+static int tolua_FsLibFaeris___Sprite2D_updateAnimation00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
+  float dt = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateAnimation'", NULL);
+#endif
+  {
+   self->updateAnimation(dt);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'updateAnimation'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: hasAnimation of class  Sprite2D */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_hasAnimation00
 static int tolua_FsLibFaeris___Sprite2D_hasAnimation00(lua_State* tolua_S)
@@ -7894,39 +7761,6 @@ static int tolua_FsLibFaeris___Sprite2D_hasAnimation00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: updateAnimation of class  Sprite2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_updateAnimation00
-static int tolua_FsLibFaeris___Sprite2D_updateAnimation00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  float dt = ((float)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateAnimation'", NULL);
-#endif
-  {
-   self->updateAnimation(dt);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'updateAnimation'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: playAnimation of class  Sprite2D */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_playAnimation00
 static int tolua_FsLibFaeris___Sprite2D_playAnimation00(lua_State* tolua_S)
@@ -7935,7 +7769,7 @@ static int tolua_FsLibFaeris___Sprite2D_playAnimation00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_AnimPlayMode",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -7943,7 +7777,7 @@ static int tolua_FsLibFaeris___Sprite2D_playAnimation00(lua_State* tolua_S)
 #endif
  {
   Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  int mode = ((int)  tolua_tonumber(tolua_S,2,Sprite2D::ANIM_LOOP));
+  E_AnimPlayMode mode = ((E_AnimPlayMode)  toluaext_toenum(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'playAnimation'", NULL);
 #endif
@@ -7960,6 +7794,32 @@ static int tolua_FsLibFaeris___Sprite2D_playAnimation00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: playAnimation of class  Sprite2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_playAnimation01
+static int tolua_FsLibFaeris___Sprite2D_playAnimation01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'playAnimation'", NULL);
+#endif
+  {
+   self->playAnimation();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris___Sprite2D_playAnimation00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: startAnimation of class  Sprite2D */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_startAnimation00
 static int tolua_FsLibFaeris___Sprite2D_startAnimation00(lua_State* tolua_S)
@@ -7968,7 +7828,7 @@ static int tolua_FsLibFaeris___Sprite2D_startAnimation00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_AnimPlayMode",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -7976,7 +7836,7 @@ static int tolua_FsLibFaeris___Sprite2D_startAnimation00(lua_State* tolua_S)
 #endif
  {
   Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-  int mode = ((int)  tolua_tonumber(tolua_S,2,Sprite2D::ANIM_LOOP));
+  E_AnimPlayMode mode = ((E_AnimPlayMode)  toluaext_toenum(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'startAnimation'", NULL);
 #endif
@@ -7990,6 +7850,32 @@ static int tolua_FsLibFaeris___Sprite2D_startAnimation00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'startAnimation'.",&tolua_err);
  return 0;
 #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: startAnimation of class  Sprite2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_startAnimation01
+static int tolua_FsLibFaeris___Sprite2D_startAnimation01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'startAnimation'", NULL);
+#endif
+  {
+   self->startAnimation();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris___Sprite2D_startAnimation00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -8019,6 +7905,38 @@ static int tolua_FsLibFaeris___Sprite2D_stopAnimation00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'stopAnimation'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: isAnimationPlaying of class  Sprite2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_isAnimationPlaying00
+static int tolua_FsLibFaeris___Sprite2D_isAnimationPlaying00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'isAnimationPlaying'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->isAnimationPlaying();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'isAnimationPlaying'.",&tolua_err);
  return 0;
 #endif
 }
@@ -8067,8 +7985,8 @@ static int tolua_FsLibFaeris___Sprite2D_getAnimationOffset00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
@@ -8091,38 +8009,6 @@ static int tolua_FsLibFaeris___Sprite2D_getAnimationOffset00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getAnimationOffset'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: isAnimationPlaying of class  Sprite2D */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Sprite2D_isAnimationPlaying00
-static int tolua_FsLibFaeris___Sprite2D_isAnimationPlaying00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Sprite2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Sprite2D* self = (Sprite2D*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'isAnimationPlaying'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->isAnimationPlaying();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'isAnimationPlaying'.",&tolua_err);
  return 0;
 #endif
 }
@@ -8553,6 +8439,71 @@ static int tolua_FsLibFaeris_Sprite2D_hit2D00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setMaterial of class  LabelBitmap */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_setMaterial00
+static int tolua_FsLibFaeris___LabelBitmap_setMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
+#endif
+  {
+   self->setMaterial(mat);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMaterial of class  LabelBitmap */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_getMaterial00
+static int tolua_FsLibFaeris___LabelBitmap_getMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+#endif
+  {
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setColor of class  LabelBitmap */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_setColor00
 static int tolua_FsLibFaeris___LabelBitmap_setColor00(lua_State* tolua_S)
@@ -8561,7 +8512,7 @@ static int tolua_FsLibFaeris___LabelBitmap_setColor00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -8569,12 +8520,12 @@ static int tolua_FsLibFaeris___LabelBitmap_setColor00(lua_State* tolua_S)
 #endif
  {
   LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
-  Color c = *((Color*)  tolua_tousertype(tolua_S,2,0));
+  const Color4f* c = ((const Color4f*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -8593,19 +8544,19 @@ static int tolua_FsLibFaeris___LabelBitmap_setColor01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color4f",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
-  Color4f c = *((Color4f*)  tolua_tousertype(tolua_S,2,0));
+  const Color* c = ((const Color*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -8729,9 +8680,9 @@ static int tolua_FsLibFaeris___LabelBitmap_setBlend00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendEquation",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !toluaext_isenum(tolua_S,4,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
   goto tolua_lerror;
@@ -8739,9 +8690,9 @@ static int tolua_FsLibFaeris___LabelBitmap_setBlend00(lua_State* tolua_S)
 #endif
  {
   LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
-  int eq = ((int)  tolua_tonumber(tolua_S,2,0));
-  int src = ((int)  tolua_tonumber(tolua_S,3,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,4,0));
+  E_BlendEquation eq = ((E_BlendEquation)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,4,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -8765,16 +8716,16 @@ static int tolua_FsLibFaeris___LabelBitmap_setBlend01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
-  int src = ((int)  tolua_tonumber(tolua_S,2,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,3,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -8788,9 +8739,70 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getMaterial of class  LabelBitmap */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_getMaterial00
-static int tolua_FsLibFaeris___LabelBitmap_getMaterial00(lua_State* tolua_S)
+/* method: setProgramSource of class  LabelBitmap */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_setProgramSource00
+static int tolua_FsLibFaeris___LabelBitmap_setProgramSource00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ProgramSource",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
+  ProgramSource* ps = ((ProgramSource*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(ps);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setProgramSource'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setProgramSource of class  LabelBitmap */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_setProgramSource01
+static int tolua_FsLibFaeris___LabelBitmap_setProgramSource01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(filename);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris___LabelBitmap_setProgramSource00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getProgramSource of class  LabelBitmap */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_getProgramSource00
+static int tolua_FsLibFaeris___LabelBitmap_getProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -8804,115 +8816,17 @@ static int tolua_FsLibFaeris___LabelBitmap_getMaterial00(lua_State* tolua_S)
  {
   LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getProgramSource'", NULL);
 #endif
   {
-   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+   ProgramSource* tolua_ret = (ProgramSource*)  self->getProgramSource();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ProgramSource");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setMaterial of class  LabelBitmap */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_setMaterial00
-static int tolua_FsLibFaeris___LabelBitmap_setMaterial00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
-  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
-#endif
-  {
-   self->setMaterial(mat);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getShader of class  LabelBitmap */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_getShader00
-static int tolua_FsLibFaeris___LabelBitmap_getShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getShader'", NULL);
-#endif
-  {
-   Program* tolua_ret = (Program*)  self->getShader();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setShader of class  LabelBitmap */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___LabelBitmap_setShader00
-static int tolua_FsLibFaeris___LabelBitmap_setShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LabelBitmap",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Program",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LabelBitmap* self = (LabelBitmap*)  tolua_tousertype(tolua_S,1,0);
-  Program* shader = ((Program*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setShader'", NULL);
-#endif
-  {
-   self->setShader(shader);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setShader'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getProgramSource'.",&tolua_err);
  return 0;
 #endif
 }
@@ -11276,7 +11190,7 @@ static int tolua_FsLibFaeris_Particle2DEmitter_setBlendSrc00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Particle2DEmitter",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -11284,7 +11198,7 @@ static int tolua_FsLibFaeris_Particle2DEmitter_setBlendSrc00(lua_State* tolua_S)
 #endif
  {
   Particle2DEmitter* self = (Particle2DEmitter*)  tolua_tousertype(tolua_S,1,0);
-  int blend = ((int)  tolua_tonumber(tolua_S,2,0));
+  E_BlendFactor blend = ((E_BlendFactor)  toluaext_toenum(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlendSrc'", NULL);
 #endif
@@ -11341,7 +11255,7 @@ static int tolua_FsLibFaeris_Particle2DEmitter_setBlendDst00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Particle2DEmitter",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -11349,7 +11263,7 @@ static int tolua_FsLibFaeris_Particle2DEmitter_setBlendDst00(lua_State* tolua_S)
 #endif
  {
   Particle2DEmitter* self = (Particle2DEmitter*)  tolua_tousertype(tolua_S,1,0);
-  int blend = ((int)  tolua_tonumber(tolua_S,2,0));
+  E_BlendFactor blend = ((E_BlendFactor)  toluaext_toenum(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlendDst'", NULL);
 #endif
@@ -12383,6 +12297,71 @@ static int tolua_FsLibFaeris_Particle2DEmitter_getRotateSpeedVar00(lua_State* to
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setMaterial of class  Particle2DEffect */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_setMaterial00
+static int tolua_FsLibFaeris___Particle2DEffect_setMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
+#endif
+  {
+   self->setMaterial(mat);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMaterial of class  Particle2DEffect */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_getMaterial00
+static int tolua_FsLibFaeris___Particle2DEffect_getMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+#endif
+  {
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setColor of class  Particle2DEffect */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_setColor00
 static int tolua_FsLibFaeris___Particle2DEffect_setColor00(lua_State* tolua_S)
@@ -12391,7 +12370,7 @@ static int tolua_FsLibFaeris___Particle2DEffect_setColor00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -12399,12 +12378,12 @@ static int tolua_FsLibFaeris___Particle2DEffect_setColor00(lua_State* tolua_S)
 #endif
  {
   Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
-  Color c = *((Color*)  tolua_tousertype(tolua_S,2,0));
+  const Color4f* c = ((const Color4f*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -12423,19 +12402,19 @@ static int tolua_FsLibFaeris___Particle2DEffect_setColor01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color4f",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
-  Color4f c = *((Color4f*)  tolua_tousertype(tolua_S,2,0));
+  const Color* c = ((const Color*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -12559,9 +12538,9 @@ static int tolua_FsLibFaeris___Particle2DEffect_setBlend00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendEquation",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !toluaext_isenum(tolua_S,4,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
   goto tolua_lerror;
@@ -12569,9 +12548,9 @@ static int tolua_FsLibFaeris___Particle2DEffect_setBlend00(lua_State* tolua_S)
 #endif
  {
   Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
-  int eq = ((int)  tolua_tonumber(tolua_S,2,0));
-  int src = ((int)  tolua_tonumber(tolua_S,3,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,4,0));
+  E_BlendEquation eq = ((E_BlendEquation)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,4,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -12595,16 +12574,16 @@ static int tolua_FsLibFaeris___Particle2DEffect_setBlend01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
-  int src = ((int)  tolua_tonumber(tolua_S,2,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,3,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -12618,9 +12597,70 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getMaterial of class  Particle2DEffect */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_getMaterial00
-static int tolua_FsLibFaeris___Particle2DEffect_getMaterial00(lua_State* tolua_S)
+/* method: setProgramSource of class  Particle2DEffect */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_setProgramSource00
+static int tolua_FsLibFaeris___Particle2DEffect_setProgramSource00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ProgramSource",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
+  ProgramSource* ps = ((ProgramSource*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(ps);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setProgramSource'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setProgramSource of class  Particle2DEffect */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_setProgramSource01
+static int tolua_FsLibFaeris___Particle2DEffect_setProgramSource01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(filename);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris___Particle2DEffect_setProgramSource00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getProgramSource of class  Particle2DEffect */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_getProgramSource00
+static int tolua_FsLibFaeris___Particle2DEffect_getProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -12634,115 +12674,17 @@ static int tolua_FsLibFaeris___Particle2DEffect_getMaterial00(lua_State* tolua_S
  {
   Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getProgramSource'", NULL);
 #endif
   {
-   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+   ProgramSource* tolua_ret = (ProgramSource*)  self->getProgramSource();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ProgramSource");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setMaterial of class  Particle2DEffect */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_setMaterial00
-static int tolua_FsLibFaeris___Particle2DEffect_setMaterial00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
-  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
-#endif
-  {
-   self->setMaterial(mat);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getShader of class  Particle2DEffect */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_getShader00
-static int tolua_FsLibFaeris___Particle2DEffect_getShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getShader'", NULL);
-#endif
-  {
-   Program* tolua_ret = (Program*)  self->getShader();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setShader of class  Particle2DEffect */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Particle2DEffect_setShader00
-static int tolua_FsLibFaeris___Particle2DEffect_setShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Particle2DEffect",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Program",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Particle2DEffect* self = (Particle2DEffect*)  tolua_tousertype(tolua_S,1,0);
-  Program* shader = ((Program*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setShader'", NULL);
-#endif
-  {
-   self->setShader(shader);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setShader'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getProgramSource'.",&tolua_err);
  return 0;
 #endif
 }
@@ -13479,6 +13421,71 @@ static int tolua_FsLibFaeris_Particle2DEffect_hit2D00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setMaterial of class  VertexPolygon */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_setMaterial00
+static int tolua_FsLibFaeris___VertexPolygon_setMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
+  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
+#endif
+  {
+   self->setMaterial(mat);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMaterial of class  VertexPolygon */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_getMaterial00
+static int tolua_FsLibFaeris___VertexPolygon_getMaterial00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
+#endif
+  {
+   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setColor of class  VertexPolygon */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_setColor00
 static int tolua_FsLibFaeris___VertexPolygon_setColor00(lua_State* tolua_S)
@@ -13487,7 +13494,7 @@ static int tolua_FsLibFaeris___VertexPolygon_setColor00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -13495,12 +13502,12 @@ static int tolua_FsLibFaeris___VertexPolygon_setColor00(lua_State* tolua_S)
 #endif
  {
   VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-  Color c = *((Color*)  tolua_tousertype(tolua_S,2,0));
+  const Color* c = ((const Color*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -13519,19 +13526,19 @@ static int tolua_FsLibFaeris___VertexPolygon_setColor01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"Color4f",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color4f",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-  Color4f c = *((Color4f*)  tolua_tousertype(tolua_S,2,0));
+  const Color4f* c = ((const Color4f*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setColor'", NULL);
 #endif
   {
-   self->setColor(c);
+   self->setColor(*c);
   }
  }
  return 0;
@@ -13655,9 +13662,9 @@ static int tolua_FsLibFaeris___VertexPolygon_setBlend00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendEquation",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !toluaext_isenum(tolua_S,4,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
   goto tolua_lerror;
@@ -13665,9 +13672,9 @@ static int tolua_FsLibFaeris___VertexPolygon_setBlend00(lua_State* tolua_S)
 #endif
  {
   VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-  int eq = ((int)  tolua_tonumber(tolua_S,2,0));
-  int src = ((int)  tolua_tonumber(tolua_S,3,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,4,0));
+  E_BlendEquation eq = ((E_BlendEquation)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,4,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -13691,16 +13698,16 @@ static int tolua_FsLibFaeris___VertexPolygon_setBlend01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
   VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-  int src = ((int)  tolua_tonumber(tolua_S,2,0));
-  int dst = ((int)  tolua_tonumber(tolua_S,3,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor dst = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
 #endif
@@ -13714,15 +13721,15 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: setPointSize of class  VertexPolygon */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_setPointSize00
-static int tolua_FsLibFaeris___VertexPolygon_setPointSize00(lua_State* tolua_S)
+/* method: setProgramSource of class  VertexPolygon */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_setProgramSource00
+static int tolua_FsLibFaeris___VertexPolygon_setProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"ProgramSource",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -13730,26 +13737,54 @@ static int tolua_FsLibFaeris___VertexPolygon_setPointSize00(lua_State* tolua_S)
 #endif
  {
   VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-  float size = ((float)  tolua_tonumber(tolua_S,2,0));
+  ProgramSource* ps = ((ProgramSource*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPointSize'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
 #endif
   {
-   self->setPointSize(size);
+   self->setProgramSource(ps);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setPointSize'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'setProgramSource'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getPointSize of class  VertexPolygon */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_getPointSize00
-static int tolua_FsLibFaeris___VertexPolygon_getPointSize00(lua_State* tolua_S)
+/* method: setProgramSource of class  VertexPolygon */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_setProgramSource01
+static int tolua_FsLibFaeris___VertexPolygon_setProgramSource01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setProgramSource'", NULL);
+#endif
+  {
+   self->setProgramSource(filename);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris___VertexPolygon_setProgramSource00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getProgramSource of class  VertexPolygon */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_getProgramSource00
+static int tolua_FsLibFaeris___VertexPolygon_getProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -13763,147 +13798,17 @@ static int tolua_FsLibFaeris___VertexPolygon_getPointSize00(lua_State* tolua_S)
  {
   VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPointSize'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getProgramSource'", NULL);
 #endif
   {
-   float tolua_ret = (float)  self->getPointSize();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   ProgramSource* tolua_ret = (ProgramSource*)  self->getProgramSource();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ProgramSource");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getPointSize'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getMaterial of class  VertexPolygon */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_getMaterial00
-static int tolua_FsLibFaeris___VertexPolygon_getMaterial00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMaterial'", NULL);
-#endif
-  {
-   Material2D* tolua_ret = (Material2D*)  self->getMaterial();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Material2D");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setMaterial of class  VertexPolygon */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_setMaterial00
-static int tolua_FsLibFaeris___VertexPolygon_setMaterial00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Material2D",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-  Material2D* mat = ((Material2D*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMaterial'", NULL);
-#endif
-  {
-   self->setMaterial(mat);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setMaterial'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getShader of class  VertexPolygon */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_getShader00
-static int tolua_FsLibFaeris___VertexPolygon_getShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getShader'", NULL);
-#endif
-  {
-   Program* tolua_ret = (Program*)  self->getShader();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getShader'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setShader of class  VertexPolygon */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___VertexPolygon_setShader00
-static int tolua_FsLibFaeris___VertexPolygon_setShader00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Program",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-  Program* shader = ((Program*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setShader'", NULL);
-#endif
-  {
-   self->setShader(shader);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setShader'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getProgramSource'.",&tolua_err);
  return 0;
 #endif
 }
@@ -14350,7 +14255,7 @@ static int tolua_FsLibFaeris___VertexPolygon_setMode00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"VertexPolygon",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_DrawMode",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -14358,7 +14263,7 @@ static int tolua_FsLibFaeris___VertexPolygon_setMode00(lua_State* tolua_S)
 #endif
  {
   VertexPolygon* self = (VertexPolygon*)  tolua_tousertype(tolua_S,1,0);
-  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
+  E_DrawMode mode = ((E_DrawMode)  toluaext_toenum(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMode'", NULL);
 #endif
@@ -23852,223 +23757,29 @@ static int tolua_FsLibFaeris_ResourceMgr_dump00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: className of class  ObjectMgr */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ObjectMgr_className00
-static int tolua_FsLibFaeris_ObjectMgr_className00(lua_State* tolua_S)
+/* method: load of class  ProgramSourceMgr */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ProgramSourceMgr_load00
+static int tolua_FsLibFaeris_ProgramSourceMgr_load00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"ObjectMgr",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ObjectMgr* self = (ObjectMgr*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
-#endif
-  {
-   const char* tolua_ret = (const char*)  self->className();
-   tolua_pushstring(tolua_S,(const char*)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: manageObject of class  ObjectMgr */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ObjectMgr_manageObject00
-static int tolua_FsLibFaeris_ObjectMgr_manageObject00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ObjectMgr",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"FsObject",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ObjectMgr* self = (ObjectMgr*)  tolua_tousertype(tolua_S,1,0);
-  FsObject* ob = ((FsObject*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'manageObject'", NULL);
-#endif
-  {
-   self->manageObject(ob);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'manageObject'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: unManageObject of class  ObjectMgr */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ObjectMgr_unManageObject00
-static int tolua_FsLibFaeris_ObjectMgr_unManageObject00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ObjectMgr",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"FsObject",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ObjectMgr* self = (ObjectMgr*)  tolua_tousertype(tolua_S,1,0);
-  FsObject* ob = ((FsObject*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unManageObject'", NULL);
-#endif
-  {
-   self->unManageObject(ob);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'unManageObject'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: dropObjectData of class  ObjectMgr */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ObjectMgr_dropObjectData00
-static int tolua_FsLibFaeris_ObjectMgr_dropObjectData00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ObjectMgr",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ObjectMgr* self = (ObjectMgr*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'dropObjectData'", NULL);
-#endif
-  {
-   self->dropObjectData();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'dropObjectData'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: unManageAllObject of class  ObjectMgr */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ObjectMgr_unManageAllObject00
-static int tolua_FsLibFaeris_ObjectMgr_unManageAllObject00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ObjectMgr",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ObjectMgr* self = (ObjectMgr*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'unManageAllObject'", NULL);
-#endif
-  {
-   self->unManageAllObject();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'unManageAllObject'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getManageObjectNu of class  ObjectMgr */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ObjectMgr_getManageObjectNu00
-static int tolua_FsLibFaeris_ObjectMgr_getManageObjectNu00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ObjectMgr",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  ObjectMgr* self = (ObjectMgr*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getManageObjectNu'", NULL);
-#endif
-  {
-   int tolua_ret = (int)  self->getManageObjectNu();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getManageObjectNu'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: load of class  ProgramMgr */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ProgramMgr_load00
-static int tolua_FsLibFaeris_ProgramMgr_load00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"ProgramMgr",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"ProgramSourceMgr",0,&tolua_err) ||
      !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isstring(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ProgramMgr* self = (ProgramMgr*)  tolua_tousertype(tolua_S,1,0);
-  const char* vert = ((const char*)  tolua_tostring(tolua_S,2,0));
-  const char* frag = ((const char*)  tolua_tostring(tolua_S,3,0));
+  ProgramSourceMgr* self = (ProgramSourceMgr*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'load'", NULL);
 #endif
   {
-   Program* tolua_ret = (Program*)  self->load(vert,frag);
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
+   ProgramSource* tolua_ret = (ProgramSource*)  self->load(filename);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ProgramSource");
   }
  }
  return 1;
@@ -27495,8 +27206,8 @@ static int tolua_FsLibFaeris_Layer2D_touchesEnd00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setProgram of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setProgram00
-static int tolua_FsLibFaeris_Render_setProgram00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setProgram00
+static int tolua_FsLibFaeris_RenderDevice_setProgram00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27527,9 +27238,41 @@ static int tolua_FsLibFaeris_Render_setProgram00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: getProgram of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getProgram00
+static int tolua_FsLibFaeris_RenderDevice_getProgram00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getProgram'", NULL);
+#endif
+  {
+   Program* tolua_ret = (Program*)  self->getProgram();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Program");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getProgram'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: bindTexture of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_bindTexture00
-static int tolua_FsLibFaeris_Render_bindTexture00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_bindTexture00
+static int tolua_FsLibFaeris_RenderDevice_bindTexture00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27563,8 +27306,8 @@ static int tolua_FsLibFaeris_Render_bindTexture00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setRenderTarget of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setRenderTarget00
-static int tolua_FsLibFaeris_Render_setRenderTarget00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setRenderTarget00
+static int tolua_FsLibFaeris_RenderDevice_setRenderTarget00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27595,9 +27338,41 @@ static int tolua_FsLibFaeris_Render_setRenderTarget00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: getRenderTarget of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getRenderTarget00
+static int tolua_FsLibFaeris_RenderDevice_getRenderTarget00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getRenderTarget'", NULL);
+#endif
+  {
+   RenderTarget* tolua_ret = (RenderTarget*)  self->getRenderTarget();
+    toluaext_pushfsobject2(tolua_S,(void*)tolua_ret,"RenderTarget");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getRenderTarget'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: swapBuffers of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_swapBuffers00
-static int tolua_FsLibFaeris_Render_swapBuffers00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_swapBuffers00
+static int tolua_FsLibFaeris_RenderDevice_swapBuffers00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27626,9 +27401,46 @@ static int tolua_FsLibFaeris_Render_swapBuffers00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: clear of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_clear00
+static int tolua_FsLibFaeris_RenderDevice_clear00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,1,&tolua_err) ||
+     !tolua_isboolean(tolua_S,3,1,&tolua_err) ||
+     !tolua_isboolean(tolua_S,4,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  bool color = ((bool)  tolua_toboolean(tolua_S,2,true));
+  bool depth = ((bool)  tolua_toboolean(tolua_S,3,false));
+  bool stencil = ((bool)  tolua_toboolean(tolua_S,4,false));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clear'", NULL);
+#endif
+  {
+   self->clear(color,depth,stencil);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'clear'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setClearColor of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setClearColor00
-static int tolua_FsLibFaeris_Render_setClearColor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setClearColor00
+static int tolua_FsLibFaeris_RenderDevice_setClearColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27660,8 +27472,8 @@ static int tolua_FsLibFaeris_Render_setClearColor00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getClearColor of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getClearColor00
-static int tolua_FsLibFaeris_Render_getClearColor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getClearColor00
+static int tolua_FsLibFaeris_RenderDevice_getClearColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27701,46 +27513,9 @@ static int tolua_FsLibFaeris_Render_getClearColor00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: clear of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_clear00
-static int tolua_FsLibFaeris_Render_clear00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isboolean(tolua_S,2,1,&tolua_err) ||
-     !tolua_isboolean(tolua_S,3,1,&tolua_err) ||
-     !tolua_isboolean(tolua_S,4,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  bool color = ((bool)  tolua_toboolean(tolua_S,2,true));
-  bool depth = ((bool)  tolua_toboolean(tolua_S,3,false));
-  bool stencil = ((bool)  tolua_toboolean(tolua_S,4,false));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'clear'", NULL);
-#endif
-  {
-   self->clear(color,depth,stencil);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'clear'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: setColor of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setColor00
-static int tolua_FsLibFaeris_Render_setColor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setColor00
+static int tolua_FsLibFaeris_RenderDevice_setColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27772,8 +27547,8 @@ static int tolua_FsLibFaeris_Render_setColor00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getColor of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getColor00
-static int tolua_FsLibFaeris_Render_getColor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getColor00
+static int tolua_FsLibFaeris_RenderDevice_getColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27814,8 +27589,8 @@ static int tolua_FsLibFaeris_Render_getColor00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setOpacity of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setOpacity00
-static int tolua_FsLibFaeris_Render_setOpacity00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setOpacity00
+static int tolua_FsLibFaeris_RenderDevice_setOpacity00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27847,8 +27622,8 @@ static int tolua_FsLibFaeris_Render_setOpacity00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getOpacity of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getOpacity00
-static int tolua_FsLibFaeris_Render_getOpacity00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getOpacity00
+static int tolua_FsLibFaeris_RenderDevice_getOpacity00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27878,9 +27653,454 @@ static int tolua_FsLibFaeris_Render_getOpacity00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setViewport of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setViewport00
+static int tolua_FsLibFaeris_RenderDevice_setViewport00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  int x = ((int)  tolua_tonumber(tolua_S,2,0));
+  int y = ((int)  tolua_tonumber(tolua_S,3,0));
+  int width = ((int)  tolua_tonumber(tolua_S,4,0));
+  int height = ((int)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setViewport'", NULL);
+#endif
+  {
+   self->setViewport(x,y,width,height);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setViewport'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setScissorArea of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setScissorArea00
+static int tolua_FsLibFaeris_RenderDevice_setScissorArea00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+  float width = ((float)  tolua_tonumber(tolua_S,4,0));
+  float height = ((float)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScissorArea'", NULL);
+#endif
+  {
+   self->setScissorArea(x,y,width,height);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setScissorArea'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setScissorArea of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setScissorArea01
+static int tolua_FsLibFaeris_RenderDevice_setScissorArea01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Rect2D",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  const Rect2D* area = ((const Rect2D*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScissorArea'", NULL);
+#endif
+  {
+   self->setScissorArea(*area);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_RenderDevice_setScissorArea00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getScissorArea of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getScissorArea00
+static int tolua_FsLibFaeris_RenderDevice_getScissorArea00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScissorArea'", NULL);
+#endif
+  {
+   Rect2D tolua_ret = (Rect2D)  self->getScissorArea();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((Rect2D)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"Rect2D");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Rect2D));
+     tolua_pushusertype(tolua_S,tolua_obj,"Rect2D");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getScissorArea'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setScissorEnabled of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setScissorEnabled00
+static int tolua_FsLibFaeris_RenderDevice_setScissorEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  bool enable = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScissorEnabled'", NULL);
+#endif
+  {
+   self->setScissorEnabled(enable);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setScissorEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getScissorEnabled of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getScissorEnabled00
+static int tolua_FsLibFaeris_RenderDevice_getScissorEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScissorEnabled'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getScissorEnabled();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getScissorEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setDepthTestEnabled of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setDepthTestEnabled00
+static int tolua_FsLibFaeris_RenderDevice_setDepthTestEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  bool enable = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setDepthTestEnabled'", NULL);
+#endif
+  {
+   self->setDepthTestEnabled(enable);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setDepthTestEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getDepthTestEnabled of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getDepthTestEnabled00
+static int tolua_FsLibFaeris_RenderDevice_getDepthTestEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDepthTestEnabled'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getDepthTestEnabled();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getDepthTestEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setDepthWriteEnabled of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setDepthWriteEnabled00
+static int tolua_FsLibFaeris_RenderDevice_setDepthWriteEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  bool enable = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setDepthWriteEnabled'", NULL);
+#endif
+  {
+   self->setDepthWriteEnabled(enable);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setDepthWriteEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getDepthWrirteEnabled of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getDepthWrirteEnabled00
+static int tolua_FsLibFaeris_RenderDevice_getDepthWrirteEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDepthWrirteEnabled'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getDepthWrirteEnabled();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getDepthWrirteEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setBlend of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setBlend00
+static int tolua_FsLibFaeris_RenderDevice_setBlend00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_BlendEquation",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_BlendFactor",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !toluaext_isenum(tolua_S,4,"E_BlendFactor",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  E_BlendEquation eq = ((E_BlendEquation)  toluaext_toenum(tolua_S,2,0));
+  E_BlendFactor src = ((E_BlendFactor)  toluaext_toenum(tolua_S,3,0));
+  E_BlendFactor fdst = ((E_BlendFactor)  toluaext_toenum(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
+#endif
+  {
+   self->setBlend(eq,src,fdst);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setBlend'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setDoubleSideEnabled of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setDoubleSideEnabled00
+static int tolua_FsLibFaeris_RenderDevice_setDoubleSideEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  bool value = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setDoubleSideEnabled'", NULL);
+#endif
+  {
+   self->setDoubleSideEnabled(value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setDoubleSideEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getDoubleSideEnabled of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getDoubleSideEnabled00
+static int tolua_FsLibFaeris_RenderDevice_getDoubleSideEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getDoubleSideEnabled'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getDoubleSideEnabled();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getDoubleSideEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setProjectionMatrix of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setProjectionMatrix00
-static int tolua_FsLibFaeris_Render_setProjectionMatrix00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setProjectionMatrix00
+static int tolua_FsLibFaeris_RenderDevice_setProjectionMatrix00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27911,269 +28131,9 @@ static int tolua_FsLibFaeris_Render_setProjectionMatrix00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: pushMatrix of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_pushMatrix00
-static int tolua_FsLibFaeris_Render_pushMatrix00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'pushMatrix'", NULL);
-#endif
-  {
-   self->pushMatrix();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'pushMatrix'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: popMatrix of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_popMatrix00
-static int tolua_FsLibFaeris_Render_popMatrix00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'popMatrix'", NULL);
-#endif
-  {
-   self->popMatrix();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'popMatrix'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: loadIdentity of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_loadIdentity00
-static int tolua_FsLibFaeris_Render_loadIdentity00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'loadIdentity'", NULL);
-#endif
-  {
-   self->loadIdentity();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'loadIdentity'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: mulMatrix of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_mulMatrix00
-static int tolua_FsLibFaeris_Render_mulMatrix00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"const Matrix4",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  const Matrix4* m = ((const Matrix4*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'mulMatrix'", NULL);
-#endif
-  {
-   self->mulMatrix(m);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'mulMatrix'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setMatrix of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setMatrix00
-static int tolua_FsLibFaeris_Render_setMatrix00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"const Matrix4",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  const Matrix4* m = ((const Matrix4*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMatrix'", NULL);
-#endif
-  {
-   self->setMatrix(m);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setMatrix'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: translate of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_translate00
-static int tolua_FsLibFaeris_Render_translate00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  const Vector3* s = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'translate'", NULL);
-#endif
-  {
-   self->translate(*s);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'translate'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: scale of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_scale00
-static int tolua_FsLibFaeris_Render_scale00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  const Vector3* s = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scale'", NULL);
-#endif
-  {
-   self->scale(*s);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'scale'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: rotate of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_rotate00
-static int tolua_FsLibFaeris_Render_rotate00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  const Vector3* v = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
-  float angle = ((float)  tolua_tonumber(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'rotate'", NULL);
-#endif
-  {
-   self->rotate(*v,angle);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'rotate'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: getProjectionMatrix of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getProjectionMatrix00
-static int tolua_FsLibFaeris_Render_getProjectionMatrix00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getProjectionMatrix00
+static int tolua_FsLibFaeris_RenderDevice_getProjectionMatrix00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -28203,9 +28163,42 @@ static int tolua_FsLibFaeris_Render_getProjectionMatrix00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getMatrix of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getMatrix00
-static int tolua_FsLibFaeris_Render_getMatrix00(lua_State* tolua_S)
+/* method: setViewMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setViewMatrix00
+static int tolua_FsLibFaeris_RenderDevice_setViewMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"const Matrix4",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  const Matrix4* mat = ((const Matrix4*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setViewMatrix'", NULL);
+#endif
+  {
+   self->setViewMatrix(mat);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setViewMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getViewMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getViewMatrix00
+static int tolua_FsLibFaeris_RenderDevice_getViewMatrix00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -28219,10 +28212,336 @@ static int tolua_FsLibFaeris_Render_getMatrix00(lua_State* tolua_S)
  {
   RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getViewMatrix'", NULL);
+#endif
+  {
+   Matrix4* tolua_ret = (Matrix4*)  self->getViewMatrix();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Matrix4");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getViewMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setWorldMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setWorldMatrix00
+static int tolua_FsLibFaeris_RenderDevice_setWorldMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"const Matrix4",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  const Matrix4* m = ((const Matrix4*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setWorldMatrix'", NULL);
+#endif
+  {
+   self->setWorldMatrix(m);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setWorldMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getWorldMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getWorldMatrix00
+static int tolua_FsLibFaeris_RenderDevice_getWorldMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getWorldMatrix'", NULL);
+#endif
+  {
+   Matrix4* tolua_ret = (Matrix4*)  self->getWorldMatrix();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Matrix4");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getWorldMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: pushWorldMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_pushWorldMatrix00
+static int tolua_FsLibFaeris_RenderDevice_pushWorldMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'pushWorldMatrix'", NULL);
+#endif
+  {
+   self->pushWorldMatrix();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'pushWorldMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: popWorldMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_popWorldMatrix00
+static int tolua_FsLibFaeris_RenderDevice_popWorldMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'popWorldMatrix'", NULL);
+#endif
+  {
+   self->popWorldMatrix();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'popWorldMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: loadWorldMatrixIdentity of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_loadWorldMatrixIdentity00
+static int tolua_FsLibFaeris_RenderDevice_loadWorldMatrixIdentity00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'loadWorldMatrixIdentity'", NULL);
+#endif
+  {
+   self->loadWorldMatrixIdentity();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'loadWorldMatrixIdentity'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: mulWorldMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_mulWorldMatrix00
+static int tolua_FsLibFaeris_RenderDevice_mulWorldMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"const Matrix4",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  const Matrix4* m = ((const Matrix4*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'mulWorldMatrix'", NULL);
+#endif
+  {
+   self->mulWorldMatrix(m);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'mulWorldMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: translateWorldMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_translateWorldMatrix00
+static int tolua_FsLibFaeris_RenderDevice_translateWorldMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  const Vector3* s = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'translateWorldMatrix'", NULL);
+#endif
+  {
+   self->translateWorldMatrix(*s);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'translateWorldMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: scaleWorldMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_scaleWorldMatrix00
+static int tolua_FsLibFaeris_RenderDevice_scaleWorldMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  const Vector3* s = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scaleWorldMatrix'", NULL);
+#endif
+  {
+   self->scaleWorldMatrix(*s);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'scaleWorldMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: rotateWorldMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_rotateWorldMatrix00
+static int tolua_FsLibFaeris_RenderDevice_rotateWorldMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  const Vector3* v = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
+  float angle = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'rotateWorldMatrix'", NULL);
+#endif
+  {
+   self->rotateWorldMatrix(*v,angle);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'rotateWorldMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMatrix of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getMatrix00
+static int tolua_FsLibFaeris_RenderDevice_getMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_UniformRef",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  E_UniformRef t = ((E_UniformRef)  toluaext_toenum(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMatrix'", NULL);
 #endif
   {
-   Matrix4* tolua_ret = (Matrix4*)  self->getMatrix();
+   Matrix4* tolua_ret = (Matrix4*)  self->getMatrix(t);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"Matrix4");
   }
  }
@@ -28235,41 +28554,79 @@ static int tolua_FsLibFaeris_Render_getMatrix00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getMVPMatrix of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getMVPMatrix00
-static int tolua_FsLibFaeris_Render_getMVPMatrix00(lua_State* tolua_S)
+/* method: getAttrLocation of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getAttrLocation00
+static int tolua_FsLibFaeris_RenderDevice_getAttrLocation00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
   RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  const char* name = ((const char*)  tolua_tostring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMVPMatrix'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAttrLocation'", NULL);
 #endif
   {
-   Matrix4* tolua_ret = (Matrix4*)  self->getMVPMatrix();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Matrix4");
+   int tolua_ret = (int)  self->getAttrLocation(name);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getMVPMatrix'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getAttrLocation'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getCacheAttrLocation of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getCacheAttrLocation00
+static int tolua_FsLibFaeris_RenderDevice_getCacheAttrLocation00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  const char* name = ((const char*)  tolua_tostring(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getCacheAttrLocation'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getCacheAttrLocation(index,name);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getCacheAttrLocation'.",&tolua_err);
  return 0;
 #endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: disableAllAttrArray of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_disableAllAttrArray00
-static int tolua_FsLibFaeris_Render_disableAllAttrArray00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_disableAllAttrArray00
+static int tolua_FsLibFaeris_RenderDevice_disableAllAttrArray00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -28299,8 +28656,8 @@ static int tolua_FsLibFaeris_Render_disableAllAttrArray00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: enableAttrArray of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_enableAttrArray00
-static int tolua_FsLibFaeris_Render_enableAttrArray00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_enableAttrArray00
+static int tolua_FsLibFaeris_RenderDevice_enableAttrArray00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -28332,8 +28689,8 @@ static int tolua_FsLibFaeris_Render_enableAttrArray00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: disableAttrArray of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_disableAttrArray00
-static int tolua_FsLibFaeris_Render_disableAttrArray00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_disableAttrArray00
+static int tolua_FsLibFaeris_RenderDevice_disableAttrArray00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -28365,8 +28722,8 @@ static int tolua_FsLibFaeris_Render_disableAttrArray00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setVertexAttrPointer of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setVertexAttrPointer00
-static int tolua_FsLibFaeris_Render_setVertexAttrPointer00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setVertexAttrPointer00
+static int tolua_FsLibFaeris_RenderDevice_setVertexAttrPointer00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -28408,8 +28765,8 @@ static int tolua_FsLibFaeris_Render_setVertexAttrPointer00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setAndEnableVertexAttrPointer of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setAndEnableVertexAttrPointer00
-static int tolua_FsLibFaeris_Render_setAndEnableVertexAttrPointer00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setAndEnableVertexAttrPointer00
+static int tolua_FsLibFaeris_RenderDevice_setAndEnableVertexAttrPointer00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -28450,403 +28807,9 @@ static int tolua_FsLibFaeris_Render_setAndEnableVertexAttrPointer00(lua_State* t
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: drawFace3 of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_drawFace300
-static int tolua_FsLibFaeris_Render_drawFace300(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Face3",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  Face3* f = ((Face3*)  tolua_tousertype(tolua_S,2,0));
-  unsigned int num = (( unsigned int)  tolua_tonumber(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'drawFace3'", NULL);
-#endif
-  {
-   self->drawFace3(f,num);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'drawFace3'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: drawArray of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_drawArray00
-static int tolua_FsLibFaeris_Render_drawArray00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  int mode = ((int)  tolua_tonumber(tolua_S,2,0));
-  int start = ((int)  tolua_tonumber(tolua_S,3,0));
-  unsigned int size = (( unsigned int)  tolua_tonumber(tolua_S,4,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'drawArray'", NULL);
-#endif
-  {
-   self->drawArray(mode,start,size);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'drawArray'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setViewport of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setViewport00
-static int tolua_FsLibFaeris_Render_setViewport00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  int x = ((int)  tolua_tonumber(tolua_S,2,0));
-  int y = ((int)  tolua_tonumber(tolua_S,3,0));
-  int width = ((int)  tolua_tonumber(tolua_S,4,0));
-  int height = ((int)  tolua_tonumber(tolua_S,5,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setViewport'", NULL);
-#endif
-  {
-   self->setViewport(x,y,width,height);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setViewport'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setScissorArea of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setScissorArea00
-static int tolua_FsLibFaeris_Render_setScissorArea00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  float x = ((float)  tolua_tonumber(tolua_S,2,0));
-  float y = ((float)  tolua_tonumber(tolua_S,3,0));
-  float width = ((float)  tolua_tonumber(tolua_S,4,0));
-  float height = ((float)  tolua_tonumber(tolua_S,5,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScissorArea'", NULL);
-#endif
-  {
-   self->setScissorArea(x,y,width,height);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setScissorArea'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setScissorArea of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setScissorArea01
-static int tolua_FsLibFaeris_Render_setScissorArea01(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Rect2D",0,&tolua_err)) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  const Rect2D* area = ((const Rect2D*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScissorArea'", NULL);
-#endif
-  {
-   self->setScissorArea(*area);
-  }
- }
- return 0;
-tolua_lerror:
- return tolua_FsLibFaeris_Render_setScissorArea00(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getScissorArea of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getScissorArea00
-static int tolua_FsLibFaeris_Render_getScissorArea00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScissorArea'", NULL);
-#endif
-  {
-   Rect2D tolua_ret = (Rect2D)  self->getScissorArea();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((Rect2D)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"Rect2D");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Rect2D));
-     tolua_pushusertype(tolua_S,tolua_obj,"Rect2D");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getScissorArea'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setScissorEnabled of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setScissorEnabled00
-static int tolua_FsLibFaeris_Render_setScissorEnabled00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  bool enable = ((bool)  tolua_toboolean(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setScissorEnabled'", NULL);
-#endif
-  {
-   self->setScissorEnabled(enable);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setScissorEnabled'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: getScissorEnabled of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getScissorEnabled00
-static int tolua_FsLibFaeris_Render_getScissorEnabled00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getScissorEnabled'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->getScissorEnabled();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getScissorEnabled'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setDepthTest of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setDepthTest00
-static int tolua_FsLibFaeris_Render_setDepthTest00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  bool enable = ((bool)  tolua_toboolean(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setDepthTest'", NULL);
-#endif
-  {
-   self->setDepthTest(enable);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setDepthTest'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setBlend of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setBlend00
-static int tolua_FsLibFaeris_Render_setBlend00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  int eq = ((int)  tolua_tonumber(tolua_S,2,0));
-  int fsrc = ((int)  tolua_tonumber(tolua_S,3,0));
-  int fdst = ((int)  tolua_tonumber(tolua_S,4,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBlend'", NULL);
-#endif
-  {
-   self->setBlend(eq,fsrc,fdst);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setBlend'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: setUniform of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_setUniform00
-static int tolua_FsLibFaeris_Render_setUniform00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isuserdata(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  int loc = ((int)  tolua_tonumber(tolua_S,2,0));
-  int type = ((int)  tolua_tonumber(tolua_S,3,0));
-  int count = ((int)  tolua_tonumber(tolua_S,4,0));
-  void* value = ((void*)  tolua_touserdata(tolua_S,5,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setUniform'", NULL);
-#endif
-  {
-   self->setUniform(loc,type,count,value);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'setUniform'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: getUniformLocation of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getUniformLocation00
-static int tolua_FsLibFaeris_Render_getUniformLocation00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getUniformLocation00
+static int tolua_FsLibFaeris_RenderDevice_getUniformLocation00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -28878,43 +28841,9 @@ static int tolua_FsLibFaeris_Render_getUniformLocation00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getAttrLocation of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getAttrLocation00
-static int tolua_FsLibFaeris_Render_getAttrLocation00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  const char* name = ((const char*)  tolua_tostring(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAttrLocation'", NULL);
-#endif
-  {
-   int tolua_ret = (int)  self->getAttrLocation(name);
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getAttrLocation'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: getCacheUniformLocation of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getCacheUniformLocation00
-static int tolua_FsLibFaeris_Render_getCacheUniformLocation00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_getCacheUniformLocation00
+static int tolua_FsLibFaeris_RenderDevice_getCacheUniformLocation00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -28948,16 +28877,85 @@ static int tolua_FsLibFaeris_Render_getCacheUniformLocation00(lua_State* tolua_S
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getCacheAttrLocation of class  RenderDevice */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Render_getCacheAttrLocation00
-static int tolua_FsLibFaeris_Render_getCacheAttrLocation00(lua_State* tolua_S)
+/* method: setUniform of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setUniform00
+static int tolua_FsLibFaeris_RenderDevice_setUniform00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isstring(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_UniformType",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isuserdata(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  int loc = ((int)  tolua_tonumber(tolua_S,2,0));
+  E_UniformType type = ((E_UniformType)  toluaext_toenum(tolua_S,3,0));
+  int count = ((int)  tolua_tonumber(tolua_S,4,0));
+  void* value = ((void*)  tolua_touserdata(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setUniform'", NULL);
+#endif
+  {
+   self->setUniform(loc,type,count,value);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setUniform'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setUniform of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_setUniform01
+static int tolua_FsLibFaeris_RenderDevice_setUniform01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"UniformValue",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  int loc = ((int)  tolua_tonumber(tolua_S,2,0));
+  UniformValue* v = ((UniformValue*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setUniform'", NULL);
+#endif
+  {
+   self->setUniform(loc,v);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_RenderDevice_setUniform00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: drawFace3 of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_drawFace300
+static int tolua_FsLibFaeris_RenderDevice_drawFace300(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Face3",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
@@ -28965,20 +28963,56 @@ static int tolua_FsLibFaeris_Render_getCacheAttrLocation00(lua_State* tolua_S)
 #endif
  {
   RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
-  int index = ((int)  tolua_tonumber(tolua_S,2,0));
-  const char* name = ((const char*)  tolua_tostring(tolua_S,3,0));
+  Face3* f = ((Face3*)  tolua_tousertype(tolua_S,2,0));
+  unsigned int num = (( unsigned int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getCacheAttrLocation'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'drawFace3'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->getCacheAttrLocation(index,name);
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   self->drawFace3(f,num);
   }
  }
- return 1;
+ return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getCacheAttrLocation'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'drawFace3'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: drawArray of class  RenderDevice */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_RenderDevice_drawArray00
+static int tolua_FsLibFaeris_RenderDevice_drawArray00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"RenderDevice",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_DrawMode",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  RenderDevice* self = (RenderDevice*)  tolua_tousertype(tolua_S,1,0);
+  E_DrawMode mode = ((E_DrawMode)  toluaext_toenum(tolua_S,2,0));
+  int start = ((int)  tolua_tonumber(tolua_S,3,0));
+  unsigned int size = (( unsigned int)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'drawArray'", NULL);
+#endif
+  {
+   self->drawArray(mode,start,size);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'drawArray'.",&tolua_err);
  return 0;
 #endif
 }
@@ -29590,6 +29624,194 @@ static int tolua_FsLibFaeris_Color__eq00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function '.eq'.",&tolua_err);
  return 0;
 #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  Color3f */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Color3f_new00
+static int tolua_FsLibFaeris_Color3f_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"Color3f",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Color* c = ((const Color*)  tolua_tousertype(tolua_S,2,0));
+  {
+   Color3f* tolua_ret = (Color3f*)  Mtolua_new((Color3f)(*c));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Color3f");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  Color3f */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Color3f_new00_local
+static int tolua_FsLibFaeris_Color3f_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"Color3f",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Color",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Color* c = ((const Color*)  tolua_tousertype(tolua_S,2,0));
+  {
+   Color3f* tolua_ret = (Color3f*)  Mtolua_new((Color3f)(*c));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Color3f");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set of class  Color3f */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Color3f_set00
+static int tolua_FsLibFaeris_Color3f_set00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Color3f",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Color3f* self = (Color3f*)  tolua_tousertype(tolua_S,1,0);
+  float _r = ((float)  tolua_tonumber(tolua_S,2,0));
+  float _g = ((float)  tolua_tonumber(tolua_S,3,0));
+  float _b = ((float)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set'", NULL);
+#endif
+  {
+   self->set(_r,_g,_b);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: r of class  Color3f */
+#ifndef TOLUA_DISABLE_tolua_get_Color3f_r
+static int tolua_get_Color3f_r(lua_State* tolua_S)
+{
+  Color3f* self = (Color3f*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'r'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->r);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: r of class  Color3f */
+#ifndef TOLUA_DISABLE_tolua_set_Color3f_r
+static int tolua_set_Color3f_r(lua_State* tolua_S)
+{
+  Color3f* self = (Color3f*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'r'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->r = ((float)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: g of class  Color3f */
+#ifndef TOLUA_DISABLE_tolua_get_Color3f_g
+static int tolua_get_Color3f_g(lua_State* tolua_S)
+{
+  Color3f* self = (Color3f*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'g'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->g);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: g of class  Color3f */
+#ifndef TOLUA_DISABLE_tolua_set_Color3f_g
+static int tolua_set_Color3f_g(lua_State* tolua_S)
+{
+  Color3f* self = (Color3f*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'g'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->g = ((float)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: b of class  Color3f */
+#ifndef TOLUA_DISABLE_tolua_get_Color3f_b
+static int tolua_get_Color3f_b(lua_State* tolua_S)
+{
+  Color3f* self = (Color3f*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'b'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->b);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: b of class  Color3f */
+#ifndef TOLUA_DISABLE_tolua_set_Color3f_b
+static int tolua_set_Color3f_b(lua_State* tolua_S)
+{
+  Color3f* self = (Color3f*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'b'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->b = ((float)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -32629,31 +32851,20 @@ static int tolua_FsLibFaeris_Matrix4_new01(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"Matrix4",0,&tolua_err) ||
-     !tolua_istable(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  float v[16];
+  const float v = ((const float)  tolua_tonumber(tolua_S,2,0));
   {
-#ifndef TOLUA_RELEASE
-   if (!tolua_isnumberarray(tolua_S,2,16,0,&tolua_err))
-    goto tolua_lerror;
-   else
-#endif
-   {
-    int i;
-    for(i=0; i<16;i++)
-    v[i] = ((float)  tolua_tofieldnumber(tolua_S,2,i+1,0));
-   }
-  }
-  {
-   Matrix4* tolua_ret = (Matrix4*)  Mtolua_new((Matrix4)(v));
+   Matrix4* tolua_ret = (Matrix4*)  Mtolua_new((Matrix4)(&v));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"Matrix4");
+   tolua_pushnumber(tolua_S,(lua_Number)v);
   }
  }
- return 1;
+ return 2;
 tolua_lerror:
  return tolua_FsLibFaeris_Matrix4_new00(tolua_S);
 }
@@ -32666,32 +32877,21 @@ static int tolua_FsLibFaeris_Matrix4_new01_local(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertable(tolua_S,1,"Matrix4",0,&tolua_err) ||
-     !tolua_istable(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
  else
  {
-  float v[16];
+  const float v = ((const float)  tolua_tonumber(tolua_S,2,0));
   {
-#ifndef TOLUA_RELEASE
-   if (!tolua_isnumberarray(tolua_S,2,16,0,&tolua_err))
-    goto tolua_lerror;
-   else
-#endif
-   {
-    int i;
-    for(i=0; i<16;i++)
-    v[i] = ((float)  tolua_tofieldnumber(tolua_S,2,i+1,0));
-   }
-  }
-  {
-   Matrix4* tolua_ret = (Matrix4*)  Mtolua_new((Matrix4)(v));
+   Matrix4* tolua_ret = (Matrix4*)  Mtolua_new((Matrix4)(&v));
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"Matrix4");
     tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+   tolua_pushnumber(tolua_S,(lua_Number)v);
   }
  }
- return 1;
+ return 2;
 tolua_lerror:
  return tolua_FsLibFaeris_Matrix4_new00_local(tolua_S);
 }
@@ -32907,6 +33107,50 @@ static int tolua_FsLibFaeris_Matrix4_mulScaler00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: mulVector2 of class  Matrix4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Matrix4_mulVector200
+static int tolua_FsLibFaeris_Matrix4_mulVector200(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const Matrix4",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector2",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Matrix4* self = (const Matrix4*)  tolua_tousertype(tolua_S,1,0);
+  const Vector2* v = ((const Vector2*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'mulVector2'", NULL);
+#endif
+  {
+   Vector2 tolua_ret = (Vector2)  self->mulVector2(*v);
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((Vector2)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector2");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vector2));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector2");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'mulVector2'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: mulVector3 of class  Matrix4 */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Matrix4_mulVector300
 static int tolua_FsLibFaeris_Matrix4_mulVector300(lua_State* tolua_S)
@@ -32914,7 +33158,7 @@ static int tolua_FsLibFaeris_Matrix4_mulVector300(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"Matrix4",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const Matrix4",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -32922,7 +33166,7 @@ static int tolua_FsLibFaeris_Matrix4_mulVector300(lua_State* tolua_S)
  else
 #endif
  {
-  Matrix4* self = (Matrix4*)  tolua_tousertype(tolua_S,1,0);
+  const Matrix4* self = (const Matrix4*)  tolua_tousertype(tolua_S,1,0);
   const Vector3* v = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'mulVector3'", NULL);
@@ -32958,7 +33202,7 @@ static int tolua_FsLibFaeris_Matrix4_mulVector400(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"Matrix4",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const Matrix4",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector4",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
@@ -32966,7 +33210,7 @@ static int tolua_FsLibFaeris_Matrix4_mulVector400(lua_State* tolua_S)
  else
 #endif
  {
-  Matrix4* self = (Matrix4*)  tolua_tousertype(tolua_S,1,0);
+  const Matrix4* self = (const Matrix4*)  tolua_tousertype(tolua_S,1,0);
   const Vector4* v = ((const Vector4*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'mulVector4'", NULL);
@@ -33399,7 +33643,7 @@ static int tolua_FsLibFaeris_Matrix4_makeRotateFromEuler00(lua_State* tolua_S)
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !toluaext_isenum(tolua_S,5,"E_EulerOrientType",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
@@ -33410,7 +33654,7 @@ static int tolua_FsLibFaeris_Matrix4_makeRotateFromEuler00(lua_State* tolua_S)
   float x = ((float)  tolua_tonumber(tolua_S,2,0));
   float y = ((float)  tolua_tonumber(tolua_S,3,0));
   float z = ((float)  tolua_tonumber(tolua_S,4,0));
-  int type = ((int)  tolua_tonumber(tolua_S,5,0));
+  E_EulerOrientType type = ((E_EulerOrientType)  toluaext_toenum(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'makeRotateFromEuler'", NULL);
 #endif
@@ -33435,7 +33679,7 @@ static int tolua_FsLibFaeris_Matrix4_makeRotateFromEuler01(lua_State* tolua_S)
  if (
      !tolua_isusertype(tolua_S,1,"Matrix4",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_EulerOrientType",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
@@ -33443,7 +33687,7 @@ static int tolua_FsLibFaeris_Matrix4_makeRotateFromEuler01(lua_State* tolua_S)
  {
   Matrix4* self = (Matrix4*)  tolua_tousertype(tolua_S,1,0);
   const Vector3* v = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
-  int type = ((int)  tolua_tonumber(tolua_S,3,0));
+  E_EulerOrientType type = ((E_EulerOrientType)  toluaext_toenum(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'makeRotateFromEuler'", NULL);
 #endif
@@ -33548,45 +33792,6 @@ static int tolua_FsLibFaeris_Matrix4_makeIdentity00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'makeIdentity'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: makeCompose of class  Matrix4 */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Matrix4_makeCompose00
-static int tolua_FsLibFaeris_Matrix4_makeCompose00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Matrix4",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector3",0,&tolua_err)) ||
-     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_isusertype(tolua_S,5,"const Vector3",0,&tolua_err)) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Matrix4* self = (Matrix4*)  tolua_tousertype(tolua_S,1,0);
-  const Vector3* t = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
-  const Vector3* r = ((const Vector3*)  tolua_tousertype(tolua_S,3,0));
-  int r_type = ((int)  tolua_tonumber(tolua_S,4,0));
-  const Vector3* s = ((const Vector3*)  tolua_tousertype(tolua_S,5,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'makeCompose'", NULL);
-#endif
-  {
-   self->makeCompose(*t,*r,r_type,*s);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'makeCompose'.",&tolua_err);
  return 0;
 #endif
 }
@@ -33734,21 +33939,60 @@ static int tolua_FsLibFaeris_Matrix4_makeOrthographic00(lua_State* tolua_S)
   Matrix4* self = (Matrix4*)  tolua_tousertype(tolua_S,1,0);
   float left = ((float)  tolua_tonumber(tolua_S,2,0));
   float right = ((float)  tolua_tonumber(tolua_S,3,0));
-  float top = ((float)  tolua_tonumber(tolua_S,4,0));
-  float bottom = ((float)  tolua_tonumber(tolua_S,5,0));
+  float bottom = ((float)  tolua_tonumber(tolua_S,4,0));
+  float top = ((float)  tolua_tonumber(tolua_S,5,0));
   float n = ((float)  tolua_tonumber(tolua_S,6,0));
   float f = ((float)  tolua_tonumber(tolua_S,7,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'makeOrthographic'", NULL);
 #endif
   {
-   self->makeOrthographic(left,right,top,bottom,n,f);
+   self->makeOrthographic(left,right,bottom,top,n,f);
   }
  }
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'makeOrthographic'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: makeCompose of class  Matrix4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Matrix4_makeCompose00
+static int tolua_FsLibFaeris_Matrix4_makeCompose00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Matrix4",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Vector3",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !toluaext_isenum(tolua_S,4,"E_EulerOrientType",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !tolua_isusertype(tolua_S,5,"const Vector3",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Matrix4* self = (Matrix4*)  tolua_tousertype(tolua_S,1,0);
+  const Vector3* t = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
+  const Vector3* r = ((const Vector3*)  tolua_tousertype(tolua_S,3,0));
+  E_EulerOrientType r_type = ((E_EulerOrientType)  toluaext_toenum(tolua_S,4,0));
+  const Vector3* s = ((const Vector3*)  tolua_tousertype(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'makeCompose'", NULL);
+#endif
+  {
+   self->makeCompose(*t,*r,r_type,*s);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'makeCompose'.",&tolua_err);
  return 0;
 #endif
 }
@@ -33830,7 +34074,7 @@ static int tolua_FsLibFaeris_Matrix4_setRotationFromEuler00(lua_State* tolua_S)
      !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,5,&tolua_err) || !toluaext_isenum(tolua_S,5,"E_EulerOrientType",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
@@ -33841,7 +34085,7 @@ static int tolua_FsLibFaeris_Matrix4_setRotationFromEuler00(lua_State* tolua_S)
   float rx = ((float)  tolua_tonumber(tolua_S,2,0));
   float ry = ((float)  tolua_tonumber(tolua_S,3,0));
   float rz = ((float)  tolua_tonumber(tolua_S,4,0));
-  int type = ((int)  tolua_tonumber(tolua_S,5,0));
+  E_EulerOrientType type = ((E_EulerOrientType)  toluaext_toenum(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setRotationFromEuler'", NULL);
 #endif
@@ -34426,6 +34670,69 @@ static int tolua_FsLibFaeris_Matrix4_getScale00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getScale'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set of class  Matrix4 */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Matrix4_set00
+static int tolua_FsLibFaeris_Matrix4_set00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Matrix4",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,6,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,7,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,8,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,9,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,10,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,11,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,12,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,13,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,14,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,15,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,16,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,17,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,18,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Matrix4* self = (Matrix4*)  tolua_tousertype(tolua_S,1,0);
+  float v00 = ((float)  tolua_tonumber(tolua_S,2,0));
+  float v01 = ((float)  tolua_tonumber(tolua_S,3,0));
+  float v02 = ((float)  tolua_tonumber(tolua_S,4,0));
+  float v03 = ((float)  tolua_tonumber(tolua_S,5,0));
+  float v10 = ((float)  tolua_tonumber(tolua_S,6,0));
+  float v11 = ((float)  tolua_tonumber(tolua_S,7,0));
+  float v12 = ((float)  tolua_tonumber(tolua_S,8,0));
+  float v13 = ((float)  tolua_tonumber(tolua_S,9,0));
+  float v20 = ((float)  tolua_tonumber(tolua_S,10,0));
+  float v21 = ((float)  tolua_tonumber(tolua_S,11,0));
+  float v22 = ((float)  tolua_tonumber(tolua_S,12,0));
+  float v23 = ((float)  tolua_tonumber(tolua_S,13,0));
+  float v30 = ((float)  tolua_tonumber(tolua_S,14,0));
+  float v31 = ((float)  tolua_tonumber(tolua_S,15,0));
+  float v32 = ((float)  tolua_tonumber(tolua_S,16,0));
+  float v33 = ((float)  tolua_tonumber(tolua_S,17,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set'", NULL);
+#endif
+  {
+   self->set(v00,v01,v02,v03,v10,v11,v12,v13,v20,v21,v22,v23,v30,v31,v32,v33);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set'.",&tolua_err);
  return 0;
 #endif
 }
@@ -44160,11 +44467,10 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"director",tolua_FsLibFaeris_share_director00);
    tolua_function(tolua_S,"sysDispatcher",tolua_FsLibFaeris_share_sysDispatcher00);
    tolua_function(tolua_S,"window",tolua_FsLibFaeris_share_window00);
-   tolua_function(tolua_S,"render",tolua_FsLibFaeris_share_render00);
+   tolua_function(tolua_S,"renderDevice",tolua_FsLibFaeris_share_renderDevice00);
    tolua_function(tolua_S,"textureMgr",tolua_FsLibFaeris_share_textureMgr00);
    tolua_function(tolua_S,"sprite2DDataMgr",tolua_FsLibFaeris_share_sprite2DDataMgr00);
-   tolua_function(tolua_S,"objectMgr",tolua_FsLibFaeris_share_objectMgr00);
-   tolua_function(tolua_S,"programMgr",tolua_FsLibFaeris_share_programMgr00);
+   tolua_function(tolua_S,"programSourceMgr",tolua_FsLibFaeris_share_programSourceMgr00);
    tolua_function(tolua_S,"fontTTFMgr",tolua_FsLibFaeris_share_fontTTFMgr00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"FsObject","FsObject","",toluaext_fscollector);
@@ -44188,6 +44494,188 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"FS_TEXT_ALIGN_CENTER",FS_TEXT_ALIGN_CENTER);
   tolua_constant(tolua_S,"FS_TEXT_ALIGN_RIGHT",FS_TEXT_ALIGN_RIGHT);
   tolua_constant(tolua_S,"FS_CUR_PLATFORM",FS_CUR_PLATFORM);
+  tolua_constant(tolua_S,"FS_ALIGN_V_CENTER",FS_ALIGN_V_CENTER);
+  tolua_constant(tolua_S,"FS_ALIGN_V_TOP",FS_ALIGN_V_TOP);
+  tolua_constant(tolua_S,"FS_ALIGN_V_BUTTON",FS_ALIGN_V_BUTTON);
+  tolua_constant(tolua_S,"FS_ALIGN_H_LEFT",FS_ALIGN_H_LEFT);
+  tolua_constant(tolua_S,"FS_ALIGN_H_RIGHT",FS_ALIGN_H_RIGHT);
+  tolua_constant(tolua_S,"FS_ALIGN_H_CENTER",FS_ALIGN_H_CENTER);
+  tolua_constant(tolua_S,"FS_TEXT_ALIGN_LEFT",FS_TEXT_ALIGN_LEFT);
+  tolua_constant(tolua_S,"FS_TEXT_ALIGN_CENTER",FS_TEXT_ALIGN_CENTER);
+  tolua_constant(tolua_S,"FS_TEXT_ALIGN_RIGHT",FS_TEXT_ALIGN_RIGHT);
+  tolua_constant(tolua_S,"FS_FILE_UNKOWN",FS_FILE_UNKOWN);
+  tolua_constant(tolua_S,"FS_FILE_BINARY",FS_FILE_BINARY);
+  tolua_constant(tolua_S,"FS_FILE_SCRIPT",FS_FILE_SCRIPT);
+  tolua_constant(tolua_S,"FS_FLOAT",FS_FLOAT);
+  tolua_constant(tolua_S,"FS_INT",FS_INT);
+  tolua_constant(tolua_S,"FS_INT8",FS_INT8);
+  tolua_constant(tolua_S,"FS_INT16",FS_INT16);
+  tolua_constant(tolua_S,"FS_INT32",FS_INT32);
+  tolua_constant(tolua_S,"FS_UINT8",FS_UINT8);
+  tolua_constant(tolua_S,"FS_UINT16",FS_UINT16);
+  tolua_constant(tolua_S,"FS_UINT32",FS_UINT32);
+  tolua_constant(tolua_S,"FS_MAX_TYPE_NU",FS_MAX_TYPE_NU);
+  tolua_constant(tolua_S,"FS_FTYPE_SCRIPT",FS_FTYPE_SCRIPT);
+  tolua_constant(tolua_S,"FS_FTYPE_BINARY",FS_FTYPE_BINARY);
+  tolua_constant(tolua_S,"FS_BOUND_BOX",FS_BOUND_BOX);
+  tolua_constant(tolua_S,"FS_BOUND_SPHERE",FS_BOUND_SPHERE);
+  tolua_module(tolua_S,"E_EulerOrientType",0);
+  tolua_beginmodule(tolua_S,"E_EulerOrientType");
+   tolua_constant(tolua_S,"XYZ",static_cast<int>(E_EulerOrientType::XYZ));
+   tolua_constant(tolua_S,"XZY",static_cast<int>(E_EulerOrientType::XZY));
+   tolua_constant(tolua_S,"YXZ",static_cast<int>(E_EulerOrientType::YXZ));
+   tolua_constant(tolua_S,"YZX",static_cast<int>(E_EulerOrientType::YZX));
+   tolua_constant(tolua_S,"ZXY",static_cast<int>(E_EulerOrientType::ZXY));
+   tolua_constant(tolua_S,"ZYX",static_cast<int>(E_EulerOrientType::ZYX));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_UniformType",0);
+  tolua_beginmodule(tolua_S,"E_UniformType");
+   tolua_constant(tolua_S,"UT_UNKOWN",static_cast<int>(E_UniformType::UT_UNKOWN));
+   tolua_constant(tolua_S,"UT_F_1",static_cast<int>(E_UniformType::UT_F_1));
+   tolua_constant(tolua_S,"UT_F_2",static_cast<int>(E_UniformType::UT_F_2));
+   tolua_constant(tolua_S,"UT_F_3",static_cast<int>(E_UniformType::UT_F_3));
+   tolua_constant(tolua_S,"UT_F_4",static_cast<int>(E_UniformType::UT_F_4));
+   tolua_constant(tolua_S,"UT_I_1",static_cast<int>(E_UniformType::UT_I_1));
+   tolua_constant(tolua_S,"UT_I_2",static_cast<int>(E_UniformType::UT_I_2));
+   tolua_constant(tolua_S,"UT_I_3",static_cast<int>(E_UniformType::UT_I_3));
+   tolua_constant(tolua_S,"UT_I_4",static_cast<int>(E_UniformType::UT_I_4));
+   tolua_constant(tolua_S,"UT_UI_1",static_cast<int>(E_UniformType::UT_UI_1));
+   tolua_constant(tolua_S,"UT_UI_2",static_cast<int>(E_UniformType::UT_UI_2));
+   tolua_constant(tolua_S,"UT_UI_3",static_cast<int>(E_UniformType::UT_UI_3));
+   tolua_constant(tolua_S,"UT_UI_4",static_cast<int>(E_UniformType::UT_UI_4));
+   tolua_constant(tolua_S,"UT_M_2",static_cast<int>(E_UniformType::UT_M_2));
+   tolua_constant(tolua_S,"UT_M_3",static_cast<int>(E_UniformType::UT_M_3));
+   tolua_constant(tolua_S,"UT_M_4",static_cast<int>(E_UniformType::UT_M_4));
+   tolua_constant(tolua_S,"UT_S_1D",static_cast<int>(E_UniformType::UT_S_1D));
+   tolua_constant(tolua_S,"UT_S_2D",static_cast<int>(E_UniformType::UT_S_2D));
+   tolua_constant(tolua_S,"UT_S_3D",static_cast<int>(E_UniformType::UT_S_3D));
+   tolua_constant(tolua_S,"UT_S_CUBE",static_cast<int>(E_UniformType::UT_S_CUBE));
+   tolua_constant(tolua_S,"UT_S_1D_SHADOW",static_cast<int>(E_UniformType::UT_S_1D_SHADOW));
+   tolua_constant(tolua_S,"UT_S_2D_SHADOW",static_cast<int>(E_UniformType::UT_S_2D_SHADOW));
+   tolua_constant(tolua_S,"UT_REF_RD",static_cast<int>(E_UniformType::UT_REF_RD));
+   tolua_constant(tolua_S,"UT_REF_MAT",static_cast<int>(E_UniformType::UT_REF_MAT));
+   tolua_constant(tolua_S,"UT_REF_MAT_EXT",static_cast<int>(E_UniformType::UT_REF_MAT_EXT));
+   tolua_constant(tolua_S,"MAX_NU",static_cast<int>(E_UniformType::MAX_NU));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_UniformRef",0);
+  tolua_beginmodule(tolua_S,"E_UniformRef");
+   tolua_constant(tolua_S,"UNKOWN",static_cast<int>(E_UniformRef::UNKOWN));
+   tolua_constant(tolua_S,"R_WORLD_MAT",static_cast<int>(E_UniformRef::R_WORLD_MAT));
+   tolua_constant(tolua_S,"R_WORLD_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_WORLD_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_WORLD_INVERSE_MAT",static_cast<int>(E_UniformRef::R_WORLD_INVERSE_MAT));
+   tolua_constant(tolua_S,"R_WORLD_INVERSE_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_WORLD_INVERSE_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_VIEW_MAT",static_cast<int>(E_UniformRef::R_VIEW_MAT));
+   tolua_constant(tolua_S,"R_VIEW_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_VIEW_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_VIEW_INVERSE_MAT",static_cast<int>(E_UniformRef::R_VIEW_INVERSE_MAT));
+   tolua_constant(tolua_S,"R_VIEW_INVERSE_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_VIEW_INVERSE_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_PROJECTION_MAT",static_cast<int>(E_UniformRef::R_PROJECTION_MAT));
+   tolua_constant(tolua_S,"R_PROJECTION_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_PROJECTION_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_PROJECTION_INVERSE_MAT",static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_MAT));
+   tolua_constant(tolua_S,"R_PROJECTION_INVERSE_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_PROJECTION_INVERSE_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_WORLD_VIEW_MAT",static_cast<int>(E_UniformRef::R_WORLD_VIEW_MAT));
+   tolua_constant(tolua_S,"R_WORLD_VIEW_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_WORLD_VIEW_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_WORLD_VIEW_INVERSE_MAT",static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_MAT));
+   tolua_constant(tolua_S,"R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_WORLD_VIEW_INVERSE_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_VIEW_PROJECTION_MAT",static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_MAT));
+   tolua_constant(tolua_S,"R_VIEW_PROJECTION_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_VIEW_PROJECTION_INVERSE_MAT",static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_MAT));
+   tolua_constant(tolua_S,"R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_WORLD_VIEW_PROJECTION_MAT",static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_MAT));
+   tolua_constant(tolua_S,"R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_WORLD_VIEW_PROJECTION_INVERSE_MAT",static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_MAT));
+   tolua_constant(tolua_S,"R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT",static_cast<int>(E_UniformRef::R_WORLD_VIEW_PROJECTION_INVERSE_TRANSPOSE_MAT));
+   tolua_constant(tolua_S,"R_MAX_MATRIX_NU",static_cast<int>(E_UniformRef::R_MAX_MATRIX_NU));
+   tolua_constant(tolua_S,"R_TIME",static_cast<int>(E_UniformRef::R_TIME));
+   tolua_constant(tolua_S,"R_VIEWPORT_WIDTH",static_cast<int>(E_UniformRef::R_VIEWPORT_WIDTH));
+   tolua_constant(tolua_S,"R_VIEWPORT_WIDTH_INVERSE",static_cast<int>(E_UniformRef::R_VIEWPORT_WIDTH_INVERSE));
+   tolua_constant(tolua_S,"R_VIEWPORT_HEIGHT",static_cast<int>(E_UniformRef::R_VIEWPORT_HEIGHT));
+   tolua_constant(tolua_S,"R_VIEWPORT_HEIGHT_INVERSE",static_cast<int>(E_UniformRef::R_VIEWPORT_HEIGHT_INVERSE));
+   tolua_constant(tolua_S,"R_COLOR",static_cast<int>(E_UniformRef::R_COLOR));
+   tolua_constant(tolua_S,"R_OPACITY",static_cast<int>(E_UniformRef::R_OPACITY));
+   tolua_constant(tolua_S,"M_POINT_SIZE",static_cast<int>(E_UniformRef::M_POINT_SIZE));
+   tolua_constant(tolua_S,"M_COLOR",static_cast<int>(E_UniformRef::M_COLOR));
+   tolua_constant(tolua_S,"M_OPACITY",static_cast<int>(E_UniformRef::M_OPACITY));
+   tolua_constant(tolua_S,"M_COLOR_MAP",static_cast<int>(E_UniformRef::M_COLOR_MAP));
+   tolua_constant(tolua_S,"MAX_NU",static_cast<int>(E_UniformRef::MAX_NU));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_StreamType",0);
+  tolua_beginmodule(tolua_S,"E_StreamType");
+   tolua_constant(tolua_S,"UNKOWN",static_cast<int>(E_StreamType::UNKOWN));
+   tolua_constant(tolua_S,"VERTICES",static_cast<int>(E_StreamType::VERTICES));
+   tolua_constant(tolua_S,"NORMALS",static_cast<int>(E_StreamType::NORMALS));
+   tolua_constant(tolua_S,"COLORS",static_cast<int>(E_StreamType::COLORS));
+   tolua_constant(tolua_S,"UVS",static_cast<int>(E_StreamType::UVS));
+   tolua_constant(tolua_S,"UV2S",static_cast<int>(E_StreamType::UV2S));
+   tolua_constant(tolua_S,"TANGENTS",static_cast<int>(E_StreamType::TANGENTS));
+   tolua_constant(tolua_S,"SKIN_INDICS",static_cast<int>(E_StreamType::SKIN_INDICS));
+   tolua_constant(tolua_S,"SKIN_WEIGHTS",static_cast<int>(E_StreamType::SKIN_WEIGHTS));
+   tolua_constant(tolua_S,"USER_DEFINE1",static_cast<int>(E_StreamType::USER_DEFINE1));
+   tolua_constant(tolua_S,"USER_DEFINE2",static_cast<int>(E_StreamType::USER_DEFINE2));
+   tolua_constant(tolua_S,"USER_DEFINE3",static_cast<int>(E_StreamType::USER_DEFINE3));
+   tolua_constant(tolua_S,"USER_DEFINE4",static_cast<int>(E_StreamType::USER_DEFINE4));
+   tolua_constant(tolua_S,"MAX_NU",static_cast<int>(E_StreamType::MAX_NU));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_ProgramFeatureSupport",0);
+  tolua_beginmodule(tolua_S,"E_ProgramFeatureSupport");
+   tolua_constant(tolua_S,"AMBIENT_LIGHT",static_cast<int>(E_ProgramFeatureSupport::AMBIENT_LIGHT));
+   tolua_constant(tolua_S,"DIRECTIONAL_LIGHT",static_cast<int>(E_ProgramFeatureSupport::DIRECTIONAL_LIGHT));
+   tolua_constant(tolua_S,"SPOT_LIGHT",static_cast<int>(E_ProgramFeatureSupport::SPOT_LIGHT));
+   tolua_constant(tolua_S,"POINT_LIGHT",static_cast<int>(E_ProgramFeatureSupport::POINT_LIGHT));
+   tolua_constant(tolua_S,"HEMI_SPHERE_LIGHT",static_cast<int>(E_ProgramFeatureSupport::HEMI_SPHERE_LIGHT));
+   tolua_constant(tolua_S,"LIGHT",static_cast<int>(E_ProgramFeatureSupport::LIGHT));
+   tolua_constant(tolua_S,"SHADOW",static_cast<int>(E_ProgramFeatureSupport::SHADOW));
+   tolua_constant(tolua_S,"ALPHA_TEST",static_cast<int>(E_ProgramFeatureSupport::ALPHA_TEST));
+   tolua_constant(tolua_S,"FOG",static_cast<int>(E_ProgramFeatureSupport::FOG));
+   tolua_constant(tolua_S,"SKELETON",static_cast<int>(E_ProgramFeatureSupport::SKELETON));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_FogType",0);
+  tolua_beginmodule(tolua_S,"E_FogType");
+   tolua_constant(tolua_S,"LINEAR",static_cast<int>(E_FogType::LINEAR));
+   tolua_constant(tolua_S,"EXP2",static_cast<int>(E_FogType::EXP2));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_ShadowType",0);
+  tolua_beginmodule(tolua_S,"E_ShadowType");
+   tolua_constant(tolua_S,"SOFT",static_cast<int>(E_ShadowType::SOFT));
+   tolua_constant(tolua_S,"HARD",static_cast<int>(E_ShadowType::HARD));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_BlendEquation",0);
+  tolua_beginmodule(tolua_S,"E_BlendEquation");
+   tolua_constant(tolua_S,"NONE",static_cast<int>(E_BlendEquation::NONE));
+   tolua_constant(tolua_S,"ADD",static_cast<int>(E_BlendEquation::ADD));
+   tolua_constant(tolua_S,"SUBTRACT",static_cast<int>(E_BlendEquation::SUBTRACT));
+   tolua_constant(tolua_S,"REVERSE_SUBTRACT",static_cast<int>(E_BlendEquation::REVERSE_SUBTRACT));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_BlendFactor",0);
+  tolua_beginmodule(tolua_S,"E_BlendFactor");
+   tolua_constant(tolua_S,"ZERO",static_cast<int>(E_BlendFactor::ZERO));
+   tolua_constant(tolua_S,"ONE",static_cast<int>(E_BlendFactor::ONE));
+   tolua_constant(tolua_S,"SRC_COLOR",static_cast<int>(E_BlendFactor::SRC_COLOR));
+   tolua_constant(tolua_S,"ONE_MINUS_SRC_COLOR",static_cast<int>(E_BlendFactor::ONE_MINUS_SRC_COLOR));
+   tolua_constant(tolua_S,"DST_COLOR",static_cast<int>(E_BlendFactor::DST_COLOR));
+   tolua_constant(tolua_S,"ONE_MINUS_DST_COLOR",static_cast<int>(E_BlendFactor::ONE_MINUS_DST_COLOR));
+   tolua_constant(tolua_S,"SRC_ALPHA",static_cast<int>(E_BlendFactor::SRC_ALPHA));
+   tolua_constant(tolua_S,"ONE_MINUS_SRC_ALPHA",static_cast<int>(E_BlendFactor::ONE_MINUS_SRC_ALPHA));
+   tolua_constant(tolua_S,"DST_ALPHA",static_cast<int>(E_BlendFactor::DST_ALPHA));
+   tolua_constant(tolua_S,"ONE_MINUS_DST_ALPHA",static_cast<int>(E_BlendFactor::ONE_MINUS_DST_ALPHA));
+   tolua_constant(tolua_S,"SRC_ALPHA_SATURATE",static_cast<int>(E_BlendFactor::SRC_ALPHA_SATURATE));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_DrawMode",0);
+  tolua_beginmodule(tolua_S,"E_DrawMode");
+   tolua_constant(tolua_S,"POINTS",static_cast<int>(E_DrawMode::POINTS));
+   tolua_constant(tolua_S,"LINES",static_cast<int>(E_DrawMode::LINES));
+   tolua_constant(tolua_S,"LINE_STRIP",static_cast<int>(E_DrawMode::LINE_STRIP));
+   tolua_constant(tolua_S,"LINE_LOOP",static_cast<int>(E_DrawMode::LINE_LOOP));
+   tolua_constant(tolua_S,"TRIANGLES",static_cast<int>(E_DrawMode::TRIANGLES));
+   tolua_constant(tolua_S,"TRIANGLE_STRIP",static_cast<int>(E_DrawMode::TRIANGLE_STRIP));
+   tolua_constant(tolua_S,"TRIANGLE_FAN",static_cast<int>(E_DrawMode::TRIANGLE_FAN));
+   tolua_constant(tolua_S,"TRIANGLE_INDEX",static_cast<int>(E_DrawMode::TRIANGLE_INDEX));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_AnimPlayMode",0);
+  tolua_beginmodule(tolua_S,"E_AnimPlayMode");
+   tolua_constant(tolua_S,"LOOP",static_cast<int>(E_AnimPlayMode::LOOP));
+   tolua_constant(tolua_S,"START",static_cast<int>(E_AnimPlayMode::START));
+   tolua_constant(tolua_S,"END",static_cast<int>(E_AnimPlayMode::END));
+  tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"ActionTarget","ActionTarget","FsObject",NULL);
   tolua_beginmodule(tolua_S,"ActionTarget");
    tolua_function(tolua_S,"doAction",tolua_FsLibFaeris_ActionTarget_doAction00);
@@ -44294,6 +44782,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_beginmodule(tolua_S,"__Quad2D");
    tolua_constant(tolua_S,"MODE_TEXTURE",Quad2D::MODE_TEXTURE);
    tolua_constant(tolua_S,"MODE_COLOR",Quad2D::MODE_COLOR);
+   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___Quad2D_setMaterial00);
+   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___Quad2D_getMaterial00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___Quad2D_setColor00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___Quad2D_setColor01);
    tolua_function(tolua_S,"getColor",tolua_FsLibFaeris___Quad2D_getColor00);
@@ -44301,16 +44791,9 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris___Quad2D_getOpacity00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___Quad2D_setBlend00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___Quad2D_setBlend01);
-   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___Quad2D_getMaterial00);
-   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___Quad2D_setMaterial00);
-   tolua_function(tolua_S,"getShader",tolua_FsLibFaeris___Quad2D_getShader00);
-   tolua_function(tolua_S,"setShader",tolua_FsLibFaeris___Quad2D_setShader00);
-   tolua_function(tolua_S,"getTextureShader",tolua_FsLibFaeris___Quad2D_getTextureShader00);
-   tolua_function(tolua_S,"setTextureShader",tolua_FsLibFaeris___Quad2D_setTextureShader00);
-   tolua_function(tolua_S,"getColorShader",tolua_FsLibFaeris___Quad2D_getColorShader00);
-   tolua_function(tolua_S,"setColorShader",tolua_FsLibFaeris___Quad2D_setColorShader00);
-   tolua_function(tolua_S,"setRenderMode",tolua_FsLibFaeris___Quad2D_setRenderMode00);
-   tolua_function(tolua_S,"getRenderMode",tolua_FsLibFaeris___Quad2D_getRenderMode00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___Quad2D_setProgramSource00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___Quad2D_setProgramSource01);
+   tolua_function(tolua_S,"getProgramSource",tolua_FsLibFaeris___Quad2D_getProgramSource00);
    tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___Quad2D_setTexture00);
    tolua_function(tolua_S,"setResourceUrl",tolua_FsLibFaeris___Quad2D_setResourceUrl00);
    tolua_function(tolua_S,"setTexture",tolua_FsLibFaeris___Quad2D_setTexture01);
@@ -44364,6 +44847,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"__LabelTTF","LabelTTF","Entity",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"__LabelTTF");
+   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___LabelTTF_setMaterial00);
+   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___LabelTTF_getMaterial00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___LabelTTF_setColor00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___LabelTTF_setColor01);
    tolua_function(tolua_S,"getColor",tolua_FsLibFaeris___LabelTTF_getColor00);
@@ -44371,10 +44856,9 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris___LabelTTF_getOpacity00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___LabelTTF_setBlend00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___LabelTTF_setBlend01);
-   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___LabelTTF_getMaterial00);
-   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___LabelTTF_setMaterial00);
-   tolua_function(tolua_S,"getShader",tolua_FsLibFaeris___LabelTTF_getShader00);
-   tolua_function(tolua_S,"setShader",tolua_FsLibFaeris___LabelTTF_setShader00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___LabelTTF_setProgramSource00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___LabelTTF_setProgramSource01);
+   tolua_function(tolua_S,"getProgramSource",tolua_FsLibFaeris___LabelTTF_getProgramSource00);
    tolua_function(tolua_S,"setString",tolua_FsLibFaeris___LabelTTF_setString00);
    tolua_function(tolua_S,"getString",tolua_FsLibFaeris___LabelTTF_getString00);
    tolua_function(tolua_S,"setFontName",tolua_FsLibFaeris___LabelTTF_setFontName00);
@@ -44407,9 +44891,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"__Sprite2D","Sprite2D","Entity",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"__Sprite2D");
-   tolua_constant(tolua_S,"ANIM_LOOP",Sprite2D::ANIM_LOOP);
-   tolua_constant(tolua_S,"ANIM_START",Sprite2D::ANIM_START);
-   tolua_constant(tolua_S,"ANIM_END",Sprite2D::ANIM_END);
+   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___Sprite2D_setMaterial00);
+   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___Sprite2D_getMaterial00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___Sprite2D_setColor00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___Sprite2D_setColor01);
    tolua_function(tolua_S,"getColor",tolua_FsLibFaeris___Sprite2D_getColor00);
@@ -44417,22 +44900,22 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris___Sprite2D_getOpacity00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___Sprite2D_setBlend00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___Sprite2D_setBlend01);
-   tolua_function(tolua_S,"setBlendMode",tolua_FsLibFaeris___Sprite2D_setBlendMode00);
-   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___Sprite2D_getMaterial00);
-   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___Sprite2D_setMaterial00);
-   tolua_function(tolua_S,"getShader",tolua_FsLibFaeris___Sprite2D_getShader00);
-   tolua_function(tolua_S,"setShader",tolua_FsLibFaeris___Sprite2D_setShader00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___Sprite2D_setProgramSource00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___Sprite2D_setProgramSource01);
+   tolua_function(tolua_S,"getProgramSource",tolua_FsLibFaeris___Sprite2D_getProgramSource00);
    tolua_function(tolua_S,"setResourceUrl",tolua_FsLibFaeris___Sprite2D_setResourceUrl00);
    tolua_function(tolua_S,"setAnimation",tolua_FsLibFaeris___Sprite2D_setAnimation00);
    tolua_function(tolua_S,"getAnimation",tolua_FsLibFaeris___Sprite2D_getAnimation00);
-   tolua_function(tolua_S,"hasAnimation",tolua_FsLibFaeris___Sprite2D_hasAnimation00);
    tolua_function(tolua_S,"updateAnimation",tolua_FsLibFaeris___Sprite2D_updateAnimation00);
+   tolua_function(tolua_S,"hasAnimation",tolua_FsLibFaeris___Sprite2D_hasAnimation00);
    tolua_function(tolua_S,"playAnimation",tolua_FsLibFaeris___Sprite2D_playAnimation00);
+   tolua_function(tolua_S,"playAnimation",tolua_FsLibFaeris___Sprite2D_playAnimation01);
    tolua_function(tolua_S,"startAnimation",tolua_FsLibFaeris___Sprite2D_startAnimation00);
+   tolua_function(tolua_S,"startAnimation",tolua_FsLibFaeris___Sprite2D_startAnimation01);
    tolua_function(tolua_S,"stopAnimation",tolua_FsLibFaeris___Sprite2D_stopAnimation00);
+   tolua_function(tolua_S,"isAnimationPlaying",tolua_FsLibFaeris___Sprite2D_isAnimationPlaying00);
    tolua_function(tolua_S,"setAnimationOffset",tolua_FsLibFaeris___Sprite2D_setAnimationOffset00);
    tolua_function(tolua_S,"getAnimationOffset",tolua_FsLibFaeris___Sprite2D_getAnimationOffset00);
-   tolua_function(tolua_S,"isAnimationPlaying",tolua_FsLibFaeris___Sprite2D_isAnimationPlaying00);
    tolua_function(tolua_S,"setCurFrame",tolua_FsLibFaeris___Sprite2D_setCurFrame00);
    tolua_function(tolua_S,"getCurFrame",tolua_FsLibFaeris___Sprite2D_getCurFrame00);
    tolua_function(tolua_S,"getTotalFrame",tolua_FsLibFaeris___Sprite2D_getTotalFrame00);
@@ -44441,9 +44924,6 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Sprite2D","LuaSprite2D","Sprite2D",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Sprite2D");
-   tolua_constant(tolua_S,"ANIM_LOOP",LuaSprite2D::ANIM_LOOP);
-   tolua_constant(tolua_S,"ANIM_START",LuaSprite2D::ANIM_START);
-   tolua_constant(tolua_S,"ANIM_END",LuaSprite2D::ANIM_END);
    tolua_function(tolua_S,"create",tolua_FsLibFaeris_Sprite2D_create00);
    tolua_function(tolua_S,"create",tolua_FsLibFaeris_Sprite2D_create01);
    tolua_function(tolua_S,"draw",tolua_FsLibFaeris_Sprite2D_draw00);
@@ -44455,6 +44935,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"__LabelBitmap","LabelBitmap","Entity",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"__LabelBitmap");
+   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___LabelBitmap_setMaterial00);
+   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___LabelBitmap_getMaterial00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___LabelBitmap_setColor00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___LabelBitmap_setColor01);
    tolua_function(tolua_S,"getColor",tolua_FsLibFaeris___LabelBitmap_getColor00);
@@ -44462,10 +44944,9 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris___LabelBitmap_getOpacity00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___LabelBitmap_setBlend00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___LabelBitmap_setBlend01);
-   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___LabelBitmap_getMaterial00);
-   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___LabelBitmap_setMaterial00);
-   tolua_function(tolua_S,"getShader",tolua_FsLibFaeris___LabelBitmap_getShader00);
-   tolua_function(tolua_S,"setShader",tolua_FsLibFaeris___LabelBitmap_setShader00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___LabelBitmap_setProgramSource00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___LabelBitmap_setProgramSource01);
+   tolua_function(tolua_S,"getProgramSource",tolua_FsLibFaeris___LabelBitmap_getProgramSource00);
    tolua_function(tolua_S,"setString",tolua_FsLibFaeris___LabelBitmap_setString00);
    tolua_function(tolua_S,"setString",tolua_FsLibFaeris___LabelBitmap_setString01);
    tolua_function(tolua_S,"setString",tolua_FsLibFaeris___LabelBitmap_setString02);
@@ -44594,6 +45075,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"__Particle2DEffect","Particle2DEffect","Entity",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"__Particle2DEffect");
+   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___Particle2DEffect_setMaterial00);
+   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___Particle2DEffect_getMaterial00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___Particle2DEffect_setColor00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___Particle2DEffect_setColor01);
    tolua_function(tolua_S,"getColor",tolua_FsLibFaeris___Particle2DEffect_getColor00);
@@ -44601,10 +45084,9 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris___Particle2DEffect_getOpacity00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___Particle2DEffect_setBlend00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___Particle2DEffect_setBlend01);
-   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___Particle2DEffect_getMaterial00);
-   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___Particle2DEffect_setMaterial00);
-   tolua_function(tolua_S,"getShader",tolua_FsLibFaeris___Particle2DEffect_getShader00);
-   tolua_function(tolua_S,"setShader",tolua_FsLibFaeris___Particle2DEffect_setShader00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___Particle2DEffect_setProgramSource00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___Particle2DEffect_setProgramSource01);
+   tolua_function(tolua_S,"getProgramSource",tolua_FsLibFaeris___Particle2DEffect_getProgramSource00);
    tolua_function(tolua_S,"start",tolua_FsLibFaeris___Particle2DEffect_start00);
    tolua_function(tolua_S,"refresh",tolua_FsLibFaeris___Particle2DEffect_refresh00);
    tolua_function(tolua_S,"stop",tolua_FsLibFaeris___Particle2DEffect_stop00);
@@ -44634,6 +45116,8 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"__VertexPolygon","VertexPolygon","Entity",NULL);
   tolua_beginmodule(tolua_S,"__VertexPolygon");
+   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___VertexPolygon_setMaterial00);
+   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___VertexPolygon_getMaterial00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___VertexPolygon_setColor00);
    tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___VertexPolygon_setColor01);
    tolua_function(tolua_S,"getColor",tolua_FsLibFaeris___VertexPolygon_getColor00);
@@ -44641,12 +45125,9 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris___VertexPolygon_getOpacity00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___VertexPolygon_setBlend00);
    tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris___VertexPolygon_setBlend01);
-   tolua_function(tolua_S,"setPointSize",tolua_FsLibFaeris___VertexPolygon_setPointSize00);
-   tolua_function(tolua_S,"getPointSize",tolua_FsLibFaeris___VertexPolygon_getPointSize00);
-   tolua_function(tolua_S,"getMaterial",tolua_FsLibFaeris___VertexPolygon_getMaterial00);
-   tolua_function(tolua_S,"setMaterial",tolua_FsLibFaeris___VertexPolygon_setMaterial00);
-   tolua_function(tolua_S,"getShader",tolua_FsLibFaeris___VertexPolygon_getShader00);
-   tolua_function(tolua_S,"setShader",tolua_FsLibFaeris___VertexPolygon_setShader00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___VertexPolygon_setProgramSource00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsLibFaeris___VertexPolygon_setProgramSource01);
+   tolua_function(tolua_S,"getProgramSource",tolua_FsLibFaeris___VertexPolygon_getProgramSource00);
    tolua_function(tolua_S,"setVertex",tolua_FsLibFaeris___VertexPolygon_setVertex00);
    tolua_function(tolua_S,"setVertex",tolua_FsLibFaeris___VertexPolygon_setVertex01);
    tolua_function(tolua_S,"setVertex",tolua_FsLibFaeris___VertexPolygon_setVertex02);
@@ -44665,13 +45146,6 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"VertexPolygon","LuaVertexPolygon","VertexPolygon",NULL);
   tolua_beginmodule(tolua_S,"VertexPolygon");
-   tolua_constant(tolua_S,"POINTS",LuaVertexPolygon::POINTS);
-   tolua_constant(tolua_S,"LINES",LuaVertexPolygon::LINES);
-   tolua_constant(tolua_S,"LINE_STRIP",LuaVertexPolygon::LINE_STRIP);
-   tolua_constant(tolua_S,"LINE_LOOP",LuaVertexPolygon::LINE_LOOP);
-   tolua_constant(tolua_S,"TRIANGLES",LuaVertexPolygon::TRIANGLES);
-   tolua_constant(tolua_S,"TRIANGLE_FAN",LuaVertexPolygon::TRIANGLE_FAN);
-   tolua_constant(tolua_S,"TRIANGLE_STRIP",LuaVertexPolygon::TRIANGLE_STRIP);
    tolua_function(tolua_S,"create",tolua_FsLibFaeris_VertexPolygon_create00);
    tolua_function(tolua_S,"draw",tolua_FsLibFaeris_VertexPolygon_draw00);
    tolua_function(tolua_S,"update",tolua_FsLibFaeris_VertexPolygon_update00);
@@ -45084,18 +45558,9 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"add",tolua_FsLibFaeris_ResourceMgr_add00);
    tolua_function(tolua_S,"dump",tolua_FsLibFaeris_ResourceMgr_dump00);
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"ObjectMgr","ObjectMgr","FsObject",NULL);
-  tolua_beginmodule(tolua_S,"ObjectMgr");
-   tolua_function(tolua_S,"className",tolua_FsLibFaeris_ObjectMgr_className00);
-   tolua_function(tolua_S,"manageObject",tolua_FsLibFaeris_ObjectMgr_manageObject00);
-   tolua_function(tolua_S,"unManageObject",tolua_FsLibFaeris_ObjectMgr_unManageObject00);
-   tolua_function(tolua_S,"dropObjectData",tolua_FsLibFaeris_ObjectMgr_dropObjectData00);
-   tolua_function(tolua_S,"unManageAllObject",tolua_FsLibFaeris_ObjectMgr_unManageAllObject00);
-   tolua_function(tolua_S,"getManageObjectNu",tolua_FsLibFaeris_ObjectMgr_getManageObjectNu00);
-  tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"ProgramMgr","ProgramMgr","ResourceMgr",NULL);
-  tolua_beginmodule(tolua_S,"ProgramMgr");
-   tolua_function(tolua_S,"load",tolua_FsLibFaeris_ProgramMgr_load00);
+  tolua_cclass(tolua_S,"ProgramSourceMgr","ProgramSourceMgr","ResourceMgr",NULL);
+  tolua_beginmodule(tolua_S,"ProgramSourceMgr");
+   tolua_function(tolua_S,"load",tolua_FsLibFaeris_ProgramSourceMgr_load00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"FontTTFMgr","FontTTFMgr","ResourceMgr",NULL);
   tolua_beginmodule(tolua_S,"FontTTFMgr");
@@ -45245,98 +45710,61 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"touchesPointerUp",tolua_FsLibFaeris_Layer2D_touchesPointerUp00);
    tolua_function(tolua_S,"touchesEnd",tolua_FsLibFaeris_Layer2D_touchesEnd00);
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"RenderDevice","RenderDevice","FsObject",toluaext_fscollector);
+  tolua_cclass(tolua_S,"RenderDevice","RenderDevice","FsObject",NULL);
   tolua_beginmodule(tolua_S,"RenderDevice");
-   tolua_constant(tolua_S,"FRONT_CCW",RenderDevice::FRONT_CCW);
-   tolua_constant(tolua_S,"FRONT_CW",RenderDevice::FRONT_CW);
-   tolua_constant(tolua_S,"FACE_CULL",RenderDevice::FACE_CULL);
-   tolua_constant(tolua_S,"EQUATION_NONE",RenderDevice::EQUATION_NONE);
-   tolua_constant(tolua_S,"EQUATION_ADD",RenderDevice::EQUATION_ADD);
-   tolua_constant(tolua_S,"EQUATION_SUBTRACT",RenderDevice::EQUATION_SUBTRACT);
-   tolua_constant(tolua_S,"EQUATION_REVERSE_SUBTRACT",RenderDevice::EQUATION_REVERSE_SUBTRACT);
-   tolua_constant(tolua_S,"FACTOR_ZERO",RenderDevice::FACTOR_ZERO);
-   tolua_constant(tolua_S,"FACTOR_ONE",RenderDevice::FACTOR_ONE);
-   tolua_constant(tolua_S,"FACTOR_SRC_COLOR",RenderDevice::FACTOR_SRC_COLOR);
-   tolua_constant(tolua_S,"FACTOR_ONE_MINUS_SRC_COLOR",RenderDevice::FACTOR_ONE_MINUS_SRC_COLOR);
-   tolua_constant(tolua_S,"FACTOR_DST_COLOR",RenderDevice::FACTOR_DST_COLOR);
-   tolua_constant(tolua_S,"FACTOR_ONE_MINUS_DST_COLOR",RenderDevice::FACTOR_ONE_MINUS_DST_COLOR);
-   tolua_constant(tolua_S,"FACTOR_SRC_ALPHA",RenderDevice::FACTOR_SRC_ALPHA);
-   tolua_constant(tolua_S,"FACTOR_ONE_MINUS_SRC_ALPHA",RenderDevice::FACTOR_ONE_MINUS_SRC_ALPHA);
-   tolua_constant(tolua_S,"FACTOR_DST_ALPHA",RenderDevice::FACTOR_DST_ALPHA);
-   tolua_constant(tolua_S,"FACTOR_ONE_MINUS_DST_ALPHA",RenderDevice::FACTOR_ONE_MINUS_DST_ALPHA);
-   tolua_constant(tolua_S,"FACTOR_SRC_ALPHA_SATURATE",RenderDevice::FACTOR_SRC_ALPHA_SATURATE);
-   tolua_constant(tolua_S,"POINTS",RenderDevice::POINTS);
-   tolua_constant(tolua_S,"LINES",RenderDevice::LINES);
-   tolua_constant(tolua_S,"LINE_STRIP",RenderDevice::LINE_STRIP);
-   tolua_constant(tolua_S,"LINE_LOOP",RenderDevice::LINE_LOOP);
-   tolua_constant(tolua_S,"TRIANGLES",RenderDevice::TRIANGLES);
-   tolua_constant(tolua_S,"TRIANGLE_STRIP",RenderDevice::TRIANGLE_STRIP);
-   tolua_constant(tolua_S,"TRIANGLE_FAN",RenderDevice::TRIANGLE_FAN);
-   tolua_constant(tolua_S,"U_F_1",RenderDevice::U_F_1);
-   tolua_constant(tolua_S,"U_F_2",RenderDevice::U_F_2);
-   tolua_constant(tolua_S,"U_F_3",RenderDevice::U_F_3);
-   tolua_constant(tolua_S,"U_F_4",RenderDevice::U_F_4);
-   tolua_constant(tolua_S,"U_I_1",RenderDevice::U_I_1);
-   tolua_constant(tolua_S,"U_I_2",RenderDevice::U_I_2);
-   tolua_constant(tolua_S,"U_I_3",RenderDevice::U_I_3);
-   tolua_constant(tolua_S,"U_I_4",RenderDevice::U_I_4);
-   tolua_constant(tolua_S,"U_UI_1",RenderDevice::U_UI_1);
-   tolua_constant(tolua_S,"U_UI_2",RenderDevice::U_UI_2);
-   tolua_constant(tolua_S,"U_UI_3",RenderDevice::U_UI_3);
-   tolua_constant(tolua_S,"U_UI_4",RenderDevice::U_UI_4);
-   tolua_constant(tolua_S,"U_M_2",RenderDevice::U_M_2);
-   tolua_constant(tolua_S,"U_M_3",RenderDevice::U_M_3);
-   tolua_constant(tolua_S,"U_M_4",RenderDevice::U_M_4);
-   tolua_constant(tolua_S,"U_S_1D",RenderDevice::U_S_1D);
-   tolua_constant(tolua_S,"U_S_2D",RenderDevice::U_S_2D);
-   tolua_constant(tolua_S,"U_S_3D",RenderDevice::U_S_3D);
-   tolua_constant(tolua_S,"U_S_CUBE",RenderDevice::U_S_CUBE);
-   tolua_constant(tolua_S,"U_S_1D_SHADOW",RenderDevice::U_S_1D_SHADOW);
-   tolua_constant(tolua_S,"U_S_2D_SHADOW",RenderDevice::U_S_2D_SHADOW);
-   tolua_constant(tolua_S,"U_MAX_NU",RenderDevice::U_MAX_NU);
-   tolua_function(tolua_S,"setProgram",tolua_FsLibFaeris_Render_setProgram00);
-   tolua_function(tolua_S,"bindTexture",tolua_FsLibFaeris_Render_bindTexture00);
-   tolua_function(tolua_S,"setRenderTarget",tolua_FsLibFaeris_Render_setRenderTarget00);
-   tolua_function(tolua_S,"swapBuffers",tolua_FsLibFaeris_Render_swapBuffers00);
-   tolua_function(tolua_S,"setClearColor",tolua_FsLibFaeris_Render_setClearColor00);
-   tolua_function(tolua_S,"getClearColor",tolua_FsLibFaeris_Render_getClearColor00);
-   tolua_function(tolua_S,"clear",tolua_FsLibFaeris_Render_clear00);
-   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris_Render_setColor00);
-   tolua_function(tolua_S,"getColor",tolua_FsLibFaeris_Render_getColor00);
-   tolua_function(tolua_S,"setOpacity",tolua_FsLibFaeris_Render_setOpacity00);
-   tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris_Render_getOpacity00);
-   tolua_function(tolua_S,"setProjectionMatrix",tolua_FsLibFaeris_Render_setProjectionMatrix00);
-   tolua_function(tolua_S,"pushMatrix",tolua_FsLibFaeris_Render_pushMatrix00);
-   tolua_function(tolua_S,"popMatrix",tolua_FsLibFaeris_Render_popMatrix00);
-   tolua_function(tolua_S,"loadIdentity",tolua_FsLibFaeris_Render_loadIdentity00);
-   tolua_function(tolua_S,"mulMatrix",tolua_FsLibFaeris_Render_mulMatrix00);
-   tolua_function(tolua_S,"setMatrix",tolua_FsLibFaeris_Render_setMatrix00);
-   tolua_function(tolua_S,"translate",tolua_FsLibFaeris_Render_translate00);
-   tolua_function(tolua_S,"scale",tolua_FsLibFaeris_Render_scale00);
-   tolua_function(tolua_S,"rotate",tolua_FsLibFaeris_Render_rotate00);
-   tolua_function(tolua_S,"getProjectionMatrix",tolua_FsLibFaeris_Render_getProjectionMatrix00);
-   tolua_function(tolua_S,"getMatrix",tolua_FsLibFaeris_Render_getMatrix00);
-   tolua_function(tolua_S,"getMVPMatrix",tolua_FsLibFaeris_Render_getMVPMatrix00);
-   tolua_function(tolua_S,"disableAllAttrArray",tolua_FsLibFaeris_Render_disableAllAttrArray00);
-   tolua_function(tolua_S,"enableAttrArray",tolua_FsLibFaeris_Render_enableAttrArray00);
-   tolua_function(tolua_S,"disableAttrArray",tolua_FsLibFaeris_Render_disableAttrArray00);
-   tolua_function(tolua_S,"setVertexAttrPointer",tolua_FsLibFaeris_Render_setVertexAttrPointer00);
-   tolua_function(tolua_S,"setAndEnableVertexAttrPointer",tolua_FsLibFaeris_Render_setAndEnableVertexAttrPointer00);
-   tolua_function(tolua_S,"drawFace3",tolua_FsLibFaeris_Render_drawFace300);
-   tolua_function(tolua_S,"drawArray",tolua_FsLibFaeris_Render_drawArray00);
-   tolua_function(tolua_S,"setViewport",tolua_FsLibFaeris_Render_setViewport00);
-   tolua_function(tolua_S,"setScissorArea",tolua_FsLibFaeris_Render_setScissorArea00);
-   tolua_function(tolua_S,"setScissorArea",tolua_FsLibFaeris_Render_setScissorArea01);
-   tolua_function(tolua_S,"getScissorArea",tolua_FsLibFaeris_Render_getScissorArea00);
-   tolua_function(tolua_S,"setScissorEnabled",tolua_FsLibFaeris_Render_setScissorEnabled00);
-   tolua_function(tolua_S,"getScissorEnabled",tolua_FsLibFaeris_Render_getScissorEnabled00);
-   tolua_function(tolua_S,"setDepthTest",tolua_FsLibFaeris_Render_setDepthTest00);
-   tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris_Render_setBlend00);
-   tolua_function(tolua_S,"setUniform",tolua_FsLibFaeris_Render_setUniform00);
-   tolua_function(tolua_S,"getUniformLocation",tolua_FsLibFaeris_Render_getUniformLocation00);
-   tolua_function(tolua_S,"getAttrLocation",tolua_FsLibFaeris_Render_getAttrLocation00);
-   tolua_function(tolua_S,"getCacheUniformLocation",tolua_FsLibFaeris_Render_getCacheUniformLocation00);
-   tolua_function(tolua_S,"getCacheAttrLocation",tolua_FsLibFaeris_Render_getCacheAttrLocation00);
+   tolua_function(tolua_S,"setProgram",tolua_FsLibFaeris_RenderDevice_setProgram00);
+   tolua_function(tolua_S,"getProgram",tolua_FsLibFaeris_RenderDevice_getProgram00);
+   tolua_function(tolua_S,"bindTexture",tolua_FsLibFaeris_RenderDevice_bindTexture00);
+   tolua_function(tolua_S,"setRenderTarget",tolua_FsLibFaeris_RenderDevice_setRenderTarget00);
+   tolua_function(tolua_S,"getRenderTarget",tolua_FsLibFaeris_RenderDevice_getRenderTarget00);
+   tolua_function(tolua_S,"swapBuffers",tolua_FsLibFaeris_RenderDevice_swapBuffers00);
+   tolua_function(tolua_S,"clear",tolua_FsLibFaeris_RenderDevice_clear00);
+   tolua_function(tolua_S,"setClearColor",tolua_FsLibFaeris_RenderDevice_setClearColor00);
+   tolua_function(tolua_S,"getClearColor",tolua_FsLibFaeris_RenderDevice_getClearColor00);
+   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris_RenderDevice_setColor00);
+   tolua_function(tolua_S,"getColor",tolua_FsLibFaeris_RenderDevice_getColor00);
+   tolua_function(tolua_S,"setOpacity",tolua_FsLibFaeris_RenderDevice_setOpacity00);
+   tolua_function(tolua_S,"getOpacity",tolua_FsLibFaeris_RenderDevice_getOpacity00);
+   tolua_function(tolua_S,"setViewport",tolua_FsLibFaeris_RenderDevice_setViewport00);
+   tolua_function(tolua_S,"setScissorArea",tolua_FsLibFaeris_RenderDevice_setScissorArea00);
+   tolua_function(tolua_S,"setScissorArea",tolua_FsLibFaeris_RenderDevice_setScissorArea01);
+   tolua_function(tolua_S,"getScissorArea",tolua_FsLibFaeris_RenderDevice_getScissorArea00);
+   tolua_function(tolua_S,"setScissorEnabled",tolua_FsLibFaeris_RenderDevice_setScissorEnabled00);
+   tolua_function(tolua_S,"getScissorEnabled",tolua_FsLibFaeris_RenderDevice_getScissorEnabled00);
+   tolua_function(tolua_S,"setDepthTestEnabled",tolua_FsLibFaeris_RenderDevice_setDepthTestEnabled00);
+   tolua_function(tolua_S,"getDepthTestEnabled",tolua_FsLibFaeris_RenderDevice_getDepthTestEnabled00);
+   tolua_function(tolua_S,"setDepthWriteEnabled",tolua_FsLibFaeris_RenderDevice_setDepthWriteEnabled00);
+   tolua_function(tolua_S,"getDepthWrirteEnabled",tolua_FsLibFaeris_RenderDevice_getDepthWrirteEnabled00);
+   tolua_function(tolua_S,"setBlend",tolua_FsLibFaeris_RenderDevice_setBlend00);
+   tolua_function(tolua_S,"setDoubleSideEnabled",tolua_FsLibFaeris_RenderDevice_setDoubleSideEnabled00);
+   tolua_function(tolua_S,"getDoubleSideEnabled",tolua_FsLibFaeris_RenderDevice_getDoubleSideEnabled00);
+   tolua_function(tolua_S,"setProjectionMatrix",tolua_FsLibFaeris_RenderDevice_setProjectionMatrix00);
+   tolua_function(tolua_S,"getProjectionMatrix",tolua_FsLibFaeris_RenderDevice_getProjectionMatrix00);
+   tolua_function(tolua_S,"setViewMatrix",tolua_FsLibFaeris_RenderDevice_setViewMatrix00);
+   tolua_function(tolua_S,"getViewMatrix",tolua_FsLibFaeris_RenderDevice_getViewMatrix00);
+   tolua_function(tolua_S,"setWorldMatrix",tolua_FsLibFaeris_RenderDevice_setWorldMatrix00);
+   tolua_function(tolua_S,"getWorldMatrix",tolua_FsLibFaeris_RenderDevice_getWorldMatrix00);
+   tolua_function(tolua_S,"pushWorldMatrix",tolua_FsLibFaeris_RenderDevice_pushWorldMatrix00);
+   tolua_function(tolua_S,"popWorldMatrix",tolua_FsLibFaeris_RenderDevice_popWorldMatrix00);
+   tolua_function(tolua_S,"loadWorldMatrixIdentity",tolua_FsLibFaeris_RenderDevice_loadWorldMatrixIdentity00);
+   tolua_function(tolua_S,"mulWorldMatrix",tolua_FsLibFaeris_RenderDevice_mulWorldMatrix00);
+   tolua_function(tolua_S,"translateWorldMatrix",tolua_FsLibFaeris_RenderDevice_translateWorldMatrix00);
+   tolua_function(tolua_S,"scaleWorldMatrix",tolua_FsLibFaeris_RenderDevice_scaleWorldMatrix00);
+   tolua_function(tolua_S,"rotateWorldMatrix",tolua_FsLibFaeris_RenderDevice_rotateWorldMatrix00);
+   tolua_function(tolua_S,"getMatrix",tolua_FsLibFaeris_RenderDevice_getMatrix00);
+   tolua_function(tolua_S,"getAttrLocation",tolua_FsLibFaeris_RenderDevice_getAttrLocation00);
+   tolua_function(tolua_S,"getCacheAttrLocation",tolua_FsLibFaeris_RenderDevice_getCacheAttrLocation00);
+   tolua_function(tolua_S,"disableAllAttrArray",tolua_FsLibFaeris_RenderDevice_disableAllAttrArray00);
+   tolua_function(tolua_S,"enableAttrArray",tolua_FsLibFaeris_RenderDevice_enableAttrArray00);
+   tolua_function(tolua_S,"disableAttrArray",tolua_FsLibFaeris_RenderDevice_disableAttrArray00);
+   tolua_function(tolua_S,"setVertexAttrPointer",tolua_FsLibFaeris_RenderDevice_setVertexAttrPointer00);
+   tolua_function(tolua_S,"setAndEnableVertexAttrPointer",tolua_FsLibFaeris_RenderDevice_setAndEnableVertexAttrPointer00);
+   tolua_function(tolua_S,"getUniformLocation",tolua_FsLibFaeris_RenderDevice_getUniformLocation00);
+   tolua_function(tolua_S,"getCacheUniformLocation",tolua_FsLibFaeris_RenderDevice_getCacheUniformLocation00);
+   tolua_function(tolua_S,"setUniform",tolua_FsLibFaeris_RenderDevice_setUniform00);
+   tolua_function(tolua_S,"setUniform",tolua_FsLibFaeris_RenderDevice_setUniform01);
+   tolua_function(tolua_S,"drawFace3",tolua_FsLibFaeris_RenderDevice_drawFace300);
+   tolua_function(tolua_S,"drawArray",tolua_FsLibFaeris_RenderDevice_drawArray00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Color","Color","",tolua_collect_Color);
@@ -45367,6 +45795,20 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,".sub",tolua_FsLibFaeris_Color__sub00);
    tolua_function(tolua_S,".mul",tolua_FsLibFaeris_Color__mul00);
    tolua_function(tolua_S,".eq",tolua_FsLibFaeris_Color__eq00);
+  tolua_endmodule(tolua_S);
+  #ifdef __cplusplus
+  tolua_cclass(tolua_S,"Color3f","Color3f","",tolua_collect_Color3f);
+  #else
+  tolua_cclass(tolua_S,"Color3f","Color3f","",NULL);
+  #endif
+  tolua_beginmodule(tolua_S,"Color3f");
+   tolua_function(tolua_S,"new",tolua_FsLibFaeris_Color3f_new00);
+   tolua_function(tolua_S,"new_local",tolua_FsLibFaeris_Color3f_new00_local);
+   tolua_function(tolua_S,".call",tolua_FsLibFaeris_Color3f_new00_local);
+   tolua_function(tolua_S,"set",tolua_FsLibFaeris_Color3f_set00);
+   tolua_variable(tolua_S,"r",tolua_get_Color3f_r,tolua_set_Color3f_r);
+   tolua_variable(tolua_S,"g",tolua_get_Color3f_g,tolua_set_Color3f_g);
+   tolua_variable(tolua_S,"b",tolua_get_Color3f_b,tolua_set_Color3f_b);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Color4f","Color4f","",tolua_collect_Color4f);
@@ -45527,6 +45969,7 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"add",tolua_FsLibFaeris_Matrix4_add00);
    tolua_function(tolua_S,"mul",tolua_FsLibFaeris_Matrix4_mul00);
    tolua_function(tolua_S,"mulScaler",tolua_FsLibFaeris_Matrix4_mulScaler00);
+   tolua_function(tolua_S,"mulVector2",tolua_FsLibFaeris_Matrix4_mulVector200);
    tolua_function(tolua_S,"mulVector3",tolua_FsLibFaeris_Matrix4_mulVector300);
    tolua_function(tolua_S,"mulVector4",tolua_FsLibFaeris_Matrix4_mulVector400);
    tolua_function(tolua_S,"transpose",tolua_FsLibFaeris_Matrix4_transpose00);
@@ -45546,11 +45989,11 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"makeScale",tolua_FsLibFaeris_Matrix4_makeScale00);
    tolua_function(tolua_S,"makeScale",tolua_FsLibFaeris_Matrix4_makeScale01);
    tolua_function(tolua_S,"makeIdentity",tolua_FsLibFaeris_Matrix4_makeIdentity00);
-   tolua_function(tolua_S,"makeCompose",tolua_FsLibFaeris_Matrix4_makeCompose00);
    tolua_function(tolua_S,"makeLookAt",tolua_FsLibFaeris_Matrix4_makeLookAt00);
    tolua_function(tolua_S,"makeFrustum",tolua_FsLibFaeris_Matrix4_makeFrustum00);
    tolua_function(tolua_S,"makePerspective",tolua_FsLibFaeris_Matrix4_makePerspective00);
    tolua_function(tolua_S,"makeOrthographic",tolua_FsLibFaeris_Matrix4_makeOrthographic00);
+   tolua_function(tolua_S,"makeCompose",tolua_FsLibFaeris_Matrix4_makeCompose00);
    tolua_function(tolua_S,"setTranslate",tolua_FsLibFaeris_Matrix4_setTranslate00);
    tolua_function(tolua_S,"setTranslate",tolua_FsLibFaeris_Matrix4_setTranslate01);
    tolua_function(tolua_S,"setRotationFromEuler",tolua_FsLibFaeris_Matrix4_setRotationFromEuler00);
@@ -45570,6 +46013,7 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getColumnZ",tolua_FsLibFaeris_Matrix4_getColumnZ00);
    tolua_function(tolua_S,"getTranslate",tolua_FsLibFaeris_Matrix4_getTranslate00);
    tolua_function(tolua_S,"getScale",tolua_FsLibFaeris_Matrix4_getScale00);
+   tolua_function(tolua_S,"set",tolua_FsLibFaeris_Matrix4_set00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Rect2D","Rect2D","",tolua_collect_Rect2D);

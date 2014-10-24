@@ -24,6 +24,19 @@ class Color
 		bool operator==(Color right);
 };
 
+
+class Color3f 
+{
+	public:
+		Color3f(const Color& c);
+		void set(float _r,float _g,float _b);
+	public:
+		float r;
+		float g;
+		float b;
+};
+
+
 class Color4f
 {
 	public:

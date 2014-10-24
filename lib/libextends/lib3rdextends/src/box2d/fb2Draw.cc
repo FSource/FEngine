@@ -6,7 +6,9 @@
 #include "math/FsMathUtil.h"
 
 #include "FsGlobal.h"
-#include "mgr/FsProgramMgr.h"
+#include "mgr/FsProgramSourceMgr.h"
+#include "graphics/shader/FsProgram.h"
+#include "graphics/shader/FsStreamMap.h"
 
 NS_FS_BEGIN
 
@@ -16,8 +18,14 @@ fb2Draw::fb2Draw(float ratio)
 	m_material=Material2D::create();
 	m_material->addRef();
 
-	m_program=(Program*)Global::programMgr()->load(FS_PRE_SHADER_V4F);
-	FS_SAFE_ADD_REF(m_program);
+	static ProgramSource* S_programSource=NULL;
+
+	if(S_programSource==NULL)
+	{
+		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
+	}
+
+	m_material->setProgramSource(S_programSource);
 
 }
 
@@ -25,7 +33,6 @@ fb2Draw::fb2Draw(float ratio)
 fb2Draw::~fb2Draw()
 {
 	FS_SAFE_DEC_REF(m_material);
-	FS_SAFE_DEC_REF(m_program);
 }
 
 
@@ -44,25 +51,28 @@ void fb2Draw::DrawPolygon(const b2Vec2* old_vertices, int vertexCount,const b2Co
 	}
 
 
-	RenderDevice* r=Global::renderDevice();
-	r->pushMatrix();
+	RenderDevice* rd=Global::renderDevice();
+	rd->pushWorldMatrix();
 
 	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
 
-	r->setProgram(m_program);
-	m_material->configRenderDevice(r);
+	rd->setProgram(m_material->getProgram(NULL));
 
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	m_material->configRenderDevice(rd);
 
-	r->disableAllAttrArray();
+
+	StreamMap* map_v=m_material->getProgram(NULL)->getStreamMap(E_StreamType::VERTICES);
+
+	rd->disableAllAttrArray();
 
 	int vertex_nu=vertexCount;
 
-	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertices);
-	r->drawArray(RenderDevice::LINE_LOOP,0,vertex_nu);
-	r->popMatrix();
+	rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,vertex_nu,0,vertices);
+	rd->drawArray(E_DrawMode::LINE_LOOP,0,vertex_nu);
+
+	rd->popWorldMatrix();
 
 	delete[] vertices;
 
@@ -84,7 +94,7 @@ void fb2Draw::DrawSolidPolygon(const b2Vec2* old_vertices,int32 vertexCount,cons
 
 
 	RenderDevice* r=Global::renderDevice();
-	r->pushMatrix();
+	r->pushWorldMatrix();
 
 	int vertex_nu=vertexCount;
 
@@ -94,14 +104,14 @@ void fb2Draw::DrawSolidPolygon(const b2Vec2* old_vertices,int32 vertexCount,cons
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
 
-	r->setProgram(m_program);
+	r->setProgram(m_material->getProgram(NULL));
 	m_material->configRenderDevice(r);
 
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	StreamMap* map_v=m_material->getProgram(NULL)->getStreamMap(E_StreamType::VERTICES);
 
 	r->disableAllAttrArray();
 
-	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertices);
+	r->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,vertex_nu,0,vertices);
 	r->drawArray(E_DrawMode::TRIANGLE_FAN,0,vertexCount);
 
 
@@ -109,9 +119,9 @@ void fb2Draw::DrawSolidPolygon(const b2Vec2* old_vertices,int32 vertexCount,cons
 	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->configRenderDevice(r);
 
-	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertices);
+	r->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,vertex_nu,0,vertices);
 	r->drawArray(E_DrawMode::LINE_LOOP,0,vertex_nu);
-	r->popMatrix();
+	r->popWorldMatrix();
 
 	delete[] vertices;
 
@@ -136,24 +146,26 @@ void fb2Draw::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& co
 	}
 
 	RenderDevice* r=Global::renderDevice();
-	r->pushMatrix();
+
+	r->pushWorldMatrix();
 
 	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
 
-	r->setProgram(m_program);
+
+	r->setProgram(m_material->getProgram(NULL));
 	m_material->configRenderDevice(r);
 
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-
+	StreamMap* map_v=m_material->getProgram(NULL)->getStreamMap(E_StreamType::VERTICES);
 
 
 	r->disableAllAttrArray();
 
-	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertexCount,0,vertex);
-	r->drawArray(RenderDevice::LINE_LOOP,0,vertexCount);
-	r->popMatrix();	
+	r->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,vertexCount,0,vertex);
+	r->drawArray(E_DrawMode::LINE_LOOP,0,vertexCount);
+
+	r->popWorldMatrix();	
 
 }
 
@@ -178,32 +190,30 @@ void fb2Draw::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2
 	}
 
 	RenderDevice* r=Global::renderDevice();
-	r->pushMatrix();
+	r->pushWorldMatrix();
 
 	m_material->setColor(Color4f(color.r*0.5f,color.g*0.5f,color.b*0.5f,0.5f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
-	r->setProgram(m_program);
+
+	r->setProgram(m_material->getProgram(NULL));
 	m_material->configRenderDevice(r);
 
-
-	/* draw inner */
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
-
+	StreamMap* map_v=m_material->getProgram(NULL)->getStreamMap(E_StreamType::VERTICES);
 
 
 	r->disableAllAttrArray();
 
-	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertex);
-	r->drawArray(RenderDevice::TRIANGLE_FAN,0,vertexCount);
+	r->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,vertex_nu,0,vertex);
+	r->drawArray(E_DrawMode::TRIANGLE_FAN,0,vertexCount);
 
 	/* draw outline */
 	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->configRenderDevice(r);
 
-	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertex);
-	r->drawArray(RenderDevice::LINE_LOOP,0,vertex_nu);
-	r->popMatrix();
+	r->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,vertex_nu,0,vertex);
+	r->drawArray(E_DrawMode::LINE_LOOP,0,vertex_nu);
+	r->popWorldMatrix();
 
 }
 
@@ -217,24 +227,25 @@ void fb2Draw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& col
 	int vertex_nu=2;
 
 	RenderDevice* r=Global::renderDevice();
-	r->pushMatrix();
+	r->pushWorldMatrix();
 
 	
 
 	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
 	m_material->setOpacity(1.0f);
-	r->setProgram(m_program);
 
+
+	r->setProgram(m_material->getProgram(NULL));
 	m_material->configRenderDevice(r);
-	int pos_loc=r->getCacheAttrLocation(FS_ATTR_V4F_LOC,FS_ATTR_V4F_NAME);
+	StreamMap* map_v=m_material->getProgram(NULL)->getStreamMap(E_StreamType::VERTICES);
 
 	r->disableAllAttrArray();
 
-	r->setAndEnableVertexAttrPointer(pos_loc,2,FS_FLOAT,vertex_nu,0,vertex);
-	r->drawArray(RenderDevice::LINE_LOOP,0,2);
+	r->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,vertex_nu,0,vertex);
+	r->drawArray(E_DrawMode::LINE_LOOP,0,2);
 
-	r->popMatrix();
+	r->popWorldMatrix();
 
 }
 

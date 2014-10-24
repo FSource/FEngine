@@ -605,6 +605,7 @@ Quaternion Matrix4::getRotate()
 */
 
 
+
 void Matrix4::rawSetRotateFromEuler(float rx,float ry,float rz,E_EulerOrientType type)
 {
 	float cx = Math::cosa( rx );  //a

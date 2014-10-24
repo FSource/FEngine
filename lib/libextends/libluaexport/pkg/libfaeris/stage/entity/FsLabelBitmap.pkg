@@ -4,22 +4,25 @@ $#include "luaext/FsLuaEntity.h"
 class LabelBitmap@__LabelBitmap:public Entity 
 {
 	public:
+		void setMaterial(Material2D* mat);
+		Material2D* getMaterial() ;
+
 		/* material */
-		void setColor(Color c);
-		void setColor(Color4f c);
+		void setColor(const Color4f& c);
+		void setColor(const Color& c);
 		Color4f getColor();
 
 		void setOpacity(float opacity);
 		float getOpacity();
 
-		void setBlend(int eq,int src,int dst);
-		void setBlend(int src,int dst);
+		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor dst);
+		void setBlend(E_BlendFactor src,E_BlendFactor dst);
 
-		TextureMaterial* getMaterial();
-		void setMaterial(TextureMaterial* mat);
+		void setProgramSource(ProgramSource* ps);
+		void setProgramSource(const char* filename);
+		ProgramSource* getProgramSource();
 
-		Program* getShader();
-		void setShader(Program* shader);
+
 
 	public:
 		int setString(const char* utf8_str);
@@ -27,6 +30,7 @@ class LabelBitmap@__LabelBitmap:public Entity
 		int setString(const char* utf8_str,int start,int num);
 
 		const char* getString();
+
 
 		void setAlign(int alignh,int alignv);
 		void setAlignOffset(float x,float y);
@@ -46,6 +50,7 @@ class LabelBitmap@__LabelBitmap:public Entity
 
 		int getTextAlign();
 		void getBounds(float* x,float* y);
+
 };
 
 class LuaLabelBitmap@LabelBitmap:public LabelBitmap
@@ -75,7 +80,7 @@ class LuaLabelBitmap@LabelBitmap:public LabelBitmap
 		static LuaLabelBitmap* create(FontBitmap* font);
 
 	public:
-		void onDraw@draw(Render* r);
+		void onDraw@draw(RenderDevice* r);
 		void onUpdate@update(float dt);
 		bool onTouchBegin@touchBegin(float x,float y);
 		bool onTouchMove@touchMove(float x,float y);

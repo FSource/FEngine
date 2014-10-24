@@ -9,7 +9,7 @@ attribute vec2 a_texCoord0 = $(UVS);
 
 #endif 
 
-uniform mat4 u_worldViewProjectionMatrix=$(WORLD_VIEW_PROJECTION_MATRIX);
+uniform mat4 u_worldViewProjectionMatrix=$(R.WORLD_VIEW_PROJECTION_MAT);
 varying vec2 v_texCoord0;
 
 /* may name is chen lin */
@@ -36,15 +36,16 @@ precision highp float;
 precision mediump float;
 #endif
 
-uniform sampler2D u_texture0=$(UNDEF);
-uniform vec3 u_color=$(1.0,1.0,1.0);
+uniform sampler2D u_texture0=$(M.COLOR_MAP);
+uniform vec4 u_color=$(M.COLOR);
+uniform vec4 u_opaciy=$(M.EXT[2]);
 
 varying vec2 v_texCoord0;
 
 void main(void)
 {
 	gl_FragColor = texture2D(u_texture0,v_texCoord0);
-	gl_FragColor.xyz*=u_color;
+	gl_FragColor.xyz[0]*=u_color;
 }
 
 

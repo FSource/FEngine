@@ -1,0 +1,10 @@
+$#include "mgr/FsProgramSourceMgr.h"
+
+class ProgramSourceMgr:public ResourceMgr 
+{
+	public:
+		ProgramSource* load(const char* filename);
+
+};
+
+

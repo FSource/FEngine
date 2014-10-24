@@ -19,7 +19,7 @@ class LuaColorLayer@ColorLayer:public ColorLayer
 
 	public:
 		void onUpdate@update(float dt);
-		void onDraw@draw(Render* render);
+		void onDraw@draw(RenderDevice* render);
 
 		bool onTouchBegin@touchBegin(float x,float y);
 		bool onTouchEnd@touchEnd(float x,float y);

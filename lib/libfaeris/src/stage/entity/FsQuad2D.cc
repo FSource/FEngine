@@ -631,7 +631,6 @@ const char* Quad2D::className()
 Quad2D::Quad2D()
 {
 	m_texture=NULL;
-	m_material=NULL;
 	m_width=0;
 	m_height=0;
 	m_anchorX=0.5;
@@ -698,7 +697,7 @@ bool Quad2D::init(const Color4f& c)
 	/* Change Shader To Color Mode */
 	if(S_programSource==NULL)
 	{
-		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_C4F);
+		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
 	}
 
 	setProgramSource(S_programSource);
