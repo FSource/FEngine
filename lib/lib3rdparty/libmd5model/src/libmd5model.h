@@ -1,189 +1,478 @@
-/* Copyright (C) 2004 W.P. van Paassen - peter@paassen.tmfweb.nl
+#ifndef  _LIB_MO5_MODEL_H_
+#define  _LIB_MO5_MODEL_H_ 
 
-   This file is part of libmd5model
-   
-   libmd5model will attempt to parse ID's Doom3 mesh, animation and camera model formats
-   
-   libmd5model is free software; you can redistribute it and/or modify it under
-   the terms of the GNU General Public License as published by the Free
-   Software Foundation; either version 2 of the License, or (at your
-   option) any later version.
 
-   libmd5model is distributed in the hope that it will be useful, but WITHOUT
-   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-   FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-   for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with libmd5model; see the file COPYING.  If not, write to the Free
-   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA  */
-
-#ifndef LIBMD5MODEL_H
-#define LIBMD5MODEL_H
 #include <stdio.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/* MD5MESH */
+#include <vector>
+#include <string>
+#include <math.h>
 
 
-typedef struct
+/* MESH */
+class Md5MeshHeader
 {
-	int	version;
-	const char* commandline;
-	int	num_joints;
-	int	num_meshes;
-} MD5MESH_HEADER;
+	public:
+		int m_version;
+		std::string m_commandLine;
+		int m_jointsNu;
+		int m_meshNu;
+};
 
-typedef struct 
+class Md5Point 
 {
-	float x,y,z;
-} MD5_POINT;
+	public:
+		Md5Point(float _x,float _y,float _z)
+		{
+			x=_x; y=_y; z=_z;
+		}
+		Md5Point()
+		{
+			x=0;y=0;z=0;
+		}
+	public:
+		float x,y,z;
+};
 
-typedef struct
+
+class Md5Quat
 {
-	float x,y,z,w;
-} MD5_QUAT;
+	public:
+		Md5Quat(float _x,float _y,float _z)
+		{
+			x=_x;
+			y=_y;
+			z=_z;
+			w=sqrt(1-_x*_x-_y*_y-_z*_z);
+		}
+		Md5Quat()
+		{
+			x=0;y=0;z=0;w=0;
+		}
 
-typedef struct md5mesh_joint
+
+	public:
+		float x,y,z,w;
+};
+
+class Md5MeshJoint 
 {
-	const char* name;
-	struct md5mesh_joint* parent;
-	MD5_POINT position;
-	MD5_QUAT orientation;
-} MD5MESH_JOINT;
 
-typedef struct md5_weight
+	public:
+		Md5MeshJoint(const std::string& name,int p_index,const Md5Point& p,const Md5Quat& q)
+		{
+			m_jointName=name;
+			m_parentIndex=p_index;
+			m_position=p;
+			m_orientation=q;
+		}
+
+
+	public:
+		std::string m_jointName;
+		int m_index;
+		int m_parentIndex;
+		Md5Point m_position;
+		Md5Quat m_orientation;
+};
+
+class Md5Weight
 {
-	/*int id;*/
-	MD5MESH_JOINT* joint;
-	float weight;
-	float offset_x;
-	float offset_y;
-	float offset_z;
-} MD5_WEIGHT;
+	public:
+		Md5Weight(int joint_index,float weight,float x,float y,float z)
+		{
+			m_jointIndex=joint_index;
+			m_weight=weight;
+			m_offsetX=x;
+			m_offsetY=y;
+			m_offsetZ=z;
+		}
 
-typedef struct md5_vertex
+		Md5Weight()
+		{
+			m_jointIndex=0;
+			m_weight=0.0f;
+			m_offsetX=0.0f;
+			m_offsetY=0.0f;
+			m_offsetZ=0.0f;
+		}
+
+
+
+	public:
+		int m_jointIndex;
+		float m_weight;
+		float m_offsetX;
+		float m_offsetY;
+		float m_offsetZ;
+};
+
+
+class Md5Vertex
 {
-	/*int id;*/
-	float texture_u;
-	float texture_v;
-	MD5_WEIGHT* weight;
-	int num_weights;
-} MD5_VERTEX;
+	public:
+		Md5Vertex(float u,float v,int wi,int wn)
+		{
+			m_texU=u;
+			m_texV=v;
+			m_weightIndex=wi;
+			m_weightNu=wn;
+		}
 
-typedef struct md5_triangle
+		Md5Vertex()
+		{
+			m_texU=0.0f;
+			m_texV=0.0f;
+			m_weightIndex=0;
+			m_weightNu=0;
+		}
+
+
+
+	public:
+		float m_texU;
+		float m_texV;
+		int m_weightIndex;
+		int m_weightNu;
+};
+
+class Md5Triangle 
 {
-	/*int id;*/
-	MD5_VERTEX* vertex1;
-	MD5_VERTEX* vertex2;
-	MD5_VERTEX* vertex3;
-} MD5_TRIANGLE;
 
-typedef struct md5_mesh {
-	const char* shader;
-	int num_verts;
-	MD5_VERTEX* verts;
-	int num_tris;
-	MD5_TRIANGLE* tris;
-	int num_weights;
-	MD5_WEIGHT* weights;
-} MD5_MESH;
+	public:
+		Md5Triangle(int a,int b,int c)
+		{
+			m_vertIndexA=a;
+			m_vertIndexB=b;
+			m_vertIndexC=c;
+		}
+		Md5Triangle()
+		{
+			m_vertIndexA=0;
+			m_vertIndexB=0;
+			m_vertIndexC=0;
+		}
 
-MD5MESH_HEADER* MD5Mesh_get_header();
-MD5_MESH* MD5Mesh_get_mesh(int idx);
-MD5_MESH** MD5Mesh_get_meshes();
-MD5_VERTEX* MD5Mesh_get_vertex(int mesh_id, int vertex_id);
-MD5_TRIANGLE* MD5Mesh_get_triangle(int mesh_id, int triangle_id);
-MD5_WEIGHT* MD5Mesh_get_weight(int mesh_id, int weight_id);
-MD5_VERTEX** MD5Mesh_get_vertices(int mesh_id);
-MD5_TRIANGLE** MD5Mesh_get_triangles(int mesh_id);
-MD5_WEIGHT** MD5Mesh_get_weights(int mesh_id);
-MD5MESH_JOINT* MD5Mesh_get_joint(int idx);
-MD5MESH_JOINT** MD5Mesh_get_joints();
 
-/* MD5ANIM */
+	public:
+		int m_vertIndexA;
+		int m_vertIndexB;
+		int m_vertIndexC;
+};
 
-typedef struct
+class Md5SubMesh 
 {
-	int	version;
-	const char* commandline;
-	int	num_frames;
-	int	num_joints;
-	int	frame_rate;	
-	int	num_animated_components;
-} MD5ANIM_HEADER;
+	public:
+		/* vertex */
+		void setVertex( int index,const Md5Vertex& v)
+		{
+			if(index>=(int)m_verts.size())
+			{
+				printf("Vertex Index Out Of Rangle");
+				return;
+			}
+			m_verts[index]=v;
+		}
 
-typedef struct md5_bound
+		void setVertexNu(int nu)
+		{
+			m_verts.resize(nu);
+		}
+
+
+		/* triangle */
+		void setTriangle(int index,const Md5Triangle& t)
+		{
+			if(index >= (int)m_tris.size())
+			{
+				printf("Triangle Outof Rangle");
+				return;
+			}
+
+			m_tris[index]=t;
+		}
+
+		void setTriangleNu(int nu)
+		{
+			m_tris.resize(nu);
+		}
+
+
+		/* weight */
+		void setWeight(int index,const Md5Weight& w)
+		{
+			if(index >= (int) m_weights.size())
+			{
+				printf("weight index outof range ");
+				return;
+			}
+			m_weights[index]=w;
+		}
+
+		void setWeightNu( int nu)
+		{
+			m_weights.resize(nu);
+		}
+
+		void setTextureUrl(const char* url)
+		{
+			m_textureUrl=url;
+		}
+
+
+	public:
+		std::string m_textureUrl;
+		std::vector<Md5Vertex> m_verts;
+		std::vector<Md5Triangle> m_tris;
+		std::vector<Md5Weight> m_weights;
+};
+
+class Md5Mesh 
 {
-	MD5_POINT min;
-	MD5_POINT max;	
-} MD5_BOUND;
 
-typedef struct md5anim_frame
+	public:
+		void commitSubMesh()
+		{
+			if(m_curSubMesh!=NULL)
+			{
+				m_subMeshs.push_back(m_curSubMesh);
+				m_curSubMesh=NULL;
+			}
+		}
+
+		Md5SubMesh* getCurrentSubMesh()
+		{
+			if(!m_curSubMesh)
+			{
+				m_curSubMesh=new Md5SubMesh;
+			}
+
+			return m_curSubMesh;
+		}
+
+		void setJointNu(int nu){m_joints.resize(nu);}
+
+
+		void appendJoint(const std::string& name, int parent_index,const Md5Point& p,const Md5Quat& q)
+		{
+			m_joints.push_back(new Md5MeshJoint(name,parent_index,p,q));
+		}
+
+
+	public:
+		Md5Mesh()
+		{
+			m_curSubMesh=NULL;
+		}
+		~Md5Mesh()
+		{
+			if(m_curSubMesh)
+			{
+				delete m_curSubMesh;
+				m_curSubMesh=NULL;
+			}
+
+			int sub_nu=m_subMeshs.size();
+			for(int i=0;i<sub_nu;i++)
+			{
+				delete m_subMeshs[i];
+			}
+			m_subMeshs.clear();
+
+			int joint_nu=m_joints.size();
+			for(int i=0;i<joint_nu;i++)
+			{
+				delete m_joints[i];
+			}
+			m_joints.clear();
+
+		}
+
+
+
+
+
+	public:
+
+		Md5MeshHeader m_header;
+		std::vector<Md5MeshJoint*> m_joints;
+		std::vector<Md5SubMesh*> m_subMeshs;
+
+	protected:
+		Md5SubMesh* m_curSubMesh;
+};
+
+
+/* ANIM */
+class Md5AnimHeader 
 {
-	MD5_POINT position;
-	MD5_QUAT orientation;
-} MD5ANIM_FRAME;
+	public:
+		int m_version;
+		std::string m_commandLine;
+		int m_numFrames;
+		int m_numJoints;
+		int m_frameRate;
+		int m_numAnimatedComponent;
+};
 
-typedef struct md5anim_joint
+class Md5Bound 
 {
-	const char* name;
-	struct md5anim_joint* parent;
-	MD5ANIM_FRAME* frames; /* if NULL then baseframe position and orientation for all frames */
-	MD5_POINT position;
-	MD5_QUAT orientation;
-} MD5ANIM_JOINT;
+	public:
+		Md5Bound(const Md5Point& min,const Md5Point& max)
+		{
+			m_min=min;
+			m_max=max;
+		}
 
-MD5ANIM_HEADER* MD5Anim_get_header();
-MD5ANIM_JOINT* MD5Anim_get_joint(int idx);
-MD5ANIM_JOINT** MD5Anim_get_joints();
-MD5_BOUND* MD5Anim_get_bound(int idx);
-MD5_BOUND** MD5Anim_get_bounds();
-MD5ANIM_FRAME* MD5Anim_get_joint_frame(int joint, int idx);
-MD5ANIM_FRAME** MD5Anim_get_joint_frames(int joint);
+	public:
+		Md5Point m_min;
+		Md5Point m_max;
+};
 
-/* MD5CAMERA */
 
-typedef struct
+class Md5AnimFrame 
 {
-	int	version;
-	const char* commandline;
-	int	num_frames;
-	int	frame_rate;	
-	int	num_cuts;
-} MD5CAMERA_HEADER;
+	public:
+		std::vector<float> m_data;
+};
 
-typedef struct md5camera_frame
+
+class Md5Joint 
 {
-	MD5_POINT position;
-	MD5_QUAT orientation;
-	float field_of_view;
-} MD5CAMERA_FRAME;
+	public:
+		Md5Joint(const char* name,int parent_index,int flags,int start_index)
+		{
+			m_name=name;
+			m_parentIndex=parent_index;
+			m_flags=flags;
+			m_startIndex=start_index;
+		}
 
-MD5CAMERA_HEADER* MD5Camera_get_header();
-MD5CAMERA_FRAME* MD5Camera_get_frame(int idx);
-MD5CAMERA_FRAME** MD5Camera_get_frames();
-int* MD5Camera_get_cut(int idx);
-int** MD5Camera_get_cuts();
+	public:
+		std::string m_name;
+		int m_parentIndex;
+		int m_flags;
+		int m_startIndex;
+};
 
-/* MD5 */
 
-//typedef int (*fun_ptr)(int,int);
-typedef int (*MD5IO_FUNC)(FILE* ,void* ,int );
+class Md5Anim 
+{
+	public:
 
-int MD5_parse(const char* md5_filename,MD5IO_FUNC io);
-void MD5_free();
+		Md5AnimFrame* getCurrentAnimFrame()
+		{
+			if(m_curAnimFrame==NULL)
+			{
+				m_curAnimFrame=new Md5AnimFrame;
+			}
+			return m_curAnimFrame;
+		}
 
-#define MD5_PARSED_FAIL		1
-#define MD5_PARSED_MESH		2
-#define MD5_PARSED_ANIM		4
-#define MD5_PARSED_CAMERA	8
+		void commitAnimFrame()
+		{
+			if(m_curAnimFrame!=NULL)
+			{
+				m_animFrames.push_back(m_curAnimFrame);
+				m_curAnimFrame=NULL;
+			}
+		}
 
-#ifdef __cplusplus
-} /* closing bracket for extern "C" */
-#endif
+		void appendBound(const Md5Point& min,const Md5Point& max)
+		{
+			m_bounds.push_back(new Md5Bound(min,max));
+		}
 
-#endif
+		void appendJoint(const char* name, int parent_index,int flag,int start_index)
+		{
+			m_joints.push_back(new Md5Joint(name,parent_index,flag,start_index));
+
+		}
+
+		void appendBaseFrame(float v1,float v2,float v3,float r1,float r2,float r3)
+		{
+			m_baseFrame->m_data.push_back(v1);
+			m_baseFrame->m_data.push_back(v2);
+			m_baseFrame->m_data.push_back(v3);
+			m_baseFrame->m_data.push_back(r1);
+			m_baseFrame->m_data.push_back(r2);
+			m_baseFrame->m_data.push_back(r3);
+
+		}
+
+
+	public:
+		Md5Anim()
+		{
+			m_baseFrame=NULL;
+		}
+
+		~Md5Anim()
+		{
+			if(m_baseFrame)
+			{
+				delete m_baseFrame;
+				m_baseFrame=NULL;
+			}
+
+			int joint_nu=m_joints.size();
+			for(int i=0;i<joint_nu;i++)
+			{
+				delete m_joints[i];
+			}
+			m_joints.clear();
+
+			int anim_frame_nu=m_animFrames.size();
+			for(int i=0;i<anim_frame_nu;i++)
+			{
+				delete m_animFrames[i];
+			}
+			m_animFrames.clear();
+
+			int bound_nu=m_bounds.size();
+			for(int i=0;i<bound_nu;i++)
+			{
+				delete m_bounds[i];
+			}
+			m_bounds.clear();
+		}
+
+
+
+
+	public:
+		Md5AnimHeader m_header;
+		std::vector<Md5Joint*> m_joints;
+		std::vector<Md5AnimFrame*> m_animFrames;
+		Md5AnimFrame* m_baseFrame;
+		std::vector<Md5Bound*> m_bounds;
+
+
+
+	protected:
+		Md5AnimFrame* m_curAnimFrame;
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+typedef int (*LibMd5_ReadIo)(void* data,void* buf,int length);
+Md5Mesh* LibMd5Mesh_Parse(void* data,LibMd5_ReadIo io);
+Md5Anim* LibMd5Anim_parse(void* data,LibMd5_ReadIo io);
+
+#endif /* _LIB_MO5_MODEL_H_ */
+
+
+
+
+
+

@@ -2,23 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="src">
-      <UniqueIdentifier>{1db0fd09-fcca-441c-ac3d-6e863e099b26}</UniqueIdentifier>
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\md5mesh_grammer.cc">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\md5mesh_scanner.cc">
+    <ClCompile Include="..\mesh_parser.cc">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\libmd5model.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\md5anim_grammer.cc">
+    <ClCompile Include="..\..\src\md5mesh_grammer.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\md5anim_scanner.cc">
+    <ClCompile Include="..\..\src\md5mesh_scanner.cc">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -33,12 +31,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\md5mesh_scanner.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\md5anim_grammer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\md5anim_scanner.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

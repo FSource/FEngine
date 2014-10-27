@@ -534,8 +534,13 @@ void Particle2DEffect::draw(RenderDevice* rd,bool update_world_matrix)
 									count,sizeof(Fs_V2F_T2F_C4F),m_vertics[0].c4.v);
 	}
 
+	for(int i=0;i<particle_nu;i++)
+	{
+		rd->drawArray(E_DrawMode::TRIANGLE_STRIP,i*4,4);
+	}
 
-	rd->drawFace3(&m_faces[0],m_faces.size());
+
+	//rd->drawFace3(&m_faces[0],m_faces.size());
 
 }
 

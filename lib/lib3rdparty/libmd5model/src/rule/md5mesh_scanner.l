@@ -18,14 +18,30 @@
    along with libmd5model; see the file COPYING.  If not, write to the Free
    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA  */
 %{
+
 #include <stdio.h>
-#include "md5mesh_defines.h"
-#include "md5mesh_parser.h"
-#include "libmd5modelext.h"
+#include <string>
+
+
+#include "libmd5defines.h"
+#include "md5mesh_grammer.h"
+
+//#include "md5mesh_scanner.h"
+#define YYSTYPE MD5MESH_STYPE
+
+#define YY_INPUT(buf,result,max_size) \
+	Md5Parser* parser=(Md5Parser*) md5mesh_get_extra(yyg); \
+	result=parser->m_io(parser->m_file,buf,max_size);
+
+
 %}
+
+%option yylineno 
+%option reentrant 
+%option never-interactive 
 %option nounput
 %option noyywrap
-%option prefix="MD5MESH_"
+%option prefix="md5mesh_"
 
 digit			[0-9]
 
@@ -44,13 +60,13 @@ shader			return SHADERID;
 numverts		return NUMVERTSID;
 numtris			return NUMTRISID;
 numweights		return NUMWEIGHTSID;
-"\"".*"\""		yytext[yyleng-1]='\0'; MD5MESH_lval.ctype = yytext + 1; return STRING;
+"\"".*"\""		yytext[yyleng-1]='\0'; yylval_param->ctype = new std::string(yytext + 1); return STRING;
 "{"			return LCURLY;
 "}"			return RCURLY;
 "("			return LBRACKET;
 ")"			return RBRACKET;
-"-"?{digit}*"."{digit}+	MD5MESH_lval.ftype = (float)atof(yytext); return NUMBER;
-"-"?{digit}+		MD5MESH_lval.itype = atoi(yytext); return NUMBER;
+"-"?{digit}*"."{digit}+	yylval_param->ftype = (float)atof(yytext); return FLOAT;
+"-"?{digit}+		yylval_param->itype = atoi(yytext); return INTEGER;
 "//".*\n		/* eating up comments */
 [ \t\n]+		/* eating up whitespace */
 .			/* nada */	
