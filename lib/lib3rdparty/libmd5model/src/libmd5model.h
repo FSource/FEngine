@@ -403,7 +403,8 @@ class Md5Anim
 	public:
 		Md5Anim()
 		{
-			m_baseFrame=NULL;
+			m_baseFrame=new Md5AnimFrame;
+			m_curAnimFrame=NULL;
 		}
 
 		~Md5Anim()
@@ -467,7 +468,7 @@ class Md5Anim
 
 typedef int (*LibMd5_ReadIo)(void* data,void* buf,int length);
 Md5Mesh* LibMd5Mesh_Parse(void* data,LibMd5_ReadIo io);
-Md5Anim* LibMd5Anim_parse(void* data,LibMd5_ReadIo io);
+Md5Anim* LibMd5Anim_Parse(void* data,LibMd5_ReadIo io);
 
 #endif /* _LIB_MO5_MODEL_H_ */
 
