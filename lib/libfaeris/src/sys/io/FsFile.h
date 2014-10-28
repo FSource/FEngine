@@ -1,6 +1,8 @@
 #ifndef _FAERY_IO_FSFILE_H_
 #define _FAERY_IO_FSFILE_H_
 
+#include <string>
+
 #include "FsMacros.h"
 #include "FsObject.h"
 NS_FS_BEGIN
@@ -32,8 +34,16 @@ class FsFile:public FsObject
 		virtual long getLength();
 		virtual ~FsFile(){}
 		virtual const char* className();
+
+		virtual const char* getFileName();
+		virtual const char* setFileName(const char* name);
+
 	public:
 		long writeStr(const char* fmt,...);
+
+	protected:
+		std::string m_filename;
+
 };
 
 NS_FS_END

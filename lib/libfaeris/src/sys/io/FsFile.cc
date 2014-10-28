@@ -43,5 +43,22 @@ long FsFile::getLength()
 	return length;
 }
 
+const char* FsFile::getFileName()
+{
+	return  m_filename.c_str();
+}
+
+void FsFile::setFileName(const char* name)
+{
+	if(name)
+	{
+		m_filename=name;
+	}
+}
+
+
+
+
+
 NS_FS_END
 

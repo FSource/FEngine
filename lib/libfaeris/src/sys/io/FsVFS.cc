@@ -180,6 +180,7 @@ FsFile* rawCreate(const char* name,uint mode)
 	if(PathUtil::absolutePath(name))
 	{
 		ret=SysFile::create(name,mode);
+		ret->setFileName(name);
 		return ret;
 	}
 
@@ -189,6 +190,7 @@ FsFile* rawCreate(const char* name,uint mode)
 	ret=SysFile::create(rel_path.c_str(),mode);
 	if(ret!=NULL)
 	{
+		ret->setFileName(rel_path.c_str());
 		return ret;
 	}
 
@@ -207,6 +209,7 @@ FsFile* rawCreate(const char* name,uint mode)
 
 		if(ret!=NULL)
 		{
+			ret->setFileName(name);
 			return ret;
 		}
 
