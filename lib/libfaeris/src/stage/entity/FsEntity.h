@@ -6,6 +6,7 @@
 #include "stage/FsActionTarget.h"
 #include "math/FsVector3.h"
 #include "math/FsMatrix4.h"
+#include "FsITransform.h"
 #include "math/FsRect2D.h"
 #include "support/util/FsString.h"
 #include "support/util/FsSlowArray.h"
@@ -50,7 +51,6 @@ class Entity :public ActionTarget
 		Matrix4* getWorldMatrix();
 		Matrix4* getLocalMatrix();
 
-		bool updateLocalMatrix();
 		bool updateWorldMatrix();
 		void updateAllWorldMatrix();
 
@@ -72,29 +72,24 @@ class Entity :public ActionTarget
 
 
 	public: /* get transform info */
-		Vector3 getPosition(){return m_translate;}
-		void getPosition(float* x,float* y,float* z)
-		{
-			*x=m_translate.x;
-			*y=m_translate.y;
-			*z=m_translate.z;
-		}
-		float getPositionX(){return m_translate.x;}
-		float getPositionY(){return m_translate.y;}
-		float getPositionZ(){return m_translate.z;}
+		Vector3 getPosition();
+		void getPosition(float* x,float* y,float* z);
+		float getPositionX();
+		float getPositionY();
+		float getPositionZ();
 
 		/* scale information */
-		Vector3 getScale(){return m_scale;}
-		float getScaleX(){return m_scale.x;}
-		float getScaleY(){return m_scale.y;}
-		float getScaleZ(){return m_scale.z;}
+		Vector3 getScale();
+		float getScaleX();
+		float getScaleY();
+		float getScaleZ();
 
 
 		/* rotate information */
-		Vector3 getRotate(){return m_rotate;}
-		float getRotateX(){return m_rotate.x;}
-		float getRotateY(){return m_rotate.y;}
-		float getRotateZ(){return m_rotate.z;}
+		Vector3 getRotate();
+		float getRotateX();
+		float getRotateY();
+		float getRotateZ();
 
 	public: /* transform */
 		void rotate(float rx,float ry,float rz);
@@ -220,19 +215,15 @@ class Entity :public ActionTarget
 			ulong m_flags;
 		};
 
-		/* transform info */
-		Vector3 m_translate;
-		Vector3 m_rotate;
-		Vector3 m_scale;
+
+		/* matrix */
+		Matrix4 m_worldMatrix;
+		ITransform* m_transform;
+
 
 		/* zorlder */
 		float m_zorlder;
 		uint32_t m_addOlder;
-
-
-		/* matrix */
-		Matrix4 m_localMatrix;
-		Matrix4 m_worldMatrix;
 
 
 		/* relation ship*/

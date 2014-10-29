@@ -24,7 +24,6 @@ class Entity@__Entity:public ActionTarget
 		Matrix4* getLocalMatrix();
 		Matrix4* getWorldMatrix();
 
-		bool updateLocalMatrix();
 		bool updateWorldMatrix();
 		void updateAllWorldMatrix();
 

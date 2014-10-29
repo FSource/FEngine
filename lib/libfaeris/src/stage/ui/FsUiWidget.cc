@@ -296,11 +296,12 @@ void UiWidget::getTRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy
 	float top,bottom,left,right;
 	getRSBoundSize2D(&left,&right,&bottom,&top);
 
-	*minx=left+m_translate.x;
-	*maxx=right+m_translate.x;
+	Vector3 t=getPosition();
+	*minx=left+t.x;
+	*maxx=right+t.x;
 
-	*miny=bottom+m_translate.y;
-	*maxy=top+m_translate.y;
+	*miny=bottom+t.y;
+	*maxy=top+t.y;
 }
 
 
@@ -311,12 +312,15 @@ void UiWidget::getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
 
 	float left=-m_anchor.x*m_size.x;
 	float right=(1.0f-m_anchor.x)*m_size.x;
+	Vector3 s=getScale();
+	Vector3 r=getRotate();
 
-	if(Math::floatEqual(m_scale.x,1.0f) 
-			&&Math::floatEqual(m_scale.y,1.0f)
-			&&Math::floatEqual(m_rotate.x,0.0f)
-			&&Math::floatEqual(m_rotate.y,0.0f)
-			&&Math::floatEqual(m_rotate.z,0.0f))
+
+	if(Math::floatEqual(s.x,1.0f) 
+			&&Math::floatEqual(s.y,1.0f)
+			&&Math::floatEqual(r.x,0.0f)
+			&&Math::floatEqual(r.y,0.0f)
+			&&Math::floatEqual(r.z,0.0f))
 	{
 		*minx=left;
 		*maxx=right;
@@ -327,7 +331,7 @@ void UiWidget::getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
 
 
 	Matrix4 mat;
-	mat.makeCompose(Vector3(0,0,0),m_rotate,E_EulerOrientType::XYZ,m_scale);
+	mat.makeCompose(Vector3(0,0,0),r,E_EulerOrientType::XYZ,s);
 
 	/* D-----C 
 	 * |     |

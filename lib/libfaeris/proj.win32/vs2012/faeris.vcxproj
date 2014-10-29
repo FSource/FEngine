@@ -160,6 +160,7 @@
     <ClInclude Include="..\..\src\stage\action\FsSeqAction.h" />
     <ClInclude Include="..\..\src\stage\entity\FsEntity.h" />
     <ClInclude Include="..\..\src\stage\entity\FsIMaterial2DEntity.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsITransform.h" />
     <ClInclude Include="..\..\src\stage\entity\FsLabelBitmap.h" />
     <ClInclude Include="..\..\src\stage\entity\FsLabelTTF.h" />
     <ClInclude Include="..\..\src\stage\entity\FsPanel.h" />
@@ -302,6 +303,7 @@
     <ClCompile Include="..\..\src\stage\action\FsSeqAction.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsEntity.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsIMaterial2DEntity.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsITransform.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsLabelBitmap.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsLabelTTF.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsPanel.cc" />

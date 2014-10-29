@@ -483,8 +483,8 @@ void StateButton::setState(int st)
 		m_tweenFromState->m_opacity=m_material->getOpacity();
 		m_tweenFromState->m_size=m_size;
 		m_tweenFromState->m_anchor=m_anchor;
-		m_tweenFromState->m_rotate=m_rotate;
-		m_tweenFromState->m_scale=m_scale;
+		m_tweenFromState->m_rotate=Entity::getRotate();
+		m_tweenFromState->m_scale=Entity::getScale();
 
 		m_tweenFromState->m_children=NULL;
 		if(m_tweenFlags&FLAG_TEXTURE)

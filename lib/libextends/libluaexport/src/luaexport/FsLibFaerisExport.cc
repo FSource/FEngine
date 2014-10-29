@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 10/24/14 10:11:51.
+** Generated automatically by tolua++-1.0.92 on 10/29/14 11:33:24.
 */
 
 #ifndef __cplusplus
@@ -1575,38 +1575,6 @@ static int tolua_FsLibFaeris___Entity_getWorldMatrix00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getWorldMatrix'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: updateLocalMatrix of class  Entity */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___Entity_updateLocalMatrix00
-static int tolua_FsLibFaeris___Entity_updateLocalMatrix00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Entity",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Entity* self = (Entity*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'updateLocalMatrix'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->updateLocalMatrix();
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'updateLocalMatrix'.",&tolua_err);
  return 0;
 #endif
 }
@@ -44701,7 +44669,6 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getScene",tolua_FsLibFaeris___Entity_getScene00);
    tolua_function(tolua_S,"getLocalMatrix",tolua_FsLibFaeris___Entity_getLocalMatrix00);
    tolua_function(tolua_S,"getWorldMatrix",tolua_FsLibFaeris___Entity_getWorldMatrix00);
-   tolua_function(tolua_S,"updateLocalMatrix",tolua_FsLibFaeris___Entity_updateLocalMatrix00);
    tolua_function(tolua_S,"updateWorldMatrix",tolua_FsLibFaeris___Entity_updateWorldMatrix00);
    tolua_function(tolua_S,"updateAllWorldMatrix",tolua_FsLibFaeris___Entity_updateAllWorldMatrix00);
    tolua_function(tolua_S,"getPosition",tolua_FsLibFaeris___Entity_getPosition00);

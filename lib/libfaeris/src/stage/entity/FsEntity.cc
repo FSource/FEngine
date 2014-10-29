@@ -95,11 +95,7 @@ void Entity::draws(RenderDevice* r,bool updateMatrix)
 void Entity::init()
 {
 
-	m_translate.set(0,0,0);
-	m_rotate.set(0,0,0);
-	m_scale.set(1,1,1);
-
-	m_localMatrixDirty=1;
+	m_transform=new Transform;
 	m_worldMatrixDirty=1;
 	m_hasBoundSphere=0;
 	m_hasBoundBox=0;
@@ -133,28 +129,19 @@ void Entity::destruct()
 	}
 	FS_DESTROY(m_chirdren);
 	m_touchFocus=NULL;
+	delete m_transform;
+
 }
 
 
-bool Entity::updateLocalMatrix()
-{
-	if(m_localMatrixDirty)
-	{
-		m_localMatrix.makeCompose(m_translate,m_rotate,E_EulerOrientType::XYZ,m_scale);
-		m_localMatrixDirty=0;
-		return true;
-	}
-	return false;
-}
 
 bool Entity::updateWorldMatrix()
 {
-	updateLocalMatrix();
 	if(!m_parent)
 	{
 		if(m_worldMatrixDirty)
 		{
-			m_worldMatrix=m_localMatrix;
+			m_worldMatrix=*(m_transform->getTransformMatrix());
 			m_worldMatrixDirty=0;
 			return true;
 		}
@@ -162,10 +149,12 @@ bool Entity::updateWorldMatrix()
 	else 
 	{
 		bool dirty=m_parent->updateWorldMatrix();
-		if(m_worldMatrixDirty||dirty)
+		bool local_matrix=m_transform->updateTransformMatrix();
+
+		if(m_worldMatrixDirty||local_matrix||dirty)
 		{
 			m_worldMatrix=m_parent->m_worldMatrix;
-			m_worldMatrix.mul(m_localMatrix);
+			m_worldMatrix.mul(*m_transform->getTransformMatrix());
 			m_worldMatrixDirty=0;
 			return true;
 		}
@@ -187,13 +176,13 @@ void Entity::updateAllWorldMatrix()
 
 void Entity::updateChildWorldMatrix(bool force)
 {
-	updateLocalMatrix();
-	bool dirty=force||m_worldMatrixDirty;
+	bool local_dirty=m_transform->updateTransformMatrix();
+	bool dirty=force||m_worldMatrixDirty||local_dirty;
 
 	if(dirty)
 	{
 		m_worldMatrix=m_parent->m_worldMatrix;
-		m_worldMatrix.mul(m_localMatrix);
+		m_worldMatrix.mul(*m_transform->getTransformMatrix());
 		m_worldMatrixDirty=0;
 	}
 
@@ -444,8 +433,12 @@ Matrix4* Entity::getWorldMatrix()
 }
 Matrix4* Entity::getLocalMatrix()
 {
-	updateLocalMatrix();
-	return &m_localMatrix;
+	if(m_transform->updateTransformMatrix())
+	{
+		m_worldMatrixDirty=true;
+	}
+
+	return m_transform->getTransformMatrix();
 }
 
 

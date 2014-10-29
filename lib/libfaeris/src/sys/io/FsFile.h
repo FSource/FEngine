@@ -36,7 +36,7 @@ class FsFile:public FsObject
 		virtual const char* className();
 
 		virtual const char* getFileName();
-		virtual const char* setFileName(const char* name);
+		virtual void setFileName(const char* name);
 
 	public:
 		long writeStr(const char* fmt,...);

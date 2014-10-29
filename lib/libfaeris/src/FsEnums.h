@@ -292,6 +292,17 @@ enum class E_AnimPlayMode
 
 
 
+enum class E_MeshType 
+{
+	STATIC,
+	MORPH,
+	SKELETON,
+	MORPH_SKELETON
+};
+
+
+
+
 NS_FS_END 
 
 #endif 
