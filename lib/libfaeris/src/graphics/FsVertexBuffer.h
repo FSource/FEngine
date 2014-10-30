@@ -88,7 +88,7 @@ class TVertexBuffer:public VertexBuffer
 
 	public:
 		T& get(int index) { return m_buffer[index]; }
-		void set(int index,const T& v){ m_buffer[index]=v;m_dirty=true}
+		void set(int index,const T& v){ m_buffer[index]=v;m_dirty=true;}
 		void setQuick(int index,const T& v){ m_buffer[index]=v;}
 		void append(const T& v){m_buffer.push_back(v);m_dirty=true}
 		void appendQuick(const T& v){m_buffer.push_back(v);}
@@ -113,12 +113,12 @@ typedef TVertexBuffer<float> VertexBufferf;
 typedef TVertexBuffer<Vector4i>  VertexBuffer4i;
 typedef TVertexBuffer<Vector3i>  VertexBuffer3i;
 typedef TVertexBuffer<Vector2i>  VertexBuffer2i;
-typedef TVertexBuffer<int16_t>   VertexBufferi;
+typedef TVertexBuffer<int32_t>   VertexBufferi;
 
 typedef TVertexBuffer<Vector4ui>  VertexBuffer4ui;
 typedef TVertexBuffer<Vector3ui>  VertexBuffer3ui;
 typedef TVertexBuffer<Vector2ui>  VertexBuffer2ui;
-typedef TVertexBuffer<uint16_t>   VertexBufferui;
+typedef TVertexBuffer<uint32_t>   VertexBufferui;
 
 
 

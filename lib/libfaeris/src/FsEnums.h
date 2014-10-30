@@ -301,6 +301,18 @@ enum class E_MeshType
 };
 
 
+enum E_MorphAnimFlag 
+{
+	VERTICES=0x01ul,
+	NORMALS=0x02ul,
+	COLORS=0x04ul,
+	UVS=0x08ul,
+	UV2S=0x10ul,
+	TANGENTS=0x20ul,
+	SKIN_INDICS=0x40ul,
+	SKIN_WEIGHTS=0x80ul
+};
+
 
 
 NS_FS_END 

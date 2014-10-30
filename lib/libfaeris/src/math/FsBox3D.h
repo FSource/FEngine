@@ -2,15 +2,17 @@
 #define _FS_BOX3_H_
 
 #include "FsMacros.h"
+#include "math/FsVector3.h"
+
 
 
 NS_FS_BEGIN 
 
 class Box3D
 {
-
 	public:
-		Box3D(const Vector3f& min,const Vector3f& max)
+		Box3D();
+		Box3D(const Vector3f& min,const Vector3f& max);
 
 	public:
 		void set(const Vector3f& _min,const Vector3f& _max)

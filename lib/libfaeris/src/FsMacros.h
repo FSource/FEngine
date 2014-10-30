@@ -156,7 +156,15 @@ namespace Faeris
 #define FS_DELETES(v) \
 	do{delete[] v;}while(0)
 
-/* global Macros For Faeris */
+
+/* extend for c++ 11 */
+
+#define FS_OVERRIDE override 
+#define FS_VIRTUAL virtual 
+#define FS_FINAL  final
+
+
+
 
 /* event part*/
 

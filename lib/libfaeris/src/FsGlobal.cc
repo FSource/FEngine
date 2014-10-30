@@ -27,6 +27,7 @@ FS_GLOBAL_CC(FontTTFMgr,FontTTFMgr,setFontTTFMgr);
 FS_GLOBAL_CC(Sprite2DDataMgr,sprite2DDataMgr,setSprite2DDataMgr);
 FS_GLOBAL_CC(ProgramSourceMgr,programSourceMgr,setProgramSourceMgr);
 
+FS_GLOBAL_CC(MeshMgr,meshMgr,setMeshMgr);
 
 NS_FS_END
 
