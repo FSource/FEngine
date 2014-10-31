@@ -123,7 +123,16 @@ void Quaternion::makeFromRotationMatrix(const Matrix4& m)
 
 void Quaternion::calcuateW()
 {
-	w=-Math::sqrt(Math::abs(1.0f-x*x-y*y-z*z));
+	float w2=1.0f-x*x-y*y-z*z;
+	if(w2<0)
+	{
+		w=0;
+	}
+	else 
+	{
+		w=-Math::sqrt(w2);
+	}
+
 }
 
 /* q*inverse(q) =1 */

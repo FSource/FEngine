@@ -126,6 +126,7 @@
     <ClInclude Include="..\..\src\math\easing\FsQuartEase.h" />
     <ClInclude Include="..\..\src\math\easing\FsQuintEase.h" />
     <ClInclude Include="..\..\src\math\easing\FsSineEase.h" />
+    <ClInclude Include="..\..\src\math\FsBox3D.h" />
     <ClInclude Include="..\..\src\math\FsCamera.h" />
     <ClInclude Include="..\..\src\math\FsFace3.h" />
     <ClInclude Include="..\..\src\math\FsMath.h" />
@@ -276,6 +277,7 @@
     <ClCompile Include="..\..\src\math\easing\FsQuartEase.cc" />
     <ClCompile Include="..\..\src\math\easing\FsQuintEase.cc" />
     <ClCompile Include="..\..\src\math\easing\FsSineEase.cc" />
+    <ClCompile Include="..\..\src\math\FsBox3D.cc" />
     <ClCompile Include="..\..\src\math\FsMath.cc" />
     <ClCompile Include="..\..\src\math\FsMathUtil.cc" />
     <ClCompile Include="..\..\src\math\FsMatrix4.cc" />

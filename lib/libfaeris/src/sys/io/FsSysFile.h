@@ -33,7 +33,7 @@ class SysFile:public FsFile
 		virtual int close();
 		virtual long tell();
 		virtual ~SysFile();
-		virtual const char* getFileName();
+		virtual const char* className();
 	protected:
 		SysFile(SysFilePlateform f){m_platfromFile=f;}
 	private:

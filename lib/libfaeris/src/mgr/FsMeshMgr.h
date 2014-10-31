@@ -15,7 +15,7 @@ class MeshMgr:public ResourceMgr
 		Mesh* loadMesh(const char* name);
 
 	public:
-		virtual const char* className();
+		virtual const char* className() FS_OVERRIDE;
 
 	protected:
 		MeshMgr();

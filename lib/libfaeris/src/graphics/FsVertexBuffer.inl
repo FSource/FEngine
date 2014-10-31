@@ -15,10 +15,10 @@ inline TVertexBuffer<T>* TVertexBuffer<T>::create(int size)
 }
 
 template<typename T>
-inline TVertexBuffer<T>::TVertexBuffer();
+inline TVertexBuffer<T>::TVertexBuffer(){}
 
 template<typename T>
-inline TVertexBuffer<T>::~TVertexBuffer();
+inline TVertexBuffer<T>::~TVertexBuffer(){}
 
 
 

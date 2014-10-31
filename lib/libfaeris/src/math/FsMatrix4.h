@@ -79,6 +79,7 @@ class  Matrix4
 
 		void makeRotateFromEuler(float x,float y,float z,E_EulerOrientType type);
 		void makeRotateFromEuler(const Vector3& v,E_EulerOrientType type){makeRotateFromEuler(v.x,v.y,v.z,type);}
+		void makeRotateFromQuaternion(const Quaternion& q);
 
 		void makeScale(float x,float y,float z);
 		void makeScale(const Vector3& v){makeScale(v.x,v.y,v.z);}

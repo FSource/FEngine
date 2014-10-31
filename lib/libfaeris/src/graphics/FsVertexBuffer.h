@@ -90,7 +90,7 @@ class TVertexBuffer:public VertexBuffer
 		T& get(int index) { return m_buffer[index]; }
 		void set(int index,const T& v){ m_buffer[index]=v;m_dirty=true;}
 		void setQuick(int index,const T& v){ m_buffer[index]=v;}
-		void append(const T& v){m_buffer.push_back(v);m_dirty=true}
+		void append(const T& v){m_buffer.push_back(v);m_dirty=true;}
 		void appendQuick(const T& v){m_buffer.push_back(v);}
 
 

@@ -18,6 +18,29 @@ bool PathUtil::absolutePath(const char* name)
 
 	return false;
 }
+bool PathUtil::hasExtend(const char* name)
+{
+	bool has=false;
+	const char* p=name;
+	while(*p)
+	{
+		if(*p=='.')
+		{
+			has=true;
+			break;
+		}
+		p++;
+	}
+	if(has)
+	{
+		if(*(p+1)=='\0')
+		{
+			has=false;
+		}
+	}
+	return has;
+}
+
 
 std::string PathUtil::getDirName(const char* name)
 {

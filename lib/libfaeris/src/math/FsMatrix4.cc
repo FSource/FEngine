@@ -245,6 +245,37 @@ void Matrix4::makeRotateFromEuler(float x,float y,float z,E_EulerOrientType type
 	m03=0;m13=0;m23=0;
 	m30=0;m31=0;m32=0;m33=1;
 }
+
+void Matrix4::makeRotateFromQuaternion(const Quaternion& q)
+{
+	float x = q.x, y = q.y, z = q.z, w = q.w;
+	float x2 = x + x, y2 = y + y, z2 = z + z;
+	float xx = x * x2, xy = x * y2, xz = x * z2;
+	float yy = y * y2, yz = y * z2, zz = z * z2;
+	float wx = w * x2, wy = w * y2, wz = w * z2;
+
+	m00 = 1 - ( yy + zz );
+	m01 = xy - wz;
+	m02 = xz + wy;
+
+	m10 = xy + wz;
+	m11 = 1 - ( xx + zz );
+	m12 = yz - wx;
+
+	m20 = xz - wy;
+	m21 = yz + wx;
+	m22 = 1 - ( xx + yy );
+
+	m30=0;
+	m31=0;
+	m32=0;
+
+	m03=0;
+	m13=0;
+	m23=0;
+	m33=1;
+} 
+
 void Matrix4::makeScale(float x,float y,float z)
 {
 	set(    x,0,0,0,
@@ -341,36 +372,10 @@ void Matrix4::setRotationFromEuler(float rx,float ry,float rz,E_EulerOrientType 
 	m20*=scale.x; m21*=scale.y; m22*=scale.z;
 }
 
-/*
-void Matrix4::setRotationFromQuaternion(const Quaternion& q)
-{
-}
-*/
 
 
-/*
 
-void Matrix4::setRotationFromQuaternion(const Quaternion& q)
-{
-	float x = q.x, y = q.y, z = q.z, w = q.w;
-	float x2 = x + x, y2 = y + y, z2 = z + z;
-	float xx = x * x2, xy = x * y2, xz = x * z2;
-	float yy = y * y2, yz = y * z2, zz = z * z2;
-	float wx = w * x2, wy = w * y2, wz = w * z2;
 
-	m00 = 1 - ( yy + zz );
-	m01 = xy - wz;
-	m02 = xz + wy;
-
-	m10 = xy + wz;
-	m11 = 1 - ( xx + zz );
-	m12 = yz - wx;
-
-	m20 = xz - wy;
-	m21 = yz + wx;
-	m22 = 1 - ( xx + yy );
-} 
-*/
 
 void Matrix4::setScale(float sx,float sy,float sz)
 {
@@ -498,12 +503,14 @@ void Matrix4::scale(float x,float y,float z)
 	m30*=x; m31*=y; m32*=z;
 }
 
-/*
 
-void Matrix4::compose(const Vector3& translate,const Quaternion& q,const Vector3& s)
+void Matrix4::makeCompose(const Vector3& translate,const Quaternion& q,const Vector3& s)
 {
+	this->makeRotateFromQuaternion(q);
+	this->scale(s);
+	this->setTranslate(s);
 }
-*/
+
 
 void Matrix4::makeCompose(const Vector3& t,const Vector3& r,E_EulerOrientType r_type,const Vector3& s)
 {

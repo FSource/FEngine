@@ -562,6 +562,9 @@
     <ClInclude Include="..\..\src\stage\entity\FsITransform.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\math\FsBox3D.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -995,6 +998,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\stage\entity\FsITransform.cc">
       <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\math\FsBox3D.cc">
+      <Filter>src\math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

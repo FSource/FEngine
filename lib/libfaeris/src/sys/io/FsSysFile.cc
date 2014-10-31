@@ -8,7 +8,7 @@
 
 NS_FS_BEGIN
 
-const char* SysFile::getFileName()
+const char* SysFile::className()
 {
 	return FS_SYS_FILE_CLASS_NAME;
 }
