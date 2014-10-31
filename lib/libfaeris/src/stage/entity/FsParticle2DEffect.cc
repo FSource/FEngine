@@ -373,7 +373,7 @@ void Particle2DEffect::generateParticle(float dt)
         generate_nu=m_maxParticles-particle_size;
 
     }
-	if(generate_nu<0)
+	if(generate_nu<0)	
     {
         generate_nu=0;
     }
@@ -450,11 +450,9 @@ void Particle2DEffect::draw(RenderDevice* rd,bool update_world_matrix)
 
 	int face_nu=m_faces.size();
 	int face_need_nu=particle_nu*2;
-
+	m_faces.resize(face_need_nu);
 	if(face_nu<face_need_nu)
 	{
-		m_faces.resize(face_need_nu);
-
 		int f_start=face_nu/2;
 		int f_end=particle_nu;
 
@@ -534,13 +532,15 @@ void Particle2DEffect::draw(RenderDevice* rd,bool update_world_matrix)
 									count,sizeof(Fs_V2F_T2F_C4F),m_vertics[0].c4.v);
 	}
 
+	/*
 	for(int i=0;i<particle_nu;i++)
 	{
 		rd->drawArray(E_DrawMode::TRIANGLE_STRIP,i*4,4);
 	}
+	*/
 
 
-	//rd->drawFace3(&m_faces[0],m_faces.size());
+	rd->drawFace3(&m_faces[0],m_faces.size());
 
 }
 
