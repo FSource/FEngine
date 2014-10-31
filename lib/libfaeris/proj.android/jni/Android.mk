@@ -26,7 +26,6 @@ LOCAL_SRC_FILES :=  \
 					../../src/FsFaerisModule.cc \
 					../../src/extends/FsScriptEngine.cc \
 					../../src/stage/FsActionTarget.cc \
-					../../src/stage/entity/FsColorQuad2D.cc \
 					../../src/stage/entity/FsEntity.cc \
 					../../src/stage/entity/FsLabelTTF.cc \
 					../../src/stage/entity/FsQuad2D.cc \
