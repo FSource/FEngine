@@ -1,11 +1,4 @@
-#ifndef _FS_ITRANSFORM_H_
-#define _FS_ITRANSFORM_H_
-#include "FsMacros.h"
-#include "math/FsVector3.h"
-#include "math/FsMatrix4.h"
-#include "FsObject.h"
-
-NS_FS_BEGIN
+$#include "stage/entity/FsITransform.h"
 
 class ITransform :public FsObject
 {
@@ -30,7 +23,7 @@ class ITransform :public FsObject
 class Transform :public ITransform
 {
 	public:
-		static Transform* create();;
+		static Transform* create();
 
 	public:
 		virtual void setPosition(const Vector3& v);
@@ -45,27 +38,9 @@ class Transform :public ITransform
 
 		virtual bool updateTransformMatrix();
 		virtual  Matrix4* getTransformMatrix();
+
 	public:
 		virtual const char* className();
 
-	protected:
-		Transform();
-		virtual~Transform();
-	protected:
-		/* transform info */
-		Vector3 m_translate;
-		Vector3 m_rotate;
-		Vector3 m_scale;
-
-
-		bool m_transformMatrixDirty;
-		Matrix4 m_transformMatrix;
 };
-
-
-NS_FS_END
-
-#endif /*_FS_ITRANSFORM_H_*/
-
-
 

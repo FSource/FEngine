@@ -133,6 +133,10 @@ class Entity :public ActionTarget
 		Vector3 getPositionInWorld();
 		void getPositionInWorld(float* x,float* y,float* z);
 
+		void setTransform(ITransform* tf);
+		ITransform* getTransform();
+
+
 	public:
 		void setVisible(bool visible){m_visible=visible;}
 		bool getVisible(){return m_visible&&m_visibles;}

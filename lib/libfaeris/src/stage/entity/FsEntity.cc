@@ -95,7 +95,9 @@ void Entity::draws(RenderDevice* r,bool updateMatrix)
 void Entity::init()
 {
 
-	m_transform=new Transform;
+	m_transform= Transform::create();
+	FS_SAFE_ADD_REF(m_transform);
+
 	m_worldMatrixDirty=1;
 	m_hasBoundSphere=0;
 	m_hasBoundBox=0;
@@ -210,6 +212,19 @@ Vector3 Entity::worldToLocal(const Vector3& v)
 
 	return inverse.mulVector3(v);
 }
+
+void Entity::setTransform(ITransform* tf)
+{
+	FS_SAFE_ASSIGN(m_transform,tf);
+}
+
+
+ITransform* Entity::getTransform()
+{
+	return m_transform;
+}
+
+
 
 
 bool Entity::hit2D(float x,float y)

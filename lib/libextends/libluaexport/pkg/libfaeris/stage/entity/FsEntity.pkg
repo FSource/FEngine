@@ -88,6 +88,10 @@ class Entity@__Entity:public ActionTarget
 		Vector3 getPositionInWorld();
 		void getPositionInWorld(float* x=0,float* y=0,float* z=0);
 
+		void setTransform(ITransform* );
+		ITransform* getTransform();
+
+
 	public:
 		float getZorder();
 		void setZorder(float z);

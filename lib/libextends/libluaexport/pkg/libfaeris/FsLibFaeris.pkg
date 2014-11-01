@@ -40,7 +40,7 @@ $pfile "stage/ui/FsScrollView.pkg"
 $pfile "stage/ui/FsListView.pkg"
 $pfile "stage/ui/FsDynamicView.pkg"
 $pfile  "stage/ui/FsPageView.pkg"
-
+$pfile "stage/entity/FsITransform.pkg"
 
 
 /* mgr */

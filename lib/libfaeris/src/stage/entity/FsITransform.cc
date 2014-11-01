@@ -2,6 +2,18 @@
 
 NS_FS_BEGIN
 
+const char* Transform::className()
+{
+	return "Transform";
+}
+Transform* Transform::create()
+{
+	return new Transform();
+}
+
+Transform::~Transform()
+{
+}
 Transform::Transform()
 {
 	m_translate.set(0,0,0);
@@ -62,6 +74,7 @@ Matrix4* Transform::getTransformMatrix()
 	updateTransformMatrix();
 	return &m_transformMatrix;
 }
+
 
 
 

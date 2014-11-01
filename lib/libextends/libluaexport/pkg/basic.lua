@@ -80,6 +80,9 @@ local fsobject= {
 	"Button",
 	"LuaButton",
 
+	"ITransform",
+	"Transform",
+
 
 	--sys/event 
 	"TouchEventListener",
