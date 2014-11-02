@@ -120,4 +120,5 @@ $pfile "b2WorldCallbacks.pkg"
 
 $pfile "fb2Draw.pkg"
 $pfile "fb2ContactListener.pkg"
+$pfile "fb2Transform.pkg"
 

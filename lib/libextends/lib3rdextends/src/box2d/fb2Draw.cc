@@ -53,6 +53,7 @@ void fb2Draw::DrawPolygon(const b2Vec2* old_vertices, int vertexCount,const b2Co
 
 	RenderDevice* rd=Global::renderDevice();
 	rd->pushWorldMatrix();
+	rd->loadWorldMatrixIdentity();
 
 	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
@@ -95,6 +96,7 @@ void fb2Draw::DrawSolidPolygon(const b2Vec2* old_vertices,int32 vertexCount,cons
 
 	RenderDevice* r=Global::renderDevice();
 	r->pushWorldMatrix();
+	r->loadWorldMatrixIdentity();
 
 	int vertex_nu=vertexCount;
 
@@ -148,6 +150,7 @@ void fb2Draw::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& co
 	RenderDevice* r=Global::renderDevice();
 
 	r->pushWorldMatrix();
+	r->loadWorldMatrixIdentity();
 
 	m_material->setColor(Color4f(color.r,color.g,color.b,1.0f));
 	m_material->setPointSize(1.0f);
@@ -191,6 +194,7 @@ void fb2Draw::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2
 
 	RenderDevice* r=Global::renderDevice();
 	r->pushWorldMatrix();
+	r->loadWorldMatrixIdentity();
 
 	m_material->setColor(Color4f(color.r*0.5f,color.g*0.5f,color.b*0.5f,0.5f));
 	m_material->setPointSize(1.0f);
@@ -228,6 +232,7 @@ void fb2Draw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& col
 
 	RenderDevice* r=Global::renderDevice();
 	r->pushWorldMatrix();
+	r->loadWorldMatrixIdentity();
 
 	
 

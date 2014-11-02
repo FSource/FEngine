@@ -141,7 +141,8 @@ bool Entity::updateWorldMatrix()
 {
 	if(!m_parent)
 	{
-		if(m_worldMatrixDirty)
+		bool local_dirty=m_transform->updateTransformMatrix();
+		if(m_worldMatrixDirty||local_dirty)
 		{
 			m_worldMatrix=*(m_transform->getTransformMatrix());
 			m_worldMatrixDirty=0;

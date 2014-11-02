@@ -1,3 +1,6 @@
+#ifndef _FB2_DRAW_H_
+#define _FB2_DRAW_H_
+
 #include "FsMacros.h"
 #include "Box2D/Common/b2Draw.h"
 #include "graphics/material/FsMaterial2D.h"
@@ -42,3 +45,6 @@ class fb2Draw:public b2Draw
 
 
 NS_FS_END
+
+#endif /*_FB2_DRAW_H_*/
+

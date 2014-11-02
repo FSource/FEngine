@@ -1,0 +1,29 @@
+$#include "box2d/fb2Transform.h"
+
+class fb2Transform:public ITransform 
+{
+	public:
+		static fb2Transform* create(b2Body* b,b2World* world,float radio);
+
+	public:
+		virtual const char* className();
+
+	public:
+		void setPosition(float x,float y);
+		void getPosition(float* x=0,float* y=0);
+
+		float getAngle();
+
+		void setLinearVelocity(float x,float y);
+		void getLinearVelocity(float* x=0,float* y=0);
+
+
+		void setBody(b2Body* b,b2World* world);
+		b2Body* getBody();
+		
+		void setRadio(float radio);
+		float getRadio();
+
+
+};
+

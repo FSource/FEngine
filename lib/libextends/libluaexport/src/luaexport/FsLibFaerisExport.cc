@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 11/01/14 15:06:27.
+** Generated automatically by tolua++-1.0.92 on 11/01/14 15:59:38.
 */
 
 #ifndef __cplusplus

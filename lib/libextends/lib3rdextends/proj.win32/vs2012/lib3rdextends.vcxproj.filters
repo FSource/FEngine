@@ -16,12 +16,18 @@
     <ClCompile Include="..\..\src\box2d\fb2Draw.cc">
       <Filter>src\box2d</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\box2d\fb2Transform.cc">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\box2d\fb2ContactListener.h">
       <Filter>src\box2d</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\box2d\fb2Draw.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\box2d\fb2Transform.h">
       <Filter>src\box2d</Filter>
     </ClInclude>
   </ItemGroup>

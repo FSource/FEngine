@@ -81,10 +81,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\box2d\fb2ContactListener.cc" />
     <ClCompile Include="..\..\src\box2d\fb2Draw.cc" />
+    <ClCompile Include="..\..\src\box2d\fb2Transform.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\box2d\fb2ContactListener.h" />
     <ClInclude Include="..\..\src\box2d\fb2Draw.h" />
+    <ClInclude Include="..\..\src\box2d\fb2Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

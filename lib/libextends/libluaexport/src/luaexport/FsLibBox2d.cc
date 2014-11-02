@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Box2D
-** Generated automatically by tolua++-1.0.92 on 11/01/14 15:06:35.
+** Generated automatically by tolua++-1.0.92 on 11/01/14 15:59:45.
 */
 
 #ifndef __cplusplus
@@ -47,6 +47,7 @@ TOLUA_API int  tolua_Box2D_open (lua_State* tolua_S);
 #endif   /*FS_OS_WIN32 */
 #include "box2d/fb2Draw.h"
 #include "box2d/fb2ContactListener.h"
+#include "box2d/fb2Transform.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -489,6 +490,8 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"b2PulleyJoint");
  tolua_usertype(tolua_S,"b2Velocity");
  tolua_usertype(tolua_S,"b2ContactRegister");
+ tolua_usertype(tolua_S,"ITransform");
+ toluaext_usertype(tolua_S,"fb2Transform");
  tolua_usertype(tolua_S,"b2CircleShape");
  tolua_usertype(tolua_S,"b2ContactID");
  tolua_usertype(tolua_S,"b2Manifold");
@@ -31198,6 +31201,380 @@ static int tolua_set_fb2ContactListener_data(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: create of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_create00
+static int tolua_Box2D_fb2Transform_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"b2Body",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"b2World",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  b2Body* b = ((b2Body*)  tolua_tousertype(tolua_S,2,0));
+  b2World* world = ((b2World*)  tolua_tousertype(tolua_S,3,0));
+  float radio = ((float)  tolua_tonumber(tolua_S,4,0));
+  {
+   fb2Transform* tolua_ret = (fb2Transform*)  fb2Transform::create(b,world,radio);
+    toluaext_pushfsobject2(tolua_S,(void*)tolua_ret,"fb2Transform");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: className of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_className00
+static int tolua_Box2D_fb2Transform_className00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'className'", NULL);
+#endif
+  {
+   const char* tolua_ret = (const char*)  self->className();
+   tolua_pushstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'className'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setPosition of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_setPosition00
+static int tolua_Box2D_fb2Transform_setPosition00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setPosition'", NULL);
+#endif
+  {
+   self->setPosition(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setPosition'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPosition of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_getPosition00
+static int tolua_Box2D_fb2Transform_getPosition00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPosition'", NULL);
+#endif
+  {
+   self->getPosition(&x,&y);
+   tolua_pushnumber(tolua_S,(lua_Number)x);
+   tolua_pushnumber(tolua_S,(lua_Number)y);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPosition'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getAngle of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_getAngle00
+static int tolua_Box2D_fb2Transform_getAngle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getAngle'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getAngle();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getAngle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setLinearVelocity of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_setLinearVelocity00
+static int tolua_Box2D_fb2Transform_setLinearVelocity00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setLinearVelocity'", NULL);
+#endif
+  {
+   self->setLinearVelocity(x,y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setLinearVelocity'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getLinearVelocity of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_getLinearVelocity00
+static int tolua_Box2D_fb2Transform_getLinearVelocity00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getLinearVelocity'", NULL);
+#endif
+  {
+   self->getLinearVelocity(&x,&y);
+   tolua_pushnumber(tolua_S,(lua_Number)x);
+   tolua_pushnumber(tolua_S,(lua_Number)y);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getLinearVelocity'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setBody of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_setBody00
+static int tolua_Box2D_fb2Transform_setBody00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"b2Body",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"b2World",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+  b2Body* b = ((b2Body*)  tolua_tousertype(tolua_S,2,0));
+  b2World* world = ((b2World*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setBody'", NULL);
+#endif
+  {
+   self->setBody(b,world);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setBody'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getBody of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_getBody00
+static int tolua_Box2D_fb2Transform_getBody00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getBody'", NULL);
+#endif
+  {
+   b2Body* tolua_ret = (b2Body*)  self->getBody();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"b2Body");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getBody'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setRadio of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_setRadio00
+static int tolua_Box2D_fb2Transform_setRadio00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+  float radio = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setRadio'", NULL);
+#endif
+  {
+   self->setRadio(radio);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setRadio'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getRadio of class  fb2Transform */
+#ifndef TOLUA_DISABLE_tolua_Box2D_fb2Transform_getRadio00
+static int tolua_Box2D_fb2Transform_getRadio00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"fb2Transform",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  fb2Transform* self = (fb2Transform*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getRadio'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->getRadio();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getRadio'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_Box2D_open (lua_State* tolua_S)
 {
@@ -32798,6 +33175,20 @@ TOLUA_API int tolua_Box2D_open (lua_State* tolua_S)
    tolua_function(tolua_S,"PreSolve",tolua_Box2D_fb2ContactListener_PreSolve00);
    tolua_function(tolua_S,"PostSolve",tolua_Box2D_fb2ContactListener_PostSolve00);
    tolua_variable(tolua_S,"data",tolua_get_fb2ContactListener_data,tolua_set_fb2ContactListener_data);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"fb2Transform","fb2Transform","ITransform",toluaext_fscollector);
+  tolua_beginmodule(tolua_S,"fb2Transform");
+   tolua_function(tolua_S,"create",tolua_Box2D_fb2Transform_create00);
+   tolua_function(tolua_S,"className",tolua_Box2D_fb2Transform_className00);
+   tolua_function(tolua_S,"setPosition",tolua_Box2D_fb2Transform_setPosition00);
+   tolua_function(tolua_S,"getPosition",tolua_Box2D_fb2Transform_getPosition00);
+   tolua_function(tolua_S,"getAngle",tolua_Box2D_fb2Transform_getAngle00);
+   tolua_function(tolua_S,"setLinearVelocity",tolua_Box2D_fb2Transform_setLinearVelocity00);
+   tolua_function(tolua_S,"getLinearVelocity",tolua_Box2D_fb2Transform_getLinearVelocity00);
+   tolua_function(tolua_S,"setBody",tolua_Box2D_fb2Transform_setBody00);
+   tolua_function(tolua_S,"getBody",tolua_Box2D_fb2Transform_getBody00);
+   tolua_function(tolua_S,"setRadio",tolua_Box2D_fb2Transform_setRadio00);
+   tolua_function(tolua_S,"getRadio",tolua_Box2D_fb2Transform_getRadio00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;
