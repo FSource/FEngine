@@ -230,12 +230,12 @@ Image2D* FsUtil_PngReader(FsFile* file)
 	Image2D* img=NULL;
 	if(channels==3)
 	{
-		img=Image2D::create(width,height,Image2D::PIXEL_RGB888);
+		img=Image2D::create(width,height,E_PixelFormat::RGB888);
 	}
 	else 
 	{
 		assert(channels==4);
-		img=Image2D::create(width,height,Image2D::PIXEL_RGBA8888);
+		img=Image2D::create(width,height,E_PixelFormat::RGBA8888);
 	}
 
 	//FS_TRACE_WARN("width=%d,height=%d,channels=%d",width,height,channels);
@@ -311,13 +311,13 @@ int FsUtil_PngWriter(FsFile* file,Image2D* img)
 
 
 	/* get color_type,channels,bit_depth*/
-	if(img->getPixelFormat()==Image2D::PIXEL_RGB888)
+	if(img->getPixelFormat()==E_PixelFormat::RGB888)
 	{
 		color_type=PNG_COLOR_TYPE_RGB;
 		channels=3;
 		bit_depth=8;
 	}
-	else  if(img->getPixelFormat()==Image2D::PIXEL_RGBA8888)
+	else  if(img->getPixelFormat()==E_PixelFormat::RGBA8888)
 	{
 		color_type=PNG_COLOR_TYPE_RGB_ALPHA;
 		channels=4;
@@ -421,7 +421,7 @@ bool FsUtil_CheckPng(FsFile* file)
 
 	uint8_t data[8];
 	file->read(data,8);
-	file->seek(0,FsFile::FS_SEEK_SET);
+	file->seek(0,E_FileSeek::SET);
 
 	return fs_png_check(data,8);
 }

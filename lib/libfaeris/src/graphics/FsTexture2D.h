@@ -20,39 +20,16 @@ NS_FS_BEGIN
 class Texture2D:public Resource
 {
 	public:
-		enum 
-		{
-			/* filter */
-			FILTER_LINEAR=0,
-			FILTER_NEAREST,
-
-			/* wrap */
-			WRAP_CLAMP,
-			WRAP_REPEAT,
-			WRAP_CLAMP_TO_EDGE,
-			WRAP_CLAMP_TO_BORDER,
-
-			/* format */
-			FORMAT_RGBA,
-			FORMAT_ALPHA,
-			FORMAT_LUMINANCE,
-			FORMAT_LUMINANCE_ALPHA,
-			FORMAT_INTENSITY,
-			FORMAT_RGB,
-
-		};
-
-	public:
 		static Texture2D* create(
 				Image2D* image,
-				int filter_mag,
-				int filter_min,
-				int wraps,
-				int wrapt);
+				E_TextureFilter filter_mag,
+				E_TextureFilter filter_min,
+				E_TextureWrap wraps,
+				E_TextureWrap wrapt);
 		
-		static Texture2D* create(int format,int width,int height,void* data,
-								 int filter_mag,int filter_min,
-								 int wraps,int wrapt);
+		static Texture2D* create(E_PixelFormat format,int width,int height,void* data,
+								 E_TextureFilter filter_mag,E_TextureFilter filter_min,
+								 E_TextureWrap wraps,E_TextureWrap wrapt);
 
 
 		/* for quick create texture from image */
@@ -62,18 +39,18 @@ class Texture2D:public Resource
 	public:
 
 		/* fileter */
-		void setFilter(int mag,int min,int mip=FILTER_LINEAR);
-		int getFilterMin(){return m_filterMin;}
-		int getFilterMag(){return m_filterMag;}
-		int getFilterMipmap(){return m_filterMipmap;}
+		void setFilter(E_TextureFilter mag,E_TextureFilter min,E_TextureFilter mip=E_TextureFilter::LINEAR);
+		E_TextureFilter getFilterMin(){return m_filterMin;}
+		E_TextureFilter getFilterMag(){return m_filterMag;}
+		E_TextureFilter getFilterMipmap(){return m_filterMipmap;}
 
 		/* wrap */
-		void setWrap(int wraps,int wrapt);
-		int getWrapS(){return m_wrapS;}
-		int getWrapT(){return m_wrapT;}
+		void setWrap(E_TextureWrap wraps,E_TextureWrap wrapt);
+		E_TextureWrap getWrapS(){return m_wrapS;}
+		E_TextureWrap getWrapT(){return m_wrapT;}
 
 		/* format */
-		int getFormat(){return m_format;}
+		E_PixelFormat getFormat(){return m_format;}
 
 		/* height,and width */
 		uint getWidth(){return m_width;}
@@ -94,10 +71,10 @@ class Texture2D:public Resource
 		Texture2D();
 		virtual ~Texture2D();
 
-		bool init(Image2D* image,int filter_mag,int filter_min,int wraps,int wrapt);
-		bool init(int format,int width,int height,void* data,
-								 int filter_mag,int filter_min,
-								 int wraps,int wrapt);
+		bool init(Image2D* image,E_TextureFilter filter_mag,E_TextureFilter filter_min,E_TextureWrap wraps,E_TextureWrap wrapt);
+		bool init(E_PixelFormat format,int width,int height,void* data,
+								 E_TextureFilter filter_mag,E_TextureFilter filter_min,
+								 E_TextureWrap wraps,E_TextureWrap wrapt);
 
 		bool init(Image2D* image);
 		bool init(const char* filename);
@@ -109,14 +86,14 @@ class Texture2D:public Resource
 		int m_width;
 		int m_height;
 		/* format */
-		int m_format;
+		E_PixelFormat m_format;
 		/* filter */
-		int m_filterMin;
-		int m_filterMag;
-		int m_filterMipmap;
+		E_TextureFilter m_filterMin;
+		E_TextureFilter m_filterMag;
+		E_TextureFilter m_filterMipmap;
 		/* wrap */
-		int m_wrapS;
-		int m_wrapT;
+		E_TextureWrap m_wrapS;
+		E_TextureWrap m_wrapT;
 
 		/* env */
 		PlatformTexture m_platformTexture;

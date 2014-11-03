@@ -42,7 +42,7 @@ long SegFile::read(void* buf,long length)
 	}
 
 
-	m_stream->seek(m_offset+m_curpos,FsFile::FS_SEEK_SET);
+	m_stream->seek(m_offset+m_curpos,E_FileSeek::SET);
 	int readbyte=m_stream->read(buf,length);
 	if(readbyte>0)
 	{
@@ -70,7 +70,7 @@ long SegFile::write(const void* buf,long length)
 		length=rest;
 	}
 
-	m_stream->seek(m_offset+m_curpos,FsFile::FS_SEEK_SET);
+	m_stream->seek(m_offset+m_curpos,E_FileSeek::SET);
 	int writebyte=m_stream->write(buf,length);
 	if(writebyte>0)
 	{
@@ -79,7 +79,7 @@ long SegFile::write(const void* buf,long length)
 	return writebyte;
 }
 
-long SegFile::seek(long offset,int where)
+long SegFile::seek(long offset,E_FileSeek where)
 {
 	if(m_stream==NULL)
 	{
@@ -90,17 +90,17 @@ long SegFile::seek(long offset,int where)
 	int pos=0;
 	switch(where)
 	{
-		case FsFile::FS_SEEK_SET:
+		case E_FileSeek::SET:
 			{
 				pos=offset;
 			}
 			break;
-		case FsFile::FS_SEEK_CUR: 
+		case E_FileSeek::CUR: 
 			{
 				pos=m_curpos+offset;
 			}
 			break;
-		case FsFile::FS_SEEK_END:
+		case E_FileSeek::END:
 			{
 				pos=m_length+offset;
 			}

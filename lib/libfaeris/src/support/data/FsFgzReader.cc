@@ -122,7 +122,7 @@ FsFile* FgzReader::takeFile(const char* filename)
 		char* compress_buf=new char[info->m_header.m_ensize];
 
 		do{
-			if(m_stream->seek(info->m_dataOffset,FsFile::FS_SEEK_SET)==-1)
+			if(m_stream->seek(info->m_dataOffset,E_FileSeek::SET)==-1)
 			{
 				ret->decRef();
 				delete[] compress_buf;
@@ -193,7 +193,7 @@ bool FgzReader::init(FsFile* file)
 
 
 
-	int ret=file->seek(0,FsFile::FS_SEEK_SET);
+	int ret=file->seek(0,E_FileSeek::SET);
 	if(ret<0)
 	{
 		goto error;
@@ -220,7 +220,7 @@ bool FgzReader::init(FsFile* file)
 	for(i=0;i<file_nu;i++)
 	{
 
-		ret=file->seek(current_offset,FsFile::FS_SEEK_SET);
+		ret=file->seek(current_offset,E_FileSeek::SET);
 		if(ret<0)
 		{
 			FS_TRACE_WARN("Seek Error");

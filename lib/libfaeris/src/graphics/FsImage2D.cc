@@ -3,21 +3,21 @@
 #include "support/image/FsImageDecoder.h"
 
 NS_FS_BEGIN
-uint Image2D::PixelFormatSize(PixelFormat f)
+uint Image2D::PixelFormatSize(E_PixelFormat f)
 {
 	uint pixel_bytes;
 	switch(f)
 	{
-		case PIXEL_UNKOWN:
+		case E_PixelFormat::UNKOWN:
 			pixel_bytes=0;
 			break;
-		case PIXEL_RGB888:
+		case E_PixelFormat::RGB888:
 			pixel_bytes=3;
 			break;
-		case PIXEL_RGBA8888:
+		case E_PixelFormat::RGBA8888:
 			pixel_bytes=4;
 			break;
-		case PIXEL_GRAY8:
+		case E_PixelFormat::GRAY8:
 			pixel_bytes=1;
 			break;
 		default:
@@ -28,20 +28,20 @@ uint Image2D::PixelFormatSize(PixelFormat f)
 	return pixel_bytes;
 }
 
-Image2D* Image2D::create(const char* filename,ImageType format)
+Image2D* Image2D::create(const char* filename,E_ImageType format)
 {
 	return FsUtil_ImageReader(filename,format);
 }
-Image2D* Image2D::create(uint width,uint height,PixelFormat format)
+Image2D* Image2D::create(uint width,uint height,E_PixelFormat format)
 {
-	FS_TRACE_ERROR_ON(format==PIXEL_UNKOWN,"Unkown PixelFormat");
+	FS_TRACE_ERROR_ON(format==E_PixelFormat::UNKOWN,"Unkown PixelFormat");
 	Image2D* ret=new Image2D();
 	ret->init(width,height,format);
 	return ret;
 }
-Image2D* Image2D::create(uint width,uint height,void* data,PixelFormat format)
+Image2D* Image2D::create(uint width,uint height,void* data,E_PixelFormat format)
 {
-	FS_TRACE_ERROR_ON(format==PIXEL_UNKOWN,"Unkown PixelFormat");
+	FS_TRACE_ERROR_ON(format==E_PixelFormat::UNKOWN,"Unkown PixelFormat");
 	Image2D* ret=new Image2D();
 	ret->init(width,height,data,format);
 	return ret;
@@ -55,10 +55,10 @@ Image2D::Image2D()
 	m_pixel_bytes=0;
 	m_width=0;
 	m_height=0;
-	m_format=PIXEL_UNKOWN;
+	m_format=E_PixelFormat::UNKOWN;
 	m_buffer=NULL;
 }
-void Image2D::init(uint width,uint height,PixelFormat format)
+void Image2D::init(uint width,uint height,E_PixelFormat format)
 {
 	uint pixel_bytes=PixelFormatSize(format);
 	if(pixel_bytes==0)
@@ -66,7 +66,7 @@ void Image2D::init(uint width,uint height,PixelFormat format)
 		FS_TRACE_WARN("Unkown PixelFormat");
 		m_width=0;
 		m_height=0;
-		m_format=PIXEL_UNKOWN;
+		m_format=E_PixelFormat::UNKOWN;
 		m_pixel_bytes=0;
 		m_buffer=0;
 		return;
@@ -81,7 +81,7 @@ void Image2D::init(uint width,uint height,PixelFormat format)
 	m_pixel_bytes=pixel_bytes;
 } 
 
-void Image2D::init(uint width,uint height,void* data,PixelFormat format)
+void Image2D::init(uint width,uint height,void* data,E_PixelFormat format)
 {
 	uint pixel_bytes=PixelFormatSize(format);
 	if(pixel_bytes==0)
@@ -89,7 +89,7 @@ void Image2D::init(uint width,uint height,void* data,PixelFormat format)
 		FS_TRACE_WARN("Unkown PixelFormat");
 		m_width=0;
 		m_height=0;
-		m_format=PIXEL_UNKOWN;
+		m_format=E_PixelFormat::UNKOWN;
 		m_pixel_bytes=0;
 		m_buffer=0;
 		return;
@@ -117,13 +117,13 @@ Color Image2D::getColor(uint w,uint h)const
 	uint8_t* p=m_buffer+(h*m_width+w)*m_pixel_bytes;
 	switch(m_format)
 	{
-		case PIXEL_RGB888:
+		case E_PixelFormat::RGB888:
 			ret.r=*p++;
 			ret.g=*p++;
 			ret.b=*p++;
 			ret.a=255;
 			break;
-		case PIXEL_RGBA8888:
+		case E_PixelFormat::RGBA8888:
 			ret.r=*p++;
 			ret.g=*p++;
 			ret.b=*p++;
@@ -146,12 +146,12 @@ void Image2D::setColor(uint w,uint h,Color c)
 
 	switch(m_format)
 	{
-		case PIXEL_RGB888:
+		case E_PixelFormat::RGB888:
 			*p++=c.r;
 			*p++=c.g;
 			*p++=c.b;
 			break;
-		case PIXEL_RGBA8888:
+		case E_PixelFormat::RGBA8888:
 			*p++=c.r;
 			*p++=c.g;
 			*p++=c.b;

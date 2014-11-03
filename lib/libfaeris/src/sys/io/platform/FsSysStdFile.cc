@@ -94,19 +94,18 @@ long SysFile::write(const void* buf,long length)
 {
 	return fwrite(buf,1,length,m_platfromFile);
 }
-long SysFile::seek(long offset,int where)
+long SysFile::seek(long offset,E_FileSeek where)
 {
 	long ret;
 	switch(where)
 	{
-		case FsFile::FS_SEEK_CUR:
+		case E_FileSeek::CUR:
 			ret=fseek(m_platfromFile,offset,SEEK_CUR);
 			break;
-		case FsFile::FS_SEEK_SET:
+		case E_FileSeek::SET:
 			ret=fseek(m_platfromFile,offset,SEEK_SET);
 			break;
-		case FsFile::FS_SEEK_END:
-
+		case E_FileSeek::END:
 			ret=fseek(m_platfromFile,offset,SEEK_END);
 			break;
 		default:

@@ -59,17 +59,17 @@ long MemFile::write(const void* buf,long len)
 	return len;
 }
 
-long MemFile::seek(long offset,int where)
+long MemFile::seek(long offset,E_FileSeek where)
 {
 	switch(where)
 	{
-		case FsFile::FS_SEEK_SET:
+		case E_FileSeek::SET:
 			m_pos=offset;
 			break;
-		case FsFile::FS_SEEK_CUR:
+		case E_FileSeek::CUR:
 			m_pos+=offset;
 			break;
-		case FsFile::FS_SEEK_END:
+		case E_FileSeek::END:
 			m_pos=m_length+offset;
 	}
 

@@ -14,7 +14,7 @@ class SegFile:public FsFile
 		/* override FsFile */
 		virtual long read(void* buf,long length);
 		virtual long write(const void* buf,long length);
-		virtual long seek(long offset,int where);
+		virtual long seek(long offset,E_FileSeek where);
 		virtual int  close();
 		virtual long tell();
 		virtual long getLength();

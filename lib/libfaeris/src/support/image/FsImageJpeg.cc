@@ -23,16 +23,16 @@ bool FsUtil_CheckJpeg(FsFile* file)
 
 	uint8_t data[2];
 	file->read(data,2);
-	file->seek(0,FsFile::FS_SEEK_SET);
+	file->seek(0,E_FileSeek::SET);
 
 	if(memcmp(data,S_JpegBeginMagicNu,2)!=0)
 	{
 		return false;
 	}
 
-	file->seek(file_length-2,FsFile::FS_SEEK_SET);
+	file->seek(file_length-2,E_FileSeek::SET);
 	file->read(data,2);
-	file->seek(0,FsFile::FS_SEEK_SET);
+	file->seek(0,E_FileSeek::SET);
 
 	if(memcmp(data,S_JpegEndMagicNu,2)!=0)
 	{
@@ -120,11 +120,11 @@ FS_FEATURE_NEW_OBJECT(Image2D*) FsUtil_JpegReader(FsFile* file)
      	row_pointer[0] = new uint8_t[cinfo.output_width*cinfo.output_components];
 		if(cinfo.out_color_components==3)
 		{
-			ret=Image2D::create(width,height,Image2D::PIXEL_RGB888);
+			ret=Image2D::create(width,height,E_PixelFormat::RGB888);
 		}
 		else 
 		{
-			ret=Image2D::create(width,height,Image2D::PIXEL_RGBA8888);
+			ret=Image2D::create(width,height,E_PixelFormat::RGBA8888);
 		}
 
 		uint8_t* pixel_data=(uint8_t*)ret->getPixelData();

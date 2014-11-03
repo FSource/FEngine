@@ -314,6 +314,54 @@ enum E_MorphAnimFlag
 };
 
 
+enum class E_FileSeek 
+{
+	SET,
+	CUR,
+	END,
+};
+
+enum class E_PixelFormat 
+{
+	UNKOWN=0,
+	RGB888,
+	RGBA8888,
+	GRAY8,
+	ALPHA,
+	LUMINANCE,
+	LUMINANCE_ALPHA,
+	INTENSITY,
+
+};
+
+enum class E_ImageType 
+{
+	UNKOWN=0,
+	PNG,
+	JPEG,
+	TGA,
+	BMP
+};
+
+enum class E_TextureFilter 
+{
+	LINEAR,
+	NEAREST,
+};
+
+enum class E_TextureWrap 
+{
+	CLAMP,
+	REPEAT,
+	CLAMP_TO_EDGE,
+	CLAMP_TO_BORDER,
+};
+
+
+
+
+
+
 
 NS_FS_END 
 

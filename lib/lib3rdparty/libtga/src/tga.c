@@ -30,78 +30,6 @@
 
 
 TGA*
-TGAOpen(char *file, 
-	char *mode)
-{
- 	TGA *tga;
-	FILE *fd;
-
-	tga = (TGA*)malloc(sizeof(TGA));
-	if (!tga) {
-		TGA_ERROR(tga, TGA_OOM);
-		return NULL;
-	}
-	
-	tga->off = 0;
-	tga->error = 0;
-	tga->fgetcFunc = 0;
-	tga->freadFunc = 0;
-	tga->fputcFunc = 0;
-	tga->fwriteFunc = 0;
-	tga->fseekFunc = 0;
-	tga->ftellFunc = 0;
-
-	fd = fopen(file, mode);
-	if (!fd) {
-		TGA_ERROR(tga, TGA_OPEN_FAIL);
-		free(tga);
-		return NULL;
-	}
-	tga->fd = fd;
-	tga->last = TGA_OK;
-	return tga;
-}
-
-
-TGA*
-TGAOpenFd(FILE *fd)
-{
-	TGA *tga;
-
-	tga = (TGA*)malloc(sizeof(TGA));
-	if (!tga) {
-		TGA_ERROR(tga, TGA_OOM);
-		return NULL;
-	}
-
-	if (!fd) {
-		TGA_ERROR(tga, TGA_OPEN_FAIL);
-		free(tga);
-		return NULL;
-	}
-
-	tga->off = tga_ftell(tga);
-	if(tga->off == -1) {
-		TGA_ERROR(tga, TGA_OPEN_FAIL);
-		free(tga);
-		return NULL;
-	}
-
-	tga->error = 0;
-	tga->fgetcFunc = 0;
-	tga->freadFunc = 0;
-	tga->fputcFunc = 0;
-	tga->fwriteFunc = 0;
-	tga->fseekFunc = 0;
-	tga->ftellFunc = 0;
-	
-	tga->fd = fd;
-	tga->last = TGA_OK;
-	return tga;
-}
-
-
-TGA*
 TGAOpenUserDef(void *io,
 			TGAFGetcFunc fgetcFunc, TGAFReadFunc freadFunc,
 			TGAFPutcFunc fputcFunc, TGAFWriteFunc fwriteFunc,
@@ -140,10 +68,7 @@ TGAOpenUserDef(void *io,
 void 
 TGAClose(TGA *tga)
 {
-	if (tga && !tga->fgetcFunc && !tga->freadFunc && !tga->fputcFunc && !tga->fwriteFunc && !tga->fseekFunc && !tga->ftellFunc) {
-		fclose(tga->fd);
-		free(tga);
-	}
+	if (tga) { free(tga); }
 }
 
 

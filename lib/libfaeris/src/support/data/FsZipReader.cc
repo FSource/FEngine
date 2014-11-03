@@ -47,15 +47,15 @@ static long _ZipReader_SeekFileFunc(voidpf opaque,voidpf stream,uLong offset,int
 	switch(origin)
 	{
 		case  ZLIB_FILEFUNC_SEEK_CUR:
-			file->seek(offset,FsFile::FS_SEEK_CUR);
+			file->seek(offset,E_FileSeek::CUR);
 			break;
 
 		case ZLIB_FILEFUNC_SEEK_END:
-			file->seek(offset,FsFile::FS_SEEK_END);
+			file->seek(offset,E_FileSeek::END);
 			break;
 			
 		case ZLIB_FILEFUNC_SEEK_SET:
-			file->seek(offset,FsFile::FS_SEEK_SET);
+			file->seek(offset,E_FileSeek::SET);
 			break;
 	}
 	return 0;

@@ -14,7 +14,7 @@ class MemFile:public FsFile
 		/* inherit FsFile */
 		virtual long read(void* buf,long len);
 		virtual long write(const void* buf,long len);
-		virtual long seek(long offset,int where);
+		virtual long seek(long offset,E_FileSeek where);
 		virtual long tell();
 		virtual int close();
 

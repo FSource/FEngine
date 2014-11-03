@@ -43,6 +43,13 @@ int
 TGAReadImage(TGA     *tga, 
 	     TGAData *data)
 {
+	tuint32 flag=0;
+	if(tga->hdr.flip)
+	{
+		flag=TGA_FLIP_VERTICAL|TGA_RGB;
+	}
+
+
 	if (!tga) return 0;
 
 	if (TGAReadHeader(tga) != TGA_OK) {
@@ -77,7 +84,7 @@ TGAReadImage(TGA     *tga,
 			return 0;
 		}
 		
-		if (TGAReadScanlines(tga, data->img_data, 0, tga->hdr.height, data->flags) != tga->hdr.height) {
+		if (TGAReadScanlines(tga, data->img_data, 0, tga->hdr.height, flag) != tga->hdr.height) {
 			data->flags &= ~TGA_IMAGE_DATA;
 			TGA_ERROR(tga, tga->last);
 		}
@@ -125,12 +132,10 @@ TGAReadHeader (TGA *tga)
 	tga->hdr.height 	= tmp[14] + tmp[15] * 256;
 	tga->hdr.depth 		= tmp[16];
 	tga->hdr.alpha		= tmp[17] & 0x0f;
-	tga->hdr.horz	        = (tmp[17] & 0x10) ? TGA_RIGHT : TGA_LEFT;
-	tga->hdr.vert	        = (tmp[17] & 0x20) ? TGA_TOP : TGA_BOTTOM;
+	tga->hdr.flip= (tmp[17] & 0x10) ? 1:0;
 
 	if (tga->hdr.map_t && tga->hdr.depth != 8) {
 		TGA_ERROR(tga, TGA_UNKNOWN_SUB_FORMAT);
-		free(tga);
 		free(tmp);
 		return 0;
 	} 
@@ -142,7 +147,6 @@ TGAReadHeader (TGA *tga)
 	    tga->hdr.depth != 32) 
 	{
 		TGA_ERROR(tga, TGA_UNKNOWN_SUB_FORMAT);
-		free(tga);
 		free(tmp);
 		return 0;
 	}

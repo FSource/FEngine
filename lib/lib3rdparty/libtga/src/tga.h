@@ -139,28 +139,30 @@ typedef long (*TGAFTellFunc)(TGA*);
 
 /* TGA image header */
 struct _TGAHeader {
-    	tbyte	id_len;		/* image id length */
+
+   	tbyte	id_len;		/* image id length */
 	tbyte	map_t;		/* color map type */
 	tbyte	img_t;		/* image type */
 	tshort	map_first;	/* index of first map entry */
 	tshort	map_len;	/* number of entries in color map */
 	tbyte	map_entry;	/* bit-depth of a cmap entry */
-	tshort	x;		/* x-coordinate */
-	tshort	y;		/* y-coordinate */
+	tshort	x;			/* x-coordinate */
+	tshort	y;			/* y-coordinate */
 	tshort	width;		/* width of image */
 	tshort	height;		/* height of image */
 	tbyte	depth;		/* pixel-depth of image */
-	tbyte   alpha;          /* alpha bits */
-	tbyte	horz;	        /* horizontal orientation */
-	tbyte	vert;	        /* vertical orientation */
+	tbyte   alpha;      /* alpha bits */
+	tbyte	flip;	    /* horizontal orientation */
 };
 
 /* TGA image data */
 struct _TGAData {  
+
 	tbyte	*img_id;	/* image id */
 	tbyte	*cmap;		/* color map */
 	tbyte	*img_data;	/* image data */
 	tuint32  flags;
+
 };
 
 /* TGA image handle */
@@ -181,10 +183,6 @@ struct _TGA {
 
 __BEGIN_DECLS
 
-
-TGA* TGAOpen __P((char *name, char *mode));
-
-TGA* TGAOpenFd __P((FILE *fd));
 
 TGA* TGAOpenUserDef __P((void *io,
 				TGAFGetcFunc fgetcFunc, TGAFReadFunc freadFunc,

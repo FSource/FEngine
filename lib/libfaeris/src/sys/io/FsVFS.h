@@ -64,12 +64,6 @@ enum
 	FS_IO_TRUNC=FsFile::FS_IO_TRUNC,
 };
 
-enum
-{
-	FS_SEEK_SET=FsFile::FS_SEEK_SET,
-	FS_SEEK_CUR=FsFile::FS_SEEK_CUR,
-	FS_SEEK_END=FsFile::FS_SEEK_END,
-};
 
 enum 
 {

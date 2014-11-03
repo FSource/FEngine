@@ -124,8 +124,7 @@ TGAWriteHeader(TGA *tga)
 	tmp[15] = tga->hdr.height / 256;
 	tmp[16] = tga->hdr.depth;
 	tmp[17] = tga->hdr.alpha;
-	tmp[17] |= (tga->hdr.vert << 5);
-	tmp[17] |= (tga->hdr.horz << 4);
+	tmp[17] |= (tga->hdr.flip<< 5);
 
 	if (!TGAWrite(tga, tmp, TGA_HEADER_SIZE, 1)) {
 		free(tmp);

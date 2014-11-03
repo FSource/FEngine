@@ -53,7 +53,7 @@ static unsigned long  S_fileRead(FT_Stream stream,
 {
 	int readbyte;
 	FsFile* file=(FsFile*)stream->descriptor.pointer;
-	file->seek(offset,FsFile::FS_SEEK_SET);
+	file->seek(offset,E_FileSeek::SET);
 	readbyte=file->read(buffer,count);
 	return readbyte;
 }
@@ -126,7 +126,7 @@ GlyphTTF* PlatfromFontTTF::createGlyphTTF(uint16_t char_index,int size)
 		FS_TRACE_WARN("bitmap is not 8 bit gray");
 		return ret;
 	}
-	Image2D* image=Image2D::create(width,rows,Image2D::PIXEL_RGBA8888);
+	Image2D* image=Image2D::create(width,rows,E_PixelFormat::RGBA8888);
 
 	Color* data_dst=(Color*)image->getPixelData();
 	uint8_t* data_src=bitmap_src->buffer;

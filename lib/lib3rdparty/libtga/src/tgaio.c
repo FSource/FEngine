@@ -26,30 +26,36 @@
 
 int tga_fgetc(TGA* tga)
 {
-	return tga->fgetcFunc ? tga->fgetcFunc(tga) : fgetc((FILE*)tga->fd);
+	return  tga->fgetcFunc(tga) ;
 }
 
 size_t tga_fread(TGA* tga, void* buffer, size_t size, size_t count)
 {
-	return tga->freadFunc ? tga->freadFunc(tga, buffer, size, count) : fread(buffer, size, count, (FILE*)tga->fd);
+	return  tga->freadFunc(tga, buffer, size, count) ;
 }
 
 int tga_fputc(TGA* tga, int c)
 {
-	return tga->fputcFunc ? tga->fputcFunc(tga, c) : fputc(c, (FILE*)tga->fd);
+	return  tga->fputcFunc(tga, c) ;
 }
 
 size_t tga_fwrite(TGA* tga, const void* buffer, size_t size, size_t count)
 {
-	return tga->fwriteFunc ? tga->fwriteFunc(tga, buffer, size, count) : fwrite(buffer, size, count, (FILE*)tga->fd);
+	return  tga->fwriteFunc(tga, buffer, size, count) ;
 }
 
 void tga_fseek(TGA* tga, long offset, int origin)
 {
-	tga->fseekFunc ? tga->fseekFunc(tga, offset, origin) : fseek((FILE*)tga->fd, offset, origin);
+	tga->fseekFunc(tga, offset, origin) ;
 }
 
 long tga_ftell(TGA* tga)
 {
-	return tga->ftellFunc ? tga->ftellFunc(tga) : ftell((FILE*)tga->fd);
+	return tga->ftellFunc(tga) ;
 }
+
+
+
+
+
+

@@ -565,6 +565,9 @@
     <ClInclude Include="..\..\src\math\FsBox3D.h">
       <Filter>src\math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\support\image\FsImageTga.h">
+      <Filter>src\support\image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1001,6 +1004,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\math\FsBox3D.cc">
       <Filter>src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\support\image\FsImageTga.cc">
+      <Filter>src\support\image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,92 +3,108 @@
 #include "support/image/FsImageDecoder.h"
 #include "support/image/FsImagePng.h"
 #include "support/image/FsImageJpeg.h"
+#include "support/image/FsImageTga.h"
 
 #include "graphics/FsImage2D.h"
 #include "sys/io/FsVFS.h"
 
 NS_FS_BEGIN
-Image2D::ImageType FsUtil_ImageTypeWithName(const char* name)
+E_ImageType FsUtil_ImageTypeWithName(const char* name)
 {
 	uint str_len=strlen(name);
-	if(str_len<=5)  /*  *.jpg, *.png, *.bmp *.tga */
+	if(str_len<5)  /*  *.jpg, *.png, *.bmp *.tga */
 	{
-		return Image2D::IMAGE_UNKWON;
+		return E_ImageType::UNKOWN;
 	}
 
 	const char* ext=name+str_len-4;
 	if(strcmp(ext,".jpg")==0)
 	{
-		return Image2D::IMAGE_JEPG;
+		return E_ImageType::JPEG;
 	}
 	else if(strcmp(ext,".png")==0)
 	{
-		return Image2D::IMAGE_PNG;
+		return E_ImageType::PNG;
 	}
 	else if(strcmp(ext,".bmp")==0)
 	{
-		return Image2D::IMAGE_BMP;
+		return E_ImageType::BMP;
 	}
 	else if(strcmp(ext,".tga")==0)
 	{
-		return Image2D::IMAGE_TGA;
+		return E_ImageType::TGA;
 	}
 
-	if(str_len<=6)   /* *.jpeg */
+	if(str_len<6)   /* *.jpeg */
 	{
-		return Image2D::IMAGE_UNKWON;
+		return E_ImageType::UNKOWN;
 	}
 
 	ext=name+str_len-5;
 	if(strcmp(ext,".jpeg")==0)
 	{
-		return Image2D::IMAGE_JEPG;
+		return E_ImageType::JPEG;
 	}
 
-	return Image2D::IMAGE_UNKWON;
+	return E_ImageType::UNKOWN;
 }
 
-Image2D::ImageType FsUtil_ImageType(FsFile* file)
+E_ImageType FsUtil_ImageType(FsFile* file)
 {
 	if(FsUtil_CheckPng(file))
 	{
-		return Image2D::IMAGE_PNG;
+		return E_ImageType::PNG;
 	}
+
 	if(FsUtil_CheckJpeg(file))
 	{
-		return Image2D::IMAGE_JEPG;
+		return E_ImageType::JPEG;
 	}
-	return Image2D::IMAGE_UNKWON;
+
+	if(FsUtil_CheckTga(file))
+	{
+		return E_ImageType::TGA;
+	}
+
+
+	return E_ImageType::UNKOWN;
 }
 
 
 
-Image2D* FsUtil_ImageReader(FsFile* file,Image2D::ImageType image_type)
+Image2D* FsUtil_ImageReader(FsFile* file,E_ImageType image_type)
 {
 
-	if(image_type==Image2D::IMAGE_UNKWON)
+	if(image_type==E_ImageType::UNKOWN)
 	{
 		image_type=FsUtil_ImageType(file);
 	}
 
 	switch(image_type)
 	{
-		case Image2D::IMAGE_JEPG:
+		case E_ImageType::JPEG:
 			return FsUtil_JpegReader(file);
-		case Image2D::IMAGE_PNG:
+
+		case E_ImageType::PNG:
 			return FsUtil_PngReader(file);
-		case Image2D::IMAGE_BMP:
+
+		case E_ImageType::BMP:
 			/*TODO add Bitmap Reader hear */
 			//	return FsUtil_BmpReader(file);
 			return NULL;
+
+		case E_ImageType::TGA:
+			return FsUtil_TgaReader(file);
+
 		default:
 			FS_TRACE_WARN("Image Type Is Not Support");
 			return NULL;
 	}
 	return NULL;
+
 }
 
-Image2D* FsUtil_ImageReader(const char* filename,Image2D::ImageType image_type)
+Image2D* FsUtil_ImageReader(const char* filename,E_ImageType image_type)
 {
 
 	FsFile* file=VFS::createFile(filename);

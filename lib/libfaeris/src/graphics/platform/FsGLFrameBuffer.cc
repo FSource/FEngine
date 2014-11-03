@@ -60,9 +60,9 @@ bool FrameBuffer::init(int width,int height)
 
 
 	/* Color Buffer */
-	m_colorTexture=Texture2D::create(Texture2D::FORMAT_RGBA,width,height,NULL,
-									Texture2D::FILTER_LINEAR,Texture2D::FILTER_LINEAR,
-									Texture2D::WRAP_CLAMP_TO_EDGE,Texture2D::WRAP_CLAMP_TO_EDGE);
+	m_colorTexture=Texture2D::create(E_PixelFormat::RGBA8888,width,height,NULL,
+									E_TextureFilter::LINEAR,E_TextureFilter::LINEAR,
+									E_TextureWrap::CLAMP_TO_EDGE,E_TextureWrap::CLAMP_TO_EDGE);
 	if(!m_colorTexture)
 	{
 		FS_TRACE_WARN("Create Texture2D Failed");

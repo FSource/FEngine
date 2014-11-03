@@ -36,10 +36,10 @@ long FsFile::writeStr(const char* fmt,...)
 long FsFile::getLength()
 {
 	long cur_pos=tell();
-	seek(0,FS_SEEK_END);
+	seek(0,E_FileSeek::END);
 
 	long length=tell();
-	seek(cur_pos,FS_SEEK_SET);
+	seek(cur_pos,E_FileSeek::SET);
 	return length;
 }
 

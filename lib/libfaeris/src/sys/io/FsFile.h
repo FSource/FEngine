@@ -5,17 +5,14 @@
 
 #include "FsMacros.h"
 #include "FsObject.h"
+#include "FsEnums.h"
+
+
 NS_FS_BEGIN
 
 class FsFile:public FsObject
 {
 	public:
-		enum
-		{
-			FS_SEEK_SET,
-			FS_SEEK_CUR,
-			FS_SEEK_END,
-		};
 		enum
 		{
 			FS_IO_RDONLY=0x1,
@@ -28,7 +25,7 @@ class FsFile:public FsObject
 	public:
 		virtual long read(void* buf,long length)=0;
 		virtual long write(const void* buf,long length)=0;
-		virtual long seek(long offset,int where)=0;
+		virtual long seek(long offset,E_FileSeek where)=0;
 		virtual int  close()=0;
 		virtual long tell()=0;
 		virtual long getLength();
