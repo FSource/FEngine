@@ -6,27 +6,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\tga.c">
+    <ClCompile Include="..\..\src\tga.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\tgaread.c">
+    <ClCompile Include="..\..\src\tgaio.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\tgawrite.c">
+    <ClCompile Include="..\..\src\tgaread.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\tgaio.c">
+    <ClCompile Include="..\..\src\tgawrite.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\tga.h">
+    <ClInclude Include="..\..\src\tga.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\tgaconfig.h">
+    <ClInclude Include="..\..\src\tgaconfig.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\tgaio.h">
+    <ClInclude Include="..\..\src\tgaio.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

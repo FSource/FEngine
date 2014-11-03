@@ -11,15 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\tga.c" />
-    <ClCompile Include="..\src\tgaio.c" />
-    <ClCompile Include="..\src\tgaread.c" />
-    <ClCompile Include="..\src\tgawrite.c" />
+    <ClCompile Include="..\..\src\tga.c" />
+    <ClCompile Include="..\..\src\tgaio.c" />
+    <ClCompile Include="..\..\src\tgaread.c" />
+    <ClCompile Include="..\..\src\tgawrite.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\tga.h" />
-    <ClInclude Include="..\src\tgaconfig.h" />
-    <ClInclude Include="..\src\tgaio.h" />
+    <ClInclude Include="..\..\src\tga.h" />
+    <ClInclude Include="..\..\src\tgaconfig.h" />
+    <ClInclude Include="..\..\src\tgaio.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CC991790-A518-4900-85EE-3ECBE8903C4E}</ProjectGuid>
