@@ -1,8 +1,10 @@
 /*
  *  tgaread.c
  *
- *  Copying (C) 2001-2002  Matthias Brueckner <matbrc@gmx.de>
- *  This file is part of the struct TGA library (libtga).
+ *  Copyright (C) 2001-2002, Matthias Brueckner
+ *  Copyright (C) 2011, Alexander Azhevsky, Andrey Antsut
+ *  
+ *  This file is part of the TGA Extended library (libtga-ex).
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,10 +23,21 @@
  
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <memory.h>
 #include "tga.h"
+#include "tgaio.h"
 
 
+size_t
+TGARead(TGA    *tga, 
+	tbyte  *buf,
+	size_t 	size, 
+	size_t 	n)
+{
+	size_t read = tga_fread(tga, buf, size, n);
+	tga->off = tga_ftell(tga);
+	return read;
+}
 
 int 
 TGAReadImage(TGA     *tga, 
@@ -112,8 +125,8 @@ TGAReadHeader (TGA *tga)
 	tga->hdr.height 	= tmp[14] + tmp[15] * 256;
 	tga->hdr.depth 		= tmp[16];
 	tga->hdr.alpha		= tmp[17] & 0x0f;
-	tga->hdr.horz	        = (tmp[17] & 0x10) ? TGA_TOP : TGA_BOTTOM;
-	tga->hdr.vert	        = (tmp[17] & 0x20) ? TGA_RIGHT : TGA_LEFT;
+	tga->hdr.horz	        = (tmp[17] & 0x10) ? TGA_RIGHT : TGA_LEFT;
+	tga->hdr.vert	        = (tmp[17] & 0x20) ? TGA_TOP : TGA_BOTTOM;
 
 	if (tga->hdr.map_t && tga->hdr.depth != 8) {
 		TGA_ERROR(tga, TGA_UNKNOWN_SUB_FORMAT);
@@ -235,11 +248,11 @@ TGAReadRLE(TGA   *tga,
 
 	for (x = 0; x < width; ++x) {
 		if (repeat == 0 && direct == 0) {
-			head = TGAGet(tga);
+			head = tga_fgetc(tga);
 			if (head == EOF) return TGA_ERROR;
 			if (head >= 128) {
 				repeat = head - 127;
-				if (TGARead(tga,sample, bytes, 1) < 1) 
+				if (tga_fread(tga, sample, bytes, 1) < 1) 
 					return TGA_ERROR;
 			} else {
 				direct = head + 1;
@@ -249,7 +262,7 @@ TGAReadRLE(TGA   *tga,
 			for (k = 0; k < bytes; ++k) buf[k] = sample[k];
 			--repeat;
 		} else {
-			if (TGARead(tga,buf, bytes, 1 ) < 1) return TGA_ERROR;
+			if (tga_fread(tga, buf, bytes, 1) < 1) return TGA_ERROR;
 			--direct;
 		}
 		buf += bytes;
@@ -266,8 +279,10 @@ TGAReadScanlines(TGA 	*tga,
 		 size_t  n,
 		 tuint32 flags)
 {	
-	tlong i, off;
-	size_t sln_size, read, tmp;
+	tlong off;
+	size_t sln_size, read;
+	tbyte *ptr = 0;
+
 
 	if (!tga || !buf) return 0;
 
@@ -280,16 +295,36 @@ TGAReadScanlines(TGA 	*tga,
 		return 0;
 	}
 
-	if(TGA_IS_ENCODED(tga)) {
-		for(read = 0; read <= n; ++read) {
-			if(TGAReadRLE(tga, buf + ((sln + read) * sln_size)) !=
+	if(TGA_IS_ENCODED(tga)) 
+	{
+		for(read = 0; read < n; ++read) 
+		{
+			if (flags & TGA_FLIP_VERTICAL)
+				ptr = buf + ((n - 1 - (sln + read)) * sln_size);
+			else
+				ptr = buf + ((sln + read) * sln_size);
+
+			if(TGAReadRLE(tga, ptr) !=
 				TGA_OK) break;
 		}
+
 		tga->hdr.img_t -= 8;
-	} else {
-		read = TGARead(tga, buf, sln_size, n);
 	}
-	if(read != n) {
+	else 
+	{
+		for(read = 0; read < n; ++read) 
+		{
+			if (flags & TGA_FLIP_VERTICAL)
+				ptr = buf + ((n - 1 - (sln + read)) * sln_size);
+			else
+				ptr = buf + ((sln + read) * sln_size);
+
+			TGARead(tga, ptr, sln_size, 1);
+		}
+	}
+
+	if(read != n)
+	{
 		TGA_ERROR(tga, TGA_READ_FAIL);
 		return read;
 	}
@@ -299,7 +334,11 @@ TGAReadScanlines(TGA 	*tga,
 			   tga->hdr.depth / 8);
 	}
 	
-	if (tga->hdr.depth == 15 || tga->hdr.depth == 16) {
+	if (tga->hdr.depth == 15 || tga->hdr.depth == 16) 
+	{
+		TGA_ERROR(tga, TGA_SEEK_FAIL);
+		return 0;
+/*
 		n = read + read / 2;	
 		buf = (tbyte*)realloc(buf, n);
 		if (!buf) {
@@ -314,6 +353,7 @@ TGAReadScanlines(TGA 	*tga,
 			buf[n] = (tmp >> 5) & 0x1F;
 			n -= 3;
 		}
+*/
 	}
 	
 	tga->last = TGA_OK;

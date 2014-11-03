@@ -1,8 +1,10 @@
 /*
  *  tgawrite.c
  *
- *  Copyright (C) 2001-2002  Matthias Brueckner  <matbrc@gmx.de>
- *  This file is part of the TGA library (libtga).
+ *  Copyright (C) 2001-2002, Matthias Brueckner
+ *  Copyright (C) 2011, Alexander Azhevsky, Andrey Antsut
+ *  
+ *  This file is part of the TGA Extended library (libtga-ex).
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,10 +23,21 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <memory.h>
 #include "tga.h"
+#include "tgaio.h"
 
 
+size_t
+TGAWrite(TGA 	     *tga, 
+	 const tbyte *buf, 
+	 size_t       size, 
+	 size_t       n)
+{
+	size_t wrote = tga_fwrite(tga, buf, size, n);
+	tga->off = tga_ftell(tga);
+	return wrote;
+}
 
 
 int TGAWriteImage(TGA 	  *tga, 
@@ -195,8 +208,8 @@ TGAWriteRLE(TGA   *tga,
 	for (x = 1; x < width; ++x) {
 		if (memcmp(buf, buf + bytes, bytes)) {
 			if (repeat) {
-				TGAPut(tga,128 + repeat);
-				TGAWrite(tga,from, bytes, 1);
+				tga_fputc(tga, 128 + repeat);
+				tga_fwrite(tga, from, bytes, 1);
 				from = buf + bytes; 
 				repeat = 0;
 				direct = 0;
@@ -205,8 +218,8 @@ TGAWriteRLE(TGA   *tga,
 			}
 		} else {
 			if (direct) {
-				TGAPut(tga,direct - 1);
-				TGAWrite(tga, from,bytes, direct);
+				tga_fputc(tga, direct - 1);
+				tga_fwrite(tga, from, bytes, direct);
 				from = buf; 
 				direct = 0;
 				repeat = 1;
@@ -215,14 +228,14 @@ TGAWriteRLE(TGA   *tga,
 			}
 		}
 		if (repeat == 128) {
-			TGAPut(tga,255);
-			TGAWrite(tga,from, bytes, 1);
+			tga_fputc(tga, 255);
+			tga_fwrite(tga, from, bytes, 1);
 			from = buf + bytes;
 			direct = 0;
 			repeat = 0;
 		} else if (direct == 128) {
-			TGAPut(tga,127);
-			TGAWrite(tga,from, bytes, direct);
+			tga_fputc(tga, 127);
+			tga_fwrite(tga, from, bytes, direct);
 			from = buf + bytes;
 			direct = 0;
 			repeat = 0;
@@ -231,11 +244,11 @@ TGAWriteRLE(TGA   *tga,
 	}
 
 	if (repeat > 0) {
-		TGAPut(tga,128 + repeat);
-		TGAWrite(tga,from, bytes, 1);
+		tga_fputc(tga, 128 + repeat);
+		tga_fwrite(tga, from, bytes, 1);
 	} else {
-		TGAPut(tga,direct);
-		TGAWrite(tga,from, bytes, direct + 1);
+		tga_fputc(tga, direct);
+		tga_fwrite(tga, from, bytes, direct + 1);
 	}
 
 	tga->last = TGA_OK;

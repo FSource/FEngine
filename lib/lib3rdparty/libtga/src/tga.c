@@ -1,8 +1,10 @@
 /*
  *  tga.c
  *
- *  Copyright (C) 2001-2002  Matthias Brueckner <matbrc@gmx.de>
- *  This file is part of the TGA library (libtga).
+ *  Copyright (C) 2001-2002, Matthias Brueckner
+ *  Copyright (C) 2011, Alexander Azhevsky, Andrey Antsut
+ *  
+ *  This file is part of the TGA Extended library (libtga-ex).
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,22 +20,21 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "tga.h"
+#include "tgaio.h"
+
+
 
 
 TGA*
-TGAOpen(void* file,
-	TGA_IoRead read_io,
-	TGA_IoWrite write_io,
-	TGA_IoSeek seek_io,
-	TGA_IoTell tell_io
-	)
+TGAOpen(char *file, 
+	char *mode)
 {
-
  	TGA *tga;
+	FILE *fd;
 
 	tga = (TGA*)malloc(sizeof(TGA));
 	if (!tga) {
@@ -42,53 +43,108 @@ TGAOpen(void* file,
 	}
 	
 	tga->off = 0;
-	tga->file= file;
-	tga->readio=read_io;
-	tga->writeio=write_io;
-	tga->seekio=seek_io;
-	tga->tellio=tell_io;
+	tga->error = 0;
+	tga->fgetcFunc = 0;
+	tga->freadFunc = 0;
+	tga->fputcFunc = 0;
+	tga->fwriteFunc = 0;
+	tga->fseekFunc = 0;
+	tga->ftellFunc = 0;
+
+	fd = fopen(file, mode);
+	if (!fd) {
+		TGA_ERROR(tga, TGA_OPEN_FAIL);
+		free(tga);
+		return NULL;
+	}
+	tga->fd = fd;
+	tga->last = TGA_OK;
+	return tga;
+}
+
+
+TGA*
+TGAOpenFd(FILE *fd)
+{
+	TGA *tga;
+
+	tga = (TGA*)malloc(sizeof(TGA));
+	if (!tga) {
+		TGA_ERROR(tga, TGA_OOM);
+		return NULL;
+	}
+
+	if (!fd) {
+		TGA_ERROR(tga, TGA_OPEN_FAIL);
+		free(tga);
+		return NULL;
+	}
+
+	tga->off = tga_ftell(tga);
+	if(tga->off == -1) {
+		TGA_ERROR(tga, TGA_OPEN_FAIL);
+		free(tga);
+		return NULL;
+	}
+
+	tga->error = 0;
+	tga->fgetcFunc = 0;
+	tga->freadFunc = 0;
+	tga->fputcFunc = 0;
+	tga->fwriteFunc = 0;
+	tga->fseekFunc = 0;
+	tga->ftellFunc = 0;
+	
+	tga->fd = fd;
+	tga->last = TGA_OK;
+	return tga;
+}
+
+
+TGA*
+TGAOpenUserDef(void *io,
+			TGAFGetcFunc fgetcFunc, TGAFReadFunc freadFunc,
+			TGAFPutcFunc fputcFunc, TGAFWriteFunc fwriteFunc,
+			TGAFSeekFunc fseekFunc, TGAFTellFunc ftellFunc)
+{
+	TGA *tga;
+
+	tga = (TGA*)malloc(sizeof(TGA));
+	if (!tga) {
+		TGA_ERROR(tga, TGA_OOM);
+		return NULL;
+	}
+
+	tga->fd = io;
+
+	tga->error = 0;
+	tga->fgetcFunc = fgetcFunc;
+	tga->freadFunc = freadFunc;
+	tga->fputcFunc = fputcFunc;
+	tga->fwriteFunc = fwriteFunc;
+	tga->fseekFunc = fseekFunc;
+	tga->ftellFunc = ftellFunc;
+
+	tga->off = tga_ftell(tga);
+	if(tga->off == -1) {
+		TGA_ERROR(tga, TGA_OPEN_FAIL);
+		free(tga);
+		return NULL;
+	}
 
 	tga->last = TGA_OK;
 	return tga;
 }
 
-size_t
-TGAWrite(TGA 	     *tga, 
-	 const void *buf, 
-	 size_t       size, 
-	 size_t       n)
+
+void 
+TGAClose(TGA *tga)
 {
-	size_t wrote = tga->writeio(tga->file,buf, size*n);
-	tga->off = tga->tellio(tga->file);
-	return wrote/size;
+	if (tga && !tga->fgetcFunc && !tga->freadFunc && !tga->fputcFunc && !tga->fwriteFunc && !tga->fseekFunc && !tga->ftellFunc) {
+		fclose(tga->fd);
+		free(tga);
+	}
 }
-
-int TGAPut(TGA* tga,
-	   char v)
-{
-	return TGAWrite(tga,&v,1,1);
-}
-
-int TGAGet(TGA* tga)
-{
-	char v;
-	TGARead(tga,&v,1,1);
-	return v;
-}
-
-size_t
-TGARead(TGA    *tga, 
-	void  *buf,
-	size_t 	size, 
-	size_t 	n)
-{
-	size_t read = tga->readio(tga->file,buf, size*n);
-
-	tga->off = tga->tellio(tga->file);
-	return read/size;
-}
-
-
 
 
 const char*
@@ -104,8 +160,8 @@ __TGASeek(TGA  *tga,
 	  tlong off, 
 	  int   whence)
 {
-	tga->seekio(tga->file,off,whence);
-	tga->off = tga->tellio(tga->file);
+	tga_fseek(tga, off, whence);
+	tga->off = tga_ftell(tga);
 	return tga->off;
 }
 

@@ -2,7 +2,9 @@
  *  tga.h - Libtga header
  *
  *  Copyright (C) 2001-2002, Matthias Brueckner
- *  This file is part of the TGA library (libtga).
+ *  Copyright (C) 2011, Alexander Azhevsky, Andrey Antsut
+ *  
+ *  This file is part of the TGA Extended library (libtga-ex).
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -10,7 +12,7 @@
  *  (at your option) any later version.
  *
  *  This program is distributed in the hope that it will be useful,
-const  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU Library General Public License for more details.
  *
@@ -72,6 +74,8 @@ const  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #define	TGA_LEFT	0x0
 #define	TGA_RIGHT	0x1
 
+#define TGA_FLIP_VERTICAL 0x2
+
 /* version info */
 #define LIBTGA_VER_MAJOR  	1
 #define LIBTGA_VER_MINOR  	0
@@ -125,6 +129,12 @@ typedef struct _TGA	  TGA;
 
 
 typedef void (*TGAErrorProc)(TGA*, int);
+typedef int (*TGAFGetcFunc)(TGA*);
+typedef size_t (*TGAFReadFunc)(TGA*, void*, size_t, size_t);
+typedef int (*TGAFPutcFunc)(TGA*, int);
+typedef size_t (*TGAFWriteFunc)(TGA*, const void*, size_t, size_t);
+typedef void (*TGAFSeekFunc)(TGA*, long, int);
+typedef long (*TGAFTellFunc)(TGA*);
 
 
 /* TGA image header */
@@ -154,45 +164,32 @@ struct _TGAData {
 };
 
 /* TGA image handle */
-
-typedef int (*TGA_IoRead)(void* file,void* buf,int length);
-typedef int (*TGA_IoWrite)(void* file,const void* buf,int length);
-typedef int (*TGA_IoSeek)(void* file,tlong const off,int whence);
-typedef int (*TGA_IoTell)(void* file);
-
-
 struct _TGA {
-	void*		file;		/* file stream */
-	TGA_IoRead  readio;
-	TGA_IoWrite writeio;
-	TGA_IoSeek  seekio;
-	TGA_IoTell  tellio;
-	tlong		off;		/* current offset in file*/
-	int			last;		/* last error code */
-	TGAHeader	hdr;		/* image header */
+	void*			fd;			/* file stream */
+	tlong			off;		/* current offset in file*/
+	int				last;		/* last error code */
+	TGAHeader		hdr;		/* image header */
 	TGAErrorProc 	error;		/* user-defined error proc */
+	TGAFGetcFunc	fgetcFunc;	/* user-defined fgetc func */
+	TGAFReadFunc	freadFunc;	/* user-defined fread func */
+	TGAFPutcFunc	fputcFunc;	/* user-defined fputc func */
+	TGAFWriteFunc	fwriteFunc;	/* user-defined fwrite func */
+	TGAFSeekFunc	fseekFunc;	/* user-defined fseek func */
+	TGAFTellFunc	ftellFunc;	/* user-defined ftell func */
 };
 
 
 __BEGIN_DECLS
 
-TGA* TGAOpen __P((void* file,
-				TGA_IoRead read_io,
-				TGA_IoWrite write_io,
-				TGA_IoSeek seek_io,
-				TGA_IoTell tell_io
-				));
 
-size_t TGAWrite(TGA* tga, const void* buf, size_t size, size_t n);
-size_t TGARead (TGA* tga, void* buf,       size_t size, size_t n) ;
+TGA* TGAOpen __P((char *name, char *mode));
 
-int TGAGet(TGA* tga);
-int TGAPut(TGA* tga,char v);
+TGA* TGAOpenFd __P((FILE *fd));
 
-tlong __TGASeek __P((TGA *tga, tlong off, int whence));
-void TGAClose __P((TGA *tga));
-
-
+TGA* TGAOpenUserDef __P((void *io,
+				TGAFGetcFunc fgetcFunc, TGAFReadFunc freadFunc,
+				TGAFPutcFunc fputcFunc, TGAFWriteFunc fwriteFunc,
+				TGAFSeekFunc fseekFunc, TGAFTellFunc ftellFunc));
 
 
 int TGAReadHeader __P((TGA *tga));
@@ -221,10 +218,12 @@ int TGAWriteImage __P((TGA *tga, TGAData *data));
 
 const char* TGAStrError __P((tuint8 code));
 
+tlong __TGASeek __P((TGA *tga, tlong off, int whence));
 
 void __TGAbgr2rgb __P((tbyte *data, size_t size, size_t bytes));
 
 
+void TGAClose __P((TGA *tga));
 
 
 __END_DECLS

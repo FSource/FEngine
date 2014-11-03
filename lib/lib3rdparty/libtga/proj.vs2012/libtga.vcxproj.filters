@@ -15,12 +15,18 @@
     <ClCompile Include="..\src\tgawrite.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\tgaio.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\tga.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\src\tgaconfig.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tgaio.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
