@@ -85,6 +85,7 @@ $pfile "math/FsVector3.pkg"
 $pfile "math/FsVector4.pkg"
 $pfile "math/FsMatrix4.pkg"
 $pfile "math/FsRect2D.pkg"
+$pfile "math/FsQuaternion.pkg"
 
 /* math/easeing */
 $pfile "math/easing/FsEaseExpr.pkg"

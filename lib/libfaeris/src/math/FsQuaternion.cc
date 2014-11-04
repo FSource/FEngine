@@ -123,16 +123,7 @@ void Quaternion::makeFromRotationMatrix(const Matrix4& m)
 
 void Quaternion::calcuateW()
 {
-	float w2=1.0f-x*x-y*y-z*z;
-	if(w2<0)
-	{
-		w=0;
-	}
-	else 
-	{
-		w=-Math::sqrt(w2);
-	}
-
+	w=-Math::sqrt(Math::abs(1.0f-x*x-y*y-z*z));
 }
 
 /* q*inverse(q) =1 */
@@ -158,6 +149,12 @@ void Quaternion::normalize()
 		x*=l; y*=l; z*=l; w*=l;
 	}
 }
+
+float Quaternion::length() const 
+{
+	return Math::sqrt(x*x+y*y+z*z+w*w);
+}
+	
 /* q_a = [ s_a , v_a ]
  * q_b = [ s_b , v_b]
  * q_r = q_a * q_b 

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 11/01/14 15:59:38.
+** Generated automatically by tolua++-1.0.92 on 11/04/14 22:04:24.
 */
 
 #ifndef __cplusplus
@@ -71,6 +71,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "math/FsVector4.h"
 #include "math/FsMatrix4.h"
 #include "math/FsRect2D.h"
+#include "math/FsQuaternion.h"
 #include "math/easing/FsEaseExpr.h"
 #include "math/easing/FsBackEase.h"
 #include "math/easing/FsBezierEase.h"
@@ -118,6 +119,13 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
+
+static int tolua_collect_Quaternion (lua_State* tolua_S)
+{
+ Quaternion* self = (Quaternion*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
 
 static int tolua_collect_Color (lua_State* tolua_S)
 {
@@ -196,7 +204,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Face3");
  toluaext_usertype(tolua_S,"AudioEngine");
  toluaext_usertype(tolua_S,"Layer");
- toluaext_usertype(tolua_S,"LuaEntity");
+ toluaext_usertype(tolua_S,"ColorLayer");
  tolua_usertype(tolua_S,"LinearCurve2");
  toluaext_usertype(tolua_S,"Transform");
  tolua_usertype(tolua_S,"ActionTarget");
@@ -221,6 +229,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  
  tolua_usertype(tolua_S,"StateButton");
  tolua_usertype(tolua_S,"Matrix4");
+ tolua_usertype(tolua_S,"Quaternion");
  toluaext_usertype(tolua_S,"Resource");
  toluaext_usertype(tolua_S,"Particle2DEffect");
  toluaext_usertype(tolua_S,"LabelTTF");
@@ -264,50 +273,50 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"LuaHttpRequest");
  toluaext_usertype(tolua_S,"Entity");
  tolua_usertype(tolua_S,"CatmullRomCurve4");
- tolua_usertype(tolua_S,"Sprite2DDataMgr");
+ tolua_usertype(tolua_S,"LuaMoveAction");
  tolua_usertype(tolua_S,"BezierEase");
- toluaext_usertype(tolua_S,"ColorLayer");
+ tolua_usertype(tolua_S,"Rect2D");
  tolua_usertype(tolua_S,"Program");
  toluaext_usertype(tolua_S,"HttpEngine");
- tolua_usertype(tolua_S,"LuaMoveAction");
+ tolua_usertype(tolua_S,"Sprite2DDataMgr");
  tolua_usertype(tolua_S,"LuaScaleAction");
  tolua_usertype(tolua_S,"RenderDevice");
  tolua_usertype(tolua_S,"LuaVertexPolygon");
- tolua_usertype(tolua_S,"Curve3Action");
+ tolua_usertype(tolua_S,"Curve3");
  tolua_usertype(tolua_S,"PressButton");
- tolua_usertype(tolua_S,"Rect2D");
  tolua_usertype(tolua_S,"LuaPressButton");
+ tolua_usertype(tolua_S,"Curve3Action");
  tolua_usertype(tolua_S,"DynamicView");
  toluaext_usertype(tolua_S,"LuaColorLayer");
  tolua_usertype(tolua_S,"PageView");
- tolua_usertype(tolua_S,"QuintEase");
- toluaext_usertype(tolua_S,"Director");
  toluaext_usertype(tolua_S,"LuaAction");
- toluaext_usertype(tolua_S,"Quad2D");
+ toluaext_usertype(tolua_S,"Director");
  tolua_usertype(tolua_S,"KeypadEvent");
+ toluaext_usertype(tolua_S,"SysDispatcher");
+ toluaext_usertype(tolua_S,"Quad2D");
+ tolua_usertype(tolua_S,"TouchPoint");
  toluaext_usertype(tolua_S,"LuaLabelBitmap");
  tolua_usertype(tolua_S,"SineEase");
  tolua_usertype(tolua_S,"PowerEase");
  toluaext_usertype(tolua_S,"Layer2D");
  tolua_usertype(tolua_S,"VertexPolygon");
  toluaext_usertype(tolua_S,"FsObject");
- toluaext_usertype(tolua_S,"SysDispatcher");
+ toluaext_usertype(tolua_S,"LuaEntity");
  toluaext_usertype(tolua_S,"ResourceMgr");
  toluaext_usertype(tolua_S,"LuaScene");
- tolua_usertype(tolua_S,"TouchPoint");
+ tolua_usertype(tolua_S,"Curve2");
  tolua_usertype(tolua_S,"ScrollView");
  tolua_usertype(tolua_S,"LinearEase");
- tolua_usertype(tolua_S,"Curve3");
+ tolua_usertype(tolua_S,"Sys");
  tolua_usertype(tolua_S,"Global");
  tolua_usertype(tolua_S,"EaseExpr");
- tolua_usertype(tolua_S,"Sys");
  toluaext_usertype(tolua_S,"FrameBuffer");
  tolua_usertype(tolua_S,"CatmullRomCurve3");
  tolua_usertype(tolua_S,"LinearCurve4");
  toluaext_usertype(tolua_S,"LuaLayer2D");
  tolua_usertype(tolua_S,"LuaToggleButton");
- tolua_usertype(tolua_S,"Curve2");
  tolua_usertype(tolua_S,"Color4f");
+ tolua_usertype(tolua_S,"QuintEase");
  tolua_usertype(tolua_S,"ProgramSourceMgr");
  toluaext_usertype(tolua_S,"SchedulerTarget");
  tolua_usertype(tolua_S,"ToggleButton");
@@ -35750,6 +35759,721 @@ static int tolua_set_Rect2D_height(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* get function: x of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_get_Quaternion_x
+static int tolua_get_Quaternion_x(lua_State* tolua_S)
+{
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'x'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->x);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: x of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_set_Quaternion_x
+static int tolua_set_Quaternion_x(lua_State* tolua_S)
+{
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'x'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->x = ((float)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: y of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_get_Quaternion_y
+static int tolua_get_Quaternion_y(lua_State* tolua_S)
+{
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'y'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->y);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: y of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_set_Quaternion_y
+static int tolua_set_Quaternion_y(lua_State* tolua_S)
+{
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'y'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->y = ((float)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: z of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_get_Quaternion_z
+static int tolua_get_Quaternion_z(lua_State* tolua_S)
+{
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'z'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->z);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: z of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_set_Quaternion_z
+static int tolua_set_Quaternion_z(lua_State* tolua_S)
+{
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'z'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->z = ((float)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: w of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_get_Quaternion_w
+static int tolua_get_Quaternion_w(lua_State* tolua_S)
+{
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'w'",NULL);
+#endif
+  tolua_pushnumber(tolua_S,(lua_Number)self->w);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: w of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_set_Quaternion_w
+static int tolua_set_Quaternion_w(lua_State* tolua_S)
+{
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  tolua_Error tolua_err;
+  if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'w'",NULL);
+  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))
+   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->w = ((float)  tolua_tonumber(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_new00
+static int tolua_FsLibFaeris_Quaternion_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float qx = ((float)  tolua_tonumber(tolua_S,2,0));
+  float qy = ((float)  tolua_tonumber(tolua_S,3,0));
+  float qz = ((float)  tolua_tonumber(tolua_S,4,0));
+  float qw = ((float)  tolua_tonumber(tolua_S,5,0));
+  {
+   Quaternion* tolua_ret = (Quaternion*)  Mtolua_new((Quaternion)(qx,qy,qz,qw));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Quaternion");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_new00_local
+static int tolua_FsLibFaeris_Quaternion_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  float qx = ((float)  tolua_tonumber(tolua_S,2,0));
+  float qy = ((float)  tolua_tonumber(tolua_S,3,0));
+  float qz = ((float)  tolua_tonumber(tolua_S,4,0));
+  float qw = ((float)  tolua_tonumber(tolua_S,5,0));
+  {
+   Quaternion* tolua_ret = (Quaternion*)  Mtolua_new((Quaternion)(qx,qy,qz,qw));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Quaternion");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_new01
+static int tolua_FsLibFaeris_Quaternion_new01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float qx = ((float)  tolua_tonumber(tolua_S,2,0));
+  float qy = ((float)  tolua_tonumber(tolua_S,3,0));
+  float qz = ((float)  tolua_tonumber(tolua_S,4,0));
+  {
+   Quaternion* tolua_ret = (Quaternion*)  Mtolua_new((Quaternion)(qx,qy,qz));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Quaternion");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_Quaternion_new00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_new01_local
+static int tolua_FsLibFaeris_Quaternion_new01_local(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  float qx = ((float)  tolua_tonumber(tolua_S,2,0));
+  float qy = ((float)  tolua_tonumber(tolua_S,3,0));
+  float qz = ((float)  tolua_tonumber(tolua_S,4,0));
+  {
+   Quaternion* tolua_ret = (Quaternion*)  Mtolua_new((Quaternion)(qx,qy,qz));
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Quaternion");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_Quaternion_new00_local(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_new02
+static int tolua_FsLibFaeris_Quaternion_new02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  {
+   Quaternion* tolua_ret = (Quaternion*)  Mtolua_new((Quaternion)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Quaternion");
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_Quaternion_new01(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_new02_local
+static int tolua_FsLibFaeris_Quaternion_new02_local(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  {
+   Quaternion* tolua_ret = (Quaternion*)  Mtolua_new((Quaternion)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Quaternion");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_FsLibFaeris_Quaternion_new01_local(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: set of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_set00
+static int tolua_FsLibFaeris_Quaternion_set00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+  float qx = ((float)  tolua_tonumber(tolua_S,2,0));
+  float qy = ((float)  tolua_tonumber(tolua_S,3,0));
+  float qz = ((float)  tolua_tonumber(tolua_S,4,0));
+  float qw = ((float)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'set'", NULL);
+#endif
+  {
+   self->set(qx,qy,qz,qw);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'set'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: makeFromEuler of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_makeFromEuler00
+static int tolua_FsLibFaeris_Quaternion_makeFromEuler00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_EulerOrientType",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+  const Vector3* v = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
+  E_EulerOrientType order = ((E_EulerOrientType)  toluaext_toenum(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'makeFromEuler'", NULL);
+#endif
+  {
+   self->makeFromEuler(*v,order);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'makeFromEuler'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: makeFromAxisAngle of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_makeFromAxisAngle00
+static int tolua_FsLibFaeris_Quaternion_makeFromAxisAngle00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+  const Vector3* v = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
+  float angle = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'makeFromAxisAngle'", NULL);
+#endif
+  {
+   self->makeFromAxisAngle(*v,angle);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'makeFromAxisAngle'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: makeFromRotationMatrix of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_makeFromRotationMatrix00
+static int tolua_FsLibFaeris_Quaternion_makeFromRotationMatrix00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Matrix4",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+  const Matrix4* m = ((const Matrix4*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'makeFromRotationMatrix'", NULL);
+#endif
+  {
+   self->makeFromRotationMatrix(*m);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'makeFromRotationMatrix'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: calcuateW of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_calcuateW00
+static int tolua_FsLibFaeris_Quaternion_calcuateW00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'calcuateW'", NULL);
+#endif
+  {
+   self->calcuateW();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'calcuateW'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: length of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_length00
+static int tolua_FsLibFaeris_Quaternion_length00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const Quaternion",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Quaternion* self = (const Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'length'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->length();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'length'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: normalize of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_normalize00
+static int tolua_FsLibFaeris_Quaternion_normalize00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'normalize'", NULL);
+#endif
+  {
+   self->normalize();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'normalize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: inverse of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_inverse00
+static int tolua_FsLibFaeris_Quaternion_inverse00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'inverse'", NULL);
+#endif
+  {
+   self->inverse();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'inverse'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getInverse of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_getInverse00
+static int tolua_FsLibFaeris_Quaternion_getInverse00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const Quaternion",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Quaternion",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Quaternion* self = (const Quaternion*)  tolua_tousertype(tolua_S,1,0);
+  Quaternion* q = ((Quaternion*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getInverse'", NULL);
+#endif
+  {
+   self->getInverse(q);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getInverse'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: multiply of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_multiply00
+static int tolua_FsLibFaeris_Quaternion_multiply00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Quaternion",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Quaternion",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+  const Quaternion* a = ((const Quaternion*)  tolua_tousertype(tolua_S,2,0));
+  const Quaternion* b = ((const Quaternion*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'multiply'", NULL);
+#endif
+  {
+   self->multiply(*a,*b);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'multiply'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: multiplyVector3 of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_multiplyVector300
+static int tolua_FsLibFaeris_Quaternion_multiplyVector300(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const Quaternion",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Vector3",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Quaternion* self = (const Quaternion*)  tolua_tousertype(tolua_S,1,0);
+  const Vector3* v = ((const Vector3*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'multiplyVector3'", NULL);
+#endif
+  {
+   Vector3 tolua_ret = (Vector3)  self->multiplyVector3(*v);
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((Vector3)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector3");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Vector3));
+     tolua_pushusertype(tolua_S,tolua_obj,"Vector3");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'multiplyVector3'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: slerp of class  Quaternion */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Quaternion_slerp00
+static int tolua_FsLibFaeris_Quaternion_slerp00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Quaternion",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Quaternion",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const Quaternion",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Quaternion* self = (Quaternion*)  tolua_tousertype(tolua_S,1,0);
+  const Quaternion* qa = ((const Quaternion*)  tolua_tousertype(tolua_S,2,0));
+  const Quaternion* qb = ((const Quaternion*)  tolua_tousertype(tolua_S,3,0));
+  float t = ((float)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'slerp'", NULL);
+#endif
+  {
+   self->slerp(*qa,*qb,t);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'slerp'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: getValue of class  EaseExpr */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_EaseExpr_getValue00
 static int tolua_FsLibFaeris_EaseExpr_getValue00(lua_State* tolua_S)
@@ -46734,6 +47458,38 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"y",tolua_get_Rect2D_y,tolua_set_Rect2D_y);
    tolua_variable(tolua_S,"width",tolua_get_Rect2D_width,tolua_set_Rect2D_width);
    tolua_variable(tolua_S,"height",tolua_get_Rect2D_height,tolua_set_Rect2D_height);
+  tolua_endmodule(tolua_S);
+  #ifdef __cplusplus
+  tolua_cclass(tolua_S,"Quaternion","Quaternion","",tolua_collect_Quaternion);
+  #else
+  tolua_cclass(tolua_S,"Quaternion","Quaternion","",NULL);
+  #endif
+  tolua_beginmodule(tolua_S,"Quaternion");
+   tolua_variable(tolua_S,"x",tolua_get_Quaternion_x,tolua_set_Quaternion_x);
+   tolua_variable(tolua_S,"y",tolua_get_Quaternion_y,tolua_set_Quaternion_y);
+   tolua_variable(tolua_S,"z",tolua_get_Quaternion_z,tolua_set_Quaternion_z);
+   tolua_variable(tolua_S,"w",tolua_get_Quaternion_w,tolua_set_Quaternion_w);
+   tolua_function(tolua_S,"new",tolua_FsLibFaeris_Quaternion_new00);
+   tolua_function(tolua_S,"new_local",tolua_FsLibFaeris_Quaternion_new00_local);
+   tolua_function(tolua_S,".call",tolua_FsLibFaeris_Quaternion_new00_local);
+   tolua_function(tolua_S,"new",tolua_FsLibFaeris_Quaternion_new01);
+   tolua_function(tolua_S,"new_local",tolua_FsLibFaeris_Quaternion_new01_local);
+   tolua_function(tolua_S,".call",tolua_FsLibFaeris_Quaternion_new01_local);
+   tolua_function(tolua_S,"new",tolua_FsLibFaeris_Quaternion_new02);
+   tolua_function(tolua_S,"new_local",tolua_FsLibFaeris_Quaternion_new02_local);
+   tolua_function(tolua_S,".call",tolua_FsLibFaeris_Quaternion_new02_local);
+   tolua_function(tolua_S,"set",tolua_FsLibFaeris_Quaternion_set00);
+   tolua_function(tolua_S,"makeFromEuler",tolua_FsLibFaeris_Quaternion_makeFromEuler00);
+   tolua_function(tolua_S,"makeFromAxisAngle",tolua_FsLibFaeris_Quaternion_makeFromAxisAngle00);
+   tolua_function(tolua_S,"makeFromRotationMatrix",tolua_FsLibFaeris_Quaternion_makeFromRotationMatrix00);
+   tolua_function(tolua_S,"calcuateW",tolua_FsLibFaeris_Quaternion_calcuateW00);
+   tolua_function(tolua_S,"length",tolua_FsLibFaeris_Quaternion_length00);
+   tolua_function(tolua_S,"normalize",tolua_FsLibFaeris_Quaternion_normalize00);
+   tolua_function(tolua_S,"inverse",tolua_FsLibFaeris_Quaternion_inverse00);
+   tolua_function(tolua_S,"getInverse",tolua_FsLibFaeris_Quaternion_getInverse00);
+   tolua_function(tolua_S,"multiply",tolua_FsLibFaeris_Quaternion_multiply00);
+   tolua_function(tolua_S,"multiplyVector3",tolua_FsLibFaeris_Quaternion_multiplyVector300);
+   tolua_function(tolua_S,"slerp",tolua_FsLibFaeris_Quaternion_slerp00);
   tolua_endmodule(tolua_S);
   tolua_constant(tolua_S,"FS_EASE_IN",FS_EASE_IN);
   tolua_constant(tolua_S,"FS_EASE_OUT",FS_EASE_OUT);
