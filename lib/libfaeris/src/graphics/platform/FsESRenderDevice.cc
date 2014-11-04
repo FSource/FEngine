@@ -235,7 +235,7 @@ RenderDevice::RenderDevice()
 
 
 	/* face */
-	//m_frontSided=FRONT_CCW;
+	m_frontSided=E_FrontFace::CCW;
 	m_doubleSideEnabled=false;
 
 	glFrontFace(GL_CCW );
@@ -532,6 +532,27 @@ void  RenderDevice::setDoubleSideEnabled(bool value)
 	}
 	m_doubleSideEnabled=value;
 }
+
+
+void RenderDevice::setFrontSide(E_FrontFace front)
+{
+	if(m_frontSided==front)
+	{
+		return ;
+	}
+	if(front==E_FrontFace::CCW)
+	{
+		glFrontFace(GL_CCW);
+	}
+	else 
+	{
+		glFrontFace(GL_CW);
+	}
+
+	m_frontSided=front;
+
+}
+
 
 
 

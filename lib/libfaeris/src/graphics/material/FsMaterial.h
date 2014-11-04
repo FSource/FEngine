@@ -50,6 +50,8 @@ class Material:public FsObject
 		void setDoubleSideEnabled(bool value) {m_doubleSideEnabled=value;}
 		bool getDoubleSideEnabled(){return m_doubleSideEnabled;}
 
+		void setFrontSide(E_FrontFace front){m_frontSide=front;}
+		E_FrontFace getFrontSide(){return m_frontSide;}
 
 		/* depth test */
 		void setDepthTestEnabled(bool enable) { m_depthTestEnabled=enable; }
@@ -71,6 +73,8 @@ class Material:public FsObject
 		E_BlendEquation m_blendEquation;
 		E_BlendFactor m_blendSrc;
 		E_BlendFactor m_blendDst;
+
+		E_FrontFace m_frontSide;
 
 		bool m_depthTestEnabled;
 		bool m_depthWriteEnabled;

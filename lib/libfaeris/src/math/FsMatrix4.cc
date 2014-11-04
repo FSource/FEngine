@@ -508,7 +508,7 @@ void Matrix4::makeCompose(const Vector3& translate,const Quaternion& q,const Vec
 {
 	this->makeRotateFromQuaternion(q);
 	this->scale(s);
-	this->setTranslate(s);
+	this->setTranslate(translate);
 }
 
 

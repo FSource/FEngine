@@ -93,6 +93,9 @@ class RenderDevice:public FsObject
 		void setDoubleSideEnabled(bool value);
 		bool getDoubleSideEnabled(){return m_doubleSideEnabled;}
 
+		void setFrontSide(E_FrontFace f);
+		E_FrontFace getFrontSide(){return m_frontSided;}
+
 
 		/* projection matrix */
 		void setProjectionMatrix(const Matrix4* mat);
@@ -182,7 +185,7 @@ class RenderDevice:public FsObject
 		E_BlendFactor m_blendDst;
 
 		/* face */
-		//int m_frontSided;
+		E_FrontFace m_frontSided;
 		bool m_doubleSideEnabled;
 
 		/* texture */

@@ -358,7 +358,11 @@ enum class E_TextureWrap
 };
 
 
-
+enum class E_FrontFace 
+{
+	CCW,
+	CW
+};
 
 
 

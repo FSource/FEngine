@@ -18,7 +18,8 @@ Material::Material()
 	m_blendDst(E_BlendFactor::ONE_MINUS_SRC_ALPHA),
 	m_depthTestEnabled(false),
 	m_depthWriteEnabled(false),
-	m_doubleSideEnabled(false)
+	m_doubleSideEnabled(false),
+	m_frontSide(E_FrontFace::CCW)
 {}
 
 
@@ -28,6 +29,7 @@ void Material::configRenderDevice(RenderDevice* rd)
 	rd->setDepthTestEnabled(m_depthTestEnabled);
 	rd->setDepthWriteEnabled(m_depthWriteEnabled);
 	rd->setDoubleSideEnabled(m_doubleSideEnabled);
+	rd->setFrontSide(m_frontSide);
 }
 
 
