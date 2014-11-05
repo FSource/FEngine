@@ -50,6 +50,7 @@ TOLUA_API int  toluaext_is_luatable(lua_State* L,
 		int def,
 		tolua_Error* err);
 
+TOLUA_API int toluaext_new_luatable(lua_State* L);
 TOLUA_API int  toluaext_to_luatable(lua_State* L,int lo,int def);
 TOLUA_API void toluaext_remove_luatable(lua_State* L,int refid);
 TOLUA_API void toluaext_push_luatable(lua_State* L,int refid);
@@ -63,6 +64,7 @@ TOLUA_API int toluaext_fscollector(lua_State* L);
 
 TOLUA_API void toluaext_classevents(lua_State* L);
 TOLUA_API void toluaext_usertype(lua_State* L,const char* type);
+TOLUA_API void toluaext_fsobject_newindex_failed_handle(lua_State* L,int lo);
 
 
 

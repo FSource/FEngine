@@ -18,7 +18,7 @@ class FsObject
 		const char* className();
 
 	public:
-		LUA_TABLE m_scriptData@data;
+		LUA_TABLE m_scriptData@__fdata;
 };
 
 

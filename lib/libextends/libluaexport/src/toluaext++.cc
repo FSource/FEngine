@@ -222,10 +222,9 @@ TOLUA_API int toluaext_get_luatable_nu()
 	return _table_handle_nu;
 }
 
-
+static int s_table_ref_id=1;
 TOLUA_API int toluaext_to_luatable(lua_State* L,int lo,int def)
 {
-	static int s_table_ref_id=1;
 	if(!lua_istable(L,lo)) return -1;
 
 	s_table_ref_id++;
@@ -235,6 +234,21 @@ TOLUA_API int toluaext_to_luatable(lua_State* L,int lo,int def)
 	lua_pushvalue(L,lo); 					 /* stack: fun .... mapping refid func */
 	lua_rawset(L,-3);						 /* stack: fun .... mapping  */
 	lua_pop(L,1);
+	_table_handle_nu++;
+	return s_table_ref_id;
+}
+
+TOLUA_API int toluaext_new_luatable(lua_State* L)
+{
+	s_table_ref_id++;
+	lua_pushstring(L,TOLUA_REFID_TABLE_MAPPING);  
+	lua_rawget(L,LUA_REGISTRYINDEX);		 /* stack:  mapping */
+	lua_pushinteger(L,s_table_ref_id);       /* stack:  mapping refid */
+	lua_newtable(L);						 /* stack:  mapping refid  table*/
+	lua_pushvalue(L,-1);					 /* stack:  mapping refid  table table*/
+	lua_insert(L,-4);						/* stack:  table  mapping refid  table */
+	lua_rawset(L,-3);						 /* stack:  table mapping  */
+	lua_pop(L,1);						    /* stack:  table  */
 	_table_handle_nu++;
 	return s_table_ref_id;
 }
@@ -278,6 +292,16 @@ TOLUA_API void toluaext_usertype (lua_State* L, const char* type)
 	 tolua_mapsuper(L,type,ctype);             /* 'type' is also a 'const type' */
 }
 
+
+
+TOLUA_API void toluaext_fsobject_newindex_failed_handle(lua_State* L,int lo)
+{
+	FsObject* fob=(FsObject*)*((void**)lua_touserdata(L,lo));
+	assert(fob->m_scriptData==-1);
+	fob->m_scriptData=toluaext_new_luatable(L);
+	lua_pushvalue(L,-1);
+	lua_setfenv(L,lo);
+}
 
 
 

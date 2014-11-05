@@ -1,10 +1,25 @@
+#include "toluaext_event.h"
+static toluaext_newindex_handle s_new_index_handle=0;
+
+void toluaext_register_newindex_failed_handle(toluaext_newindex_handle handle)
+{
+	s_new_index_handle=handle;
+}
 
 static int toluaext_storeatubox (lua_State* L, int lo)
 {
 #ifdef LUA_VERSION_NUM
-	lua_getfenv(L, lo);
+	lua_getfenv(L, lo);  		/* stack: t,k,v, env */
 	if (lua_rawequal(L, -1, TOLUA_NOPEER)) {
-		return -1;
+		if(s_new_index_handle)
+		{
+			lua_pop(L,1);
+			s_new_index_handle(L,lo);
+		}
+		else 
+		{
+			return -1;
+		}
 	};
 	lua_insert(L, -3);
 	lua_settable(L, -3); /* on lua 5.1, we trade the "tolua_peers" lookup for a settable call */

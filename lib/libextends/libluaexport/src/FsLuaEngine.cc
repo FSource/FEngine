@@ -9,6 +9,7 @@ extern "C"
 #include "lualib.h"
 #include "lauxlib.h"
 #include "tolua_event.h"
+#include "toluaext_event.h"
 #include "toluaext++.h"
 #include "lua_cjson.h"
 #ifdef __cplusplus
@@ -58,7 +59,7 @@ LuaEngine::LuaEngine()
 	tolua_FsLibFaeris_open(m_state);
 #endif 
 
-
+	toluaext_register_newindex_failed_handle(toluaext_fsobject_newindex_failed_handle);
 
 
 #if FS_CONFIG(FS_EXPORT_LIB_LUA_FUNC)

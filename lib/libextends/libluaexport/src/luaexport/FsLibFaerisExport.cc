@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 11/05/14 08:55:43.
+** Generated automatically by tolua++-1.0.92 on 11/05/14 23:26:36.
 */
 
 #ifndef __cplusplus
@@ -884,8 +884,8 @@ static int tolua_FsLibFaeris_FsObject_className00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* get function: m_scriptData of class  FsObject */
-#ifndef TOLUA_DISABLE_tolua_get_FsObject_data
-static int tolua_get_FsObject_data(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_get_FsObject___fdata
+static int tolua_get_FsObject___fdata(lua_State* tolua_S)
 {
   FsObject* self = (FsObject*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
@@ -897,8 +897,8 @@ static int tolua_get_FsObject_data(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* set function: m_scriptData of class  FsObject */
-#ifndef TOLUA_DISABLE_tolua_set_FsObject_data
-static int tolua_set_FsObject_data(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_set_FsObject___fdata
+static int tolua_set_FsObject___fdata(lua_State* tolua_S)
 {
   FsObject* self = (FsObject*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
@@ -45682,7 +45682,7 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"destroy",tolua_FsLibFaeris_FsObject_destroy00);
    tolua_function(tolua_S,"autoDestroy",tolua_FsLibFaeris_FsObject_autoDestroy00);
    tolua_function(tolua_S,"className",tolua_FsLibFaeris_FsObject_className00);
-   tolua_variable(tolua_S,"data",tolua_get_FsObject_data,tolua_set_FsObject_data);
+   tolua_variable(tolua_S,"__fdata",tolua_get_FsObject___fdata,tolua_set_FsObject___fdata);
   tolua_endmodule(tolua_S);
   tolua_constant(tolua_S,"FS_PLATFORM_WIN32",FS_PLATFORM_WIN32);
   tolua_constant(tolua_S,"FS_PLATFORM_LINUX",FS_PLATFORM_LINUX);
