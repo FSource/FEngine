@@ -220,7 +220,7 @@ LabelBitmap::LabelBitmap()
 	static ProgramSource* s_programSource=NULL;
 	if(s_programSource==NULL)
 	{
-		s_programSource=(ProgramSource*)Global::programSourceMgr()->load("__V4F_T2F_2D__.fshader");
+		s_programSource=(ProgramSource*)Global::programSourceMgr()->load("__V4F_T2F__.fshader");
 	}
 	setProgramSource(s_programSource);
 

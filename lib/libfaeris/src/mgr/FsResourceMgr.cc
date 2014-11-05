@@ -269,7 +269,7 @@ void ResourceMgr::unloadAll(bool force)
 		int size=need_unload.size();
 		for(int i=0;i<size;i++)
 		{
-			FS_TRACE_INFO("remove cache:%s",need_unload[i]->getResourceName()->cstr());
+			//FS_TRACE_INFO("remove cache:%s",need_unload[i]->getResourceName()->cstr());
 			remove(need_unload[i]);
 		}
 	}

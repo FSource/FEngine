@@ -174,13 +174,17 @@ const char* getRoot()
 
 FsFile* rawCreate(const char* name,uint mode)
 {
+	//FS_TRACE_WARN("filename=%s",name);
 	FsFile* ret=NULL;
 
 	/* file is absolutePath */
 	if(PathUtil::absolutePath(name))
 	{
 		ret=SysFile::create(name,mode);
-		ret->setFileName(name);
+		if(ret)
+		{
+			ret->setFileName(name);
+		}
 		return ret;
 	}
 

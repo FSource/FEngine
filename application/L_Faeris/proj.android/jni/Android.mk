@@ -20,11 +20,14 @@ LOCAL_CFLAGS     :=  -I$(LOCAL_PATH)/../../../../lib/3rdparty/lua/include \
 
 
 
+
 LOCAL_WHOLE_STATIC_LIBRARIES := zlib_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += freetype_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += minizip_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += libpng_static
 LOCAL_WHOLE_STATIC_LIBRARIES += libjpeg_static
+LOCAL_WHOLE_STATIC_LIBRARIES += libtga_static
+LOCAL_WHOLE_STATIC_LIBRARIES += glslext_static
 LOCAL_WHOLE_STATIC_LIBRARIES += lua_static 
 LOCAL_WHOLE_STATIC_LIBRARIES += tolua_static
 LOCAL_WHOLE_STATIC_LIBRARIES += curl_static
@@ -62,12 +65,15 @@ $(call import-module,../../../../lib/lib3rdparty/tolua++/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/minizip/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/zlib/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/jsonc/proj.android/jni)
-$(call import-module,../../../../lib/lib3rdparty/Box2D/proj.android)
+$(call import-module,../../../../lib/lib3rdparty/Box2D/proj.android/jni)
+$(call import-module,../../../../lib/lib3rdparty/glslext/proj.android/jni)
+$(call import-module,../../../../lib/lib3rdparty/libtga/proj.android/jni)
 
 $(call import-module,../../../../lib/libextends/libluaexport/proj.android)
 $(call import-module,../../../../lib/libextends/libspinesprite/proj.android)
 $(call import-module,../../../../lib/libextends/libfaerisext/proj.android/jni)
 $(call import-module,../../../../lib/libextends/lib3rdextends/proj.android/jni)
+
 
 
 
