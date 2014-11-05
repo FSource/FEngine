@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Box2D
-** Generated automatically by tolua++-1.0.92 on 11/05/14 23:26:44.
+** Generated automatically by tolua++-1.0.92 on 11/06/14 01:17:26.
 */
 
 #ifndef __cplusplus
@@ -31157,8 +31157,8 @@ static int tolua_Box2D_fb2ContactListener_PostSolve00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* get function: m_scriptData of class  fb2ContactListener */
-#ifndef TOLUA_DISABLE_tolua_get_fb2ContactListener_data
-static int tolua_get_fb2ContactListener_data(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_get_fb2ContactListener___fdata
+static int tolua_get_fb2ContactListener___fdata(lua_State* tolua_S)
 {
   fb2ContactListener* self = (fb2ContactListener*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
@@ -31170,8 +31170,8 @@ static int tolua_get_fb2ContactListener_data(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* set function: m_scriptData of class  fb2ContactListener */
-#ifndef TOLUA_DISABLE_tolua_set_fb2ContactListener_data
-static int tolua_set_fb2ContactListener_data(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_set_fb2ContactListener___fdata
+static int tolua_set_fb2ContactListener___fdata(lua_State* tolua_S)
 {
   fb2ContactListener* self = (fb2ContactListener*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
@@ -33174,7 +33174,7 @@ TOLUA_API int tolua_Box2D_open (lua_State* tolua_S)
    tolua_function(tolua_S,"EndContact",tolua_Box2D_fb2ContactListener_EndContact00);
    tolua_function(tolua_S,"PreSolve",tolua_Box2D_fb2ContactListener_PreSolve00);
    tolua_function(tolua_S,"PostSolve",tolua_Box2D_fb2ContactListener_PostSolve00);
-   tolua_variable(tolua_S,"data",tolua_get_fb2ContactListener_data,tolua_set_fb2ContactListener_data);
+   tolua_variable(tolua_S,"__fdata",tolua_get_fb2ContactListener___fdata,tolua_set_fb2ContactListener___fdata);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"fb2Transform","fb2Transform","ITransform",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"fb2Transform");

@@ -15,6 +15,6 @@ class fb2ContactListener:b2ContactListener
 		virtual void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
 
 	public:
-		LUA_TABLE m_scriptData@data;
+		LUA_TABLE m_scriptData@__fdata;
 };
 
