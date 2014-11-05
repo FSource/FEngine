@@ -158,25 +158,36 @@ void Quaternion::normalize()
 		x*=l; y*=l; z*=l; w*=l;
 	}
 }
+
+
+void Quaternion::multiply(const Quaternion& q)
+{
+	multiply(*this,q);
+}
+
 /* q_a = [ s_a , v_a ]
  * q_b = [ s_b , v_b]
  * q_r = q_a * q_b 
  *     = [ s_a*s_b-dot(v_a,v_b) , s_a*v_b+s_b*s_a+cross(v_a,v_b) ]
  */
+
 void Quaternion::multiply(const Quaternion& a,const Quaternion& b)
 {
 	float qax = a.x, qay = a.y, qaz = a.z, qaw = a.w;
 	float qbx = b.x, qby = b.y, qbz = b.z, qbw = b.w;
 
-	x =  qax * qbw + qay * qbz - qaz * qby + qaw * qbx;
-	y = -qax * qbz + qay * qbw + qaz * qbx + qaw * qby;
-	z =  qax * qby - qay * qbx + qaz * qbw + qaw * qbz;
-	w = -qax * qbx - qay * qby - qaz * qbz + qaw * qbw;
+	this->x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;
+	this->y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;
+	this->z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;
+	this->w = qaw * qbw - qax * qbx - qay * qby - qaz * qbz;
+
 }
 
+
+
 /* Vector3 transform by Quaternion 
- * v'=q*v*inverse(q) 
- */ 
+* v'=q*v*inverse(q) 
+*/ 
 Vector3 Quaternion::multiplyVector3(const Vector3& v) const
 {
 	float dx,dy,dz,ix,iy,iz,iw;
@@ -185,9 +196,9 @@ Vector3 Quaternion::multiplyVector3(const Vector3& v) const
 
 	/* calcuate q * v */
 	ix =  qw * sx + qy * sz - qz * sy,
-	   iy =  qw * sy + qz * sx - qx * sz,
-	   iz =  qw * sz + qx * sy - qy * sx,
-	   iw = -qx * sx - qy * sy - qz * sz;
+		iy =  qw * sy + qz * sx - qx * sz,
+		iz =  qw * sz + qx * sy - qy * sx,
+		iw = -qx * sx - qy * sy - qz * sz;
 
 	/* calculate result * inverse(q) */
 
@@ -203,24 +214,24 @@ Vector3 Quaternion::multiplyVector3(const Vector3& v) const
 
 
 /* Interpolating Quaternions 
- *
- *     sin((1-t)*theta))         sin(t*theta)
- * q=  ------------------ q1 +  -------------- q2
- *         sin(theta)             sin(theta)
- *
- * So,given 
- * 		q1=[s1,<x1,y1,z1>]
- * 		q2=[s2,<x2,y2,z2>]
- * theta is obtained by taking the 4D dot product of q1 and q2 
- * 
- *                 dot(q1,q2)
- *    cos(theta)= -------------
- *                 |q1|*|q2|
- *
- * if we are  working with unit-norm quaternion ,then 
- *
- * 	  cos(theta)=s1*s2+x1*x2+y1*y2+z1*z2	
- */
+*
+*     sin((1-t)*theta))         sin(t*theta)
+* q=  ------------------ q1 +  -------------- q2
+*         sin(theta)             sin(theta)
+*
+* So,given 
+* 		q1=[s1,<x1,y1,z1>]
+* 		q2=[s2,<x2,y2,z2>]
+* theta is obtained by taking the 4D dot product of q1 and q2 
+* 
+*                 dot(q1,q2)
+*    cos(theta)= -------------
+*                 |q1|*|q2|
+*
+* if we are  working with unit-norm quaternion ,then 
+*
+* 	  cos(theta)=s1*s2+x1*x2+y1*y2+z1*z2	
+*/
 
 void Quaternion::slerp(const Quaternion& qa,const Quaternion& qb,float t)
 {

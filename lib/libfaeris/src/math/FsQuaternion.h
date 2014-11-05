@@ -41,6 +41,7 @@ class Quaternion
 		void getInverse(Quaternion* q)const;
 
 		/* transform function */
+		void multiply(const Quaternion& q);
 		void multiply(const Quaternion& a,const Quaternion& b);
 		Vector3 multiplyVector3(const Vector3& v) const;
 

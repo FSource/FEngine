@@ -4,6 +4,17 @@
 
 NS_FS_BEGIN
 
+Matrix4 Matrix4::ZERO=Matrix4( 0,0,0,0,
+							   0,0,0,0,
+							   0,0,0,0,
+							   0,0,0,0);
+
+Matrix4 Matrix4::IDENTITY(   1,0,0,0,
+							 0,1,0,0,
+							 0,0,1,0,
+							 0,0,0,1
+							);
+
 void Matrix4::add(const Matrix4& n)
 {
 	m00+=n.m00; m01+=n.m01; m02+=n.m02; m03+=n.m03;

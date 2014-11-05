@@ -14,6 +14,10 @@ NS_FS_BEGIN
 class  Matrix4
 {
 	public:
+		static Matrix4 ZERO;
+		static Matrix4 IDENTITY;
+
+	public:
 		union{
 			struct 
 			{

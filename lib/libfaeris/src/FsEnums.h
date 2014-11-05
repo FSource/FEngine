@@ -364,6 +364,11 @@ enum class E_FrontFace
 	CW
 };
 
+enum class E_BoneType 
+{
+	WORLD,
+	LOCAL,
+};
 
 
 
