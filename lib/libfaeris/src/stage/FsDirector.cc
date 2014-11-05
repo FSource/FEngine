@@ -353,7 +353,10 @@ void Director::drawScene()
 	RenderDevice* render=Global::renderDevice();
 	if(!render) return;
 
+	render->setDepthWriteEnabled(true);
+
 	render->clear(true,true);
+
 
 	if(m_current)
 	{

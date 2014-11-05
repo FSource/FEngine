@@ -45,7 +45,7 @@ class Md5Quat
 			float w2= 1-_x*_x-_y*_y-_z*_z;
 			if(w2< 0)
 			{
-				w=-w;
+				w2=-w2;
 			}
 			w=-sqrt(w2);
 

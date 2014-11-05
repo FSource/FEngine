@@ -545,6 +545,7 @@ bool  PageView::touchMove(float x,float y)
 
 bool PageView::touchEnd(float x,float y)
 {
+	UiWidget::touchEnd(x,y);
 	m_velocityTracker->endTrack(x,y);
 
 	float v=0;

@@ -522,6 +522,7 @@ void Quad2D::calFinishVertics()
 
 }
 
+
 void Quad2D::draw(RenderDevice* rd,bool updateMatrix)
 {
 	Program* prog=getProgram(NULL);
