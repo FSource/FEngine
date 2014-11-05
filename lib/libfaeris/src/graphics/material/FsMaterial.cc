@@ -18,7 +18,7 @@ Material::Material()
 	m_blendDst(E_BlendFactor::ONE_MINUS_SRC_ALPHA),
 	m_depthTestEnabled(false),
 	m_depthWriteEnabled(false),
-	m_doubleSideEnabled(false),
+	m_doubleSideEnabled(true),
 	m_frontSide(E_FrontFace::CCW)
 {}
 
