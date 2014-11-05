@@ -5,7 +5,7 @@
 
 #include "FsRenderTarget.h"
 
-#if FS_CONFIG(FS_GL_RENDER) || FS_CONFIG(FS_GLES_RENDER) 
+#if FS_CONFIG(FS_GLES2_0_RENDER_DEVICE)
 	#include "platform/FsGLFrameBuffer.h"
 #else 
 	#error "Unsupport PlatformTexture" 

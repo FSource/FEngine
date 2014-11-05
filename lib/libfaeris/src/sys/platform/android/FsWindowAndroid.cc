@@ -1,6 +1,6 @@
 #include "sys/FsWindow.h"
 #include "GL_Android/gles_2.0.h"
-#include "graphics/FsRender.h"
+#include "graphics/FsRenderDevice.h"
 
 NS_FS_BEGIN
 
@@ -36,19 +36,19 @@ Window* Window::create()
 }
 
 
-void Window::makeCurrent(Render* r)
+void Window::makeCurrent(RenderDevice* r)
 {
 
 	glBindFramebuffer(GL_FRAMEBUFFER,0);
 	r->setViewport(0,0,m_window->m_width,m_window->m_height);
 
 	/*TODO*/
-	m_render=r;
+	m_renderDevice=r;
 }
 
-void Window::loseCurrent(Render* r)
+void Window::loseCurrent(RenderDevice* r)
 {
-	m_render=NULL;
+	m_renderDevice=NULL;
 	/* TODO */
 }
 
@@ -77,9 +77,9 @@ void Window::sizeChanged(uint width,uint height)
 {
 	m_window->m_width=width;
 	m_window->m_height=height;
-	if(m_render)
+	if(m_renderDevice)
 	{
-		m_render->setViewport(0,0,width,height);
+		m_renderDevice->setViewport(0,0,width,height);
 	}
 	/* TODO */
 }

@@ -70,10 +70,8 @@ class RenderConfig
 NS_FS_END 
 
 
-#if FS_CONFIG(FS_GLES_RENDER)
+#if FS_CONFIG(FS_GLES2_0_RENDER_DEVICE)
 #include "platform/FsESRenderDevice.h"
-#elif FS_CONFIG(FS_GL_RENDER)
-#include "platform/FsGLRenderDevice.h"
 #else 
 #error "UnSupport Render"
 #endif 

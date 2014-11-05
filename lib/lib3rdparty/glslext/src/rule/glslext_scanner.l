@@ -15,9 +15,6 @@
 
 
 
-#define fileno(x) 0
-#define isatty(x) 0
-
 
 #define PARSE_TEXT_TO_YACC  \
 	yylval_param->istring = new std::string(Glslext_get_text(yyscanner))

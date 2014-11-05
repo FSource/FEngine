@@ -5,7 +5,7 @@
 #endif 
 
 
-#include "FsVertexBuffer.h"
+#include "graphics/FsVertexBuffer.h"
 
 NS_FS_BEGIN
 

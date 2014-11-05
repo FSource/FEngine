@@ -11,7 +11,7 @@
 
 
 /* render */
-#define FS_GLES_RENDER
+#define FS_GLES2_0_RENDER_DEVICE
 #define FS_MAX_RENDER_STACK_NU 10
 
 /* script support */

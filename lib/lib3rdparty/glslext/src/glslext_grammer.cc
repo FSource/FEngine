@@ -69,7 +69,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "../src/rule/glslext_grammer.y" /* yacc.c:339  */
+#line 1 "glslext_grammer.y" /* yacc.c:339  */
 
 
 #include <string>
@@ -85,7 +85,7 @@
 
 
 
-#line 89 "../src/glslext_grammer.cc" /* yacc.c:339  */
+#line 89 "../glslext_grammer.cc" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -105,8 +105,8 @@
 
 /* In a future release of Bison, this section will be replaced
    by #include "glslext_grammer.h".  */
-#ifndef YY_GLSLEXT_SRC_GLSLEXT_GRAMMER_H_INCLUDED
-# define YY_GLSLEXT_SRC_GLSLEXT_GRAMMER_H_INCLUDED
+#ifndef YY_GLSLEXT_GLSLEXT_GRAMMER_H_INCLUDED
+# define YY_GLSLEXT_GLSLEXT_GRAMMER_H_INCLUDED
 /* Debug traces.  */
 #ifndef GLSLEXT_DEBUG
 # if defined YYDEBUG
@@ -158,13 +158,13 @@ extern int Glslext_debug;
 typedef union GLSLEXT_STYPE GLSLEXT_STYPE;
 union GLSLEXT_STYPE
 {
-#line 17 "../src/rule/glslext_grammer.y" /* yacc.c:355  */
+#line 17 "glslext_grammer.y" /* yacc.c:355  */
 
 	std::string* istring;
 	std::vector<float>* ivec;
 	float inumber;
 
-#line 168 "../src/glslext_grammer.cc" /* yacc.c:355  */
+#line 168 "../glslext_grammer.cc" /* yacc.c:355  */
 };
 # define GLSLEXT_STYPE_IS_TRIVIAL 1
 # define GLSLEXT_STYPE_IS_DECLARED 1
@@ -174,11 +174,11 @@ union GLSLEXT_STYPE
 
 int Glslext_parse (GlslextParser* param);
 
-#endif /* !YY_GLSLEXT_SRC_GLSLEXT_GRAMMER_H_INCLUDED  */
+#endif /* !YY_GLSLEXT_GLSLEXT_GRAMMER_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 182 "../src/glslext_grammer.cc" /* yacc.c:358  */
+#line 182 "../glslext_grammer.cc" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1311,32 +1311,32 @@ yyreduce:
   switch (yyn)
     {
         case 7:
-#line 85 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 85 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		param->setVertexSrc((yyvsp[-1].istring));
 	}
-#line 1319 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1319 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 92 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 92 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		param->setFragmentSrc((yyvsp[-1].istring));
 		
 	}
-#line 1328 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1328 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 100 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 100 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1336 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1336 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 106 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 106 "glslext_grammer.y" /* yacc.c:1646  */
     {
 	((yyvsp[-1].istring))->append(" ");
 	((yyvsp[-1].istring))->append(*((yyvsp[0].istring)));
@@ -1344,123 +1344,123 @@ yyreduce:
 	(yyval.istring)=(yyvsp[-1].istring);
 	delete (yyvsp[0].istring);
 }
-#line 1348 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1348 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 116 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 116 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=new std::string("\n");
 	}
-#line 1356 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1356 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 120 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 120 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=new std::string("(");
 	}
-#line 1364 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1364 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 124 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 124 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=new std::string(")");
 	}
-#line 1372 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1372 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 128 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 128 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=new std::string("[");
 	}
-#line 1380 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1380 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 132 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 132 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=new std::string("]");
 	}
-#line 1388 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1388 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 136 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 136 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1396 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1396 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 140 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 140 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1404 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1404 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 144 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 144 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1412 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1412 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 148 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 148 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1420 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1420 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 152 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 152 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1428 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1428 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 156 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 156 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=new std::string(";");
 	}
-#line 1436 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1436 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 160 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 160 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=new std::string("=");
 	}
-#line 1444 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1444 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 164 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 164 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1452 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1452 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 168 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 168 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		(yyval.istring)=new std::string(",");
 	}
-#line 1460 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1460 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 176 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 176 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		std::string* ret=new std::string("uniform ");
 
@@ -1478,11 +1478,11 @@ yyreduce:
 		ret->append(" ;");
 		(yyval.istring)=ret;
 	}
-#line 1482 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1482 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 196 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 196 "glslext_grammer.y" /* yacc.c:1646  */
     {
 		std::string* ret=new std::string("uniform ");
 
@@ -1499,11 +1499,11 @@ yyreduce:
 		ret->append(" ;");
 		(yyval.istring)=ret;
 	}
-#line 1503 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1503 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 215 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 215 "glslext_grammer.y" /* yacc.c:1646  */
     {
 	std::string* ret=new std::string("uniform ");
 
@@ -1527,11 +1527,11 @@ yyreduce:
 	ret->append(" ;");
 	(yyval.istring)=ret;
 }
-#line 1531 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1531 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 241 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 241 "glslext_grammer.y" /* yacc.c:1646  */
     {
 	std::string* ret=new std::string("uniform ");
 
@@ -1554,11 +1554,11 @@ yyreduce:
 	ret->append(" ;");
 	(yyval.istring)=ret;
 }
-#line 1558 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1558 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 268 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 268 "glslext_grammer.y" /* yacc.c:1646  */
     {
 	std::string* ret=new std::string("attribute ");
 
@@ -1575,11 +1575,11 @@ yyreduce:
 	ret->append(" ;");
 	(yyval.istring)=ret;
 }
-#line 1579 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1579 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 288 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 288 "glslext_grammer.y" /* yacc.c:1646  */
     {
 	std::string* ret=new std::string("attribute ");
 
@@ -1603,11 +1603,11 @@ yyreduce:
 	(yyval.istring)=ret;
 
 }
-#line 1607 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1607 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 314 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 314 "glslext_grammer.y" /* yacc.c:1646  */
     {
 	std::string* ret=new std::string("uniform ");
 
@@ -1624,11 +1624,11 @@ yyreduce:
 	ret->append(" ;");
 	(yyval.istring)=ret;
 }
-#line 1628 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1628 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 333 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 333 "glslext_grammer.y" /* yacc.c:1646  */
     {
 	std::string* ret=new std::string("uniform ");
 
@@ -1651,11 +1651,11 @@ yyreduce:
 	(yyval.istring)=ret;
 
 }
-#line 1655 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1655 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 358 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 358 "glslext_grammer.y" /* yacc.c:1646  */
     {
 	std::string* ret=new std::string("attribute ");
 
@@ -1673,11 +1673,11 @@ yyreduce:
 
 	(yyval.istring)=ret;
 }
-#line 1677 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1677 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 378 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
+#line 378 "glslext_grammer.y" /* yacc.c:1646  */
     {
 	std::string* ret=new std::string("attribute ");
 
@@ -1700,11 +1700,11 @@ yyreduce:
 	ret->append(" ;");
 	(yyval.istring)=ret;
 }
-#line 1704 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1704 "../glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
 
-#line 1708 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1708 "../glslext_grammer.cc" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

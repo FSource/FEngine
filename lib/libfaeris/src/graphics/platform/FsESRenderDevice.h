@@ -206,7 +206,7 @@ class RenderDevice:public FsObject
 
 		/* model view projection matrix */
 		uint32_t m_matrixDirtyFlags;
-		Matrix4 m_cacheMatrix[E_UniformRef::R_MAX_MATRIX_NU];
+		Matrix4 m_cacheMatrix[static_cast<int>(E_UniformRef::R_MAX_MATRIX_NU)];
 
 };
 

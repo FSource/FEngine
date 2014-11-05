@@ -13,7 +13,7 @@
 #include "support/util/FsString.h"
 
 
-#if FS_CONFIG(FS_GL_RENDER) ||FS_CONFIG(FS_GLES_RENDER)
+#if FS_CONFIG(FS_GLES2_0_RENDER_DEVICE) 
 	typedef uint PlatformProgram;
 #else 
 	#error "Unsupport PlatformProgram"
@@ -89,7 +89,7 @@ class Program:public Resource
 		std::vector<UniformMap*> m_uniformMaps;
 		std::vector<StreamMap*> m_streamMaps;
 
-		StreamMap* m_seqStreamMaps[E_StreamType::MAX_NU];
+		StreamMap* m_seqStreamMaps[static_cast<int>(E_StreamType::MAX_NU)];
 
 		/* platform type */
 		PlatformProgram m_program;

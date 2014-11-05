@@ -79,9 +79,9 @@ class TUniformValue:public UniformValue
 {
 	public:
 		TUniformValue(const char* name,const T& v)
-			:m_name(name),
-			m_data(v)
+			:m_data(v)
 		{ 
+			m_name=name;
 			m_type=TUniformValue_GetType<T>();
 		}
 

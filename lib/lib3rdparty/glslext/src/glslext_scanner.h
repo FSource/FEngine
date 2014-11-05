@@ -2,9 +2,9 @@
 #define Glslext_HEADER_H 1
 #define Glslext_IN_HEADER 1
 
-#line 6 "../src/glslext_scanner.h"
+#line 6 "../glslext_scanner.h"
 
-#line 8 "../src/glslext_scanner.h"
+#line 8 "../glslext_scanner.h"
 
 #define  YY_INT_ALIGNED short int
 
@@ -330,9 +330,9 @@ extern int Glslext_lex \
 #undef YY_DECL
 #endif
 
-#line 97 "../src/rule/glslext_scanner.l"
+#line 94 "glslext_scanner.l"
 
 
-#line 337 "../src/glslext_scanner.h"
+#line 337 "../glslext_scanner.h"
 #undef Glslext_IN_HEADER
 #endif /* Glslext_HEADER_H */

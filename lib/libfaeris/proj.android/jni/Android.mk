@@ -11,11 +11,14 @@ LOCAL_CFLAGS :=     -I$(LOCAL_PATH)/../../src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/GL/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/libpng/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/zlib/include \
+ 					-I$(LOCAL_PATH)/../../../lib3rdparty/libtga/src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/minizip/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/curl/include_android \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/fmod/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/jsonc/src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/libjpeg/include.android \
+ 					-I$(LOCAL_PATH)/../../../lib3rdparty/glslext/src/ 		\
+ 					-I$(LOCAL_PATH)/../../../lib3rdparty/libmd5model/src/ 		\
 
 
 
@@ -26,6 +29,8 @@ LOCAL_SRC_FILES :=  \
 					../../src/FsFaerisModule.cc \
 					../../src/extends/FsScriptEngine.cc \
 					../../src/stage/FsActionTarget.cc \
+					../../src/stage/entity/FsIMaterial2DEntity.cc \
+					../../src/stage/entity/FsITransform.cc \
 					../../src/stage/entity/FsEntity.cc \
 					../../src/stage/entity/FsLabelTTF.cc \
 					../../src/stage/entity/FsQuad2D.cc \
@@ -55,14 +60,15 @@ LOCAL_SRC_FILES :=  \
 					../../src/graphics/FsColor.cc \
 					../../src/graphics/FsFontTTF.cc \
 					../../src/graphics/FsImage2D.cc \
-					../../src/graphics/FsRender.cc \
-					../../src/graphics/FsProgram.cc \
+					../../src/graphics/FsRenderDevice.cc \
 					../../src/graphics/FsFrameBuffer.cc \
 					../../src/graphics/FsTexture2D.cc \
 					../../src/graphics/FsFontBitmap.cc \
+					../../src/graphics/FsVertexBuffer.cc \
+					../../src/graphics/shader/FsProgram.cc \
+					../../src/graphics/shader/FsProgramSource.cc \
 					../../src/graphics/material/FsMaterial.cc \
-					../../src/graphics/material/FsColorMaterial.cc \
-					../../src/graphics/material/FsTextureMaterial.cc \
+					../../src/graphics/material/FsMaterial2D.cc \
 					../../src/sys/event/FsSysDispatcher.cc \
 					../../src/sys/event/FsTouchDispatcher.cc \
 					../../src/sys/event/FsKeypadDispatcher.cc \
@@ -89,6 +95,8 @@ LOCAL_SRC_FILES :=  \
 					../../src/math/FsMathUtil.cc \
 					../../src/math/FsMatrix4.cc \
 					../../src/math/FsRect2D.cc \
+					../../src/math/FsBox3D.cc \
+					../../src/math/FsQuaternion.cc \
 					../../src/math/curve/FsCatmullRomCurve.cc \
 					../../src/math/curve/FsCubicBezierCurve.cc \
 					../../src/math/curve/FsLinearCurve.cc \
@@ -112,8 +120,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/mgr/FsResourceMgr.cc \
 					../../src/mgr/FsTextureMgr.cc \
 					../../src/mgr/FsSprite2DDataMgr.cc \
-					../../src/mgr/FsObjectMgr.cc \
-					../../src/mgr/FsProgramMgr.cc \
+					../../src/mgr/FsProgramSourceMgr.cc \
 					../../src/scheduler/FsScheduler.cc \
 					../../src/scheduler/FsSchedulerTarget.cc \
 					../../src/scheduler/FsTask.cc \
@@ -143,6 +150,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/support/image/FsImageFaw.cc  \
 					../../src/support/image/FsImageJpeg.cc \
 					../../src/support/image/FsImagePng.cc \
+					../../src/support/image/FsImageTga.cc \
 					../../src/support/util/FsArray.cc \
 					../../src/support/util/FsDict.cc \
 					../../src/support/util/FsSlowDict.cc \

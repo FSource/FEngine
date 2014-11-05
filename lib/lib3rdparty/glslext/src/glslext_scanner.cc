@@ -1,6 +1,6 @@
-#line 2 "../src/glslext_scanner.cc"
+#line 2 "../glslext_scanner.cc"
 
-#line 4 "../src/glslext_scanner.cc"
+#line 4 "../glslext_scanner.cc"
 
 #define  YY_INT_ALIGNED short int
 
@@ -645,8 +645,8 @@ static yyconst flex_int32_t yy_rule_can_match_eol[39] =
 #define yymore() yymore_used_but_not_detected
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
-#line 1 "../src/rule/glslext_scanner.l"
-#line 2 "../src/rule/glslext_scanner.l"
+#line 1 "glslext_scanner.l"
+#line 2 "glslext_scanner.l"
 #include <vector>
 #include <string>
 #include <stdio.h>
@@ -663,14 +663,11 @@ static yyconst flex_int32_t yy_rule_can_match_eol[39] =
 
 
 
-#define fileno(x) 0
-#define isatty(x) 0
-
 
 #define PARSE_TEXT_TO_YACC  \
 	yylval_param->istring = new std::string(Glslext_get_text(yyscanner))
 
-#line 674 "../src/glslext_scanner.cc"
+#line 671 "../glslext_scanner.cc"
 
 #define INITIAL 0
 
@@ -926,9 +923,9 @@ YY_DECL
 		}
 
 	{
-#line 38 "../src/rule/glslext_scanner.l"
+#line 35 "glslext_scanner.l"
 
-#line 932 "../src/glslext_scanner.cc"
+#line 929 "../glslext_scanner.cc"
 
 	while ( 1 )		/* loops until end-of-file is reached */
 		{
@@ -995,197 +992,197 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 39 "../src/rule/glslext_scanner.l"
+#line 36 "glslext_scanner.l"
 return tVERTEX_BEGIN;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 40 "../src/rule/glslext_scanner.l"
+#line 37 "glslext_scanner.l"
 return tVERTEX_END;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 42 "../src/rule/glslext_scanner.l"
+#line 39 "glslext_scanner.l"
 return tFRAGMENT_BEGIN;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 43 "../src/rule/glslext_scanner.l"
+#line 40 "glslext_scanner.l"
 return tFRAGMENT_END;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 45 "../src/rule/glslext_scanner.l"
+#line 42 "glslext_scanner.l"
 return tL_RB;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 46 "../src/rule/glslext_scanner.l"
+#line 43 "glslext_scanner.l"
 return tR_RB;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 47 "../src/rule/glslext_scanner.l"
+#line 44 "glslext_scanner.l"
 return tDOLLAR;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 48 "../src/rule/glslext_scanner.l"
+#line 45 "glslext_scanner.l"
 return tSEMICOLON;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 49 "../src/rule/glslext_scanner.l"
+#line 46 "glslext_scanner.l"
 return tL_SB;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 50 "../src/rule/glslext_scanner.l"
+#line 47 "glslext_scanner.l"
 return tR_SB;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 52 "../src/rule/glslext_scanner.l"
+#line 49 "glslext_scanner.l"
 return tATTRIBUTE;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 53 "../src/rule/glslext_scanner.l"
+#line 50 "glslext_scanner.l"
 return tUNIFROM;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 55 "../src/rule/glslext_scanner.l"
+#line 52 "glslext_scanner.l"
 return tASSIGN;				
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 56 "../src/rule/glslext_scanner.l"
+#line 53 "glslext_scanner.l"
 return tCOMMA;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 58 "../src/rule/glslext_scanner.l"
+#line 55 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tOPERATOR;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 59 "../src/rule/glslext_scanner.l"
+#line 56 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tOPERATOR;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 62 "../src/rule/glslext_scanner.l"
+#line 59 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tOPERATOR;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 63 "../src/rule/glslext_scanner.l"
+#line 60 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tOPERATOR;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 66 "../src/rule/glslext_scanner.l"
+#line 63 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tU_TYPE;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 67 "../src/rule/glslext_scanner.l"
+#line 64 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tU_TYPE;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 68 "../src/rule/glslext_scanner.l"
+#line 65 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tU_TYPE;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 69 "../src/rule/glslext_scanner.l"
+#line 66 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tU_TYPE;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 70 "../src/rule/glslext_scanner.l"
+#line 67 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tU_TYPE;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 71 "../src/rule/glslext_scanner.l"
+#line 68 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tU_TYPE;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 72 "../src/rule/glslext_scanner.l"
+#line 69 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tU_TYPE;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 74 "../src/rule/glslext_scanner.l"
+#line 71 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tPRECISION;
 	YY_BREAK
 case 27:
 /* rule 27 can match eol */
 YY_RULE_SETUP
-#line 77 "../src/rule/glslext_scanner.l"
+#line 74 "glslext_scanner.l"
 return tNEW_LINE;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 80 "../src/rule/glslext_scanner.l"
+#line 77 "glslext_scanner.l"
 /*eating comments*/
 	YY_BREAK
 case 29:
 /* rule 29 can match eol */
 YY_RULE_SETUP
-#line 81 "../src/rule/glslext_scanner.l"
+#line 78 "glslext_scanner.l"
 /*eating comments*/
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 82 "../src/rule/glslext_scanner.l"
+#line 79 "glslext_scanner.l"
 /*eating whitespace*/
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 85 "../src/rule/glslext_scanner.l"
+#line 82 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tINTEGER;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 87 "../src/rule/glslext_scanner.l"
+#line 84 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tFLOAT;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 88 "../src/rule/glslext_scanner.l"
+#line 85 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tFLOAT;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 89 "../src/rule/glslext_scanner.l"
+#line 86 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tFLOAT;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 90 "../src/rule/glslext_scanner.l"
+#line 87 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tFLOAT;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 91 "../src/rule/glslext_scanner.l"
+#line 88 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tFLOAT;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 94 "../src/rule/glslext_scanner.l"
+#line 91 "glslext_scanner.l"
 PARSE_TEXT_TO_YACC; return tWORD;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 97 "../src/rule/glslext_scanner.l"
+#line 94 "glslext_scanner.l"
 ECHO;
 	YY_BREAK
-#line 1189 "../src/glslext_scanner.cc"
+#line 1186 "../glslext_scanner.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2320,7 +2317,7 @@ void Glslext_free (void * ptr , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 97 "../src/rule/glslext_scanner.l"
+#line 94 "glslext_scanner.l"
 
 
 

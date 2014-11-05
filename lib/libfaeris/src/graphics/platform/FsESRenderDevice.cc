@@ -1011,7 +1011,15 @@ void RenderDevice::setUniform(int loc,E_UniformType type,int count,void* value)
 		case E_UniformType::UT_I_4:
 			glUniform4iv(loc,count,(GLint*) value);
 			break;
+#if FS_CONFIG(FS_GLES2_0_RENDER_DEVICE) 
 
+		case E_UniformType::UT_UI_1:
+		case E_UniformType::UT_UI_2:
+		case E_UniformType::UT_UI_3:
+		case E_UniformType::UT_UI_4:
+			FS_TRACE_WARN("Opengl Es Not Support");
+			break;
+#else 
 		/* uint */
 		case E_UniformType::UT_UI_1:
 			glUniform1uiv(loc,count,(GLuint*) value);
@@ -1025,6 +1033,7 @@ void RenderDevice::setUniform(int loc,E_UniformType type,int count,void* value)
 		case E_UniformType::UT_UI_4:
 			glUniform4uiv(loc,count,(GLuint*) value);
 			break;
+#endif /*FS_CONFIG(FS_GLES2_0_RENDER_DEVICE) */
 
 		/* matrix vec */
 		case E_UniformType::UT_M_2:

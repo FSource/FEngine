@@ -26,7 +26,7 @@ extern "C" {
 
 	FsFaeris_ModuleInit();
 
-	Render* r=Global::render();
+	RenderDevice* r=Global::renderDevice();
 	Window* win=Global::window();
 	r->setRenderTarget(win);
 	r->setClearColor(Color(0,0,0));

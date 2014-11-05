@@ -5,6 +5,7 @@
 #include "FsMacros.h"
 #include "FsObject.h"
 #include "math/FsVector2.h"
+#include "FsEnums.h"
 
 NS_FS_BEGIN
 

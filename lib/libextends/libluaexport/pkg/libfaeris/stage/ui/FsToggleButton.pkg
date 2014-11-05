@@ -14,15 +14,6 @@ class ToggleButton@__ToggleButton:public StateButton
 			STATE_NU=3,
 		};
 
-	public:
-		static ToggleButton* create();
-		static ToggleButton* createWithDarkStyle(const char* filename,const Color4f& dark);
-		static ToggleButton* createWithDarkStyle(const char* filename,Color dark);
-		static ToggleButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark);
-		static ToggleButton* createWithDarkStyle(Texture2D* tex,Color dark);
-
-		static ToggleButton* createWithTextureStyle(const char* fileon,const char* fileoff);
-		static ToggleButton* createWithTextureStyle(Texture2D* on,Texture2D* off);
 
 	public:
 		/* inherit Entity*/

@@ -8,7 +8,7 @@
 #include "sys/io/FsFile.h"
 #include "graphics/FsImage2D.h"
 
-#if FS_CONFIG(FS_GL_RENDER) ||FS_CONFIG(FS_GLES_RENDER)
+#if FS_CONFIG(FS_GLES2_0_RENDER_DEVICE) 
 	typedef uint PlatformTexture;
 #else 
 	#error "Unsupport PlatformTexture"

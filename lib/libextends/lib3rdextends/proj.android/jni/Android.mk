@@ -14,6 +14,7 @@ LOCAL_CFLAGS := -I$(LOCAL_PATH)/../../src  \
 LOCAL_SRC_FILES := \
 	../../src/box2d/fb2Draw.cc  \
 	../../src/box2d/fb2ContactListener.cc \
+	../../src/box2d/fb2Transform.cc \
 
 include $(BUILD_STATIC_LIBRARY)
 
