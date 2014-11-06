@@ -1,4 +1,5 @@
 #include "toluaext_event.h"
+#include "stdio.h"
 static toluaext_newindex_handle s_new_index_handle=0;
 
 void toluaext_register_newindex_failed_handle(toluaext_newindex_handle handle)
@@ -21,6 +22,7 @@ static int toluaext_storeatubox (lua_State* L, int lo)
 			return -1;
 		}
 	};
+
 	lua_insert(L, -3);
 	lua_settable(L, -3); /* on lua 5.1, we trade the "tolua_peers" lookup for a settable call */
 	lua_pop(L, 1);

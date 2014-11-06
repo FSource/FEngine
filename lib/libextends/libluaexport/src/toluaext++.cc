@@ -108,6 +108,16 @@ TOLUA_API void toluaext_pushfsobject(lua_State* L,Faeris::FsObject* value)
 			lua_pushvalue(L, -5);					/* stack: mt ubox[u] super super[mt] flag mt */
 			lua_setmetatable(L,-5);                /* stack: mt ubox[u] super super[mt] flag */
 			lua_pop(L,3);                          /* stack: mt ubox[u] */
+
+			if(value->m_scriptData==-1)				/*stack: mt ubox[u] env */
+			{
+				lua_pushvalue(L, TOLUA_NOPEER);		
+			}
+			else
+			{
+				toluaext_push_luatable(L,value->m_scriptData);
+			}
+			lua_setfenv(L, -2);                   /* stack: mt ubox[u] */
 		}
 		lua_remove(L, -2);	/* stack: ubox[u]*/
 	}
@@ -296,9 +306,10 @@ TOLUA_API void toluaext_usertype (lua_State* L, const char* type)
 
 TOLUA_API void toluaext_fsobject_newindex_failed_handle(lua_State* L,int lo)
 {
+
 	FsObject* fob=(FsObject*)*((void**)lua_touserdata(L,lo));
 	assert(fob->m_scriptData==-1);
-	fob->m_scriptData=toluaext_new_luatable(L);
+	fob->m_scriptData=toluaext_new_luatable(L);      /* stack:  table */
 	lua_pushvalue(L,-1);
 	lua_setfenv(L,lo);
 }
