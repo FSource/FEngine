@@ -12,18 +12,24 @@ local fsobject= {
 
 
 	-- graphics 
-	"Texture2D",
-	"Render",
-	"Window",
-	"RenderTarget",
 	"FrameBuffer",
+	"RenderDevice",
+	"RenderTarget",
+	"Texture2D",
+	"Window",
 
 	-- util 
 	"FsArray",
+	"FsDict",
+	"FsString",
+	"FsInteger",
+	"FsFloat",
+
 
 	-- mgr 
 	"TextureMgr",
 	"ResourceMgr",
+	"ProgramSourceMgr",
 	"Resource",
 
 
@@ -52,14 +58,6 @@ local fsobject= {
 	"Entity",
 	"LuaEntity",
 
-	"ColorQuad2D",
-	"LuaColorQuad2D",
-
-	"Quad2D",
-	"LuaQuad2D",
-
-	"Sprite2D",
-	"LuaSprite2D",
 
 
 	"FontTTF",
@@ -77,11 +75,42 @@ local fsobject= {
 	"Panel",
 	"LuaPanel",
 
-	"Button",
-	"LuaButton",
+	"Quad2D",
+	"LuaQuad2D",
+
+	"Sprite2D",
+	"LuaSprite2D",
+
+	"VertexPolygon",
+	"LuaVertexPolygon",
 
 	"ITransform",
 	"Transform",
+
+
+	-- ui 
+	
+	"DynamicView",
+	"LuaDynamicView",
+
+	"ListView",
+	"LuaListView",
+
+	"PressButton",
+	"LuaPressButton",
+
+	"ScrollView",
+	"LuaScrollView",
+
+	"StateButton",
+	"LuaStateButton",
+
+	"ToggleButton",
+	"LuaToggleButton",
+	
+	"UiWidget",
+	"LuaUiWidget",
+
 
 
 	--sys/event 
@@ -109,16 +138,28 @@ local fsobject= {
 
 	--action 
 	"Action",
-	"MoveByAction",
-	"MoveToAction",
-	"RotateZByAction",
-	"RotateZToAction",
-	"ScaleByAction",
-	"ScaleToAction",
-	"SeqAction",
-	"PauseAction",
 	"LuaAction",
-	
+
+	"Curve3Action",
+	"LuaCurve3Action",
+
+	"FixTimeAction",
+	"LuaFixTimeAction",
+
+	"MoveAction",
+	"LuaMoveAction",
+
+	"PauseAction",
+	"LuaPauseAction",
+
+	"RotateAction",
+	"LuaRotateAction",
+
+	"ScaleAction",
+	"LuaScaleAction",
+
+	"SeqAction",
+	"LuaAction"
 }
 
 

@@ -472,14 +472,15 @@ UiWidget* PageView::getCurrentPage()
 
 bool  PageView::touchBegin(float x,float y)
 {
-	m_scrollFinished=true;
 
 	UiWidget::touchBegin(x,y);
 
 	if( !m_scrollFinished)
 	{
 		m_isDraged=true;
+		m_scrollFinished=true;
 	}
+
 
 	m_lastPosX=x;
 	m_lastPosY=y;
@@ -694,7 +695,7 @@ void PageView::checkPageAlign()
 
 void PageView::checkPageAlign(float v)
 {
-	FS_TRACE_WARN("V=%f",v);
+	//FS_TRACE_WARN("V=%f",v);
 
 	float supper_v=500;
 

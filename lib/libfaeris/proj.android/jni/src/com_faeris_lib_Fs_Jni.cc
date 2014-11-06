@@ -98,6 +98,7 @@ extern "C" {
 			FsString* entry=ScriptUtil::getString(script,"entry");
 			if(entry==NULL)
 			{
+				FS_TRACE_WARN("Can't Find Script Entry");
 				break;
 			}
 			sc=Global::scriptEngine();

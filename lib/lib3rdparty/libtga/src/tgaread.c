@@ -44,10 +44,6 @@ TGAReadImage(TGA     *tga,
 	     TGAData *data)
 {
 	tuint32 flag=0;
-	if(tga->hdr.flip)
-	{
-		flag=TGA_FLIP_VERTICAL|TGA_RGB;
-	}
 
 
 	if (!tga) return 0;
@@ -56,6 +52,13 @@ TGAReadImage(TGA     *tga,
 		TGA_ERROR(tga, tga->last);
 		return 0;
 	}
+
+	if(tga->hdr.flip)
+	{
+		flag=TGA_FLIP_VERTICAL;
+	}
+	flag|=TGA_RGB;
+
 
 	if ((data->flags & TGA_IMAGE_ID) && tga->hdr.id_len != 0) {
 		if (TGAReadImageId(tga, &data->img_id) != TGA_OK) {
@@ -132,7 +135,7 @@ TGAReadHeader (TGA *tga)
 	tga->hdr.height 	= tmp[14] + tmp[15] * 256;
 	tga->hdr.depth 		= tmp[16];
 	tga->hdr.alpha		= tmp[17] & 0x0f;
-	tga->hdr.flip= (tmp[17] & 0x10) ? 1:0;
+	tga->hdr.flip= (tmp[17] & 0x10) ? 0:1;
 
 	if (tga->hdr.map_t && tga->hdr.depth != 8) {
 		TGA_ERROR(tga, TGA_UNKNOWN_SUB_FORMAT);

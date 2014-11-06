@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsSpineSprite
-** Generated automatically by tolua++-1.0.92 on 11/06/14 01:17:24.
+** Generated automatically by tolua++-1.0.92 on 11/06/14 03:02:27.
 */
 
 #ifndef __cplusplus
@@ -36,7 +36,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"LuaSpineSprite");
  tolua_usertype(tolua_S,"Color");
  tolua_usertype(tolua_S,"Color4f");
- tolua_usertype(tolua_S,"RenderDevice");
+ toluaext_usertype(tolua_S,"RenderDevice");
  toluaext_usertype(tolua_S,"Entity");
  tolua_usertype(tolua_S,"Material2D");
  tolua_usertype(tolua_S,"ProgramSource");

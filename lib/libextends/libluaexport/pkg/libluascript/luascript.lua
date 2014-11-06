@@ -98,11 +98,11 @@ function f_extends(o,c)
 	if type(o)=="table" then 
 		setmetatable(o,c)
 	elseif type(o)=="userdata" then 
-		if o.data then 
-			setmetatable(o.data,c)
+		if o.__fdata then 
+			setmetatable(o.__fdata,c)
 		else 
-			o.data={}
-			setmetatable(o.data,c)
+			o.__fdata={}
+			setmetatable(o.__fdata,c)
 		end
 	else 
 		f_utillog("not support type(%s) extends",type(o));
@@ -110,7 +110,11 @@ function f_extends(o,c)
 end
 
 function f_setattrenv(o,v)
-	o.data=v
+	o.__fdata=v
+end
+
+function f_getattrenv(o)
+	return o.__fdata
 end
 
 
