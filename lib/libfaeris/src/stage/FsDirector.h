@@ -42,8 +42,6 @@ class Director :public SchedulerTarget
 		void setAutoSwapBuffers(bool swap);
 
 	public: 
-		virtual void draw();
-		virtual void update(float dt);
 
 	protected:
 		Director();
@@ -52,6 +50,7 @@ class Director :public SchedulerTarget
 		void destruct();
 		void repace(Scene* scene);
 
+		void updateScene(float dt);
 		void drawScene();
 		void swapBuffers();
 

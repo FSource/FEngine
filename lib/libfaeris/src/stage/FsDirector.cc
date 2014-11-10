@@ -161,30 +161,6 @@ const char* Director::className()
 
 void Director::update(int priority,float dt)
 {
-	if(m_sceneChange)
-	{
-		if(m_current)
-		{
-			m_current->exit();
-			m_current->decRef();
-		}
-
-		m_current=m_next;
-		if(m_next)
-		{
-			m_next->enter();
-
-		}
-		ScriptEngine* sc=Global::scriptEngine();
-		if(sc)
-		{
-			sc->collectGarbage();
-		}
-
-
-		m_next=NULL;
-		m_sceneChange=false;
-	}
 	if(m_stop)
 	{
 		return ;
@@ -194,16 +170,46 @@ void Director::update(int priority,float dt)
 	switch(priority)
 	{
 		case Scheduler::MIDDLE:
-			update(dt);
+			{
+				if(m_sceneChange)
+				{
+					if(m_current)
+					{
+						m_current->exit();
+						m_current->decRef();
+					}
+
+					m_current=m_next;
+					if(m_next)
+					{
+						m_next->enter();
+
+					}
+					ScriptEngine* sc=Global::scriptEngine();
+					if(sc)
+					{
+						sc->collectGarbage();
+					}
+
+
+					m_next=NULL;
+					m_sceneChange=false;
+				}
+
+				updateScene(dt);
+			}
 			break;
+
 		case Scheduler::LOW:
 			drawScene();
 			break;
+
 		case Scheduler::LOWEST:
 			if(m_autoSwapBuffers)
 			{
 				swapBuffers();
 			}
+
 			break;
 	}
 }
@@ -259,15 +265,6 @@ bool Director::isRunning()
 void Director::setAutoSwapBuffers(bool swap)
 {
 	m_autoSwapBuffers=swap;
-}
-void Director::draw()
-{
-	drawScene();
-	if(m_autoSwapBuffers)
-	{
-		swapBuffers();
-
-	}
 }
 
 
@@ -373,7 +370,7 @@ void Director::swapBuffers()
 
 }
 
-void Director::update(float dt)
+void Director::updateScene(float dt)
 {
 	if(m_current)
 	{
