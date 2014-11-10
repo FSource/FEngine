@@ -165,7 +165,7 @@ void Director::update(int priority,float dt)
 	{
 		return ;
 	}
-	if(!m_current) return;
+	if(!m_current&&!m_sceneChange) return;
 
 	switch(priority)
 	{

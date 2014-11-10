@@ -102,7 +102,10 @@ void ToggleButton::setToggle(bool value,bool callback)
 		{
 			setState(STATE_OFF);
 		}
-		toggleChanged(m_toggleState);
+		if (callback)
+		{
+			toggleChanged(m_toggleState);
+		}
 	}
 }
 
@@ -186,7 +189,7 @@ void ToggleButton::initWithTextureStyle(Texture2D* on,Texture2D* off)
 	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
 
 	setTexture(STATE_ON,on);
-	setTexture(STATE_ON,off);
+	setTexture(STATE_OFF,off);
 	setTexture(STATE_DISABLE,on);
 	setColor(STATE_DISABLE,Color4f(0.2f,0.2f,0.2f));
 

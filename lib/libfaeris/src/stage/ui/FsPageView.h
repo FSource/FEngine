@@ -129,7 +129,6 @@ class PageView:public UiWidget
 
 		VelocityTracker* m_velocityTracker;
 
-
 };
 
 

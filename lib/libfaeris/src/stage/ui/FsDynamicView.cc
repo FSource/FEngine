@@ -33,9 +33,17 @@ DynamicView::DynamicView(float width,float height)
 
 DynamicView::~DynamicView()
 {
-	FS_SAFE_DEC_REF(m_currentView);
-	FS_SAFE_DEC_REF(m_views);
 
+	FsDict::Iterator* iter=m_views->takeIterator();
+	while(!iter->done())
+	{
+		ViewInfo* info=(ViewInfo*)iter->getValue();
+		info->m_widget->setParentWidget(NULL);
+		iter->next();
+	}
+	delete iter;
+
+	FS_SAFE_DEC_REF(m_views);
 }
 
 void DynamicView::setMargin(float l,float r,float t,float b)
@@ -275,6 +283,7 @@ DynamicView::ViewInfo* DynamicView::getViewInfo(UiWidget* view)
 			ret=info;
 			break;
 		}
+		iter->next();
 	}
 	delete iter;
 
