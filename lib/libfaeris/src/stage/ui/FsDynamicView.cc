@@ -18,6 +18,7 @@ const char* DynamicView::className()
 DynamicView::DynamicView(float width,float height)
 {
 	m_views=FsDict::create();
+	FS_NO_REF_DESTROY(m_views);
 
 	m_currentView=NULL;
 
@@ -43,7 +44,7 @@ DynamicView::~DynamicView()
 	}
 	delete iter;
 
-	FS_SAFE_DEC_REF(m_views);
+	FS_SAFE_DESTROY(m_views);
 }
 
 void DynamicView::setMargin(float l,float r,float t,float b)
@@ -53,7 +54,7 @@ void DynamicView::setMargin(float l,float r,float t,float b)
 	m_marginTop=t;
 	m_marginBottom=b;
 
-	adjustCurrentView();
+	adjustCurrentView();	
 }
 
 void DynamicView::getMargin(float* l,float* r,float* t,float* b) const

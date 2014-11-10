@@ -72,6 +72,7 @@ void md5mesh_error(void* param,char const* s)
 %error-verbose
 %parse-param{Md5Parser* param}
 %lex-param{Md5Parser* param_scanner}
+
 %define api.pure
 %define api.prefix{md5mesh_}
 

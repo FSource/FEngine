@@ -1,39 +1,47 @@
-%pure-parser
-%name-prefix="Obj_"
-%locations
-%defines
-%error-verbose
-%parse-param { ObjContext* context }
-%lex-param { void* scanner  }
-
-%union
-{
-  int intValue;    /* integer */
-  float fValue;    /* float value */
-  char *string;    /* character string */
-};
-
 %{
 #include <stdio.h>
 #include "ObjContext.h"
 #include <objreader/objreader.h>
 
-#define YYERROR_VERBOSE 1
 
-int Obj_lex(YYSTYPE* lvalp, YYLTYPE* llocp, void* scanner);
-void Obj_error(YYLTYPE* locp, ObjContext* context, const char* err);
+int objmesh_lex(YYSTYPE* lvalp, YYLTYPE* llocp, void* scanner);
 
-#define scanner context->scanner
+void objmesh_error(void* param,const char* s)
+{
+	fprintf(stderr,"%s\n",s);
+}
+
+#define MESH_CALL_BACK ((ObjMeshCallBack*) param->m_data)
+#define param_scanner param->m_scanner
+
 
 %}
 
+%error-verbose
+
+%parse-param{ObjParser* param}
+%lex-param{ObjParser* param_scanner}
+
+%define api.pure
+%define api.prefix{objmesh_}
+
+
+%union
+{
+	int itype;    		/* integer */
+	float ftype;    	/* float value */
+	std::string ctype;  /* ctype */
+};
+
+
+
 %token ERR
 %token EOL
-%token <fValue> DECIMAL
-%token <intValue> INTEGER
-%token <string> WORD
+%token <ftype> DECIMAL
+%token <itype> INTEGER
+%token <ctype> WORD
 %token MATERIALLIB_MARKER
-%token <string> MTLFILEPATH
+%token <ctype> MTLFILEPATH
 %token USEMATERIAL_MARKER
 %token NULL_MARKER
 %token VERTEX_MARKER
@@ -47,7 +55,7 @@ void Obj_error(YYLTYPE* locp, ObjContext* context, const char* err);
 %token CAMERA_MARKER
 %token OFF_WORD
 
-%type <fValue> coord
+%type <ftype> value
 
 /* start of grammar */
 %start objfile
@@ -74,44 +82,49 @@ vertex
 | camera
 ;
 
-camera:
-CAMERA_MARKER coord coord coord
-;
+camera: CAMERA_MARKER value value value ;
 
-vertex:
-VERTEX_MARKER coord coord coord {
+vertex: VERTEX_MARKER value value value 
+{
   int res = 0;
   if(context->user_cb->onVertex)
     res = context->user_cb->onVertex($2, $3, $4, 1.0f, 
 				     context->user_cb->userData); 
   if(res) return res;
 }
-| VERTEX_MARKER coord coord coord coord { 
+| VERTEX_MARKER value value value value 
+{ 
   int res = 0;
   if(context->user_cb->onVertex)
     res = context->user_cb->onVertex($2, $3, $4, $5, 
 				     context->user_cb->userData); 
   if(res) return res;
+};
+
+value: DECIMAL 
+{ 
+	$$ = $1;
+}
+| INTEGER 
+{ 
+	$$ = (float)$1;
 }
 
-coord:
-DECIMAL { $$ = $1 }
-| INTEGER { $$ = (float)$1 }
+object: OBJECT_MARKER objectname ;
 
-object:
-OBJECT_MARKER objectname
-;
-
-objectname:
-WORD {
+objectname: WORD 
+{
   int res = 0;
   if(context->user_cb->onStartObject)
-    res = context->user_cb->onStartObject($1, 
-                                          context->user_cb->userData);
+	{
+
+    res = context->user_cb->onStartObject($1, context->user_cb->userData);
+	}
   free($1);
   if(res) return res;
 }
-| INTEGER { 
+| INTEGER 
+{ 
   int res = 0;
   char buff[128];
   if(context->user_cb->onStartObject)
@@ -120,23 +133,19 @@ WORD {
       res = context->user_cb->onStartObject(buff, context->user_cb->userData);
     }
   if(res) return res;
-}
+};
 
-group:
-GROUP_MARKER groupnamelist
-;
+group: GROUP_MARKER groupnamelist ;
 
-groupnamelist:
-groupnamelist groupname
-| { 
+groupnamelist: groupnamelist groupname | { 
   int res = 0;
   if(context->user_cb->onStartGroup)
     res = context->user_cb->onStartGroup(context->user_cb->userData); 
   if(res) return res;
 }
 
-groupname:
-WORD {
+groupname: WORD 
+{
   int res = 0;
   if(context->user_cb->onGroupName)
     res = context->user_cb->onGroupName($1, 
@@ -144,7 +153,8 @@ WORD {
   free($1);
   if(res) return res;
 }
-| INTEGER { 
+| INTEGER 
+{ 
   int res = 0;
   char buff[128];
   if(context->user_cb->onGroupName)
@@ -155,8 +165,8 @@ WORD {
   if(res) return res;
 }
 
-texel:
-TEXEL_MARKER DECIMAL DECIMAL { 
+texel: TEXEL_MARKER DECIMAL DECIMAL 
+{ 
   int res = 0;
   if(context->user_cb->onTexel)
     res = context->user_cb->onTexel($2, $3, context->user_cb->userData); 
@@ -164,20 +174,17 @@ TEXEL_MARKER DECIMAL DECIMAL {
 }
 
 
-normal:
-NORMAL_MARKER coord coord coord { 
+normal: NORMAL_MARKER value value value 
+{ 
   int res = 0;
   if(context->user_cb->onNormal)
     res = context->user_cb->onNormal($2, $3, $4, context->user_cb->userData); 
   if(res) return res;
 }
 
-line:
-LINE_MARKER linedescrlist
-;
+line: LINE_MARKER linedescrlist ;
 
-linedescrlist:
-linedescrlist pair
+linedescrlist: linedescrlist pair
 | { 
   int res = 0;
   if(context->user_cb->onStartLine)
