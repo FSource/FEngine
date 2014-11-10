@@ -109,7 +109,7 @@ ColorLayer::ColorLayer()
 
 
 	static ProgramSource* S_programSource=NULL;
-	if(S_programSource)
+	if(S_programSource==NULL)
 	{
 		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
 	}
