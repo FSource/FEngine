@@ -123,19 +123,24 @@ float UiWidget::getAnchorY()
 
 void UiWidget::setBgColor(const Color4f& c)
 {
+	m_bgColor=c;
 }
 
 void UiWidget::setBgTexture(Texture2D* tex)
 {
+	FS_SAFE_ASSIGN(m_bgTexture,tex);
 }
 
 void UiWidget::setBgTexture(const char* filename)
 {
+
 }
 
 void UiWidget::setBgEnabled(bool value)
 {
+
 }
+
 
 
 void UiWidget::sizeChanged(float x,float y)
