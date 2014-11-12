@@ -80,7 +80,7 @@ extern int libobjmesh_debug;
 typedef union LIBOBJMESH_STYPE LIBOBJMESH_STYPE;
 union LIBOBJMESH_STYPE
 {
-#line 37 "meshgrammer.y" /* yacc.c:1909  */
+#line 40 "meshgrammer.y" /* yacc.c:1909  */
 
 	int itype;    		/* integer */
 	float ftype;    	/* float value */
@@ -94,6 +94,6 @@ union LIBOBJMESH_STYPE
 
 
 
-int libobjmesh_parse (LibObjMeshContext* param);
+int libobjmesh_parse (LibObjParserContext* param);
 
 #endif /* !YY_LIBOBJMESH_LIBOBJMESHGRAMMER_H_INCLUDED  */

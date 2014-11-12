@@ -1,6 +1,9 @@
 #ifndef __LIB_OBJ_MODEL_H_
 #define __LIB_OBJ_MODEL_H_
-#include "LibObjCallBacks.h"
+
+#include <string>
+#include <vector>
+
 
 class LibObjTexCoord 
 {
@@ -40,6 +43,11 @@ class LibObjVector3
 
 	public:
 		void normalize();
+		void set(float _x,float _y,float _z)
+		{
+			x=_x; y=_y; z=_z; 
+		}
+
 
 
 	public:
@@ -53,37 +61,252 @@ class LibObjVector3
 
 
 
+
+
+
+class LibObjVertexIndex 
+{
+	public:
+		LibObjVertexIndex(int v,int u,int n)
+		{
+			m_vertex=v;
+			m_uv=u;
+			m_normal=n;
+		}
+		
+	public:
+		int m_vertex;
+		int m_uv;
+		int m_normal;
+};
+
+
+class LibObjFace
+{
+	public:
+		std::vector<LibObjVertexIndex>  m_data;
+};
+
+
+class LibObjSubMesh 
+{
+	public:
+		LibObjSubMesh() {}
+		~LibObjSubMesh()
+		{
+			int face_nu=m_faces.size();
+			for(int i=0;i<face_nu;i++)
+			{
+				delete m_faces[i];
+			}
+			m_faces.clear();
+		}
+
+	public:
+
+		void newFace() { m_faces.push_back(new LibObjFace()); }
+
+		void addVertexIndex(int v,int u,int n)
+		{
+			m_faces.back()->m_data.push_back(LibObjVertexIndex(v,u,n));
+		}
+
+
+		/* material */
+		void setMaterialName(const char* name) { m_materialName=std::string(name); }
+		const char* getMaterialName() { return m_materialName.c_str(); }
+
+		/* face */
+		int getFaceNu() { return m_faces.size(); }
+		LibObjFace* getFace(int index) { return m_faces[index]; }
+
+
+	private:
+		std::string m_materialName;
+		std::vector<LibObjFace*>  m_faces;
+};
+
+
+class LibObjMesh 
+{
+
+	public:
+		LibObjMesh()
+		{
+			m_curSubMesh=NULL;
+		}
+
+
+		~LibObjMesh()
+		{
+			int submesh_nu=m_submeshes.size();
+			for(int i=0;i<submesh_nu;i++)
+			{
+				delete m_submeshes[i];
+			}
+			m_submeshes.clear();
+		}
+
+
+		int getSubMeshNu()
+		{
+			return m_submeshes.size();
+		}
+
+		LibObjSubMesh* getCurSubMesh() 
+		{
+			if(m_curSubMesh==NULL)
+			{
+				m_curSubMesh=new LibObjSubMesh;
+				m_submeshes.push_back(m_curSubMesh);
+			}
+			return m_curSubMesh;
+		}
+
+		LibObjSubMesh* getSubMesh(int index);
+
+
+		void commitSubMesh()
+		{
+			m_curSubMesh=NULL;
+		}
+
+
+		/* vertex info */
+		int getVertex(){return m_vertices.size();}
+		void addVertex(float x,float y,float z){m_vertices.push_back(LibObjVector3(x,y,z));}
+		LibObjVector3& getVertex(int index){return m_vertices[index];}
+
+
+		int getUvNu(){return m_uvs.size();}
+		void addUv(float x,float y){m_uvs.push_back(LibObjTexCoord(x,y));}
+		LibObjTexCoord& getUv(int index){return m_uvs[index];}
+
+
+		int getNormalNu(){return m_normals.size();}
+		void addNormal(float x,float y,float z){m_normals.push_back(LibObjVector3(x,y,z));}
+		LibObjVector3& getNormal(int index){return m_normals[index];}
+
+
+		/* material */
+		void setMaterialLibName(const char* name) { m_materialLibName=std::string(name);}
+		const char* getMaterialName(){return m_materialLibName.c_str();}
+
+
+	private:
+		std::string m_materialLibName;
+
+		std::vector<LibObjTexCoord>  m_uvs;
+		std::vector<LibObjVector3>   m_vertices;
+		std::vector<LibObjVector3>   m_normals;
+
+		std::vector<LibObjSubMesh*> m_submeshes;
+
+		LibObjSubMesh* m_curSubMesh;
+
+
+};
+
+
+
+/* material */
+
+class LibObjMaterial 
+{
+	public:
+		std::string m_name;
+		LibObjVector3 m_ambient;
+		LibObjVector3 m_diffuse;
+		LibObjVector3 m_specular;
+
+		float m_opacity;
+		float m_shinness;
+		int m_illuminationMode;
+		float m_ni;
+
+		std::string m_ambientMap;
+		std::string m_diffuseMap;
+		std::string m_specularMap;
+		std::string m_boumpMap;
+		std::string m_alphaMap;
+
+};
+
+class LibObjMaterialLib 
+{
+
+	public:
+
+		LibObjMaterial* getCurMaterial()
+		{
+			if(m_curMaterial==NULL)
+			{
+				m_curMaterial=new LibObjMaterial();
+				m_materials.push_back(m_curMaterial);
+			}
+
+			return m_curMaterial;
+		}
+
+		void commitMaterial()
+		{
+			m_curMaterial=NULL;
+		}
+
+	public:
+		LibObjMaterialLib() 
+		{
+			m_curMaterial=NULL;
+		}
+		~LibObjMaterialLib() 
+		{
+			int material_nu=m_materials.size();
+			for(int i=0;i<material_nu;i++)
+			{
+				delete m_materials[i];
+			}
+			m_materials.clear();
+	   	}
+
+
+	public:
+		std::vector<LibObjMaterial*> m_materials;
+		LibObjMaterial* m_curMaterial;
+
+};
+
+
+
+
+
+
+
+
 typedef int (*LibObj_ReadIoFunc)(void* file,void* buf,int length);
 
-class LibObjMeshContext
+class LibObjParserContext 
 {
 	public:
+		LibObjParserContext(void* scanner,void* data,void* file,LibObj_ReadIoFunc io)
+		{
+			m_scanner=scanner;
+			m_data=data;
+			m_file=file;
+			m_readIo=io;
+		}
+
+	public:
 		void* m_scanner;
+		void* m_data;
 		void* m_file;
-		LibObj_ReadIoFunc m_readio;
-		void* m_userdata;
-		LibObjMeshCallbacks* m_callbacks;
+		LibObj_ReadIoFunc m_readIo;
 };
 
 
-class LibObjMtlContext 
-{
-	public:
-		void* m_scanner;
-		void* m_file;
-		LibObj_ReadIoFunc m_readio;
-		void* m_userdata;
-		LibObjMtlCallbacks* m_callbacks;
-};
+LibObjMesh* LibObj_ParseMesh(void* file,LibObj_ReadIoFunc io_func);
 
+LibObjMaterialLib* LibObj_ParseMtl(void* file,LibObj_ReadIoFunc io_func);
 
-
-
-int LibObj_ParseMesh(void* file,LibObj_ReadIoFunc io_func,
-		void* userdata,LibObjMeshCallbacks* ucb);
-
-int LibObj_ParseMaterial(void* file,LibObj_ReadIoFunc io_func,
-		void* userdata,LibObjMtlCallbacks* ucb);
 
 
 #endif /* __LIB_OBJ_MODEL_H_*/

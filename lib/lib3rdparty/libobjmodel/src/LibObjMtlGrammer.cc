@@ -79,23 +79,25 @@
 #include "LibObjMtlScanner.h"
 
 
-#define MTL_CALL_BACK (param->m_callbacks)
-#define MTL_USER_DATA (param->m_userdata)
+#define MTL_DATA  ((LibObjMaterialLib*)(param->m_data))
 
 
 #define param_scanner param->m_scanner
 
 
 
-void libobjmtl_error(void* param,const char* s)
+void libobjmtl_error(void* param,const char* msg)
 {
-	fprintf(stderr,"parase mtl error:%s\n",s);
+	fprintf(stderr,"error: %s at line<%d><%s>\n ",
+			msg,
+			libobjmtl_get_lineno(((LibObjParserContext*)param)->m_scanner),
+			libobjmtl_get_text(((LibObjParserContext*)param)->m_scanner));
 }
 
 
 
 
-#line 99 "../LibObjMtlGrammer.cc" /* yacc.c:339  */
+#line 101 "../LibObjMtlGrammer.cc" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -165,13 +167,13 @@ extern int libobjmtl_debug;
 typedef union LIBOBJMTL_STYPE LIBOBJMTL_STYPE;
 union LIBOBJMTL_STYPE
 {
-#line 36 "mtlgrammer.y" /* yacc.c:355  */
+#line 38 "mtlgrammer.y" /* yacc.c:355  */
 
   int itype;    			/* integer */
   float ftype;    			/* float value */
   std::string* ctype;    	/* character string */
 
-#line 175 "../LibObjMtlGrammer.cc" /* yacc.c:355  */
+#line 177 "../LibObjMtlGrammer.cc" /* yacc.c:355  */
 };
 # define LIBOBJMTL_STYPE_IS_TRIVIAL 1
 # define LIBOBJMTL_STYPE_IS_DECLARED 1
@@ -179,13 +181,13 @@ union LIBOBJMTL_STYPE
 
 
 
-int libobjmtl_parse (LibObjMtlContext* param);
+int libobjmtl_parse (LibObjParserContext* param);
 
 #endif /* !YY_LIBOBJMTL_LIBOBJMTLGRAMMER_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 189 "../LibObjMtlGrammer.cc" /* yacc.c:358  */
+#line 191 "../LibObjMtlGrammer.cc" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -484,10 +486,10 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    69,    69,    69,    71,    71,    74,    85,    95,    97,
-      97,   100,   101,   102,   103,   104,   105,   106,   107,   108,
-     109,   110,   111,   114,   122,   130,   138,   146,   154,   162,
-     170,   179,   188,   197,   206,   216,   220
+       0,    71,    71,    71,    73,    73,    76,    82,    90,    92,
+      92,    95,    96,    97,    98,    99,   100,   101,   102,   103,
+     104,   105,   106,   109,   114,   119,   124,   129,   134,   139,
+     144,   150,   156,   162,   168,   175,   179
 };
 #endif
 
@@ -691,7 +693,7 @@ do {                                                                      \
 `----------------------------------------*/
 
 static void
-yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, LibObjMtlContext* param)
+yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, LibObjParserContext* param)
 {
   FILE *yyo = yyoutput;
   YYUSE (yyo);
@@ -711,7 +713,7 @@ yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvalue
 `--------------------------------*/
 
 static void
-yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, LibObjMtlContext* param)
+yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, LibObjParserContext* param)
 {
   YYFPRINTF (yyoutput, "%s %s (",
              yytype < YYNTOKENS ? "token" : "nterm", yytname[yytype]);
@@ -749,7 +751,7 @@ do {                                                            \
 `------------------------------------------------*/
 
 static void
-yy_reduce_print (yytype_int16 *yyssp, YYSTYPE *yyvsp, int yyrule, LibObjMtlContext* param)
+yy_reduce_print (yytype_int16 *yyssp, YYSTYPE *yyvsp, int yyrule, LibObjParserContext* param)
 {
   unsigned long int yylno = yyrline[yyrule];
   int yynrhs = yyr2[yyrule];
@@ -1029,7 +1031,7 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
 `-----------------------------------------------*/
 
 static void
-yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, LibObjMtlContext* param)
+yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, LibObjParserContext* param)
 {
   YYUSE (yyvaluep);
   YYUSE (param);
@@ -1050,7 +1052,7 @@ yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, LibObjMtlContext* 
 `----------*/
 
 int
-yyparse (LibObjMtlContext* param)
+yyparse (LibObjParserContext* param)
 {
 /* The lookahead symbol.  */
 int yychar;
@@ -1298,185 +1300,145 @@ yyreduce:
   switch (yyn)
     {
         case 6:
-#line 75 "mtlgrammer.y" /* yacc.c:1646  */
+#line 77 "mtlgrammer.y" /* yacc.c:1646  */
     {
- 	if(MTL_CALL_BACK->onAddMaterial)
-	{
-    	MTL_CALL_BACK->onAddMaterial((yyvsp[-2].ctype)->c_str(), MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_name=*((yyvsp[-2].ctype));
+	MTL_DATA->commitMaterial();
 	delete (yyvsp[-2].ctype);
 }
 #line 1310 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 86 "mtlgrammer.y" /* yacc.c:1646  */
+#line 83 "mtlgrammer.y" /* yacc.c:1646  */
     {
- 	if(MTL_CALL_BACK->onAddMaterial)
-	{
-    	MTL_CALL_BACK->onAddMaterial((yyvsp[-2].ctype)->c_str(), MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_name=*((yyvsp[-2].ctype));
+	MTL_DATA->commitMaterial();
 	delete (yyvsp[-2].ctype);
 }
-#line 1322 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1320 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 115 "mtlgrammer.y" /* yacc.c:1646  */
+#line 110 "mtlgrammer.y" /* yacc.c:1646  */
     {
-  	if(MTL_CALL_BACK->onSetAmbientColor)
-	{
-    	MTL_CALL_BACK->onSetAmbientColor((yyvsp[-2].ftype), (yyvsp[-1].ftype), (yyvsp[0].ftype), MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_ambient.set((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
 }
-#line 1333 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1328 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 123 "mtlgrammer.y" /* yacc.c:1646  */
+#line 115 "mtlgrammer.y" /* yacc.c:1646  */
     {
- 	if(MTL_CALL_BACK->onSetDiffuseColor)
-	{
-    	MTL_CALL_BACK->onSetDiffuseColor((yyvsp[-2].ftype), (yyvsp[-1].ftype), (yyvsp[0].ftype), MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_diffuse.set((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
+}
+#line 1336 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+    break;
+
+  case 25:
+#line 120 "mtlgrammer.y" /* yacc.c:1646  */
+    {
+	MTL_DATA->getCurMaterial()->m_specular.set((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
 }
 #line 1344 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 25:
-#line 131 "mtlgrammer.y" /* yacc.c:1646  */
-    {
-	if(MTL_CALL_BACK->onSetSpecularColor)
-	{
-		MTL_CALL_BACK->onSetSpecularColor((yyvsp[-2].ftype), (yyvsp[-1].ftype), (yyvsp[0].ftype), MTL_USER_DATA);
-	}
-}
-#line 1355 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
-    break;
-
   case 26:
-#line 139 "mtlgrammer.y" /* yacc.c:1646  */
+#line 125 "mtlgrammer.y" /* yacc.c:1646  */
     {
-  	if(MTL_CALL_BACK->onSetAlpha)
-	{
-   		MTL_CALL_BACK->onSetAlpha((yyvsp[0].ftype),MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_opacity=(yyvsp[0].ftype);
 }
-#line 1366 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1352 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 147 "mtlgrammer.y" /* yacc.c:1646  */
+#line 130 "mtlgrammer.y" /* yacc.c:1646  */
     {
-  	if(MTL_CALL_BACK->onSetSpecularExponent)
-	{
-    	MTL_CALL_BACK->onSetSpecularExponent((yyvsp[0].ftype),MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_shinness=(yyvsp[0].ftype);
 }
-#line 1377 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1360 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 155 "mtlgrammer.y" /* yacc.c:1646  */
+#line 135 "mtlgrammer.y" /* yacc.c:1646  */
     { 
-  	if(MTL_CALL_BACK->onSetOpticalDensity)
-	{
-    	MTL_CALL_BACK->onSetOpticalDensity((yyvsp[0].ftype),MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_ni=(yyvsp[0].ftype);
 }
-#line 1388 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1368 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 163 "mtlgrammer.y" /* yacc.c:1646  */
+#line 140 "mtlgrammer.y" /* yacc.c:1646  */
     {
-  	if(MTL_CALL_BACK->onSetIllumModel)
-	{
-    	MTL_CALL_BACK->onSetIllumModel((yyvsp[0].itype),MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_illuminationMode=(yyvsp[0].itype);
 }
-#line 1399 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1376 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 171 "mtlgrammer.y" /* yacc.c:1646  */
+#line 145 "mtlgrammer.y" /* yacc.c:1646  */
     {
-  	if(MTL_CALL_BACK->onSetAmbientTextureMap)
-	{
-    	MTL_CALL_BACK->onSetAmbientTextureMap((yyvsp[0].ctype)->c_str(), MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_ambientMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
 }
-#line 1411 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1385 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 180 "mtlgrammer.y" /* yacc.c:1646  */
+#line 151 "mtlgrammer.y" /* yacc.c:1646  */
     {
-  	if(MTL_CALL_BACK->onSetDiffuseTextureMap)
-	{
-    	MTL_CALL_BACK->onSetDiffuseTextureMap((yyvsp[0].ctype)->c_str(),MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_diffuseMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
 }
-#line 1423 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1394 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 189 "mtlgrammer.y" /* yacc.c:1646  */
+#line 157 "mtlgrammer.y" /* yacc.c:1646  */
     {
-	if(MTL_CALL_BACK->onSetSpecularTextureMap)
-	{
-		MTL_CALL_BACK->onSetSpecularTextureMap((yyvsp[0].ctype)->c_str(),MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_specularMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
 }
-#line 1435 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1403 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 198 "mtlgrammer.y" /* yacc.c:1646  */
+#line 163 "mtlgrammer.y" /* yacc.c:1646  */
     {
-	if(MTL_CALL_BACK->onSetAlphaTextureMap)
-	{
-		MTL_CALL_BACK->onSetAlphaTextureMap((yyvsp[0].ctype)->c_str(),MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_alphaMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
 }
-#line 1447 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1412 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 207 "mtlgrammer.y" /* yacc.c:1646  */
+#line 169 "mtlgrammer.y" /* yacc.c:1646  */
     {
-	if(MTL_CALL_BACK->onSetBumpTextureMap)
-	{
-		MTL_CALL_BACK->onSetBumpTextureMap((yyvsp[0].ctype)->c_str(),MTL_USER_DATA);
-	}
+	MTL_DATA->getCurMaterial()->m_boumpMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
 
 }
-#line 1460 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1422 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 217 "mtlgrammer.y" /* yacc.c:1646  */
+#line 176 "mtlgrammer.y" /* yacc.c:1646  */
     { 
 	(yyval.ftype) = (yyvsp[0].ftype);  
 }
-#line 1468 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1430 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 221 "mtlgrammer.y" /* yacc.c:1646  */
+#line 180 "mtlgrammer.y" /* yacc.c:1646  */
     { 
 	(yyval.ftype) = (float)(yyvsp[0].itype);
 }
-#line 1476 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1438 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
 
-#line 1480 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
+#line 1442 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1704,6 +1666,30 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 225 "mtlgrammer.y" /* yacc.c:1906  */
+#line 184 "mtlgrammer.y" /* yacc.c:1906  */
+
+
+
+LibObjMaterialLib* LibObj_ParseMtl(void* file,LibObj_ReadIoFunc io_func)
+{
+	LibObjMaterialLib* mtl=new LibObjMaterialLib;
+	yyscan_t scanner=NULL;
+	libobjmtl_lex_init(&scanner);
+
+	LibObjParserContext* parser=new LibObjParserContext(scanner,mtl,file,io_func);
+	
+	libobjmtl_set_extra(parser,scanner);
+	
+	if(libobjmtl_parse(parser)!=0)
+	{
+		delete mtl;
+		mtl=NULL;
+	}
+	libobjmtl_lex_destroy(scanner);
+	delete parser;
+
+	return mtl;
+}
+
 
 

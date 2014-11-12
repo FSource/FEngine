@@ -11,8 +11,8 @@
 
 #define YY_INPUT(buf,result,max_size) \
 { \
-	LibObjMeshContext* parser=(LibObjMeshContext*) libobjmesh_get_extra(yyg); \
-	result = parser->m_readio(parser->m_file,buf,max_size); \
+	LibObjParserContext* parser=(LibObjParserContext*) libobjmesh_get_extra(yyg); \
+	result = parser->m_readIo(parser->m_file,buf,max_size); \
 }
 
 %}

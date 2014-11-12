@@ -10,8 +10,8 @@
 #define YYSTYPE LIBOBJMTL_STYPE
 #define YY_INPUT(buf,result,max_size) \
 { \
-	LibObjMtlContext* parser=(LibObjMtlContext*) libobjmtl_get_extra(yyg); \
-	result = parser->m_readio(parser->m_file,buf,max_size); \
+	LibObjParserContext* parser=(LibObjParserContext*) libobjmtl_get_extra(yyg); \
+	result = parser->m_readIo(parser->m_file,buf,max_size); \
 }
 
 
@@ -41,7 +41,8 @@ newmtl  { return NEWMTL_MARKER; }
 Ka      { return KA_MARKER; }
 Kd      { return KD_MARKER; }
 Ks      { return KS_MARKER; }
-[d(Tr)] { return D_MARKER; }
+d		{ return D_MARKER; }
+Tr 		{ return D_MARKER; }
 Ns      { return NS_MARKER; }
 Ni      { return NI_MARKER; }
 illum   { return ILLUM_MARKER; }

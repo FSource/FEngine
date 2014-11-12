@@ -330,7 +330,7 @@ extern int libobjmtl_lex \
 #undef YY_DECL
 #endif
 
-#line 78 "mtlscanner.l"
+#line 79 "mtlscanner.l"
 
 
 #line 337 "../LibObjMtlScanner.h"

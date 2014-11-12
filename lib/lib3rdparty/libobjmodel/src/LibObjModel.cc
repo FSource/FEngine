@@ -57,3 +57,5 @@ void LibObjVector3::normalize()
 
 
 
+
+

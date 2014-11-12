@@ -1,6 +1,7 @@
 demo
 tmp
 libreality
+*.bsc
 *.idb
 *.lastbuildstate
 *.tlog

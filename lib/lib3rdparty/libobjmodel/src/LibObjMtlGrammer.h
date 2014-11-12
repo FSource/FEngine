@@ -80,7 +80,7 @@ extern int libobjmtl_debug;
 typedef union LIBOBJMTL_STYPE LIBOBJMTL_STYPE;
 union LIBOBJMTL_STYPE
 {
-#line 36 "mtlgrammer.y" /* yacc.c:1909  */
+#line 38 "mtlgrammer.y" /* yacc.c:1909  */
 
   int itype;    			/* integer */
   float ftype;    			/* float value */
@@ -94,6 +94,6 @@ union LIBOBJMTL_STYPE
 
 
 
-int libobjmtl_parse (LibObjMtlContext* param);
+int libobjmtl_parse (LibObjParserContext* param);
 
 #endif /* !YY_LIBOBJMTL_LIBOBJMTLGRAMMER_H_INCLUDED  */

@@ -79,23 +79,26 @@
 #include "LibObjMeshScanner.h"
 
 
-#define MESH_CALL_BACK (param->m_callbacks)
-#define MESH_USER_DATA (param->m_userdata)
+#define MESH_DATA ((LibObjMesh*)(param->m_data))
 
 
 #define param_scanner param->m_scanner
 
 
 
-void libobjmesh_error(void* param,const char* s)
+void libobjmesh_error(void* param,const char* msg)
 {
-	fprintf(stderr,"parase mesh error:%s\n",s);
+
+	fprintf(stderr,"error: %s at line<%d><%s>\n ",
+			msg,
+			libobjmesh_get_lineno(((LibObjParserContext*)param)->m_scanner),
+			libobjmesh_get_text(((LibObjParserContext*)param)->m_scanner));
 }
 
 
 
 
-#line 99 "../LibObjMeshGrammer.cc" /* yacc.c:339  */
+#line 102 "../LibObjMeshGrammer.cc" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -165,13 +168,13 @@ extern int libobjmesh_debug;
 typedef union LIBOBJMESH_STYPE LIBOBJMESH_STYPE;
 union LIBOBJMESH_STYPE
 {
-#line 37 "meshgrammer.y" /* yacc.c:355  */
+#line 40 "meshgrammer.y" /* yacc.c:355  */
 
 	int itype;    		/* integer */
 	float ftype;    	/* float value */
 	std::string* ctype;  /* ctype */
 
-#line 175 "../LibObjMeshGrammer.cc" /* yacc.c:355  */
+#line 178 "../LibObjMeshGrammer.cc" /* yacc.c:355  */
 };
 # define LIBOBJMESH_STYPE_IS_TRIVIAL 1
 # define LIBOBJMESH_STYPE_IS_DECLARED 1
@@ -179,13 +182,13 @@ union LIBOBJMESH_STYPE
 
 
 
-int libobjmesh_parse (LibObjMeshContext* param);
+int libobjmesh_parse (LibObjParserContext* param);
 
 #endif /* !YY_LIBOBJMESH_LIBOBJMESHGRAMMER_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 189 "../LibObjMeshGrammer.cc" /* yacc.c:358  */
+#line 192 "../LibObjMeshGrammer.cc" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -434,7 +437,7 @@ union yyalloc
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  23
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  47
+#define YYNRULES  48
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  69
 
@@ -482,13 +485,13 @@ static const yytype_uint8 yytranslate[] =
 
 #if LIBOBJMESH_DEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_uint16 yyrline[] =
+static const yytype_uint8 yyrline[] =
 {
-       0,    74,    74,    75,    76,    79,    80,    81,    82,    83,
-      84,    85,    86,    87,    88,    89,    92,    94,   101,   109,
-     113,   118,   122,   130,   140,   142,   154,   164,   169,   178,
-     186,   188,   189,   196,   203,   211,   213,   215,   222,   229,
-     236,   243,   251,   260,   268,   276,   278,   285
+       0,    77,    77,    78,    79,    82,    83,    84,    85,    86,
+      87,    88,    89,    90,    91,    92,    95,    97,   101,   106,
+     110,   115,   119,   127,   133,   135,   137,   141,   147,   152,
+     158,   163,   165,   165,   167,   167,   170,   172,   174,   179,
+     183,   187,   191,   196,   202,   208,   214,   216,   219
 };
 #endif
 
@@ -548,13 +551,13 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       4,     0,     1,     3,     0,     0,     0,     0,     0,    32,
-      37,     0,     0,     0,     0,     0,    15,     5,     6,     7,
-       8,     9,    10,    11,    12,    13,    14,    42,    43,    44,
-      19,    20,     0,     0,     0,    30,    35,    22,    21,    27,
-      24,    25,    23,    47,    46,    45,     0,     2,     0,    28,
-       0,    34,    31,    41,    36,    26,     0,    17,    29,     0,
-       0,    16,    18,    33,    40,     0,     0,    39,    38
+       4,     0,     1,     3,     0,     0,     0,     0,     0,    33,
+      38,    24,     0,     0,     0,     0,    15,     5,     6,     7,
+       8,     9,    10,    11,    12,    13,    14,    43,    44,    45,
+      19,    20,     0,     0,     0,    31,    36,    22,    21,    28,
+      25,    26,    23,    48,    47,    46,     0,     2,     0,    29,
+       0,    35,    32,    42,    37,    27,     0,    17,    30,     0,
+       0,    16,    18,    34,    41,     0,     0,    40,    39
 };
 
   /* YYPGOTO[NTERM-NUM].  */
@@ -614,9 +617,9 @@ static const yytype_uint8 yyr1[] =
 {
        0,    23,    24,    24,    24,    25,    25,    25,    25,    25,
       25,    25,    25,    25,    25,    25,    26,    27,    27,    28,
-      28,    29,    29,    30,    31,    32,    32,    33,    34,    35,
-      36,    37,    37,    38,    38,    39,    40,    40,    41,    41,
-      41,    41,    42,    43,    43,    44,    45,    45
+      28,    29,    29,    30,    31,    31,    32,    32,    33,    34,
+      35,    36,    37,    37,    38,    38,    39,    40,    40,    41,
+      41,    41,    41,    42,    43,    43,    44,    45,    45
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -624,9 +627,9 @@ static const yytype_uint8 yyr2[] =
 {
        0,     2,     3,     2,     0,     1,     1,     1,     1,     1,
        1,     1,     1,     1,     1,     1,     4,     4,     5,     1,
-       1,     1,     1,     2,     2,     1,     2,     1,     3,     4,
-       2,     2,     0,     3,     1,     2,     2,     0,     5,     4,
-       3,     1,     2,     2,     2,     2,     1,     1
+       1,     1,     1,     2,     1,     2,     1,     2,     1,     3,
+       4,     2,     2,     0,     3,     1,     2,     2,     0,     5,
+       4,     3,     1,     2,     2,     2,     2,     1,     1
 };
 
 
@@ -702,7 +705,7 @@ do {                                                                      \
 `----------------------------------------*/
 
 static void
-yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, LibObjMeshContext* param)
+yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, LibObjParserContext* param)
 {
   FILE *yyo = yyoutput;
   YYUSE (yyo);
@@ -722,7 +725,7 @@ yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvalue
 `--------------------------------*/
 
 static void
-yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, LibObjMeshContext* param)
+yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, LibObjParserContext* param)
 {
   YYFPRINTF (yyoutput, "%s %s (",
              yytype < YYNTOKENS ? "token" : "nterm", yytname[yytype]);
@@ -760,7 +763,7 @@ do {                                                            \
 `------------------------------------------------*/
 
 static void
-yy_reduce_print (yytype_int16 *yyssp, YYSTYPE *yyvsp, int yyrule, LibObjMeshContext* param)
+yy_reduce_print (yytype_int16 *yyssp, YYSTYPE *yyvsp, int yyrule, LibObjParserContext* param)
 {
   unsigned long int yylno = yyrline[yyrule];
   int yynrhs = yyr2[yyrule];
@@ -1040,7 +1043,7 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
 `-----------------------------------------------*/
 
 static void
-yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, LibObjMeshContext* param)
+yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, LibObjParserContext* param)
 {
   YYUSE (yyvaluep);
   YYUSE (param);
@@ -1061,7 +1064,7 @@ yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, LibObjMeshContext*
 `----------*/
 
 int
-yyparse (LibObjMeshContext* param)
+yyparse (LibObjParserContext* param)
 {
 /* The lookahead symbol.  */
 int yychar;
@@ -1309,12 +1312,9 @@ yyreduce:
   switch (yyn)
     {
         case 17:
-#line 95 "meshgrammer.y" /* yacc.c:1646  */
+#line 98 "meshgrammer.y" /* yacc.c:1646  */
     {
-	if(MESH_CALL_BACK->onVertex)
-	{
-		MESH_CALL_BACK->onVertex((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype),1.0f,MESH_USER_DATA);
-	}
+	MESH_DATA->addVertex((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
 }
 #line 1320 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
@@ -1322,265 +1322,177 @@ yyreduce:
   case 18:
 #line 102 "meshgrammer.y" /* yacc.c:1646  */
     { 
-	if(MESH_CALL_BACK->onVertex)
-	{
-		MESH_CALL_BACK->onVertex((yyvsp[-3].ftype),(yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype),MESH_USER_DATA);
-	}
+	MESH_DATA->addVertex((yyvsp[-3].ftype),(yyvsp[-2].ftype),(yyvsp[-1].ftype));
 }
-#line 1331 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1328 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 110 "meshgrammer.y" /* yacc.c:1646  */
+#line 107 "meshgrammer.y" /* yacc.c:1646  */
     { 
 	(yyval.ftype) = (yyvsp[0].ftype);
 }
-#line 1339 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1336 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 114 "meshgrammer.y" /* yacc.c:1646  */
+#line 111 "meshgrammer.y" /* yacc.c:1646  */
     { 
 	(yyval.ftype) = (float)(yyvsp[0].itype);
 }
-#line 1347 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1344 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 119 "meshgrammer.y" /* yacc.c:1646  */
+#line 116 "meshgrammer.y" /* yacc.c:1646  */
     {
 	(yyval.ctype)=(yyvsp[0].ctype);
 }
-#line 1355 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1352 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 123 "meshgrammer.y" /* yacc.c:1646  */
+#line 120 "meshgrammer.y" /* yacc.c:1646  */
     {
 	char buf[128];
 	sprintf(buf,"%d",(yyvsp[0].itype));
 	(yyval.ctype)=new std::string(buf);
 }
-#line 1365 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1362 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 131 "meshgrammer.y" /* yacc.c:1646  */
+#line 128 "meshgrammer.y" /* yacc.c:1646  */
     {
-	if(MESH_CALL_BACK->onStartObject)
-	{
-		MESH_CALL_BACK->onStartObject((yyvsp[0].ctype)->c_str(),MESH_USER_DATA);
-	}
 	delete (yyvsp[0].ctype);
 }
-#line 1377 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
-    break;
-
-  case 25:
-#line 143 "meshgrammer.y" /* yacc.c:1646  */
-    {
-  	if(MESH_CALL_BACK->onStartGroup)
-	{
-   	 	MESH_CALL_BACK->onStartGroup(MESH_USER_DATA);
-	}
-	if(MESH_CALL_BACK->onGroupName)
-	{
-		MESH_CALL_BACK->onGroupName((yyvsp[0].ctype)->c_str(),MESH_USER_DATA);
-	}
-	delete (yyvsp[0].ctype);
-}
-#line 1393 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1370 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 155 "meshgrammer.y" /* yacc.c:1646  */
-    { 
-	if(MESH_CALL_BACK->onGroupName)
-	{
-		MESH_CALL_BACK->onGroupName((yyvsp[0].ctype)->c_str(),MESH_USER_DATA);
-	}
+#line 138 "meshgrammer.y" /* yacc.c:1646  */
+    {
 	delete (yyvsp[0].ctype);
 }
-#line 1405 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1378 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 165 "meshgrammer.y" /* yacc.c:1646  */
-    {
-	(yyval.ctype)=(yyvsp[0].ctype);
+#line 142 "meshgrammer.y" /* yacc.c:1646  */
+    { 
+	delete (yyvsp[0].ctype);
 }
-#line 1413 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1386 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 170 "meshgrammer.y" /* yacc.c:1646  */
-    { 
-	if(MESH_CALL_BACK->onTexel)
-	{
-		MESH_CALL_BACK->onTexel((yyvsp[-1].ftype),(yyvsp[0].ftype),MESH_USER_DATA);
-	}
+#line 148 "meshgrammer.y" /* yacc.c:1646  */
+    {
+	(yyval.ctype)=(yyvsp[0].ctype);
 }
-#line 1424 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1394 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 179 "meshgrammer.y" /* yacc.c:1646  */
+#line 153 "meshgrammer.y" /* yacc.c:1646  */
     { 
-	if(MESH_CALL_BACK->onNormal)
-	{
-		MESH_CALL_BACK->onNormal((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype),MESH_USER_DATA);
-	}
+	MESH_DATA->addUv((yyvsp[-1].ftype),(yyvsp[0].ftype));
+}
+#line 1402 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+    break;
+
+  case 30:
+#line 159 "meshgrammer.y" /* yacc.c:1646  */
+    { 
+	MESH_DATA->addNormal((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
+}
+#line 1410 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+    break;
+
+  case 38:
+#line 174 "meshgrammer.y" /* yacc.c:1646  */
+    { 
+	MESH_DATA->getCurSubMesh()->newFace();
+	
+}
+#line 1419 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+    break;
+
+  case 39:
+#line 180 "meshgrammer.y" /* yacc.c:1646  */
+    {
+	MESH_DATA->getCurSubMesh()->addVertexIndex((yyvsp[-4].itype),(yyvsp[-2].itype),(yyvsp[0].itype));
+}
+#line 1427 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+    break;
+
+  case 40:
+#line 184 "meshgrammer.y" /* yacc.c:1646  */
+    { 
+	MESH_DATA->getCurSubMesh()->addVertexIndex((yyvsp[-3].itype),0,(yyvsp[0].itype));
 }
 #line 1435 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 32:
-#line 189 "meshgrammer.y" /* yacc.c:1646  */
-    { 
-	if(MESH_CALL_BACK->onStartLine)
-	{
-		MESH_CALL_BACK->onStartLine(MESH_USER_DATA);
-	}
-}
-#line 1446 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
-    break;
-
-  case 33:
-#line 197 "meshgrammer.y" /* yacc.c:1646  */
-    { 
-  	if(MESH_CALL_BACK->onAddToLine)
-	{
-   		 MESH_CALL_BACK->onAddToLine((yyvsp[-2].itype), (yyvsp[0].itype),MESH_USER_DATA);
-	}
-}
-#line 1457 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
-    break;
-
-  case 34:
-#line 204 "meshgrammer.y" /* yacc.c:1646  */
-    { 
-  	if(MESH_CALL_BACK->onAddToLine)
-	{
-    	MESH_CALL_BACK->onAddToLine((yyvsp[0].itype), 0, MESH_USER_DATA);
-	}
-}
-#line 1468 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
-    break;
-
-  case 37:
-#line 215 "meshgrammer.y" /* yacc.c:1646  */
-    { 
-	if(MESH_CALL_BACK->onStartFace)
-	{
-    	MESH_CALL_BACK->onStartFace(MESH_USER_DATA);
-	}
-}
-#line 1479 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
-    break;
-
-  case 38:
-#line 223 "meshgrammer.y" /* yacc.c:1646  */
-    {
-  	if(MESH_CALL_BACK->onAddToFace)
-	{
-		MESH_CALL_BACK->onAddToFace((yyvsp[-4].itype),(yyvsp[-2].itype),(yyvsp[0].itype),MESH_USER_DATA);
-	}
-}
-#line 1490 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
-    break;
-
-  case 39:
-#line 230 "meshgrammer.y" /* yacc.c:1646  */
-    { 
-	if(MESH_CALL_BACK->onAddToFace)
-	{
-    	MESH_CALL_BACK->onAddToFace((yyvsp[-3].itype), 0, (yyvsp[0].itype), MESH_USER_DATA);
-	}
-}
-#line 1501 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
-    break;
-
-  case 40:
-#line 237 "meshgrammer.y" /* yacc.c:1646  */
-    { 
-	if(MESH_CALL_BACK->onAddToFace)
-	{
-    	MESH_CALL_BACK->onAddToFace((yyvsp[-2].itype), (yyvsp[0].itype), 0, MESH_USER_DATA);
-	}
-}
-#line 1512 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
-    break;
-
   case 41:
-#line 244 "meshgrammer.y" /* yacc.c:1646  */
+#line 188 "meshgrammer.y" /* yacc.c:1646  */
     { 
-	if(MESH_CALL_BACK->onAddToFace)
-	{
-		MESH_CALL_BACK->onAddToFace((yyvsp[0].itype),0,0,MESH_USER_DATA);
-	}
+	MESH_DATA->getCurSubMesh()->addVertexIndex((yyvsp[-2].itype),(yyvsp[0].itype),0);
 }
-#line 1523 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1443 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 252 "meshgrammer.y" /* yacc.c:1646  */
+#line 192 "meshgrammer.y" /* yacc.c:1646  */
     { 
-	if(MESH_CALL_BACK->onRefMaterialLib)
-	{
-		MESH_CALL_BACK->onRefMaterialLib((yyvsp[0].ctype)->c_str(),MESH_USER_DATA);
-	}
-	delete (yyvsp[0].ctype);
+	MESH_DATA->getCurSubMesh()->addVertexIndex((yyvsp[0].itype),0,0);
 }
-#line 1535 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1451 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 261 "meshgrammer.y" /* yacc.c:1646  */
-    {		   
-	if(MESH_CALL_BACK->onRefMaterialLib)
-	{
-		MESH_CALL_BACK->onRefMaterialLib((yyvsp[0].ctype)->c_str(),MESH_USER_DATA);
-	}
+#line 197 "meshgrammer.y" /* yacc.c:1646  */
+    { 
+	MESH_DATA->setMaterialLibName((yyvsp[0].ctype)->c_str());
 	delete (yyvsp[0].ctype);
 }
-#line 1547 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1460 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 268 "meshgrammer.y" /* yacc.c:1646  */
-    { 
-	if(MESH_CALL_BACK->onRefMaterialLib)
-	{
-		MESH_CALL_BACK->onRefMaterialLib("",MESH_USER_DATA);
-	}
+#line 203 "meshgrammer.y" /* yacc.c:1646  */
+    {		   
+	MESH_DATA->commitSubMesh();
+	MESH_DATA->getCurSubMesh()->setMaterialName((yyvsp[0].ctype)->c_str());
+	delete (yyvsp[0].ctype);
 }
-#line 1558 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1470 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 46:
-#line 279 "meshgrammer.y" /* yacc.c:1646  */
+  case 45:
+#line 209 "meshgrammer.y" /* yacc.c:1646  */
     {
-  	if(MESH_CALL_BACK->onSmoothingGroup)
-	{
-    	MESH_CALL_BACK->onSmoothingGroup(0, MESH_USER_DATA);
-	}
+
 }
-#line 1569 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1478 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 285 "meshgrammer.y" /* yacc.c:1646  */
+#line 217 "meshgrammer.y" /* yacc.c:1646  */
     {
-  	if(MESH_CALL_BACK->onSmoothingGroup)
-	{
-		MESH_CALL_BACK->onSmoothingGroup((yyvsp[0].itype),MESH_USER_DATA);
-	}
 }
-#line 1580 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1485 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+    break;
+
+  case 48:
+#line 219 "meshgrammer.y" /* yacc.c:1646  */
+    {
+}
+#line 1492 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
     break;
 
 
-#line 1584 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
+#line 1496 "../LibObjMeshGrammer.cc" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1808,7 +1720,30 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 292 "meshgrammer.y" /* yacc.c:1906  */
+#line 222 "meshgrammer.y" /* yacc.c:1906  */
+
+
+LibObjMesh* LibObj_ParseMesh(void* file,LibObj_ReadIoFunc io_func)
+{
+	LibObjMesh* mesh=new LibObjMesh;
+	yyscan_t scanner=NULL;
+	libobjmesh_lex_init(&scanner);
+
+	LibObjParserContext* parser=new LibObjParserContext(scanner,mesh,file,io_func);
+	
+	libobjmesh_set_extra(parser,scanner);
+	
+	if(libobjmesh_parse(parser)!=0)
+	{
+		delete mesh;
+		mesh=NULL;
+	}
+	libobjmesh_lex_destroy(scanner);
+	delete parser;
+
+	return mesh;
+}
+
 
 
 
