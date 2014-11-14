@@ -73,6 +73,12 @@ class LibObjVertexIndex
 			m_uv=u;
 			m_normal=n;
 		}
+		LibObjVertexIndex()
+		{
+			m_vertex=0;
+			m_uv=0;
+			m_normal=0;
+		}
 		
 	public:
 		int m_vertex;
@@ -163,7 +169,10 @@ class LibObjMesh
 			return m_curSubMesh;
 		}
 
-		LibObjSubMesh* getSubMesh(int index);
+		LibObjSubMesh* getSubMesh(int index)
+		{
+			return m_submeshes[index];
+		}
 
 
 		void commitSubMesh()
@@ -175,22 +184,22 @@ class LibObjMesh
 		/* vertex info */
 		int getVertex(){return m_vertices.size();}
 		void addVertex(float x,float y,float z){m_vertices.push_back(LibObjVector3(x,y,z));}
-		LibObjVector3& getVertex(int index){return m_vertices[index];}
+		LibObjVector3& getVertex(int index){return m_vertices[index-1];}
 
 
 		int getUvNu(){return m_uvs.size();}
 		void addUv(float x,float y){m_uvs.push_back(LibObjTexCoord(x,y));}
-		LibObjTexCoord& getUv(int index){return m_uvs[index];}
+		LibObjTexCoord& getUv(int index){return m_uvs[index-1];}
 
 
 		int getNormalNu(){return m_normals.size();}
 		void addNormal(float x,float y,float z){m_normals.push_back(LibObjVector3(x,y,z));}
-		LibObjVector3& getNormal(int index){return m_normals[index];}
+		LibObjVector3& getNormal(int index){return m_normals[index-1];}
 
 
 		/* material */
 		void setMaterialLibName(const char* name) { m_materialLibName=std::string(name);}
-		const char* getMaterialName(){return m_materialLibName.c_str();}
+		const char* getMaterialLibName(){return m_materialLibName.c_str();}
 
 
 	private:
@@ -220,7 +229,7 @@ class LibObjMaterial
 		LibObjVector3 m_specular;
 
 		float m_opacity;
-		float m_shinness;
+		float m_shiness;
 		int m_illuminationMode;
 		float m_ni;
 
@@ -248,10 +257,13 @@ class LibObjMaterialLib
 			return m_curMaterial;
 		}
 
-		void commitMaterial()
-		{
-			m_curMaterial=NULL;
-		}
+		void commitMaterial() { m_curMaterial=NULL; }
+
+		int getMaterialNu(){return m_materials.size();}
+		LibObjMaterial* getMaterial(int index){return m_materials[index];}
+
+
+
 
 	public:
 		LibObjMaterialLib() 
@@ -269,15 +281,13 @@ class LibObjMaterialLib
 	   	}
 
 
-	public:
+
+
+	private:
 		std::vector<LibObjMaterial*> m_materials;
 		LibObjMaterial* m_curMaterial;
 
 };
-
-
-
-
 
 
 

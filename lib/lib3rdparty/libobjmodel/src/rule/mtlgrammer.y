@@ -131,7 +131,7 @@ alpha: D_MARKER value
 
 ns: NS_MARKER value 
 {
-	MTL_DATA->getCurMaterial()->m_shinness=$2;
+	MTL_DATA->getCurMaterial()->m_shiness=$2;
 };
 
 ni: NI_MARKER value 

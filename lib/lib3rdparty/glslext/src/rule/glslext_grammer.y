@@ -22,11 +22,9 @@
 
 
 
-%token tVERTEX_BEGIN
-%token tVERTEX_END 
+%token tVERTEX_SHADER
 
-%token tFRAGMENT_BEGIN
-%token tFRAGMENT_END
+%token tFRAGMENT_SHADER
 
 %token tL_RB 
 %token tR_RB
@@ -34,6 +32,9 @@
 
 %token tL_SB 
 %token tR_SB
+
+%token tL_CB 
+%token tR_CB
 
 
 %token tATTRIBUTE 
@@ -59,6 +60,8 @@
 
 %type <istring> word
 %type <istring> program_body
+%type <istring> words
+
 
 %define api.pure 
 %parse-param{GlslextParser* param}
@@ -81,35 +84,47 @@ real_shader: vertex_shader new_lines fragment_shader ;
 
 
 
-vertex_shader:tVERTEX_BEGIN program_body tVERTEX_END
+vertex_shader:tVERTEX_SHADER tL_CB program_body tR_CB
 	{
-		param->setVertexSrc($2);
+		param->setVertexSrc($3);
 	}
 ;
 
-
-fragment_shader:tFRAGMENT_BEGIN program_body tFRAGMENT_END
+fragment_shader:tFRAGMENT_SHADER tL_CB program_body tR_CB
 	{
-		param->setFragmentSrc($2);
+		param->setFragmentSrc($3);
 		
 	}
 ;
 
 
-program_body: word 
+program_body: words
 	{
 		$$=$1;
 	}
 ;
 
-program_body: program_body word 
+
+words: word
+{
+	$$=$1;
+}
+|words word 
 {
 	($1)->append(" ");
 	($1)->append(*($2));
-
 	$$=$1;
 	delete $2;
-}
+};
+
+word: tL_CB words tR_CB 
+{
+	std::string* tmp=new std::string("{ ");
+	tmp->append(*$2);
+	tmp->append("  }");
+	$$=tmp;
+};
+
 
 
 word: tNEW_LINE 

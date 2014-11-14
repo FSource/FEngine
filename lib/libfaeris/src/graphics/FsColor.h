@@ -45,12 +45,32 @@ class Color
 class Color3f 
 {
 	public:
+		static Color3f RED;
+		static Color3f BLUE;
+		static Color3f GREEN;
+		static Color3f WHITE;
+		static Color3f BLACK;
+	public:
 		Color3f(const Color& c)
 		{
 			r=float(c.r)/255.0f;
 			g=float(c.g)/255.0f;
 			b=float(c.b)/255.0f;
 		}
+
+		Color3f(float _r,float _g,float _b)
+			:r(_r),
+			g(_g),
+			b(_b)
+		{ }
+
+		Color3f()
+			:r(1.0f),
+			g(1.0f),
+			b(1.0f)
+		{}
+
+
 	public:
 		void set(float _r,float _g,float _b)
 		{

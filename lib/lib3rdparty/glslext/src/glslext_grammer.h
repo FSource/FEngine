@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_GLSLEXT_GLSLEXT_GRAMMER_H_INCLUDED
-# define YY_GLSLEXT_GLSLEXT_GRAMMER_H_INCLUDED
+#ifndef YY_GLSLEXT_SRC_GLSLEXT_GRAMMER_H_INCLUDED
+# define YY_GLSLEXT_SRC_GLSLEXT_GRAMMER_H_INCLUDED
 /* Debug traces.  */
 #ifndef GLSLEXT_DEBUG
 # if defined YYDEBUG
@@ -53,15 +53,15 @@ extern int Glslext_debug;
 # define GLSLEXT_TOKENTYPE
   enum Glslext_tokentype
   {
-    tVERTEX_BEGIN = 258,
-    tVERTEX_END = 259,
-    tFRAGMENT_BEGIN = 260,
-    tFRAGMENT_END = 261,
-    tL_RB = 262,
-    tR_RB = 263,
-    tDOLLAR = 264,
-    tL_SB = 265,
-    tR_SB = 266,
+    tVERTEX_SHADER = 258,
+    tFRAGMENT_SHADER = 259,
+    tL_RB = 260,
+    tR_RB = 261,
+    tDOLLAR = 262,
+    tL_SB = 263,
+    tR_SB = 264,
+    tL_CB = 265,
+    tR_CB = 266,
     tATTRIBUTE = 267,
     tUNIFROM = 268,
     tU_TYPE = 269,
@@ -83,13 +83,13 @@ extern int Glslext_debug;
 typedef union GLSLEXT_STYPE GLSLEXT_STYPE;
 union GLSLEXT_STYPE
 {
-#line 17 "glslext_grammer.y" /* yacc.c:1909  */
+#line 17 "../src/rule/glslext_grammer.y" /* yacc.c:1909  */
 
 	std::string* istring;
 	std::vector<float>* ivec;
 	float inumber;
 
-#line 93 "../glslext_grammer.h" /* yacc.c:1909  */
+#line 93 "../src/glslext_grammer.h" /* yacc.c:1909  */
 };
 # define GLSLEXT_STYPE_IS_TRIVIAL 1
 # define GLSLEXT_STYPE_IS_DECLARED 1
@@ -99,4 +99,4 @@ union GLSLEXT_STYPE
 
 int Glslext_parse (GlslextParser* param);
 
-#endif /* !YY_GLSLEXT_GLSLEXT_GRAMMER_H_INCLUDED  */
+#endif /* !YY_GLSLEXT_SRC_GLSLEXT_GRAMMER_H_INCLUDED  */

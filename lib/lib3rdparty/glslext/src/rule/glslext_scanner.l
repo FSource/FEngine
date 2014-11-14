@@ -33,11 +33,9 @@
 digit [0-9]
 
 %%
-VERTEX_BEGIN 	return tVERTEX_BEGIN;
-VERTEX_END 		return tVERTEX_END;
+VertexShader 	return tVERTEX_SHADER;
+FragmentShader	return tFRAGMENT_SHADER;
 
-FRAGMENT_BEGIN  return tFRAGMENT_BEGIN;
-FRAGMENT_END 	return tFRAGMENT_END;
 
 "("				return tL_RB;
 ")"				return tR_RB;
@@ -45,6 +43,8 @@ FRAGMENT_END 	return tFRAGMENT_END;
 ";"				return tSEMICOLON;
 "["				return tL_SB;
 "]"				return tR_SB;
+"{"				return tL_CB;
+"}"				return tR_CB;
 
 attribute 		return tATTRIBUTE;
 uniform 		return tUNIFROM;

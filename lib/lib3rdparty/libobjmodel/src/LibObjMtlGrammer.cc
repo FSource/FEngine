@@ -488,8 +488,8 @@ static const yytype_uint8 yyrline[] =
 {
        0,    71,    71,    71,    73,    73,    76,    82,    90,    92,
       92,    95,    96,    97,    98,    99,   100,   101,   102,   103,
-     104,   105,   106,   109,   114,   119,   124,   129,   134,   139,
-     144,   150,   156,   162,   168,   175,   179
+     104,   105,   106,   112,   117,   122,   127,   132,   137,   142,
+     147,   153,   159,   165,   171,   178,   182
 };
 #endif
 
@@ -1320,7 +1320,7 @@ yyreduce:
     break;
 
   case 23:
-#line 110 "mtlgrammer.y" /* yacc.c:1646  */
+#line 113 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_ambient.set((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
 }
@@ -1328,7 +1328,7 @@ yyreduce:
     break;
 
   case 24:
-#line 115 "mtlgrammer.y" /* yacc.c:1646  */
+#line 118 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_diffuse.set((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
 }
@@ -1336,7 +1336,7 @@ yyreduce:
     break;
 
   case 25:
-#line 120 "mtlgrammer.y" /* yacc.c:1646  */
+#line 123 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_specular.set((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
 }
@@ -1344,7 +1344,7 @@ yyreduce:
     break;
 
   case 26:
-#line 125 "mtlgrammer.y" /* yacc.c:1646  */
+#line 128 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_opacity=(yyvsp[0].ftype);
 }
@@ -1352,15 +1352,15 @@ yyreduce:
     break;
 
   case 27:
-#line 130 "mtlgrammer.y" /* yacc.c:1646  */
+#line 133 "mtlgrammer.y" /* yacc.c:1646  */
     {
-	MTL_DATA->getCurMaterial()->m_shinness=(yyvsp[0].ftype);
+	MTL_DATA->getCurMaterial()->m_shiness=(yyvsp[0].ftype);
 }
 #line 1360 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 135 "mtlgrammer.y" /* yacc.c:1646  */
+#line 138 "mtlgrammer.y" /* yacc.c:1646  */
     { 
 	MTL_DATA->getCurMaterial()->m_ni=(yyvsp[0].ftype);
 }
@@ -1368,7 +1368,7 @@ yyreduce:
     break;
 
   case 29:
-#line 140 "mtlgrammer.y" /* yacc.c:1646  */
+#line 143 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_illuminationMode=(yyvsp[0].itype);
 }
@@ -1376,7 +1376,7 @@ yyreduce:
     break;
 
   case 30:
-#line 145 "mtlgrammer.y" /* yacc.c:1646  */
+#line 148 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_ambientMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1385,7 +1385,7 @@ yyreduce:
     break;
 
   case 31:
-#line 151 "mtlgrammer.y" /* yacc.c:1646  */
+#line 154 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_diffuseMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1394,7 +1394,7 @@ yyreduce:
     break;
 
   case 32:
-#line 157 "mtlgrammer.y" /* yacc.c:1646  */
+#line 160 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_specularMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1403,7 +1403,7 @@ yyreduce:
     break;
 
   case 33:
-#line 163 "mtlgrammer.y" /* yacc.c:1646  */
+#line 166 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_alphaMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1412,7 +1412,7 @@ yyreduce:
     break;
 
   case 34:
-#line 169 "mtlgrammer.y" /* yacc.c:1646  */
+#line 172 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_boumpMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1422,7 +1422,7 @@ yyreduce:
     break;
 
   case 35:
-#line 176 "mtlgrammer.y" /* yacc.c:1646  */
+#line 179 "mtlgrammer.y" /* yacc.c:1646  */
     { 
 	(yyval.ftype) = (yyvsp[0].ftype);  
 }
@@ -1430,7 +1430,7 @@ yyreduce:
     break;
 
   case 36:
-#line 180 "mtlgrammer.y" /* yacc.c:1646  */
+#line 183 "mtlgrammer.y" /* yacc.c:1646  */
     { 
 	(yyval.ftype) = (float)(yyvsp[0].itype);
 }
@@ -1666,7 +1666,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 184 "mtlgrammer.y" /* yacc.c:1906  */
+#line 187 "mtlgrammer.y" /* yacc.c:1906  */
 
 
 
