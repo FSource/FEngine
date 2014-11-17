@@ -371,6 +371,15 @@ enum class E_BoneType
 };
 
 
+enum class E_LightType 
+{
+	AMBIENT,
+	POINT,
+	SPOT,
+	DIRECTIONAL,
+	HEMI_SPHERE
+};
+
 
 NS_FS_END 
 

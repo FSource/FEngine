@@ -131,8 +131,6 @@ class PageView:public UiWidget
 
 };
 
-
 NS_FS_END 
 #endif /*_FS_PAGE_VIEW_H_*/
-
 

@@ -214,7 +214,7 @@ void Layer2D::add(Entity* entity)
 	FS_TRACE_WARN_ON(entity==NULL,"Entity Is NULL");
 	if(entity->getLayer()==this)
 	{
-		FS_TRACE_WARN("object all ready add to this layer");
+		FS_TRACE_WARN("object already add to this layer");
 		return ;
 	}
 
@@ -241,6 +241,7 @@ void Layer2D::remove(Entity* entity)
 	if(entity->getParent()!=NULL)
 	{
 		FS_TRACE_WARN("object is indirect owner by this layer,can't remove");
+		return;
 	}
 	entity->setLayer(NULL);
 	m_entity->remove(entity);
