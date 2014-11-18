@@ -1,0 +1,30 @@
+$#include "graphics/material/FsMaterial.h"
+
+class Material:public FsResource 
+{
+	public:
+		/* blend */
+		void setBlend(E_BlendEquation equation,E_BlendFactor src,E_BlendFactor dst);
+		void setBlend(E_BlendFactor src,E_BlendFactor dst);
+
+
+		int getBlendEquation() ;
+		int getBlendSrc();
+		int getBlendDst() ;
+
+
+		void setDoubleSideEnabled(bool value);
+		bool getDoubleSideEnabled();
+
+		void setFrontSide(E_FrontFace front);
+		E_FrontFace getFrontSide();
+
+		/* depth test */
+		void setDepthTestEnabled(bool enable);
+		bool getDepthTestEnabled() ;
+
+		void setDepthWriteEnabled(bool enable);
+		bool getDepthWriteEnabled();
+}
+
+

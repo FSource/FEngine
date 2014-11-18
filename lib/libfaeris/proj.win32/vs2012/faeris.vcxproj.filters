@@ -80,6 +80,9 @@
     <Filter Include="src\graphics\shader">
       <UniqueIdentifier>{865dfdd5-fd14-42c3-ad50-215dbc5607d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\stage\entity\transform">
+      <UniqueIdentifier>{181b0bc0-f70e-40b3-95a2-3be850184a80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\extends\FsScriptEngine.h">
@@ -559,14 +562,20 @@
     <ClInclude Include="..\..\src\mgr\FsProgramSourceMgr.h">
       <Filter>src\mgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\stage\entity\FsITransform.h">
-      <Filter>src\stage\entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\math\FsBox3D.h">
       <Filter>src\math</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\support\image\FsImageTga.h">
       <Filter>src\support\image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\transform\FsEulerTransform.h">
+      <Filter>src\stage\entity\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\transform\FsITransform.h">
+      <Filter>src\stage\entity\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\transform\FsQuaternionTransform.h">
+      <Filter>src\stage\entity\transform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -999,14 +1008,20 @@
     <ClCompile Include="..\..\src\stage\entity\FsIMaterial2DEntity.cc">
       <Filter>src\stage\entity</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\stage\entity\FsITransform.cc">
-      <Filter>src\stage\entity</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\math\FsBox3D.cc">
       <Filter>src\math</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\support\image\FsImageTga.cc">
       <Filter>src\support\image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\graphics\shader\FsUniformValue.cc">
+      <Filter>src\graphics\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\transform\FsEulerTransform.cc">
+      <Filter>src\stage\entity\transform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\transform\FsQuaternionTransform.cc">
+      <Filter>src\stage\entity\transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

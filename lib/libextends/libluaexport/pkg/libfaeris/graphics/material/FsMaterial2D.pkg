@@ -1,20 +1,6 @@
-#ifndef _FS_MATERIAL_2D_H_
-#define _FS_MATERIAL_2D_H_
-
-#include "FsMacros.h"
-#include "FsMaterial.h"
-//#include "graphics/FsTexture2D.h"
-
-NS_FS_BEGIN
-
-class ProgramSource;
-class ProgramFeatureDesc;
-class Texture2D;
-
-
-class Material2D:public Material 
+$#include "graphics/material/FsMaterial2D.h"
+class Material2D:Material 
 {
-
 	public:
 		static Material2D* create();
 		static Material2D* create(ProgramSource* ps);
@@ -50,25 +36,8 @@ class Material2D:public Material
 		UniformValue* getUniformValue(int i);
 		void addUniformValue(UniformValue* v);
 		void removeUniformValue(UniformValue* v);
-
-	protected:
-		Material2D();
-		virtual ~Material2D();
+}
 
 
-	protected:
-		Color4f m_color;
-		float m_opacity;
-		float m_pointSize;
-
-		Texture2D* m_colorMap;
-		FsArray* m_extends;
-
-		ProgramSource* m_programSource;
-};
-
-NS_FS_END
-
-#endif /*_FS_MATERIAL_2D_H_*/
 
 

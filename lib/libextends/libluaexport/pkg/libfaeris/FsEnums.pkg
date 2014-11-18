@@ -116,8 +116,8 @@ namespace E_UniformType
 
 		/* ref */
 		UT_REF_RD, 	   /* take from render device */
-		UT_REF_MAT,    /* take from material */
-		UT_REF_MAT_EXT, /* take from material extends */
+		UT_REF_MTL,    /* take from material */
+		UT_REF_MTL_EXT, /* take from material extends */
 
 		MAX_NU,
 	};

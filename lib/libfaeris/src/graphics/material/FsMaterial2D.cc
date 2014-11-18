@@ -1,6 +1,7 @@
 #include "FsMaterial2D.h"
 #include "graphics/shader/FsProgram.h"
 #include "graphics/shader/FsProgramSource.h"
+#include "graphics/shader/FsUniformValue.h"
 #include "graphics/shader/FsUniformMap.h"
 #include "FsGlobal.h"
 
@@ -73,12 +74,14 @@ void Material2D::configRenderDevice(RenderDevice* rd)
 	for(int i=0;i<uniform_nu;i++)
 	{
 		UniformMap* u=prog->getUniformMap(i);
-		switch(u->m_type)
+		switch(u->getType())
 		{
 			case E_UniformType::UT_REF_RD:
 				rd->setUniform(u->m_location,u);
 				break;
-			case E_UniformType::UT_REF_MAT:
+
+
+			case E_UniformType::UT_REF_MTL:
 				{
 					switch(u->m_refValue)
 					{
@@ -111,8 +114,23 @@ void Material2D::configRenderDevice(RenderDevice* rd)
 					}
 				}
 				break;
+
+			case E_UniformType::UT_REF_MTL_EXT:
+				{
+					UniformValue* value=getUniformValue(u->m_extIndex);
+					if(value==NULL)
+					{
+						FS_TRACE_WARN("Can't Get Extends Uniform Value");
+					}
+					else 
+					{
+						rd->setUniform(u->m_location,value);
+					}
+				}
+				break;
+
 			default:
-				FS_TRACE_WARN("UnSupport Uniform Type(%d)",static_cast<int>(u->m_type));
+				FS_TRACE_WARN("UnSupport Uniform Type(%d)",static_cast<int>(u->getType()));
 		}
 	}
 }
@@ -131,7 +149,46 @@ void Material2D::setProgramSource(ProgramSource* ps)
 
 
 
+int Material2D::getUniformValueNu()
+{
+	if(m_extends==NULL)
+	{
+		return 0;
+	}
 
+	return m_extends->size();
+}
+
+
+UniformValue* Material2D::getUniformValue(int i)
+{
+	if(m_extends)
+	{
+		return (UniformValue*) m_extends->get(i);
+	}
+	return NULL;
+}
+
+void Material2D::addUniformValue(UniformValue* v)
+{
+	if(m_extends==NULL)
+	{
+		m_extends=FsArray::create();
+	}
+	m_extends->push(v);
+}
+
+
+void Material2D::removeUniformValue(UniformValue* v)
+{
+	if(m_extends)
+	{
+		m_extends->remove(v);
+		return;
+	}
+
+	FS_TRACE_WARN("UniformValue Not In Material");
+}
 
 
 NS_FS_END 

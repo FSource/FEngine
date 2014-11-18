@@ -235,11 +235,11 @@ bool ProgramSource::init(FsFile* file)
 			{
 				if(u->m_value->at(0)=='M')
 				{
-					addUniformMap(new UniformMap(u->m_name->c_str(),E_UniformType::UT_REF_MAT,p->m_type));
+					addUniformMap(UniformMap::create(u->m_name->c_str(),E_UniformType::UT_REF_MTL,p->m_type));
 				}
 				else 
 				{
-					addUniformMap(new UniformMap(u->m_name->c_str(),E_UniformType::UT_REF_RD,p->m_type));
+					addUniformMap(UniformMap::create(u->m_name->c_str(),E_UniformType::UT_REF_RD,p->m_type));
 				}
 				break;
 			}
@@ -249,7 +249,7 @@ bool ProgramSource::init(FsFile* file)
 		{
 			if(u->m_value->compare("M.EXT")==0)
 			{
-				addUniformMap(new UniformMap(u->m_name->c_str(),E_UniformType::UT_REF_MAT_EXT,u->m_extIndex));
+				addUniformMap(UniformMap::create(u->m_name->c_str(),E_UniformType::UT_REF_MTL_EXT,u->m_extIndex));
 			}
 			else 
 			{
@@ -268,7 +268,7 @@ bool ProgramSource::init(FsFile* file)
 		{
 			if(u->m_value->compare(p->m_name)==0)
 			{
-				addStreamMap(new StreamMap(u->m_name->c_str(),p->m_type));
+				addStreamMap(StreamMap::create(u->m_name->c_str(),p->m_type));
 				break;
 			}
 			p++;

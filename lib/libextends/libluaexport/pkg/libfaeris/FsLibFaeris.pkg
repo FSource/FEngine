@@ -40,7 +40,9 @@ $pfile "stage/ui/FsScrollView.pkg"
 $pfile "stage/ui/FsListView.pkg"
 $pfile "stage/ui/FsDynamicView.pkg"
 $pfile  "stage/ui/FsPageView.pkg"
-$pfile "stage/entity/FsITransform.pkg"
+
+$pfile "stage/entity/transform/FsITransform.pkg"
+$pfile "stage/entity/transform/FsEulerTransform.pkg"
 
 
 /* mgr */
@@ -77,6 +79,8 @@ $pfile "graphics/FsTexture2D.pkg"
 $pfile "graphics/FsFontBitmap.pkg"
 $pfile "graphics/FsRenderTarget.pkg"
 $pfile "graphics/FsFrameBuffer.pkg"
+$pfile "graphics/material/FsMaterial.pkg"
+$pfile "graphics/material/FsMaterial2D.pkg"
 
 
 /* math */

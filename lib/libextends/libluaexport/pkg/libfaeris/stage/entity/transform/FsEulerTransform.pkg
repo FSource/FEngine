@@ -1,0 +1,25 @@
+$#include "stage/entity/transform/FsEulerTransform.h"
+
+class EulerTransform :public ITransform
+{
+	public:
+		static EulerTransform* create();
+
+	public:
+		virtual void setPosition(const Vector3& v);
+		virtual Vector3 getPosition();
+
+
+		virtual void setRotate(const Vector3& r);
+		virtual Vector3 getRotate();
+
+		virtual void setScale(const Vector3& v);
+		virtual Vector3 getScale();
+
+		virtual bool updateTransformMatrix();
+		virtual  Matrix4* getTransformMatrix();
+
+	public:
+		virtual const char* className();
+
+};

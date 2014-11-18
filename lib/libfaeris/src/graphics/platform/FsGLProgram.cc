@@ -175,7 +175,7 @@ bool Program::init(ProgramSource* source)
 	for(int i=0;i<uniform_nu;i++)
 	{
 		UniformMap* map=source->getUniformMap(i);
-		int loc=glGetUniformLocation(m_program,map->m_name.c_str());
+		int loc=glGetUniformLocation(m_program,map->getName());
 		if(loc>=0)
 		{
 			UniformMap* u=map->clone();
@@ -239,7 +239,7 @@ int Program::getCacheUniformLocation(int index,const char* name)
 
 void Program::addStreamMap(StreamMap* map)
 {
-	m_streamMaps.push_back(map);
+	m_streamMaps->push(map);
 	m_seqStreamMaps[static_cast<int>(map->m_refType)]=map;
 }
 
@@ -267,6 +267,13 @@ Program::Program()
 		m_seqStreamMaps[i]=NULL;
 	}
 
+	m_uniformMaps=FsArray::create();
+	FS_NO_REF_DESTROY(m_uniformMaps);
+
+	m_streamMaps=FsArray::create();
+	FS_NO_REF_DESTROY(m_streamMaps);
+
+
 }
 
 Program::~Program()
@@ -276,22 +283,9 @@ Program::~Program()
 		glDeleteProgram(m_program);
 	}
 
-	int size=m_uniformMaps.size();
-	for(int i=0;i<size;i++)
-	{
-		UniformMap* map=m_uniformMaps[i];
-		delete map;
-	}
-	m_uniformMaps.clear();
 
-
-	size=m_streamMaps.size();
-	for(int i=0;i<size;i++)
-	{
-		StreamMap* map=m_streamMaps[i];
-		delete map;
-	}
-	m_streamMaps.clear();
+	FS_SAFE_DESTROY(m_uniformMaps);
+	FS_SAFE_DESTROY(m_streamMaps);
 }
 
 

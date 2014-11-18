@@ -2,7 +2,7 @@
 #define _FB2_TRANSFORM_H_
 
 #include "FsMacros.h"
-#include "stage/entity/FsITransform.h"
+#include "stage/entity/transform/FsITransform.h"
 #include "Box2D/Box2D.h"
 
 

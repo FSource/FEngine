@@ -1,20 +1,21 @@
-#include "FsITransform.h"
+#include "FsEulerTransform.h"
 
 NS_FS_BEGIN
 
-const char* Transform::className()
+const char* EulerTransform::className()
 {
-	return "Transform";
+	return "EulerTransform";
 }
-Transform* Transform::create()
+EulerTransform* EulerTransform::create()
 {
-	return new Transform();
+	return new EulerTransform();
 }
 
-Transform::~Transform()
+EulerTransform::~EulerTransform()
 {
 }
-Transform::Transform()
+
+EulerTransform::EulerTransform()
 {
 	m_translate.set(0,0,0);
 	m_rotate.set(0,0,0);
@@ -23,41 +24,42 @@ Transform::Transform()
 	m_transformMatrixDirty=true;
 }
 
-void Transform::setPosition(const Vector3& v)
+void EulerTransform::setPosition(const Vector3& v)
 {
 	m_translate=v;
 	m_transformMatrixDirty=true;
 }
 
-Vector3 Transform::getPosition()
+Vector3 EulerTransform::getPosition()
 {
 	return m_translate;
 }
 
 
-void Transform::setRotate(const Vector3& v)
+void EulerTransform::setRotate(const Vector3& v)
 {
 	m_rotate=v;
 	m_transformMatrixDirty=true;
 }
 
-Vector3 Transform::getRotate()
+Vector3 EulerTransform::getRotate()
 {
 	return m_rotate;
 }
 
-void Transform::setScale(const Vector3& v)
+void EulerTransform::setScale(const Vector3& v)
 {
 	m_scale=v;
 	m_transformMatrixDirty=true;
 }
 
-Vector3 Transform::getScale()
+Vector3 EulerTransform::getScale()
 {
 	return m_scale;
 }
 
-bool Transform::updateTransformMatrix()
+
+bool EulerTransform::updateTransformMatrix()
 {
 	if(m_transformMatrixDirty)
 	{
@@ -69,33 +71,11 @@ bool Transform::updateTransformMatrix()
 }
 
 
-Matrix4* Transform::getTransformMatrix()
+Matrix4* EulerTransform::getTransformMatrix()
 {
 	updateTransformMatrix();
 	return &m_transformMatrix;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 NS_FS_END 
