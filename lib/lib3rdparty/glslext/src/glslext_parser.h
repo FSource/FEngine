@@ -5,6 +5,31 @@
 #include <vector>
 #include <stdio.h>
 
+class GlslextFeature 
+{
+	public:
+		GlslextFeature(std::string* name,std::string* value)
+		{
+			m_name=name;
+			m_value=value;
+		}
+		~GlslextFeature()
+		{
+			if(m_name) 
+			{
+				delete m_name;
+			}
+			if(m_value) 
+			{
+				delete m_value;
+			}
+		}
+	public:
+		std::string* m_name;
+		std::string* m_value;
+
+};
+
 
 class GlslextTypeMap
 {
@@ -50,11 +75,25 @@ class GlslextParser
 
 
 	public:
-		void setVertexSrc(std::string* value){m_vertexSrc=value;}
-		std::string* getVertexSrc(){return m_vertexSrc;}
+		void setVertexSrc(std::string* value)
+		{
+			m_vertexSrc=value;
+		}
 
-		void setFragmentSrc(std::string* value){m_fragmentSrc=value;}
-		std::string* getFramgentSrc(){return m_fragmentSrc;}
+		std::string* getVertexSrc()
+		{
+			return m_vertexSrc;
+		}
+
+		void setFragmentSrc(std::string* value)
+		{
+			m_fragmentSrc=value;
+		}
+
+		std::string* getFramgentSrc()
+		{
+			return m_fragmentSrc;
+		}
 
 		void addUniformMap(std::string* name,std::string* type,std::string* value)
 		{
@@ -65,8 +104,15 @@ class GlslextParser
 			m_uniformMap.push_back(new GlslextTypeMap(name,type,value,ext_index));
 		}
 
-		int getUniformMapNu() {return m_uniformMap.size();} 
-		GlslextTypeMap* getUniformMap(int index){return m_uniformMap[index];}
+		int getUniformMapNu() 
+		{
+			return m_uniformMap.size();
+		} 
+
+		GlslextTypeMap* getUniformMap(int index)
+		{
+			return m_uniformMap[index];
+		}
 
 
 
@@ -74,8 +120,31 @@ class GlslextParser
 		{
 			m_attributeMap.push_back(new GlslextTypeMap(name,type,value));
 		}
-		int getAttributeMapNu(){return m_attributeMap.size();}
-		GlslextTypeMap*  getAttributeMap(int index){return m_attributeMap[index];}
+
+		int getAttributeMapNu()
+		{
+			return m_attributeMap.size();
+		}
+
+		GlslextTypeMap*  getAttributeMap(int index)
+		{
+			return m_attributeMap[index];
+		}
+
+		void addFeature(std::string* name,std::string* value)
+		{
+			m_feature.push_back(new GlslextFeature(name,value));
+		}
+
+		int getFeatureNu()
+		{
+			return m_feature.size();
+		}
+
+		GlslextFeature* getFeature(int index)
+		{
+			return m_feature[index];
+		}
 
 
 	public:
@@ -97,7 +166,7 @@ class GlslextParser
 
 		std::vector<GlslextTypeMap*> m_uniformMap;
 		std::vector<GlslextTypeMap*> m_attributeMap;
-
+		std::vector<GlslextFeature*> m_feature;
 };
 
 

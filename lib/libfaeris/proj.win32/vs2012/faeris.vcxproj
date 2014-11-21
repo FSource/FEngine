@@ -61,7 +61,7 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformation>false</BrowseInformation>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(ProjectName)d.lib</OutputFile>
@@ -265,6 +265,7 @@
     <ClCompile Include="..\..\src\graphics\material\FsMaterial.cc" />
     <ClCompile Include="..\..\src\graphics\material\FsMaterial2D.cc" />
     <ClCompile Include="..\..\src\graphics\shader\FsProgram.cc" />
+    <ClCompile Include="..\..\src\graphics\shader\FsProgramFeatureDesc.cc" />
     <ClCompile Include="..\..\src\graphics\shader\FsProgramSource.cc" />
     <ClCompile Include="..\..\src\graphics\shader\FsUniformValue.cc" />
     <ClCompile Include="..\..\src\math\curve\FsCatmullRomCurve.cc" />

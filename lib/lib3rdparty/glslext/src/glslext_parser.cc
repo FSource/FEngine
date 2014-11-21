@@ -68,6 +68,13 @@ GlslextParser::~GlslextParser()
 	m_attributeMap.clear();
 
 
+	size=m_feature.size();
+	for(int i=0;i<size;i++)
+	{
+		delete m_feature[i];
+	}
+	m_feature.clear();
+
 }
 
 

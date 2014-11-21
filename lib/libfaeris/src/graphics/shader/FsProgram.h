@@ -38,10 +38,13 @@ class Program:public Resource
 {
 	public:
 		static Program* create(const char* vertex_src,const char* fragment_src);
-		static Program* create(ProgramFeatureDesc* desc,ProgramSource* source);
+		static Program* create(ProgramSource* source,ProgramFeatureDesc* desc);
 		static Program* create(ProgramSource* source);
 
 	public:
+
+		bool canMatch(ProgramFeatureDesc* desc);
+
 		/* return the location of the  Attribute/Uniform 
 		 * if not exist in program,-1 will returned 
 		 */
@@ -57,17 +60,43 @@ class Program:public Resource
 		virtual const char* className();
 
 
-		const ProgramFeatureDesc*  getFeatureDesc(){return m_featureDesc;}
-		void setFeatureDesc(ProgramFeatureDesc* desc){m_featureDesc=desc;}
+		ProgramFeatureDesc*  getFeatureDesc()
+		{
+			return m_featureDesc;
+		}
+
+		void setFeatureDesc(ProgramFeatureDesc* desc)
+		{
+			m_featureDesc=desc;
+		}
 
 		/* uniform map */
-		UniformMap* getUniformMap(int index){return (UniformMap*)m_uniformMaps->get(index);}
-		int getUniformMapNu(){return m_uniformMaps->size();}
-		void addUniformMap(UniformMap* map){m_uniformMaps->push(map);}
+		UniformMap* getUniformMap(int index)
+		{
+			return (UniformMap*)m_uniformMaps->get(index);
+		}
+
+		int getUniformMapNu()
+		{
+			return m_uniformMaps->size();
+		}
+
+		void addUniformMap(UniformMap* map)
+		{
+			m_uniformMaps->push(map);
+		}
 
 		/* stream map */
-		StreamMap* getStreamMap(int index){return (StreamMap*)m_streamMaps->get(index);}
-		int getStreamMapNu(){return m_streamMaps->size();}
+		StreamMap* getStreamMap(int index)
+		{
+			return (StreamMap*)m_streamMaps->get(index);
+		}
+
+		int getStreamMapNu()
+		{
+			return m_streamMaps->size();
+		}
+
 		void addStreamMap(StreamMap* map);
 
 		StreamMap* getStreamMap(E_StreamType t)
@@ -76,15 +105,18 @@ class Program:public Resource
 		}
 
 
+
+
 	protected:
 		Program();
 		~Program();
 
 		bool init(const char* vertex_src,const char* fragment_src);
 		bool init(ProgramSource* source);
+		bool init(ProgramSource* source,ProgramFeatureDesc* desc);
 
 	private:
-
+		FS_FEATURE_WEAK_REF(ProgramSource*) m_programSource;
 		ProgramFeatureDesc* m_featureDesc;
 
 		int m_cacheUniformLoc[FS_PROGRAM_CACHE_UNIFORM_SUPPORT];

@@ -22,6 +22,9 @@ QuaternionTransform::QuaternionTransform()
 	m_transformMatrixDirty=true;
 }
 
+QuaternionTransform::~QuaternionTransform()
+{
+}
 
 void QuaternionTransform::setPosition(const Vector3f& v)
 {

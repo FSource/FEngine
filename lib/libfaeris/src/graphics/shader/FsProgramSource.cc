@@ -6,6 +6,7 @@
 #include "glslext_parser.h"
 #include "support/util/FsDict.h"
 #include "graphics/shader/FsProgram.h"
+#include "graphics/shader/FsProgramFeatureDesc.h"
 
 
 
@@ -56,6 +57,7 @@ ProgramSource::ProgramSource()
 {
 	m_defaultProgramCache=NULL;
 	m_programCache=FsDict::create();
+	m_supportFlags=0;
 }
 
 
@@ -131,6 +133,21 @@ struct ProgramSource_AttributeStrToType
 	E_StreamType m_type;
 };
 
+struct ProgramSource_FeatureStrToType 
+{
+	ProgramSource_FeatureStrToType(const char* name,E_ProgramFeatureSupport type )
+	{
+		m_name=name;
+		m_type=type;
+	}
+
+	const char* m_name;
+	E_ProgramFeatureSupport m_type;
+
+};
+
+
+
 #define S_STREAM_ELE(name,type) ProgramSource_AttributeStrToType(name,type)
 
 static ProgramSource_AttributeStrToType S_attribute_to_type[]={
@@ -205,11 +222,41 @@ static ProgramSource_UniformStrToType  S_uniform_to_type[]=
 	S_UNIFORM_ELE("M.COLOR",E_UniformRef::M_COLOR),
 	S_UNIFORM_ELE("M.OPACITY",E_UniformRef::M_OPACITY),
 	S_UNIFORM_ELE("M.COLOR_MAP",E_UniformRef::M_COLOR_MAP),
+	S_UNIFORM_ELE("M.EMMISIVE",E_UniformRef::M_EMMISIVE),
+	S_UNIFORM_ELE("M.AMBIENT",E_UniformRef::M_AMBIENT),
+	S_UNIFORM_ELE("M.DIFFUSE",E_UniformRef::M_DIFFUSE),
+	S_UNIFORM_ELE("M.SPECULAR",E_UniformRef::M_SPECULAR),
+	S_UNIFORM_ELE("M.SHINESS",E_UniformRef::M_SHINESS),
+	S_UNIFORM_ELE("M.AMBIENT_MAP",E_UniformRef::M_AMBIENT_MAP),
+	S_UNIFORM_ELE("M.DIFFUSE_MAP",E_UniformRef::M_DIFFUSE_MAP),
+	S_UNIFORM_ELE("M.SPECULAR_MAP",E_UniformRef::M_SPECULAR_MAP),
+	S_UNIFORM_ELE("M.BUMP_MAP",E_UniformRef::M_BUMP_MAP),
+	S_UNIFORM_ELE("M.NORMAL_MAP",E_UniformRef::M_NORMAL_MAP),
 
 
 	S_UNIFORM_ELE(NULL,E_UniformRef::UNKOWN)
 
 };
+
+#define S_FEATURE_ELE(name,type) ProgramSource_FeatureStrToType(name,type)
+
+
+static ProgramSource_FeatureStrToType   S_feature_to_type[]=
+{
+	S_FEATURE_ELE("spotLight",E_ProgramFeatureSupport::SPOT_LIGHT),
+	S_FEATURE_ELE("directionalLight",E_ProgramFeatureSupport::DIRECTIONAL_LIGHT),
+	S_FEATURE_ELE("pointLight",E_ProgramFeatureSupport::POINT_LIGHT),
+	S_FEATURE_ELE("hemiSphereLight",E_ProgramFeatureSupport::HEMI_SPHERE_LIGHT),
+	S_FEATURE_ELE("ambientLight",E_ProgramFeatureSupport::AMBIENT_LIGHT),
+	S_FEATURE_ELE("colorMap",E_ProgramFeatureSupport::COLOR_MAP),
+	S_FEATURE_ELE("diffuseMap",E_ProgramFeatureSupport::DIFFUSE_MAP),
+	S_FEATURE_ELE("specularMap",E_ProgramFeatureSupport::SPECULAR_MAP),
+	S_FEATURE_ELE("bumpMap",E_ProgramFeatureSupport::BUMP_MAP),
+	S_FEATURE_ELE("normalMap",E_ProgramFeatureSupport::NORMAL_MAP),
+	S_FEATURE_ELE(NULL,E_ProgramFeatureSupport::NONE)
+};
+
+
 
 
 bool ProgramSource::init(FsFile* file)
@@ -279,6 +326,38 @@ bool ProgramSource::init(FsFile* file)
 		}
 	}
 
+	int feature_nu=parser->getFeatureNu();
+	for(int i=0;i<feature_nu;i++)
+	{
+		GlslextFeature* f=parser->getFeature(i);
+		ProgramSource_FeatureStrToType* p=S_feature_to_type;
+
+		while(p->m_name!=NULL)
+		{
+			if(f->m_name->compare(p->m_name)==0)
+			{
+				if(f->m_value->compare("false")==0)
+				{
+					m_supportFlags&=~p->m_type;
+				}
+				else if(f->m_value->compare("true")==0)
+				{
+					m_supportFlags|=p->m_type;
+				}
+				else 
+				{
+					FS_TRACE_WARN("Unkown Value(%s) For Feature(%s)",f->m_value->c_str(),f->m_name->c_str());
+				}
+				break;
+			}
+			p++;
+		}
+		if(p->m_name==NULL)
+		{
+			FS_TRACE_WARN("Unkwon Feature (%s) Ingored",f->m_name->c_str());
+		}
+	}
+
 	delete parser;
 	return true;
 }
@@ -297,9 +376,25 @@ Program* ProgramSource::getProgram(ProgramFeatureDesc* desc)
 	}
 	else 
 	{
-		/* ADD TO SUPPORT ProgramFeatureDesc to Create Program */
-		return NULL;
-	
+		uint32_t support_flags=desc->getSupportFlags();
+		desc->setSupportFlags(support_flags&m_supportFlags);
+
+		/* first look from cache */
+		Program* prog=(Program*)m_programCache->lookup(desc);
+		desc->setSupportFlags(support_flags);
+		if(prog) 
+		{
+			return prog;
+		}
+
+		/* create new program */
+		prog=Program::create(this,desc);
+
+		if(prog)
+		{
+			m_programCache->insert(prog->getFeatureDesc(),prog);
+		}
+		return prog;
 	}
 }
 
@@ -309,6 +404,14 @@ Program* ProgramSource::getProgram(ProgramFeatureDesc* desc)
 
 
 NS_FS_END
+
+
+
+
+
+
+
+
 
 
 

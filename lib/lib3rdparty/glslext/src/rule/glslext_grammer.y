@@ -11,6 +11,7 @@
 #define yylex Glslext_lex 
 #define param_scanner param->m_scanner
 
+/* TODO(When Parse Failed MemLeak Will Happend */
 
 %}
 
@@ -22,6 +23,8 @@
 
 
 
+%token tFeature
+
 %token tVERTEX_SHADER
 
 %token tFRAGMENT_SHADER
@@ -29,6 +32,8 @@
 %token tL_RB 
 %token tR_RB
 %token tDOLLAR
+%token tCOLON
+
 
 %token tL_SB 
 %token tR_SB
@@ -76,23 +81,31 @@
 %%
 
 
-shader_source_start: real_shader ;
-shader_source_start: real_shader new_lines;
-shader_source_start: new_lines real_shader ;
-shader_source_start: new_lines real_shader new_lines ;
-real_shader: vertex_shader new_lines fragment_shader ;
+
+shader_source_start: new_lines vertex_shader new_lines fragment_shader  new_lines;
+shader_source_start: new_lines feature_define new_lines vertex_shader new_lines fragment_shader  new_lines;
 
 
+feature_define: tFeature  new_lines tL_CB new_lines features tR_CB ;
 
-vertex_shader:tVERTEX_SHADER tL_CB program_body tR_CB
+features : | features feature ;
+
+feature : tWORD  tCOLON tWORD   new_lines
+{
+	param->addFeature($1,$3);
+}
+;
+
+
+vertex_shader:tVERTEX_SHADER new_lines tL_CB program_body tR_CB
 	{
-		param->setVertexSrc($3);
+		param->setVertexSrc($4);
 	}
 ;
 
-fragment_shader:tFRAGMENT_SHADER tL_CB program_body tR_CB
+fragment_shader:tFRAGMENT_SHADER new_lines tL_CB program_body tR_CB
 	{
-		param->setFragmentSrc($3);
+		param->setFragmentSrc($4);
 		
 	}
 ;
@@ -182,6 +195,10 @@ word: tNEW_LINE
 	|tCOMMA
 	{
 		$$=new std::string(",");
+	}
+	|tCOLON 
+	{
+		$$=new std::string(":");
 	}
 
 
@@ -414,9 +431,7 @@ word:tATTRIBUTE tPRECISION tU_TYPE tWORD tSEMICOLON
 }
 
 
-new_lines:tNEW_LINE ;
-
-new_lines: new_lines tNEW_LINE ;
+new_lines: | new_lines tNEW_LINE ;
 
 
 

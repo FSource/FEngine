@@ -70,6 +70,15 @@ class Color3f
 			b(1.0f)
 		{}
 
+	public:
+		Color3f operator + (const Color3f& v);
+		Color3f operator - (const Color3f& v);
+
+		Color3f operator * (const Color3f& v);
+		Color3f operator * (float value);
+
+		Color3f operator / (const Color3f& v);
+		Color3f operator / (float value);
 
 	public:
 		void set(float _r,float _g,float _b)

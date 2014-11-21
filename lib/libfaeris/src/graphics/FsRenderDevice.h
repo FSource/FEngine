@@ -1,5 +1,5 @@
-#ifndef _FS_RENDER_H_
-#define _FS_RENDER_H_
+#ifndef _FS_RENDER_DEVICE_H_
+#define _FS_RENDER_DEVICE_H_
 
 #include "FsMacros.h"
 #include "FsConfig.h"

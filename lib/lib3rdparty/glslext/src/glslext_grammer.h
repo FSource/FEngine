@@ -53,28 +53,30 @@ extern int Glslext_debug;
 # define GLSLEXT_TOKENTYPE
   enum Glslext_tokentype
   {
-    tVERTEX_SHADER = 258,
-    tFRAGMENT_SHADER = 259,
-    tL_RB = 260,
-    tR_RB = 261,
-    tDOLLAR = 262,
-    tL_SB = 263,
-    tR_SB = 264,
-    tL_CB = 265,
-    tR_CB = 266,
-    tATTRIBUTE = 267,
-    tUNIFROM = 268,
-    tU_TYPE = 269,
-    tFLOAT = 270,
-    tINTEGER = 271,
-    tNEW_LINE = 272,
-    tCOMMA = 273,
-    tASSIGN = 274,
-    tOPERATOR = 275,
-    tWORD = 276,
-    tPRECISION = 277,
-    tSEMICOLON = 278,
-    tOP_EQUAL = 279
+    tFeature = 258,
+    tVERTEX_SHADER = 259,
+    tFRAGMENT_SHADER = 260,
+    tL_RB = 261,
+    tR_RB = 262,
+    tDOLLAR = 263,
+    tCOLON = 264,
+    tL_SB = 265,
+    tR_SB = 266,
+    tL_CB = 267,
+    tR_CB = 268,
+    tATTRIBUTE = 269,
+    tUNIFROM = 270,
+    tU_TYPE = 271,
+    tFLOAT = 272,
+    tINTEGER = 273,
+    tNEW_LINE = 274,
+    tCOMMA = 275,
+    tASSIGN = 276,
+    tOPERATOR = 277,
+    tWORD = 278,
+    tPRECISION = 279,
+    tSEMICOLON = 280,
+    tOP_EQUAL = 281
   };
 #endif
 
@@ -83,13 +85,13 @@ extern int Glslext_debug;
 typedef union GLSLEXT_STYPE GLSLEXT_STYPE;
 union GLSLEXT_STYPE
 {
-#line 17 "../src/rule/glslext_grammer.y" /* yacc.c:1909  */
+#line 18 "../src/rule/glslext_grammer.y" /* yacc.c:1909  */
 
 	std::string* istring;
 	std::vector<float>* ivec;
 	float inumber;
 
-#line 93 "../src/glslext_grammer.h" /* yacc.c:1909  */
+#line 95 "../src/glslext_grammer.h" /* yacc.c:1909  */
 };
 # define GLSLEXT_STYPE_IS_TRIVIAL 1
 # define GLSLEXT_STYPE_IS_DECLARED 1

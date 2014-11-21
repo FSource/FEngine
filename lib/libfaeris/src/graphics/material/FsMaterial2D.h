@@ -10,6 +10,7 @@ NS_FS_BEGIN
 class ProgramSource;
 class ProgramFeatureDesc;
 class Texture2D;
+class FsArray;
 
 
 class Material2D:public Material 

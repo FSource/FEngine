@@ -70,6 +70,56 @@ Color3f Color3f::BLUE=Color3f(0.0f,0.0f,1.0f);
 Color3f Color3f::WHITE=Color3f(1.0f,1.0f,1.0f);
 Color3f Color3f::BLACK=Color3f(0.0f,0.0f,0.0f);
 
+Color3f Color3f::operator + (const Color3f& v)
+{
+	float red=r+v.r;
+	float blue=b+v.b;
+	float green=g+v.g;
+
+	return Color3f(red,blue,green);
+}
+
+Color3f Color3f::operator - (const Color3f& v)
+{
+	float red=r-v.r;
+	float blue=b-v.b;
+	float green=g-v.g;
+	return Color3f(red,blue,green);
+}
+
+
+Color3f Color3f::operator * (const Color3f& v)
+{
+	float red=r*v.r;
+	float blue=b*v.b;
+	float green=g*v.g;
+	return Color3f(red,blue,green);
+}
+
+Color3f Color3f::operator * (float v)
+{
+	float red=r*v;
+	float blue=b*v;
+	float green=g*v;
+	return Color3f(red,blue,green);
+}
+
+
+Color3f Color3f::operator / (const Color3f& v)
+{
+	float red=r/v.r;
+	float blue=b/v.b;
+	float green=g/v.g;
+	return Color3f(red,blue,green);
+
+}
+Color3f Color3f::operator / (float v)
+{
+	float red=r/v;
+	float blue=b/v;
+	float green=g/v;
+	return Color3f(red,blue,green);
+}
 
 
 Color4f Color4f::DEFAULT_COLOR=Color4f(1.0f,1.0f,1.0f,1.0f);

@@ -122,7 +122,7 @@ class Entity :public ActionTarget
 		void setScaleY(float s);
 		void setScaleZ(float s);
 
-		void setPosition(float tx,float ty,float tz);
+		void setPosition(float tx,float ty,float tz = 0.0f);
 		void setPosition(const Vector3& pos);
 		void setPositionX(float t);
 		void setPositionY(float t);

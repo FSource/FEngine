@@ -65,7 +65,17 @@ static const char* FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F_SOURCE=
 
 
 static const char* FS_PRE_PROGRAM_SOURCE_PARTICLE_SOURCE=
-#include "graphics/shader/buildin/Fs_PARTICLE.fshader"
+#include "graphics/shader/buildin/Fs_Particle.fshader"
+
+static const char*  FS_PRE_PROGRAM_SOURCE_COLOR_SOURCE=
+#include "graphics/shader/buildin/Fs_Color.fshader"
+
+
+static const  char* FS_PRE_PROGRAM_SOURCE_TEXTURE_SOURCE=
+#include "graphics/shader/buildin/Fs_Texture.fshader"
+
+static const char* FS_PRE_PROGRAM_SOURCE_CONSTANT_SOURCE=
+#include "graphics/shader/buildin/Fs_Constant.fshader"
 
 
 void ProgramSourceMgr::loadPreDefineShader()
@@ -91,7 +101,19 @@ void ProgramSourceMgr::loadPreDefineShader()
 		{
 			FS_PRE_PROGRAM_SOURCE_PARTICLE,
 			FS_PRE_PROGRAM_SOURCE_PARTICLE_SOURCE,
-		}
+		},
+		{
+			FS_PRE_PROGRAM_SOURCE_COLOR,
+			FS_PRE_PROGRAM_SOURCE_COLOR_SOURCE,
+		},
+		{
+			FS_PRE_PROGRAM_SOURCE_TEXTURE,
+			FS_PRE_PROGRAM_SOURCE_TEXTURE_SOURCE,
+		},
+		{
+			FS_PRE_PROGRAM_SOURCE_CONSTANT,
+			FS_PRE_PROGRAM_SOURCE_CONSTANT_SOURCE,
+		},
 	};
 
 	for(int i=0;i<FS_MAX_PRE_PROGRAM_SOURCE_NU;i++)

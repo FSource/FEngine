@@ -1023,6 +1023,9 @@
     <ClCompile Include="..\..\src\stage\entity\transform\FsQuaternionTransform.cc">
       <Filter>src\stage\entity\transform</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\graphics\shader\FsProgramFeatureDesc.cc">
+      <Filter>src\graphics\shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\math\FsVector2.inl">

@@ -1,6 +1,26 @@
 /* sfdaf */
 
-VertexShader{
+Feature
+{
+	transparency: true 
+	shadow 	: true 
+	fog   : false 
+	skeleton:  false 
+
+	spotLight : true 
+	directionLight : true
+	pointLight 	: true 
+	hemiSphereLight : false
+	ambientLight : true 
+
+	colorMap : true 
+	diffuseMap : true 
+}
+
+
+
+VertexShader 
+{
 
 #ifdef MAX_LIGHT > 0 
 	attribute vec4 a_vertex  = $(VERTICES);
@@ -25,7 +45,8 @@ VertexShader{
 
 /*=====================================*/
 
-FragmentShader{
+FragmentShader 
+{ 
 
 #ifdef GL_FRAGMENT_PRECISION_HIGH
 	// Default precision

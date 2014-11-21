@@ -68,7 +68,9 @@ void libobjmtl_error(void* param,const char* msg)
 
 %%
 
-mtlfile: | mtlfile material emptylines ;
+mtlfile: material 
+	   |emptylines
+	   | mtlfile material emptylines ;
 
 emptylines: | emptylines EOL ; 
 

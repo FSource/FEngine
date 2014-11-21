@@ -35,12 +35,15 @@ digit [0-9]
 %%
 VertexShader 	return tVERTEX_SHADER;
 FragmentShader	return tFRAGMENT_SHADER;
+Feature			return tFeature;
+
 
 
 "("				return tL_RB;
 ")"				return tR_RB;
 "$"				return tDOLLAR;
 ";"				return tSEMICOLON;
+":"				return tCOLON;
 "["				return tL_SB;
 "]"				return tR_SB;
 "{"				return tL_CB;
