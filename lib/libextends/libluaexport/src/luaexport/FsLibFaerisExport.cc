@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 11/21/14 09:46:32.
+** Generated automatically by tolua++-1.0.92 on 11/24/14 02:31:12.
 */
 
 #ifndef __cplusplus
@@ -22643,6 +22643,134 @@ static int tolua_FsLibFaeris_PageView_getCurrentPage00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getCurrentPage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: slideToPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_slideToPage00
+static int tolua_FsLibFaeris_PageView_slideToPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"UiWidget",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  UiWidget* widget = ((UiWidget*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'slideToPage'", NULL);
+#endif
+  {
+   self->slideToPage(widget);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'slideToPage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: slideToPageIndex of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_slideToPageIndex00
+static int tolua_FsLibFaeris_PageView_slideToPageIndex00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'slideToPageIndex'", NULL);
+#endif
+  {
+   self->slideToPageIndex(index);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'slideToPageIndex'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: slideToNextPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_slideToNextPage00
+static int tolua_FsLibFaeris_PageView_slideToNextPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'slideToNextPage'", NULL);
+#endif
+  {
+   self->slideToNextPage();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'slideToNextPage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: slideToPrevPage of class  PageView */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_PageView_slideToPrevPage00
+static int tolua_FsLibFaeris_PageView_slideToPrevPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"PageView",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  PageView* self = (PageView*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'slideToPrevPage'", NULL);
+#endif
+  {
+   self->slideToPrevPage();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'slideToPrevPage'.",&tolua_err);
  return 0;
 #endif
 }
@@ -48256,6 +48384,10 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getCurrentPageIndex",tolua_FsLibFaeris_PageView_getCurrentPageIndex00);
    tolua_function(tolua_S,"setCurrentPage",tolua_FsLibFaeris_PageView_setCurrentPage00);
    tolua_function(tolua_S,"getCurrentPage",tolua_FsLibFaeris_PageView_getCurrentPage00);
+   tolua_function(tolua_S,"slideToPage",tolua_FsLibFaeris_PageView_slideToPage00);
+   tolua_function(tolua_S,"slideToPageIndex",tolua_FsLibFaeris_PageView_slideToPageIndex00);
+   tolua_function(tolua_S,"slideToNextPage",tolua_FsLibFaeris_PageView_slideToNextPage00);
+   tolua_function(tolua_S,"slideToPrevPage",tolua_FsLibFaeris_PageView_slideToPrevPage00);
    tolua_function(tolua_S,"className",tolua_FsLibFaeris_PageView_className00);
    tolua_function(tolua_S,"touchBegin",tolua_FsLibFaeris_PageView_touchBegin00);
    tolua_function(tolua_S,"touchMove",tolua_FsLibFaeris_PageView_touchMove00);

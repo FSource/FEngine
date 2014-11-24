@@ -55,11 +55,19 @@ class PageView:public UiWidget
 		UiWidget* getPage(int index);
 		int getPageIndex(UiWidget* widget);
 
+		void prevPage();
+		void nextPage();
 		void setCurrentPageIndex(int index);
 		int getCurrentPageIndex();
 
 		void setCurrentPage(UiWidget* widget);
 		UiWidget* getCurrentPage();
+
+		void slideToPage(UiWidget* widget);
+		void slideToPageIndex(int index);
+		void slideToNextPage();
+		void slideToPrevPage();
+
 
 
 	public:
