@@ -427,16 +427,16 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  7
+#define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   42
+#define YYLAST   44
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  22
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  20
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  37
+#define YYNRULES  36
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  62
 
@@ -486,10 +486,10 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    71,    71,    72,    73,    75,    75,    78,    84,    92,
-      94,    94,    97,    98,    99,   100,   101,   102,   103,   104,
-     105,   106,   107,   108,   114,   119,   124,   129,   134,   139,
-     144,   149,   155,   161,   167,   173,   180,   184
+       0,    71,    71,    72,    74,    74,    77,    83,    91,    93,
+      93,    96,    97,    98,    99,   100,   101,   102,   103,   104,
+     105,   106,   107,   113,   118,   123,   128,   133,   138,   143,
+     148,   154,   160,   166,   172,   179,   183
 };
 #endif
 
@@ -534,12 +534,12 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      14,    10,    20,    15,   -18,    21,    26,   -18,   -18,   -18,
-     -18,   -18,    15,   -18,    -5,   -18,    16,    16,    16,    16,
-      16,    16,    18,    23,    24,    25,    27,    28,    30,   -18,
+     -18,    20,    13,   -18,    11,   -18,   -18,   -18,    17,    21,
+      26,   -18,   -18,   -18,    -5,   -18,    18,    18,    18,    18,
+      18,    18,    25,    24,    27,    28,    29,    30,    38,   -18,
      -18,   -18,   -18,   -18,   -18,   -18,   -18,   -18,   -18,   -18,
-     -18,   -18,   -18,    16,    16,    16,   -18,   -18,   -18,   -18,
-     -18,   -18,   -18,   -18,   -18,   -18,    16,    16,    16,   -18,
+     -18,   -18,   -18,    18,    18,    18,   -18,   -18,   -18,   -18,
+     -18,   -18,   -18,   -18,   -18,   -18,    18,    18,    18,   -18,
      -18,   -18
 };
 
@@ -548,26 +548,26 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       5,     0,     0,     3,     2,     0,     0,     1,     5,     6,
-      10,    10,     4,     7,     9,     8,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    12,
-      13,    14,    15,    16,    17,    18,    19,    20,    21,    22,
-      23,    36,    37,     0,     0,     0,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    11,     0,     0,     0,    24,
-      25,    26
+       4,     0,     0,     1,     0,     4,     5,     2,     0,     0,
+       3,     9,     9,     6,     8,     7,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,    11,
+      12,    13,    14,    15,    16,    17,    18,    19,    20,    21,
+      22,    35,    36,     0,     0,     0,    26,    27,    28,    29,
+      30,    31,    32,    33,    34,    10,     0,     0,     0,    23,
+      24,    25
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -18,   -18,    29,    36,    31,   -18,   -18,   -18,   -18,   -18,
+     -18,   -18,    39,    31,    22,   -18,   -18,   -18,   -18,   -18,
      -18,   -18,   -18,   -18,   -18,   -18,   -18,   -18,   -18,   -17
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,     3,     4,    13,    14,    28,    29,    30,    31,
+      -1,     1,     2,     5,    13,    14,    28,    29,    30,    31,
       32,    33,    34,    35,    36,    37,    38,    39,    40,    43
 };
 
@@ -577,27 +577,27 @@ static const yytype_int8 yydefgoto[] =
 static const yytype_uint8 yytable[] =
 {
       44,    45,    46,    47,    48,    16,    17,    18,    19,    20,
-      21,    22,    23,    24,    25,    26,    27,     5,     6,     9,
-       7,    41,    42,     1,    49,    10,    56,    57,    58,     1,
-      11,    50,    51,    52,    55,    53,    54,    12,     8,    59,
-      60,    61,    15
+      21,    22,    23,    24,    25,    26,    27,     6,     8,     9,
+       3,    11,     4,    41,    42,    12,    56,    57,    58,     4,
+       6,    49,    50,     7,    15,    51,    52,    53,    54,    59,
+      60,    61,    55,     0,    10
 };
 
-static const yytype_uint8 yycheck[] =
+static const yytype_int8 yycheck[] =
 {
       17,    18,    19,    20,    21,    10,    11,    12,    13,    14,
-      15,    16,    17,    18,    19,    20,    21,     7,     8,     4,
-       0,     5,     6,     9,     6,     4,    43,    44,    45,     9,
-       4,     8,     8,     8,     4,     8,     8,     8,     2,    56,
-      57,    58,    11
+      15,    16,    17,    18,    19,    20,    21,     4,     7,     8,
+       0,     4,     9,     5,     6,     4,    43,    44,    45,     9,
+       4,     6,     8,     2,    12,     8,     8,     8,     8,    56,
+      57,    58,     4,    -1,     5
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     9,    23,    24,    25,     7,     8,     0,    25,     4,
-       4,     4,    24,    26,    27,    26,    10,    11,    12,    13,
+       0,    23,    24,     0,     9,    25,     4,    25,     7,     8,
+      24,     4,     4,    26,    27,    26,    10,    11,    12,    13,
       14,    15,    16,    17,    18,    19,    20,    21,    28,    29,
       30,    31,    32,    33,    34,    35,    36,    37,    38,    39,
       40,     5,     6,    41,    41,    41,    41,    41,    41,     6,
@@ -608,19 +608,19 @@ static const yytype_uint8 yystos[] =
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    22,    23,    23,    23,    24,    24,    25,    25,    26,
-      27,    27,    28,    28,    28,    28,    28,    28,    28,    28,
-      28,    28,    28,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39,    40,    41,    41
+       0,    22,    23,    23,    24,    24,    25,    25,    26,    27,
+      27,    28,    28,    28,    28,    28,    28,    28,    28,    28,
+      28,    28,    28,    29,    30,    31,    32,    33,    34,    35,
+      36,    37,    38,    39,    40,    41,    41
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     1,     1,     3,     0,     2,     4,     4,     1,
-       0,     3,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     4,     4,     4,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     1,     1
+       0,     2,     2,     3,     0,     2,     4,     4,     1,     0,
+       3,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     4,     4,     4,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     1,     1
 };
 
 
@@ -1302,8 +1302,8 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 7:
-#line 79 "mtlgrammer.y" /* yacc.c:1646  */
+        case 6:
+#line 78 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_name=*((yyvsp[-2].ctype));
 	MTL_DATA->commitMaterial();
@@ -1312,8 +1312,8 @@ yyreduce:
 #line 1313 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 8:
-#line 85 "mtlgrammer.y" /* yacc.c:1646  */
+  case 7:
+#line 84 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_name=*((yyvsp[-2].ctype));
 	MTL_DATA->commitMaterial();
@@ -1322,64 +1322,64 @@ yyreduce:
 #line 1323 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 24:
-#line 115 "mtlgrammer.y" /* yacc.c:1646  */
+  case 23:
+#line 114 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_ambient.set((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
 }
 #line 1331 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 25:
-#line 120 "mtlgrammer.y" /* yacc.c:1646  */
+  case 24:
+#line 119 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_diffuse.set((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
 }
 #line 1339 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 26:
-#line 125 "mtlgrammer.y" /* yacc.c:1646  */
+  case 25:
+#line 124 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_specular.set((yyvsp[-2].ftype),(yyvsp[-1].ftype),(yyvsp[0].ftype));
 }
 #line 1347 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 27:
-#line 130 "mtlgrammer.y" /* yacc.c:1646  */
+  case 26:
+#line 129 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_opacity=(yyvsp[0].ftype);
 }
 #line 1355 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 28:
-#line 135 "mtlgrammer.y" /* yacc.c:1646  */
+  case 27:
+#line 134 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_shiness=(yyvsp[0].ftype);
 }
 #line 1363 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 29:
-#line 140 "mtlgrammer.y" /* yacc.c:1646  */
+  case 28:
+#line 139 "mtlgrammer.y" /* yacc.c:1646  */
     { 
 	MTL_DATA->getCurMaterial()->m_ni=(yyvsp[0].ftype);
 }
 #line 1371 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 30:
-#line 145 "mtlgrammer.y" /* yacc.c:1646  */
+  case 29:
+#line 144 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_illuminationMode=(yyvsp[0].itype);
 }
 #line 1379 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 31:
-#line 150 "mtlgrammer.y" /* yacc.c:1646  */
+  case 30:
+#line 149 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_ambientMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1387,8 +1387,8 @@ yyreduce:
 #line 1388 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 32:
-#line 156 "mtlgrammer.y" /* yacc.c:1646  */
+  case 31:
+#line 155 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_diffuseMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1396,8 +1396,8 @@ yyreduce:
 #line 1397 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 33:
-#line 162 "mtlgrammer.y" /* yacc.c:1646  */
+  case 32:
+#line 161 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_specularMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1405,8 +1405,8 @@ yyreduce:
 #line 1406 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 34:
-#line 168 "mtlgrammer.y" /* yacc.c:1646  */
+  case 33:
+#line 167 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_alphaMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1414,8 +1414,8 @@ yyreduce:
 #line 1415 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 35:
-#line 174 "mtlgrammer.y" /* yacc.c:1646  */
+  case 34:
+#line 173 "mtlgrammer.y" /* yacc.c:1646  */
     {
 	MTL_DATA->getCurMaterial()->m_boumpMap=*(yyvsp[0].ctype);
 	delete (yyvsp[0].ctype);
@@ -1424,16 +1424,16 @@ yyreduce:
 #line 1425 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 36:
-#line 181 "mtlgrammer.y" /* yacc.c:1646  */
+  case 35:
+#line 180 "mtlgrammer.y" /* yacc.c:1646  */
     { 
 	(yyval.ftype) = (yyvsp[0].ftype);  
 }
 #line 1433 "../LibObjMtlGrammer.cc" /* yacc.c:1646  */
     break;
 
-  case 37:
-#line 185 "mtlgrammer.y" /* yacc.c:1646  */
+  case 36:
+#line 184 "mtlgrammer.y" /* yacc.c:1646  */
     { 
 	(yyval.ftype) = (float)(yyvsp[0].itype);
 }
@@ -1669,7 +1669,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 189 "mtlgrammer.y" /* yacc.c:1906  */
+#line 188 "mtlgrammer.y" /* yacc.c:1906  */
 
 
 

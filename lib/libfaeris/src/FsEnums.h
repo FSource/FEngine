@@ -115,9 +115,12 @@ enum class E_UniformType
 	UT_S_2D_SHADOW,
 
 	/* ref */
-	UT_REF_RD, 	   /* take from render device */
-	UT_REF_MTL,    /* take from material */
-	UT_REF_MTL_EXT, /* take from material extends */
+	UT_REF_RD, 	   		/* take from render device */
+	UT_REF_MTL,    		/* take from material */
+	UT_REF_MTL_EXT, 	/* take from material extends */
+
+	UT_REF_LIGHT ,  	/* take from light */
+
 
 	MAX_NU,
 };
@@ -184,7 +187,7 @@ enum  class E_UniformRef
 	M_OPACITY,
 	M_COLOR_MAP,
 
-	M_EMMISIVE,
+	M_EMISSIVE,
 	M_AMBIENT,
 	M_DIFFUSE,
 	M_SPECULAR,
@@ -195,6 +198,30 @@ enum  class E_UniformRef
 	M_SPECULAR_MAP,
 	M_BUMP_MAP,
 	M_NORMAL_MAP,
+
+
+	/* light */
+	L_AMBIENT_LIGHT_COLOR,
+
+	L_DIRECTIONAL_LIGHT_COLOR,
+	L_DIRECTIONAL_LIGHT_DIRECTION,
+
+	L_POINT_LIGHT_COLOR,
+	L_POINT_LIGHT_POSITION,
+	L_POINT_LIGHT_DISTANCE,
+
+	L_SPOT_LIGHT_COLOR,
+	L_SPOT_LIGHT_POSITION,
+	L_SPOT_LIGHT_DIRECTION,
+	L_SPOT_LIGHT_COSANGLE,
+	L_SPOT_LIGHT_EXPONENT,
+	L_SPOT_LIGHT_DISTANCE,
+
+
+	L_HEMI_SPHERE_LIGHT_SKY_COLOR,
+	L_HEMI_SPHERE_LIGHT_GROUND_COLOR,
+	L_HEMI_SPHERE_LIGHT_DIRECTION,
+
 
 	MAX_NU,
 };

@@ -237,6 +237,7 @@ bool Program::init(ProgramSource* source,ProgramFeatureDesc* desc)
 
 
 	std::string head_define;
+	char buf[1024];
 
 	if(support_flags&E_ProgramFeatureSupport::LIGHT)
 	{
@@ -249,24 +250,28 @@ bool Program::init(ProgramSource* source,ProgramFeatureDesc* desc)
 		if((support_flags&E_ProgramFeatureSupport::DIRECTIONAL_LIGHT)
 				&& desc->m_directionalLightNu != 0 )
 		{
-			head_define.append("#define FS_DIRECTIONAL_LIGHT_NU %d \n",desc->m_directionalLightNu);
+			sprintf(buf,"#define FS_DIRECTIONAL_LIGHT_NU %d \n",desc->m_directionalLightNu);
+			head_define.append(buf);
 		}
 
 		if((support_flags&E_ProgramFeatureSupport::POINT_LIGHT)
 				&& desc->m_pointLightNu !=0 )
 		{
-			head_define.append("#define FS_POINT_LIGHT_NU %d \n",desc->m_pointLightNu);
+			sprintf(buf, "#define FS_POINT_LIGHT_NU %d \n",desc->m_pointLightNu);
+			head_define.append(buf);
 		}
 
 		if((support_flags & E_ProgramFeatureSupport::SPOT_LIGHT )
 				&& desc->m_spotLightNu !=0)
 		{
-			head_define.append("#define FS_SPOT_LIGHT_NU %d \n",desc->m_spotLightNu);
+			sprintf(buf, "#define FS_SPOT_LIGHT_NU %d \n",desc->m_spotLightNu);
+			head_define.append(buf);
 		}
 
 		if(support_flags &  E_ProgramFeatureSupport::HEMI_SPHERE_LIGHT)
 		{
-			head_define.append("#define FS_HEMI_SPHERE_LIGHT %d \n",desc->m_hemiSphereLightNu);
+			sprintf(buf, "#define FS_HEMI_SPHERE_LIGHT %d \n",desc->m_hemiSphereLightNu);
+			head_define.append(buf);
 		}
 	}
 
@@ -301,7 +306,8 @@ bool Program::init(ProgramSource* source,ProgramFeatureDesc* desc)
 
 	if(support_flags & E_ProgramFeatureSupport:: SKELETON )
 	{
-		head_define.append("#define FS_SKELETON_BONE_NU %d \n" ,desc->m_boneNu);
+		sprintf(buf, "#define FS_SKELETON_BONE_NU %d \n" ,desc->m_boneNu);
+		head_define.append(buf);
 	}
 
 	std::string vertex_src = head_define + std::string(source->getVertexStr());

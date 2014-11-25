@@ -135,14 +135,14 @@ struct ProgramSource_AttributeStrToType
 
 struct ProgramSource_FeatureStrToType 
 {
-	ProgramSource_FeatureStrToType(const char* name,E_ProgramFeatureSupport type )
+	ProgramSource_FeatureStrToType(const char* name,uint32_t flags)
 	{
 		m_name=name;
-		m_type=type;
+		m_flags=flags;
 	}
 
 	const char* m_name;
-	E_ProgramFeatureSupport m_type;
+	uint32_t m_flags;
 
 };
 
@@ -222,7 +222,7 @@ static ProgramSource_UniformStrToType  S_uniform_to_type[]=
 	S_UNIFORM_ELE("M.COLOR",E_UniformRef::M_COLOR),
 	S_UNIFORM_ELE("M.OPACITY",E_UniformRef::M_OPACITY),
 	S_UNIFORM_ELE("M.COLOR_MAP",E_UniformRef::M_COLOR_MAP),
-	S_UNIFORM_ELE("M.EMMISIVE",E_UniformRef::M_EMMISIVE),
+	S_UNIFORM_ELE("M.EMISSIVE",E_UniformRef::M_EMISSIVE),
 	S_UNIFORM_ELE("M.AMBIENT",E_UniformRef::M_AMBIENT),
 	S_UNIFORM_ELE("M.DIFFUSE",E_UniformRef::M_DIFFUSE),
 	S_UNIFORM_ELE("M.SPECULAR",E_UniformRef::M_SPECULAR),
@@ -232,6 +232,22 @@ static ProgramSource_UniformStrToType  S_uniform_to_type[]=
 	S_UNIFORM_ELE("M.SPECULAR_MAP",E_UniformRef::M_SPECULAR_MAP),
 	S_UNIFORM_ELE("M.BUMP_MAP",E_UniformRef::M_BUMP_MAP),
 	S_UNIFORM_ELE("M.NORMAL_MAP",E_UniformRef::M_NORMAL_MAP),
+
+	S_UNIFORM_ELE("L.AMBIENT_LIGHT_COLOR",E_UniformRef::L_AMBIENT_LIGHT_COLOR),
+	S_UNIFORM_ELE("L.DIRECTION_LIGHT_COLOR",E_UniformRef::L_DIRECTIONAL_LIGHT_COLOR),
+	S_UNIFORM_ELE("L.DIRECTION_LIGHT_DIRECTION",E_UniformRef::L_DIRECTIONAL_LIGHT_DIRECTION),
+	S_UNIFORM_ELE("L.POINT_LIGHT_COLOR",E_UniformRef::L_POINT_LIGHT_COLOR),
+	S_UNIFORM_ELE("L.POINT_LIGHT_POSITION",E_UniformRef::L_POINT_LIGHT_POSITION),
+	S_UNIFORM_ELE("L.POINT_LIGHT_DISTANCE",E_UniformRef::L_POINT_LIGHT_DISTANCE),
+	S_UNIFORM_ELE("L.SPOT_LIGHT_COLOR",E_UniformRef::L_SPOT_LIGHT_COLOR),
+	S_UNIFORM_ELE("L.SPOT_LIGHT_POSITION",E_UniformRef::L_SPOT_LIGHT_POSITION),
+	S_UNIFORM_ELE("L.SPOT_LIGHT_DIRECTION",E_UniformRef::L_SPOT_LIGHT_DIRECTION),
+	S_UNIFORM_ELE("L.SPOT_LIGHT_COSANGLE",E_UniformRef::L_SPOT_LIGHT_COSANGLE),
+	S_UNIFORM_ELE("L.SPOT_LIGHT_EXPONENT",E_UniformRef::L_SPOT_LIGHT_EXPONENT),
+	S_UNIFORM_ELE("L.SPOT_LIGHT_DISTANCE",E_UniformRef::L_SPOT_LIGHT_DISTANCE),
+	S_UNIFORM_ELE("L.HEMI_SPHERE_LIGHT_SKY_COLOR",E_UniformRef::L_HEMI_SPHERE_LIGHT_SKY_COLOR),
+	S_UNIFORM_ELE("L.HEMI_SPHERE_LIGHT_GROUND_COLOR",E_UniformRef::L_HEMI_SPHERE_LIGHT_GROUND_COLOR),
+	S_UNIFORM_ELE("L.HEMI_SPHERE_LIGHT_DIRECTION",E_UniformRef::L_HEMI_SPHERE_LIGHT_DIRECTION),
 
 
 	S_UNIFORM_ELE(NULL,E_UniformRef::UNKOWN)
@@ -243,6 +259,7 @@ static ProgramSource_UniformStrToType  S_uniform_to_type[]=
 
 static ProgramSource_FeatureStrToType   S_feature_to_type[]=
 {
+	S_FEATURE_ELE("light",(E_ProgramFeatureSupport::SPOT_LIGHT|E_ProgramFeatureSupport::DIRECTIONAL_LIGHT|E_ProgramFeatureSupport::POINT_LIGHT|E_ProgramFeatureSupport::HEMI_SPHERE_LIGHT|E_ProgramFeatureSupport::AMBIENT_LIGHT)),
 	S_FEATURE_ELE("spotLight",E_ProgramFeatureSupport::SPOT_LIGHT),
 	S_FEATURE_ELE("directionalLight",E_ProgramFeatureSupport::DIRECTIONAL_LIGHT),
 	S_FEATURE_ELE("pointLight",E_ProgramFeatureSupport::POINT_LIGHT),
@@ -284,9 +301,13 @@ bool ProgramSource::init(FsFile* file)
 				{
 					addUniformMap(UniformMap::create(u->m_name->c_str(),E_UniformType::UT_REF_MTL,p->m_type));
 				}
-				else 
+				else if(u->m_value->at(0)=='R')
 				{
 					addUniformMap(UniformMap::create(u->m_name->c_str(),E_UniformType::UT_REF_RD,p->m_type));
+				}
+				else if(u->m_value->at(0)=='L')
+				{
+					addUniformMap(UniformMap::create(u->m_name->c_str(),E_UniformType::UT_REF_LIGHT,p->m_type));
 				}
 				break;
 			}
@@ -338,11 +359,11 @@ bool ProgramSource::init(FsFile* file)
 			{
 				if(f->m_value->compare("false")==0)
 				{
-					m_supportFlags&=~p->m_type;
+					m_supportFlags&=~p->m_flags;
 				}
 				else if(f->m_value->compare("true")==0)
 				{
-					m_supportFlags|=p->m_type;
+					m_supportFlags|=p->m_flags;
 				}
 				else 
 				{

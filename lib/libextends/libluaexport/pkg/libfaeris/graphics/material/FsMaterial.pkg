@@ -17,7 +17,7 @@ class Material:public FsResource
 		bool getDoubleSideEnabled();
 
 		void setFrontSide(E_FrontFace front);
-		E_FrontFace getFrontSide();
+		int getFrontSide();
 
 		/* depth test */
 		void setDepthTestEnabled(bool enable);

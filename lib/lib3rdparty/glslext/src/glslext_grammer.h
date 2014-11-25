@@ -56,27 +56,21 @@ extern int Glslext_debug;
     tFeature = 258,
     tVERTEX_SHADER = 259,
     tFRAGMENT_SHADER = 260,
-    tL_RB = 261,
-    tR_RB = 262,
-    tDOLLAR = 263,
-    tCOLON = 264,
+    tUNIFORM_MAP = 261,
+    tATTRIBUTE_MAP = 262,
+    tL_RB = 263,
+    tR_RB = 264,
     tL_SB = 265,
     tR_SB = 266,
     tL_CB = 267,
     tR_CB = 268,
-    tATTRIBUTE = 269,
-    tUNIFROM = 270,
-    tU_TYPE = 271,
-    tFLOAT = 272,
-    tINTEGER = 273,
-    tNEW_LINE = 274,
-    tCOMMA = 275,
-    tASSIGN = 276,
-    tOPERATOR = 277,
-    tWORD = 278,
-    tPRECISION = 279,
-    tSEMICOLON = 280,
-    tOP_EQUAL = 281
+    tDOLLAR = 269,
+    tCOLON = 270,
+    tASSIGN = 271,
+    tINTEGER = 272,
+    tNEW_LINE = 273,
+    tWORD = 274,
+    tPRECISION = 275
   };
 #endif
 
@@ -91,7 +85,7 @@ union GLSLEXT_STYPE
 	std::vector<float>* ivec;
 	float inumber;
 
-#line 95 "../src/glslext_grammer.h" /* yacc.c:1909  */
+#line 89 "../src/glslext_grammer.h" /* yacc.c:1909  */
 };
 # define GLSLEXT_STYPE_IS_TRIVIAL 1
 # define GLSLEXT_STYPE_IS_DECLARED 1

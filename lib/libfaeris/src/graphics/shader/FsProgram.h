@@ -87,7 +87,7 @@ class Program:public Resource
 		}
 
 		/* stream map */
-		StreamMap* getStreamMap(int index)
+		StreamMap* getStreamMapFromSeq(int index)
 		{
 			return (StreamMap*)m_streamMaps->get(index);
 		}

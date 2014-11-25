@@ -28,11 +28,11 @@
 %token tVERTEX_SHADER
 
 %token tFRAGMENT_SHADER
-%token tUNIFORM_MAP 
-%token tATTRIBUTE_MAP
 
 %token tL_RB 
 %token tR_RB
+%token tDOLLAR
+%token tCOLON
 
 
 %token tL_SB 
@@ -41,23 +41,32 @@
 %token tL_CB 
 %token tR_CB
 
-%token tDOLLAR
-%token tCOLON
 
-%token tASSIGN
+%token tATTRIBUTE 
+%token tUNIFROM 
 
+%token <istring> tU_TYPE 
+%token <istring> tFLOAT 
 %token <istring> tINTEGER
 
 %token tNEW_LINE
 
+%token tCOMMA
+%token tASSIGN
+
+%token <istring> tOPERATOR
 %token <istring> tWORD 
+
 %token <istring> tPRECISION
 
+%token tSEMICOLON
+%token <istring> tOP_EQUAL
 
 
 %type <istring> word
 %type <istring> program_body
 %type <istring> words
+%type <istring> precision
 
 
 %define api.pure 
@@ -74,12 +83,8 @@
 
 
 
-shader_source_start: new_lines shader_chunks new_lines 
-
-shader_chunks :  shader_chunk | shader_chunks new_lines shader_chunk 
-
-shader_chunk : feature_define | uniform_map_define | attribute_map_define | vertex_shader_define | fragment_shader_define ;
-
+shader_source_start: new_lines vertex_shader new_lines fragment_shader  new_lines;
+shader_source_start: new_lines feature_define new_lines vertex_shader new_lines fragment_shader  new_lines;
 
 
 feature_define: tFeature  new_lines tL_CB new_lines features tR_CB ;
@@ -92,36 +97,20 @@ feature : tWORD  tCOLON tWORD   new_lines
 }
 ;
 
-uniform_map_define : tUNIFORM_MAP new_lines tL_CB  new_lines uniform_maps tR_CB ;
+uniform_map_define : tUniformMap  new_lines tL_CB  new_lines uniform_maps tR_CB ;
 uniform_maps : | uniform_maps uniform_map ;
-uniform_map : tWORD tASSIGN  tDOLLAR tL_RB  tWORD tR_RB new_lines
-	{
-		param->addUniformMap($1,NULL,$5);
-	};
-uniform_map : tWORD tASSIGN  tDOLLAR tL_RB tWORD tL_SB tINTEGER tL_SB new_lines 
-	{
-		param->addUniformMap($1,NULL,$5,atoi($7->c_str()));
-		delete $7;
-	};
+uniform_map : tWORD tASSIGN  tDOLLAR tL_RB  tWORD tR_RB ;
 
 
 
-attribute_map_define  : tATTRIBUTE_MAP new_lines tL_CB new_lines attribute_maps tR_CB;
-attribute_maps : | attribute_maps attribute_map ;
-attribute_map: tWORD tASSIGN tDOLLAR tL_RB tWORD tR_RB new_lines
-	{
-		param->addAttributeMap($1,NULL,$5);
-	};
 
-
-
-vertex_shader_define:tVERTEX_SHADER new_lines tL_CB program_body tR_CB
+vertex_shader:tVERTEX_SHADER new_lines tL_CB program_body tR_CB
 	{
 		param->setVertexSrc($4);
 	}
 ;
 
-fragment_shader_define :tFRAGMENT_SHADER new_lines tL_CB program_body tR_CB
+fragment_shader:tFRAGMENT_SHADER new_lines tL_CB program_body tR_CB
 	{
 		param->setFragmentSrc($4);
 		
@@ -178,9 +167,9 @@ word: tNEW_LINE
 	{
 		$$=new std::string("]");
 	}
-	|tCOLON 
+	| tFLOAT
 	{
-		$$=new std::string(":");
+		$$=$1;
 	}
 	| tINTEGER
 	{
@@ -190,11 +179,42 @@ word: tNEW_LINE
 	{
 		$$=$1;
 	}
+	|tU_TYPE 
+	{
+		$$=$1;
+	}
+	|tPRECISION  
+	{
+		$$=$1;
+	}
+	| tSEMICOLON 
+	{
+		$$=new std::string(";");
+	}
 	|tASSIGN
 	{
 		$$=new std::string("=");
 	}
+	|tOPERATOR
+	{
+		$$=$1;
+	}
+	|tCOMMA
+	{
+		$$=new std::string(",");
+	}
+	|tCOLON 
+	{
+		$$=new std::string(":");
+	}
+
+
 ;
+
+
+
+
+
 
 
 

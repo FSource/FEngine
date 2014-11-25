@@ -78,6 +78,9 @@ static const char* FS_PRE_PROGRAM_SOURCE_CONSTANT_SOURCE=
 #include "graphics/shader/buildin/Fs_Constant.fshader"
 
 
+static const char* FS_PRE_PROGRAM_SOURCE_LAMBERT_SOURCE=
+#include "graphics/shader/buildin/Fs_Lambert.fshader"
+
 void ProgramSourceMgr::loadPreDefineShader()
 {
 	ST_PreDefineShader shader[FS_MAX_PRE_PROGRAM_SOURCE_NU]=
@@ -114,6 +117,10 @@ void ProgramSourceMgr::loadPreDefineShader()
 			FS_PRE_PROGRAM_SOURCE_CONSTANT,
 			FS_PRE_PROGRAM_SOURCE_CONSTANT_SOURCE,
 		},
+		{
+			FS_PRE_PROGRAM_SOURCE_LAMBERT,
+			FS_PRE_PROGRAM_SOURCE_LAMBERT_SOURCE
+		}
 	};
 
 	for(int i=0;i<FS_MAX_PRE_PROGRAM_SOURCE_NU;i++)

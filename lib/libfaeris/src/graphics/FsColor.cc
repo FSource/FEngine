@@ -76,7 +76,7 @@ Color3f Color3f::operator + (const Color3f& v)
 	float blue=b+v.b;
 	float green=g+v.g;
 
-	return Color3f(red,blue,green);
+	return Color3f(red,green,blue);
 }
 
 Color3f Color3f::operator - (const Color3f& v)
@@ -84,7 +84,7 @@ Color3f Color3f::operator - (const Color3f& v)
 	float red=r-v.r;
 	float blue=b-v.b;
 	float green=g-v.g;
-	return Color3f(red,blue,green);
+	return Color3f(red,green,blue);
 }
 
 
@@ -93,7 +93,7 @@ Color3f Color3f::operator * (const Color3f& v)
 	float red=r*v.r;
 	float blue=b*v.b;
 	float green=g*v.g;
-	return Color3f(red,blue,green);
+	return Color3f(red,green,blue);
 }
 
 Color3f Color3f::operator * (float v)
@@ -101,7 +101,7 @@ Color3f Color3f::operator * (float v)
 	float red=r*v;
 	float blue=b*v;
 	float green=g*v;
-	return Color3f(red,blue,green);
+	return Color3f(red,green,blue);
 }
 
 
@@ -110,7 +110,7 @@ Color3f Color3f::operator / (const Color3f& v)
 	float red=r/v.r;
 	float blue=b/v.b;
 	float green=g/v.g;
-	return Color3f(red,blue,green);
+	return Color3f(red,green,blue);
 
 }
 Color3f Color3f::operator / (float v)
@@ -118,7 +118,7 @@ Color3f Color3f::operator / (float v)
 	float red=r/v;
 	float blue=b/v;
 	float green=g/v;
-	return Color3f(red,blue,green);
+	return Color3f(red,green,blue);
 }
 
 

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 11/24/14 02:31:12.
+** Generated automatically by tolua++-1.0.92 on 11/25/14 04:51:27.
 */
 
 #ifndef __cplusplus
@@ -130,13 +130,6 @@ static int tolua_collect_Quaternion (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_E_FrontFace (lua_State* tolua_S)
-{
- E_FrontFace* self = (E_FrontFace*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
 static int tolua_collect_Color (lua_State* tolua_S)
 {
  Color* self = (Color*) tolua_tousertype(tolua_S,1,0);
@@ -147,6 +140,13 @@ static int tolua_collect_Color (lua_State* tolua_S)
 static int tolua_collect_Color4f (lua_State* tolua_S)
 {
  Color4f* self = (Color4f*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_PlatformTexture (lua_State* tolua_S)
+{
+ PlatformTexture* self = (PlatformTexture*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -212,7 +212,6 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"ListView");
  toluaext_usertype(tolua_S,"LuaRotateAction");
  tolua_usertype(tolua_S,"Face3");
- tolua_usertype(tolua_S,"E_FrontFace");
  toluaext_usertype(tolua_S,"Layer");
  toluaext_usertype(tolua_S,"ColorLayer");
  tolua_usertype(tolua_S,"LinearCurve2");
@@ -236,7 +235,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"FsFile");
  toluaext_usertype(tolua_S,"LuaPauseAction");
  toluaext_usertype(tolua_S,"Sprite2D");
- tolua_usertype(tolua_S,"FsResource");
+ 
  toluaext_usertype(tolua_S,"StateButton");
  tolua_usertype(tolua_S,"Matrix4");
  tolua_usertype(tolua_S,"Quaternion");
@@ -268,71 +267,72 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"LuaParticle2DEffect");
  toluaext_usertype(tolua_S,"LabelBitmap");
  toluaext_usertype(tolua_S,"FsArray");
- tolua_usertype(tolua_S,"Vector4");
+ tolua_usertype(tolua_S,"ProgramFeatureDesc");
  tolua_usertype(tolua_S,"CubicBezierCurve4");
  tolua_usertype(tolua_S,"ProgramSource");
  tolua_usertype(tolua_S,"ElasticEase");
  tolua_usertype(tolua_S,"LuaLoopAction");
- toluaext_usertype(tolua_S,"LuaToggleButton");
+ tolua_usertype(tolua_S,"Vector2");
  toluaext_usertype(tolua_S,"LuaQuad2D");
  toluaext_usertype(tolua_S,"TextureMgr");
  toluaext_usertype(tolua_S,"LuaTouchEventListener");
  toluaext_usertype(tolua_S,"LuaHttpRequest");
- tolua_usertype(tolua_S,"Sprite2DDataMgr");
+ tolua_usertype(tolua_S,"KeypadEvent");
  toluaext_usertype(tolua_S,"AudioEngine");
+ toluaext_usertype(tolua_S,"LuaMoveAction");
  tolua_usertype(tolua_S,"BackEase");
  toluaext_usertype(tolua_S,"LuaPanel");
- toluaext_usertype(tolua_S,"LuaMoveAction");
  toluaext_usertype(tolua_S,"LuaScaleAction");
- tolua_usertype(tolua_S,"Rect2D");
+ toluaext_usertype(tolua_S,"Curve3Action");
+ toluaext_usertype(tolua_S,"Entity");
  tolua_usertype(tolua_S,"CatmullRomCurve4");
  tolua_usertype(tolua_S,"BezierEase");
  tolua_usertype(tolua_S,"EulerTransform");
- tolua_usertype(tolua_S,"Vector2");
- tolua_usertype(tolua_S,"QuintEase");
+ toluaext_usertype(tolua_S,"LuaAction");
+ tolua_usertype(tolua_S,"Sprite2DDataMgr");
  tolua_usertype(tolua_S,"Program");
  toluaext_usertype(tolua_S,"HttpEngine");
- toluaext_usertype(tolua_S,"Curve3Action");
- toluaext_usertype(tolua_S,"LuaAction");
+ toluaext_usertype(tolua_S,"SysDispatcher");
+ toluaext_usertype(tolua_S,"LuaPressButton");
  toluaext_usertype(tolua_S,"RenderDevice");
  toluaext_usertype(tolua_S,"LuaVertexPolygon");
- toluaext_usertype(tolua_S,"LuaPressButton");
- toluaext_usertype(tolua_S,"PressButton");
- tolua_usertype(tolua_S,"KeypadEvent");
  tolua_usertype(tolua_S,"PageView");
+ toluaext_usertype(tolua_S,"PressButton");
+ tolua_usertype(tolua_S,"TouchPoint");
+ toluaext_usertype(tolua_S,"Director");
  toluaext_usertype(tolua_S,"DynamicView");
  toluaext_usertype(tolua_S,"LuaColorLayer");
- toluaext_usertype(tolua_S,"SysDispatcher");
- toluaext_usertype(tolua_S,"Director");
- tolua_usertype(tolua_S,"TouchPoint");
  toluaext_usertype(tolua_S,"LuaEntity");
  toluaext_usertype(tolua_S,"TouchEventListener");
- toluaext_usertype(tolua_S,"Quad2D");
+ tolua_usertype(tolua_S,"PowerEase");
  tolua_usertype(tolua_S,"Sys");
+ tolua_usertype(tolua_S,"Rect2D");
+ toluaext_usertype(tolua_S,"Quad2D");
+ tolua_usertype(tolua_S,"CatmullRomCurve3");
  toluaext_usertype(tolua_S,"LuaLabelBitmap");
  tolua_usertype(tolua_S,"SineEase");
- tolua_usertype(tolua_S,"PowerEase");
+ tolua_usertype(tolua_S,"PlatformTexture");
  toluaext_usertype(tolua_S,"Layer2D");
  toluaext_usertype(tolua_S,"VertexPolygon");
  toluaext_usertype(tolua_S,"FsObject");
- tolua_usertype(tolua_S,"CatmullRomCurve3");
+ tolua_usertype(tolua_S,"CatmullRomCurve2");
  toluaext_usertype(tolua_S,"ResourceMgr");
  toluaext_usertype(tolua_S,"LuaScene");
- tolua_usertype(tolua_S,"CatmullRomCurve2");
+ tolua_usertype(tolua_S,"Curve2");
  toluaext_usertype(tolua_S,"ScrollView");
  tolua_usertype(tolua_S,"LinearEase");
+ tolua_usertype(tolua_S,"LinearCurve4");
  tolua_usertype(tolua_S,"Global");
  tolua_usertype(tolua_S,"EaseExpr");
- tolua_usertype(tolua_S,"LinearCurve4");
  tolua_usertype(tolua_S,"Curve3");
- tolua_usertype(tolua_S,"Curve2");
  tolua_usertype(tolua_S,"Color4f");
- toluaext_usertype(tolua_S,"ProgramSourceMgr");
+ tolua_usertype(tolua_S,"QuintEase");
+ toluaext_usertype(tolua_S,"LuaToggleButton");
  toluaext_usertype(tolua_S,"LuaLayer2D");
- toluaext_usertype(tolua_S,"Entity");
+ toluaext_usertype(tolua_S,"ProgramSourceMgr");
+ tolua_usertype(tolua_S,"FsResource");
  toluaext_usertype(tolua_S,"SchedulerTarget");
- tolua_usertype(tolua_S,"ProgramFeatureDesc");
- 
+ tolua_usertype(tolua_S,"Vector4");
  toluaext_usertype(tolua_S,"ToggleButton");
 }
 
@@ -31651,6 +31651,471 @@ static int tolua_FsLibFaeris_Texture2D_getHeight00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: setFilter of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_setFilter00
+static int tolua_FsLibFaeris_Texture2D_setFilter00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_TextureFilter",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_TextureFilter",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !toluaext_isenum(tolua_S,4,"E_TextureFilter",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+  E_TextureFilter mag = ((E_TextureFilter)  toluaext_toenum(tolua_S,2,0));
+  E_TextureFilter min = ((E_TextureFilter)  toluaext_toenum(tolua_S,3,0));
+  E_TextureFilter mip = ((E_TextureFilter)  toluaext_toenum(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setFilter'", NULL);
+#endif
+  {
+   self->setFilter(mag,min,mip);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setFilter'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setFilter of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_setFilter01
+static int tolua_FsLibFaeris_Texture2D_setFilter01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_TextureFilter",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_TextureFilter",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+  E_TextureFilter mag = ((E_TextureFilter)  toluaext_toenum(tolua_S,2,0));
+  E_TextureFilter min = ((E_TextureFilter)  toluaext_toenum(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setFilter'", NULL);
+#endif
+  {
+   self->setFilter(mag,min);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_FsLibFaeris_Texture2D_setFilter00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getFilterMin of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_getFilterMin00
+static int tolua_FsLibFaeris_Texture2D_getFilterMin00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getFilterMin'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getFilterMin();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getFilterMin'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getFilterMag of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_getFilterMag00
+static int tolua_FsLibFaeris_Texture2D_getFilterMag00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getFilterMag'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getFilterMag();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getFilterMag'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getFilterMipmap of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_getFilterMipmap00
+static int tolua_FsLibFaeris_Texture2D_getFilterMipmap00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getFilterMipmap'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getFilterMipmap();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getFilterMipmap'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setWrap of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_setWrap00
+static int tolua_FsLibFaeris_Texture2D_setWrap00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_TextureWrap",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !toluaext_isenum(tolua_S,3,"E_TextureWrap",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+  E_TextureWrap wraps = ((E_TextureWrap)  toluaext_toenum(tolua_S,2,0));
+  E_TextureWrap wrapt = ((E_TextureWrap)  toluaext_toenum(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setWrap'", NULL);
+#endif
+  {
+   self->setWrap(wraps,wrapt);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setWrap'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getWrapS of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_getWrapS00
+static int tolua_FsLibFaeris_Texture2D_getWrapS00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getWrapS'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getWrapS();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getWrapS'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getWrapT of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_getWrapT00
+static int tolua_FsLibFaeris_Texture2D_getWrapT00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getWrapT'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getWrapT();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getWrapT'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getFormat of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_getFormat00
+static int tolua_FsLibFaeris_Texture2D_getFormat00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getFormat'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getFormat();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getFormat'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setMipmapEnabled of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_setMipmapEnabled00
+static int tolua_FsLibFaeris_Texture2D_setMipmapEnabled00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+  bool enabled = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setMipmapEnabled'", NULL);
+#endif
+  {
+   self->setMipmapEnabled(enabled);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setMipmapEnabled'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getMipmapEnalbed of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_getMipmapEnalbed00
+static int tolua_FsLibFaeris_Texture2D_getMipmapEnalbed00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getMipmapEnalbed'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->getMipmapEnalbed();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getMipmapEnalbed'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getPlatformTexture of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_getPlatformTexture00
+static int tolua_FsLibFaeris_Texture2D_getPlatformTexture00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getPlatformTexture'", NULL);
+#endif
+  {
+   PlatformTexture tolua_ret = (PlatformTexture)  self->getPlatformTexture();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((PlatformTexture)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"PlatformTexture");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(PlatformTexture));
+     tolua_pushusertype(tolua_S,tolua_obj,"PlatformTexture");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getPlatformTexture'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: markInvaild of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_markInvaild00
+static int tolua_FsLibFaeris_Texture2D_markInvaild00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'markInvaild'", NULL);
+#endif
+  {
+   self->markInvaild();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'markInvaild'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: setResourceUrl of class  Texture2D */
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Texture2D_setResourceUrl00
+static int tolua_FsLibFaeris_Texture2D_setResourceUrl00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Texture2D",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Texture2D* self = (Texture2D*)  tolua_tousertype(tolua_S,1,0);
+  const char* name = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setResourceUrl'", NULL);
+#endif
+  {
+   self->setResourceUrl(name);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'setResourceUrl'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: create of class  FontBitmap */
 #ifndef TOLUA_DISABLE_tolua_FsLibFaeris_FontBitmap_create00
 static int tolua_FsLibFaeris_FontBitmap_create00(lua_State* tolua_S)
@@ -32205,7 +32670,7 @@ static int tolua_FsLibFaeris_Material_setFrontSide00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Material",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"E_FrontFace",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_FrontFace",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -32213,7 +32678,7 @@ static int tolua_FsLibFaeris_Material_setFrontSide00(lua_State* tolua_S)
 #endif
  {
   Material* self = (Material*)  tolua_tousertype(tolua_S,1,0);
-  E_FrontFace front = *((E_FrontFace*)  tolua_tousertype(tolua_S,2,0));
+  E_FrontFace front = ((E_FrontFace)  toluaext_toenum(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setFrontSide'", NULL);
 #endif
@@ -32249,18 +32714,8 @@ static int tolua_FsLibFaeris_Material_getFrontSide00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getFrontSide'", NULL);
 #endif
   {
-   E_FrontFace tolua_ret = (E_FrontFace)  self->getFrontSide();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((E_FrontFace)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"E_FrontFace");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(E_FrontFace));
-     tolua_pushusertype(tolua_S,tolua_obj,"E_FrontFace");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   int tolua_ret = (int)  self->getFrontSide();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -47550,6 +48005,79 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_constant(tolua_S,"START",static_cast<int>(E_AnimPlayMode::START));
    tolua_constant(tolua_S,"END",static_cast<int>(E_AnimPlayMode::END));
   tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_MeshType",0);
+  tolua_beginmodule(tolua_S,"E_MeshType");
+   tolua_constant(tolua_S,"STATIC",static_cast<int>(E_MeshType::STATIC));
+   tolua_constant(tolua_S,"MORPH",static_cast<int>(E_MeshType::MORPH));
+   tolua_constant(tolua_S,"SKELETON",static_cast<int>(E_MeshType::SKELETON));
+   tolua_constant(tolua_S,"MORPH_SKELETON",static_cast<int>(E_MeshType::MORPH_SKELETON));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_MorphAnimFlag",0);
+  tolua_beginmodule(tolua_S,"E_MorphAnimFlag");
+   tolua_constant(tolua_S,"VERTICES",static_cast<int>(E_MorphAnimFlag::VERTICES));
+   tolua_constant(tolua_S,"NORMALS",static_cast<int>(E_MorphAnimFlag::NORMALS));
+   tolua_constant(tolua_S,"COLORS",static_cast<int>(E_MorphAnimFlag::COLORS));
+   tolua_constant(tolua_S,"UVS",static_cast<int>(E_MorphAnimFlag::UVS));
+   tolua_constant(tolua_S,"UV2S",static_cast<int>(E_MorphAnimFlag::UV2S));
+   tolua_constant(tolua_S,"TANGENTS",static_cast<int>(E_MorphAnimFlag::TANGENTS));
+   tolua_constant(tolua_S,"SKIN_INDICS",static_cast<int>(E_MorphAnimFlag::SKIN_INDICS));
+   tolua_constant(tolua_S,"SKIN_WEIGHTS",static_cast<int>(E_MorphAnimFlag::SKIN_WEIGHTS));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_FileSeek",0);
+  tolua_beginmodule(tolua_S,"E_FileSeek");
+   tolua_constant(tolua_S,"SET",static_cast<int>(E_FileSeek::SET));
+   tolua_constant(tolua_S,"CUR",static_cast<int>(E_FileSeek::CUR));
+   tolua_constant(tolua_S,"END",static_cast<int>(E_FileSeek::END));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_PixelFormat",0);
+  tolua_beginmodule(tolua_S,"E_PixelFormat");
+   tolua_constant(tolua_S,"UNKOWN",static_cast<int>(E_PixelFormat::UNKOWN));
+   tolua_constant(tolua_S,"RGB888",static_cast<int>(E_PixelFormat::RGB888));
+   tolua_constant(tolua_S,"RGBA8888",static_cast<int>(E_PixelFormat::RGBA8888));
+   tolua_constant(tolua_S,"GRAY8",static_cast<int>(E_PixelFormat::GRAY8));
+   tolua_constant(tolua_S,"ALPHA",static_cast<int>(E_PixelFormat::ALPHA));
+   tolua_constant(tolua_S,"LUMINANCE",static_cast<int>(E_PixelFormat::LUMINANCE));
+   tolua_constant(tolua_S,"LUMINANCE_ALPHA",static_cast<int>(E_PixelFormat::LUMINANCE_ALPHA));
+   tolua_constant(tolua_S,"INTENSITY",static_cast<int>(E_PixelFormat::INTENSITY));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_ImageType",0);
+  tolua_beginmodule(tolua_S,"E_ImageType");
+   tolua_constant(tolua_S,"UNKOWN",static_cast<int>(E_ImageType::UNKOWN));
+   tolua_constant(tolua_S,"PNG",static_cast<int>(E_ImageType::PNG));
+   tolua_constant(tolua_S,"JPEG",static_cast<int>(E_ImageType::JPEG));
+   tolua_constant(tolua_S,"TGA",static_cast<int>(E_ImageType::TGA));
+   tolua_constant(tolua_S,"BMP",static_cast<int>(E_ImageType::BMP));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_TextureFilter",0);
+  tolua_beginmodule(tolua_S,"E_TextureFilter");
+   tolua_constant(tolua_S,"LINEAR",static_cast<int>(E_TextureFilter::LINEAR));
+   tolua_constant(tolua_S,"NEAREST",static_cast<int>(E_TextureFilter::NEAREST));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_TextureWrap",0);
+  tolua_beginmodule(tolua_S,"E_TextureWrap");
+   tolua_constant(tolua_S,"CLAMP",static_cast<int>(E_TextureWrap::CLAMP));
+   tolua_constant(tolua_S,"REPEAT",static_cast<int>(E_TextureWrap::REPEAT));
+   tolua_constant(tolua_S,"CLAMP_TO_EDGE",static_cast<int>(E_TextureWrap::CLAMP_TO_EDGE));
+   tolua_constant(tolua_S,"CLAMP_TO_BORDER",static_cast<int>(E_TextureWrap::CLAMP_TO_BORDER));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_FrontFace",0);
+  tolua_beginmodule(tolua_S,"E_FrontFace");
+   tolua_constant(tolua_S,"CCW",static_cast<int>(E_FrontFace::CCW));
+   tolua_constant(tolua_S,"CW",static_cast<int>(E_FrontFace::CW));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_BoneType",0);
+  tolua_beginmodule(tolua_S,"E_BoneType");
+   tolua_constant(tolua_S,"WORLD",static_cast<int>(E_BoneType::WORLD));
+   tolua_constant(tolua_S,"LOCAL",static_cast<int>(E_BoneType::LOCAL));
+  tolua_endmodule(tolua_S);
+  tolua_module(tolua_S,"E_LightType",0);
+  tolua_beginmodule(tolua_S,"E_LightType");
+   tolua_constant(tolua_S,"AMBIENT",static_cast<int>(E_LightType::AMBIENT));
+   tolua_constant(tolua_S,"POINT",static_cast<int>(E_LightType::POINT));
+   tolua_constant(tolua_S,"SPOT",static_cast<int>(E_LightType::SPOT));
+   tolua_constant(tolua_S,"DIRECTIONAL",static_cast<int>(E_LightType::DIRECTIONAL));
+   tolua_constant(tolua_S,"HEMI_SPHERE",static_cast<int>(E_LightType::HEMI_SPHERE));
+  tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"ActionTarget","ActionTarget","FsObject",NULL);
   tolua_beginmodule(tolua_S,"ActionTarget");
    tolua_function(tolua_S,"doAction",tolua_FsLibFaeris_ActionTarget_doAction00);
@@ -48760,6 +49288,20 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_beginmodule(tolua_S,"Texture2D");
    tolua_function(tolua_S,"getWidth",tolua_FsLibFaeris_Texture2D_getWidth00);
    tolua_function(tolua_S,"getHeight",tolua_FsLibFaeris_Texture2D_getHeight00);
+   tolua_function(tolua_S,"setFilter",tolua_FsLibFaeris_Texture2D_setFilter00);
+   tolua_function(tolua_S,"setFilter",tolua_FsLibFaeris_Texture2D_setFilter01);
+   tolua_function(tolua_S,"getFilterMin",tolua_FsLibFaeris_Texture2D_getFilterMin00);
+   tolua_function(tolua_S,"getFilterMag",tolua_FsLibFaeris_Texture2D_getFilterMag00);
+   tolua_function(tolua_S,"getFilterMipmap",tolua_FsLibFaeris_Texture2D_getFilterMipmap00);
+   tolua_function(tolua_S,"setWrap",tolua_FsLibFaeris_Texture2D_setWrap00);
+   tolua_function(tolua_S,"getWrapS",tolua_FsLibFaeris_Texture2D_getWrapS00);
+   tolua_function(tolua_S,"getWrapT",tolua_FsLibFaeris_Texture2D_getWrapT00);
+   tolua_function(tolua_S,"getFormat",tolua_FsLibFaeris_Texture2D_getFormat00);
+   tolua_function(tolua_S,"setMipmapEnabled",tolua_FsLibFaeris_Texture2D_setMipmapEnabled00);
+   tolua_function(tolua_S,"getMipmapEnalbed",tolua_FsLibFaeris_Texture2D_getMipmapEnalbed00);
+   tolua_function(tolua_S,"getPlatformTexture",tolua_FsLibFaeris_Texture2D_getPlatformTexture00);
+   tolua_function(tolua_S,"markInvaild",tolua_FsLibFaeris_Texture2D_markInvaild00);
+   tolua_function(tolua_S,"setResourceUrl",tolua_FsLibFaeris_Texture2D_setResourceUrl00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"FontBitmap","FontBitmap","FsObject",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"FontBitmap");

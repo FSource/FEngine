@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Box2D
-** Generated automatically by tolua++-1.0.92 on 11/24/14 02:31:21.
+** Generated automatically by tolua++-1.0.92 on 11/25/14 04:51:39.
 */
 
 #ifndef __cplusplus

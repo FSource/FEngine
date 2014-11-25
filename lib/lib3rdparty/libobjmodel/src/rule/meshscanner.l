@@ -25,7 +25,7 @@
 %option prefix="libobjmesh_"
 
 
-word [a-zA-Z]+[a-zA-Z0-9\_\.\-]*
+word [a-zA-Z]+[a-zA-Z0-9\_\.\-#]*
 mtlfile [a-zA-Z\.\\/][:\\/\.a-z\_A-Z0-9\-]*\.mtl
 null (\(null\)|null)
 

@@ -17,7 +17,7 @@ QuaternionTransform::QuaternionTransform()
 {
 	m_translate.set(0,0,0);
 	m_rotate.makeFromEuler(Vector3f(0,0,0),E_EulerOrientType::XYZ);
-	m_scale.set(0,0,0);
+	m_scale.set(1.0f,1.0f,1.0f);
 
 	m_transformMatrixDirty=true;
 }

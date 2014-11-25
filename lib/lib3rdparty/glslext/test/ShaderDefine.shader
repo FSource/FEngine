@@ -1,5 +1,3 @@
-/* sfdaf */
-
 Feature
 {
 	transparency: true 
@@ -17,17 +15,33 @@ Feature
 	diffuseMap : true 
 }
 
+UniformMap  
+{
+	u_worldViewProjectionMatrix=$(R.WORLD_VIEW_PROJECTION_MAT)
+	u_worldViewProjectionMatrix=$(R.WORLD_VIEW_PROJECTION_MAT)
+	u_worldViewProjectionMatrix=$(R.WORLD_VIEW_PROJECTION_MAT)
+	u_worldViewProjectionMatrix=$(R.WORLD_VIEW_PROJECTION_MAT)
+}
+
+
+AttributeMap 
+{
+	a_vertex=$(VERTICES)
+	a_texCoord0=$(UVS)
+	a_normal=$(NORMALS)
+}
+
 
 
 VertexShader 
 {
 
 #ifdef MAX_LIGHT > 0 
-	attribute vec4 a_vertex  = $(VERTICES);
-	attribute vec2 a_texCoord0 = $(UVS);
+	attribute vec4 a_vertex ;
+	attribute vec2 a_texCoord0 ;
 #endif 
 
-	uniform mat4 u_worldViewProjectionMatrix=$(R.WORLD_VIEW_PROJECTION_MAT);
+	uniform mat4 u_worldViewProjectionMatrix;
 	varying vec2 v_texCoord0;
 
 	/* may name is chen lin */
@@ -55,9 +69,9 @@ FragmentShader
 	precision mediump float;
 #endif
 
-	uniform sampler2D u_texture0=$(M.COLOR_MAP);
-	uniform vec4 u_color=$(M.COLOR);
-	uniform vec4 u_opaciy=$(M.EXT[2]);
+	uniform sampler2D u_texture0;
+	uniform vec4 u_color;
+	uniform vec4 u_opaciy;
 
 	varying vec2 v_texCoord0;
 

@@ -10,7 +10,7 @@ mesh_l:
 
 
 mtl_y:
-	bison -o ../LibObjMtlGrammer.cc --defines=../LibObjMtlGrammer.h mtlgrammer.y
+	bison  -o ../LibObjMtlGrammer.cc --defines=../LibObjMtlGrammer.h mtlgrammer.y
 
 mtl_l:
 	flex --bison-bridge --nounistd -o ../LibObjMtlScanner.cc --header-file=../LibObjMtlScanner.h  mtlscanner.l  
