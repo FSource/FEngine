@@ -89,11 +89,15 @@ class Particle2DEffect:public Entity ,public IMaterial2DEntity
 		int getParticleNu(){return m_particles.size(); }
 		int getMaxParticleNu();
 
+
 	public:
 		/* override entity */
 		virtual void update(float dt);
 		virtual void draw(RenderDevice* r,bool update_world_matrix);
 		virtual const char* className();
+
+		/* when particle, this will called  */
+		virtual void finish();
 
 
 	protected:

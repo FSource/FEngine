@@ -282,6 +282,14 @@ class LuaParticle2DEffect:public TEntity<Particle2DEffect>
 		{
 			return FS_LUA_PARTICLE2D_EFFECT_CLASS_NAME;
 		}
+		virtual void finish() FS_OVERRIDE
+		{
+			LuaEngine* se=(LuaEngine*) Global::scriptEngine();
+			if(!se->callFunctionInTable(TEntity<Particle2DEffect>::m_scriptData,"onFinish",1,0,"f",this))
+			{
+				TEntity<Particle2DEffect>::finish();
+			}
+		}
 };
 
 
@@ -306,6 +314,7 @@ class LuaVertexPolygon:public TEntity<VertexPolygon>
 		{
 			return FS_LUA_VERTEX_POLYGON_CLASS_NAME;
 		}
+
 
 	protected:
 		LuaVertexPolygon(){}

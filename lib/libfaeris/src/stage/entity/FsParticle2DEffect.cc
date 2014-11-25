@@ -209,6 +209,10 @@ void Particle2DEffect::setAutoRemoveOnStop(bool remove)
 	m_autoRemove=remove;
 }
 
+void Particle2DEffect::finish()
+{
+
+}
 
 
 
@@ -268,6 +272,7 @@ void Particle2DEffect::update(float dt)
 		if (m_particles.size()==0) 
 		{
 			m_stop=true;
+			finish();
 			if(m_autoRemove)
 			{
 				Entity::detach();
