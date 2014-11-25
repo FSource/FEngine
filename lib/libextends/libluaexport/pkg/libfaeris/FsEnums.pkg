@@ -116,8 +116,8 @@ namespace E_UniformType
 
 		/* ref */
 		UT_REF_RD, 	   /* take from render device */
-		UT_REF_MAT,    /* take from material */
-		UT_REF_MAT_EXT, /* take from material extends */
+		UT_REF_MTL,    /* take from material */
+		UT_REF_MTL_EXT, /* take from material extends */
 
 		MAX_NU,
 	};
@@ -322,4 +322,125 @@ namespace E_AnimPlayMode
 		END
 	};
 }
+
+
+
+namespace  E_MeshType 
+{
+	enum 
+	{
+		STATIC,
+		MORPH,
+		SKELETON,
+		MORPH_SKELETON
+	}
+};
+
+
+namespace E_MorphAnimFlag 
+{
+	enum 
+	{
+		VERTICES=0x01ul,
+		NORMALS=0x02ul,
+		COLORS=0x04ul,
+		UVS=0x08ul,
+		UV2S=0x10ul,
+		TANGENTS=0x20ul,
+		SKIN_INDICS=0x40ul,
+		SKIN_WEIGHTS=0x80ul
+	}
+};
+
+
+namespace E_FileSeek 
+{
+	enum 
+	{
+		SET,
+		CUR,
+		END,
+	}
+};
+
+namespace E_PixelFormat 
+{
+	enum 
+	{
+		UNKOWN=0,
+		RGB888,
+		RGBA8888,
+		GRAY8,
+		ALPHA,
+		LUMINANCE,
+		LUMINANCE_ALPHA,
+		INTENSITY,
+	}
+
+};
+
+namespace E_ImageType 
+{
+	enum 
+	{
+		UNKOWN=0,
+		PNG,
+		JPEG,
+		TGA,
+		BMP
+	}
+};
+
+namespace E_TextureFilter 
+{
+	enum 
+	{
+		LINEAR,
+		NEAREST,
+	}
+};
+
+namespace E_TextureWrap 
+{
+	enum 
+	{
+		CLAMP,
+		REPEAT,
+		CLAMP_TO_EDGE,
+		CLAMP_TO_BORDER,
+	}
+};
+
+
+namespace E_FrontFace 
+{
+	enum 
+	{
+		CCW,
+		CW
+	}
+};
+
+namespace E_BoneType 
+{
+	enum 
+	{
+		WORLD,
+		LOCAL,
+	}
+};
+
+
+namespace E_LightType 
+{
+	enum 
+	{
+		AMBIENT,
+		POINT,
+		SPOT,
+		DIRECTIONAL,
+		HEMI_SPHERE
+	}
+};
+
 

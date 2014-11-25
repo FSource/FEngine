@@ -1,6 +1,7 @@
 #include "stage/entity/FsEntity.h"
 #include "graphics/FsRenderDevice.h"
 #include "stage/layer/FsLayer.h"
+#include "stage/entity/transform/FsEulerTransform.h"
 
 NS_FS_BEGIN
 
@@ -95,7 +96,7 @@ void Entity::draws(RenderDevice* r,bool updateMatrix)
 void Entity::init()
 {
 
-	m_transform= Transform::create();
+	m_transform= EulerTransform::create();
 	FS_SAFE_ADD_REF(m_transform);
 
 	m_worldMatrixDirty=1;
@@ -272,10 +273,10 @@ void Entity::addChild(Entity* n)
 
 
 
-FsArray* Entity::takeAllChild()
+FsArray* Entity::takeAllChild(bool visible)
 {
 	FsArray* ret=FsArray::create();
-	getAllChild(ret);
+	getAllChild(ret,visible);
 	return ret;
 }
 int Entity::childNu()
@@ -283,14 +284,25 @@ int Entity::childNu()
 	return m_chirdren->size();
 }
 
-void Entity::getAllChild(FsArray* ret)
+void Entity::getAllChild(FsArray* ret,bool visiable)
 {
+	if(visiable && !getVisibles())
+	{
+		return ;
+	}
+
 	int child_nu=m_chirdren->size();
 	for(int i=0;i<child_nu;i++)
 	{
 		Entity* ob=(Entity*)m_chirdren->get(i);
-		ret->push(ob);
-		ob->getAllChild(ret);
+		if(visiable && ob->getVisibles() )
+		{
+			if(visiable && ob->getVisible())
+			{
+				ret->push(ob);
+			}
+			ob->getAllChild(ret,visiable);
+		}
 	}
 }
 
@@ -409,7 +421,7 @@ void Entity::sortChildren()
 			{
 				Entity* tmp=ei; ei=ej; ej=tmp;
 
-			   	ei->addRef();
+				ei->addRef();
 				ej->addRef();
 
 				m_chirdren->set(i,ei);

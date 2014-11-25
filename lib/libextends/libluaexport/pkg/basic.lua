@@ -176,8 +176,17 @@ local fsenums =
 	"E_BlendFactor",
 	"E_DrawMode",
 	"E_AnimPlayMode",
+	"E_MeshType",
+	"E_MorphAnimFlag",
+	"E_FileSeek",
+	"E_PixelFormat",
+	"E_ImageType",
+	"E_TextureFilter",
+	"E_TextureWrap",
+	"E_FrontFace",
+	"E_BoneType",
+	"E_LightType",
 }
-
 
 
 

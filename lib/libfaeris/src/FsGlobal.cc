@@ -28,6 +28,7 @@ FS_GLOBAL_CC(Sprite2DDataMgr,sprite2DDataMgr,setSprite2DDataMgr);
 FS_GLOBAL_CC(ProgramSourceMgr,programSourceMgr,setProgramSourceMgr);
 
 FS_GLOBAL_CC(MeshMgr,meshMgr,setMeshMgr);
+FS_GLOBAL_CC(Material3DMgr,material3DMgr,setMaterial3DMgr);
 
 NS_FS_END
 

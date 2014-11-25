@@ -61,10 +61,14 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <BrowseInformation>false</BrowseInformation>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(ProjectName)d.lib</OutputFile>
     </Lib>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -161,7 +165,6 @@
     <ClInclude Include="..\..\src\stage\action\FsSeqAction.h" />
     <ClInclude Include="..\..\src\stage\entity\FsEntity.h" />
     <ClInclude Include="..\..\src\stage\entity\FsIMaterial2DEntity.h" />
-    <ClInclude Include="..\..\src\stage\entity\FsITransform.h" />
     <ClInclude Include="..\..\src\stage\entity\FsLabelBitmap.h" />
     <ClInclude Include="..\..\src\stage\entity\FsLabelTTF.h" />
     <ClInclude Include="..\..\src\stage\entity\FsPanel.h" />
@@ -172,6 +175,9 @@
     <ClInclude Include="..\..\src\stage\entity\FsSprite2D.h" />
     <ClInclude Include="..\..\src\stage\entity\FsSprite2DData.h" />
     <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h" />
+    <ClInclude Include="..\..\src\stage\entity\transform\FsEulerTransform.h" />
+    <ClInclude Include="..\..\src\stage\entity\transform\FsITransform.h" />
+    <ClInclude Include="..\..\src\stage\entity\transform\FsQuaternionTransform.h" />
     <ClInclude Include="..\..\src\stage\FsActionTarget.h" />
     <ClInclude Include="..\..\src\stage\FsDirector.h" />
     <ClInclude Include="..\..\src\stage\FsScene.h" />
@@ -259,7 +265,9 @@
     <ClCompile Include="..\..\src\graphics\material\FsMaterial.cc" />
     <ClCompile Include="..\..\src\graphics\material\FsMaterial2D.cc" />
     <ClCompile Include="..\..\src\graphics\shader\FsProgram.cc" />
+    <ClCompile Include="..\..\src\graphics\shader\FsProgramFeatureDesc.cc" />
     <ClCompile Include="..\..\src\graphics\shader\FsProgramSource.cc" />
+    <ClCompile Include="..\..\src\graphics\shader\FsUniformValue.cc" />
     <ClCompile Include="..\..\src\math\curve\FsCatmullRomCurve.cc" />
     <ClCompile Include="..\..\src\math\curve\FsCubicBezierCurve.cc" />
     <ClCompile Include="..\..\src\math\curve\FsLinearCurve.cc" />
@@ -306,7 +314,6 @@
     <ClCompile Include="..\..\src\stage\action\FsSeqAction.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsEntity.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsIMaterial2DEntity.cc" />
-    <ClCompile Include="..\..\src\stage\entity\FsITransform.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsLabelBitmap.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsLabelTTF.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsPanel.cc" />
@@ -316,6 +323,8 @@
     <ClCompile Include="..\..\src\stage\entity\FsSprite2D.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsSprite2DData.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsVertexPolygon.cc" />
+    <ClCompile Include="..\..\src\stage\entity\transform\FsEulerTransform.cc" />
+    <ClCompile Include="..\..\src\stage\entity\transform\FsQuaternionTransform.cc" />
     <ClCompile Include="..\..\src\stage\FsActionTarget.cc" />
     <ClCompile Include="..\..\src\stage\FsDirector.cc" />
     <ClCompile Include="..\..\src\stage\FsScene.cc" />

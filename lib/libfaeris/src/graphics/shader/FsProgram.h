@@ -11,6 +11,10 @@
 #include "mgr/FsResource.h"
 #include "support/util/FsDict.h"
 #include "support/util/FsString.h"
+#include "support/util/FsArray.h"
+#include "FsUniformMap.h"
+#include "FsStreamMap.h"
+
 
 
 #if FS_CONFIG(FS_GLES2_0_RENDER_DEVICE) 
@@ -34,10 +38,13 @@ class Program:public Resource
 {
 	public:
 		static Program* create(const char* vertex_src,const char* fragment_src);
-		static Program* create(ProgramFeatureDesc* desc,ProgramSource* source);
+		static Program* create(ProgramSource* source,ProgramFeatureDesc* desc);
 		static Program* create(ProgramSource* source);
 
 	public:
+
+		bool canMatch(ProgramFeatureDesc* desc);
+
 		/* return the location of the  Attribute/Uniform 
 		 * if not exist in program,-1 will returned 
 		 */
@@ -53,17 +60,43 @@ class Program:public Resource
 		virtual const char* className();
 
 
-		const ProgramFeatureDesc*  getFeatureDesc(){return m_featureDesc;}
-		void setFeatureDesc(ProgramFeatureDesc* desc){m_featureDesc=desc;}
+		ProgramFeatureDesc*  getFeatureDesc()
+		{
+			return m_featureDesc;
+		}
+
+		void setFeatureDesc(ProgramFeatureDesc* desc)
+		{
+			m_featureDesc=desc;
+		}
 
 		/* uniform map */
-		UniformMap* getUniformMap(int index){return m_uniformMaps[index];}
-		int getUniformMapNu(){return m_uniformMaps.size();}
-		void addUniformMap(UniformMap* map){m_uniformMaps.push_back(map);}
+		UniformMap* getUniformMap(int index)
+		{
+			return (UniformMap*)m_uniformMaps->get(index);
+		}
+
+		int getUniformMapNu()
+		{
+			return m_uniformMaps->size();
+		}
+
+		void addUniformMap(UniformMap* map)
+		{
+			m_uniformMaps->push(map);
+		}
 
 		/* stream map */
-		StreamMap* getStreamMap(int index){return m_streamMaps[index];}
-		int getStreamMapNu(){return m_streamMaps.size();}
+		StreamMap* getStreamMapFromSeq(int index)
+		{
+			return (StreamMap*)m_streamMaps->get(index);
+		}
+
+		int getStreamMapNu()
+		{
+			return m_streamMaps->size();
+		}
+
 		void addStreamMap(StreamMap* map);
 
 		StreamMap* getStreamMap(E_StreamType t)
@@ -72,22 +105,25 @@ class Program:public Resource
 		}
 
 
+
+
 	protected:
 		Program();
 		~Program();
 
 		bool init(const char* vertex_src,const char* fragment_src);
 		bool init(ProgramSource* source);
+		bool init(ProgramSource* source,ProgramFeatureDesc* desc);
 
 	private:
-
+		FS_FEATURE_WEAK_REF(ProgramSource*) m_programSource;
 		ProgramFeatureDesc* m_featureDesc;
 
 		int m_cacheUniformLoc[FS_PROGRAM_CACHE_UNIFORM_SUPPORT];
 		int m_cacheAttrLoc[FS_PROGRAM_CACHE_ATTR_SUPPORT];
 
-		std::vector<UniformMap*> m_uniformMaps;
-		std::vector<StreamMap*> m_streamMaps;
+		FsArray* m_uniformMaps;
+		FsArray* m_streamMaps;
 
 		StreamMap* m_seqStreamMaps[static_cast<int>(E_StreamType::MAX_NU)];
 

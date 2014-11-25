@@ -18,7 +18,7 @@ class Program;
 class ProgramFeatureDesc;
 
 
-class Material:public FsObject
+class Material:public Resource
 {
 	public:
 		Material();

@@ -68,6 +68,7 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <BrowseInformation>false</BrowseInformation>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glew32.lib;opengl32.lib;freetyped.lib;libtgad.lib;fmodex.lib;zlibd.lib;libpngd.lib;libjpegd.lib;ljsond.lib;jsoncd.lib;glslextd.lib;luad.lib;minizipd.lib;libcurld.lib;libfaerisd.lib;libfaerisextd.lib;pthreadVC.lib;tolua++d.lib;libluaexportd.lib;libspinesprited.lib;wsock32.lib;Wldap32.lib;Ws2_32.lib;Winmm.lib;libbox2dd.lib;lib3rdextendsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -77,6 +78,9 @@
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

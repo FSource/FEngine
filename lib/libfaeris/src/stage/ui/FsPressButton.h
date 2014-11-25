@@ -1,6 +1,7 @@
 #ifndef _FS_PRESS_BUTTON_H_
 #define _FS_PRESS_BUTTON_H_
 
+#include <functional>
 #include "FsMacros.h"
 
 
@@ -46,6 +47,7 @@ class PressButton:public StateButton
 		/* inherit FsObject */
 		virtual const char* className();
 
+
 	public:
 		virtual void pressDown(float x,float y);
 		virtual void pressMoveIn(float x,float y);
@@ -55,12 +57,19 @@ class PressButton:public StateButton
 		virtual void cancel();
 		virtual void click();
 
-	public:  
 
+	public:
+
+		std::function<void(PressButton*,float,float)> onPressDown;
+		std::function<void(PressButton*,float,float)> onPressMoveIn;
+		std::function<void(PressButton*,float,float)> onPressMoveOut;
+		std::function<void (PressButton*,float,float)> onPressUp;
+		std::function<void(PressButton*)> onCancel;
+		std::function<void(PressButton*)> onClick;
+
+	public:  
 		void setDisabled(bool value);
 		bool getDisabled() const;
-
-
 
 	protected:
 		PressButton();

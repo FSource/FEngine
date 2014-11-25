@@ -1,0 +1,93 @@
+"Feature    \n\   \n\
+{    \n\   \n\
+	ambientLight : true    \n\   \n\
+	colorMap : true    \n\   \n\
+}    \n\   \n\
+    \n\   \n\
+UniformMap     \n\   \n\
+{    \n\   \n\
+	u_mvp =$(R.WORLD_VIEW_PROJECTION_MAT)    \n\   \n\
+	u_emissive=$(M.EMISSIVE)    \n\   \n\
+	u_ambient=$(M.AMBIENT)    \n\   \n\
+	u_colorMap=$(M.COLOR_MAP)    \n\   \n\
+	u_ambientLightColor= $(L.AMBIENT_LIGHT_COLOR)    \n\   \n\
+}    \n\   \n\
+    \n\   \n\
+AttributeMap     \n\   \n\
+{    \n\   \n\
+	a_position=$(VERTICES)     \n\   \n\
+	a_texCoord=$(UVS)    \n\   \n\
+}    \n\   \n\
+    \n\   \n\
+    \n\   \n\
+    \n\   \n\
+VertexShader    \n\   \n\
+{    \n\   \n\
+	uniform mat4 u_mvp;    \n\   \n\
+    \n\   \n\
+	attribute vec4 a_position;    \n\   \n\
+    \n\   \n\
+    \n\   \n\
+#ifdef FS_COLOR_MAP    \n\   \n\
+	attribute vec2 a_texCoord;    \n\   \n\
+    \n\   \n\
+#ifdef GL_ES    \n\   \n\
+	varying mediump vec2 v_texCoord;    \n\   \n\
+#else    \n\   \n\
+	varying vec2 v_texCoord;    \n\   \n\
+#endif    \n\   \n\
+    \n\   \n\
+#endif    \n\   \n\
+    \n\   \n\
+	void main()    \n\   \n\
+	{																    \n\   \n\
+		gl_Position=u_mvp*a_position;    \n\   \n\
+    \n\   \n\
+#ifdef FS_COLOR_MAP    \n\   \n\
+		v_texCoord=a_texCoord;    \n\   \n\
+#endif    \n\   \n\
+    \n\   \n\
+	}														    \n\   \n\
+}    \n\   \n\
+    \n\   \n\
+    \n\   \n\
+FragmentShader    \n\   \n\
+{    \n\   \n\
+    \n\   \n\
+#ifdef GL_ES    \n\   \n\
+	precision lowp float;	    \n\   \n\
+#endif    \n\   \n\
+    \n\   \n\
+	uniform vec3  u_emissive;    \n\   \n\
+	uniform vec3  u_ambient;    \n\   \n\
+    \n\   \n\
+#ifdef FS_COLOR_MAP    \n\   \n\
+	uniform sampler2D u_colorMap;    \n\   \n\
+	varying  vec2 v_texCoord;    \n\   \n\
+#endif    \n\   \n\
+    \n\   \n\
+    \n\   \n\
+#ifdef FS_AMBIENT_LIGHT_NU    \n\   \n\
+	uniform vec3 u_ambientLightColor;    \n\   \n\
+#endif    \n\   \n\
+    \n\   \n\
+	void main()			    \n\   \n\
+	{						    \n\   \n\
+    \n\   \n\
+#ifdef FS_COLOR_MAP    \n\   \n\
+		vec3 color_map=texture2D(u_colorMap,v_texCoord).rgb;    \n\   \n\
+#else    \n\   \n\
+		vec3 color_map=vec3(1.0);    \n\   \n\
+#endif    \n\   \n\
+		gl_FragColor=vec4(u_emissive*color_map,1.0);    \n\   \n\
+    \n\   \n\
+    \n\   \n\
+#ifdef FS_AMBIENT_LIGHT_NU    \n\   \n\
+		vec3 ambient_color=u_ambient*u_ambientLightColor*color_map;    \n\   \n\
+#else    \n\   \n\
+		vec3 ambient_color=vec3(0.0);    \n\   \n\
+#endif    \n\   \n\
+    \n\   \n\
+		gl_FragColor.rgb+=ambient_color;    \n\   \n\
+	}								    \n\   \n\
+}" ;    \n\

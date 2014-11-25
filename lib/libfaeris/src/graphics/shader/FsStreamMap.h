@@ -4,18 +4,19 @@
 #include "FsMacros.h"
 #include "FsEnums.h"
 
+#include "FsObject.h"
+
 
 
 NS_FS_BEGIN
 
-class StreamMap
+class StreamMap :public FsObject
 {
 	public:
-		StreamMap(const char* name,E_StreamType ref_type)
-			:m_name(name),
-			m_refType(ref_type),
-			m_location(-2)
-		{ }
+		static StreamMap* create(const char* name,E_StreamType ref_type)
+		{
+			return new StreamMap(name,ref_type);
+		}
 
 	public:
 		StreamMap* clone()
@@ -23,6 +24,13 @@ class StreamMap
 			StreamMap* ret=new StreamMap(m_name.c_str(),m_refType);
 			return ret;
 		}
+
+	protected:
+		StreamMap(const char* name,E_StreamType ref_type)
+			:m_name(name),
+			m_refType(ref_type),
+			m_location(-2)
+		{ }
 
 	public:
 		std::string m_name;

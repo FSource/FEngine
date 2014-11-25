@@ -52,6 +52,12 @@ class PageView:public UiWidget
 		UiWidget* getCurrentPage();
 
 
+		void slideToPage(UiWidget* widget);
+		void slideToPageIndex(int index);
+		void slideToNextPage();
+		void slideToPrevPage();
+
+
 	public:
 		/* inherit FsObject */
 		virtual const char* className();

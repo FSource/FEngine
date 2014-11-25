@@ -11,6 +11,7 @@
 #define yylex Glslext_lex 
 #define param_scanner param->m_scanner
 
+/* TODO(When Parse Failed MemLeak Will Happend */
 
 %}
 
@@ -22,43 +23,42 @@
 
 
 
-%token tVERTEX_BEGIN
-%token tVERTEX_END 
+%token tFeature
 
-%token tFRAGMENT_BEGIN
-%token tFRAGMENT_END
+%token tVERTEX_SHADER
+
+%token tFRAGMENT_SHADER
+%token tUNIFORM_MAP 
+%token tATTRIBUTE_MAP
 
 %token tL_RB 
 %token tR_RB
-%token tDOLLAR
+
 
 %token tL_SB 
 %token tR_SB
 
+%token tL_CB 
+%token tR_CB
 
-%token tATTRIBUTE 
-%token tUNIFROM 
+%token tDOLLAR
+%token tCOLON
 
-%token <istring> tU_TYPE 
-%token <istring> tFLOAT 
+%token tASSIGN
+
 %token <istring> tINTEGER
 
 %token tNEW_LINE
 
-%token tCOMMA
-%token tASSIGN
-
-%token <istring> tOPERATOR
 %token <istring> tWORD 
-
 %token <istring> tPRECISION
 
-%token tSEMICOLON
-%token <istring> tOP_EQUAL
 
 
 %type <istring> word
 %type <istring> program_body
+%type <istring> words
+
 
 %define api.pure 
 %parse-param{GlslextParser* param}
@@ -73,43 +73,89 @@
 %%
 
 
-shader_source_start: real_shader ;
-shader_source_start: real_shader new_lines;
-shader_source_start: new_lines real_shader ;
-shader_source_start: new_lines real_shader new_lines ;
-real_shader: vertex_shader new_lines fragment_shader ;
+
+shader_source_start: new_lines shader_chunks new_lines 
+
+shader_chunks :  shader_chunk | shader_chunks new_lines shader_chunk 
+
+shader_chunk : feature_define | uniform_map_define | attribute_map_define | vertex_shader_define | fragment_shader_define ;
 
 
 
-vertex_shader:tVERTEX_BEGIN program_body tVERTEX_END
+feature_define: tFeature  new_lines tL_CB new_lines features tR_CB ;
+
+features : | features feature ;
+
+feature : tWORD  tCOLON tWORD   new_lines
+{
+	param->addFeature($1,$3);
+}
+;
+
+uniform_map_define : tUNIFORM_MAP new_lines tL_CB  new_lines uniform_maps tR_CB ;
+uniform_maps : | uniform_maps uniform_map ;
+uniform_map : tWORD tASSIGN  tDOLLAR tL_RB  tWORD tR_RB new_lines
 	{
-		param->setVertexSrc($2);
+		param->addUniformMap($1,NULL,$5);
+	};
+uniform_map : tWORD tASSIGN  tDOLLAR tL_RB tWORD tL_SB tINTEGER tL_SB new_lines 
+	{
+		param->addUniformMap($1,NULL,$5,atoi($7->c_str()));
+		delete $7;
+	};
+
+
+
+attribute_map_define  : tATTRIBUTE_MAP new_lines tL_CB new_lines attribute_maps tR_CB;
+attribute_maps : | attribute_maps attribute_map ;
+attribute_map: tWORD tASSIGN tDOLLAR tL_RB tWORD tR_RB new_lines
+	{
+		param->addAttributeMap($1,NULL,$5);
+	};
+
+
+
+vertex_shader_define:tVERTEX_SHADER new_lines tL_CB program_body tR_CB
+	{
+		param->setVertexSrc($4);
 	}
 ;
 
-
-fragment_shader:tFRAGMENT_BEGIN program_body tFRAGMENT_END
+fragment_shader_define :tFRAGMENT_SHADER new_lines tL_CB program_body tR_CB
 	{
-		param->setFragmentSrc($2);
+		param->setFragmentSrc($4);
 		
 	}
 ;
 
 
-program_body: word 
+program_body: words
 	{
 		$$=$1;
 	}
 ;
 
-program_body: program_body word 
+
+words: word
+{
+	$$=$1;
+}
+|words word 
 {
 	($1)->append(" ");
 	($1)->append(*($2));
-
 	$$=$1;
 	delete $2;
-}
+};
+
+word: tL_CB words tR_CB 
+{
+	std::string* tmp=new std::string("{ ");
+	tmp->append(*$2);
+	tmp->append("  }");
+	$$=tmp;
+};
+
 
 
 word: tNEW_LINE 
@@ -132,9 +178,9 @@ word: tNEW_LINE
 	{
 		$$=new std::string("]");
 	}
-	| tFLOAT
+	|tCOLON 
 	{
-		$$=$1;
+		$$=new std::string(":");
 	}
 	| tINTEGER
 	{
@@ -144,264 +190,15 @@ word: tNEW_LINE
 	{
 		$$=$1;
 	}
-	|tU_TYPE 
-	{
-		$$=$1;
-	}
-	|tPRECISION  
-	{
-		$$=$1;
-	}
-	| tSEMICOLON 
-	{
-		$$=new std::string(";");
-	}
 	|tASSIGN
 	{
 		$$=new std::string("=");
 	}
-	|tOPERATOR
-	{
-		$$=$1;
-	}
-	|tCOMMA
-	{
-		$$=new std::string(",");
-	}
-
-
-;
-
-word: tUNIFROM tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tL_SB tINTEGER tR_SB tR_RB tSEMICOLON
-	{
-		std::string* ret=new std::string("uniform ");
-
-		/* type */
-		ret->append(*($2));
-
-		/* variable */
-		ret->append(" ");
-		ret->append(*($3));
-		
-		/* add uniform map */
-		param->addUniformMap($3,$2,$7,atoi($9->c_str()));
-		delete $9;
-
-		ret->append(" ;");
-		$$=ret;
-	}
-;
-
-word: tUNIFROM tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tR_RB tSEMICOLON
-	{
-		std::string* ret=new std::string("uniform ");
-
-		/* type */
-		ret->append(*($2));
-
-		/* variable */
-		ret->append(" ");
-		ret->append(*($3));
-		
-		/* add unifom map */
-		param->addUniformMap($3,$2,$7);
-
-		ret->append(" ;");
-		$$=ret;
-	}
-;
-
-word: tUNIFROM tPRECISION tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tL_SB tINTEGER tR_SB tR_RB tSEMICOLON 
-{
-	std::string* ret=new std::string("uniform ");
-
-	/* precision*/
-	ret->append(*($2));
-	delete $2;
-
-	/* type */
-	ret->append(" ");
-	ret->append(*($3));
-		
-
-	/* variable */
-	ret->append(" ");
-	ret->append(*($4));
-		
-	/* add uniform map */
-	param->addUniformMap($4,$3,$8,atoi($10->c_str()));
-	delete $10;
-
-	ret->append(" ;");
-	$$=ret;
-}
-;
-
-word: tUNIFROM tPRECISION tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tR_RB tSEMICOLON 
-{
-	std::string* ret=new std::string("uniform ");
-
-	/* precision*/
-	ret->append(*($2));
-	delete $2;
-
-	/* type */
-	ret->append(" ");
-	ret->append(*($3));
-		
-
-	/* variable */
-	ret->append(" ");
-	ret->append(*($4));
-		
-	/* add uniform map */
-	param->addUniformMap($4,$3,$8);
-
-	ret->append(" ;");
-	$$=ret;
-}
 ;
 
 
 
-word: tATTRIBUTE tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tR_RB tSEMICOLON 
-{
-	std::string* ret=new std::string("attribute ");
-
-	/* type */
-	ret->append(*($2));
-
-	/* variable */
-	ret->append(" ");
-	ret->append(*($3));
-		
-	/* add uniform map */
-	param->addAttributeMap($3,$2,$7);
-
-	ret->append(" ;");
-	$$=ret;
-}
-;
-
-
-word: tATTRIBUTE tPRECISION tU_TYPE tWORD tASSIGN tDOLLAR tL_RB tWORD tR_RB tSEMICOLON 
-{
-	std::string* ret=new std::string("attribute ");
-
-	/* precision*/
-	ret->append(*($2));
-	delete $2;
-
-	/* type */
-	ret->append(" ");
-	ret->append(*($3));
-		
-
-	/* variable */
-	ret->append(" ");
-	ret->append(*($4));
-
-	/* add attribute map */
-	param->addAttributeMap($4,$3,$8);
-
-	ret->append(" ;");
-	$$=ret;
-
-}
-;
-
-word:tUNIFROM tU_TYPE tWORD tSEMICOLON 
-{
-	std::string* ret=new std::string("uniform ");
-
-	/* type */
-	ret->append(*($2));
-	delete $2;
-
-	/* variable */
-	ret->append(" ");
-	ret->append(*($3));
-	delete $3;
-		
-	/* semicolon */
-	ret->append(" ;");
-	$$=ret;
-}
-;
-
-word:tUNIFROM tPRECISION tU_TYPE tWORD tSEMICOLON 
-{
-	std::string* ret=new std::string("uniform ");
-
-	/* precision*/
-	ret->append(*($2));
-	delete $2;
-
-	/* type */
-	ret->append(" ");
-	ret->append(*($3));
-	delete $3;
-		
-
-	/* variable */
-	ret->append(" ");
-	ret->append(*($4));
-	delete $4;
-		
-	ret->append(" ;");
-	$$=ret;
-
-};
-
-
-word:tATTRIBUTE tU_TYPE tWORD tSEMICOLON 
-{
-	std::string* ret=new std::string("attribute ");
-
-	/* type */
-	ret->append(*($2));
-	delete $2;
-
-	/* variable */
-	ret->append(" ");
-	ret->append(*($3));
-	delete $3;
-		
-
-	ret->append(" ;");
-
-	$$=ret;
-};
-
-
-word:tATTRIBUTE tPRECISION tU_TYPE tWORD tSEMICOLON 
-{
-	std::string* ret=new std::string("attribute ");
-
-	/* precision*/
-	ret->append(*($2));
-	delete $2;
-
-	/* type */
-	ret->append(" ");
-	ret->append(*($3));
-	delete $3;
-		
-
-	/* variable */
-	ret->append(" ");
-	ret->append(*($4));
-	delete $4;
-		
-
-	ret->append(" ;");
-	$$=ret;
-}
-
-
-new_lines:tNEW_LINE ;
-
-new_lines: new_lines tNEW_LINE ;
+new_lines: | new_lines tNEW_LINE ;
 
 
 

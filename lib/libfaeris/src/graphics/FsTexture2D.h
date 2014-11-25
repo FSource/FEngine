@@ -57,7 +57,10 @@ class Texture2D:public Resource
 		uint getHeight(){return m_height;}
 
 		/* mipmap */
-		bool enableMipmap();
+
+		void setMipmapEnabled(bool enabled);
+		bool getMipmapEnalbed();
+
 		PlatformTexture getPlatformTexture(){return m_platformTexture;}
 
 		void markInvaild();
@@ -82,6 +85,7 @@ class Texture2D:public Resource
 
 	private:
 		bool m_useMipmap;
+		bool m_hasMipmap;
 
 		int m_width;
 		int m_height;

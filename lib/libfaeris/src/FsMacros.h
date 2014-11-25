@@ -104,6 +104,14 @@ namespace Faeris
 #define FS_UNUSED_PARAM(x) (void)x
 
 
+#define FS_OBJECT_LAMBDA_CALL(ob,first,second,...) \
+	do {	\
+		if(ob->first)  {ob->first(ob,##__VA_ARGS__);} \
+		else{ob->second(##__VA_ARGS__);} \
+	}while(0)
+
+
+
 /* copy able */
 #define FS_FEATURE public
 

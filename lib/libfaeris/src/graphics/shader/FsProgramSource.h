@@ -27,19 +27,54 @@ class ProgramSource:public Resource
 		virtual const char* className();
 
 	public:
-		void setVertexStr(const char* str){m_vertexSrc=str;}
-		const char* getVertexStr(){return m_vertexSrc.c_str();}
+		void setVertexStr(const char* str)
+		{
+			m_vertexSrc=str;
+		}
 
-		void setFragmentStr(const char* str){m_fragmentSrc=str;}
-		const char* getFragmentStr(){return m_fragmentSrc.c_str();}
+		const char* getVertexStr()
+		{
+			return m_vertexSrc.c_str();
+		}
+
+		void setFragmentStr(const char* str)
+		{
+			m_fragmentSrc=str;
+		}
+
+		const char* getFragmentStr()
+		{
+			return m_fragmentSrc.c_str();
+		}
 
 		/* uniform map */
-		UniformMap* getUniformMap(int index){return m_uniformMaps[index];}
-		int getUniformMapNu(){return m_uniformMaps.size();}
+		UniformMap* getUniformMap(int index)
+		{
+			return m_uniformMaps[index];
+		}
+
+		int getUniformMapNu()
+		{
+			return m_uniformMaps.size();
+		}
 
 		/* stream map */
-		StreamMap* getStreamMap(int index){return m_streamMaps[index];}
-		int getStreamMapNu(){return m_streamMaps.size();}
+		StreamMap* getStreamMap(int index)
+		{
+			return m_streamMaps[index];
+		}
+
+		int getStreamMapNu()
+		{
+			return m_streamMaps.size();
+		}
+
+
+		/* support flags */
+		uint32_t getSupportFlags()
+		{
+			return m_supportFlags;
+		}
 
 	public:
 		Program* getProgram(ProgramFeatureDesc* desc);
@@ -63,6 +98,8 @@ class ProgramSource:public Resource
 
 		Program* m_defaultProgramCache;
 		FsDict* m_programCache;
+
+		uint32_t m_supportFlags;
 
 };
 

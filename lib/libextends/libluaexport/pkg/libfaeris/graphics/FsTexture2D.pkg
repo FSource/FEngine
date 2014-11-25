@@ -4,5 +4,31 @@ class Texture2D:public Resource
 	public:
 		unsigned int getWidth();
 		unsigned int getHeight();
+
+/* fileter */
+		void setFilter(E_TextureFilter mag,E_TextureFilter min,E_TextureFilter mip);
+		void setFilter(E_TextureFilter mag,E_TextureFilter min);
+		int getFilterMin(){return m_filterMin;}
+		int getFilterMag(){return m_filterMag;}
+		int getFilterMipmap(){return m_filterMipmap;}
+
+		/* wrap */
+		void setWrap(E_TextureWrap wraps,E_TextureWrap wrapt);
+		int getWrapS(){return m_wrapS;}
+		int getWrapT(){return m_wrapT;}
+
+		/* format */
+		int getFormat(){return m_format;}
+
+
+		/* mipmap */
+		void setMipmapEnabled(bool enabled);
+		bool getMipmapEnalbed();
+		
+		PlatformTexture getPlatformTexture(){return m_platformTexture;}
+
+		void markInvaild();
+		void setResourceUrl(const char* name);
+		
 };
 

@@ -33,43 +33,26 @@
 digit [0-9]
 
 %%
-VERTEX_BEGIN 	return tVERTEX_BEGIN;
-VERTEX_END 		return tVERTEX_END;
+VertexShader 	return tVERTEX_SHADER;
+FragmentShader	return tFRAGMENT_SHADER;
+Feature			return tFeature;
+AttributeMap 	return tATTRIBUTE_MAP ;
+UniformMap 		return tUNIFORM_MAP ;
 
-FRAGMENT_BEGIN  return tFRAGMENT_BEGIN;
-FRAGMENT_END 	return tFRAGMENT_END;
 
 "("				return tL_RB;
 ")"				return tR_RB;
-"$"				return tDOLLAR;
-";"				return tSEMICOLON;
 "["				return tL_SB;
 "]"				return tR_SB;
+"{"				return tL_CB;
+"}"				return tR_CB;
 
-attribute 		return tATTRIBUTE;
-uniform 		return tUNIFROM;
+"$"				return tDOLLAR;
+":"				return tCOLON;
+
 
 "="				return tASSIGN;				
-"," 			return tCOMMA;
 	
-\.|"!"|"~"|"^"|"?"|:|=|"{"|"}"  				PARSE_TEXT_TO_YACC; return tOPERATOR;
-\*|\/|\%|\+|-|\<|>|&|\\							PARSE_TEXT_TO_YACC; return tOPERATOR;
-
-
-\+\+|--|\<=|>=|==|!=|&&|\|\||"^^"|"<<"|">>"		PARSE_TEXT_TO_YACC; return tOPERATOR;
-\*=|\/=|\+=|\%=|\<\<=|>>=|&=|"^="|\|=|-=    	PARSE_TEXT_TO_YACC; return tOPERATOR;
-
-
-float|vec2|vec3|vec4							PARSE_TEXT_TO_YACC; return tU_TYPE;
-int|ivec2|ivec3|ivec4 							PARSE_TEXT_TO_YACC; return tU_TYPE;
-uint|uvec2|uvec3|uvec4 							PARSE_TEXT_TO_YACC; return tU_TYPE;
-bool|bvec2|bvec3|bvec4 							PARSE_TEXT_TO_YACC; return tU_TYPE;
-mat2|mat3|mat4									PARSE_TEXT_TO_YACC; return tU_TYPE;
-sampler1D|sampler2D|sampler3D|samplerCube 		PARSE_TEXT_TO_YACC; return tU_TYPE;
-sampler1DShadow|sampler2DShadow 				PARSE_TEXT_TO_YACC; return tU_TYPE;
- 
-highp|lowp|middlep		 						PARSE_TEXT_TO_YACC; return tPRECISION;
-
 
 \n[ \t\n]* 	return tNEW_LINE;
 
@@ -81,15 +64,8 @@ highp|lowp|middlep		 						PARSE_TEXT_TO_YACC; return tPRECISION;
 
 [1-9][0-9]*[uU]?|0[xX][0-9a-fA-F]+[uU]?|0[0-7]*[uU]?	PARSE_TEXT_TO_YACC; return tINTEGER;
 
-[0-9]+\.[0-9]+([eE][+-]?[0-9]+)?[fF]?	PARSE_TEXT_TO_YACC; return tFLOAT;
-\.[0-9]+([eE][+-]?[0-9]+)?[fF]?			PARSE_TEXT_TO_YACC; return tFLOAT;
-[0-9]+\.([eE][+-]?[0-9]+)?[fF]?			PARSE_TEXT_TO_YACC; return tFLOAT;
-[0-9]+[eE][+-]?[0-9]+[fF]?				PARSE_TEXT_TO_YACC; return tFLOAT;
-[0-9]+[fF]								PARSE_TEXT_TO_YACC; return tFLOAT;
-
- 
-[_a-zA-Z0-9#.]+	 PARSE_TEXT_TO_YACC; return tWORD;
-
+[_a-zA-Z0-9.]+					PARSE_TEXT_TO_YACC; return tWORD;
+[~`!@#%\^&*-+_|\\'";<>,./?\-]+=?	 PARSE_TEXT_TO_YACC; return tWORD;
 
 %%
 

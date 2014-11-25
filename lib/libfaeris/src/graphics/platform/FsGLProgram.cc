@@ -10,6 +10,7 @@
 #include "support/util/FsLog.h"
 #include "graphics/shader/FsUniformMap.h"
 #include "graphics/shader/FsStreamMap.h"
+#include "graphics/shader/FsProgramFeatureDesc.h"
 
 #define FS_MAX_GL_SHADER_LOG_LENGTH 1024
 #define FS_MAX_GL_PROGRAM_LOG_LENGTH 1024
@@ -69,6 +70,34 @@ Program* Program::create(ProgramSource* source)
 
 	return ret;
 }
+
+Program* Program::create(ProgramSource* source,ProgramFeatureDesc* desc)
+{
+	Program* ret=new Program();
+	if(!ret->init(source,desc))
+	{
+		delete ret;
+		return NULL;
+	}
+	return ret;
+
+}
+
+
+bool Program::canMatch(ProgramFeatureDesc* desc)
+{
+	if(!m_programSource||!m_featureDesc) 
+	{
+		return false;
+	}
+	
+	uint32_t flag_mark=m_programSource->getSupportFlags();
+
+	return ProgramFeatureDesc::equal(m_featureDesc,desc,flag_mark);
+
+}
+
+
 
 
 
@@ -175,7 +204,7 @@ bool Program::init(ProgramSource* source)
 	for(int i=0;i<uniform_nu;i++)
 	{
 		UniformMap* map=source->getUniformMap(i);
-		int loc=glGetUniformLocation(m_program,map->m_name.c_str());
+		int loc=glGetUniformLocation(m_program,map->getName());
 		if(loc>=0)
 		{
 			UniformMap* u=map->clone();
@@ -196,9 +225,137 @@ bool Program::init(ProgramSource* source)
 			addStreamMap(s);
 		}
 	}
+	m_programSource=source;
+
 	return true;
 }
 
+bool Program::init(ProgramSource* source,ProgramFeatureDesc* desc)
+{
+
+	uint32_t support_flags=desc->getSupportFlags()&source->getSupportFlags();
+
+
+	std::string head_define;
+	char buf[1024];
+
+	if(support_flags&E_ProgramFeatureSupport::LIGHT)
+	{
+		if((support_flags&E_ProgramFeatureSupport::AMBIENT_LIGHT ) 
+				&&  desc->m_ambientLightNu !=  0 )
+		{
+			head_define.append("#define FS_AMBIENT_LIGHT_NU 1 \n");
+		}
+				
+		if((support_flags&E_ProgramFeatureSupport::DIRECTIONAL_LIGHT)
+				&& desc->m_directionalLightNu != 0 )
+		{
+			sprintf(buf,"#define FS_DIRECTIONAL_LIGHT_NU %d \n",desc->m_directionalLightNu);
+			head_define.append(buf);
+		}
+
+		if((support_flags&E_ProgramFeatureSupport::POINT_LIGHT)
+				&& desc->m_pointLightNu !=0 )
+		{
+			sprintf(buf, "#define FS_POINT_LIGHT_NU %d \n",desc->m_pointLightNu);
+			head_define.append(buf);
+		}
+
+		if((support_flags & E_ProgramFeatureSupport::SPOT_LIGHT )
+				&& desc->m_spotLightNu !=0)
+		{
+			sprintf(buf, "#define FS_SPOT_LIGHT_NU %d \n",desc->m_spotLightNu);
+			head_define.append(buf);
+		}
+
+		if(support_flags &  E_ProgramFeatureSupport::HEMI_SPHERE_LIGHT)
+		{
+			sprintf(buf, "#define FS_HEMI_SPHERE_LIGHT %d \n",desc->m_hemiSphereLightNu);
+			head_define.append(buf);
+		}
+	}
+
+	if(support_flags&E_ProgramFeatureSupport::TEXTURE_MAP)
+	{
+		if(support_flags & E_ProgramFeatureSupport::COLOR_MAP)
+		{
+			head_define.append("#define FS_COLOR_MAP \n");
+		}
+
+		if(support_flags & E_ProgramFeatureSupport::DIFFUSE_MAP)
+		{
+			head_define.append("#define FS_DIFFUSE_MAP \n");
+		}
+
+		if(support_flags & E_ProgramFeatureSupport::SPECULAR_MAP)
+		{
+			head_define.append("#define FS_SPECULAR_MAP \n");
+		}
+
+		if(support_flags & E_ProgramFeatureSupport::BUMP_MAP)
+		{
+			head_define.append("#define FS_BUMP_MAP \n");
+		}
+
+		if(support_flags & E_ProgramFeatureSupport::NORMAL_MAP) 
+		{
+			head_define.append("#define FS_NORMAL_MAP \n");
+		}
+
+	}
+
+	if(support_flags & E_ProgramFeatureSupport:: SKELETON )
+	{
+		sprintf(buf, "#define FS_SKELETON_BONE_NU %d \n" ,desc->m_boneNu);
+		head_define.append(buf);
+	}
+
+	std::string vertex_src = head_define + std::string(source->getVertexStr());
+	std::string fragment_src= head_define + std::string(source->getFragmentStr());
+
+
+	bool ret=init(vertex_src.c_str(),fragment_src.c_str());
+
+	if(!ret)
+	{
+		return false;
+	}
+
+	
+	int uniform_nu=source->getUniformMapNu();
+	for(int i=0;i<uniform_nu;i++)
+	{
+		UniformMap* map=source->getUniformMap(i);
+		int loc=glGetUniformLocation(m_program,map->getName());
+		if(loc>=0)
+		{
+			UniformMap* u=map->clone();
+			u->m_location=loc;
+			addUniformMap(u);
+		}
+	}
+
+	int stream_nu=source->getStreamMapNu();
+	for(int i=0;i<stream_nu;i++)
+	{
+		StreamMap* map=source->getStreamMap(i);
+		int loc=glGetAttribLocation(m_program,map->m_name.c_str());
+		if(loc>=0)
+		{
+			StreamMap* s=map->clone();
+			s->m_location=loc;
+			addStreamMap(s);
+		}
+	}
+	m_programSource=source;
+	m_featureDesc=desc->clone();
+	desc->setSupportFlags(support_flags);
+	
+	FS_SAFE_ADD_REF(m_featureDesc);
+
+	return true;
+
+}
 
 
 
@@ -239,7 +396,7 @@ int Program::getCacheUniformLocation(int index,const char* name)
 
 void Program::addStreamMap(StreamMap* map)
 {
-	m_streamMaps.push_back(map);
+	m_streamMaps->push(map);
 	m_seqStreamMaps[static_cast<int>(map->m_refType)]=map;
 }
 
@@ -250,6 +407,8 @@ void Program::addStreamMap(StreamMap* map)
 Program::Program()
 {
 	m_program=0;
+
+	m_programSource=NULL;
 	m_featureDesc=NULL;
 
 	for(int i=0;i<FS_PROGRAM_CACHE_ATTR_SUPPORT;i++)
@@ -267,6 +426,15 @@ Program::Program()
 		m_seqStreamMaps[i]=NULL;
 	}
 
+	m_uniformMaps=FsArray::create();
+	FS_NO_REF_DESTROY(m_uniformMaps);
+
+	m_streamMaps=FsArray::create();
+	FS_NO_REF_DESTROY(m_streamMaps);
+
+
+
+
 }
 
 Program::~Program()
@@ -276,22 +444,11 @@ Program::~Program()
 		glDeleteProgram(m_program);
 	}
 
-	int size=m_uniformMaps.size();
-	for(int i=0;i<size;i++)
-	{
-		UniformMap* map=m_uniformMaps[i];
-		delete map;
-	}
-	m_uniformMaps.clear();
 
+	FS_SAFE_DESTROY(m_uniformMaps);
+	FS_SAFE_DESTROY(m_streamMaps);
 
-	size=m_streamMaps.size();
-	for(int i=0;i<size;i++)
-	{
-		StreamMap* map=m_streamMaps[i];
-		delete map;
-	}
-	m_streamMaps.clear();
+	FS_SAFE_DEC_REF(m_featureDesc);
 }
 
 

@@ -55,7 +55,16 @@ PressButton::PressButton()
 {
 	m_moveIn=false;
 	m_disabled=false;
+
+	onPressDown=nullptr;
+	onPressMoveIn=nullptr;
+	onPressMoveOut=nullptr;
+	onPressUp=nullptr;
+	onCancel=nullptr;
+	onClick=nullptr;
+
 }
+
 
 PressButton::~PressButton()
 {
@@ -102,7 +111,7 @@ void PressButton::initWithScaleStyle(Texture2D* texture,const Vector3& scale)
 
 	setScale(STATE_PRESS,scale);
 	setColor(STATE_DISABLE,Color4f(0.2f,0.2f,0.2f));
-	
+
 }
 
 
@@ -114,7 +123,7 @@ void PressButton::setDisabled(bool value)
 	}
 
 	m_disabled=value;
-	
+
 	if(m_disabled)
 	{
 		setState(STATE_DISABLE);
@@ -143,8 +152,7 @@ bool PressButton::touchBegin(float x,float y)
 
 
 	m_moveIn=true;
-	this->pressDown(x,y);
-
+	FS_OBJECT_LAMBDA_CALL(this,onPressDown,pressDown,x,y);
 	return  true;
 }
 
@@ -157,7 +165,7 @@ bool PressButton::touchMove(float x,float y)
 		if(!m_moveIn)
 		{
 			m_moveIn=true;
-			this->pressMoveIn(x,y);
+			FS_OBJECT_LAMBDA_CALL(this,onPressMoveIn,pressMoveIn,x,y);
 		}
 	}
 	else 
@@ -165,7 +173,7 @@ bool PressButton::touchMove(float x,float y)
 		if(m_moveIn)
 		{
 			m_moveIn=false;
-			this->pressMoveOut(x,y);
+			FS_OBJECT_LAMBDA_CALL(this,onPressMoveOut,pressMoveOut,x,y);
 		}
 	}
 	return true;
@@ -176,13 +184,13 @@ bool PressButton::touchEnd(float x,float y)
 	bool hit=hit2D(x,y);
 	if(hit)
 	{
-		this->pressUp(x,y);
-		this->click();
+		FS_OBJECT_LAMBDA_CALL(this,onPressUp,pressUp,x,y);
+		FS_OBJECT_LAMBDA_CALL(this,onClick,click);
 	}
 	else 
 	{
-		this->pressUp(x,y);
-		this->cancel();
+		FS_OBJECT_LAMBDA_CALL(this,onPressUp,pressUp,x,y);
+		FS_OBJECT_LAMBDA_CALL(this,onCancel,cancel);
 	}
 	return true;
 }
@@ -227,7 +235,7 @@ void PressButton::cancel()
 void PressButton::click()
 {
 	/* Do Nothing Here 
-	   SubClass Overrite it */
+	SubClass Overrite it */
 }
 
 

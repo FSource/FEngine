@@ -441,10 +441,63 @@ int PageView::getPageIndex(UiWidget* widget)
 	return m_contentPanel->getPageItemIndex(widget);
 }
 
+
+
+void PageView::prevPage()
+{
+	int page_index=m_currentPageIndex-1;
+	if(page_index<0)
+	{
+		page_index=0;
+	}
+	setCurrentPageIndex(page_index);
+}
+
+void PageView::nextPage()
+{
+	int page_index=m_currentPageIndex+1;
+	if(page_index>=getPageNu())
+	{
+		page_index=getPageNu()-1;
+	}
+
+	setCurrentPageIndex(page_index);
+}
+
+
 void PageView::setCurrentPageIndex(int index)
 {
+	if(index<0)
+	{
+		index=0;
+	}
 
+	if(index>=getPageNu())
+	{
+		index=getPageNu()-1;
+	}
+
+
+	if(!m_scrollFinished)
+	{
+		m_scrollFinished=true;
+	}
+
+	if(m_contentPanel->getMode()==SCROLL_HORIZONTAL)
+	{
+		m_xoffset=-index*m_size.x;
+		m_contentPanel->setPosition(m_xoffset,m_yoffset,0);
+		if(index!=m_currentPageIndex)
+		{
+			int old_index=m_currentPageIndex;
+			m_currentPageIndex=index;
+			pageIndexChanged(old_index,m_currentPageIndex);
+		}
+	}
 }
+
+
+
 
 int PageView::getCurrentPageIndex()
 {
@@ -453,21 +506,51 @@ int PageView::getCurrentPageIndex()
 
 void PageView::setCurrentPage(UiWidget* widget)
 {
-	int size=m_contentPanel->getPageItemNu();
-
-	for(int i=0;i<size;i++)
-	{
-		UiWidget* widget=m_contentPanel->getPageItem(i);
-		widget->setParentWidget(NULL);
-		m_contentPanel->remove(widget);
-	}
-	m_contentPanel->clearPageItem();
+	int index=getPageIndex(widget);
+	setCurrentPageIndex(index);
 }
+
 
 UiWidget* PageView::getCurrentPage()
 {
 	return m_contentPanel->getPageItem(m_currentPageIndex);
 }
+
+
+void PageView::slideToPageIndex(int index)
+{
+	if(index<0)
+	{
+		index=0;
+	}
+
+	if(index>=getPageNu())
+	{
+		index=getPageNu()-1;
+	}
+
+	scrollFromTo(m_xoffset,-index*m_size.x);
+}
+
+
+
+void PageView::slideToPage(UiWidget* widget)
+{
+	int index=getPageIndex(widget);
+	slideToPageIndex(index);
+}
+
+void PageView::slideToNextPage()
+{
+	slideToPageIndex(m_currentPageIndex+1);
+}
+
+void PageView::slideToPrevPage()
+{
+	slideToPageIndex(m_currentPageIndex-1);
+}
+
+
 
 
 bool  PageView::touchBegin(float x,float y)
@@ -495,7 +578,9 @@ bool  PageView::touchBegin(float x,float y)
 bool  PageView::touchMove(float x,float y)
 {
 	//FS_TRACE_WARN("OnTouchMove(%f,%f)",x,y);
+	
 	UiWidget::touchMove(x,y);
+
 	float diffx=x-m_lastPosX;
 	float diffy=y-m_lastPosY;
 	int mode=m_contentPanel->getMode();
@@ -790,11 +875,30 @@ void PageView::updateScroll(float dt)
 
 	if(mode == SCROLL_HORIZONTAL)
 	{
-		m_xoffset=m_scrollBeginPos+(m_scrollEndPos-m_scrollBeginPos)*percent;
+		float offset= m_scrollBeginPos+(m_scrollEndPos-m_scrollBeginPos)*percent;
+		if(Math::floatEqual(offset,m_scrollEndPos))
+		{
+			m_xoffset=m_scrollEndPos;
+			m_scrollFinished=true;
+		}
+		else 
+		{
+			m_xoffset=offset;
+		}
 	}
 	else 
 	{
-		m_yoffset= m_scrollBeginPos+(m_scrollEndPos-m_scrollBeginPos)*percent;
+		float offset= m_scrollBeginPos+(m_scrollEndPos-m_scrollBeginPos)*percent;
+		if(Math::floatEqual(offset,m_scrollEndPos))
+		{
+			m_yoffset=m_scrollEndPos;
+			m_scrollFinished=true;
+		}
+		else 
+		{
+			m_yoffset= offset;
+		}
+
 	}
 
 	adjustContentPanel();

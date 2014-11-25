@@ -31,8 +31,7 @@ int main(int argc, char** argv)
 		for(int i=0;i<parser->m_uniformMap.size();i++)
 		{
 			GlslextTypeMap* iter=parser->m_uniformMap[i];
-			printf("<%s,%s,%s,%d> \n",
-					iter->m_type->c_str(),
+			printf("<%s,%s,%d> \n",
 					iter->m_name->c_str(),
 					iter->m_value->c_str(),
 					iter->m_extIndex
@@ -44,8 +43,7 @@ int main(int argc, char** argv)
 		for(int i=0;i<parser->m_attributeMap.size();i++)
 		{
 			GlslextTypeMap* iter=parser->m_attributeMap[i];
-			printf("<%s,%s,%s,%d> \n",
-					iter->m_type->c_str(),
+			printf("<%s,%s,%d> \n",
 					iter->m_name->c_str(),
 					iter->m_value->c_str(),
 					iter->m_extIndex

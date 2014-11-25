@@ -6,7 +6,7 @@
 #include "stage/FsActionTarget.h"
 #include "math/FsVector3.h"
 #include "math/FsMatrix4.h"
-#include "FsITransform.h"
+#include "transform/FsITransform.h"
 #include "math/FsRect2D.h"
 #include "support/util/FsString.h"
 #include "support/util/FsSlowArray.h"
@@ -44,8 +44,10 @@ class Entity :public ActionTarget
 		void clearChild();
 
 
-		FS_FEATURE_NEW_OBJECT(FsArray*) takeAllChild();
+		FS_FEATURE_NEW_OBJECT(FsArray*) takeAllChild(bool visible);
+		void getAllChild(FsArray* array,bool visible);
 		int childNu();
+
 
 
 		Matrix4* getWorldMatrix();
@@ -120,7 +122,7 @@ class Entity :public ActionTarget
 		void setScaleY(float s);
 		void setScaleZ(float s);
 
-		void setPosition(float tx,float ty,float tz);
+		void setPosition(float tx,float ty,float tz = 0.0f);
 		void setPosition(const Vector3& pos);
 		void setPositionX(float t);
 		void setPositionY(float t);
@@ -189,7 +191,6 @@ class Entity :public ActionTarget
 		void init();
 		void destruct();
 		void updateChildWorldMatrix(bool force);
-		void getAllChild(FsArray* array);
 	
 		void setParent(Entity* parent);
 

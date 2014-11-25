@@ -263,6 +263,7 @@ bool Texture2D::init(E_PixelFormat format, int width,int height,void* pixels,
 	m_filterMipmap=E_TextureFilter::LINEAR;
 
 	m_useMipmap=false;
+	m_hasMipmap=false;
 	m_wrapS=wraps;
 	m_wrapT=wrapt;
 	m_platformTexture=texture;
@@ -274,6 +275,11 @@ bool Texture2D::init(E_PixelFormat format, int width,int height,void* pixels,
 
 void Texture2D::setFilter(E_TextureFilter mag,E_TextureFilter min,E_TextureFilter mipmap)
 {
+	if(m_filterMin==min&&m_filterMag==mag&&m_filterMipmap==mipmap)
+	{
+		return;
+	}
+
 	s_bindTexture2D(m_platformTexture);
 	GLint filter_min_gl,filter_mag_gl;
 	filter_mag_gl=FsFilter_ToGLEnum(mag);
@@ -288,17 +294,68 @@ void Texture2D::setFilter(E_TextureFilter mag,E_TextureFilter min,E_TextureFilte
 
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,filter_mag_gl);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,filter_min_gl);
+
+	m_filterMin=min;
+	m_filterMag=mag;
+	m_filterMipmap=mipmap;
+
 }
 
 void Texture2D::setWrap(E_TextureWrap wraps,E_TextureWrap wrapt)
 {
+	if(m_wrapS==wraps&&m_wrapT==wrapt)
+	{
+		return;
+	}
+
 	s_bindTexture2D(m_platformTexture);
 	GLint gl_wraps=FsWrap_ToGLEnum(wraps);
 	GLint gl_wrapt=FsWrap_ToGLEnum(wrapt);
 
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,gl_wraps);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,gl_wrapt);
+	m_wrapS=wraps;
+	m_wrapT=wrapt;
+
 }
+
+
+void Texture2D::setMipmapEnabled(bool enabled)
+{
+	if(m_useMipmap==enabled)
+	{
+		return;
+	}
+
+	s_bindTexture2D(m_platformTexture);
+	GLint filter_min_gl;
+	if(enabled)
+	{
+		filter_min_gl=FsFilter_ToGLEnum(m_filterMin,m_filterMipmap);
+	}
+	else 
+	{
+		filter_min_gl=FsFilter_ToGLEnum(m_filterMin);
+	}
+
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,filter_min_gl);
+
+	m_useMipmap=enabled;
+	if(!m_hasMipmap)
+	{
+		glGenerateMipmap(GL_TEXTURE_2D);
+		m_hasMipmap=true;
+	}
+}
+
+bool Texture2D::getMipmapEnalbed()
+{
+	return m_useMipmap;
+}
+
+	
+
+
 
 void Texture2D::markInvaild()
 {

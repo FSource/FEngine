@@ -1,0 +1,43 @@
+$#include "graphics/material/FsMaterial2D.h"
+class Material2D:Material 
+{
+	public:
+		static Material2D* create();
+		static Material2D* create(ProgramSource* ps);
+
+	public:
+		/* inherit FsObject */
+		const char* className();
+
+		virtual Program* getProgram(ProgramFeatureDesc* desc);
+		virtual void configRenderDevice(RenderDevice* rd);
+
+	public:
+		void setColor(const Color4f& color){m_color=color;}
+		Color4f getColor(){return m_color;}
+
+		void setOpacity(float opacity) {m_opacity=opacity;}
+		float getOpacity(){return m_opacity;}
+
+		void setColorMap(Texture2D* t);
+
+		Texture2D* getColorMap()
+		{
+			return m_colorMap;
+		}
+
+		void setProgramSource(ProgramSource* ps);
+		ProgramSource* getProgramSource(){return m_programSource;}
+
+		void setPointSize(float size){m_pointSize=size;}
+		float getPointSize(){return m_pointSize;}
+
+		int getUniformValueNu();
+		UniformValue* getUniformValue(int i);
+		void addUniformValue(UniformValue* v);
+		void removeUniformValue(UniformValue* v);
+}
+
+
+
+

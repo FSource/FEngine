@@ -115,9 +115,12 @@ enum class E_UniformType
 	UT_S_2D_SHADOW,
 
 	/* ref */
-	UT_REF_RD, 	   /* take from render device */
-	UT_REF_MAT,    /* take from material */
-	UT_REF_MAT_EXT, /* take from material extends */
+	UT_REF_RD, 	   		/* take from render device */
+	UT_REF_MTL,    		/* take from material */
+	UT_REF_MTL_EXT, 	/* take from material extends */
+
+	UT_REF_LIGHT ,  	/* take from light */
+
 
 	MAX_NU,
 };
@@ -183,7 +186,42 @@ enum  class E_UniformRef
 	M_COLOR,
 	M_OPACITY,
 	M_COLOR_MAP,
-	
+
+	M_EMISSIVE,
+	M_AMBIENT,
+	M_DIFFUSE,
+	M_SPECULAR,
+
+	M_SHINESS,
+	M_AMBIENT_MAP,
+	M_DIFFUSE_MAP,
+	M_SPECULAR_MAP,
+	M_BUMP_MAP,
+	M_NORMAL_MAP,
+
+
+	/* light */
+	L_AMBIENT_LIGHT_COLOR,
+
+	L_DIRECTIONAL_LIGHT_COLOR,
+	L_DIRECTIONAL_LIGHT_DIRECTION,
+
+	L_POINT_LIGHT_COLOR,
+	L_POINT_LIGHT_POSITION,
+	L_POINT_LIGHT_DISTANCE,
+
+	L_SPOT_LIGHT_COLOR,
+	L_SPOT_LIGHT_POSITION,
+	L_SPOT_LIGHT_DIRECTION,
+	L_SPOT_LIGHT_COSANGLE,
+	L_SPOT_LIGHT_EXPONENT,
+	L_SPOT_LIGHT_DISTANCE,
+
+
+	L_HEMI_SPHERE_LIGHT_SKY_COLOR,
+	L_HEMI_SPHERE_LIGHT_GROUND_COLOR,
+	L_HEMI_SPHERE_LIGHT_DIRECTION,
+
 
 	MAX_NU,
 };
@@ -210,8 +248,10 @@ enum class E_StreamType
 };
 
 
-enum class E_ProgramFeatureSupport
+enum E_ProgramFeatureSupport
 {
+	NONE=0x0L,
+	/* light */
 	AMBIENT_LIGHT=0x01L<<1,
 	DIRECTIONAL_LIGHT=0x01L<<2,
 	SPOT_LIGHT=0x01<<3,
@@ -219,13 +259,26 @@ enum class E_ProgramFeatureSupport
 	HEMI_SPHERE_LIGHT=0x1<<5,
 	LIGHT=(0x01L<<1)|(0x01<<2)|(0x01<<3)|(0x01<<4)|(0x01<<5),
 
-	SHADOW=(0x01<<6),
 
-	ALPHA_TEST=0x01<<8,
+	/* map */
+	COLOR_MAP=0x01<<7,
+	DIFFUSE_MAP = 0x01<<8,
+	SPECULAR_MAP = 0x01<<9,
+	BUMP_MAP=0x01<<10,
+	NORMAL_MAP=0x01<<11,
 
-	FOG=0x01<<9,
+	TEXTURE_MAP=(0x01<<7)|(0x01<<8)|(0x01<<9)|(0x01<<10)|(0x01<<11),
 
-	SKELETON=0x01<<10,
+
+	SHADOW=(0x01<<12),
+
+	ALPHA_TEST=0x01<<13,
+
+	FOG=0x01<<14,
+
+	SKELETON=0x01<<15,
+
+
 };
 
 
@@ -370,6 +423,15 @@ enum class E_BoneType
 	LOCAL,
 };
 
+
+enum class E_LightType 
+{
+	AMBIENT,
+	POINT,
+	SPOT,
+	DIRECTIONAL,
+	HEMI_SPHERE
+};
 
 
 NS_FS_END 

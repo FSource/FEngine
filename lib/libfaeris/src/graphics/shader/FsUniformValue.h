@@ -3,6 +3,7 @@
 
 #include "FsMacros.h"
 #include "FsEnums.h"
+#include "FsObject.h"
 
 #include "math/FsVector2.h"
 #include "math/FsVector3.h"
@@ -17,15 +18,41 @@
 
 NS_FS_BEGIN
 
-class UniformValue 
+class UniformValue :public FsObject
 {
 	public:
-
-		E_UniformType getType(){return m_type;}
-		int getCount() {return m_count;}
 		virtual void* getData()=0;
 
 	public:
+
+
+		int getCount() 
+		{
+			return m_count;
+		}
+
+
+		void setName(const char* name)
+		{
+			m_name=name;
+		}
+
+		const char* getName()
+		{
+			return m_name.c_str();
+		}
+
+		void setType(E_UniformType type)
+		{
+			m_type=type;
+		}
+
+		E_UniformType getType()
+		{
+			return m_type;
+		}
+
+	protected:
 		UniformValue()
 			:m_type(E_UniformType::UT_UNKOWN),
 			m_count(1)
@@ -38,9 +65,7 @@ class UniformValue
 
 		{}
 
-
-
-	public:
+	protected:
 		int m_count;
 		std::string m_name;
 		E_UniformType m_type;
@@ -48,55 +73,77 @@ class UniformValue
 };
 
 
-template <typename T> int TUniformValue_GetType() { T temp;return static_cast<int>(E_UniformType::UT_UNKOWN);}
 
-template<> inline int TUniformValue_GetType<float>()    {return static_cast<int>(E_UniformType::UT_F_1);}
-template<> inline int TUniformValue_GetType<Vector2f>() {return static_cast<int>(E_UniformType::UT_F_2);}
-template<> inline int TUniformValue_GetType<Vector3f>() {return static_cast<int>(E_UniformType::UT_F_3);}
-template<> inline int TUniformValue_GetType<Vector4f>() {return static_cast<int>(E_UniformType::UT_F_4);}
-
-template<> inline int TUniformValue_GetType<int16_t>()  {return static_cast<int>(E_UniformType::UT_I_1);}
-template<> inline int TUniformValue_GetType<Vector2i>() {return static_cast<int>(E_UniformType::UT_I_2);}
-template<> inline int TUniformValue_GetType<Vector3i>() {return static_cast<int>(E_UniformType::UT_I_3);}
-template<> inline int TUniformValue_GetType<Vector4i>() {return static_cast<int>(E_UniformType::UT_I_4);}
-
-template<> inline int TUniformValue_GetType<uint16_t>() {return static_cast<int>(E_UniformType::UT_UI_1);}
-template<> inline int TUniformValue_GetType<Vector2ui>() {return static_cast<int>(E_UniformType::UT_UI_2);}
-template<> inline int TUniformValue_GetType<Vector3ui>() {return static_cast<int>(E_UniformType::UT_UI_3);}
-template<> inline int TUniformValue_GetType<Vector4ui>() {return static_cast<int>(E_UniformType::UT_UI_4);}
-
-
-template<> inline int TUniformValue_GetType<Color3f>() {return static_cast<int>(E_UniformType::UT_F_3);}
-template<> inline int TUniformValue_GetType<Color4f>() {return static_cast<int>(E_UniformType::UT_F_4);}
-
-template<> inline int TUniformValue_GetType<Matrix4>() {return static_cast<int>(E_UniformType::UT_M_4);}
-
-
-
-
-template <typename T> 
+template <typename T,E_UniformType U_T,const char* CL_NAME> 
 class TUniformValue:public UniformValue
 {
 	public:
+		static TUniformValue<T,U_T,CL_NAME>* create(const char* name,const T& v)
+		{
+			return new TUniformValue<T,U_T,CL_NAME>(name,v);
+		}
+
+	public:
+		void set(const T& d){m_data=d;}
+		T get(){return m_data;}
+
+	public:
+		void* getData() FS_OVERRIDE
+		{
+			return &m_data;
+		}
+		const char* className() FS_OVERRIDE
+		{
+			return CL_NAME;
+		}
+
+	protected:
 		TUniformValue(const char* name,const T& v)
 			:m_data(v)
 		{ 
 			m_name=name;
-			m_type=TUniformValue_GetType<T>();
+			m_type=U_T;
 		}
 
-	public:
-		virtual void* getData()
-		{
-			return &m_data;
-		}
-	public:
+	protected:
 		T m_data;
 };
 
 class UniformValueSample2D: public UniformValue 
 {
+
 	public:
+		static UniformValueSample2D* create(const char* name,Texture2D* tex)
+		{
+			return new UniformValueSample2D(name,tex);
+		}
+
+	public:
+
+		void set(Texture2D* tex)
+		{
+			FS_SAFE_ASSIGN(m_data,tex);
+		}
+
+		Texture2D* get()
+		{
+			return m_data;
+		}
+
+
+	public:
+		void* getData() FS_OVERRIDE 
+		{
+		   	return m_data; 
+		}
+
+		const char* className()
+		{
+			return  "UniformValueSample2D";
+		}
+
+
+	protected:
 		UniformValueSample2D(const char* name,Texture2D* tex)
 		{
 			m_name=name;
@@ -110,86 +157,169 @@ class UniformValueSample2D: public UniformValue
 			FS_SAFE_DEC_REF(m_data);
 		}
 
-		virtual void* getData() { return m_data; }
-
-	public:
+	protected:
 		Texture2D* m_data;
 };
 
+
 class UniformRefRD:public UniformValue 
 {
+
 	public:
-		UniformRefRD(const char* name,int ref)
+		static UniformRefRD* create(const char* name,E_UniformRef ref)
+		{
+			return new UniformRefRD(name,ref);
+		}
+
+	public:
+
+		void set(E_UniformRef value)
+		{
+			m_data=value;
+		}
+
+		E_UniformRef get()
+		{
+			return m_data;
+		}
+
+	public:
+		void* getData() FS_OVERRIDE 
+		{ 
+			return &m_data; 
+		}
+
+		const char* className() FS_OVERRIDE
+		{
+			return "UniformRefRD";
+		}
+
+
+	protected:
+		UniformRefRD(const char* name,E_UniformRef ref)
 		{
 			m_name=name;
 			m_type=E_UniformType::UT_REF_RD;
 			m_data=ref;
 		}
 
-		virtual void* getData() { return &m_data; }
-
-	public:
-		int m_data;
-		int m_location;
+	protected:
+		E_UniformRef m_data;
 };
 
 
-class UniformRefMat:public UniformValue 
+class UniformRefMtl:public UniformValue 
 {
 	public:
-		UniformRefMat(const char* name,int ref)
+		static UniformRefMtl* create(const char* name,E_UniformRef ref)
 		{
-			m_name=name;
-			m_type=E_UniformType::UT_REF_MAT;
-			m_data=ref;
+			return new UniformRefMtl(name,ref);
 		}
-		virtual void* getData() {return &m_data;}
 
 	public:
-		int m_data;
+		void set (E_UniformRef value) { m_data=value; }
+		E_UniformRef get() { return m_data; }
+
+	public:
+		void* getData() FS_OVERRIDE
+		{
+			return &m_data;
+		}
+
+		const char* className() FS_OVERRIDE
+		{
+			return "UniformRefMtl";
+		}
+
+	protected:
+		UniformRefMtl(const char* name,E_UniformRef ref)
+		{
+			m_name=name;
+			m_type=E_UniformType::UT_REF_MTL;
+			m_data=ref;
+		}
+
+	protected:
+		E_UniformRef m_data;
 };
 
 
 
-class UniformRefMatExt:public UniformValue 
+class UniformRefMtlExt:public UniformValue 
 {
 	public:
-		UniformRefMatExt(const char* name,int ref)
+		static UniformRefMtlExt* create(const char* name,int ref)
+		{
+			return new UniformRefMtlExt(name,ref);
+		}
+
+	public:
+		void set(int value) { m_data=value; }
+		int get() { return m_data; }
+
+	public:
+		void* getData() FS_OVERRIDE 
+		{
+			return &m_data;
+		}
+
+		const char* className() FS_OVERRIDE
+		{
+			return "UniformRefMtlExt";
+		}
+
+	protected:
+		UniformRefMtlExt(const char* name,int ref)
 		{
 			m_name=name;
-			m_type=E_UniformType::UT_REF_MAT_EXT;
+			m_type=E_UniformType::UT_REF_MTL_EXT;
 			m_data=ref;
 		}
-		virtual void* getData(){return &m_data;}
-	public:
+
+	protected:
 		int m_data;
 };
 
 
+extern const char UniformValue1f_ClassName[];
+extern const char UniformValue2f_ClassName[];
+extern const char UniformValue3f_ClassName[];
+extern const char UniformValue4f_ClassName[];
+
+extern const char UniformValue1i_ClassName[];
+extern const char UniformValue2i_ClassName[];
+extern const char UniformValue3i_ClassName[];
+extern const char UniformValue4i_ClassName[];
+
+extern const char UniformValue1ui_ClassName[];
+extern const char UniformValue2ui_ClassName[];
+extern const char UniformValue3ui_ClassName[];
+extern const char UniformValue4ui_ClassName[];
+
+extern const char UniformValueC3f_ClassName[];
+extern const char UniformValueC4f_ClassName[];
+extern const char UniformValueMatrix4f_ClassName[];
 
 
+typedef TUniformValue<float,E_UniformType::UT_F_1,UniformValue1f_ClassName>    UniformValue1f;
+typedef TUniformValue<float,E_UniformType::UT_F_2,UniformValue2f_ClassName>    UniformValue2f;
+typedef TUniformValue<float,E_UniformType::UT_F_3,UniformValue3f_ClassName>    UniformValue3f;
+typedef TUniformValue<float,E_UniformType::UT_F_4,UniformValue4f_ClassName>    UniformValue4f;
 
+typedef TUniformValue<int32_t,E_UniformType::UT_I_1,UniformValue1i_ClassName>  UniformValue1i;
+typedef TUniformValue<int32_t,E_UniformType::UT_I_2,UniformValue2i_ClassName>  UniformValue2i;
+typedef TUniformValue<int32_t,E_UniformType::UT_I_3,UniformValue3i_ClassName>  UniformValue3i;
+typedef TUniformValue<int32_t,E_UniformType::UT_I_4,UniformValue4i_ClassName>  UniformValue4i;
 
-typedef TUniformValue<float>    UniformValuef;
-typedef TUniformValue<Vector2f> UniformValue2f;
-typedef TUniformValue<Vector3f> UniformValue3f;
-typedef TUniformValue<Vector4f> UniformValue4f;
+typedef TUniformValue<uint32_t,E_UniformType::UT_UI_1,UniformValue1ui_ClassName>  UniformValue1ui;
+typedef TUniformValue<uint32_t,E_UniformType::UT_UI_2,UniformValue1ui_ClassName>  UniformValue2ui;
+typedef TUniformValue<uint32_t,E_UniformType::UT_UI_3,UniformValue1ui_ClassName>  UniformValue3ui;
+typedef TUniformValue<uint32_t,E_UniformType::UT_UI_4,UniformValue1ui_ClassName>  UniformValue4ui;
 
-typedef TUniformValue<int32_t>  UniformValuei;
-typedef TUniformValue<Vector2i> UniformValue2i;
-typedef TUniformValue<Vector3i> UniformValue3i;
-typedef TUniformValue<Vector4i> UniformValue4i;
+typedef TUniformValue<Color3f,E_UniformType::UT_F_3,UniformValueC3f_ClassName> UniformValueC3f;
+typedef TUniformValue<Color4f,E_UniformType::UT_F_4,UniformValueC4f_ClassName> UniformValueC4f;
 
-typedef TUniformValue<int32_t>  UniformValueui;
-typedef TUniformValue<Vector2ui> UniformValue2ui;
-typedef TUniformValue<Vector3ui> UniformValue3ui;
-typedef TUniformValue<Vector4ui> UniformValue4ui;
-
-
-typedef TUniformValue<Color3f> UniformValueC3f;
-typedef TUniformValue<Color4f> UniformValueC4f;
-
-typedef TUniformValue<Matrix4> UniformMat4f;
+typedef TUniformValue<Matrix4,E_UniformType::UT_M_4,UniformValueMatrix4f_ClassName> UniformMat4f;
 
 NS_FS_END
 

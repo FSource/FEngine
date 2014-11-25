@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_GLSLEXT_GLSLEXT_GRAMMER_H_INCLUDED
-# define YY_GLSLEXT_GLSLEXT_GRAMMER_H_INCLUDED
+#ifndef YY_GLSLEXT_SRC_GLSLEXT_GRAMMER_H_INCLUDED
+# define YY_GLSLEXT_SRC_GLSLEXT_GRAMMER_H_INCLUDED
 /* Debug traces.  */
 #ifndef GLSLEXT_DEBUG
 # if defined YYDEBUG
@@ -53,28 +53,24 @@ extern int Glslext_debug;
 # define GLSLEXT_TOKENTYPE
   enum Glslext_tokentype
   {
-    tVERTEX_BEGIN = 258,
-    tVERTEX_END = 259,
-    tFRAGMENT_BEGIN = 260,
-    tFRAGMENT_END = 261,
-    tL_RB = 262,
-    tR_RB = 263,
-    tDOLLAR = 264,
+    tFeature = 258,
+    tVERTEX_SHADER = 259,
+    tFRAGMENT_SHADER = 260,
+    tUNIFORM_MAP = 261,
+    tATTRIBUTE_MAP = 262,
+    tL_RB = 263,
+    tR_RB = 264,
     tL_SB = 265,
     tR_SB = 266,
-    tATTRIBUTE = 267,
-    tUNIFROM = 268,
-    tU_TYPE = 269,
-    tFLOAT = 270,
-    tINTEGER = 271,
-    tNEW_LINE = 272,
-    tCOMMA = 273,
-    tASSIGN = 274,
-    tOPERATOR = 275,
-    tWORD = 276,
-    tPRECISION = 277,
-    tSEMICOLON = 278,
-    tOP_EQUAL = 279
+    tL_CB = 267,
+    tR_CB = 268,
+    tDOLLAR = 269,
+    tCOLON = 270,
+    tASSIGN = 271,
+    tINTEGER = 272,
+    tNEW_LINE = 273,
+    tWORD = 274,
+    tPRECISION = 275
   };
 #endif
 
@@ -83,13 +79,13 @@ extern int Glslext_debug;
 typedef union GLSLEXT_STYPE GLSLEXT_STYPE;
 union GLSLEXT_STYPE
 {
-#line 17 "glslext_grammer.y" /* yacc.c:1909  */
+#line 18 "../src/rule/glslext_grammer.y" /* yacc.c:1909  */
 
 	std::string* istring;
 	std::vector<float>* ivec;
 	float inumber;
 
-#line 93 "../glslext_grammer.h" /* yacc.c:1909  */
+#line 89 "../src/glslext_grammer.h" /* yacc.c:1909  */
 };
 # define GLSLEXT_STYPE_IS_TRIVIAL 1
 # define GLSLEXT_STYPE_IS_DECLARED 1
@@ -99,4 +95,4 @@ union GLSLEXT_STYPE
 
 int Glslext_parse (GlslextParser* param);
 
-#endif /* !YY_GLSLEXT_GLSLEXT_GRAMMER_H_INCLUDED  */
+#endif /* !YY_GLSLEXT_SRC_GLSLEXT_GRAMMER_H_INCLUDED  */

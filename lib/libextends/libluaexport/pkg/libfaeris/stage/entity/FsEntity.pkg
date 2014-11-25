@@ -15,7 +15,7 @@ class Entity@__Entity:public ActionTarget
 		void detach();
 		void clearChild();
 
-		FsArray* takeAllChild();
+		FsArray* takeAllChild(bool visible);
 		int childNu();
 
 		Layer* getLayer();

@@ -14,9 +14,18 @@ NS_FS_BEGIN
 #define FS_PRE_PROGRAM_SOURCE_PARTICLE "__PARTICLE__.fshader"
 
 
+#define FS_PRE_PROGRAM_SOURCE_COLOR  "__COLOR__.fshader" 
+#define FS_PRE_PROGRAM_SOURCE_TEXTURE "__TEXTURE__.fshader"
+#define FS_PRE_PROGRAM_SOURCE_CONSTANT "__CONSTANT__.fshader"
+#define FS_PRE_PROGRAM_SOURCE_LAMBERT  "__LAMBERT__.fshader"
+
+
+
+
+
 //#define FS_PRE_PROGRAM_SOURCE_V4F_C4F "__V4F_C4F__.fshader"
 
-#define FS_MAX_PRE_PROGRAM_SOURCE_NU 5
+#define FS_MAX_PRE_PROGRAM_SOURCE_NU 9
 
 
 class ProgramSource;

@@ -10,6 +10,7 @@ NS_FS_BEGIN
 class ProgramSource;
 class ProgramFeatureDesc;
 class Texture2D;
+class FsArray;
 
 
 class Material2D:public Material 
@@ -46,6 +47,11 @@ class Material2D:public Material
 		void setPointSize(float size){m_pointSize=size;}
 		float getPointSize(){return m_pointSize;}
 
+		int getUniformValueNu();
+		UniformValue* getUniformValue(int i);
+		void addUniformValue(UniformValue* v);
+		void removeUniformValue(UniformValue* v);
+
 	protected:
 		Material2D();
 		virtual ~Material2D();
@@ -57,7 +63,7 @@ class Material2D:public Material
 		float m_pointSize;
 
 		Texture2D* m_colorMap;
-		std::vector<UniformValue*>* m_extends;
+		FsArray* m_extends;
 
 		ProgramSource* m_programSource;
 };

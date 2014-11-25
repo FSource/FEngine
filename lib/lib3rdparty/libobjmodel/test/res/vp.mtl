@@ -1,0 +1,38 @@
+newmtl black
+Ka  0 0 0
+Kd  0 0 0 
+Ks  1 1 1
+
+newmtl dkgrey
+Ka  0.4 0.4 0.4
+Kd  0.4 0.4 0.4 
+Ks  1 1 1
+
+newmtl white
+Ka  1 1 1
+Kd  1 1 1 
+Ks  1 1 1
+
+newmtl red
+Ka  0.1 0 0
+Kd  1 0 0 
+Ks  1 1 1
+
+newmtl green
+Ka  0 0.1 0
+Kd  0 1 0 
+Ks  1 1 1 
+
+newmtl blue
+Ka  0 0 0.1
+Kd  0 0 1
+Ks  1 1 1
+
+newmtl yellow
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.728627 0.774241 0.044418
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
