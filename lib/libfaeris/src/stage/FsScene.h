@@ -1,6 +1,8 @@
 #ifndef _FS_SCENE_H_
 #define _FS_SCENE_H_
 
+#include <functional>
+
 #include "FsMacros.h"
 #include "stage/FsActionTarget.h"
 #include "graphics/FsColor.h"
@@ -71,6 +73,25 @@ class Scene:public ActionTarget
 
 		/*  inherit FsObject */
 		virtual const char* className();
+
+	public:
+		std::function<void(Scene*)> onEnter;
+		std::function<void(Scene*)> onExit;
+		std::function<void(Scene*,float)> onUpdate;
+		std::function<void(Scene*,RenderDevice*)> onDraw;
+
+		std::function<void(Scene*,float,float)> onTouchBegin;
+		std::function<void(Scene*,float,float)> onTouchMove;
+		std::function<void(Scene*,float,float)> onTouchEnd;
+
+		std::function<void(Scene*,TouchEvent*)> onTouchesBegin;
+		std::function<void(Scene*,TouchEvent*)> onTouchesPointerDown;
+		std::function<void(Scene*,TouchEvent*)> onTouchesMove;
+		std::function<void(Scene*,TouchEvent*)> onTouchesPointerUp;
+		std::function<void(Scene*,TouchEvent*)> onTouchesEnd;
+		std::function<void(Scene*,int ,int)> 	onKeypadEvent;
+
+
 
 	public:
 		void updateLayers(float dt);

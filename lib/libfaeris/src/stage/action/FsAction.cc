@@ -12,6 +12,9 @@ const char* Action::className()
 Action::Action()
 {
 	m_begined=false;
+	onRun=nullptr;
+	onBegin=nullptr;
+	onFinish=nullptr;
 }
 
 Action::~Action()
@@ -22,15 +25,15 @@ bool Action::update(ActionTarget* target,float dt,float* out)
 {
 	if(!m_begined)
 	{
-		begin();
+		FS_OBJECT_LAMBDA_CALL(this,onBegin,begin);
 		m_begined=true;
 	}
 
-	bool ret=run(target,dt,out);
+	bool ret=FS_OBJECT_LAMBDA_CALL(this,onRun,run,target,dt,out);
 
 	if (ret)
 	{
-		finish();
+		FS_OBJECT_LAMBDA_CALL(this,onFinish,finish);
 	}
 
 	return ret;

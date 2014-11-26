@@ -175,14 +175,14 @@ void Director::update(int priority,float dt)
 				{
 					if(m_current)
 					{
-						m_current->exit();
+						FS_OBJECT_LAMBDA_CALL(m_current,onExit,exit,);
 						m_current->decRef();
 					}
 
 					m_current=m_next;
 					if(m_next)
 					{
-						m_next->enter();
+						FS_OBJECT_LAMBDA_CALL(m_next,onEnter,enter);
 
 					}
 					ScriptEngine* sc=Global::scriptEngine();
@@ -306,11 +306,12 @@ void Director::init()
 	Global::inputTextDispatcher()->addListener(m_inputTextEventListener);
 
 }
+
 void Director::destruct()
 {
 	if(m_current)
 	{
-		m_current->exit();
+		FS_OBJECT_LAMBDA_CALL(m_current,onExit,exit);
 		m_current->decRef();
 		m_current=NULL;
 	}
@@ -357,7 +358,7 @@ void Director::drawScene()
 
 	if(m_current)
 	{
-		m_current->draw(render);
+		FS_OBJECT_LAMBDA_CALL(m_current,onDraw,draw,render);
 	}
 
 
@@ -374,7 +375,7 @@ void Director::updateScene(float dt)
 {
 	if(m_current)
 	{
-		m_current->update(dt);
+		FS_OBJECT_LAMBDA_CALL(m_current,onUpdate,update,dt);
 	}
 }
 
@@ -383,7 +384,7 @@ void Director::touchBegin(float x,float y)
 	if(m_stop) return;
 	if(!m_current) return;
 
-	if(m_current->getTouchEnabled()) m_current->touchBegin(x,y);
+	if(m_current->getTouchEnabled()) FS_OBJECT_LAMBDA_CALL(m_current,onTouchBegin,touchBegin,x,y);
 }
 
 void Director::touchMove(float x,float y)
@@ -391,14 +392,14 @@ void Director::touchMove(float x,float y)
 	if(m_stop) return;
 	if(!m_current) return;
 
-	if(m_current->getTouchEnabled()) m_current->touchMove(x,y);
+	if(m_current->getTouchEnabled()) FS_OBJECT_LAMBDA_CALL(m_current,onTouchMove,touchMove,x,y);
 }
 
 void Director::touchEnd(float x,float y)
 {
 	if(m_stop) return;
 	if(!m_current) return;
-	if(m_current->getTouchEnabled()) m_current->touchEnd(x,y);
+	if(m_current->getTouchEnabled()) FS_OBJECT_LAMBDA_CALL(m_current,onTouchEnd,touchEnd,x,y);
 }
 
 void Director::touchesBegin(TouchEvent* event)
@@ -406,7 +407,7 @@ void Director::touchesBegin(TouchEvent* event)
 	if(m_stop) return;
 	if(!m_current) return;
 
-	if(m_current->getTouchesEnabled()) m_current->touchesBegin(event);
+	if(m_current->getTouchesEnabled()) FS_OBJECT_LAMBDA_CALL(m_current,onTouchesBegin,touchesBegin,event);
 }
 
 void Director::touchesPointerDown(TouchEvent* event)
@@ -414,35 +415,36 @@ void Director::touchesPointerDown(TouchEvent* event)
 	if(m_stop) return;
 	if(!m_current) return;
 
-	if(m_current->getTouchesEnabled()) m_current->touchesPointerDown(event);
+	if(m_current->getTouchesEnabled()) FS_OBJECT_LAMBDA_CALL(m_current,onTouchesPointerDown,touchesPointerDown,event);
 }
 void Director::touchesMove(TouchEvent* event)
 {
 	if(m_stop) return;
 	if(!m_current) return;
 
-	if(m_current->getTouchesEnabled()) m_current->touchesMove(event);
+	if(m_current->getTouchesEnabled()) FS_OBJECT_LAMBDA_CALL(m_current,onTouchesMove,touchesMove,event);
 }
 void Director::touchesPointerUp(TouchEvent* event)
 {
 	if(m_stop) return;
 	if(!m_current) return;
 
-	if(m_current->getTouchesEnabled()) m_current->touchesPointerUp(event);
+	if(m_current->getTouchesEnabled()) FS_OBJECT_LAMBDA_CALL(m_current,onTouchesPointerUp,touchesPointerUp,event);
 }
 
 void Director::touchesEnd(TouchEvent* event)
 {
 	if(m_stop) return;
 	if(!m_current) return;
-	if(m_current->getTouchesEnabled()) m_current->touchesEnd(event);
+	if(m_current->getTouchesEnabled()) FS_OBJECT_LAMBDA_CALL(m_current,onTouchesEnd,touchesEnd,event);
 }
 
 void Director::keypadEvent(int type,int keycode)
 {
 	if(m_stop) return;
 	if(!m_current) return;
-	m_current->keypadEvent(type,keycode);
+
+	FS_OBJECT_LAMBDA_CALL(m_current,onKeypadEvent,keypadEvent,type,keycode);
 }
 
 

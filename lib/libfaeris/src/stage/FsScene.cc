@@ -420,6 +420,23 @@ void Scene::init()
 	m_touchesEnabled=true;
 
 
+	onEnter=nullptr;
+	onExit=nullptr;
+
+	onUpdate=nullptr;
+	onDraw=nullptr;
+
+	onTouchBegin=nullptr;
+	onTouchMove=nullptr;
+	onTouchEnd=nullptr;
+
+	onTouchesBegin=nullptr;
+	onTouchesPointerDown=nullptr;
+	onTouchesMove=nullptr;
+	onTouchesPointerUp=nullptr;
+	onTouchesEnd=nullptr;
+
+	onKeypadEvent=nullptr;
 
 }
 

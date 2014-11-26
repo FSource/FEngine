@@ -15,11 +15,15 @@ int FsObject::m_objectNu=0;
 
 FsObject::~FsObject()
 {
+	if(onFinalize)
+	{
+	   	onFinalize(this);
+	}
 
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
-	finalize();
 	dropScriptData();
 #endif 
+
 
 	FsObject::m_objectNu--;
 }
@@ -55,11 +59,12 @@ void FsObject::dropScriptData()
 
 void _FsScriptExtends_Finalize(FsObject*);
 
-void FsObject::finalize()
+void FsObject::scriptFinalize()
 {
 	/* NOTE: lua: implement in file FsScriptEngine.cc */
 	_FsScriptExtends_Finalize(this);
 }
+
 #endif 
 
 NS_FS_END 

@@ -8,12 +8,22 @@ const char* FixTimeAction::className()
 }
 
 
+FixTimeAction* FixTimeAction::create(float total_time)
+{
+	FixTimeAction* ret=new FixTimeAction(total_time);
+	return ret;
+}
+
+
+
 FixTimeAction::FixTimeAction()
 {
 	m_totalTime=0;
 	m_curTime=0;
 	m_easing=NULL;
 	m_reverse=false;
+	onStep=nullptr;
+
 }
 
 FixTimeAction::FixTimeAction(float time)
@@ -22,6 +32,7 @@ FixTimeAction::FixTimeAction(float time)
 	m_curTime=0;
 	m_easing=NULL;
 	m_reverse=false;
+	onStep=nullptr;
 }
 
 FixTimeAction::~FixTimeAction()
@@ -55,7 +66,7 @@ bool FixTimeAction::run(ActionTarget* target,float dt,float* out)
 		percent=m_easing->getValue(percent);
 	}
 
-	step(target,percent);
+	FS_OBJECT_LAMBDA_CALL(this,onStep,step,target,percent);
 	return ret;
 }
 
@@ -65,6 +76,11 @@ bool FixTimeAction::restart()
 	m_curTime=0;
 	return true;
 }
+
+void FixTimeAction::step(ActionTarget* target,float percent)
+{
+}
+
 
 NS_FS_END
 

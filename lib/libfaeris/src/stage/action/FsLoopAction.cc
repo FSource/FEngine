@@ -52,7 +52,7 @@ bool LoopAction::update(ActionTarget* target,float dt,float* out)
 {
 	if(!m_begined)
 	{
-		begin();
+		FS_OBJECT_LAMBDA_CALL(this,onBegin,begin);
 		m_begined=true;
 		m_curLoopNu=1;
 	}
@@ -60,7 +60,7 @@ bool LoopAction::update(ActionTarget* target,float dt,float* out)
 	bool ret=run(target,dt,out);
 	if(ret)
 	{
-		finish();
+		FS_OBJECT_LAMBDA_CALL(this,onFinish,finish);
 	}
 
 	return ret;

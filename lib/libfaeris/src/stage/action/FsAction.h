@@ -1,6 +1,7 @@
 #ifndef _FS_ACTION_H_
 #define _FS_ACTION_H_
 
+#include <functional>
 #include "FsMacros.h"
 #include "FsObject.h"
 
@@ -31,6 +32,11 @@ class Action:public FsObject
 
 		virtual const char* className();
 
+	public:
+		std::function<bool(Action*,ActionTarget* target,float ,float*)> onRun;
+		std::function<void(Action*)> onBegin;
+		std::function<void(Action*)> onFinish;
+ 
 
 	protected:
 		Action();

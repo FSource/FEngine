@@ -1,6 +1,7 @@
-#ifndef FAERIS_OBJECT_H_
-#define FAERIS_OBJECT_H_
+#ifndef _FS_OBJECT_H_
+#define _FS_OBJECT_H_ 
 
+#include <functional>
 #include "FsMacros.h"
 
 #define FS_INVALID_HASH_CODE (-1)
@@ -52,8 +53,8 @@ class FsObject
 			}
 		}
 
-
-
+	public:
+		std::function<void(FsObject::*)> onFinalize;
 
 
 	public:
@@ -65,6 +66,14 @@ class FsObject
 			m_scriptData(-1)
 #endif 
 		{ 
+
+#if FS_CONFIG(FS_SCRIPT_SUPPORT)
+			onFinalize=&FsObject::scriptFinalize;
+#else 
+			onFinalize=nullptr;
+#endif
+
+
 			FsObject::m_objectNu++;
 		}
 
@@ -80,14 +89,15 @@ class FsObject
 
 	public:
 		void dropScriptData();
-		void finalize();
+		void scriptFinalize();
+
 
 #endif 
 
 };
 NS_FS_END
 
-#endif 
+#endif  /*_FS_OBJECT_H_*/
 
 
 

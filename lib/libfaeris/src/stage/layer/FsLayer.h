@@ -94,11 +94,6 @@ class Layer:public ActionTarget
 		std::function<bool(Layer*,TouchEvent*)> onTouchesPointerUp;
 		std::function<bool(Layer*,TouchEvent*)> onTouchesEnd;
 
-
-
-
-
-
 	public:
 		void updateEntity(float dt);
 

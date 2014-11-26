@@ -134,6 +134,8 @@ void Layer2D::draw(RenderDevice* rd)
 			-1024,
 			1024);
 	rd->setProjectionMatrix(&mat);
+	rd->setViewMatrix(&Matrix4::IDENTITY);
+
 
 	rd->loadWorldMatrixIdentity();
 
