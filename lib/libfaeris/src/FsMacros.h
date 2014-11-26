@@ -105,10 +105,7 @@ namespace Faeris
 
 
 #define FS_OBJECT_LAMBDA_CALL(ob,first,second,...) \
-	do {	\
-		if(ob->first)  {ob->first(ob,##__VA_ARGS__);} \
-		else{ob->second(##__VA_ARGS__);} \
-	}while(0)
+	(ob->first ? ob->first(ob,##__VA_ARGS__):ob->second(__VA_ARGS__) )
 
 
 

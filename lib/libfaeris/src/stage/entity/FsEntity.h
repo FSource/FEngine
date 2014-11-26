@@ -1,5 +1,6 @@
 #ifndef _FAERIS_ENTITY_H_
 #define _FAERIS_ENTITY_H_
+#include <functional>
 
 
 #include "FsMacros.h"
@@ -31,7 +32,36 @@ class Entity :public ActionTarget
 		virtual void updates(float dt);
 		virtual void draws(RenderDevice* r,bool updateMatrix=true);
 
+		/* single touch */
+		void setTouchEnabled(bool enabled);
+		bool getTouchEnabled();
+
+		virtual bool touchBegin(float x,float y);
+		virtual bool touchMove(float x,float y);
+		virtual bool touchEnd(float x,float y);
+
+		/* multi touches */
+		void setTouchesEnabled(bool enabled);
+		bool getTouchesEnabled();
+
+		/* TODO:(implement) 
+		bool touchesBegin(float x,float y,int id);
+		bool touchesPointerDown(float x,float y,int id);
+		bool touchesPointerMove(float x,float y,int id);
+		bool touchesPointerUp(float x,float y,int id);
+		bool touchesEnd(float x,float y,int id);
+		*/
+
 		virtual void detach();
+
+	public:
+		std::function<void(Entity*,float)> onUpdate;
+		std::function<void(Entity*,RenderDevice*,bool)> onDraw;
+
+		std::function<bool(Entity*,float,float)> onTouchBegin;
+		std::function<bool(Entity*,float,float)> onTouchMove;
+		std::function<bool(Entity*,float,float)> onTouchEnd;
+
 
 	public:
 
@@ -160,25 +190,6 @@ class Entity :public ActionTarget
 		void setDispatchTouchesEnabled(bool enabled);
 		bool getDispatchTouchesEnabled();
 
-		/* single touch */
-		void setTouchEnabled(bool enabled);
-		bool getTouchEnabled();
-
-		virtual bool touchBegin(float x,float y);
-		virtual bool touchMove(float x,float y);
-		virtual bool touchEnd(float x,float y);
-
-		/* multi touches */
-		void setTouchesEnabled(bool enabled);
-		bool getTouchesEnabled();
-
-		/* TODO:(implement) 
-		bool touchesBegin(float x,float y,int id);
-		bool touchesPointerDown(float x,float y,int id);
-		bool touchesPointerMove(float x,float y,int id);
-		bool touchesPointerUp(float x,float y,int id);
-		bool touchesEnd(float x,float y,int id);
-		*/
 
 
 	

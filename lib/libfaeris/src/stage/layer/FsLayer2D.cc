@@ -313,7 +313,7 @@ bool Layer2D::touchBegin(float x,float y)
 			if(e->getLayer()==this&&e->hit2D(tv.x,tv.y))
 			{
 				/* NOTE: entity will detach when called touchBegin */
-				bool ret=e->touchBegin(tv.x,tv.y);
+				bool ret=FS_OBJECT_LAMBDA_CALL(e,onTouchBegin,touchBegin,tv.x,tv.y);
 				/* check entity accept event and not detach */
 				if(ret&&e->getLayer()==this)
 				{
@@ -332,7 +332,7 @@ bool Layer2D::touchMove(float x,float y)
 	Vector3 tv=toLayerCoord(Vector3(x,y,0));
 	if(m_touchFocus) 
 	{
-		return m_touchFocus->touchMove(tv.x,tv.y);
+		return FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchMove,touchMove,tv.x,tv.y);
 	}
 	return false;
 }
@@ -341,7 +341,7 @@ bool Layer2D::touchEnd(float x,float y)
 	Vector3 tv=toLayerCoord(Vector3(x,y,0));
 	if(m_touchFocus) 
 	{
-		bool ret=m_touchFocus->touchEnd(tv.x,tv.y);
+		bool ret=FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchMove,touchEnd,tv.x,tv.y);
 		m_touchFocus=NULL;
 		return ret;
 	}

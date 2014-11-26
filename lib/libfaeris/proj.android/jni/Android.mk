@@ -30,7 +30,8 @@ LOCAL_SRC_FILES :=  \
 					../../src/extends/FsScriptEngine.cc \
 					../../src/stage/FsActionTarget.cc \
 					../../src/stage/entity/FsIMaterial2DEntity.cc \
-					../../src/stage/entity/FsITransform.cc \
+					../../src/stage/entity/transform/FsEulerTransform.cc \
+					../../src/stage/entity/transform/FsQuaternionTransform.cc \
 					../../src/stage/entity/FsEntity.cc \
 					../../src/stage/entity/FsLabelTTF.cc \
 					../../src/stage/entity/FsQuad2D.cc \
@@ -67,6 +68,8 @@ LOCAL_SRC_FILES :=  \
 					../../src/graphics/FsVertexBuffer.cc \
 					../../src/graphics/shader/FsProgram.cc \
 					../../src/graphics/shader/FsProgramSource.cc \
+					../../src/graphics/shader/FsProgramFeatureDesc.cc \
+					../../src/graphics/shader/FsUniformValue.cc \
 					../../src/graphics/material/FsMaterial.cc \
 					../../src/graphics/material/FsMaterial2D.cc \
 					../../src/sys/event/FsSysDispatcher.cc \
