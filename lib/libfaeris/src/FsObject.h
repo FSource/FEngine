@@ -23,6 +23,7 @@ class FsObject
 		bool m_refDelete;
 		int m_refNu;
 		ObjectMgr* m_objectMgr;
+		void* m_userData;
 
 	public:
 		int refCnt(){return m_refNu;}
@@ -41,7 +42,8 @@ class FsObject
 		}
 		bool getRefDelete(){return m_refDelete;}
 
-		void destroy(){
+		void destroy()
+		{
 			FS_TRACE_WARN_ON(m_refNu>1,"Object(%s) Is Owner By Other %d Object",className(),m_refNu);
 			delete this;
 		}
@@ -51,6 +53,16 @@ class FsObject
 			{
 				delete this;
 			}
+		}
+
+		void setUserData(void* data)
+		{
+			m_userData=data;
+		}
+
+		void* getUserData()
+		{
+			return m_userData;
 		}
 
 	public:
@@ -63,7 +75,8 @@ class FsObject
 			m_refNu(0),
 			m_objectMgr(NULL),
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
-			m_scriptData(-1)
+			m_scriptData(-1),
+			m_userData(NULL)
 #endif 
 		{ 
 

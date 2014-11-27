@@ -175,7 +175,7 @@ void Director::update(int priority,float dt)
 				{
 					if(m_current)
 					{
-						FS_OBJECT_LAMBDA_CALL(m_current,onExit,exit,);
+						FS_OBJECT_LAMBDA_CALL(m_current,onExit,exit);
 						m_current->decRef();
 					}
 

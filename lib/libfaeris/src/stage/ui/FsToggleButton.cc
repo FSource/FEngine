@@ -16,17 +16,21 @@ ToggleButton* ToggleButton::create()
 	return ret;
 }
 
-ToggleButton* ToggleButton::createWithDarkStyle(const char* filename,const Color4f& dark)
+ToggleButton* ToggleButton::createWithColorStyle(const char* filename,
+												const Color4f& on,
+												const Color4f& off)
 {
 	ToggleButton* ret=new ToggleButton();
-	ret->initWithDarkStyle(filename,dark);
+	ret->initWithColorStyle(filename,on,off);
 	return ret;
 }
 
-ToggleButton* ToggleButton::createWithDarkStyle(Texture2D* tex,const Color4f& dark)
+ToggleButton* ToggleButton::createWithColorStyle(Texture2D* tex,
+												const Color4f& on,
+												const Color4f& off)
 {
 	ToggleButton* ret=new ToggleButton();
-	ret->initWithDarkStyle(tex,dark);
+	ret->initWithColorStyle(tex,on,off);
 	return ret;
 }
 
@@ -48,9 +52,9 @@ ToggleButton::ToggleButton()
 	:StateButton(STATE_NU)
 {
 
-	m_toggleState=STATE_ON;
+	m_toggleState=true;
 	m_disabled=false;
-
+	onToggleChanged=nullptr;
 }
 
 ToggleButton::~ToggleButton()
@@ -104,7 +108,7 @@ void ToggleButton::setToggle(bool value,bool callback)
 		}
 		if (callback)
 		{
-			toggleChanged(m_toggleState);
+			FS_OBJECT_LAMBDA_CALL(this,onToggleChanged,toggleChanged,m_toggleState);
 		}
 	}
 }
@@ -127,7 +131,7 @@ bool ToggleButton::touchBegin(float x,float y)
 		setState(STATE_OFF);
 	}
 
-	toggleChanged(m_toggleState);
+	FS_OBJECT_LAMBDA_CALL(this,onToggleChanged,toggleChanged,m_toggleState);
 	return true;
 }
 
@@ -151,24 +155,36 @@ bool ToggleButton::hit2D(float x,float y)
 	return StateButton::hit2D(x,y);
 }
 
-void ToggleButton::initWithDarkStyle(const char* filename,const Color4f& dark)
+void ToggleButton::initWithColorStyle(const char* filename,const Color4f& on,const Color4f& off)
 {
 	Texture2D* texture=Global::textureMgr()->loadTexture(filename);
 	FS_TRACE_WARN_ON(texture==NULL,"Can't loadTexture(%s) For ToggleButton",filename);
-	initWithDarkStyle(texture,dark);
+	initWithColorStyle(texture,on,off);
 }
 
-void ToggleButton::initWithDarkStyle(Texture2D* tex,const Color4f& dark)
+void ToggleButton::initWithDarkStyle(const char* filename,const Color4f& dark)
+{
+	initWithColorStyle(filename,Color4f::WHITE,dark);
+}
+
+
+void ToggleButton::initWithColorStyle(Texture2D* tex,const Color4f& on,const Color4f& off)
 {
 	setTexture(tex);
 
 	setTweenFlags(FLAG_COLOR);
 	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
 
-	setColor(STATE_OFF,dark);
+	setColor(STATE_ON,on);
+	setColor(STATE_OFF,off);
 	setColor(STATE_DISABLE,Color4f(0.2f,0.2f,0.3f));
-
 }
+
+void ToggleButton::initWithDarkStyle(Texture2D* tex,const Color4f& dark)
+{
+	initWithColorStyle(tex,Color4f::WHITE,dark);
+}
+
 
 void ToggleButton::initWithTextureStyle(const char* fileon,const char* fileoff)
 {
