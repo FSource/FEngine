@@ -60,6 +60,10 @@ bool ProgramFeatureDesc::equal(ProgramFeatureDesc* l,ProgramFeatureDesc* r,uint3
 
 	uint32_t cp_flags=l->m_supportFlags&flags;
 
+	if(cp_flags&E_ProgramFeatureSupport::AMBIENT_LIGHT&&(l->m_ambientLightNu!=r->m_ambientLightNu))
+	{
+		return false;
+	}
 
 	if(cp_flags&E_ProgramFeatureSupport::DIRECTIONAL_LIGHT
 			&&(l->m_directionalLightNu!=r->m_directionalLightNu))

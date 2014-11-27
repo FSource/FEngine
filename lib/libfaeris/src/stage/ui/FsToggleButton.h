@@ -1,6 +1,7 @@
 #ifndef _FS_TOGGLE_BUTTON_H_
 #define _FS_TOGGLE_BUTTON_H_
 
+#include <functional>
 #include "FsMacros.h"
 #include "FsStateButton.h"
 
@@ -20,8 +21,13 @@ class ToggleButton:public StateButton
 
 	public:
 		static ToggleButton* create();
-		static ToggleButton* createWithDarkStyle(const char* filename,const Color4f& dark);
-		static ToggleButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark);
+		static ToggleButton* createWithColorStyle(const char* filename,
+											const Color4f& on,
+											const Color4f& off);
+
+		static ToggleButton* createWithColorStyle(Texture2D* tex,
+												const Color4f& on,
+												const Color4f& off);
 
 		static ToggleButton* createWithTextureStyle(const char* fileon,const char* fileoff);
 		static ToggleButton* createWithTextureStyle(Texture2D* on,Texture2D* off);
@@ -40,6 +46,9 @@ class ToggleButton:public StateButton
 	public:
 		virtual void toggleChanged(bool value);
 
+	public:
+		std::function<void(ToggleButton*,bool)> onToggleChanged;
+
 
 	public:
 		void setDisabled(bool value);
@@ -55,6 +64,11 @@ class ToggleButton:public StateButton
 
 		void initWithDarkStyle(const char* filename,const Color4f& dark);
 		void initWithDarkStyle(Texture2D* tex,const Color4f& dark);
+
+
+		void initWithColorStyle(const char* filename,const Color4f& on,const Color4f& off);
+		void initWithColorStyle(Texture2D* tex,const Color4f& on,const Color4f& off);
+
 
 		void initWithTextureStyle(const char* fileon,const char* fileoff);
 		void initWithTextureStyle(Texture2D* on,Texture2D* off);

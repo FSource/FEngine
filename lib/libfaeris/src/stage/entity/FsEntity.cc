@@ -36,7 +36,7 @@ void Entity::update(float dt)
 
 void Entity::updates(float dt)
 {
-	if(getVisible()) this->update(dt);
+	if(getVisible()) FS_OBJECT_LAMBDA_CALL( this,onUpdate,update,dt);
 	int child_nu=m_chirdren->size();
 
 	m_chirdren->lock();
@@ -81,7 +81,7 @@ void Entity::draws(RenderDevice* r,bool updateMatrix)
 		}
 	}
 
-	if(getVisible()) this->draw(r,updateMatrix);
+	if(getVisible()) FS_OBJECT_LAMBDA_CALL(this,onDraw,draw,r,updateMatrix);
 
 	for(;i<child_nu;i++)
 	{
@@ -118,6 +118,13 @@ void Entity::init()
 
 	m_chirdren=FsSlowArray::create();
 	FS_NO_REF_DESTROY(m_chirdren);
+
+
+	onUpdate=nullptr;
+	onDraw=nullptr;
+	onTouchBegin=nullptr;
+	onTouchMove=nullptr;
+	onTouchEnd=nullptr;
 }
 
 void Entity::destruct()
@@ -500,7 +507,7 @@ bool Entity::touchBegin(float x,float y)
 			if(e->getVisible()&&e->getTouchEnabled()&&e->getParent()==this&&e->hit2D(x,y))
 			{
 				/* NOTE: entity will detach when called touchBegin */
-				bool ret=e->touchBegin(x,y);
+				bool ret=FS_OBJECT_LAMBDA_CALL(e,onTouchBegin,touchBegin,x,y);
 				if(ret&&e->getParent()==this)
 				{
 					m_touchFocus=e;
@@ -517,7 +524,7 @@ bool Entity::touchMove(float x,float y)
 {
 	if(m_touchFocus)
 	{
-		return m_touchFocus->touchMove(x,y);
+		return FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchMove,touchMove,x,y);
 	}
 
 	return false;
@@ -527,7 +534,7 @@ bool Entity::touchEnd(float x,float y)
 {
 	if(m_touchFocus)
 	{
-		bool ret=m_touchFocus->touchEnd(x,y);
+		bool ret=FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchEnd,touchEnd,x,y);
 		m_touchFocus=NULL;
 		return ret;
 	}

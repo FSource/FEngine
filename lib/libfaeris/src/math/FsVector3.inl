@@ -63,6 +63,10 @@ template <typename T>
 inline TVector3<T> TVector3<T>::normal() const
 {
 	T l=length();
+	if( l==0)
+	{
+		return TVector3(0,0,0);
+	}
 	return TVector3<T>(x/l,y/l,z/l);
 }
 

@@ -15,11 +15,12 @@ int FsObject::m_objectNu=0;
 
 FsObject::~FsObject()
 {
+	FS_OBJECT_LAMBDA_CALL(this,onFinalize,finalize);
 
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
-	finalize();
 	dropScriptData();
 #endif 
+
 
 	FsObject::m_objectNu--;
 }
@@ -59,6 +60,10 @@ void FsObject::finalize()
 {
 	/* NOTE: lua: implement in file FsScriptEngine.cc */
 	_FsScriptExtends_Finalize(this);
+}
+#else 
+void FsObject::finalize()
+{
 }
 #endif 
 

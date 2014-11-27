@@ -1,6 +1,7 @@
-#ifndef FAERIS_OBJECT_H_
-#define FAERIS_OBJECT_H_
+#ifndef _FS_OBJECT_H_
+#define _FS_OBJECT_H_ 
 
+#include <functional>
 #include "FsMacros.h"
 
 #define FS_INVALID_HASH_CODE (-1)
@@ -22,6 +23,7 @@ class FsObject
 		bool m_refDelete;
 		int m_refNu;
 		ObjectMgr* m_objectMgr;
+		void* m_userData;
 
 	public:
 		int refCnt(){return m_refNu;}
@@ -40,7 +42,8 @@ class FsObject
 		}
 		bool getRefDelete(){return m_refDelete;}
 
-		void destroy(){
+		void destroy()
+		{
 			FS_TRACE_WARN_ON(m_refNu>1,"Object(%s) Is Owner By Other %d Object",className(),m_refNu);
 			delete this;
 		}
@@ -52,8 +55,18 @@ class FsObject
 			}
 		}
 
+		void setUserData(void* data)
+		{
+			m_userData=data;
+		}
 
+		void* getUserData()
+		{
+			return m_userData;
+		}
 
+	public:
+		std::function<void(FsObject*)> onFinalize;
 
 
 	public:
@@ -62,9 +75,12 @@ class FsObject
 			m_refNu(0),
 			m_objectMgr(NULL),
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
-			m_scriptData(-1)
+			m_scriptData(-1),
+			m_userData(NULL)
 #endif 
 		{ 
+
+			onFinalize=nullptr;
 			FsObject::m_objectNu++;
 		}
 
@@ -72,22 +88,19 @@ class FsObject
 		virtual const char* className();
 		virtual long getHashCode();
 		virtual bool equal(FsObject* ob); 
+		virtual void finalize();
 
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
 	public:
 		int m_scriptData; /* script data */
-
-
 	public:
 		void dropScriptData();
-		void finalize();
-
 #endif 
 
 };
 NS_FS_END
 
-#endif 
+#endif  /*_FS_OBJECT_H_*/
 
 
 

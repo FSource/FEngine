@@ -494,6 +494,7 @@ void PageView::setCurrentPageIndex(int index)
 			pageIndexChanged(old_index,m_currentPageIndex);
 		}
 	}
+	adjustContentPanel();
 }
 
 

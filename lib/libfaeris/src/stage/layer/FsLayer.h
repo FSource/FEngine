@@ -1,5 +1,6 @@
 #ifndef _FS_LAYER_H_
 #define _FS_LAYER_H_
+#include <functional>
 #include <vector>
 #include "stage/FsActionTarget.h"
 #include "math/FsRect2D.h"
@@ -77,6 +78,21 @@ class Layer:public ActionTarget
 
 		/* inherit FsObject */
 		virtual const char* className();
+	public:
+		std::function<void(Layer*,float)> onUpdate;
+		std::function<void(Layer*,RenderDevice*)> onDraw;
+
+		/* touch */
+		std::function<bool(Layer*,float,float)> onTouchBegin;
+		std::function<bool(Layer*,float,float)> onTouchMove;
+		std::function<bool(Layer*,float,float)> onTouchEnd;
+
+		/* touches */
+		std::function<bool(Layer*,TouchEvent*)> onTouchesBegin;
+		std::function<bool(Layer*,TouchEvent*)> onTouchesPointerDown;
+		std::function<bool(Layer*,TouchEvent*)> onTouchesMove;
+		std::function<bool(Layer*,TouchEvent*)> onTouchesPointerUp;
+		std::function<bool(Layer*,TouchEvent*)> onTouchesEnd;
 
 	public:
 		void updateEntity(float dt);

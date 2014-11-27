@@ -199,7 +199,7 @@ void Scene::updateLayers(float dt)
 		Layer* layer=(Layer*)m_layers->get(i);
 		if(layer->getVisible())
 		{
-			layer->update(dt);
+			FS_OBJECT_LAMBDA_CALL(layer,onUpdate,update,dt);
 		}
 	}
 	m_layers->unlock();
@@ -215,7 +215,7 @@ void Scene::draw(RenderDevice* render)
 		Layer* layer=(Layer*)m_layers->get(i);
 		if(layer->getVisible())
 		{
-			layer->draw(render);
+			FS_OBJECT_LAMBDA_CALL(layer,onDraw,draw,render);
 		}
 	}
 	m_layers->unlock();
@@ -240,7 +240,7 @@ void Scene::touchBegin(float x,float y)
 		Layer* layer=(Layer*)m_layers->get(i);
 		if((layer->getScene()==this)&&layer->touchEnabled()&&layer->getVisible())
 		{
-			handle=layer->touchBegin(x,y);
+			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchBegin,touchBegin,x,y);
 		}
 		if(handle&&layer->getScene()==this)
 		{
@@ -257,7 +257,7 @@ void Scene::touchMove(float x,float y)
 {
 	if(m_touchFocusLayer&&m_touchFocusLayer->touchEnabled()&&m_touchFocusLayer->getVisible())
 	{
-		m_touchFocusLayer->touchMove(x,y);
+		FS_OBJECT_LAMBDA_CALL(m_touchFocusLayer,onTouchMove,touchMove,x,y);
 	}
 
 }
@@ -266,7 +266,7 @@ void Scene::touchEnd(float x,float y)
 {
 	if(m_touchFocusLayer&&m_touchFocusLayer->touchEnabled()&&m_touchFocusLayer->getVisible())
 	{
-		m_touchFocusLayer->touchEnd(x,y);
+		FS_OBJECT_LAMBDA_CALL(m_touchFocusLayer,onTouchEnd,touchEnd,x,y);
 	}
 	m_touchFocusLayer=NULL;
 }
@@ -281,7 +281,7 @@ void Scene::touchesBegin(TouchEvent* event)
 		Layer* layer=(Layer*)m_layers->get(i);
 		if(layer->touchEnabled()&&layer->getVisible())
 		{
-			handle=layer->touchesBegin(event);
+			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesBegin,touchesBegin,event);
 		}
 		if(handle)
 		{
@@ -302,7 +302,7 @@ void Scene::touchesPointerDown(TouchEvent* event)
 		Layer* layer=(Layer*)m_layers->get(i);
 		if(layer->touchEnabled()&&layer->getVisible())
 		{
-			handle=layer->touchesPointerDown(event);
+			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesPointerDown,touchesPointerDown,event);
 		}
 		if(handle)
 		{
@@ -322,7 +322,7 @@ void Scene::touchesMove(TouchEvent* event)
 		Layer* layer=(Layer*)m_layers->get(i);
 		if(layer->touchEnabled()&&layer->getVisible())
 		{
-			handle=layer->touchesMove(event);
+			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesMove,touchesMove,event);
 		}
 		if(handle)
 		{
@@ -343,7 +343,7 @@ void Scene::touchesPointerUp(TouchEvent* event)
 		Layer* layer=(Layer*)m_layers->get(i);
 		if(layer->touchEnabled()&&layer->getVisible())
 		{
-			handle=layer->touchesPointerUp(event);
+			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesPointerUp,touchesPointerUp,event);
 		}
 		if(handle)
 		{
@@ -364,7 +364,7 @@ void Scene::touchesEnd(TouchEvent* event)
 		Layer* layer=(Layer*)m_layers->get(i);
 		if(layer->touchEnabled()&&layer->getVisible())
 		{
-			handle=layer->touchesEnd(event);
+			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesEnd,touchesEnd,event);
 		}
 		if(handle)
 		{
@@ -420,6 +420,23 @@ void Scene::init()
 	m_touchesEnabled=true;
 
 
+	onEnter=nullptr;
+	onExit=nullptr;
+
+	onUpdate=nullptr;
+	onDraw=nullptr;
+
+	onTouchBegin=nullptr;
+	onTouchMove=nullptr;
+	onTouchEnd=nullptr;
+
+	onTouchesBegin=nullptr;
+	onTouchesPointerDown=nullptr;
+	onTouchesMove=nullptr;
+	onTouchesPointerUp=nullptr;
+	onTouchesEnd=nullptr;
+
+	onKeypadEvent=nullptr;
 
 }
 

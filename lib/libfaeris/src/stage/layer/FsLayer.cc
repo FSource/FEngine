@@ -104,6 +104,20 @@ void Layer::init()
 	m_scene=NULL;
 
 
+	onUpdate=nullptr;
+	onDraw=nullptr;
+
+	/* touch */
+	onTouchBegin=nullptr;
+	onTouchMove=nullptr;
+	onTouchEnd=nullptr;
+
+	/* touches */
+	onTouchesBegin=nullptr;
+	onTouchesPointerDown=nullptr;
+	onTouchesMove=nullptr;
+	onTouchesPointerUp=nullptr;
+	onTouchesEnd=nullptr;
 }
 
 void Layer::destruct() { }
