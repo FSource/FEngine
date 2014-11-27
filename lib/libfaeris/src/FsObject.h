@@ -54,7 +54,7 @@ class FsObject
 		}
 
 	public:
-		std::function<void(FsObject::*)> onFinalize;
+		std::function<void(FsObject*)> onFinalize;
 
 
 	public:
@@ -67,13 +67,7 @@ class FsObject
 #endif 
 		{ 
 
-#if FS_CONFIG(FS_SCRIPT_SUPPORT)
-			onFinalize=&FsObject::scriptFinalize;
-#else 
 			onFinalize=nullptr;
-#endif
-
-
 			FsObject::m_objectNu++;
 		}
 
@@ -81,17 +75,13 @@ class FsObject
 		virtual const char* className();
 		virtual long getHashCode();
 		virtual bool equal(FsObject* ob); 
+		virtual void finalize();
 
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
 	public:
 		int m_scriptData; /* script data */
-
-
 	public:
 		void dropScriptData();
-		void scriptFinalize();
-
-
 #endif 
 
 };
