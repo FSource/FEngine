@@ -3,7 +3,7 @@ UniformMap    \n\
 {   \n\
 	u_mvp = $(R.WORLD_VIEW_PROJECTION_MAT)   \n\
 	u_texture0 = $(M.COLOR_MAP)   \n\
-	u_color = $(M.OPACITY)   \n\
+	u_color = $(M.COLOR)   \n\
 	u_opacity = $(M.OPACITY)   \n\
 	   \n\
 }   \n\

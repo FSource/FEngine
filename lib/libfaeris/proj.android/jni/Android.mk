@@ -29,8 +29,6 @@ LOCAL_SRC_FILES :=  \
 					../../src/FsFaerisModule.cc \
 					../../src/extends/FsScriptEngine.cc \
 					../../src/stage/FsActionTarget.cc \
-					../../src/stage/entity/transform/FsEulerTransform.cc \
-					../../src/stage/entity/transform/FsQuaternionTransform.cc \
 					../../src/stage/entity/FsIMaterial2DEntity.cc \
 					../../src/stage/entity/transform/FsEulerTransform.cc \
 					../../src/stage/entity/transform/FsQuaternionTransform.cc \

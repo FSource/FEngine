@@ -268,9 +268,10 @@ bool Program::init(ProgramSource* source,ProgramFeatureDesc* desc)
 			head_define.append(buf);
 		}
 
-		if(support_flags &  E_ProgramFeatureSupport::HEMI_SPHERE_LIGHT)
+		if((support_flags &  E_ProgramFeatureSupport::HEMI_SPHERE_LIGHT)
+				&& desc->m_hemiSphereLightNu !=0)
 		{
-			sprintf(buf, "#define FS_HEMI_SPHERE_LIGHT %d \n",desc->m_hemiSphereLightNu);
+			sprintf(buf, "#define FS_HEMI_SPHERE_LIGHT_NU %d \n",desc->m_hemiSphereLightNu);
 			head_define.append(buf);
 		}
 	}

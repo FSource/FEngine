@@ -84,8 +84,8 @@ bool ProgramFeatureDesc::equal(ProgramFeatureDesc* l,ProgramFeatureDesc* r,uint3
 		return false;
 	}
 
-	if(cp_flags&E_ProgramFeatureSupport::DIRECTIONAL_LIGHT
-			&&(l->m_directionalLightNu!=r->m_directionalLightNu))
+	if(cp_flags&E_ProgramFeatureSupport::SPOT_LIGHT
+			&&(l->m_spotLightNu!=r->m_spotLightNu))
 	{
 		return false;
 	}
