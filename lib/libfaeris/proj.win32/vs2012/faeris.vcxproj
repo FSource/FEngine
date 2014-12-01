@@ -85,6 +85,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\extends\FsScriptEngine.h" />
+    <ClInclude Include="..\..\src\FsClass.h" />
     <ClInclude Include="..\..\src\FsConfig.h" />
     <ClInclude Include="..\..\src\FsEnums.h" />
     <ClInclude Include="..\..\src\FsFaerisModule.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="..\..\src\FsMacros.h" />
     <ClInclude Include="..\..\src\FsObject.h" />
     <ClInclude Include="..\..\src\FsTypes.h" />
+    <ClInclude Include="..\..\src\FsVariant.h" />
     <ClInclude Include="..\..\src\graphics\FsColor.h" />
     <ClInclude Include="..\..\src\graphics\FsFontBitmap.h" />
     <ClInclude Include="..\..\src\graphics\FsFontTTF.h" />
@@ -251,6 +253,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc" />
+    <ClCompile Include="..\..\src\FsClass.cc" />
     <ClCompile Include="..\..\src\FsFaerisModule.cc" />
     <ClCompile Include="..\..\src\FsGlobal.cc" />
     <ClCompile Include="..\..\src\FsObject.cc" />

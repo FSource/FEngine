@@ -61,6 +61,41 @@ enum
 };
 
 
+enum class FsType
+{
+	FT_B_1,
+	FT_B_2,
+	FT_B_3,
+	FT_B_4,
+
+	FT_F_1,
+	FT_F_2,
+	FT_F_3,
+	FT_F_4,
+
+	FT_UI_1,
+	FT_UI_2,
+	FT_UI_3,
+	FT_UI_4,
+
+	FT_I_1,
+	FT_I_2,
+	FT_I_3,
+	FT_I_4,
+
+	FS_COLOR_3,
+	FS_COLOR_4,
+
+	FT_MAT4,
+
+	FT_OBJECT,
+	FT_STRING,
+	FT_DICT,
+	FT_ARRAY,
+};
+
+
+
 /* file type */
 enum 
 {

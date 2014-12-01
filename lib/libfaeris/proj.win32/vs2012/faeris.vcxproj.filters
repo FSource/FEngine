@@ -577,6 +577,12 @@
     <ClInclude Include="..\..\src\stage\entity\transform\FsQuaternionTransform.h">
       <Filter>src\stage\entity\transform</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\FsClass.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FsVariant.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1025,6 +1031,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\graphics\shader\FsProgramFeatureDesc.cc">
       <Filter>src\graphics\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsClass.cc">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
