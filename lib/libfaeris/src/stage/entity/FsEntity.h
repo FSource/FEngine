@@ -85,6 +85,7 @@ class Entity :public ActionTarget
 
 		bool updateWorldMatrix();
 		void updateAllWorldMatrix();
+		void setChildWorldMatrixDirty();
 
 	public: /* zorlder */
 		float getZorder();

@@ -154,6 +154,7 @@ bool Entity::updateWorldMatrix()
 		{
 			m_worldMatrix=*(m_transform->getTransformMatrix());
 			m_worldMatrixDirty=0;
+			setChildWorldMatrixDirty();
 			return true;
 		}
 	}
@@ -167,11 +168,13 @@ bool Entity::updateWorldMatrix()
 			m_worldMatrix=m_parent->m_worldMatrix;
 			m_worldMatrix.mul(*m_transform->getTransformMatrix());
 			m_worldMatrixDirty=0;
+			setChildWorldMatrixDirty();
 			return true;
 		}
 	}
 	return false;
 }
+
 
 void Entity::updateAllWorldMatrix()
 {
@@ -202,6 +205,16 @@ void Entity::updateChildWorldMatrix(bool force)
 	{
 		Entity* node=(Entity*)m_chirdren->get(i);
 		node->updateChildWorldMatrix(dirty);
+	}
+}
+
+void Entity::setChildWorldMatrixDirty()
+{
+	int child_nu=m_chirdren->size();
+	for(int i=0;i<child_nu;i++)
+	{
+		Entity* node=(Entity*)m_chirdren->get(i);
+		node->m_worldMatrixDirty=1;
 	}
 }
 
