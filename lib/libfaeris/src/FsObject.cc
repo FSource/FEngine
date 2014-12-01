@@ -1,14 +1,16 @@
 #include "FsObject.h"
+#include "FsClass.h"
+
 #include "FsGlobal.h"
 #include "extends/FsScriptEngine.h"
 
 
+
 NS_FS_BEGIN 
 
-const char* FsObject::className()
-{
-	return FS_FSOBJECT_CLASS_NAME;
-}
+
+
+FS_CLASS_IMPLEMENT(FsObject,0,NULL)
 
 
 int FsObject::m_objectNu=0;
@@ -66,6 +68,25 @@ void FsObject::finalize()
 {
 }
 #endif 
+
+
+void FsObject::setAttribute(const char* name,const FsVariant& v)
+{
+	/*
+	FsClass* fsl=this->getClass();
+	fsl->callSet(this,name,v);
+	*/
+}
+
+
+/*
+FsVariant FsObject::getAttribute(const char* name)
+{
+	FsClass* fsl=this->getClass();
+	return fsl->callGet(this,name);
+}
+*/
+
 
 NS_FS_END 
 

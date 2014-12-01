@@ -14,10 +14,12 @@ class Resource :public FsObject
 		Resource();
 		virtual ~Resource();
 
+	public:
+		FsString* getResourceName();
+
 	protected:
 		void setMgr(ResourceMgr* mgr);
 		void setResourceName(FsString* name);
-		FsString* getResourceName();
 
 	private:
 		ResourceMgr* m_mgr;

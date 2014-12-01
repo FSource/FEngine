@@ -3,6 +3,7 @@
 
 #include <functional>
 #include "FsMacros.h"
+#include "FsVariant.h"
 
 #define FS_INVALID_HASH_CODE (-1)
 
@@ -17,6 +18,14 @@ class FsObject
 	public:
 		static int getObjectNu(){return FsObject::m_objectNu;}
 
+
+	public:
+		FS_CLASS_DECLARE(FsObject);
+
+	public:
+
+		void setAttribute(const char* name,const FsVariant& v);
+		FsVariant getAttribute(const char* name);
 
 	/* object attribute */
 	private:
@@ -85,7 +94,6 @@ class FsObject
 		}
 
 		virtual ~FsObject();
-		virtual const char* className();
 		virtual long getHashCode();
 		virtual bool equal(FsObject* ob); 
 		virtual void finalize();

@@ -170,6 +170,22 @@ namespace Faeris
 
 
 
+/* fsclass */
+
+namespace Faeris 
+{
+	class FsClass;
+}
+
+#define FS_CLASS_DECLARE(cls) \
+	protected: \
+		static Faeris::FsClass* m_fsclass; \
+	public: \
+		static Faeris::FsClass* getClass(); \
+		static const char* getClassName();  \
+	public: \
+		virtual Faeris::FsClass* getObjectClass() ; \
+		virtual const char* className() 
 
 /* event part*/
 
