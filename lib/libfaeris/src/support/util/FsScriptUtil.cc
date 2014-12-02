@@ -485,6 +485,102 @@ bool ScriptUtil::parseBoolean(const char* str)
 	return true;
 }
 
+bool ScriptUtil::parseColor3f(const char* str,float* r,float* g,float* b)
+{
+	float a=0.0f;
+	return parseColor4f(str,r,g,b,&a);
+}
+
+
+
+bool ScriptUtil::parseColor4f(const char* str,float* r,float* g,float* b,float* a)
+{
+	float vr=0.0f;
+	float vg=0.0f;
+	float vb=0.0f;
+	float va=0.0f;
+
+	int length=strlen(str);
+	if(length==0)
+	{
+		return false;
+	}
+	if(*str=='#')
+	{
+		str++;
+		length--;
+	}
+
+	for(int i=0;i<8;i++)
+	{
+		int value=0;
+		if(str[i]>='0' && str[i]<='9')
+		{
+			value=str[i]-'0';
+		}
+		else if(str[i]>='a' && str[i]<='f')
+		{
+			value=str[i]-'a'+10;
+		}
+		else if (str[i]>='A' && str[i] <='F')
+		{
+			value=str[i]-'A'+10;
+		}
+		else 
+		{
+			return false;
+		}
+
+
+
+		switch(i)
+		{
+			/* red */
+			case  0:
+				vr+=value*16;
+				break;
+
+			case 1:
+				vr+=value;
+				break;
+
+			/* green */
+			case 2:
+				vg+=value*16;
+				break;
+			case 3:
+				vg+=value;
+				break;
+
+			/* blue */
+			case 4:
+				vb+=value*16;
+				break;
+
+			case 5:
+				vb+=value;
+				break;
+
+			/* alpha */
+			case 6:
+				va+=value*16;
+				break;
+
+			case 7:
+				va+=value;
+				break;
+		} 
+	}
+
+
+	*r=vr/255.0f;
+	*g=vg/255.0f;
+	*b=vb/255.0f;
+	*a=va/255.0f;
+	
+	return true;
+}
+
 
 
 

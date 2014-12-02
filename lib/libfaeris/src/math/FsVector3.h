@@ -56,8 +56,8 @@ class TVector3
 typedef TVector3<float> Vector3f;
 typedef TVector3<float> Vector3;
 
-typedef TVector3<uint16_t> Vector3ui;
-typedef TVector3<int16_t> Vector3i;
+typedef TVector3<uint32_t> Vector3ui;
+typedef TVector3<int32_t> Vector3i;
 
 
 NS_FS_END

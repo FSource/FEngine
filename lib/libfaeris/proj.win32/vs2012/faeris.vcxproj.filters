@@ -583,6 +583,9 @@
     <ClInclude Include="..\..\src\FsVariant.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsFelisScriptMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1033,6 +1036,12 @@
       <Filter>src\graphics\shader</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\FsClass.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsFelisScriptMgr.cc">
+      <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsVariant.cc">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

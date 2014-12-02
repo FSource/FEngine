@@ -88,6 +88,12 @@ int FsFaeris_ModuleInit()
 	prog_s_mgr->loadPreDefineShader();
 	Global::setProgramSourceMgr(prog_s_mgr);
 
+	FelisScriptMgr* flis_mgr=FelisScriptMgr::create();
+	FS_NO_REF_DESTROY(flis_mgr);
+	Global::setFelisScriptMgr(flis_mgr);
+
+
+
 
 
 
@@ -131,6 +137,8 @@ int FsFaeris_ModuleExit()
 	Sprite2DDataMgr* sprite_mgr=Global::sprite2DDataMgr();
 	ProgramSourceMgr* prog_s_mgr=Global::programSourceMgr();
 
+	FelisScriptMgr* felis_mgr=Global::felisScriptMgr();
+
 
 
 
@@ -166,6 +174,7 @@ int FsFaeris_ModuleExit()
 	FS_DESTROY(font_mgr);
 	FS_DESTROY(sprite_mgr);
 	FS_DESTROY(prog_s_mgr);
+	FS_DESTROY(felis_mgr);
 
 
 
@@ -185,6 +194,7 @@ int FsFaeris_ModuleExit()
 	Global::dropFontTTFMgr();
 	Global::dropSprite2DDataMgr();
 	Global::dropProgramSourceMgr();
+	Global::dropFelisScriptMgr();
 	return 0;
 }
 

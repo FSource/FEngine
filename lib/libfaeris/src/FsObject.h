@@ -10,6 +10,7 @@
 NS_FS_BEGIN
 
 class ObjectMgr;
+class FsDict;
 class FsObject 
 {
 	/* class attribute */
@@ -23,7 +24,7 @@ class FsObject
 		FS_CLASS_DECLARE(FsObject);
 
 	public:
-
+		void setAttributes(FsDict* dict);
 		void setAttribute(const char* name,const FsVariant& v);
 		FsVariant getAttribute(const char* name);
 

@@ -30,6 +30,8 @@ FS_GLOBAL_CC(ProgramSourceMgr,programSourceMgr,setProgramSourceMgr);
 FS_GLOBAL_CC(MeshMgr,meshMgr,setMeshMgr);
 FS_GLOBAL_CC(Material3DMgr,material3DMgr,setMaterial3DMgr);
 
+FS_GLOBAL_CC(FelisScriptMgr,felisScriptMgr,setFelisScriptMgr);
+
 NS_FS_END
 
 

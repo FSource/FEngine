@@ -1,0 +1,230 @@
+#include "FsVariant.h"
+
+NS_FS_BEGIN
+
+FsVariant::FsVariant()
+{
+	m_type=FT_IN_VALID;
+	m_value=NULL;
+}
+
+FsVariant::FsVariant(FsType t, void* value)
+{
+	init(t,value);
+}
+
+FsVariant::FsVariant(float v)
+{
+	init(FsType::FT_F_1,&v);
+}
+
+FsVariant::FsVariant(const Vector2& v)
+{
+	init(FsType::FT_F_2,&v);
+}
+
+FsVariant::FsVariant(const Vector3& v)
+{
+	init(FsType::FT_F_3,&v);
+}
+FsVariant::FsVariant(const Vector4& v)
+{
+	init(FsType::FT_F_4,&v);
+}
+
+
+
+FsVariant::FsVariant(int32_t v)
+{
+	init(FsType::FT_I_1,&v);
+}
+
+FsVariant::FsVariant(const Vector2i& v)
+{
+	init(FsType::FT_I_2,&v);
+}
+
+FsVariant::FsVariant(const Vector3i& v)
+{
+	init(FsType::FT_I_3,&v);
+}
+
+FsVariant::FsVariant(const Vector4i& v)
+{
+	init(FsType::FT_I_4,&v);
+}
+
+
+
+FsVariant::FsVariant(uint32_t v)
+{
+	init(FsType::FT_UI_1,&v);
+}
+
+FsVariant::FsVariant(const Vector2ui& v)
+{
+	init(FsType::FT_UI_2,&v);
+}
+
+FsVariant::FsVariant(const Vector3ui& v)
+{
+	init(FsType::FT_UI_3,&v);
+}
+
+FsVariant::FsVariant(const Vector4ui& v)
+{
+	init(FsType::FT_UI_4,&v);
+}
+
+
+FsVariant::FsVariant(const Matrix4& v)
+{}
+
+
+
+
+
+
+
+
+
+
+void::init(FsType t,const void* value)
+{
+	m_type=t;
+
+	if(value==NULL)
+	{
+		m_type=FsType::FT_IN_VALID;
+		m_value=NULL;
+		return;
+	}
+
+	switch(t)
+	{
+		case FsType::FT_IN_VALID:
+			m_value=NULL;
+			break;
+
+		case FsType::FT_B_1:
+			m_b1=new bool();
+			*m_b1=*(bool*)value;
+			break;
+
+		case FsType::FT_B_2:
+		case FsType::FT_B_3:
+		case FsType::FT_B_4:
+			FS_TRACE_WARN("Not Boolean Array Support Now");
+			m_type=FsType::FT_IN_VALID;
+			m_value=NULL;
+			break;
+
+		case FsType::FT_F_1:
+			m_f1=new float();
+			*m_f1=*(float*)value;
+			break;
+
+		case FsType::FT_F_2:
+			m_f2=new Vector2();
+			*m_f2=*(Vector2*)value;
+			break;
+
+		case FsType::FT_F_3:
+			m_f3=new Vector3();
+			*m_f3=*(Vector3*)value;
+			break;
+
+		case FsType::FT_F_4:
+			m_f4=new Vector4();
+			*m_f4=*(Vector4*)value;
+			break;
+
+		case FsType::FT_I_1:
+			m_i1=new int32_t();
+			*m_i1=*(int32_t*)value;
+			break;
+
+		case FsType::FT_I_2:
+			m_i2=new Vector2i();
+			*m_i2=*(Vector2i*)value;
+			break;
+
+		case FsType::FT_I_3:
+			m_i3=new Vector3i();
+			*m_i3=*(Vector3i*)value;
+			break;
+
+		case FsType::FT_I_4:
+			m_i4=new Vector4i();
+			*m_i4=*(Vector4i*)value;
+			break;
+
+		case FsType::FT_UI_1:
+			m_ui1=new uint32_t();
+			*m_ui1=*(uint32_t*)value;
+			break;
+
+		case FsType::FT_UI_2:
+			m_ui2=new Vector2ui();
+			*m_ui2=*(Vector2ui*)value;
+			break;
+
+		case FsType::FT_UI_3:
+			m_ui3=new Vector3ui();
+			*m_ui3=*(Vector3ui*)value;
+			break;
+
+		case FsType::FT_UI_4:
+			m_ui4=new Vector4ui();
+			*m_ui4=*(Vector4ui*)value;
+			break;
+
+		case FsType::FT_COLOR_3:
+			m_c3=new Color3f();
+			*m_c3=*(Color3f*)value;
+			break;
+
+		case FsType::FT_COLOR_4:
+			m_c4=new Color4f();
+			*m_c4=*(Color4f*)value;
+			break;
+
+
+		case FsType::FT_MAT4:
+			m_mat4=new Matrix4();
+			*m_mat4=*(Matrix4*)value;
+			break;
+
+		case FsType::FT_OBJECT:
+		case FsType::FT_STRING:
+		case FsType::FT_DICT:
+		case FsType::FT_ARRAY:
+			m_object=(FsObject*)value;
+			m_object->addRef();
+			if(FsString::checkType(m_object))
+			{
+				m_type==FsType::FT_STRING;
+			}
+			else if(FsDict::checkType(m_object))
+			{
+				m_type==FsType::FT_DICT;
+			}
+			else if(FsArray::checkType(m_object))
+			{
+				m_type==FsType::FT_ARRAY;
+			}
+			break;
+	}
+}
+
+
+
+
+
+
+
+NS_FS_END 
+
+
+
+
