@@ -24,7 +24,7 @@ NS_FS_END
 #if FS_PLATFORM_OS(FS_OS_LINUX)
 	#include "platform/linux/FsWindowLinux.cc"
 #elif FS_PLATFORM_OS(FS_OS_WIN32)
-	#include "platform/win32/FsWindowWin32.cc"
+	#include "platform/glfw/FsGlfwWindow.cc"
 #else 
 	#include "platform/android/FsWindowAndroid.cc"
 #endif 

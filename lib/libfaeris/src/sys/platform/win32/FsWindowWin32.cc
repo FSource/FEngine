@@ -372,7 +372,6 @@ bool PlatformWindow::initGL()
 		return false;
 	}
 	return true;
-
 }
 
 
