@@ -34,6 +34,8 @@ class Material2D:public Material
 		void setOpacity(float opacity) {m_opacity=opacity;}
 		float getOpacity(){return m_opacity;}
 
+
+		void setColorMapUrl(const char* filename);
 		void setColorMap(Texture2D* t);
 
 		Texture2D* getColorMap()

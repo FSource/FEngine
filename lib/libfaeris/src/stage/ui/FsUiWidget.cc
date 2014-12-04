@@ -2,6 +2,12 @@
 #include "graphics/FsTexture2D.h"
 #include "graphics/FsRenderDevice.h"
 #include "stage/layer/FsLayer.h"
+#include "FsGlobal.h"
+#include "math/FsTexCoord2.h"
+#include "graphics/shader/FsProgramSource.h"
+#include "graphics/shader/FsProgram.h"
+#include "graphics/shader/FsStreamMap.h"
+
 NS_FS_BEGIN
 const char* UiWidget::className()
 {
@@ -27,11 +33,17 @@ UiWidget::UiWidget()
 	m_size.set(0.0f,0.0f);
 	m_anchor.set(0.5f,0.5f);
 	m_parentWidget=NULL;
+
+	m_bgMaterial=Material2D::create();
+	FS_NO_REF_DESTROY(m_bgMaterial);
+	setBgTexture((Texture2D*)NULL);
+	m_bgEnabled=false;
 }
 
 UiWidget::~UiWidget()
 {
 	assert(m_parentWidget==NULL);
+	FS_SAFE_DESTROY(m_bgMaterial);
 }
 
 bool UiWidget::hit2D(float x,float y)
@@ -123,22 +135,47 @@ float UiWidget::getAnchorY()
 
 void UiWidget::setBgColor(const Color4f& c)
 {
-	m_bgColor=c;
+	m_bgMaterial->setColor(c);
 }
 
 void UiWidget::setBgTexture(Texture2D* tex)
 {
-	FS_SAFE_ASSIGN(m_bgTexture,tex);
+	m_bgMaterial->setColorMap(tex);
+	if(tex)
+	{
+		static ProgramSource* S_texProgramSource=NULL;
+		if(S_texProgramSource==NULL)
+		{
+			S_texProgramSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F);
+		}
+		m_bgMaterial->setProgramSource(S_texProgramSource);
+	}
+	else 
+	{
+		static ProgramSource* S_colorProgramSource=NULL;
+		if(S_colorProgramSource==NULL)
+		{
+			S_colorProgramSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
+		}
+		m_bgMaterial->setProgramSource(S_colorProgramSource);
+	}
 }
 
 void UiWidget::setBgTexture(const char* filename)
 {
+	if(!filename)
+	{
+		setBgTexture((Texture2D*)NULL);
+		return;
+	}
 
+	Texture2D* tex=(Texture2D*)Global::textureMgr()->load(filename);
+	setBgTexture(tex);
 }
 
 void UiWidget::setBgEnabled(bool value)
 {
-
+	m_bgEnabled=true;
 }
 
 
@@ -378,8 +415,65 @@ void UiWidget::getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
 
 
 
-void UiWidget::draw(RenderDevice* r,bool updateMatrix)
+void UiWidget::draw(RenderDevice* rd,bool updateMatrix)
 {
+	if(!m_bgEnabled) 
+	{
+		return;
+	}
+
+	Program* prog=m_bgMaterial->getProgram(NULL);
+	if(!prog)
+	{
+		return;
+	}
+
+	if(updateMatrix)
+	{
+		updateWorldMatrix();
+	}
+
+
+	rd->setWorldMatrix(&m_worldMatrix);
+	rd->setProgram(prog);
+	m_bgMaterial->configRenderDevice(rd);
+
+	rd->disableAllAttrArray();
+
+	float top=(1.0f-m_anchor.y)*m_size.y;
+	float  bottom=-m_anchor.y*m_size.y;
+
+	float left=-m_anchor.x*m_size.x;
+	float right=(1.0f-m_anchor.x)*m_size.x;
+	
+
+	Vector2f vertices[4]={
+		Vector2f(left,bottom),
+		Vector2f(right,bottom),
+		Vector2f(left,top),
+		Vector2f(right,top),
+	};
+
+	static TexCoord2 tex_coord[4]={
+		TexCoord2(0.0f,1.0f),
+		TexCoord2(1.0f,1.0f),
+		TexCoord2(0.0f,0.0f),
+		TexCoord2(1.0f,0.0f),
+	};
+
+	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);
+	StreamMap* map_u=prog->getStreamMap(E_StreamType::UVS);
+	
+	if(map_v)
+	{
+		rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,4,0,&vertices[0]);
+	}
+	if(map_u)
+	{
+		rd->setAndEnableVertexAttrPointer(map_u->m_location,2,FS_FLOAT,4,0,&tex_coord[0]);
+	}
+
+	rd->drawArray(E_DrawMode::TRIANGLE_STRIP,0,4);
 
 }
 

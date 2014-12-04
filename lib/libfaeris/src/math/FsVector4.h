@@ -51,8 +51,8 @@ class TVector4
 typedef TVector4<float> Vector4f;
 typedef TVector4<float> Vector4;
 
-typedef TVector4<uint16_t> Vector4ui;
-typedef TVector4<int16_t> Vector4i;
+typedef TVector4<uint32_t> Vector4ui;
+typedef TVector4<int32_t> Vector4i;
 
 NS_FS_END
 #endif

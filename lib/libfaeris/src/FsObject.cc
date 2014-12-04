@@ -72,20 +72,22 @@ void FsObject::finalize()
 
 void FsObject::setAttribute(const char* name,const FsVariant& v)
 {
-	/*
-	FsClass* fsl=this->getClass();
+	FsClass* fsl=this->objectClass();
 	fsl->callSet(this,name,v);
-	*/
 }
 
-
-/*
 FsVariant FsObject::getAttribute(const char* name)
 {
-	FsClass* fsl=this->getClass();
+	FsClass* fsl=this->objectClass();
 	return fsl->callGet(this,name);
 }
-*/
+
+void FsObject::setAttributes(FsDict* dict)
+{
+	FsClass* fsl=this->objectClass();
+	fsl->callSets(this,dict);
+}
+
 
 
 NS_FS_END 

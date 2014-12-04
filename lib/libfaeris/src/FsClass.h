@@ -22,6 +22,17 @@ class FsClass :public FsObject
 		class FsAttributeDeclare
 		{
 			public:
+				FsAttributeDeclare(const char* _name,FsType _type,FsAttributeDeclare* _sub,
+									AttrSetFunc _setFunc,AttrGetFunc _getFunc)
+				{
+					name=_name;
+					attrType=_type;
+					subAttributeDeclare=_sub;
+					setFunc=_setFunc;
+					getFunc=_getFunc;
+				}
+
+			public:
 				const char* name;
 				FsType attrType;
 				FsAttributeDeclare* subAttributeDeclare;
@@ -62,12 +73,18 @@ class FsClass :public FsObject
 		static FsClass* create(FsClass* base,const char* name,NewInstanceFunc new_func,FsAttributeDeclare* mb);
 
 	public:
-
 		FsObject* newInstance();
 		bool callSet(FsObject* ob,const char* name,const FsVariant& v);
+		bool callSet(FsObject* ob,FsString* name,const FsVariant& v);
+
 		FsVariant callGet(FsObject* ob,const char* name);
+		FsVariant callGet(FsObject* ob,FsString* name);
+
+		bool callSets(FsObject* ob,FsDict* dict);
+
 
 		FsAttribute* getAttribute(const char* name);
+		FsAttribute* getAttribute(FsString* name);
 
 	protected:
 		FsClass();
@@ -84,10 +101,6 @@ class FsClass :public FsObject
 };
 
 
-
-
-
-
 #define FS_CLASS_IMPLEMENT(cls,new_instnce,attrs) \
 	FsClass* cls::m_fsclass=NULL; \
 	FsClass* cls::getClass() \
@@ -98,21 +111,69 @@ class FsClass :public FsObject
 		} \
 		return cls::m_fsclass; \
 	} \
-	FsClass* cls::getObjectClass()  \
+	FsClass* cls::objectClass()  \
 	{ \
-		return getClass(); \
+		return cls::getClass(); \
 	} \
-	const char* getClassName()  \
+	const char* cls::getClassName()  \
 	{ \
 		static char* class_name=#cls; \
 		return  class_name; \
 	} \
-	const char* className() \
+	const char* cls::className() \
 	{ \
-		return getClassName(); \
+		return cls::getClassName(); \
    	} \
 
 
+
+
+#define FS_CLASS_IMPLEMENT_WITH_BASE(cls,base_cls,new_instnce,attrs) \
+	FsClass* cls::m_fsclass=NULL; \
+	FsClass* cls::getClass() \
+	{ \
+		if( cls::m_fsclass==NULL) \
+		{ \
+			cls::m_fsclass=FsClass::create(base_cls::getClass(),#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
+		} \
+		return cls::m_fsclass; \
+	} \
+	FsClass* cls::objectClass()  \
+	{ \
+		return cls::getClass(); \
+	} \
+	const char* cls::getClassName()  \
+	{ \
+		static char* class_name=#cls; \
+		return  class_name; \
+	} \
+	const char* cls::className() \
+	{ \
+		return cls::getClassName(); \
+   	} \
+
+
+#define FS_CLASS_ATTR_GET_SET_FUNCTION(cls,set,get,t)  \
+	static  void cls##_##set(cls* ob,t* v) \
+	{ \
+		ob->set(*v); \
+	} \
+	static const t* cls##_##get(cls* ob)  \
+	{ \
+		return &ob->get(); \
+	} \
+	
+#define FS_CLASS_ATTR_DECLARE(name,type,sub_attr,set_func,get_func) \
+	FsClass::FsAttributeDeclare(name,type, \
+			sub_attr, \
+			(FsClass::AttrSetFunc)set_func, \
+			(FsClass::AttrGetFunc)get_func)
+ 
+
+
+
+ 
+ 
 
 
 NS_FS_END

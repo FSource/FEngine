@@ -70,6 +70,8 @@ class Color3f
 			b(1.0f)
 		{}
 
+		Color3f(const char* c);
+
 	public:
 		Color3f operator + (const Color3f& v);
 		Color3f operator - (const Color3f& v);
@@ -128,6 +130,7 @@ class Color4f
 			:r(1.0f),g(1.0f),b(1.0f),a(1.0f)
 		{
 		}
+		Color4f(const char* c);
 
 		void set(float _r,float _g,float _b,float _a)
 		{

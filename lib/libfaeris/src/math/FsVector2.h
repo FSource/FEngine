@@ -57,8 +57,8 @@ class TVector2
 typedef TVector2<float> Vector2f;
 typedef TVector2<float> Vector2;
 
-typedef TVector2<uint16_t> Vector2ui;
-typedef TVector2<int16_t> Vector2i;
+typedef TVector2<uint32_t> Vector2ui;
+typedef TVector2<int32_t> Vector2i;
 
 
 

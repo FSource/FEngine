@@ -63,28 +63,23 @@ enum
 
 enum class FsType
 {
+	FT_IN_VALID,
+
 	FT_B_1,
-	FT_B_2,
-	FT_B_3,
-	FT_B_4,
 
 	FT_F_1,
 	FT_F_2,
 	FT_F_3,
 	FT_F_4,
 
-	FT_UI_1,
-	FT_UI_2,
-	FT_UI_3,
-	FT_UI_4,
 
 	FT_I_1,
 	FT_I_2,
 	FT_I_3,
 	FT_I_4,
 
-	FS_COLOR_3,
-	FS_COLOR_4,
+	FT_COLOR_3,
+	FT_COLOR_4,
 
 	FT_MAT4,
 
@@ -227,7 +222,7 @@ enum  class E_UniformRef
 	M_DIFFUSE,
 	M_SPECULAR,
 
-	M_SHINESS,
+	M_SHININESS,
 	M_AMBIENT_MAP,
 	M_DIFFUSE_MAP,
 	M_SPECULAR_MAP,

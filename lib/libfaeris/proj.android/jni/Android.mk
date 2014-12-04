@@ -26,6 +26,8 @@ LOCAL_SRC_FILES :=  \
 					src/com_faeris_lib_Fs_Jni.cc \
 					../../src/FsGlobal.cc \
 					../../src/FsObject.cc \
+					../../src/FsVariant.cc \
+					../../src/FsClass.cc \
 					../../src/FsFaerisModule.cc \
 					../../src/extends/FsScriptEngine.cc \
 					../../src/stage/FsActionTarget.cc \
@@ -124,6 +126,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/mgr/FsTextureMgr.cc \
 					../../src/mgr/FsSprite2DDataMgr.cc \
 					../../src/mgr/FsProgramSourceMgr.cc \
+					../../src/mgr/FsFelisScriptMgr.cc \
 					../../src/scheduler/FsScheduler.cc \
 					../../src/scheduler/FsSchedulerTarget.cc \
 					../../src/scheduler/FsTask.cc \

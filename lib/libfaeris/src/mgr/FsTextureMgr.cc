@@ -30,7 +30,7 @@ const char* TextureMgr::className()
 
 
 TextureMgr::TextureMgr()
-	:ResourceMgr(textureCreateFunc)
+	: ResourceMgr((ResourceMgr::ResourceCreateFunc) textureCreateFunc)
 {
 }
 TextureMgr::~TextureMgr()

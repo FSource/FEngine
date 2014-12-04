@@ -108,6 +108,23 @@ FsClass::FsAttribute* FsClass::getAttribute(const char* name)
 
 }
 
+FsClass::FsAttribute* FsClass::getAttribute(FsString* name)
+{
+	FsAttribute* attr=(FsAttribute*)m_attribute->lookup(name); 
+	if(attr!=NULL)
+	{
+		return attr;
+	}
+
+	if(m_baseClass)
+	{
+		return m_baseClass->getAttribute(name);
+	}
+
+	return NULL;
+
+}
+
 bool FsClass::FsAttribute::callSet(FsObject* ob,const FsVariant& v)
 {
 	if(m_setFunc)
@@ -122,7 +139,7 @@ bool FsClass::FsAttribute::callSet(FsObject* ob,const FsVariant& v)
 		FsVariant q=v.getCast(m_attrType);
 		if(q.isValid())
 		{
-			m_setFunc(ob,v.getValue());
+			m_setFunc(ob,q.getValue());
 			return true; 
 		}
 	}
@@ -162,8 +179,33 @@ FsVariant FsClass::FsAttribute::callGet(FsObject* ob)
 
 
 
+bool FsClass::callSets(FsObject* ob,FsDict* dict)
+{
+	FsDict::Iterator* iter=dict->takeIterator();
+	while(!iter->done())
+	{
+		FsString* name=(FsString*)iter->getKey();
+		FsObject* value=iter->getValue();
+		callSet(ob,name,value);
+		iter->next();
+	}
+	delete iter;
+	return true;
+}
+
 
 bool FsClass::callSet(FsObject* ob,const char* name,const FsVariant& v)
+{
+	FsAttribute* attr=getAttribute(name);
+	if(!attr)
+	{
+		return false;
+	}
+
+	return attr->callSet(ob,v);
+}
+
+bool FsClass::callSet(FsObject* ob,FsString* name,const FsVariant& v)
 {
 	FsAttribute* attr=getAttribute(name);
 	if(!attr)
@@ -185,6 +227,16 @@ FsVariant FsClass::callGet(FsObject* ob,const char* name)
 	}
 	return attr->callGet(ob);
 
+}
+
+FsVariant FsClass::callGet(FsObject* ob,FsString* name)
+{
+	FsAttribute* attr=getAttribute(name);
+	if(!attr)
+	{
+		return FsVariant();
+	}
+	return attr->callGet(ob);
 }
 
 

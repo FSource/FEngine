@@ -6,6 +6,8 @@
 #include "graphics/FsColor.h"
 #include "math/FsVector2.h"
 
+#include "graphics/material/FsMaterial2D.h"
+
 NS_FS_BEGIN
 class RenderDevice;
 class Texture2D;
@@ -49,6 +51,7 @@ class UiWidget:public Entity
 
 
 		void setBgColor(const Color4f& c);
+
 		void setBgTexture(Texture2D* tex);
 		void setBgTexture(const char* filename);
 
@@ -84,8 +87,8 @@ class UiWidget:public Entity
 		Vector2 m_size;
 		Vector2 m_anchor;
 
-		Color4f m_bgColor;
-		Texture2D* m_bgTexture;
+
+		Material2D* m_bgMaterial;
 		bool m_bgEnabled;
 
 };

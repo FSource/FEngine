@@ -1,4 +1,5 @@
 #include "FsColor.h"
+#include "support/util/FsScriptUtil.h"
 
 NS_FS_BEGIN
 
@@ -8,6 +9,8 @@ Color Color::BLUE=Color(0,0,255,255);
 Color Color::GREEN=Color(0,255,0,255);
 Color Color::WHITE=Color(255,255,255,255);
 Color Color::BLACK=Color(0,0,0,255);
+
+
 
 
 Color Color::operator+(Color right)
@@ -70,6 +73,14 @@ Color3f Color3f::BLUE=Color3f(0.0f,0.0f,1.0f);
 Color3f Color3f::WHITE=Color3f(1.0f,1.0f,1.0f);
 Color3f Color3f::BLACK=Color3f(0.0f,0.0f,0.0f);
 
+Color3f::Color3f(const char* str)
+	:r(1.0f),
+	g(1.0f),
+	b(1.0f)
+{
+	ScriptUtil::parseColor3f(str,&r,&g,&b);
+}
+
 Color3f Color3f::operator + (const Color3f& v)
 {
 	float red=r+v.r;
@@ -129,6 +140,14 @@ Color4f Color4f::BLUE=Color4f(0.0f,0.0f,1.0f,1.0f);
 Color4f Color4f::WHITE=Color4f(1.0f,1.0f,1.0f,1.0f);
 Color4f Color4f::BLACK=Color4f(0.0f,0.0f,0.0f,1.0f);
 
+Color4f::Color4f(const char* c)
+	:r(1.0f),
+	g(1.0f),
+	b(1.0f),
+	a(1.0f)
+{
+	ScriptUtil::parseColor4f(c,&r,&g,&b,&a);
+}
 
 Color4f Color4f::lerp(const Color4f& value,float t)
 {

@@ -135,6 +135,18 @@ void Material2D::configRenderDevice(RenderDevice* rd)
 	}
 }
 
+void Material2D::setColorMapUrl(const char* filename)
+{
+	if(filename==NULL)
+	{
+		setColorMap((Texture2D*)NULL);
+		return;
+	}
+
+	Texture2D* tex=Global::textureMgr()->loadTexture(filename);
+
+	setColorMap(tex);
+}
 
 void Material2D::setColorMap(Texture2D* t)
 {

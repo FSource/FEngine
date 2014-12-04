@@ -184,7 +184,7 @@ namespace Faeris
 		static Faeris::FsClass* getClass(); \
 		static const char* getClassName();  \
 	public: \
-		virtual Faeris::FsClass* getObjectClass() ; \
+		virtual Faeris::FsClass* objectClass() ; \
 		virtual const char* className() 
 
 /* event part*/

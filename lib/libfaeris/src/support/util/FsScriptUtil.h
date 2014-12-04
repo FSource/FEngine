@@ -53,6 +53,18 @@ class ScriptUtil
 		{
 			return parseBoolean(str->cstr());
 		}
+
+		static bool parseColor3f(const char* str,float* r,float* g,float* b);
+		static bool parseColor3f(FsString* str, float* r,float* g,float* b)
+		{
+			return parseColor3f(str->cstr(),r,g,b);
+		}
+		static bool parseColor4f(const char* str,float* r,float* g,float* b,float* a);
+		static bool parseColor4f(FsString* str,float* r,float* g,float* b,float* a)
+		{
+			return parseColor4f(str->cstr(),r,g,b,a);
+		}
+
 	
 };
 
