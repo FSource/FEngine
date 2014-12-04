@@ -101,10 +101,6 @@ class FsClass :public FsObject
 };
 
 
-
-
-
-
 #define FS_CLASS_IMPLEMENT(cls,new_instnce,attrs) \
 	FsClass* cls::m_fsclass=NULL; \
 	FsClass* cls::getClass() \
@@ -112,6 +108,33 @@ class FsClass :public FsObject
 		if( cls::m_fsclass==NULL) \
 		{ \
 			cls::m_fsclass=FsClass::create(#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
+		} \
+		return cls::m_fsclass; \
+	} \
+	FsClass* cls::objectClass()  \
+	{ \
+		return cls::getClass(); \
+	} \
+	const char* cls::getClassName()  \
+	{ \
+		static char* class_name=#cls; \
+		return  class_name; \
+	} \
+	const char* cls::className() \
+	{ \
+		return cls::getClassName(); \
+   	} \
+
+
+
+
+#define FS_CLASS_IMPLEMENT_WITH_BASE(cls,base_cls,new_instnce,attrs) \
+	FsClass* cls::m_fsclass=NULL; \
+	FsClass* cls::getClass() \
+	{ \
+		if( cls::m_fsclass==NULL) \
+		{ \
+			cls::m_fsclass=FsClass::create(base_cls::getClass(),#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
 		} \
 		return cls::m_fsclass; \
 	} \
