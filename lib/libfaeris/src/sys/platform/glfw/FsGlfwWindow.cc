@@ -12,6 +12,10 @@
 #include "sys/event/FsTouchDispatcher.h"
 
 
+#define FS_GLFW_DEFAULT_WINDOW_WIDTH 800
+#define FS_GLFW_DEFAULT_WINDOW_HEIGHT 600
+
+
 NS_FS_BEGIN
 class PlatformWindow;
 
@@ -48,26 +52,223 @@ void EventGraper::update(int priority,float dt)
 	glfwPollEvents();
 }
 
-
+static bool s_mouse_capture=false;
 
 class PlatformWindow 
 {
 	public:
+		static void keyEvent(GLFWwindow* glfw_window,int key,int scancode,int action,int mods)
+		{
+			E_KeyCode code;
+			if((key>=48&&key<=57)
+				||(key>=65&&key<=90)
+				)
+			{
+				code=static_cast<E_KeyCode>(key);
+			}
+			else if(key>=320&&key<=329)
+			{
+				code=static_cast<E_KeyCode>(key-320-(E_KeyCode::KEY_NUMPAD0));
+			}
+			else 
+			{
+				switch(key)
+				{
+					case  	GLFW_KEY_BACKSPACE:
+						code=E_KeyCode::KEY_BACKSPACE;
+						break;
+
+					case  	GLFW_KEY_TAB :
+						code=E_KeyCode::KEY_TAB;
+						break;
+
+					case  	GLFW_KEY_ENTER :
+						code=E_KeyCode::KEY_RETURN;
+						break;
+
+					case  	GLFW_KEY_LEFT_SHIFT:
+					case  	GLFW_KEY_RIGHT_SHIFT: 
+						code=E_KeyCode::KEY_SHIFT;
+						break;
+
+
+					case  	GLFW_KEY_LEFT_CONTROL:
+					case  	GLFW_KEY_RIGHT_CONTROL:
+						code =E_KeyCode::KEY_CONTROL;
+						break;
+
+					case  	GLFW_KEY_MENU:
+						code=E_KeyCode::KEY_MENU;
+						break;
+
+					case  	GLFW_KEY_ESCAPE:
+						code =E_KeyCode::KEY_ESCAPE;
+						break;
+
+					case  	GLFW_KEY_SPACE:
+						code =E_KeyCode::KEY_SPACE;
+						break;
+					case  	GLFW_KEY_LEFT:
+						code =E_KeyCode::KEY_LEFT;
+						break;
+
+					case  	GLFW_KEY_UP: 
+						code =E_KeyCode::KEY_UP;
+						break;
+
+					case  	GLFW_KEY_RIGHT: 
+						code =E_KeyCode::KEY_RIGHT;
+						break;
+
+					case  	GLFW_KEY_DOWN: 
+						code =E_KeyCode::KEY_DOWN;
+						break;
+
+					case  	GLFW_KEY_DELETE: 
+						code=E_KeyCode::KEY_DELETE;
+						break;
+
+					case  	GLFW_KEY_KP_ADD: 
+						code =E_KeyCode::KEY_ADD;
+						break;
+
+					case  	GLFW_KEY_KP_SUBTRACT:
+						code =E_KeyCode::KEY_SUBTRACT;
+						break;
+
+					case  	GLFW_KEY_KP_DECIMAL:
+						code =E_KeyCode::KEY_DECIMAL;
+						break;
+
+					case  	GLFW_KEY_KP_DIVIDE:
+						code =E_KeyCode::KEY_DIVIDE;
+						break;
+
+					case  	GLFW_KEY_KP_MULTIPLY: 
+						code =E_KeyCode::KEY_MULTIPLY;
+						break;
+
+					default:
+						code =E_KeyCode::KEY_UNKOWN;
+				}
+			}
+
+			if(action==GLFW_PRESS)
+			{
+				Global::keypadDispatcher()->dispatchEvent(new KeypadEvent(code,KeypadEvent::KEYPAD_DOWN));
+
+			}
+			else if (action==GLFW_RELEASE )
+			{
+				Global::keypadDispatcher()->dispatchEvent(new KeypadEvent(code,KeypadEvent::KEYPAD_UP));
+			}
+			else if (action==GLFW_REPEAT)
+			{
+				Global::keypadDispatcher()->dispatchEvent(new KeypadEvent(code,KeypadEvent::KEYPAD_REPEAT));
+			}
+
+		}
+
 		static void sizeChanged(GLFWwindow* glfw_window, int w, int h)
 		{
+			if(h==0)
+			{
+				h=1;
+			}
+
+			PlatformWindow* plt_window=(PlatformWindow*)glfwGetWindowUserPointer(glfw_window);
+			plt_window->m_width=w;
+			plt_window->m_height=h;
+
 			Window* window=Global::window();
 			if (window)
 			{
-				FS_TRACE_WARN("sizeChanged(%d,%d)",w,h);
+				//FS_TRACE_WARN("sizeChanged(%d,%d)",w,h);
 				window->sizeChanged(w,h);
 			}
 		}
 		static void mouseMoved(GLFWwindow* window, double x, double y)
 		{
-			float fx=x;
-			float fy=y;
-			FS_TRACE_WARN("mouseMoved(%f,%f)",fx,fy);
+			PlatformWindow* plt_window=(PlatformWindow*)glfwGetWindowUserPointer(window);
+			plt_window->m_mouseX=(float)x;
+			plt_window->m_mouseY=(float)y;
+
+
+			if(!plt_window->m_mousePress)
+			{
+				return ;
+			}
+
+
+			float fx=(float) x;
+			float fy=(float) y;
+			plt_window->translateViewPoint(&fx,&fy);
+
+			TouchPoint p(0,fx,fy);
+
+			Global::touchDispatcher()->dispatchEvent(
+					new TouchEvent(TouchDispatcher::TOUCHES_MOVE,1,&p));
+
 		}
+
+		static void windowClose(GLFWwindow* window)
+		{
+			Global::sysDispatcher()->dispatchEvent(new SysEvent(SysDispatcher::QUIT));
+		}
+
+		static void windowFocus(GLFWwindow* window,int focus)
+		{
+			if(focus)
+			{
+
+				Global::sysDispatcher()->dispatchEvent(new SysEvent(SysDispatcher::FOREGROUND));
+			}
+			else 
+			{
+				Global::sysDispatcher()->dispatchEvent(new SysEvent(SysDispatcher::BACKGROUND));
+			}
+		}
+
+		static void mouseButton(GLFWwindow* window,int button,int action,int mods)
+		{
+			PlatformWindow* plt_window=(PlatformWindow*)glfwGetWindowUserPointer(window);
+
+			if(button!=GLFW_MOUSE_BUTTON_LEFT)
+			{
+				return;
+			}
+
+			//FS_TRACE_WARN("action=%d",action);
+
+			if(action==GLFW_PRESS)
+			{
+				float x=plt_window->m_mouseX;
+				float y=plt_window->m_mouseY;
+				plt_window->translateViewPoint(&x,&y);
+
+				TouchPoint p(0,x,y);
+
+				Global::touchDispatcher()->dispatchEvent(new TouchEvent(TouchDispatcher::TOUCHES_BEGIN,1,&p));
+				plt_window->m_mousePress=true;
+
+			}
+			else if(action==GLFW_RELEASE)
+			{
+				if(plt_window->m_mousePress)
+				{
+					float x=plt_window->m_mouseX;
+					float y=plt_window->m_mouseY;
+					plt_window->translateViewPoint(&x,&y);
+
+					TouchPoint p(0,x,y);
+
+					Global::touchDispatcher()->dispatchEvent(new TouchEvent(TouchDispatcher::TOUCHES_END,1,&p));
+					plt_window->m_mousePress=false;
+				}
+			}
+
+		}
+
 
 	public:
 		static PlatformWindow* create()
@@ -88,15 +289,30 @@ class PlatformWindow
 			m_eventGrap=NULL;
 			m_width=0;
 			m_height=0;
+			m_mousePress=false;
+			m_mouseX=0;
+			m_mouseY=0;
+
 		}
+
+		void translateViewPoint(float* x,float*y )
+		{
+			*x=*x/m_width;
+			*y=*y/m_height;
+			*y=1.0f-*y;
+		}
+
 
 
 		~PlatformWindow()
 		{
 			if(m_window)
 			{
-				glfwTerminate();
+				glfwDestroyWindow(m_window);
+				m_window=NULL;
 			}
+
+			glfwTerminate();
 
 			if(m_eventGrap)
 			{
@@ -113,15 +329,37 @@ class PlatformWindow
 				FS_TRACE_WARN("glfwInit Failed");
 				return false;
 			}
-			m_window = glfwCreateWindow(960, 640, "FSource Game Engine", NULL, NULL);
-			m_width=960;
-			m_height=640;
-			
+
+			/* set glfw hint */
+			glfwWindowHint(GLFW_RESIZABLE,GL_FALSE);
+			glfwWindowHint(GLFW_VISIBLE,GL_FALSE);
+			glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT,GL_TRUE);
+			//glfwWindowHint(GLFW_CLIENT_API,GLFW_OPENGL_ES_API);
+
+
+
+			m_window = glfwCreateWindow(FS_GLFW_DEFAULT_WINDOW_WIDTH, FS_GLFW_DEFAULT_WINDOW_HEIGHT, "FSource Game Engine", NULL, NULL);
+
+			if(m_window==NULL)
+			{
+				FS_TRACE_WARN("Create glfw Window Failed");
+				return false;
+			}
+
+
+			m_width=FS_GLFW_DEFAULT_WINDOW_WIDTH;
+			m_height=FS_GLFW_DEFAULT_WINDOW_HEIGHT;
+
 
 			glfwSetFramebufferSizeCallback(m_window,PlatformWindow::sizeChanged);
 			glfwSetCursorPosCallback(m_window,PlatformWindow::mouseMoved);
+			glfwSetWindowCloseCallback(m_window,PlatformWindow::windowClose);
+			glfwSetWindowFocusCallback(m_window,PlatformWindow::windowFocus);
+			glfwSetMouseButtonCallback(m_window,PlatformWindow::mouseButton);
+			glfwSetKeyCallback(m_window,PlatformWindow::keyEvent);
 
 			glfwMakeContextCurrent(m_window);
+			glfwSetWindowUserPointer(m_window,this);
 
 			/* check opengl version */
 
@@ -156,7 +394,9 @@ class PlatformWindow
 		EventGraper* m_eventGrap;
 		int m_width;
 		int m_height;
-
+		float m_mouseX;
+		float m_mouseY;
+		bool m_mousePress;
 };
 
 
@@ -208,16 +448,28 @@ void Window::swapBuffers()
 
 void Window::setCaption(const char* name)
 {
+	if(m_window)
+	{
+		glfwSetWindowTitle(m_window->m_window,name);
+		m_caption=name;
+	}
 
 }
 
 void Window::setPosition(int x,int y)
 {
+	if(m_window)
+	{
+		glfwSetWindowPos(m_window->m_window,x,y);
+	}
 }
 
 void Window::setSize(uint width,uint height)
 {
-
+	if(m_window)
+	{
+		glfwSetWindowSize(m_window->m_window,width,height);
+	}
 }
 
 
@@ -238,11 +490,19 @@ void Window::sizeChanged(uint width,uint height)
 
 void Window::show()
 {
+	if(m_window)
+	{
+		glfwShowWindow(m_window->m_window);
+	}
 
 }
 
 void Window::hide()
 {
+	if(m_window)
+	{
+		glfwHideWindow(m_window->m_window);
+	}
 }
 
 void Window::setStyle(long flags)
@@ -253,6 +513,7 @@ void Window::setFullScreen(bool full)
 {
 }
 
+
 int Window::getWidth() 
 {
 	if(m_window)
@@ -261,6 +522,7 @@ int Window::getWidth()
 	}
 	return 0;
 }
+
 
 int Window::getHeight()
 {
@@ -273,12 +535,25 @@ int Window::getHeight()
 
 int Window::getPosX()
 {
-	return 0;
+	int x=0;
+	int y=0;
+	if(m_window)
+	{
+		glfwGetWindowPos(m_window->m_window,&x,&y);
+	}
+
+	return x;
 }
 
 int Window::getPosY() 
 {
-	return 0;
+	int x=0;
+	int y=0;
+	if(m_window)
+	{
+		glfwGetWindowPos(m_window->m_window,&x,&y);
+	}
+	return y;
 }
 
 
@@ -297,6 +572,5 @@ bool Window::init()
 {
 	return true;
 }
-
 
 NS_FS_END

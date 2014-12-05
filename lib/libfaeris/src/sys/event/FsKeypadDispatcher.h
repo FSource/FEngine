@@ -13,6 +13,8 @@ class KeypadEvent
 		{
 			KEYPAD_DOWN,
 			KEYPAD_UP,
+			KEYPAD_REPEAT
+
 		};
 	public:
 		KeypadEvent(int _keycode,int _type)

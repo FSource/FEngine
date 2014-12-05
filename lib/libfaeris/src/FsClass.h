@@ -117,7 +117,7 @@ class FsClass :public FsObject
 	} \
 	const char* cls::getClassName()  \
 	{ \
-		static char* class_name=#cls; \
+		static const char* class_name=#cls; \
 		return  class_name; \
 	} \
 	const char* cls::className() \
@@ -144,7 +144,7 @@ class FsClass :public FsObject
 	} \
 	const char* cls::getClassName()  \
 	{ \
-		static char* class_name=#cls; \
+		static const char* class_name=#cls; \
 		return  class_name; \
 	} \
 	const char* cls::className() \

@@ -55,17 +55,13 @@ void Scheduler::mainLoop()
 		update(diff_time);
 
 		
-		while(m_timer.now()-cur_time<=m_intervalTime){}
-		
-		
+		float sleep_time=m_intervalTime-(m_timer.now()-cur_time);
 	
-		/*
 		if(sleep_time>0)
 		{
-			Sys::usleep((long)sleep_time);
+			while(m_timer.now()-cur_time<=m_intervalTime){}
+			//Sys::usleep((long)sleep_time);
 		}
-		*/
-
 		
 		
 	
