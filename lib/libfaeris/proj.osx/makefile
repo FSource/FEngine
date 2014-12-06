@@ -18,8 +18,8 @@ INCLUDE_DIR=-I../src \
 		   	-I../../lib3rdparty/tolua++/include \
 		   	-I../../lib3rdparty/lua/include \
 		   	-I../../lib3rdparty/zlib/include \
-			-I../../lib3rdparty/curl/include \
-			-I../../lib3rdparty/fmod/include \
+			-I../../lib3rdparty/curl/include/osx \
+			-I../../lib3rdparty/fmod/include/osx \
 			-I../../lib3rdparty/libjpeg/src \
 			-I../../lib3rdparty/glslext/src \
 			-I../../lib3rdparty/glfw/include \

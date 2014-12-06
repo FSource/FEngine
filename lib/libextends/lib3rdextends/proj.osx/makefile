@@ -20,6 +20,7 @@ INCLUDE_DIR=-I../src \
 #Source File 
 SRC= box2d/fb2ContactListener.cc \
 	 box2d/fb2Draw.cc  \
+	 box2d/fb2Transform.cc \
 	
 
 include ../../../MK_BUILD_STATIC_LIB 
