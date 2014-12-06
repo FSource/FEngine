@@ -36,7 +36,7 @@ NS_FS_END
 
 
 
-#if FS_PLATFORM_OS(FS_OS_LINUX) 
+#if FS_PLATFORM_OS(FS_OS_LINUX)  ||  FS_PLATFORM_OS(FS_OS_OSX)
 	#include "platform/linux/FsSysLinux.cc"
 
 #elif FS_PLATFORM_OS(FS_OS_ANDROID)

@@ -163,7 +163,7 @@ void LabelBitmap::draw(RenderDevice* rd,bool updateMatrix)
 	rd->bindTexture(m_texture,0);
 
 	rd->disableAllAttrArray();
-	int stream_nu=prog->getStreamMapNu();
+	//int stream_nu=prog->getStreamMapNu();
 	int vertex_nu=m_vertices.size();
 
 	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);

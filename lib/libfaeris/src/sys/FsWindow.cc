@@ -21,11 +21,13 @@ const char* Window::className()
 NS_FS_END
 
 
-#if FS_PLATFORM_OS(FS_OS_LINUX)
-	#include "platform/linux/FsWindowLinux.cc"
+#if FS_PLATFORM_OS(FS_OS_LINUX)  || FS_PLATFORM_OS(FS_OS_OSX)
+	#include "platform/glfw/FsGlfwWindow.cc"
 #elif FS_PLATFORM_OS(FS_OS_WIN32)
 	#include "platform/glfw/FsGlfwWindow.cc"
-#else 
+#elif FS_PLATFORM_OS(FS_OS_ANDROID)
 	#include "platform/android/FsWindowAndroid.cc"
+#else 
+	#error "UnSupport Platform"
 #endif 
 

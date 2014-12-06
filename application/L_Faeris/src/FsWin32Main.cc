@@ -16,7 +16,10 @@
 	#define FS_CONFIGURE_FILE "win32.fgame"
 #elif FS_PLATFORM_OS(FS_OS_LINUX)
 	#define FS_CONFIGURE_FILE "linux.fgame"
+#elif FS_PLATFORM_OS(FS_OS_OSX) 
+	#define FS_CONFIGURE_FILE "osx.fgame"
 #endif 
+
 
 NS_FS_USE
 

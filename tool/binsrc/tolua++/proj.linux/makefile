@@ -15,9 +15,9 @@ BIN_DIR=../../bin
 SRC_DIR=../src
 
 INCLUDE_DIR= -I./  \
-			 -I../../../lib/lib3rdparty/lua/include \
-			 -I../../../lib/lib3rdparty/tolua++/include \
-			 -I../../../lib/libfaeris/src  \
+			 -I../../../../lib/lib3rdparty/lua/include \
+			 -I../../../../lib/lib3rdparty/tolua++/include \
+			 -I../../../../lib/libfaeris/src  \
 
 LINK_DIR= -L../../../lib/library/linux/
 

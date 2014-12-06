@@ -142,6 +142,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							return FsVariant(FsType::FT_I_1,&v);
 						}
 						break;
+					default:
+						break;
 
 				}
 			} 
@@ -163,6 +165,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							int v=int(*m_f1);
 							return FsVariant(FsType::FT_I_1,&v);
 						}
+						break;
+					default:
 						break;
 
 				}
@@ -186,6 +190,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							return FsVariant(FsType::FT_F_1,&v);
 						}
 						break;
+					default:
+						break;
 				}
 			}
 			break;
@@ -199,6 +205,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							Vector2i v((int)m_f2->x,(int)m_f2->y);
 							return FsVariant(FsType::FT_I_2,&v);
 						}
+					default:
+						break;
 				}
 			}
 			break;
@@ -212,6 +220,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							Vector2f v((float)m_i2->x,(float)m_i2->y);
 							return FsVariant(FsType::FT_F_2,&v);
 						}
+					default:
+						break;
 				}
 			}
 			break;
@@ -225,6 +235,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							Vector3i v((int)m_f3->x,(int)m_f3->y,(int)m_f3->z);
 							return FsVariant(FsType::FT_I_3,&v);
 						}
+					default:
+						break;
 				}
 			}
 			break;
@@ -238,6 +250,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							Vector3f v((float)m_i3->x,(float)m_i3->y,(float)m_i3->z);
 							return FsVariant(FsType::FT_F_3,&v);
 						}
+					default:
+						break;
 				}
 			}
 			break;
@@ -253,6 +267,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							Vector4i v((int)m_f4->x,(int)m_f4->y,(int)m_f4->z,(int)m_f4->w);
 							return FsVariant(FsType::FT_I_4,&v);
 						}
+					default:
+						break;
 				}
 			}
 			break;
@@ -266,6 +282,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							Vector4f v((float)m_i4->x,(float)m_i4->y,(float)m_i4->z,(float)m_f4->w);
 							return FsVariant(FsType::FT_F_4,&v);
 						}
+					default:
+						break;
 				}
 			}
 			break;
@@ -309,6 +327,8 @@ FsVariant FsVariant::getCast(FsType t) const
 							ScriptUtil::parseColor4f(m_string,&c.r,&c.g,&c.b,&c.a);
 							return FsVariant(FsType::FT_COLOR_4,&c);
 						}
+						break;
+					default:
 						break;
 				}
 			}
@@ -421,8 +441,12 @@ FsVariant FsVariant::getCast(FsType t) const
 							return FsVariant(FsType::FT_MAT4,&v);
 						}
 						break;
+					default:
+						break;
 				}
 			}
+			break;
+		default:
 			break;
 	}
 
@@ -556,6 +580,8 @@ void FsVariant::init(FsType t,const void* value)
 				m_type=FsType::FT_ARRAY;
 			}
 			break;
+		default:
+			break;
 	}
 }
 
@@ -621,6 +647,8 @@ void FsVariant::destruct()
 		case FsType::FT_DICT:
 		case FsType::FT_STRING:
 			m_object->decRef();
+			break;
+		default:
 			break;
 	}
 

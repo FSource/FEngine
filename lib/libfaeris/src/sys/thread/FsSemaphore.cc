@@ -33,16 +33,17 @@ int Semaphore::wait()
 int Semaphore::wait(long ms)
 {
 
-	
-	struct timespec time={0,0};
-
 	/*FIXME: sem_timedwait Need Absolute Time to 1970 */
 	assert(0);
+	
+	//struct timespec time={0,0};
+
 	
 	/*
 	clock_gettime(CLOCK_REALTIME, &time);
 	*/
 
+	/*
 	time.tv_sec+=ms/1000;
 	time.tv_nsec+=(ms%1000)*1000*1000;
 
@@ -58,6 +59,7 @@ int Semaphore::wait(long ms)
 		//FS_TRACE_WARN("Wait %ld ms Failed",ms);
 		return -1;
 	}
+	*/
 	return 0;
 }
 

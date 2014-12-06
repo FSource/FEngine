@@ -18,7 +18,7 @@
 /* all function */
 int luaf_xorstring(lua_State* l)
 {
-	uint32_t data_len,key_len;
+	size_t data_len,key_len;
 	const char* data=luaL_checklstring(l,1,&data_len);
 	const char* key=luaL_checklstring(l,2,&key_len);
 
@@ -43,11 +43,11 @@ int luaf_xorstring(lua_State* l)
 
 int luaf_escstring(lua_State* l)
 {
-	uint32_t data_len;
+	size_t data_len;
 	const char* data=luaL_checklstring(l,1,&data_len);
 
 	std::string ret;
-	for(uint32_t i=0;i<data_len;i++)
+	for(size_t i=0;i<data_len;i++)
 	{
 		uint8_t cur=data[i];
 		switch(cur)
@@ -96,7 +96,7 @@ int luaf_escstring(lua_State* l)
 
 int luaf_savefile(lua_State* l)
 {
-	uint32_t file_name_len,data_len;
+	size_t file_name_len,data_len;
 	const char* file_name=luaL_checklstring(l,1,&file_name_len);
 	const char* data=luaL_checklstring(l,2,&data_len);
 
@@ -242,7 +242,7 @@ int luaf_gettablehandlenu(lua_State* l)
 
 int luaf_md5binary(lua_State* l)
 {
-	uint32_t msg_length=0;
+	size_t msg_length=0;
 	const char* msg=luaL_checklstring(l,1,&msg_length);
 
 	char ret[FS_MD5_HASHSIZE];
@@ -253,7 +253,7 @@ int luaf_md5binary(lua_State* l)
 
 int luaf_md5string(lua_State* l)
 {
-	uint32_t msg_length=0;
+	size_t msg_length=0;
 	const char* msg=luaL_checklstring(l,1,&msg_length);
 
 	char ret[FS_MD5_HASHSIZE*2+1];

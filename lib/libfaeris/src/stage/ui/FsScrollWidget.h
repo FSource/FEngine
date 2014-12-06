@@ -135,7 +135,7 @@ class ScrollWidget:public UiWidget
 		/* drag info */
 
 		bool m_cancelDrag,m_isDraged;
-		float m_lastMotionPosY,m_lastMotionPosX;
+		float m_lastMotionPosX, m_lastMotionPosY; 
 
 
 		bool m_press;

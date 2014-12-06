@@ -2,6 +2,17 @@ DIR=  libspinesprite \
 	  libluaexport \
 	
 
+osx:
+	for d in $(DIR) ;do \
+		echo compile $$d ... ; \
+		make MK_DEBUG=1 -C $$d/proj.osx >>/dev/null ;\
+	done 
+	for d in $(DIR) ;do \
+		echo compile $$d ... ; \
+		make  -C $$d/proj.osx >>/dev/null ;\
+	done 
+
+
 main:
 	for d in $(DIR) ;do \
 		echo compile $$d ... ; \

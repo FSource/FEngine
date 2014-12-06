@@ -178,8 +178,8 @@ bool FontBitmap::init(FsFile* file)
 
 	delete[] buf;
 
-	unsigned int cur_pos=0;
-	int prev_pos=0;
+	unsigned long long cur_pos=0;
+	unsigned long long prev_pos=0;
 
 	int line_height=0;
 	int base_line=0;
@@ -222,7 +222,7 @@ bool FontBitmap::init(FsFile* file)
 		}
 		else if(strncmp(line.c_str(),"common",6)==0)
 		{
-			unsigned int height_pos,base_pos,scale_w_pos,scale_h_pos;
+			unsigned long long height_pos,base_pos,scale_w_pos,scale_h_pos;
 
 			/* lineHeight */
 			height_pos=line.find("lineHeight=");
@@ -266,7 +266,7 @@ bool FontBitmap::init(FsFile* file)
 		}
 		else if (strncmp(line.c_str(),"page",4)==0)
 		{
-			unsigned int file_name_begin_pos,file_name_end_pos;
+			unsigned long long file_name_begin_pos,file_name_end_pos;
 
 
 			/* begin pos */
@@ -296,7 +296,7 @@ bool FontBitmap::init(FsFile* file)
 
 			for(int i=0;i<FS_CHAR_TOKEN_NUM;i++)
 			{
-				unsigned int token_pos=line.find(s_char_token[i]);
+				unsigned long long token_pos=line.find(s_char_token[i]);
 				if(token_pos==std::string::npos)
 				{
 					FS_TRACE_WARN("Ignore:Can't Find Token(%s) In Bitmap At Line(%d)",s_char_token[i],line_num);

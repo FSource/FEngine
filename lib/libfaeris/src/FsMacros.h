@@ -15,7 +15,7 @@ enum
 	FS_PLATFORM_WIN32=1,
 	FS_PLATFORM_LINUX=2,
 	FS_PLATFORM_ANDROID=3,
-	FS_PLATFORM_APPLE=4,
+	FS_PLATFORM_OSX=4,
 };
 
 
@@ -31,6 +31,9 @@ enum
 	#define FS_OS_ANDROID
 	#define FS_CUR_PLATFORM FS_PLATFORM_ANDROID
 
+#elif defined(OSX)
+	#define FS_OS_OSX 	
+	#define FS_CUR_PLATFORM FS_PLATFORM_OSX
 #else
 	#error "UNKOWN PLATFORM OS"
 #endif
