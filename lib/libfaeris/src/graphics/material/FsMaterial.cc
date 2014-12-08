@@ -16,10 +16,10 @@ Material::Material()
 	m_blendEquation(E_BlendEquation::ADD),
 	m_blendSrc(E_BlendFactor::SRC_ALPHA),
 	m_blendDst(E_BlendFactor::ONE_MINUS_SRC_ALPHA),
-	m_depthTestEnabled(false),
-	m_depthWriteEnabled(false),
+	m_frontSide(E_FrontFace::CCW),
 	m_doubleSideEnabled(true),
-	m_frontSide(E_FrontFace::CCW)
+	m_depthTestEnabled(false),
+	m_depthWriteEnabled(false)
 {}
 
 

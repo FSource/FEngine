@@ -619,7 +619,7 @@ void ListView::scrollChange(float x,float y)
 {
 	//FS_TRACE_WARN("x=%f,y=%f",x,y);
 
-	float minx,maxx,miny,maxy;
+	float minx=0.0f,maxx=0.0f,miny=0.0f,maxy=0.0f;
 
 	if(m_contentPanel->getMode()==SCROLL_VERTICAL)
 	{

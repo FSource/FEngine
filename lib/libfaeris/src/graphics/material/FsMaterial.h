@@ -75,10 +75,10 @@ class Material:public Resource
 		E_BlendFactor m_blendDst;
 
 		E_FrontFace m_frontSide;
+		bool m_doubleSideEnabled;
 
 		bool m_depthTestEnabled;
 		bool m_depthWriteEnabled;
-		bool m_doubleSideEnabled;
 
 };
 

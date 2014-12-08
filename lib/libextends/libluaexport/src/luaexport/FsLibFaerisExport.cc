@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 11/25/14 04:51:27.
+** Generated automatically by tolua++-1.0.92 on 12/07/14 11:16:56.
 */
 
 #ifndef __cplusplus
@@ -47818,7 +47818,7 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"FS_PLATFORM_WIN32",FS_PLATFORM_WIN32);
   tolua_constant(tolua_S,"FS_PLATFORM_LINUX",FS_PLATFORM_LINUX);
   tolua_constant(tolua_S,"FS_PLATFORM_ANDROID",FS_PLATFORM_ANDROID);
-  tolua_constant(tolua_S,"FS_PLATFORM_APPLE",FS_PLATFORM_APPLE);
+  tolua_constant(tolua_S,"FS_PLATFORM_OSX",FS_PLATFORM_OSX);
   tolua_constant(tolua_S,"FS_TEXT_ALIGN_LEFT",FS_TEXT_ALIGN_LEFT);
   tolua_constant(tolua_S,"FS_TEXT_ALIGN_CENTER",FS_TEXT_ALIGN_CENTER);
   tolua_constant(tolua_S,"FS_TEXT_ALIGN_RIGHT",FS_TEXT_ALIGN_RIGHT);

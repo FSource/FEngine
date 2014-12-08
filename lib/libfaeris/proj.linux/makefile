@@ -2,8 +2,8 @@
 CC=gcc
 FILE_EXT=cc
 
-FLAGS_DEBUG= -g -Wall  -Werror -DLINUX
-FLAGS_RELEASE= -O3 -Wall -Werror -DLINUX
+FLAGS_DEBUG= -g -Wall  -Werror -DLINUX  -std=c++11
+FLAGS_RELEASE= -O3 -Wall -Werror -DLINUX -std=c++11
 
 #Project infor 
 PROJECT_PATH= ../../library/linux/

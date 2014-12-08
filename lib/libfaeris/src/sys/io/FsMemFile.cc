@@ -77,10 +77,14 @@ long MemFile::seek(long offset,E_FileSeek where)
 	{
 		m_pos=m_length;
 	}
+
+	/*
 	if(m_pos<0) 
 	{
 		m_pos=0;
 	}
+	*/
+
 	return m_pos;
 }
 long MemFile::tell()

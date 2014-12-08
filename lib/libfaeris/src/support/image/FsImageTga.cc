@@ -140,7 +140,6 @@ int FsUtil_TgaWriter(FsFile* file,Image2D* img)
 
 bool FsUtil_CheckTga(FsFile* file)
 {
-	bool ret=true;
 
 	TGA* tga=TGAOpenUserDef(file,S_Tga_Getc,S_Tga_Read,S_Tga_Putc,S_Tga_Write,S_Tga_Seek,S_Tga_Tell);
 	if(!tga)

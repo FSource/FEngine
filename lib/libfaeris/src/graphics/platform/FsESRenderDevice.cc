@@ -114,6 +114,8 @@ static GLint FsBlendEquation_ToGLEnum(E_BlendEquation value)
 
 		case E_BlendEquation::REVERSE_SUBTRACT:
 			return GL_FUNC_REVERSE_SUBTRACT;
+		default:
+			assert(0);
 
 	}
 	return 0;
@@ -155,6 +157,7 @@ static GLint FsBlendFactor_ToGLEnum(E_BlendFactor value)
 
 		case E_BlendFactor::SRC_ALPHA_SATURATE:
 			return GL_SRC_ALPHA_SATURATE;
+
 		default: assert(0);
 	}
 	return 0;
@@ -261,7 +264,7 @@ RenderDevice::RenderDevice()
 	m_projMatrix.makeIdentity();
 	m_viewMatrix.makeIdentity();
 
-	m_matrixDirtyFlags=~0ul;
+	m_matrixDirtyFlags=~0u;
 }
 
 

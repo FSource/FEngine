@@ -22,9 +22,6 @@
     <ClCompile Include="..\..\src\luaext\FsLuaHttpRequest.cc">
       <Filter>src\luaext</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\luaext\FsLuaPayment.cc">
-      <Filter>src\luaext</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\luaext\FsLuaScene.cc">
       <Filter>src\luaext</Filter>
     </ClCompile>
@@ -41,9 +38,6 @@
       <Filter>src\luaexport</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\luaexport\FsLibFaerisExport.cc">
-      <Filter>src\luaexport</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\luaexport\FsLibFaerisExtExport.cc">
       <Filter>src\luaexport</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\luaexport\FsLibLuaScript.cc">
@@ -76,9 +70,6 @@
       <Filter>src\luaext</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsLuaLayer.h">
-      <Filter>src\luaext</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsLuaPayment.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsLuaScene.h">

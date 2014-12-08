@@ -87,14 +87,12 @@
     <ClCompile Include="..\..\src\FsLuaEngine.cc" />
     <ClCompile Include="..\..\src\toluaext++.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaHttpRequest.cc" />
-    <ClCompile Include="..\..\src\luaext\FsLuaPayment.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaScene.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaSchedulerTarget.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaSysEventListener.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaTouchEventListener.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLibBox2d.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLibFaerisExport.cc" />
-    <ClCompile Include="..\..\src\luaexport\FsLibFaerisExtExport.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLibLuaScript.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLibSpineSprite.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLuaFuncExport.cc" />
@@ -107,7 +105,6 @@
     <ClInclude Include="..\..\src\luaext\FsLuaEntity.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaHttpRequest.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaLayer.h" />
-    <ClInclude Include="..\..\src\luaext\FsLuaPayment.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaScene.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaSchedulerTarget.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaSysEventListener.h" />

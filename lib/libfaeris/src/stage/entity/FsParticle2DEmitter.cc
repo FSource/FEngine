@@ -262,7 +262,7 @@ bool Particle2DEmitter::init(const char* filename)
 	if(file==NULL)
 	{
 		FS_TRACE_WARN("can't open file:%s for particle",filename);
-		return NULL;
+		return false;
 	}
 	bool ret=init(file);
 	file->decRef();

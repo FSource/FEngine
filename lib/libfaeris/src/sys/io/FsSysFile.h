@@ -5,7 +5,7 @@
 #include "FsFile.h"
 
 
-#if FS_PLATFORM_OS(FS_OS_WIN32) || FS_PLATFORM_OS(FS_OS_LINUX) ||FS_PLATFORM_OS(FS_OS_ANDROID)
+#if FS_PLATFORM_OS(FS_OS_WIN32) || FS_PLATFORM_OS(FS_OS_LINUX) ||FS_PLATFORM_OS(FS_OS_ANDROID) ||FS_PLATFORM_OS(FS_OS_OSX)
 	#include<stdio.h>
 	typedef FILE* SysFilePlateform ;
 #else 

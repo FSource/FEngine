@@ -1,9 +1,6 @@
 #include "FsTimer.h"
  
-#if FS_PLATFORM_OS(FS_OS_LINUX) 
-	#include "platform/linux/FsTimeLinux.cc"
-
-#elif FS_PLATFORM_OS(FS_OS_ANDROID)
+#if FS_PLATFORM_OS(FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_OSX) || FS_PLATFORM_OS(FS_OS_OSX)
 	#include "platform/linux/FsTimeLinux.cc"
 
 #elif FS_PLATFORM_OS(FS_OS_WIN32)

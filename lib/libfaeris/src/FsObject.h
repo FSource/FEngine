@@ -9,7 +9,6 @@
 
 NS_FS_BEGIN
 
-class ObjectMgr;
 class FsDict;
 class FsObject 
 {
@@ -32,7 +31,6 @@ class FsObject
 	private:
 		bool m_refDelete;
 		int m_refNu;
-		ObjectMgr* m_objectMgr;
 		void* m_userData;
 
 	public:
@@ -83,10 +81,9 @@ class FsObject
 		FsObject()
 			:m_refDelete(true),
 			m_refNu(0),
-			m_objectMgr(NULL),
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
-			m_scriptData(-1),
-			m_userData(NULL)
+			m_userData(NULL),
+			m_scriptData(-1)
 #endif 
 		{ 
 

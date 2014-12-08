@@ -142,11 +142,12 @@ uint16_t* FsUtf8_ToUtf16(const char* str_utf8)
 
 
 /* utf-16 */
-int FsUtf16_GetUtf8Char(uint16_t c,char* outbuf)
+int FsUtf16_GetUtf8Char(uint32_t c,char* outbuf)
 {
 	unsigned int len = 0;
 	int first;
 	int i;
+
 
 	if (c < 0x80)
 	{
@@ -206,7 +207,7 @@ char* FsUtf16_ToUtf8(uint16_t* str_utf16,int utf16_len)
 	for(int i=0;i<utf16_len;i++)
 	{
 		int s_len;
-		UTF8_LENGTH(str_utf16[i],s_len);
+		UTF8_LENGTH((int32_t)str_utf16[i],s_len);
 		utf8_len+=s_len;
 	}
 
@@ -217,7 +218,7 @@ char* FsUtf16_ToUtf8(uint16_t* str_utf16,int utf16_len)
 
 	for(int i=0;i<utf16_len;i++)
 	{
-		int l=FsUtf16_GetUtf8Char(str_utf16[i],tmp_utf8);
+		int l=FsUtf16_GetUtf8Char((uint32_t)str_utf16[i],tmp_utf8);
 		tmp_utf8+=l;
 		assert((tmp_utf8-utf8_ret)<=utf8_len);
 	}

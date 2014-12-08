@@ -77,10 +77,6 @@ LuaEngine::LuaEngine()
 #endif
 
 
-#if FS_CONFIG(FS_EXPORT_LIB_FAERIS_EXT)
-	tolua_FsLibFaerisExt_open(m_state);
-#endif 
-
 
 }
 

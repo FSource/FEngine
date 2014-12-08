@@ -66,7 +66,7 @@ class  FsDict:public FsObject
 			private:
 				FsDict* m_dict;
 				long m_curPos;
-				long m_iterNu;
+				//long m_iterNu;
 		};
 		class DictEntry
 		{

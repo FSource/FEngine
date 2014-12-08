@@ -54,14 +54,14 @@ class UniformValue :public FsObject
 
 	protected:
 		UniformValue()
-			:m_type(E_UniformType::UT_UNKOWN),
-			m_count(1)
+			:m_count(1),
+			m_type(E_UniformType::UT_UNKOWN)
 		{
 		}
 		UniformValue(const char* name,E_UniformType type)
-			:m_name(name),
-			m_type(type),
-			m_count(1)
+			:m_count(1),
+			m_name(name),
+			m_type(type)
 
 		{}
 
