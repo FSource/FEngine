@@ -45,7 +45,7 @@
     <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>C:\Program Files\NosicLin\Faeris</OutDir>
+    <OutDir>C:\Program Files %28x86%29\NosicLin\Faeris</OutDir>
     <IntDir>./obj.debug</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)_D</TargetName>

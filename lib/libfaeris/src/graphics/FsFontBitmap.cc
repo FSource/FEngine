@@ -178,8 +178,8 @@ bool FontBitmap::init(FsFile* file)
 
 	delete[] buf;
 
-	unsigned long long cur_pos=0;
-	unsigned long long prev_pos=0;
+	std::string::size_type cur_pos=0;
+	std::string::size_type  prev_pos=0;
 
 	int line_height=0;
 	int base_line=0;
@@ -212,7 +212,7 @@ bool FontBitmap::init(FsFile* file)
 		}
 		else 
 		{
-			int length=cur_pos-prev_pos;
+			std::string::size_type length=cur_pos-prev_pos;
 			line=file_data.substr(prev_pos,length);
 		}
 
@@ -266,7 +266,7 @@ bool FontBitmap::init(FsFile* file)
 		}
 		else if (strncmp(line.c_str(),"page",4)==0)
 		{
-			unsigned long long file_name_begin_pos,file_name_end_pos;
+			std::string::size_type file_name_begin_pos,file_name_end_pos;
 
 
 			/* begin pos */
