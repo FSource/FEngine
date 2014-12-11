@@ -29,14 +29,12 @@ LOCAL_SRC_FILES :=  ../src/toluaext++.cc \
 					../src/luaext/FsLuaTouchEventListener.cc \
 					../src/luaext/FsLuaHttpRequest.cc \
 					../src/luaext/FsLuaSchedulerTarget.cc \
-					../src/luaext/FsLuaPayment.cc \
 					../src/FsLuaEngine.cc \
 					../src/luaexport/FsLibFaerisExport.cc \
 					../src/luaexport/FsLibLuaScript.cc \
 					../src/luaexport/FsLuaFuncExport.cc \
 					../src/luaexport/FsLibSpineSprite.cc \
 					../src/luaexport/FsLibBox2d.cc  \
-					../src/luaexport/FsLibFaerisExtExport.cc \
 
 
 

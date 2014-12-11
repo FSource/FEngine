@@ -41,8 +41,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += box2d_static
 LOCAL_WHOLE_STATIC_LIBRARIES += lib3rdextends_static
 
 LOCAL_WHOLE_STATIC_LIBRARIES += libthirdParty_static
-LOCAL_WHOLE_STATIC_LIBRARIES += libsensor_static
-LOCAL_WHOLE_STATIC_LIBRARIES += libfaerisext_static
+
 
 
 
@@ -68,10 +67,9 @@ $(call import-module,../../../../lib/lib3rdparty/jsonc/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/Box2D/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/glslext/proj.android/jni)
 $(call import-module,../../../../lib/lib3rdparty/libtga/proj.android/jni)
-
 $(call import-module,../../../../lib/libextends/libluaexport/proj.android)
 $(call import-module,../../../../lib/libextends/libspinesprite/proj.android)
-$(call import-module,../../../../lib/libextends/libfaerisext/proj.android/jni)
+
 $(call import-module,../../../../lib/libextends/lib3rdextends/proj.android/jni)
 
 

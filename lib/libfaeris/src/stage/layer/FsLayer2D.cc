@@ -343,8 +343,9 @@ bool Layer2D::touchEnd(float x,float y)
 	Vector3 tv=toLayerCoord(Vector3(x,y,0));
 	if(m_touchFocus) 
 	{
-		bool ret=FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchMove,touchEnd,tv.x,tv.y);
+		Entity* en=m_touchFocus;
 		m_touchFocus=NULL;
+		bool ret=FS_OBJECT_LAMBDA_CALL(en,onTouchMove,touchEnd,tv.x,tv.y);
 		return ret;
 	}
 
