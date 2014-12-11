@@ -33,7 +33,7 @@ int Semaphore::wait()
 	int ret=sem_wait(&m_sem);
 	if(ret<0)
 	{
-		FS_TRACE_WARN("Wait Failed"):
+		FS_TRACE_WARN("Wait Failed");
 		return -1;
 	}
 	return 0;
