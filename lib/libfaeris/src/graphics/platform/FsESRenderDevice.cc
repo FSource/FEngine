@@ -3,6 +3,8 @@
 
 #if FS_PLATFORM_OS(FS_OS_ANDROID) 
 	#include "GL_Android/gles_2.0.h"
+#elif FS_PLATFORM_OS(FS_OS_OSX)
+	#include "GL/glew.h"
 #else 
 	#include "GL/glew.h"
 #endif 
@@ -224,7 +226,7 @@ RenderDevice::RenderDevice()
 	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_DEPTH_TEST);
 	glDepthMask(false);
-	glDepthRangef(0,1.0);
+	glDepthRange(0,1.0);
 
 
 	/* blend */
