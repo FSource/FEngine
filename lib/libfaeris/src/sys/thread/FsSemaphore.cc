@@ -5,13 +5,22 @@ NS_FS_BEGIN
 
 Semaphore::Semaphore()
 {
-	sem_init(&m_sem,0,1);
+	int ret=sem_init(&m_sem,0,1);
+	if(ret!=0)
+	{
+		FS_TRACE_WARN("sem init failed");
+	}
+	
 }
 
 
 Semaphore::Semaphore(unsigned int num)
 {
-	sem_init(&m_sem,0,num);
+	int ret=sem_init(&m_sem,0,num);
+	if(ret!=0)
+	{
+		FS_TRACE_WARN("sem init failed");
+	}
 }
 
 Semaphore::~Semaphore()
@@ -73,6 +82,7 @@ int Semaphore::trywait()
 	}
 	return ret;
 }
+
 
 
 

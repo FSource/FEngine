@@ -1,8 +1,11 @@
 #if FS_PLATFORM_OS(FS_OS_ANDROID) 
 	#include "GL_Android/gles_2.0.h"
+#elif FS_PLATFORM_OS(FS_OS_OSX)
+	#include "GL/glew.h"
 #else 
 	#include "GL/glew.h"
 #endif 
+
 
 #include "FsGLFrameBuffer.h"
 #include "graphics/FsRenderDevice.h"

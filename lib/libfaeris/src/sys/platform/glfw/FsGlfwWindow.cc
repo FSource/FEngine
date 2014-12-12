@@ -169,7 +169,26 @@ class PlatformWindow
 
 		}
 
-		static void sizeChanged(GLFWwindow* glfw_window, int w, int h)
+		static void sizeFrameBufferChanged(GLFWwindow* glfw_window, int w, int h)
+		{
+			if(h==0)
+			{
+				h=1;
+			}
+
+			PlatformWindow* plt_window=(PlatformWindow*)glfwGetWindowUserPointer(glfw_window);
+			plt_window->m_frameWidth=w;
+			plt_window->m_frameHeight=h;
+
+			Window* window=Global::window();
+			if (window)
+			{
+				//FS_TRACE_WARN("sizeChanged(%d,%d)",w,h);
+				window->sizeChanged(w,h);
+			}
+		}
+
+		static void sizeWindowChanged(GLFWwindow* glfw_window,int w,int h)
 		{
 			if(h==0)
 			{
@@ -180,13 +199,9 @@ class PlatformWindow
 			plt_window->m_width=w;
 			plt_window->m_height=h;
 
-			Window* window=Global::window();
-			if (window)
-			{
-				//FS_TRACE_WARN("sizeChanged(%d,%d)",w,h);
-				window->sizeChanged(w,h);
-			}
 		}
+
+
 		static void mouseMoved(GLFWwindow* window, double x, double y)
 		{
 			PlatformWindow* plt_window=(PlatformWindow*)glfwGetWindowUserPointer(window);
@@ -289,6 +304,8 @@ class PlatformWindow
 			m_eventGrap=NULL;
 			m_width=0;
 			m_height=0;
+			m_frameWidth=0;
+			m_frameHeight=0;
 			m_mousePress=false;
 			m_mouseX=0;
 			m_mouseY=0;
@@ -349,9 +366,12 @@ class PlatformWindow
 
 			m_width=FS_GLFW_DEFAULT_WINDOW_WIDTH;
 			m_height=FS_GLFW_DEFAULT_WINDOW_HEIGHT;
+			m_frameWidth=FS_GLFW_DEFAULT_WINDOW_WIDTH;
+			m_frameHeight=FS_GLFW_DEFAULT_WINDOW_HEIGHT;
 
 
-			glfwSetFramebufferSizeCallback(m_window,PlatformWindow::sizeChanged);
+			glfwSetFramebufferSizeCallback(m_window,PlatformWindow::sizeFrameBufferChanged);
+			glfwSetWindowSizeCallback(m_window,PlatformWindow::sizeWindowChanged);
 			glfwSetCursorPosCallback(m_window,PlatformWindow::mouseMoved);
 			glfwSetWindowCloseCallback(m_window,PlatformWindow::windowClose);
 			glfwSetWindowFocusCallback(m_window,PlatformWindow::windowFocus);
@@ -394,6 +414,8 @@ class PlatformWindow
 		EventGraper* m_eventGrap;
 		int m_width;
 		int m_height;
+		int m_frameWidth;
+		int m_frameHeight;
 		float m_mouseX;
 		float m_mouseY;
 		bool m_mousePress;
@@ -479,6 +501,7 @@ void Window::sizeChanged(uint width,uint height)
 	{
 		m_renderDevice->setViewport(0,0,width,height);
 	}
+
 	if(m_window)
 	{
 		m_window->m_width=width;

@@ -32,7 +32,7 @@ enum
 	#define FS_OS_ANDROID
 	#define FS_CUR_PLATFORM FS_PLATFORM_ANDROID
 
-#elif defined(OSX)
+#elif defined(OSX) || defined(__APPLE__)
 	#define FS_OS_OSX 	
 	#define FS_CUR_PLATFORM FS_PLATFORM_OSX
 #elif defined(IOS)
