@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "support/util/FsArray.h"
+#include "support/util/FsDict.h"
+#include "support/util/FsString.h"
 
 #define FS_ARRAY_MIN_SIZE 8
 NS_FS_BEGIN
@@ -224,6 +226,65 @@ void FsArray::clear()
 	}
 	m_size=0;
 }
+
+
+FsDict* FsArray::getDict(ulong index) 
+{
+	FsObject* ob=this->get(index);
+	if(ob==NULL)
+	{
+		return NULL;
+	}
+	if(FsDict::checkType(ob))
+	{
+		return (FsDict*) ob;
+	}
+	else 
+	{
+		return NULL;
+	}
+}
+
+FsString* FsArray::getString(ulong index)
+{
+	FsObject* ob=this->get(index);
+	if(ob==NULL)
+	{
+		return NULL;
+	}
+	if(FsString::checkType(ob))
+	{
+		return (FsString*) ob;
+	}
+	else 
+	{
+		return NULL;
+	}
+}
+
+
+
+FsArray* FsArray::getArray(ulong index)
+{
+	FsObject* ob=this->get(index);
+	if(ob==NULL)
+	{
+		return NULL;
+	}
+	if(FsArray::checkType(ob))
+	{
+		return (FsArray*) ob;
+	}
+	else 
+	{
+		return NULL;
+	}
+
+}
+
+
+
+
 
 
 NS_FS_END 

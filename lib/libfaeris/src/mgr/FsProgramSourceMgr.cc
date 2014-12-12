@@ -77,9 +77,11 @@ static const  char* FS_PRE_PROGRAM_SOURCE_TEXTURE_SOURCE=
 static const char* FS_PRE_PROGRAM_SOURCE_CONSTANT_SOURCE=
 #include "graphics/shader/buildin/Fs_Constant.fshader"
 
-
 static const char* FS_PRE_PROGRAM_SOURCE_LAMBERT_SOURCE=
 #include "graphics/shader/buildin/Fs_Lambert.fshader"
+
+static const char* FS_PRE_PROGRAM_SOURCE_PHONG_SOURCE=
+#include "graphics/shader/buildin/Fs_Phong.fshader"
 
 void ProgramSourceMgr::loadPreDefineShader()
 {
@@ -120,6 +122,10 @@ void ProgramSourceMgr::loadPreDefineShader()
 		{
 			FS_PRE_PROGRAM_SOURCE_LAMBERT,
 			FS_PRE_PROGRAM_SOURCE_LAMBERT_SOURCE
+		},
+		{
+			FS_PRE_PROGRAM_SOURCE_PHONG,
+			FS_PRE_PROGRAM_SOURCE_PHONG_SOURCE
 		}
 	};
 

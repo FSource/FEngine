@@ -5,6 +5,12 @@
 #include "FsObject.h"
 
 NS_FS_BEGIN
+
+class FsArray;
+class FsDict;
+class FsString;
+
+
 class  FsDict:public FsObject
 {
 	public:
@@ -93,6 +99,12 @@ class  FsDict:public FsObject
 		void clear();
 		FS_FEATURE_NEW_OBJECT(Iterator*) takeIterator();
 		ulong size(){return m_used;}
+
+	public:
+		FsDict* lookupDict(const char* key);
+		FsString* lookupString(const char* key);
+		FsArray* lookupArray(const char* key);
+
 	protected:
 		DictEntry* getEntry(FsObject* key);
 		DictEntry* lookupEntry(FsObject* key,long code);

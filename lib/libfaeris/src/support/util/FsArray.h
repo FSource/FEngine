@@ -5,6 +5,12 @@
 #include "FsObject.h"
 
 NS_FS_BEGIN
+
+class FsArray;
+class FsDict;
+class FsString;
+
+
 class FsArray:public FsObject
 {
 	public:
@@ -56,6 +62,11 @@ class FsArray:public FsObject
 		void clear();
 		void resize(ulong new_size);
 		ulong size() { return m_size; }
+
+	public:
+		FsDict* getDict(ulong index);
+		FsString* getString(ulong index);
+		FsArray* getArray(ulong index);
 
 	public:
 		FsArray();

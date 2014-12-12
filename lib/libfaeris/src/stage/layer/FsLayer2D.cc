@@ -316,10 +316,13 @@ bool Layer2D::touchBegin(float x,float y)
 			{
 				/* NOTE: entity will detach when called touchBegin */
 				bool ret=FS_OBJECT_LAMBDA_CALL(e,onTouchBegin,touchBegin,tv.x,tv.y);
-				/* check entity accept event and not detach */
-				if(ret&&e->getLayer()==this)
+				if(ret)
 				{
-					m_touchFocus=e;
+					/* check entity accept event and not detach */
+					if(e->getLayer()==this)
+					{
+						m_touchFocus=e;
+					}
 					break;  
 				}
 			}
@@ -331,25 +334,31 @@ bool Layer2D::touchBegin(float x,float y)
 }
 bool Layer2D::touchMove(float x,float y)
 {
+	m_entity->lock();
 	Vector3 tv=toLayerCoord(Vector3(x,y,0));
+	bool ret=false;
 	if(m_touchFocus) 
 	{
-		return FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchMove,touchMove,tv.x,tv.y);
+		ret=FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchMove,touchMove,tv.x,tv.y);
 	}
-	return false;
+	m_entity->unlock();
+	m_entity->flush();
+	return ret;
 }
 bool Layer2D::touchEnd(float x,float y)
 {
+	m_entity->lock();
 	Vector3 tv=toLayerCoord(Vector3(x,y,0));
+	bool ret=false;
 	if(m_touchFocus) 
 	{
 		Entity* en=m_touchFocus;
 		m_touchFocus=NULL;
-		bool ret=FS_OBJECT_LAMBDA_CALL(en,onTouchMove,touchEnd,tv.x,tv.y);
-		return ret;
+		ret=FS_OBJECT_LAMBDA_CALL(en,onTouchMove,touchEnd,tv.x,tv.y);
 	}
-
-	return false;
+	m_entity->unlock();
+	m_entity->flush();
+	return ret;
 }
 
 

@@ -45,6 +45,11 @@ Resource* TextureMgr::load(const char* name)
 	{
 		ret->setResourceUrl(name);
 	}
+	else 
+	{
+		FS_TRACE_WARN("Can't Load Resource Name(%s)",name);
+
+	}
 	return ret;
 }
 

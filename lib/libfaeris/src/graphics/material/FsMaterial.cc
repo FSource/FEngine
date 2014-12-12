@@ -1,14 +1,10 @@
+#include "FsClass.h"
 #include "graphics/material/FsMaterial.h"
 #include "graphics/FsRenderDevice.h"
 
 
 NS_FS_BEGIN
 
-
-const char* Material::className()
-{
-	return "Material";
-}
 
 
 Material::Material()
@@ -38,6 +34,14 @@ Material::~Material()
 {
 }
 
+
+/*  Use For  Material  FsClass  Attribute */
+
+//static Material* Material_NewInstance
+
+
+
+FS_CLASS_IMPLEMENT_WITH_BASE(Material,FsObject,0,NULL);
 
 
 

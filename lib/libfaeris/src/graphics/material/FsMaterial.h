@@ -20,10 +20,13 @@ class ProgramFeatureDesc;
 
 class Material:public Resource
 {
+
+	public:
+		FS_CLASS_DECLARE(Material);
+
 	public:
 		Material();
 		virtual ~Material();
-		virtual const char* className();
 
 	public:
 		/* blend */

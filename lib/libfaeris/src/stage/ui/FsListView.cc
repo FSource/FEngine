@@ -97,22 +97,29 @@ class ListViewContentPanel:public Entity
 				index=m_listItem->size();
 			}
 			m_listItem->insert(index,item);
+			addChild(widget);
 			layout();
 		}
 
 
 		void removeListItem(UiWidget* widget)
 		{
-			int index=getListItemIndex(widget);
-			removeListItem(index);
+			m_listItem->remove(widget);
+			remove(widget);
+			layout();
 		}
 
 		void removeListItem(int index)
 		{
-			m_listItem->remove(index);
-			layout();
+			UiWidget* widget=(UiWidget*)m_listItem->get(index);
+			removeListItem(widget);
 		}
 
+		void clearListItem()
+		{
+			clearChild();
+			m_listItem->clear();
+		}
 
 		int getListItemNu()
 		{
@@ -453,13 +460,7 @@ ListView::ListView(int mode,float w,float h)
 
 ListView::~ListView()
 {
-	int size=m_contentPanel->getListItemNu();
-
-	for(int i=0;i<size;i++)
-	{
-		UiWidget* widget=m_contentPanel->getListItem(i);
-		widget->setParentWidget(NULL);
-	}
+	clearListItem();
 	remove(m_contentPanel);
 
 	FS_SAFE_DESTROY(m_contentPanel);
@@ -551,7 +552,6 @@ void ListView::addListItem(int index,UiWidget* widget,int alignh,int alignv)
 	if(widget)
 	{
 		m_contentPanel->addListItem(index,widget,alignh,alignv);
-		m_contentPanel->addChild(widget);
 
 		widget->setParentWidget(this);
 
@@ -581,14 +581,24 @@ void ListView::removeListItem(UiWidget* widget)
 		return;
 	}
 	widget->setParentWidget(NULL);
-
 	m_contentPanel->removeListItem(widget);
-	m_contentPanel->remove(widget);
 
 	adjustContentSize();
 
 }
 
+void ListView::clearListItem()
+{
+	int list_item_nu=m_contentPanel->getListItemNu();
+
+	for(int i=0;i<list_item_nu;i++)
+	{
+		UiWidget* widget=m_contentPanel->getListItem(i);
+		widget->setParentWidget(NULL);
+	}
+	m_contentPanel->clearListItem();
+	adjustContentSize();
+}
 
 int ListView::getListItemNu()
 {
@@ -642,37 +652,37 @@ void ListView::scrollChange(float x,float y)
 
 	switch(m_alignv)
 	{
-		case ALIGN_TOP:
-			m_contentPanel->setPositionY(y-maxy);
-			break;
+	case ALIGN_TOP:
+		m_contentPanel->setPositionY(y-maxy);
+		break;
 
-		case ALIGN_CENTER:
-			m_contentPanel->setPositionY(y-middley);
-			break;
+	case ALIGN_CENTER:
+		m_contentPanel->setPositionY(y-middley);
+		break;
 
-		case ALIGN_BOTTOM:
-			m_contentPanel->setPositionY(y-miny);
-			break;
-		default:
-			FS_TRACE_WARN("Unkown Align For Vetical");
+	case ALIGN_BOTTOM:
+		m_contentPanel->setPositionY(y-miny);
+		break;
+	default:
+		FS_TRACE_WARN("Unkown Align For Vetical");
 	}
 
 	switch(m_alignh)
 	{
-		case ALIGN_LEFT:
-			m_contentPanel->setPositionX(x-minx);
-			break;
+	case ALIGN_LEFT:
+		m_contentPanel->setPositionX(x-minx);
+		break;
 
-		case ALIGN_CENTER:
-			m_contentPanel->setPositionX(x-middlex);
-			break;
+	case ALIGN_CENTER:
+		m_contentPanel->setPositionX(x-middlex);
+		break;
 
-		case ALIGN_RIGHT:
-			m_contentPanel->setPositionX(x-maxx);
-			break;
+	case ALIGN_RIGHT:
+		m_contentPanel->setPositionX(x-maxx);
+		break;
 
-		default:
-			FS_TRACE_WARN("Unkown Align For Horizontal");
+	default:
+		FS_TRACE_WARN("Unkown Align For Horizontal");
 	}
 }
 

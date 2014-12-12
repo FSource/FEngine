@@ -296,56 +296,19 @@ char* ScriptUtil::escapeStringToOrign(const char* src)
 
 FsArray* ScriptUtil::getArray(FsDict* dict,const char* key)
 {
-	FsObject* ob=dict->lookup(key);
-	if(ob==NULL)
-	{
-		return NULL;
-	}
-
-	if(FsArray::checkType(ob))
-	{
-		return (FsArray*)ob;
-	}
-	else 
-	{
-		return NULL;
-	}
+	return dict->lookupArray(key);
 }
 
 FsDict* ScriptUtil::getDict(FsDict* dict,const char* key)
 {
-	FsObject* ob=dict->lookup(key);
-	if(ob==NULL)
-	{
-		return NULL;
-	}
-
-	if(FsDict::checkType(ob))
-	{
-		return (FsDict*)ob;
-	}
-	else 
-	{
-		return NULL;
-	}
+	return dict->lookupDict(key);
 }
+
 FsString* ScriptUtil::getString(FsDict* dict,const char* key)
 {
-	FsObject* ob=dict->lookup(key);
-	if(ob==NULL)
-	{
-		return NULL;
-	}
-
-	if(FsString::checkType(ob))
-	{
-		return (FsString*)ob;
-	}
-	else 
-	{
-		return NULL;
-	}
+	return dict->lookupString(key);
 }
+
 
 bool ScriptUtil::getInteger(FsDict* dict,const char* key,int* value)
 {
@@ -372,54 +335,18 @@ bool ScriptUtil::getFloat(FsDict* dict,const char* key,float* value)
 /* aux for quick get object in array */
 FsArray* ScriptUtil::getArray(FsArray* array,uint index)
 {
-	FsObject* ob=array->get(index);
-	if(ob==NULL)
-	{
-		return NULL;
-	}
-	if(FsArray::checkType(ob))
-	{
-		return (FsArray*) ob;
-	}
-	else 
-	{
-		return NULL;
-	}
+	return array->getArray(index);
 }
 
 
 FsDict* ScriptUtil::getDict(FsArray* array,uint index)
 {
-	FsObject* ob=array->get(index);
-	if(ob==NULL)
-	{
-		return NULL;
-	}
-	if(FsDict::checkType(ob))
-	{
-		return (FsDict*) ob;
-	}
-	else 
-	{
-		return NULL;
-	}
+	return array->getDict(index);
 }
 
 FsString* ScriptUtil::getString(FsArray* array,uint index)
 {
-	FsObject* ob=array->get(index);
-	if(ob==NULL)
-	{
-		return NULL;
-	}
-	if(FsString::checkType(ob))
-	{
-		return (FsString*) ob;
-	}
-	else 
-	{
-		return NULL;
-	}
+	return array->getString(index);
 }
 
 bool ScriptUtil::getInteger(FsArray* array,uint index,int* v)

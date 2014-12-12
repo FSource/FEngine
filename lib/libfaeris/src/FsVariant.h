@@ -36,6 +36,7 @@ class FsVariant
 
 
 		FsVariant(const Matrix4& v);
+		FsVariant(const char* v);
 
 		FsVariant(FsObject* v);
 		FsVariant(FsString* v);
@@ -89,6 +90,7 @@ class FsVariant
 			Color4f* m_c4;
 
 			Matrix4* m_mat4;
+			char* m_chars;
 
 
 

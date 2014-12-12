@@ -16,6 +16,25 @@ PressButton* PressButton::create()
 	return ret;
 }
 
+
+PressButton* PressButton::createWithColorStyle(const char* filename,const Color4f& normal,const Color4f& press)
+{
+	PressButton* ret=new PressButton();
+	ret->initWithColorStyle(filename,normal,press);
+	return ret;
+}
+
+PressButton* PressButton::createWithColorStyle(Texture2D* tex,const Color4f& normal,const Color4f& press)
+{
+	PressButton* ret=new PressButton();
+	ret->initWithColorStyle(tex,normal,press);
+	return ret;
+
+}
+
+
+
+
 PressButton* PressButton::createWithDarkStyle(const char* filename,const Color4f& dark)
 {
 	PressButton* ret=new PressButton();
@@ -111,7 +130,25 @@ void PressButton::initWithScaleStyle(Texture2D* texture,const Vector3& scale)
 
 	setScale(STATE_PRESS,scale);
 	setColor(STATE_DISABLE,Color4f(0.2f,0.2f,0.2f));
+}
 
+void PressButton::initWithColorStyle(const char* filename,const Color4f&  normal,const Color4f& press)
+{
+	Texture2D* texture=Global::textureMgr()->loadTexture(filename);
+	FS_TRACE_WARN_ON(texture==NULL,"Can't Load Texture(%s) For PressButton",filename);
+	initWithColorStyle(texture,normal,press);
+}
+
+void PressButton::initWithColorStyle(Texture2D* tex,const Color4f& normal,const Color4f& press)
+{
+	setTexture(tex);
+
+	setTweenFlags(FLAG_COLOR);
+	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
+
+	setColor(STATE_NORMAL,normal);
+	setColor(STATE_PRESS,press);
+	setColor(STATE_DISABLE,Color4f(0.2f,0.2f,0.2f));
 }
 
 

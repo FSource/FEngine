@@ -13,7 +13,7 @@ LOCAL_CFLAGS :=     -I$(LOCAL_PATH)/../../src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/zlib/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/libtga/src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/minizip/include \
- 					-I$(LOCAL_PATH)/../../../lib3rdparty/curl/include_android \
+ 					-I$(LOCAL_PATH)/../../../lib3rdparty/curl/include/android \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/fmod/include \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/jsonc/src \
  					-I$(LOCAL_PATH)/../../../lib3rdparty/libjpeg/include.android \
@@ -28,6 +28,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/FsObject.cc \
 					../../src/FsVariant.cc \
 					../../src/FsClass.cc \
+					../../src/FsEnum.cc \
 					../../src/FsFaerisModule.cc \
 					../../src/extends/FsScriptEngine.cc \
 					../../src/stage/FsActionTarget.cc \

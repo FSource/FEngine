@@ -242,9 +242,12 @@ void Scene::touchBegin(float x,float y)
 		{
 			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchBegin,touchBegin,x,y);
 		}
-		if(handle&&layer->getScene()==this)
+		if(handle)
 		{
-			m_touchFocusLayer=layer;
+			if(layer->getScene()==this)
+			{
+				m_touchFocusLayer=layer;
+			}
 			break;
 		}
 	}
@@ -255,20 +258,26 @@ void Scene::touchBegin(float x,float y)
 
 void Scene::touchMove(float x,float y)
 {
+	m_layers->lock();
 	if(m_touchFocusLayer&&m_touchFocusLayer->touchEnabled()&&m_touchFocusLayer->getVisible())
 	{
 		FS_OBJECT_LAMBDA_CALL(m_touchFocusLayer,onTouchMove,touchMove,x,y);
 	}
+	m_layers->unlock();
+	m_layers->flush();
 
 }
 
 void Scene::touchEnd(float x,float y)
 {
+	m_layers->lock();
 	if(m_touchFocusLayer&&m_touchFocusLayer->touchEnabled()&&m_touchFocusLayer->getVisible())
 	{
 		FS_OBJECT_LAMBDA_CALL(m_touchFocusLayer,onTouchEnd,touchEnd,x,y);
 	}
 	m_touchFocusLayer=NULL;
+	m_layers->unlock();
+	m_layers->flush();
 }
 
 void Scene::touchesBegin(TouchEvent* event)
@@ -279,7 +288,7 @@ void Scene::touchesBegin(TouchEvent* event)
 	{
 		bool handle=false;
 		Layer* layer=(Layer*)m_layers->get(i);
-		if(layer->touchEnabled()&&layer->getVisible())
+		if(layer->getTouchesEnabled()&&layer->getVisible())
 		{
 			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesBegin,touchesBegin,event);
 		}
@@ -300,7 +309,7 @@ void Scene::touchesPointerDown(TouchEvent* event)
 	{
 		bool handle=false;
 		Layer* layer=(Layer*)m_layers->get(i);
-		if(layer->touchEnabled()&&layer->getVisible())
+		if(layer->getTouchesEnabled()&&layer->getVisible())
 		{
 			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesPointerDown,touchesPointerDown,event);
 		}
@@ -320,7 +329,7 @@ void Scene::touchesMove(TouchEvent* event)
 	{
 		bool handle=false;
 		Layer* layer=(Layer*)m_layers->get(i);
-		if(layer->touchEnabled()&&layer->getVisible())
+		if(layer->getTouchesEnabled()&&layer->getVisible())
 		{
 			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesMove,touchesMove,event);
 		}
@@ -341,7 +350,7 @@ void Scene::touchesPointerUp(TouchEvent* event)
 	{
 		bool handle=false;
 		Layer* layer=(Layer*)m_layers->get(i);
-		if(layer->touchEnabled()&&layer->getVisible())
+		if(layer->getTouchesEnabled()&&layer->getVisible())
 		{
 			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesPointerUp,touchesPointerUp,event);
 		}
@@ -362,7 +371,7 @@ void Scene::touchesEnd(TouchEvent* event)
 	{
 		bool handle=false;
 		Layer* layer=(Layer*)m_layers->get(i);
-		if(layer->touchEnabled()&&layer->getVisible())
+		if(layer->getTouchesEnabled()&&layer->getVisible())
 		{
 			handle=FS_OBJECT_LAMBDA_CALL(layer,onTouchesEnd,touchesEnd,event);
 		}

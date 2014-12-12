@@ -33,6 +33,10 @@ class PressButton:public StateButton
 		static PressButton* create();
 		static PressButton* createWithDarkStyle(const char* filename,const Color4f& dark);
 		static PressButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark);
+
+		static PressButton* createWithColorStyle(const char* filename,const Color4f& normal,const Color4f& press);
+		static PressButton* createWithColorStyle(Texture2D* tex,const Color4f& normal,const Color4f& press);
+
 		static PressButton* createWithScaleStyle(const char* filename,const Vector3& scale);
 		static PressButton* createWithScaleStyle(Texture2D* tex,const Vector3& scale);
 
@@ -78,6 +82,9 @@ class PressButton:public StateButton
 
 		void initWithDarkStyle(const char* filename,const Color4f& dark);
 		void initWithDarkStyle(Texture2D* texture,const Color4f& dark);
+
+		void initWithColorStyle(const char* filename,const Color4f& normal,const Color4f& press);
+		void initWithColorStyle(Texture2D* texture,const Color4f& normal,const Color4f& press);
 
 		void initWithScaleStyle(const char* filename,const Vector3& scale);
 		void initWithScaleStyle(Texture2D* texture,const Vector3& scale);

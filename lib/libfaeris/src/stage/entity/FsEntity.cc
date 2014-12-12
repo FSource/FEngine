@@ -283,6 +283,7 @@ void Entity::addChild(Entity* n)
 		n->setLayer(m_layer);
 	}
 
+	n->m_worldMatrixDirty=true;
 	m_chirdren->push(n);
 	n->setParent(this);
 

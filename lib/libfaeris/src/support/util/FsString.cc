@@ -3,6 +3,8 @@
 
 #include "support/util/FsString.h"
 
+#include "support/util/FsScriptUtil.h"
+
 static const char* s_FsStringName=FS_STRING_CLASS_NAME;
 
 NS_FS_BEGIN
@@ -66,6 +68,16 @@ bool FsString::equal(FsObject* ob)
 bool FsString::equal(const char* str)
 {
 	return strcmp(m_string.c_str(),str)==0;
+}
+
+int FsString::toIntValue()
+{
+	return ScriptUtil::parseInteger(this);
+}
+
+float FsString::toFloatValue()
+{
+	return ScriptUtil::parseFloat(this);
 }
 
 

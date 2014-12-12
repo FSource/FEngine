@@ -3,6 +3,7 @@
 
 #include "support/util/FsDict.h"
 #include "support/util/FsString.h"
+#include "support/util/FsArray.h"
 
 #define FS_DICT_MIN_SIZE 8
 #define FS_DICT_DEFAULT_PERTURB_SHIFT 5
@@ -296,6 +297,65 @@ FsDict::~FsDict()
 	}
 	free(m_table);
 }
+
+
+
+FsDict* FsDict::lookupDict(const char* key)
+{
+	FsObject* ob=this->lookup(key);
+	if(ob==NULL)
+	{
+		return NULL;
+	}
+
+	if(FsDict::checkType(ob))
+	{
+		return (FsDict*)ob;
+	}
+	else 
+	{
+		return NULL;
+	}
+}
+
+FsArray* FsDict::lookupArray(const char* key)
+{
+	FsObject* ob=this->lookup(key);
+	if(ob==NULL)
+	{
+		return NULL;
+	}
+
+	if(FsArray::checkType(ob))
+	{
+		return (FsArray*)ob;
+	}
+	else 
+	{
+		return NULL;
+	}
+
+}
+
+FsString* FsDict::lookupString(const char* key)
+{
+	FsObject* ob=this->lookup(key);
+	if(ob==NULL)
+	{
+		return NULL;
+	}
+
+	if(FsString::checkType(ob))
+	{
+		return (FsString*)ob;
+	}
+	else 
+	{
+		return NULL;
+	}
+}
+
+
 
 
 

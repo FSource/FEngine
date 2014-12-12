@@ -22,6 +22,10 @@ class FsString:public FsObject
 		FsString(int value);
 
 	public:
+		int toIntValue();
+		float toFloatValue();
+
+	public:
 		virtual long getHashCode();
 		virtual const char* className();
 		virtual bool equal(FsObject* ob);

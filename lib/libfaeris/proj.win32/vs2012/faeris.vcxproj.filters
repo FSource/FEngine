@@ -1044,6 +1044,9 @@
     <ClCompile Include="..\..\src\FsVariant.cc">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\FsEnum.cc">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\math\FsVector2.inl">

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -255,6 +255,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc" />
     <ClCompile Include="..\..\src\FsClass.cc" />
+    <ClCompile Include="..\..\src\FsEnum.cc" />
     <ClCompile Include="..\..\src\FsFaerisModule.cc" />
     <ClCompile Include="..\..\src\FsGlobal.cc" />
     <ClCompile Include="..\..\src\FsObject.cc" />

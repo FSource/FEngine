@@ -82,10 +82,17 @@ FsVariant::FsVariant(FsArray* v)
 	init(FsType::FT_ARRAY,v);
 }
 
+FsVariant::FsVariant(const char* str)
+{
+	init(FsType::FT_CHARS,str);
+}
+
 FsVariant::FsVariant(const FsVariant& value)
 {
 	init(value.m_type,value.m_value);
 }
+
+
 
 FsVariant::~FsVariant()
 {
@@ -328,11 +335,72 @@ FsVariant FsVariant::getCast(FsType t) const
 							return FsVariant(FsType::FT_COLOR_4,&c);
 						}
 						break;
+
+					case FsType::FT_CHARS:
+						{
+							return FsVariant(FsType::FT_CHARS,m_string->cstr());
+						}
+						break;
 					default:
 						break;
 				}
 			}
 			break;
+
+		case  FsType::FT_CHARS:
+			{
+				switch(t)
+				{
+					case FsType::FT_B_1:
+						{
+							bool v=ScriptUtil::parseBoolean(m_chars);
+							return FsVariant(FsType::FT_B_1,&v);
+						}
+						break;
+
+					case FsType::FT_F_1:
+						{
+							float v=ScriptUtil::parseFloat(m_chars);
+							return FsVariant(FsType::FT_F_1,&v);
+						}
+						break;
+
+					case FsType::FT_I_1:
+						{
+							int v=ScriptUtil::parseInteger(m_chars);
+							return FsVariant(FsType::FT_I_1,&v);
+						}
+						break;
+
+					case FsType::FT_COLOR_3:
+						{
+							Color3f c;
+							ScriptUtil::parseColor3f(m_chars,&c.r,&c.g,&c.b);
+							return FsVariant(FsType::FT_COLOR_3,&c);
+						}
+						break;
+
+					case FsType::FT_COLOR_4:
+						{
+							Color4f c;
+							ScriptUtil::parseColor4f(m_chars,&c.r,&c.g,&c.b,&c.a);
+							return FsVariant(FsType::FT_COLOR_4,&c);
+						}
+						break;
+
+					case FsType::FT_STRING:
+						{
+							return FsVariant(FsType::FT_STRING,FsString::create(m_chars));
+						}
+						break;
+					default:
+						break;
+
+				}
+
+			}
+			break;
+
 
 		case FsType::FT_ARRAY:
 			{
@@ -561,6 +629,17 @@ void FsVariant::init(FsType t,const void* value)
 			*m_mat4=*(Matrix4*)value;
 			break;
 
+		case FsType::FT_CHARS:
+			{
+
+				int size=strlen((const char*) value);
+				m_chars=new char[size+1];
+				strcpy(m_chars,(const char*)value);
+				m_chars[size]='\0';
+			}
+
+			break;
+
 		case FsType::FT_OBJECT:
 		case FsType::FT_STRING:
 		case FsType::FT_DICT:
@@ -640,6 +719,10 @@ void FsVariant::destruct()
 
 		case FsType::FT_MAT4:
 			delete m_mat4;
+			break;
+
+		case FsType::FT_CHARS:
+			delete m_chars;
 			break;
 
 		case FsType::FT_OBJECT:

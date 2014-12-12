@@ -5,6 +5,28 @@
 
 NS_FS_BEGIN
 
+template <class T>
+class EnumStrPair
+{
+	public:
+		EnumStrPair(const T& e,const char* name)
+		{
+			m_enum=e;
+			m_name=name;
+		}
+
+	public:
+		T m_enum;
+		const char* m_name;
+};
+
+
+#define FS_ENUM_TO_STR_MAP_DECLARE(t) \
+	const char* FsEnum_##t##ToStr(const E_##t& t);   \
+	E_##t FsEnum_StrTo##t(const char* name) 
+
+
+
 /* EULER  OLDER */
 enum class  E_EulerOrientType
 {
@@ -82,6 +104,8 @@ enum class FsType
 	FT_COLOR_4,
 
 	FT_MAT4,
+
+	FT_CHARS,
 
 	FT_OBJECT,
 	FT_STRING,
@@ -462,6 +486,29 @@ enum class E_LightType
 	DIRECTIONAL,
 	HEMI_SPHERE
 };
+
+
+
+
+enum class E_MaterialType 
+{
+	UNKOWN,
+	COLOR,
+	TEXTURE,
+	CONSTANT,
+	LAMBERT,
+	PHONG,
+	SHADER,
+	MAX_NU
+};
+
+FS_ENUM_TO_STR_MAP_DECLARE(MaterialType);
+
+
+
+
+
+
 
 
 NS_FS_END 

@@ -60,6 +60,8 @@ class ListView:public ScrollWidget
 
 		void removeListItem(int index);
 		void removeListItem(UiWidget* widget);
+
+		void clearListItem();
 	
 		int getListItemNu();
 		UiWidget* getListItem(int index);
