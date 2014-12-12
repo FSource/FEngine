@@ -19,13 +19,12 @@ class Scene;
 class Entity :public ActionTarget
 {
 	public:
-		Entity* create();
+		FS_CLASS_DECLARE(Entity);
 
 	public:
-		/* inherit FsObject */
-		virtual const char* className();
+		static Entity* create();
 
-
+	public:
 		virtual void update(float dt);
 		virtual void draw(RenderDevice* r,bool updateMatrix=true);
 
@@ -183,14 +182,12 @@ class Entity :public ActionTarget
 		virtual bool hit2D(float x,float y);
 
 
+
 	public:
-
-
 		void setDispatchTouchEnabled(bool enabled);
 		bool getDispatchTouchEnabled();
 		void setDispatchTouchesEnabled(bool enabled);
 		bool getDispatchTouchesEnabled();
-
 
 
 	

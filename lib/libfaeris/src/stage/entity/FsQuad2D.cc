@@ -5,6 +5,7 @@
 #include "graphics/shader/FsStreamMap.h"
 #include "mgr/FsTextureMgr.h"
 
+#include "FsClass.h"
 #include "FsGlobal.h"
 #include "mgr/FsProgramSourceMgr.h"
 
@@ -63,6 +64,16 @@ Quad2D* Quad2D::create(const Color4f& c,const Rect2D& rect)
 		return NULL;
 	}
 	ret->setRect2D(rect);
+	return ret;
+}
+Quad2D* Quad2D::create()
+{
+	Quad2D* ret=new Quad2D();
+	if(!ret->init())
+	{
+		delete ret;
+		return NULL;
+	}
 	return ret;
 }
 
@@ -182,6 +193,19 @@ void Quad2D::getSize(float* w,float* h)
 	*h=m_height;
 }
 
+void Quad2D::setSize(const Vector2& v)
+{
+	setSize(v.x,v.y);
+}
+
+Vector2 Quad2D::getSize()
+{
+	return Vector2(m_width,m_height);
+}
+
+
+
+
 void Quad2D::setAnchorX(float x)
 {
 	if(m_anchorX==x)
@@ -229,6 +253,19 @@ float Quad2D::getAnchorY()
 {
 	return m_anchorY;
 }
+
+void Quad2D::setAnchor(const Vector2& v)
+{
+	setAnchor(v.x,v.y);
+}
+Vector2 Quad2D::getAnchor()
+{
+	return Vector2(m_anchorX,m_anchorY);
+}
+
+
+
+
 
 void Quad2D::setRegionRect(float x,float y,float w,float h)
 {
@@ -620,13 +657,6 @@ bool Quad2D::hit2D(float x,float y)
 }
 
 
-const char* Quad2D::className()
-{
-	return FS_QUAD2D_CLASS_NAME;
-}
-
-
-
 
 
 Quad2D::Quad2D()
@@ -690,7 +720,6 @@ bool Quad2D::init(Texture2D* tex)
 bool Quad2D::init(const Color4f& c)
 {
 
-
 	setColor(c);
 
 	static ProgramSource* S_programSource=NULL;
@@ -712,6 +741,83 @@ void Quad2D::destruct()
 {
 	FS_SAFE_DEC_REF(m_texture);
 }
+
+
+/*** Used For Quad2D Attribute **/
+
+static Quad2D* Quad_NewInstance(FsDict* attr)
+{
+	Quad2D* ret=Quad2D::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+	return ret;
+}
+
+
+static void Quad2D_setTextureDict(Quad2D* q,FsDict* attr)
+{
+	FsString* url=attr->lookupString("url");
+	if(url)
+	{
+		q->setTexture(url->cstr());
+	}
+
+	FsString* width=attr->lookupString("width");
+	if(width)
+	{
+		q->setWidth(width->toFloatValue());
+	}
+
+
+	FsString* height=attr->lookupString("height");
+	if(height)
+	{
+		q->setHeight(height->toFloatValue());
+	}
+}
+
+
+
+FS_CLASS_ATTR_SET_CHARS_FUNCTION(Quad2D,setTexture);
+
+FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setSize,getSize,Vector2);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setWidth,getWidth,float);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setHeight,getHeight,float);
+
+FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setAnchor,getAnchor,Vector2);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setAnchorX,getAnchorX,float);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setAnchorY,getAnchorY,float);
+
+
+
+static FsClass::FsAttributeDeclare S_Quad2D_Anchor_SubAttr[]={
+	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,Quad2D_setAnchorX,Quad2D_getAnchorX),
+	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,Quad2D_setAnchorY,Quad2D_getAnchorY),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+static FsClass::FsAttributeDeclare S_Quad2D_Size_SubAttr[]={
+	FS_CLASS_ATTR_DECLARE("w",FsType::FT_F_1,NULL,Quad2D_setWidth,Quad2D_getWidth),
+	FS_CLASS_ATTR_DECLARE("h",FsType::FT_F_1,NULL,Quad2D_setHeight,Quad2D_getHeight),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+
+static FsClass::FsAttributeDeclare S_Quad2D_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("anchor",FsType::FT_F_2,S_Quad2D_Anchor_SubAttr,Quad2D_setAnchor,Quad2D_getAnchor),
+	FS_CLASS_ATTR_DECLARE("size",FsType::FT_F_2,S_Quad2D_Size_SubAttr,Quad2D_setSize,Quad2D_getSize),
+	FS_CLASS_ATTR_DECLARE("textureUrl",FsType::FT_CHARS,NULL,Quad2D_setTexture,0),
+	FS_CLASS_ATTR_DECLARE("texture",FsType::FT_DICT,NULL,Quad2D_setTextureDict,0)
+};
+
+
+
+
+FS_CLASS_IMPLEMENT_WITH_BASE(Quad2D,Entity,Quad_NewInstance,S_Quad2D_Main_Attr);
+
+
 
 
 NS_FS_END 

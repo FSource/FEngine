@@ -14,7 +14,7 @@ class FsArray;
 class FsClass :public FsObject 
 {
 	public:
-		typedef  FsObject* (*NewInstanceFunc)(FsClass* cls);
+		typedef  FsObject* (*NewInstanceFunc)(FsDict* attrs);
 		typedef void (*AttrSetFunc)(FsObject* ob,void*);
 		typedef void* (*AttrGetFunc)(FsObject* ob);
 
@@ -74,6 +74,10 @@ class FsClass :public FsObject
 
 	public:
 		FsObject* newInstance();
+		FsObject* newInstance(FsDict* attrs);
+		FsObject* newInstance(const char* filename);
+
+
 		bool callSet(FsObject* ob,const char* name,const FsVariant& v);
 		bool callSet(FsObject* ob,FsString* name,const FsVariant& v);
 
@@ -153,6 +157,13 @@ class FsClass :public FsObject
    	} \
 
 
+#define FS_CLASS_ATTR_SET_CHARS_FUNCTION(cls,set)  \
+	static  void cls##_##set(cls* ob,const char* v) \
+	{ \
+		ob->set(v); \
+	} 
+
+
 #define FS_CLASS_ATTR_GET_SET_CHARS_FUNCTION(cls,set,get)  \
 	static  void cls##_##set(cls* ob,const char* v) \
 	{ \
@@ -164,6 +175,13 @@ class FsClass :public FsObject
 	} \
 	
 
+#define FS_CLASS_ATTR_SET_FUNCTION(cls,set,t) \
+	static  void cls##_##set(cls* ob,const t* v) \
+	{ \
+		ob->set(*v); \
+	} \
+
+
 #define FS_CLASS_ATTR_GET_SET_FUNCTION(cls,set,get,t)  \
 	static  void cls##_##set(cls* ob,const t* v) \
 	{ \
@@ -171,7 +189,9 @@ class FsClass :public FsObject
 	} \
 	static const t* cls##_##get(cls* ob)  \
 	{ \
-		return &ob->get(); \
+		static t temp; \
+		temp=ob->get(); \
+		return &temp; \
 	} \
 
 

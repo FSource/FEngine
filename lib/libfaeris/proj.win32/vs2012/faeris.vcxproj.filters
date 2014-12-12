@@ -1067,5 +1067,6 @@
     <None Include="..\..\src\support\util\FsString.inl">
       <Filter>src\support\util</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

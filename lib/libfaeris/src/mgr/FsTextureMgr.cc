@@ -40,6 +40,11 @@ TextureMgr::~TextureMgr()
 
 Resource* TextureMgr::load(const char* name)
 {
+	if(name==NULL)
+	{
+		return NULL;
+	}
+
 	Texture2D* ret=(Texture2D*)ResourceMgr::load(name);
 	if(ret)
 	{

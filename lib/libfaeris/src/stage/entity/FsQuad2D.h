@@ -24,6 +24,9 @@ class Program;
 class Quad2D:public Entity,public IMaterial2DEntity
 {
 	public:
+		FS_CLASS_DECLARE(Quad2D);
+
+	public:
 		enum 
 		{
 			MODE_COLOR,
@@ -39,12 +42,13 @@ class Quad2D:public Entity,public IMaterial2DEntity
 		static Quad2D* create(const char* tex,const Rect2D& rect);
 		static Quad2D* create(const char* tex,float width,float height);
 
-
 	public:
 
 		/* texture */
 		void setTexture(const char* tex);
 		void setResourceUrl(const char* name);
+
+
 		void setTexture(Texture2D* tex);
 		Texture2D* getTexture();
 
@@ -56,18 +60,25 @@ class Quad2D:public Entity,public IMaterial2DEntity
 
 		void setWidth(float width);
 		void setHeight(float height);
-		void setSize(float width,float height);
 		float getWidth();
 		float getHeight();
+		void setSize(float width,float height);
 		void getSize(float* width,float* height);
+		void setSize(const Vector2& v);
+		Vector2 getSize();
+
 
 		void setAnchorX(float x);
 		void setAnchorY(float y);
+		float getAnchorX();
+		float getAnchorY();
 		void setAnchor(float x,float y);
 		void getAnchor(float* x,float* y);
 
-		float getAnchorX();
-		float getAnchorY();
+		void setAnchor(const Vector2& v);
+		Vector2 getAnchor();
+
+
 
 	public:
 		void setRegionRect(float x,float y,float w,float h);
@@ -107,8 +118,6 @@ class Quad2D:public Entity,public IMaterial2DEntity
 		virtual void draw(RenderDevice* rd,bool updateMatrix);
 		virtual bool hit2D(float x,float y);
 
-		/* inherit FsObject */
-		virtual const char* className();
 
 
 	protected:

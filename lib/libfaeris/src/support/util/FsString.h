@@ -26,10 +26,11 @@ class FsString:public FsObject
 		float toFloatValue();
 
 	public:
-		virtual long getHashCode();
-		virtual const char* className();
-		virtual bool equal(FsObject* ob);
-		virtual bool equal(const char* str);
+		const char* className() FS_OVERRIDE;
+		long getHashCode() FS_OVERRIDE;
+		bool equal(FsObject* ob) FS_OVERRIDE;
+
+		bool equal(const char* str) ;
 	public:
 		FsString& append(const char* str);
 		FsString& append(const char* str,long n);

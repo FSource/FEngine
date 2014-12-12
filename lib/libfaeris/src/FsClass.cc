@@ -1,5 +1,6 @@
 #include "FsClass.h"
 
+#include "FsGlobal.h"
 #include "support/util/FsDict.h"
 #include "support/util/FsString.h"
 
@@ -88,8 +89,31 @@ void FsClass::init(FsClass* base,const char* name,NewInstanceFunc new_func,FsAtt
 
 FsObject* FsClass::newInstance()
 {
-	return this->m_newFunc(this);
+	if(this->m_newFunc)
+	{
+		return this->m_newFunc(NULL);
+	}
+	return NULL;
 }
+
+FsObject* FsClass::newInstance(FsDict* attrs)
+{
+	if(this->m_newFunc)
+	{
+		return this->m_newFunc(attrs);
+	}
+	return NULL;
+}
+
+FsObject* FsClass::newInstance(const char* filename)
+{
+	if(this->m_newFunc)
+	{
+		return this->m_newFunc(Global::felisScriptMgr()->loadDict(filename));
+	}
+	return NULL;
+}
+
 
 FsClass::FsAttribute* FsClass::getAttribute(const char* name)
 {
@@ -148,7 +172,9 @@ bool FsClass::FsAttribute::callSet(FsObject* ob,const FsVariant& v)
 	{
 		if(m_subAttributes)
 		{
-			FsDict::Iterator* iter=m_subAttributes->takeIterator();
+			FsDict* sub_values=(FsDict*) v.getValue();
+
+			FsDict::Iterator* iter=sub_values->takeIterator();
 			while(!iter->done())
 			{
 				FsString* name=(FsString*)iter->getKey();

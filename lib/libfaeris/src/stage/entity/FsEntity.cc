@@ -1,3 +1,4 @@
+#include "FsClass.h"
 #include "stage/entity/FsEntity.h"
 #include "graphics/FsRenderDevice.h"
 #include "stage/layer/FsLayer.h"
@@ -6,11 +7,6 @@
 NS_FS_BEGIN
 
 uint32_t Entity::ms_olderCount=0;
-
-const char* Entity::className()
-{
-	return FS_ENTITY_CLASS_NAME;
-}
 
 Entity* Entity::create()
 {
@@ -591,6 +587,89 @@ bool Entity::getDispatchTouchesEnabled()
 }
 
 
+
+
+
+/***  Use For Entity FsClass Attribute  **/
+static Entity* Entity_NewInstance(FsDict* attr)
+{
+	Entity* ret=Entity::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+	return ret;
+}
+
+
+
+/* attr position */
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setPosition,getPosition,Vector3);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setPositionX,getPositionX,float);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setPositionY,getPositionY,float);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setPositionZ,getPositionZ,float);
+
+/* attr scale */
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setScale,getScale,Vector3);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setScaleX,getScaleX,float);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setScaleY,getScaleY,float);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setScaleZ,getScaleZ,float);
+
+/* attr rotate */
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setRotate,getRotate,Vector3);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setRotateX,getRotateX,float);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setRotateY,getRotateY,float);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setRotateZ,getRotateZ,float);
+
+
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setVisible,getVisible,bool);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setVisibles,getVisibles,bool);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setZorder,getZorder,float);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setTouchEnabled,getTouchEnabled,bool);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setTouchesEnabled,getTouchesEnabled,bool);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setDispatchTouchEnabled,getDispatchTouchEnabled,bool);
+FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setDispatchTouchesEnabled,getDispatchTouchesEnabled,bool);
+
+
+static FsClass::FsAttributeDeclare S_Entity_Position_SubAttr[]={
+	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,Entity_setPositionX,Entity_getPositionX),
+	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,Entity_setPositionY,Entity_getPositionY),
+	FS_CLASS_ATTR_DECLARE("z",FsType::FT_F_1,NULL,Entity_setPositionZ,Entity_getPositionZ),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+static FsClass::FsAttributeDeclare S_Entity_Rotation_SubAttr[]={
+	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,Entity_setRotateX,Entity_getRotateX),
+	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,Entity_setRotateY,Entity_getRotateY),
+	FS_CLASS_ATTR_DECLARE("z",FsType::FT_F_1,NULL,Entity_setRotateZ,Entity_getRotateZ),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+static FsClass::FsAttributeDeclare S_Entity_Scale_SubAttr[]={
+	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,Entity_setScaleX,Entity_getScaleX),
+	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,Entity_setScaleY,Entity_getScaleY),
+	FS_CLASS_ATTR_DECLARE("z",FsType::FT_F_1,NULL,Entity_setScaleZ,Entity_getScaleZ),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+
+static FsClass::FsAttributeDeclare S_Entity_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("position",FsType::FT_F_3,S_Entity_Position_SubAttr,Entity_setPosition,Entity_getPosition),
+	FS_CLASS_ATTR_DECLARE("scale",FsType::FT_F_3,S_Entity_Scale_SubAttr,Entity_setScale,Entity_getScale),
+	FS_CLASS_ATTR_DECLARE("rotate",FsType::FT_F_3,S_Entity_Rotation_SubAttr,Entity_setRotate,Entity_getRotate),
+	FS_CLASS_ATTR_DECLARE("visible",FsType::FT_B_1,NULL,Entity_setVisible,Entity_getVisible),
+	FS_CLASS_ATTR_DECLARE("visibles",FsType::FT_B_1,NULL,Entity_setVisibles,Entity_getVisibles),
+	FS_CLASS_ATTR_DECLARE("touchEnabled",FsType::FT_B_1,NULL,Entity_setTouchEnabled,Entity_getTouchEnabled),
+	FS_CLASS_ATTR_DECLARE("touchesEnabled",FsType::FT_B_1,NULL,Entity_setTouchesEnabled,Entity_getTouchesEnabled),
+	FS_CLASS_ATTR_DECLARE("touchDispatchEnabled",FsType::FT_B_1,NULL,Entity_setDispatchTouchEnabled,Entity_getDispatchTouchEnabled),
+	FS_CLASS_ATTR_DECLARE("touchesDispatchEnabled",FsType::FT_B_1,NULL,Entity_setDispatchTouchesEnabled,Entity_getDispatchTouchesEnabled),
+
+	FS_CLASS_ATTR_DECLARE("zorder",FsType::FT_I_1,NULL,Entity_setZorder,Entity_getZorder),
+
+};
+
+
+FS_CLASS_IMPLEMENT_WITH_BASE(Entity,FsObject,Entity_NewInstance,S_Entity_Main_Attr);
 
 
 NS_FS_END

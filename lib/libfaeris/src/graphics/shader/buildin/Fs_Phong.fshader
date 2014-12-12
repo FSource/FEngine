@@ -3,6 +3,8 @@
   \n\
 	light : true  \n\
 	colorMap : true  \n\
+	diffuseMap: true \n\
+	specularMap: true \n\
 }  \n\
   \n\
 UniformMap  \n\
