@@ -104,15 +104,18 @@ class ListViewContentPanel:public Entity
 
 		void removeListItem(UiWidget* widget)
 		{
-			m_listItem->remove(widget);
+			int index=getListItemIndex(widget);
+			m_listItem->remove(index);
 			remove(widget);
 			layout();
 		}
 
 		void removeListItem(int index)
 		{
-			UiWidget* widget=(UiWidget*)m_listItem->get(index);
-			removeListItem(widget);
+			ListItemInfo* item_info=(ListItemInfo*)m_listItem->get(index);
+			remove(item_info->m_widget);
+			m_listItem->remove(index);
+			layout();
 		}
 
 		void clearListItem()
