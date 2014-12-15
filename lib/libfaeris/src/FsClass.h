@@ -157,6 +157,7 @@ class FsClass :public FsObject
    	} \
 
 
+/* chars */
 #define FS_CLASS_ATTR_SET_CHARS_FUNCTION(cls,set)  \
 	static  void cls##_##set(cls* ob,const char* v) \
 	{ \
@@ -164,7 +165,7 @@ class FsClass :public FsObject
 	} 
 
 
-#define FS_CLASS_ATTR_GET_SET_CHARS_FUNCTION(cls,set,get)  \
+#define FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(cls,set,get)  \
 	static  void cls##_##set(cls* ob,const char* v) \
 	{ \
 		ob->set(v); \
@@ -175,6 +176,7 @@ class FsClass :public FsObject
 	} \
 	
 
+/* type */
 #define FS_CLASS_ATTR_SET_FUNCTION(cls,set,t) \
 	static  void cls##_##set(cls* ob,const t* v) \
 	{ \
@@ -182,7 +184,7 @@ class FsClass :public FsObject
 	} \
 
 
-#define FS_CLASS_ATTR_GET_SET_FUNCTION(cls,set,get,t)  \
+#define FS_CLASS_ATTR_SET_GET_FUNCTION(cls,set,get,t)  \
 	static  void cls##_##set(cls* ob,const t* v) \
 	{ \
 		ob->set(*v); \
@@ -192,6 +194,20 @@ class FsClass :public FsObject
 		static t temp; \
 		temp=ob->get(); \
 		return &temp; \
+	} \
+
+
+/* enum */
+#define FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(cls,set,get,t) \
+	static  void cls##_##set(cls* ob,const char* name) \
+	{ \
+		E_##t type=FsEnum_StrTo##t(name); \
+		ob->set(type); \
+	} \
+	static const char* cls##_##get(cls* ob)  \
+	{ \
+		E_##t type=ob->get();  \
+		return FsEnum_##t##ToStr(type); \
 	} \
 
 

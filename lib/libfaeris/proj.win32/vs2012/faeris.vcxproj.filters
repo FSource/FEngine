@@ -586,6 +586,9 @@
     <ClInclude Include="..\..\src\mgr\FsFelisScriptMgr.h">
       <Filter>src\mgr</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsClassMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1046,6 +1049,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\FsEnum.cc">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsClassMgr.cc">
+      <Filter>src\mgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

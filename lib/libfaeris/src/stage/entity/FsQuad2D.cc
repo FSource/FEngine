@@ -778,17 +778,23 @@ static void Quad2D_setTextureDict(Quad2D* q,FsDict* attr)
 	}
 }
 
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setColor,getColor,Color4f);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setOpacity,getOpacity,float);
+FS_CLASS_ATTR_SET_CHARS_FUNCTION(Quad2D,setProgramSource);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(Quad2D,setBlendEquation,getBlendEquation,BlendEquation);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(Quad2D,setBlendSrc,getBlendSrc,BlendFactor);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(Quad2D,setBlendDst,getBlendDst,BlendFactor);
 
 
 FS_CLASS_ATTR_SET_CHARS_FUNCTION(Quad2D,setTexture);
 
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setSize,getSize,Vector2);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setWidth,getWidth,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setHeight,getHeight,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setSize,getSize,Vector2);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setWidth,getWidth,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setHeight,getHeight,float);
 
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setAnchor,getAnchor,Vector2);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setAnchorX,getAnchorX,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setAnchorY,getAnchorY,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setAnchor,getAnchor,Vector2);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setAnchorX,getAnchorX,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setAnchorY,getAnchorY,float);
 
 
 
@@ -806,10 +812,18 @@ static FsClass::FsAttributeDeclare S_Quad2D_Size_SubAttr[]={
 
 
 static FsClass::FsAttributeDeclare S_Quad2D_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("color",FsType::FT_COLOR_4,NULL,Quad2D_setColor,Quad2D_getColor),
+	FS_CLASS_ATTR_DECLARE("opacity",FsType::FT_F_1,NULL,Quad2D_setOpacity,Quad2D_getOpacity),
+	FS_CLASS_ATTR_DECLARE("shader",FsType::FT_CHARS,NULL,Quad2D_setProgramSource,0),
+	FS_CLASS_ATTR_DECLARE("blendEquation",FsType::FT_CHARS,NULL,Quad2D_setBlendEquation,Quad2D_getBlendEquation),
+	FS_CLASS_ATTR_DECLARE("blendSrc",FsType::FT_CHARS,NULL,Quad2D_setBlendSrc,Quad2D_getBlendSrc),
+	FS_CLASS_ATTR_DECLARE("blendDst",FsType::FT_CHARS,NULL,Quad2D_setBlendDst,Quad2D_getBlendDst),
+
 	FS_CLASS_ATTR_DECLARE("anchor",FsType::FT_F_2,S_Quad2D_Anchor_SubAttr,Quad2D_setAnchor,Quad2D_getAnchor),
 	FS_CLASS_ATTR_DECLARE("size",FsType::FT_F_2,S_Quad2D_Size_SubAttr,Quad2D_setSize,Quad2D_getSize),
 	FS_CLASS_ATTR_DECLARE("textureUrl",FsType::FT_CHARS,NULL,Quad2D_setTexture,0),
-	FS_CLASS_ATTR_DECLARE("texture",FsType::FT_DICT,NULL,Quad2D_setTextureDict,0)
+	FS_CLASS_ATTR_DECLARE("texture",FsType::FT_DICT,NULL,Quad2D_setTextureDict,0),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
 };
 
 

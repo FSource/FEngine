@@ -21,6 +21,8 @@
 #include "mgr/FsMeshMgr.h"
 #include "mgr/FsMaterial3DMgr.h"
 #include "mgr/FsFelisScriptMgr.h"
+#include "mgr/FsClassMgr.h"
+
 
 
 
@@ -70,6 +72,7 @@ class Global
 	FS_GLOBAL_H(MeshMgr,meshMgr,setMeshMgr);
 	FS_GLOBAL_H(Material3DMgr,material3DMgr,setMaterial3DMgr);
 	FS_GLOBAL_H(FelisScriptMgr,felisScriptMgr,setFelisScriptMgr);
+	FS_GLOBAL_H(ClassMgr,classMgr,setClassMgr);
 
 
 };

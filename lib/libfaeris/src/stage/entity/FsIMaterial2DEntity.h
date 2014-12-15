@@ -28,6 +28,17 @@ class IMaterial2DEntity
 		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor dst);
 		void setBlend(E_BlendFactor src,E_BlendFactor dst);
 
+		void setBlendSrc(E_BlendFactor src);
+		E_BlendFactor getBlendSrc();
+
+		void setBlendDst(E_BlendFactor dst);
+		E_BlendFactor getBlendDst();
+
+		void setBlendEquation(E_BlendEquation eq);
+		E_BlendEquation getBlendEquation();
+
+
+
 		void setProgramSource(ProgramSource* ps);
 		void setProgramSource(const char* filename);
 		ProgramSource* getProgramSource();
