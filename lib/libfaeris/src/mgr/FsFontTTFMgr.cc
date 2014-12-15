@@ -25,6 +25,7 @@ FontTTFMgr::FontTTFMgr()
 FontTTFMgr::~FontTTFMgr()
 {
 }
+
 NS_FS_END
 
 

@@ -226,7 +226,7 @@ RenderDevice::RenderDevice()
 	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_DEPTH_TEST);
 	glDepthMask(false);
-	glDepthRangef(0,1.0);
+	glDepthRange(0,1.0);
 
 
 	/* blend */
