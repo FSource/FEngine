@@ -14,11 +14,14 @@ enum
 };
 
 
-enum 
+namespace E_TextAlign 
 {
-	FS_TEXT_ALIGN_LEFT,
-	FS_TEXT_ALIGN_CENTER,
-	FS_TEXT_ALIGN_RIGHT,
+	enum 
+	{
+		LEFT,
+		CENTER,
+		RIGHT
+	}
 };
 
 

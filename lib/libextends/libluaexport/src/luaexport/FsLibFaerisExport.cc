@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 12/07/14 11:16:56.
+** Generated automatically by tolua++-1.0.92 on 12/15/14 22:18:04.
 */
 
 #ifndef __cplusplus
@@ -224,7 +224,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Color3f");
  tolua_usertype(tolua_S,"Timer");
  toluaext_usertype(tolua_S,"FixTimeAction");
- toluaext_usertype(tolua_S,"RenderTarget");
+ toluaext_usertype(tolua_S,"ProgramSourceMgr");
  tolua_usertype(tolua_S,"LuaSchedulerTarget");
  toluaext_usertype(tolua_S,"Scheduler");
  tolua_usertype(tolua_S,"Vector3");
@@ -277,62 +277,62 @@ static void tolua_reg_types (lua_State* tolua_S)
  toluaext_usertype(tolua_S,"TextureMgr");
  toluaext_usertype(tolua_S,"LuaTouchEventListener");
  toluaext_usertype(tolua_S,"LuaHttpRequest");
- tolua_usertype(tolua_S,"KeypadEvent");
+ toluaext_usertype(tolua_S,"SysDispatcher");
  toluaext_usertype(tolua_S,"AudioEngine");
  toluaext_usertype(tolua_S,"LuaMoveAction");
+ toluaext_usertype(tolua_S,"LuaScaleAction");
  tolua_usertype(tolua_S,"BackEase");
  toluaext_usertype(tolua_S,"LuaPanel");
- toluaext_usertype(tolua_S,"LuaScaleAction");
  toluaext_usertype(tolua_S,"Curve3Action");
+ tolua_usertype(tolua_S,"BezierEase");
  toluaext_usertype(tolua_S,"Entity");
  tolua_usertype(tolua_S,"CatmullRomCurve4");
- tolua_usertype(tolua_S,"BezierEase");
  tolua_usertype(tolua_S,"EulerTransform");
  toluaext_usertype(tolua_S,"LuaAction");
  tolua_usertype(tolua_S,"Sprite2DDataMgr");
+ tolua_usertype(tolua_S,"KeypadEvent");
  tolua_usertype(tolua_S,"Program");
  toluaext_usertype(tolua_S,"HttpEngine");
- toluaext_usertype(tolua_S,"SysDispatcher");
  toluaext_usertype(tolua_S,"LuaPressButton");
+ tolua_usertype(tolua_S,"TouchPoint");
  toluaext_usertype(tolua_S,"RenderDevice");
  toluaext_usertype(tolua_S,"LuaVertexPolygon");
  tolua_usertype(tolua_S,"PageView");
  toluaext_usertype(tolua_S,"PressButton");
- tolua_usertype(tolua_S,"TouchPoint");
  toluaext_usertype(tolua_S,"Director");
+ toluaext_usertype(tolua_S,"TouchEventListener");
  toluaext_usertype(tolua_S,"DynamicView");
  toluaext_usertype(tolua_S,"LuaColorLayer");
- toluaext_usertype(tolua_S,"LuaEntity");
- toluaext_usertype(tolua_S,"TouchEventListener");
- tolua_usertype(tolua_S,"PowerEase");
  tolua_usertype(tolua_S,"Sys");
- tolua_usertype(tolua_S,"Rect2D");
- toluaext_usertype(tolua_S,"Quad2D");
+ toluaext_usertype(tolua_S,"RenderTarget");
+ toluaext_usertype(tolua_S,"LuaEntity");
  tolua_usertype(tolua_S,"CatmullRomCurve3");
+ tolua_usertype(tolua_S,"CatmullRomCurve2");
+ toluaext_usertype(tolua_S,"Quad2D");
  toluaext_usertype(tolua_S,"LuaLabelBitmap");
  tolua_usertype(tolua_S,"SineEase");
  tolua_usertype(tolua_S,"PlatformTexture");
  toluaext_usertype(tolua_S,"Layer2D");
  toluaext_usertype(tolua_S,"VertexPolygon");
  toluaext_usertype(tolua_S,"FsObject");
- tolua_usertype(tolua_S,"CatmullRomCurve2");
+ tolua_usertype(tolua_S,"LinearCurve4");
  toluaext_usertype(tolua_S,"ResourceMgr");
  toluaext_usertype(tolua_S,"LuaScene");
- tolua_usertype(tolua_S,"Curve2");
+ toluaext_usertype(tolua_S,"LuaLayer2D");
  toluaext_usertype(tolua_S,"ScrollView");
  tolua_usertype(tolua_S,"LinearEase");
- tolua_usertype(tolua_S,"LinearCurve4");
  tolua_usertype(tolua_S,"Global");
  tolua_usertype(tolua_S,"EaseExpr");
  tolua_usertype(tolua_S,"Curve3");
- tolua_usertype(tolua_S,"Color4f");
+ tolua_usertype(tolua_S,"Curve2");
  tolua_usertype(tolua_S,"QuintEase");
+ tolua_usertype(tolua_S,"PowerEase");
  toluaext_usertype(tolua_S,"LuaToggleButton");
- toluaext_usertype(tolua_S,"LuaLayer2D");
- toluaext_usertype(tolua_S,"ProgramSourceMgr");
- tolua_usertype(tolua_S,"FsResource");
- toluaext_usertype(tolua_S,"SchedulerTarget");
+ tolua_usertype(tolua_S,"Color4f");
+ tolua_usertype(tolua_S,"Rect2D");
  tolua_usertype(tolua_S,"Vector4");
+ toluaext_usertype(tolua_S,"SchedulerTarget");
+ tolua_usertype(tolua_S,"FsResource");
  toluaext_usertype(tolua_S,"ToggleButton");
 }
 
@@ -6603,7 +6603,7 @@ static int tolua_FsLibFaeris___LabelTTF_setTextAlign00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LabelTTF",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_isenum(tolua_S,2,"E_TextAlign",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -6611,7 +6611,7 @@ static int tolua_FsLibFaeris___LabelTTF_setTextAlign00(lua_State* tolua_S)
 #endif
  {
   LabelTTF* self = (LabelTTF*)  tolua_tousertype(tolua_S,1,0);
-  int align = ((int)  tolua_tonumber(tolua_S,2,0));
+  E_TextAlign align = ((E_TextAlign)  toluaext_toenum(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'setTextAlign'", NULL);
 #endif
@@ -47819,9 +47819,6 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"FS_PLATFORM_LINUX",FS_PLATFORM_LINUX);
   tolua_constant(tolua_S,"FS_PLATFORM_ANDROID",FS_PLATFORM_ANDROID);
   tolua_constant(tolua_S,"FS_PLATFORM_OSX",FS_PLATFORM_OSX);
-  tolua_constant(tolua_S,"FS_TEXT_ALIGN_LEFT",FS_TEXT_ALIGN_LEFT);
-  tolua_constant(tolua_S,"FS_TEXT_ALIGN_CENTER",FS_TEXT_ALIGN_CENTER);
-  tolua_constant(tolua_S,"FS_TEXT_ALIGN_RIGHT",FS_TEXT_ALIGN_RIGHT);
   tolua_constant(tolua_S,"FS_CUR_PLATFORM",FS_CUR_PLATFORM);
   tolua_constant(tolua_S,"FS_ALIGN_V_CENTER",FS_ALIGN_V_CENTER);
   tolua_constant(tolua_S,"FS_ALIGN_V_TOP",FS_ALIGN_V_TOP);
@@ -47829,9 +47826,12 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"FS_ALIGN_H_LEFT",FS_ALIGN_H_LEFT);
   tolua_constant(tolua_S,"FS_ALIGN_H_RIGHT",FS_ALIGN_H_RIGHT);
   tolua_constant(tolua_S,"FS_ALIGN_H_CENTER",FS_ALIGN_H_CENTER);
-  tolua_constant(tolua_S,"FS_TEXT_ALIGN_LEFT",FS_TEXT_ALIGN_LEFT);
-  tolua_constant(tolua_S,"FS_TEXT_ALIGN_CENTER",FS_TEXT_ALIGN_CENTER);
-  tolua_constant(tolua_S,"FS_TEXT_ALIGN_RIGHT",FS_TEXT_ALIGN_RIGHT);
+  tolua_module(tolua_S,"E_TextAlign",0);
+  tolua_beginmodule(tolua_S,"E_TextAlign");
+   tolua_constant(tolua_S,"LEFT",static_cast<int>(E_TextAlign::LEFT));
+   tolua_constant(tolua_S,"CENTER",static_cast<int>(E_TextAlign::CENTER));
+   tolua_constant(tolua_S,"RIGHT",static_cast<int>(E_TextAlign::RIGHT));
+  tolua_endmodule(tolua_S);
   tolua_constant(tolua_S,"FS_FILE_UNKOWN",FS_FILE_UNKOWN);
   tolua_constant(tolua_S,"FS_FILE_BINARY",FS_FILE_BINARY);
   tolua_constant(tolua_S,"FS_FILE_SCRIPT",FS_FILE_SCRIPT);

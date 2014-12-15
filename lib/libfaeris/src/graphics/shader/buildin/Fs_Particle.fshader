@@ -1,7 +1,7 @@
 "   \n\
 UniformMap    \n\
 {   \n\
-	u_mvp = $(R.WORLD_VIEW_INVERSE_TRANSPOSE_MAT)    \n\
+	u_mvp = $(R.WORLD_VIEW_PROJECTION_MAT)    \n\
 	u_texture0 = $(M.COLOR_MAP)   \n\
 }   \n\
    \n\

@@ -33,7 +33,7 @@ class LabelTTF@__LabelTTF:public Entity
 		int getFontSize();
 
 
-		void setTextAlign(int align);
+		void setTextAlign(E_TextAlign align);
 		int getTextAlign();
 
 		void setBoundSize(float width,float height);

@@ -393,7 +393,7 @@ class TypoPage
 			}
 		}
 
-		void setTextAlign(int align)
+		void setTextAlign(E_TextAlign align)
 		{
 
 
@@ -409,13 +409,13 @@ class TypoPage
 				float x_shift=0;
 				switch(align)
 				{
-					case FS_TEXT_ALIGN_LEFT:
+					case E_TextAlign::LEFT:
 						x_shift=-minx;
 						break;
-					case FS_TEXT_ALIGN_CENTER:
+					case E_TextAlign::CENTER:
 						x_shift=(m_relWidth-line_width)/2-minx;
 						break;
-					case FS_TEXT_ALIGN_RIGHT:
+					case E_TextAlign::RIGHT:
 						x_shift=m_relWidth-maxx;
 						break;
 				}

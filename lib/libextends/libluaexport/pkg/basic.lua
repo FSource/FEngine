@@ -186,6 +186,7 @@ local fsenums =
 	"E_FrontFace",
 	"E_BoneType",
 	"E_LightType",
+	"E_TextAlign",
 }
 
 

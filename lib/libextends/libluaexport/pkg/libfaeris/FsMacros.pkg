@@ -8,13 +8,6 @@ enum
 	FS_PLATFORM_OSX=4,
 };
 
-enum 
-{
-	FS_TEXT_ALIGN_LEFT,
-	FS_TEXT_ALIGN_CENTER,
-	FS_TEXT_ALIGN_RIGHT,
-};
-
 
 
 #define FS_CUR_PLATFORM 
