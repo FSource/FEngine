@@ -782,13 +782,13 @@ static void Quad2D_setTextureDict(Quad2D* q,FsDict* attr)
 
 FS_CLASS_ATTR_SET_CHARS_FUNCTION(Quad2D,setTexture);
 
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setSize,getSize,Vector2);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setWidth,getWidth,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setHeight,getHeight,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setSize,getSize,Vector2);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setWidth,getWidth,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setHeight,getHeight,float);
 
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setAnchor,getAnchor,Vector2);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setAnchorX,getAnchorX,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Quad2D,setAnchorY,getAnchorY,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setAnchor,getAnchor,Vector2);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setAnchorX,getAnchorX,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setAnchorY,getAnchorY,float);
 
 
 

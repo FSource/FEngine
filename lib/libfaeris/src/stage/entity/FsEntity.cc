@@ -604,31 +604,31 @@ static Entity* Entity_NewInstance(FsDict* attr)
 
 
 /* attr position */
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setPosition,getPosition,Vector3);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setPositionX,getPositionX,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setPositionY,getPositionY,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setPositionZ,getPositionZ,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setPosition,getPosition,Vector3);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setPositionX,getPositionX,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setPositionY,getPositionY,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setPositionZ,getPositionZ,float);
 
 /* attr scale */
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setScale,getScale,Vector3);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setScaleX,getScaleX,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setScaleY,getScaleY,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setScaleZ,getScaleZ,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setScale,getScale,Vector3);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setScaleX,getScaleX,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setScaleY,getScaleY,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setScaleZ,getScaleZ,float);
 
 /* attr rotate */
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setRotate,getRotate,Vector3);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setRotateX,getRotateX,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setRotateY,getRotateY,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setRotateZ,getRotateZ,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setRotate,getRotate,Vector3);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setRotateX,getRotateX,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setRotateY,getRotateY,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setRotateZ,getRotateZ,float);
 
 
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setVisible,getVisible,bool);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setVisibles,getVisibles,bool);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setZorder,getZorder,float);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setTouchEnabled,getTouchEnabled,bool);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setTouchesEnabled,getTouchesEnabled,bool);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setDispatchTouchEnabled,getDispatchTouchEnabled,bool);
-FS_CLASS_ATTR_GET_SET_FUNCTION(Entity,setDispatchTouchesEnabled,getDispatchTouchesEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setVisible,getVisible,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setVisibles,getVisibles,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setZorder,getZorder,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setTouchEnabled,getTouchEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setTouchesEnabled,getTouchesEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setDispatchTouchEnabled,getDispatchTouchEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setDispatchTouchesEnabled,getDispatchTouchesEnabled,bool);
 
 
 static FsClass::FsAttributeDeclare S_Entity_Position_SubAttr[]={
