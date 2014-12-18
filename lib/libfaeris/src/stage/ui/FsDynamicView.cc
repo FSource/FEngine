@@ -300,7 +300,7 @@ void DynamicView::removeViewInfo(ViewInfo* info)
 	}
 
 	info->m_widget->setParentWidget(NULL);
-	remove(info->m_widget);
+	removeChild(info->m_widget);
 
 	m_views->remove(info->m_name);
 	

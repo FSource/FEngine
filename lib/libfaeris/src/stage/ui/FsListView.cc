@@ -3,7 +3,7 @@
 
 NS_FS_BEGIN
 
-class ListViewContentPanel:public Entity
+class ListViewContentPanel:public Entity2D
 {
 	protected:
 	class ListItemInfo:public FsObject 
@@ -105,7 +105,7 @@ class ListViewContentPanel:public Entity
 		void removeListItem(UiWidget* widget)
 		{
 			m_listItem->remove(widget);
-			remove(widget);
+			removeChild(widget);
 			layout();
 		}
 
@@ -461,7 +461,7 @@ ListView::ListView(int mode,float w,float h)
 ListView::~ListView()
 {
 	clearListItem();
-	remove(m_contentPanel);
+	removeChild(m_contentPanel);
 
 	FS_SAFE_DESTROY(m_contentPanel);
 }

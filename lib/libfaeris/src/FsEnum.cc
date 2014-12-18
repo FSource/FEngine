@@ -113,11 +113,26 @@ static EnumStrPair<E_TextureWrap> S_E_TextureWrap[]=
 	EnumStrPair<E_TextureWrap>(E_TextureWrap::CLAMP,"clamp"),
 	EnumStrPair<E_TextureWrap>(E_TextureWrap::REPEAT,"repeat"),
 	EnumStrPair<E_TextureWrap>(E_TextureWrap::CLAMP_TO_EDGE,"clampToEdge"),
-	EnumStrPair<E_TextureWrap>(E_TextureWrap::CLAMP_TO_BORDER,"clampToBorder")
+	EnumStrPair<E_TextureWrap>(E_TextureWrap::CLAMP_TO_BORDER,"clampToBorder"),
+	EnumStrPair<E_TextureWrap>(E_TextureWrap::CLAMP_TO_BORDER,NULL)
 };
 FS_ENUM_TO_STR_MAP_IMPLEMENT(TextureWrap,S_E_TextureWrap);
 
 
+/* E_DrawMode */
+static EnumStrPair<E_DrawMode> S_E_DrawMode[]=
+{
+	EnumStrPair<E_DrawMode>(E_DrawMode::POINTS,"points"),
+	EnumStrPair<E_DrawMode>(E_DrawMode::LINES,"lines"),
+	EnumStrPair<E_DrawMode>(E_DrawMode::LINE_STRIP,"lineStrip"),
+	EnumStrPair<E_DrawMode>(E_DrawMode::LINE_LOOP,"lineLoop"),
+	EnumStrPair<E_DrawMode>(E_DrawMode::TRIANGLES,"triangles"),
+	EnumStrPair<E_DrawMode>(E_DrawMode::TRIANGLE_STRIP,"triangleStrip"),
+	EnumStrPair<E_DrawMode>(E_DrawMode::TRIANGLE_FAN,"triangleFan"),
+	EnumStrPair<E_DrawMode>(E_DrawMode::TRIANGLE_INDEX,"triangleIndex"),
+	EnumStrPair<E_DrawMode>(E_DrawMode::TRIANGLE_INDEX,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(DrawMode,S_E_DrawMode);
 
 
 

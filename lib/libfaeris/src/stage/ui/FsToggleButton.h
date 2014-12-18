@@ -34,10 +34,10 @@ class ToggleButton:public StateButton
 
 	public:
 		/* inherit Entity*/
-		virtual bool touchBegin(float x,float y);
-		virtual bool touchMove(float x,float y);
-		virtual bool touchEnd(float x,float y);
-		virtual bool hit2D(float x,float y);
+		bool touchBegin(float x,float y) FS_OVERRIDE;
+		bool touchMove(float x,float y) FS_OVERRIDE;
+		bool touchEnd(float x,float y) FS_OVERRIDE;
+		bool hit2D(const Vector2f& v) FS_OVERRIDE;
 
 
 		/* inherit FsObject */

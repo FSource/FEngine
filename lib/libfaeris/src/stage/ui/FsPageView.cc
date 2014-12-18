@@ -5,7 +5,7 @@
 
 NS_FS_BEGIN
 
-class PageViewContentPanel: public Entity
+class PageViewContentPanel: public Entity2D
 {
 	protected:
 		class PageViewItemInfo:public FsObject 
@@ -314,7 +314,7 @@ PageView::PageView(int mode,float w,float h)
 
 	setMode(mode);
 
-	setSize(w,h);
+	setSize(Vector2f(w,h));
 	setScissorEnabled(true);
 
 
@@ -331,7 +331,7 @@ PageView::~PageView()
 		widget->setParentWidget(NULL);
 	}
 
-	remove(m_contentPanel);
+	removeChild(m_contentPanel);
 	FS_SAFE_DESTROY(m_contentPanel);
 	FS_SAFE_DEC_REF(m_scrollEasing);
 }
@@ -416,7 +416,7 @@ void PageView::removePage(UiWidget* widget)
 	}
 	widget->setParentWidget(NULL);
 	m_contentPanel->removePageItem(widget);
-	m_contentPanel->remove(widget);
+	m_contentPanel->removeChild(widget);
 	adjustContentPanel();
 }
 

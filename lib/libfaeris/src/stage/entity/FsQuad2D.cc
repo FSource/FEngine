@@ -50,10 +50,9 @@ Quad2D* Quad2D::create(const Color4f& c,float width,float height)
 		delete ret;
 		return NULL;
 	}
-	ret->setSize(width,height);
+	ret->Entity2D::setSize(width,height);
 	return ret;
 }
-
 
 Quad2D* Quad2D::create(const Color4f& c,const Rect2D& rect)
 {
@@ -85,33 +84,43 @@ void Quad2D::setTexture(Texture2D* tex)
 	FS_SAFE_ASSIGN(m_texture,tex);
 	if(m_texture)
 	{
-		m_width=(float)m_texture->getWidth();
-		m_height=(float)m_texture->getHeight();
-	}
-	else 
-	{
-		m_width=0;
-		m_height=0;
+		m_size.x=(float)m_texture->getWidth();
+		m_size.y=(float)m_texture->getHeight();
 	}
 	m_vertiesDirty=true;
 
-}
-void Quad2D::setTexture(const char* filename)
-{
-	Texture2D* tex=Global::textureMgr()->loadTexture(filename);
-	FS_SAFE_ASSIGN(m_texture,tex);
 	if(m_texture)
 	{
-		m_width=(float)m_texture->getWidth();
-		m_height=(float)m_texture->getHeight();
+		static ProgramSource* S_programSourceTex=NULL;
+
+		/* Change Shader To Color Mode */
+		if(S_programSourceTex==NULL)
+		{
+			S_programSourceTex=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F);
+		}
+		setProgramSource(S_programSourceTex);
+
 	}
 	else 
 	{
-		m_width=0;
-		m_height=0;
+		static ProgramSource* S_programSourceColor=NULL;
+		if(S_programSourceColor==NULL)
+		{
+			S_programSourceColor=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
+		}
+
+		setProgramSource(S_programSourceColor);
 	}
-	m_vertiesDirty=true;
 }
+
+
+void Quad2D::setTexture(const char* filename)
+{
+	Texture2D* tex=Global::textureMgr()->loadTexture(filename);
+	setTexture(tex);
+}
+
+
 void Quad2D::setResourceUrl(const char* name)
 {
 	setTexture(name);
@@ -120,158 +129,53 @@ void Quad2D::setResourceUrl(const char* name)
 
 Texture2D* Quad2D::getTexture()
 {
-	FS_SAFE_ADD_REF(m_texture);
 	return m_texture;
 }
 
 
 void Quad2D::setRect2D(const Rect2D& rect)
 {
-	m_width=rect.width;
-	m_height=rect.height;
-
-	m_anchorX=-rect.x/m_width;
-	m_anchorY=-rect.y/m_height;
+	Entity2D::setSize(rect.width,rect.height);
+	Entity2D::setAnchor( -rect.x/m_size.x, -rect.y/m_size.y);
 	m_vertiesDirty=true;
 }
 
 
 Rect2D Quad2D::getRect2D()
 {
-	return Rect2D(-m_anchorX*m_width,-m_anchorY*m_height,m_width,m_height);
+	return Rect2D(-m_anchor.x*m_size.x,-m_anchor.y*m_size.y,m_size.x,m_size.y);
 }
 
-
-void Quad2D::setSize(float width,float height)
-{
-	if(m_width==width&&m_height==height)
-	{
-		return ;
-	}
-
-	m_width=width;
-	m_height=height;
-	m_vertiesDirty=true;
-}
-
-void Quad2D::setWidth(float width)
-{
-	if(m_width==width)
-	{
-		return;
-	}
-
-	m_width=width;
-	m_vertiesDirty=true;
-}
-void Quad2D::setHeight(float height)
-{
-	if(m_height==height)
-	{
-		return;
-	}
-
-	m_height=height;
-	m_vertiesDirty=true;
-}
-
-
-float Quad2D::getHeight()
-{
-	return m_height;
-}
-
-float Quad2D::getWidth()
-{
-	return m_width;
-}
-
-
-void Quad2D::getSize(float* w,float* h)
-{
-	*w=m_width;
-	*h=m_height;
-}
 
 void Quad2D::setSize(const Vector2& v)
 {
-	setSize(v.x,v.y);
-}
-
-Vector2 Quad2D::getSize()
-{
-	return Vector2(m_width,m_height);
-}
-
-
-
-
-void Quad2D::setAnchorX(float x)
-{
-	if(m_anchorX==x)
+	if(m_size.x==v.x&&m_size.y==v.y)
 	{
-		return;
+		return ;
 	}
+	Entity2D::setSize(v);
 
-	m_anchorX=x;
-	m_vertiesDirty=true;
-}
-void Quad2D::setAnchorY(float y)
-{
-	if(m_anchorY==y)
-	{
-		return;
-	}
-	m_anchorY=y;
 	m_vertiesDirty=true;
 }
 
-void Quad2D::setAnchor(float x,float y)
-{
-	if(m_anchorX==x&&m_anchorY==y)
-	{
-		return;
-	}
-
-	m_anchorX=x;
-	m_anchorY=y;
-	m_vertiesDirty=true;
-}
-
-void Quad2D::getAnchor(float* x,float* y)
-{
-	*x=m_anchorX;
-	*y=m_anchorY;
-}
-
-float Quad2D::getAnchorX()
-{
-	return m_anchorX;
-}
-
-float Quad2D::getAnchorY()
-{
-	return m_anchorY;
-}
 
 void Quad2D::setAnchor(const Vector2& v)
 {
-	setAnchor(v.x,v.y);
+	if(m_anchor.x==v.x&&m_anchor.y==v.y)
+	{
+		return;
+	}
+	Entity2D::setAnchor(v);
+	m_vertiesDirty=true;
+
 }
-Vector2 Quad2D::getAnchor()
-{
-	return Vector2(m_anchorX,m_anchorY);
-}
-
-
-
 
 
 void Quad2D::setRegionRect(float x,float y,float w,float h)
 {
 	float x2=x+w;
 	float y2=y+h;
-	
+
 	m_rawVertices.resize(4);
 
 	m_rawVertices[0].v2.x=x;
@@ -399,7 +303,7 @@ void Quad2D::setRegionScale9(const Vector4& edge)
 
 
 static inline void S_Scale9SetVertices(Fs_V2F_T2F* vertices,const Vector2& v1,const Vector2& v2,
-													   const Vector2& t1,const Vector2& t2)
+		const Vector2& t1,const Vector2& t2)
 {
 	vertices[0].v2.x=v1.x;
 	vertices[0].v2.y=v1.y;
@@ -441,8 +345,8 @@ void Quad2D::setRegionScale9(float l,float r,float b,float t)
 	float th=float(m_texture->getHeight());
 
 
-	float el=tw*l/m_width;
-	float er=tw*r/m_width;
+	float el=tw*l/m_size.x;
+	float er=tw*r/m_size.x;
 
 	if(el+er>1.0f)
 	{
@@ -451,8 +355,8 @@ void Quad2D::setRegionScale9(float l,float r,float b,float t)
 		er=1-p;
 	}
 
-	float eb=th*b/m_height;
-	float et=th*t/m_height;
+	float eb=th*b/m_size.y;
+	float et=th*t/m_size.y;
 	if(eb+et>1.0f)
 	{
 		float p=eb/(eb+et);
@@ -547,13 +451,13 @@ void Quad2D::calFinishVertics()
 	int size=m_rawVertices.size();
 	m_finishVertices.resize(size);
 
-	float x=-m_width*m_anchorX;
-	float y=-m_height*m_anchorY;
+	float x=-m_size.x*m_anchor.x;
+	float y=-m_size.y*m_anchor.y;
 
 	for(int i=0;i<size;i++)
 	{
-		m_finishVertices[i].v2.x=x+m_rawVertices[i].v2.x*m_width;
-		m_finishVertices[i].v2.y=y+m_rawVertices[i].v2.y*m_height;
+		m_finishVertices[i].v2.x=x+m_rawVertices[i].v2.x*m_size.x;
+		m_finishVertices[i].v2.y=y+m_rawVertices[i].v2.y*m_size.y;
 		m_finishVertices[i].t2=m_rawVertices[i].t2;
 	}
 
@@ -567,14 +471,6 @@ void Quad2D::draw(RenderDevice* rd,bool updateMatrix)
 	if(!prog)
 	{
 		return;
-	}
-
-	if(m_renderMode==MODE_TEXTURE)
-	{
-		if(!m_texture)
-		{
-			return;
-		}
 	}
 
 
@@ -595,7 +491,7 @@ void Quad2D::draw(RenderDevice* rd,bool updateMatrix)
 	rd->setProgram(prog);
 	m_material->configRenderDevice(rd);
 
-	if(m_renderMode==MODE_TEXTURE)
+	if(m_texture)
 	{
 		rd->bindTexture(m_texture,0);
 	}
@@ -614,16 +510,16 @@ void Quad2D::draw(RenderDevice* rd,bool updateMatrix)
 	if(map_v)
 	{
 		rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,size,
-										sizeof(Fs_V2F_T2F),
-										&m_finishVertices[0].v2);
+				sizeof(Fs_V2F_T2F),
+				&m_finishVertices[0].v2);
 	}
 
 	if(map_u)
 	{
 
 		rd->setAndEnableVertexAttrPointer(map_u->m_location,2,FS_FLOAT,size,
-											sizeof(Fs_V2F_T2F),
-											&m_finishVertices[0].t2);
+				sizeof(Fs_V2F_T2F),
+				&m_finishVertices[0].t2);
 	}
 
 
@@ -638,46 +534,23 @@ void Quad2D::draw(RenderDevice* rd,bool updateMatrix)
 
 }
 
-bool Quad2D::hit2D(float x,float y)
-{
-	Vector3 t=worldToLocal(Vector3(x,y,0));
-	float diffx=t.x+m_anchorX*m_width;
-	float diffy=t.y+m_anchorY*m_height;
-
-
-	if ((diffx>=0) && (diffx<m_width))
-	{
-		if((diffy>=0)&&(diffy<m_height))
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
 
 
 
 Quad2D::Quad2D()
 {
 	m_texture=NULL;
-	m_width=0;
-	m_height=0;
-	m_anchorX=0.5;
-	m_anchorY=0.5;
+
+	m_size.set(0,0);
+	m_anchor.set(0.5,0.5);
+
 	m_vertiesDirty=true;
 	m_vertiesMode=E_DrawMode::TRIANGLE_INDEX;
-	m_renderMode=MODE_TEXTURE;
 
-	static ProgramSource* S_programSource=NULL;
-	if(S_programSource==NULL)
-	{
-		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F);
-	}
-	setProgramSource(S_programSource);
 
+	setTexture((Texture2D*)NULL);
 	setRegionRect(0,0,1,1);
+
 }
 
 Quad2D::~Quad2D()
@@ -685,9 +558,10 @@ Quad2D::~Quad2D()
 	destruct();
 }
 
+
+
 bool Quad2D::init()
 {
-	m_texture=NULL;
 	return true;
 }
 
@@ -710,29 +584,14 @@ bool Quad2D::init(const char* file)
 
 bool Quad2D::init(Texture2D* tex)
 {
-	m_width=(float)tex->getWidth();
-	m_height=(float)tex->getHeight();
-	FS_SAFE_ASSIGN(m_texture,tex);
+	setTexture(tex);
 	return true;
 
 }
 
 bool Quad2D::init(const Color4f& c)
 {
-
 	setColor(c);
-
-	static ProgramSource* S_programSource=NULL;
-
-	/* Change Shader To Color Mode */
-	if(S_programSource==NULL)
-	{
-		S_programSource=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
-	}
-
-	setProgramSource(S_programSource);
-	m_renderMode=MODE_COLOR;
-
 	return true;
 }
 
@@ -743,7 +602,7 @@ void Quad2D::destruct()
 }
 
 
-/*** Used For Quad2D Attribute **/
+/*** Used For Quad2D FsClass Attribute **/
 
 static Quad2D* Quad_NewInstance(FsDict* attr)
 {
@@ -780,49 +639,12 @@ static void Quad2D_setTextureDict(Quad2D* q,FsDict* attr)
 	}
 }
 
-FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setColor,getColor,Color4f);
-FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setOpacity,getOpacity,float);
-FS_CLASS_ATTR_SET_CHARS_FUNCTION(Quad2D,setProgramSource);
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(Quad2D,setBlendEquation,getBlendEquation,BlendEquation);
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(Quad2D,setBlendSrc,getBlendSrc,BlendFactor);
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(Quad2D,setBlendDst,getBlendDst,BlendFactor);
-
 
 FS_CLASS_ATTR_SET_CHARS_FUNCTION(Quad2D,setTexture);
 
-FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setSize,getSize,Vector2);
-FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setWidth,getWidth,float);
-FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setHeight,getHeight,float);
-
-FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setAnchor,getAnchor,Vector2);
-FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setAnchorX,getAnchorX,float);
-FS_CLASS_ATTR_SET_GET_FUNCTION(Quad2D,setAnchorY,getAnchorY,float);
-
-
-
-static FsClass::FsAttributeDeclare S_Quad2D_Anchor_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,Quad2D_setAnchorX,Quad2D_getAnchorX),
-	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,Quad2D_setAnchorY,Quad2D_getAnchorY),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
-};
-
-static FsClass::FsAttributeDeclare S_Quad2D_Size_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("w",FsType::FT_F_1,NULL,Quad2D_setWidth,Quad2D_getWidth),
-	FS_CLASS_ATTR_DECLARE("h",FsType::FT_F_1,NULL,Quad2D_setHeight,Quad2D_getHeight),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
-};
-
 
 static FsClass::FsAttributeDeclare S_Quad2D_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("color",FsType::FT_COLOR_4,NULL,Quad2D_setColor,Quad2D_getColor),
-	FS_CLASS_ATTR_DECLARE("opacity",FsType::FT_F_1,NULL,Quad2D_setOpacity,Quad2D_getOpacity),
-	FS_CLASS_ATTR_DECLARE("shader",FsType::FT_CHARS,NULL,Quad2D_setProgramSource,0),
-	FS_CLASS_ATTR_DECLARE("blendEquation",FsType::FT_CHARS,NULL,Quad2D_setBlendEquation,Quad2D_getBlendEquation),
-	FS_CLASS_ATTR_DECLARE("blendSrc",FsType::FT_CHARS,NULL,Quad2D_setBlendSrc,Quad2D_getBlendSrc),
-	FS_CLASS_ATTR_DECLARE("blendDst",FsType::FT_CHARS,NULL,Quad2D_setBlendDst,Quad2D_getBlendDst),
 
-	FS_CLASS_ATTR_DECLARE("anchor",FsType::FT_F_2,S_Quad2D_Anchor_SubAttr,Quad2D_setAnchor,Quad2D_getAnchor),
-	FS_CLASS_ATTR_DECLARE("size",FsType::FT_F_2,S_Quad2D_Size_SubAttr,Quad2D_setSize,Quad2D_getSize),
 	FS_CLASS_ATTR_DECLARE("textureUrl",FsType::FT_CHARS,NULL,Quad2D_setTexture,0),
 	FS_CLASS_ATTR_DECLARE("texture",FsType::FT_DICT,NULL,Quad2D_setTextureDict,0),
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
@@ -831,7 +653,7 @@ static FsClass::FsAttributeDeclare S_Quad2D_Main_Attr[]={
 
 
 
-FS_CLASS_IMPLEMENT_WITH_BASE(Quad2D,Entity,Quad_NewInstance,S_Quad2D_Main_Attr);
+FS_CLASS_IMPLEMENT_WITH_BASE(Quad2D,Entity2D,Quad_NewInstance,S_Quad2D_Main_Attr);
 
 
 

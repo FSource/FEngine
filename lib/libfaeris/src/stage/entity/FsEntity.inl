@@ -1,10 +1,6 @@
 #ifndef _FS_SCENE_NODE_INL_
 #define _FS_SCENE_NODE_INL_
 
-inline Vector3 Entity::getPosition()
-{
-	return m_transform->getPosition();
-}
 
 inline void Entity::getPosition(float* x,float* y,float* z)
 {
@@ -20,7 +16,6 @@ inline float Entity::getPositionX()
 }
 inline float Entity::getPositionY()
 {
-
 	return m_transform->getPosition().y;
 }
 
@@ -51,11 +46,6 @@ inline float Entity::getScaleZ()
 
 
 
-inline Vector3 Entity::getRotate()
-{
-	return m_transform->getRotate();
-}
-
 inline float Entity::getRotateX()
 {
 	return m_transform->getRotate().x;
@@ -82,34 +72,30 @@ inline void Entity::rotate(float rx,float ry,float rz)
 	r.x+=rx;
 	r.y+=ry;
 	r.z+=rz;
-	m_transform->setRotate(r);
-
-	m_worldMatrixDirty=1;
-
+	setRotate(r);
 }
 inline void Entity::rotateX(float v)
 {
 
 	Vector3 r=m_transform->getRotate();
 	r.x+=v;
-	m_transform->setRotate(r);
-	m_worldMatrixDirty=1;
+	setRotate(r);
 
 }
 inline void Entity::rotateY(float v)
 {
 	Vector3 r=m_transform->getRotate();
 	r.y+=v;
-	m_transform->setRotate(r);
-	m_worldMatrixDirty=1;
+	setRotate(r);
 }
+
 inline void Entity::rotateZ(float v)
 {
 	Vector3 r=m_transform->getRotate();
 	r.z+=v;
-	m_transform->setRotate(r);
-	m_worldMatrixDirty=1;
+	setRotate(r);
 }
+
 
 inline void Entity::scale(float sx,float sy,float sz)
 {
@@ -117,30 +103,30 @@ inline void Entity::scale(float sx,float sy,float sz)
 	s.x*=sx;
 	s.y*=sy;
 	s.z*=sz;
-	m_transform->setScale(s);
-	m_worldMatrixDirty=1;
+	setScale(s);
 }
+
 inline void Entity::scaleX(float v)
 {
 	Vector3 s=m_transform->getScale();
 	s.x*=v;
-	m_transform->setScale(s);
-	m_worldMatrixDirty=1;
+	setScale(s);
 }
+
 inline void Entity::scaleY(float v)
 {
 	Vector3 s=m_transform->getScale();
 	s.y*=v;
-	m_transform->setScale(s);
-	m_worldMatrixDirty=1;
+	setScale(s);
 }
+
 inline void Entity::scaleZ(float v)
 {
 	Vector3 s=m_transform->getScale();
 	s.z*=v;
-	m_transform->setScale(s);
-	m_worldMatrixDirty=1;
+	setScale(s);
 }
+
 
 inline void Entity::move(float tx,float ty,float tz)
 {
@@ -149,43 +135,38 @@ inline void Entity::move(float tx,float ty,float tz)
 	t.x+=tx;
 	t.y+=ty;
 	t.z+=tz;
-	m_transform->setPosition(t);
-	m_worldMatrixDirty=1;
 
+	setPosition(t);
 }
+
 inline void Entity::moveX(float v)
 {
 	Vector3 t=m_transform->getPosition();
 	t.x+=v;
-	m_transform->setPosition(t);
-	m_worldMatrixDirty=1;
+
+	setPosition(t);
 }
+
 inline void Entity::moveY(float v)
 {
 	Vector3 t=m_transform->getPosition();
 	t.y+=v;
-	m_transform->setPosition(t);
-	m_worldMatrixDirty=1;
+
+	setPosition(t);
 }
 
 inline void Entity::moveZ(float v)
 {
 	Vector3 t=m_transform->getPosition();
 	t.z+=v;
-	m_transform->setPosition(t);
-	m_worldMatrixDirty=1;
+
+	setPosition(t);
 }
 
-inline void Entity::setRotate(const Vector3& r)
-{
-	m_transform->setRotate(r);
-	m_worldMatrixDirty=1;
-}
 
 inline void Entity::setRotate(float rx,float ry,float rz)
 {
-	m_transform->setRotate(Vector3(rx,ry,rz));
-	m_worldMatrixDirty=1;
+	setRotate(Vector3(rx,ry,rz));
 }
 
 inline void Entity::setRotateX(float v)
@@ -193,93 +174,77 @@ inline void Entity::setRotateX(float v)
 
 	Vector3 r=m_transform->getRotate();
 	r.x=v;
-	m_transform->setRotate(r);
-	m_worldMatrixDirty=1;
+	setRotate(r);
 }
 inline void Entity::setRotateY(float v)
 {
 	Vector3 r=m_transform->getRotate();
 	r.y=v;
-	m_transform->setRotate(r);
-	m_worldMatrixDirty=1;
+	setRotate(r);
 }
 inline void Entity::setRotateZ(float v)
 {
 	Vector3 r=m_transform->getRotate();
 	r.z=v;
-	m_transform->setRotate(r);
-	m_worldMatrixDirty=1;
+
+	setRotate(r);
 }
 
-inline void Entity::setScale(const Vector3& scale)
-{
-	m_transform->setScale(scale);
-	m_worldMatrixDirty=1;
-}
 inline void Entity::setScale(float sx,float sy,float sz)
 {
-	m_transform->setScale(Vector3(sx,sy,sz));
-	m_worldMatrixDirty=1;
+	setScale(Vector3(sx,sy,sz));
 }
 inline void Entity::setScaleX(float v)
 {
 	Vector3 s=m_transform->getScale();
 	s.x=v;
-	m_transform->setScale(s);
-	m_worldMatrixDirty=1;
+	setScale(s);
 }
+
 inline void Entity::setScaleY(float v)
 {
 	Vector3 s=m_transform->getScale();
 	s.y=v;
-	m_transform->setScale(s);
-	m_worldMatrixDirty=1;
+	setScale(s);
 }
 
 inline void Entity::setScaleZ(float v)
 {
 	Vector3 s=m_transform->getScale();
 	s.z=v;
-	m_transform->setScale(s);
-	m_worldMatrixDirty=1;
+	setScale(s);
 }
 
 
 
 
-inline void Entity::setPosition(const Vector3& pos)
-{
-	m_transform->setPosition(pos);
-	m_worldMatrixDirty=1;
-}
+
 
 inline void Entity::setPosition(float tx,float ty,float tz)
 {
-	m_transform->setPosition(Vector3(tx,ty,tz));
-	m_worldMatrixDirty=1;
+	setPosition(Vector3(tx,ty,tz));
 }
 inline void Entity::setPositionX(float v)
 {
 	Vector3 t=m_transform->getPosition();
 	t.x=v;
-	m_transform->setPosition(t);
-	m_worldMatrixDirty=1;
+	setPosition(t);
 }
 
 inline void Entity::setPositionY(float v)
 {
 	Vector3 t=m_transform->getPosition();
 	t.y=v;
-	m_transform->setPosition(t);
-	m_worldMatrixDirty=1;
+	setPosition(t);
 }
+
 inline void Entity::setPositionZ(float v)
 {
 	Vector3 t=m_transform->getPosition();
 	t.z=v;
-	m_transform->setPosition(t);
-	m_worldMatrixDirty=1;
+	setPosition(t);
 }
+
 
 
 /* world transform */

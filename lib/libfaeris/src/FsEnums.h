@@ -401,6 +401,8 @@ enum class E_DrawMode
 	TRIANGLE_FAN,
 	TRIANGLE_INDEX,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(DrawMode);
+
 
 enum class E_AnimPlayMode 
 {
@@ -519,6 +521,24 @@ enum class E_MaterialType
 };
 
 FS_ENUM_TO_STR_MAP_DECLARE(MaterialType);
+
+
+
+
+
+enum E_ButtonTweenFlag 
+{
+	COLOR= 0x1UL,
+	OPACITY= 0x2UL,
+	TEXTURE= 0x4UL,
+	SIZE=0x8UL,
+	ANCHOR =0x10UL,
+	ROTATE=0x20UL,
+	SCALE=0x40UL,
+	CHILDREN=0x80UL,
+	ALL= 0xFFUL,
+};
+FS_ENUM_TO_STR_MAP_DECLARE(ButtonTweenFlag);
 
 
 

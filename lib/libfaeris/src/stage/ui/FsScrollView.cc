@@ -14,7 +14,7 @@ ScrollView::ScrollView(float width,float height)
 {
 	m_contentWidget=NULL;
 
-	setSize(width,height);
+	setSize(Vector2f(width,height));
 	setScissorEnabled(true);
 
 }
@@ -52,7 +52,7 @@ void ScrollView::setContentWidget(UiWidget* widget)
 	if(m_contentWidget)
 	{
 		m_contentWidget->setParentWidget(NULL);
-		remove(m_contentWidget);
+		removeChild(m_contentWidget);
 		m_contentWidget=NULL;
 		m_contentHeight=0;
 		m_contentWidth=0;

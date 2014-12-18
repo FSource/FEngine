@@ -18,6 +18,9 @@ class Texture2D;
 class PressButton:public StateButton
 {
 	public:
+		FS_CLASS_DECLARE(PressButton);
+
+	public:
 		enum{
 			STATE_ALL=-1,
 			STATE_NORMAL=0,
@@ -26,7 +29,6 @@ class PressButton:public StateButton
 			STATE_NU=3,
 			STATE_UNKOWN=4,
 		};
-
 
 
 	public:
@@ -43,13 +45,11 @@ class PressButton:public StateButton
 
 	public:
 		/* inherit Entity*/
-		virtual bool touchBegin(float x,float y);
-		virtual bool touchMove(float x,float y);
-		virtual bool touchEnd(float x,float y);
-		virtual bool hit2D(float x,float y);
+		bool touchBegin(float x,float y) FS_OVERRIDE;
+		bool touchMove(float x,float y) FS_OVERRIDE;
+		bool touchEnd(float x,float y) FS_OVERRIDE;
+		bool hit2D(const Vector2& v) FS_OVERRIDE;
 
-		/* inherit FsObject */
-		virtual const char* className();
 
 
 	public:

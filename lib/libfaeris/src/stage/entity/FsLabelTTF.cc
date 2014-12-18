@@ -70,8 +70,7 @@ LabelTTF::LabelTTF()
 	m_boundWidth=0;
 	m_boundHeight=0;
 
-	m_anchorX=0.5;
-	m_anchorY=0.5;
+	m_anchor.set(0.5f,0.5f);
 
 	m_lineGap=0;
 
@@ -312,60 +311,14 @@ float LabelTTF::getLineGap()
 
 void LabelTTF::setAnchor(const Vector2& v)
 {
-	setAnchor(v.x,v.y);
-}
-
-void LabelTTF::setAnchor(float x,float y)
-{
-	m_anchorX=x;
-	m_anchorY=y;
+	Entity2D::setAnchor(v);
 	if(!m_dirty)
 	{
-		m_typoPage.setAnchor(x,y);
-	}
-}
-
-void LabelTTF::setAnchorX(float v)
-{
-	m_anchorX=v;
-	if(!m_dirty)
-	{
-		m_typoPage.setAnchor(v,m_anchorY);
-	}
-}
-
-void LabelTTF::setAnchorY(float v)
-{
-	m_anchorY=v;
-	if(!m_dirty)
-	{
-		m_typoPage.setAnchor(m_anchorX,v);
+		m_typoPage.setAnchor(v.x,v.y);
 	}
 }
 
 
-Vector2 LabelTTF::getAnchor()
-{
-	Vector2 ret;
-	getAnchor(&ret.x,&ret.y);
-	return ret;
-}
-
-void LabelTTF::getAnchor(float* x,float* y)
-{
-	*x=m_anchorX;
-	*y=m_anchorY;
-}
-
-float LabelTTF::getAnchorX()
-{
-	return m_anchorX;
-}
-
-float LabelTTF::getAnchorY()
-{
-	return m_anchorY;
-}
 
 
 
@@ -442,7 +395,7 @@ void LabelTTF::draw(RenderDevice* rd,bool updateMatrix)
 }
 
 
-bool LabelTTF::hit2D(float x,float y)
+bool LabelTTF::hit2D(const Vector2f& w_v)
 {
 	if(m_dirty) /* check dirty */
 	{
@@ -451,10 +404,10 @@ bool LabelTTF::hit2D(float x,float y)
 	}
 
 	updateWorldMatrix();
-	Vector3 v=worldToLocal(Vector3(x,y,0));
+	Vector3 v=worldToLocal(Vector3(w_v.x,w_v.y,0));
 
-	float diffx=v.x+m_anchorX*m_textWidth;
-	float diffy=v.y+m_anchorY*m_textHeight;
+	float diffx=v.x+m_anchor.x*m_textWidth;
+	float diffy=v.y+m_anchor.y*m_textHeight;
 
 	if(diffx>=0 && diffx <m_textWidth)
 	{
@@ -499,7 +452,7 @@ void LabelTTF::typoText()
 	m_typoPage.typoEnd();
 
 	m_typoPage.setTextAlign(m_textAlign);
-	m_typoPage.setAnchor(m_anchorX,m_anchorY);
+	m_typoPage.setAnchor(m_anchor.x,m_anchor.y);
 
 	m_textWidth=m_typoPage.getTextWidth();
 	m_textHeight=m_typoPage.getTextHeight();
@@ -523,14 +476,6 @@ static LabelTTF* LabelTTF_NewInstance(FsDict* attr)
 
 
 
-FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setColor,getColor,Color4f);
-FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setOpacity,getOpacity,float);
-FS_CLASS_ATTR_SET_CHARS_FUNCTION(LabelTTF,setProgramSource);
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(LabelTTF,setBlendEquation,getBlendEquation,BlendEquation);
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(LabelTTF,setBlendSrc,getBlendSrc,BlendFactor);
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(LabelTTF,setBlendDst,getBlendDst,BlendFactor);
-
-
 
 FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(LabelTTF,setString,getString);
 FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(LabelTTF,setFontName,getFontName);
@@ -542,10 +487,6 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setBoundHeight,getBoundHeight,float);
 
 FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setLineGap,getLineGap,float);
 
-FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setAnchor,getAnchor,Vector2);
-FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setAnchorX,getAnchorX,float);
-FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setAnchorY,getAnchorY,float);
-
 
 static FsClass::FsAttributeDeclare S_LabelTTF_BoundSize_SubAttr[]={
 	FS_CLASS_ATTR_DECLARE("w",FsType::FT_F_1,NULL,LabelTTF_setBoundWidth,LabelTTF_getBoundWidth),
@@ -553,25 +494,14 @@ static FsClass::FsAttributeDeclare S_LabelTTF_BoundSize_SubAttr[]={
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
 };
 
-static FsClass::FsAttributeDeclare S_LabelTTF_Anchor_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,LabelTTF_setAnchorX,LabelTTF_getAnchorX),
-	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,LabelTTF_setAnchorY,LabelTTF_getAnchorY),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
-};
 
 static FsClass::FsAttributeDeclare S_LabelTTF_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("color",FsType::FT_COLOR_4,NULL,LabelTTF_setColor,LabelTTF_getColor),
-	FS_CLASS_ATTR_DECLARE("opacity",FsType::FT_F_1,NULL,LabelTTF_setOpacity,LabelTTF_getOpacity),
-	FS_CLASS_ATTR_DECLARE("shader",FsType::FT_CHARS,NULL,LabelTTF_setProgramSource,0),
-	FS_CLASS_ATTR_DECLARE("blendEquation",FsType::FT_CHARS,NULL,LabelTTF_setBlendEquation,LabelTTF_getBlendEquation),
-	FS_CLASS_ATTR_DECLARE("blendSrc",FsType::FT_CHARS,NULL,LabelTTF_setBlendSrc,LabelTTF_getBlendSrc),
-	FS_CLASS_ATTR_DECLARE("blendDst",FsType::FT_CHARS,NULL,LabelTTF_setBlendDst,LabelTTF_getBlendDst),
 	FS_CLASS_ATTR_DECLARE("string",FsType::FT_CHARS,NULL,LabelTTF_setString,LabelTTF_getString),
 	FS_CLASS_ATTR_DECLARE("fontName",FsType::FT_CHARS,NULL,LabelTTF_setFontName,LabelTTF_getFontName),
 	FS_CLASS_ATTR_DECLARE("fontSize",FsType::FT_I_1,NULL,LabelTTF_setFontSize,LabelTTF_getFontSize),
 	FS_CLASS_ATTR_DECLARE("textAlign",FsType::FT_CHARS,NULL,LabelTTF_setTextAlign,LabelTTF_getTextAlign),
 	FS_CLASS_ATTR_DECLARE("boundSize",FsType::FT_F_2,S_LabelTTF_BoundSize_SubAttr,LabelTTF_setBoundSize,LabelTTF_getBoundSize),
-	FS_CLASS_ATTR_DECLARE("anchor",FsType::FT_F_2,S_LabelTTF_Anchor_SubAttr,LabelTTF_setAnchor,LabelTTF_getAnchor),
+	FS_CLASS_ATTR_DECLARE("lineGap",FsType::FT_F_2,NULL,LabelTTF_setLineGap,LabelTTF_getLineGap),
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
 };
 

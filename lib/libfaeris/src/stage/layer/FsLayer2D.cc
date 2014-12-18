@@ -4,11 +4,11 @@
 #include "support/util/FsSlowDict.h"
 #include "support/util/FsDict.h"
 #include "graphics/FsRenderDevice.h"
-#include "stage/entity/FsEntity.h"
+#include "stage/entity/FsEntity2D.h"
 
 NS_FS_BEGIN
 
-static bool FsFuncEntity_SortZolder(Entity* left,Entity* right)
+static bool FsFuncEntity_SortZolder(Entity2D* left,Entity2D* right)
 {
 	if( left->getZorder()<right->getZorder())
 	{
@@ -24,7 +24,7 @@ static bool FsFuncEntity_SortZolder(Entity* left,Entity* right)
 	}
 }
 
-static bool FsFuncEntity_SortY(Entity* left,Entity* right)
+static bool FsFuncEntity_SortY(Entity2D* left,Entity2D* right)
 {
 	return left->getPositionInWorld().y>right->getPositionInWorld().y;
 }
@@ -142,7 +142,7 @@ void Layer2D::draw(RenderDevice* rd)
 	/* update all child matrix4 */
 	updateAllWorldMatrix();
 
-	std::vector<Entity*> entitys;
+	std::vector<Entity2D*> entitys;
 
 	getEntityInView(&entitys);
 	sortEntity(&entitys);
@@ -150,7 +150,7 @@ void Layer2D::draw(RenderDevice* rd)
 	int entity_nu=entitys.size();
 	for(int i=0;i<entity_nu;i++)
 	{
-		Entity* ob=entitys[i];
+		Entity2D* ob=entitys[i];
 		if(ob->getVisibles()) ob->draws(rd,false);
 	}
 
@@ -162,21 +162,21 @@ void Layer2D::draw(RenderDevice* rd)
 
 
 
-void Layer2D::getEntityInView(std::vector<Entity*>* entitys)
+void Layer2D::getEntityInView(std::vector<Entity2D*>* entitys)
 {
 	/* TODO(add real eliminate here) */
 	FsDict::Iterator* iter=m_entity->takeIterator();
 	while(!iter->done())
 	{
 		FsObject* ob=iter->getValue();
-		entitys->push_back((Entity*)ob);
+		entitys->push_back((Entity2D*)ob);
 		iter->next();
 	}
 	delete iter;
 }
 
 
-void Layer2D::sortEntity(std::vector<Entity*>* entitys)
+void Layer2D::sortEntity(std::vector<Entity2D*>* entitys)
 {
 	switch(m_sortMode)
 	{
@@ -211,7 +211,7 @@ Layer2D::~Layer2D()
 }
 
 
-void Layer2D::add(Entity* entity)
+void Layer2D::add(Entity2D* entity)
 {
 	FS_TRACE_WARN_ON(entity==NULL,"Entity Is NULL");
 	if(entity->getLayer()==this)
@@ -232,7 +232,7 @@ void Layer2D::add(Entity* entity)
 }
 
 
-void Layer2D::remove(Entity* entity)
+void Layer2D::remove(Entity2D* entity)
 {
 	if(entity->getLayer()!=this)
 	{
@@ -258,7 +258,7 @@ void Layer2D::clearEntity()
 	FsDict::Iterator* iter=m_entity->takeIterator();
 	while(!iter->done())
 	{
-		Entity* entity=(Entity*)iter->getValue();
+		Entity2D* entity=(Entity2D*)iter->getValue();
 		entity->setLayer(NULL);
 		iter->next();
 	}
@@ -305,14 +305,14 @@ bool Layer2D::touchBegin(float x,float y)
 	Vector3 tv=toLayerCoord(Vector3(x,y,0));
 	if(m_dispatchTouchEnabled)
 	{
-		std::vector<Entity*> entitys;
+		std::vector<Entity2D*> entitys;
 		getTouchEnabledEntity(&entitys);
 		sortEntity(&entitys);
 		int entity_nu=entitys.size();
 		for(int i=entity_nu-1;i>=0;i--)
 		{
-			Entity* e=entitys[i];
-			if(e->getLayer()==this&&e->hit2D(tv.x,tv.y))
+			Entity2D* e=entitys[i];
+			if(e->getLayer()==this&&e->hit2D(Vector2f(tv.x,tv.y)))
 			{
 				/* NOTE: entity will detach when called touchBegin */
 				bool ret=FS_OBJECT_LAMBDA_CALL(e,onTouchBegin,touchBegin,tv.x,tv.y);
@@ -352,7 +352,7 @@ bool Layer2D::touchEnd(float x,float y)
 	bool ret=false;
 	if(m_touchFocus) 
 	{
-		Entity* en=m_touchFocus;
+		Entity2D* en=m_touchFocus;
 		m_touchFocus=NULL;
 		ret=FS_OBJECT_LAMBDA_CALL(en,onTouchMove,touchEnd,tv.x,tv.y);
 	}
@@ -395,20 +395,20 @@ void Layer2D::updateAllWorldMatrix()
 
 	while(!iter->done())
 	{
-		Entity* entity=(Entity*) iter->getValue();
+		Entity2D* entity=(Entity2D*) iter->getValue();
 		entity->updateAllWorldMatrix();
 		iter->next();
 	}
 	delete iter;
 }
 
-void Layer2D::getTouchEnabledEntity(std::vector<Entity*>* e)
+void Layer2D::getTouchEnabledEntity(std::vector<Entity2D*>* e)
 {
 	FsDict::Iterator* iter= m_entity->takeIterator();
 
 	while(!iter->done())
 	{
-		Entity* entity=(Entity*) iter->getValue();
+		Entity2D* entity=(Entity2D*) iter->getValue();
 		if(entity->getTouchEnabled()&&entity->getVisible())
 		{
 			e->push_back(entity);

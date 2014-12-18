@@ -1,14 +1,11 @@
 #include "stage/ui/FsPressButton.h"
 
 #include "math/easing/FsLinearEase.h"
+#include "FsClass.h"
 
 
 NS_FS_BEGIN
 
-const char* PressButton::className()
-{
-	return FS_PRESS_BUTTON_CLASS_NAME;
-}
 
 PressButton* PressButton::create()
 {
@@ -103,7 +100,7 @@ void PressButton::initWithDarkStyle(Texture2D* texture,const Color4f& dark)
 
 	setTexture(texture);
 
-	setTweenFlags(FLAG_COLOR);
+	setTweenFlags(E_ButtonTweenFlag::COLOR);
 	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
 
 	setColor(STATE_PRESS,dark);
@@ -125,7 +122,7 @@ void PressButton::initWithScaleStyle(Texture2D* texture,const Vector3& scale)
 {
 	setTexture(texture);
 
-	setTweenFlags(FLAG_SCALE|FLAG_COLOR);
+	setTweenFlags(E_ButtonTweenFlag::SCALE|E_ButtonTweenFlag::COLOR);
 	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
 
 	setScale(STATE_PRESS,scale);
@@ -143,7 +140,7 @@ void PressButton::initWithColorStyle(Texture2D* tex,const Color4f& normal,const 
 {
 	setTexture(tex);
 
-	setTweenFlags(FLAG_COLOR);
+	setTweenFlags(E_ButtonTweenFlag::COLOR);
 	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
 
 	setColor(STATE_NORMAL,normal);
@@ -196,7 +193,7 @@ bool PressButton::touchBegin(float x,float y)
 
 bool PressButton::touchMove(float x,float y)
 {
-	bool hit=hit2D(x,y);
+	bool hit=hit2D(Vector2f(x,y));
 	if(hit)
 	{
 		if(!m_moveIn)
@@ -218,7 +215,7 @@ bool PressButton::touchMove(float x,float y)
 
 bool PressButton::touchEnd(float x,float y)
 {
-	bool hit=hit2D(x,y);
+	bool hit=hit2D(Vector2f(x,y));
 	if(hit)
 	{
 		FS_OBJECT_LAMBDA_CALL(this,onPressUp,pressUp,x,y);
@@ -279,29 +276,56 @@ void PressButton::click()
 
 
 
-bool PressButton::hit2D(float x,float y)
+bool PressButton::hit2D(const Vector2& v)
 {
 	if(m_disabled) 
 	{
 		return false;
 	}
-	return StateButton::hit2D(x,y);
-
+	return StateButton::hit2D(v);
 }
 
 
 
+/*** Used For PressButton FsClass Attribute */
+
+static PressButton* PressButton_NewInstance(FsDict* attr)
+{
+	PressButton* ret=PressButton::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+
+	return ret;
+}
 
 
+static void PressButton_setNormalAttribute(PressButton* pb,FsDict* attr)
+{
+
+	FsStateButton_SetState(pb,PressButton::STATE_NORMAL,attr);
+}
+
+static void PressButton_setPressAttribute(PressButton* pb,FsDict* attr)
+{
+	FsStateButton_SetState(pb,PressButton::STATE_PRESS,attr);
+}
+
+static void PressButton_setDisableAttribute(PressButton* pb,FsDict* attr)
+{
+	FsStateButton_SetState(pb,PressButton::STATE_DISABLE,attr);
+}
 
 
+static FsClass::FsAttributeDeclare S_PressButton_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("normalState",FsType::FT_DICT,NULL,PressButton_setNormalAttribute,0),
+	FS_CLASS_ATTR_DECLARE("pressState",FsType::FT_DICT,NULL,PressButton_setPressAttribute,0),
+	FS_CLASS_ATTR_DECLARE("disableState",FsType::FT_DICT,NULL,PressButton_setDisableAttribute,0),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
 
-
-
-
-
-
-
+FS_CLASS_IMPLEMENT_WITH_BASE(PressButton,StateButton,0,S_PressButton_Main_Attr);
 
 
 
