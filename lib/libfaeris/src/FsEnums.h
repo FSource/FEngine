@@ -467,6 +467,8 @@ enum class E_TextureFilter
 	LINEAR,
 	NEAREST,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(TextureFilter);
+
 
 enum class E_TextureWrap 
 {
@@ -475,6 +477,8 @@ enum class E_TextureWrap
 	CLAMP_TO_EDGE,
 	CLAMP_TO_BORDER,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(TextureWrap);
+
 
 
 enum class E_FrontFace 

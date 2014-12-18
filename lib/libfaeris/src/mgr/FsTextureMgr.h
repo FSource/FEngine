@@ -12,7 +12,10 @@ class TextureMgr:public ResourceMgr
 
 	public:
 		virtual Resource* load(const char* name);
+
 		Texture2D* loadTexture(const char* name);
+		Texture2D* loadTexture(FsDict* dict);
+
 
 	public:
 		/* inherit FsObject */

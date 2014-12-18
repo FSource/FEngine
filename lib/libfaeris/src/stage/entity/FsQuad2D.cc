@@ -758,11 +758,13 @@ static Quad2D* Quad_NewInstance(FsDict* attr)
 
 static void Quad2D_setTextureDict(Quad2D* q,FsDict* attr)
 {
-	FsString* url=attr->lookupString("url");
-	if(url)
+	Texture2D* tex=Global::textureMgr()->loadTexture(attr);
+
+	if(tex)
 	{
-		q->setTexture(url->cstr());
+		q->setTexture(tex);
 	}
+
 
 	FsString* width=attr->lookupString("width");
 	if(width)

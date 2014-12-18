@@ -705,7 +705,6 @@ static FsClass::FsAttributeDeclare S_Entity_Main_Attr[]={
 
 };
 
-
 FS_CLASS_IMPLEMENT_WITH_BASE(Entity,FsObject,Entity_NewInstance,S_Entity_Main_Attr);
 
 

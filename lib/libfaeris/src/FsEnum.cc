@@ -97,6 +97,27 @@ static EnumStrPair<E_BlendFactor> S_E_BlendFactor[] =
 FS_ENUM_TO_STR_MAP_IMPLEMENT(BlendFactor,S_E_BlendFactor);
 
 
+/* E_TextureFilter */
+static EnumStrPair<E_TextureFilter> S_E_TextureFilter[]=
+{
+	EnumStrPair<E_TextureFilter>(E_TextureFilter::LINEAR,"linear"),
+	EnumStrPair<E_TextureFilter>(E_TextureFilter::NEAREST,"nearest"),
+	EnumStrPair<E_TextureFilter>(E_TextureFilter::NEAREST,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(TextureFilter,S_E_TextureFilter);
+
+
+/* E_TextureWrap */
+static EnumStrPair<E_TextureWrap> S_E_TextureWrap[]=
+{
+	EnumStrPair<E_TextureWrap>(E_TextureWrap::CLAMP,"clamp"),
+	EnumStrPair<E_TextureWrap>(E_TextureWrap::REPEAT,"repeat"),
+	EnumStrPair<E_TextureWrap>(E_TextureWrap::CLAMP_TO_EDGE,"clampToEdge"),
+	EnumStrPair<E_TextureWrap>(E_TextureWrap::CLAMP_TO_BORDER,"clampToBorder")
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(TextureWrap,S_E_TextureWrap);
+
+
 
 
 
