@@ -52,7 +52,7 @@ enum
 };
 
 
-enum E_TextAlign
+enum class E_TextAlign
 {
 	LEFT,
 	CENTER,
