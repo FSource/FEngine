@@ -249,6 +249,7 @@
     <ClInclude Include="..\..\src\sys\network\FsHttpEngine.h" />
     <ClInclude Include="..\..\src\sys\network\FsHttpReponse.h" />
     <ClInclude Include="..\..\src\sys\network\FsHttpRequest.h" />
+    <ClInclude Include="..\..\src\sys\thread\FsConditionVariable.h" />
     <ClInclude Include="..\..\src\sys\thread\FsMutex.h" />
     <ClInclude Include="..\..\src\sys\thread\FsSemaphore.h" />
     <ClInclude Include="..\..\src\sys\thread\FsThread.h" />
@@ -405,6 +406,7 @@
     <ClCompile Include="..\..\src\sys\network\FsHttpEngine.cc" />
     <ClCompile Include="..\..\src\sys\network\FsHttpReponse.cc" />
     <ClCompile Include="..\..\src\sys\network\FsHttpRequest.cc" />
+    <ClCompile Include="..\..\src\sys\thread\FsConditionVariable.cc" />
     <ClCompile Include="..\..\src\sys\thread\FsMutex.cc" />
     <ClCompile Include="..\..\src\sys\thread\FsSemaphore.cc" />
     <ClCompile Include="..\..\src\sys\thread\FsThread.cc" />

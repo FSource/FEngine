@@ -589,6 +589,9 @@
     <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\sys\thread\FsConditionVariable.h">
+      <Filter>src\sys\thread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1052,6 +1055,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\mgr\FsClassMgr.cc">
       <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\thread\FsConditionVariable.cc">
+      <Filter>src\sys\thread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
