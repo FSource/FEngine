@@ -44,6 +44,7 @@ class UiWidget:public Entity2D
 
 		void addChild(Entity* en) FS_OVERRIDE;
 		void removeChild(Entity* en) FS_OVERRIDE;
+		void detach() FS_OVERRIDE;
 
 
 	public:
@@ -67,6 +68,7 @@ class UiWidget:public Entity2D
 	public:
 		void setParentWidget(UiWidget* widget);
 		UiWidget* getParentWidget();
+
 
 	protected:
 		UiWidget();

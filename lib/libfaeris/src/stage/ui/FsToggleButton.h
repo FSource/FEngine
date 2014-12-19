@@ -37,7 +37,7 @@ class ToggleButton:public StateButton
 		bool touchBegin(float x,float y) FS_OVERRIDE;
 		bool touchMove(float x,float y) FS_OVERRIDE;
 		bool touchEnd(float x,float y) FS_OVERRIDE;
-		bool hit2D(const Vector2f& v) FS_OVERRIDE;
+		bool hit2D(float x,float y) FS_OVERRIDE;
 
 
 		/* inherit FsObject */

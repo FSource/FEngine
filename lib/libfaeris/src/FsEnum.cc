@@ -136,6 +136,13 @@ FS_ENUM_TO_STR_MAP_IMPLEMENT(DrawMode,S_E_DrawMode);
 
 
 
+static EnumStrPair<E_ButtonTweenFlag> S_E_ButtonTweenFlag[]={
+	EnumStrPair<E_ButtonTweenFlag>(E_ButtonTweenFlag::ANCHOR,"anchor"),
+	EnumStrPair<E_ButtonTweenFlag>(E_ButtonTweenFlag::ANCHOR,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(ButtonTweenFlag,S_E_ButtonTweenFlag);
+
+
 NS_FS_END 
 
 

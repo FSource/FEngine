@@ -5,6 +5,13 @@
 
 NS_FS_BEGIN
 
+Entity2D* Entity2D::create()
+{
+	Entity2D* ret=new Entity2D;
+	return ret;
+}
+
+
 Entity2D::Entity2D()
 {
 	m_material=Material2D::create();
@@ -197,7 +204,7 @@ bool Entity2D::touchBegin(float x,float y)
 		for(int i=child_nu-1;i>=0;i--)
 		{
 			Entity2D* e=(Entity2D*)m_chirdren->get(i);
-			if(e->getVisible()&&e->getTouchEnabled()&&e->getParent()==this&&e->hit2D(Vector2f(x,y)))
+			if(e->getVisible()&&e->getTouchEnabled()&&e->getParent()==this&&e->hit2D(x,y))
 			{
 				/* NOTE: entity will detach when called touchBegin */
 				bool ret=FS_OBJECT_LAMBDA_CALL(e,onTouchBegin,touchBegin,x,y);
@@ -421,6 +428,10 @@ float Entity2D::getAnchorY()
 }
 
 
+bool Entity2D::hit2D(float x,float y)
+{
+	return false;
+}
 
 
 /*** Use For Entity Entity2D  FsClass Attribute */

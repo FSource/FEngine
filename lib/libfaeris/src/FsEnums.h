@@ -543,6 +543,28 @@ FS_ENUM_TO_STR_MAP_DECLARE(ButtonTweenFlag);
 
 
 
+enum class E_ScrollDirection 
+{
+	VERTICAL,
+	HORIZONTAL,
+	ALL
+		
+};
+
+enum class E_AlignH
+{
+	LEFT,
+	CENTER,
+	RIGHT,
+};
+
+enum class E_AlignV 
+{
+	TOP,
+	CENTER,
+	BOTTOM
+};
+
 
 
 

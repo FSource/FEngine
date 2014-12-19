@@ -12,26 +12,20 @@ class PageViewContentPanel: public Entity2D
 	{
 
 		public:
-			static PageViewItemInfo* create(int alignh,int alignv,UiWidget* widget)
+			static PageViewItemInfo* create(E_AlignH alignh,E_AlignV alignv,UiWidget* widget)
 			{
 				return new PageViewItemInfo(alignh,alignv,widget);
 			}
 
-		public:
-			virtual const char* className()
-			{
-				return "PageViewItemInfo";
-			}
-
 
 		public:
-			int m_alignH;
-			int m_alignV;
+			E_AlignH m_alignH;
+			E_AlignV m_alignV;
 			UiWidget* m_widget;
 
 
 		protected:
-			PageViewItemInfo(int alignh,int alignv,UiWidget* widget)
+			PageViewItemInfo(E_AlignH alignh,E_AlignV alignv,UiWidget* widget)
 			{
 				m_alignH=alignh;
 				m_alignV=alignv;
@@ -48,12 +42,12 @@ class PageViewContentPanel: public Entity2D
 
 	protected:
 		FsArray* m_pageItem;
-		int m_mode;
+		E_ScrollDirection m_mode;
 		float m_width;
 		float m_height;
 
 	public:
-		static PageViewContentPanel* create(int mode,float width,float height)
+		static PageViewContentPanel* create(E_ScrollDirection mode,float width,float height)
 		{
 			PageViewContentPanel* ret=new PageViewContentPanel(mode,width,height);
 			return ret;
@@ -61,7 +55,7 @@ class PageViewContentPanel: public Entity2D
 
 
 	protected:
-		PageViewContentPanel(int mode,float width,float height)
+		PageViewContentPanel(E_ScrollDirection mode,float width,float height)
 		{
 			m_mode=mode;
 			m_width=width;
@@ -78,13 +72,13 @@ class PageViewContentPanel: public Entity2D
 
 
 	public:
-		void addPageItem(UiWidget* widget,int alignh,int alignv)
+		void addPageItem(UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
 		{
 			int index=m_pageItem->size();
 			addPageItem(index,widget,alignh,alignv);
 		}
 
-		void addPageItem(int index,UiWidget* widget,int alignh,int alignv)
+		void addPageItem(int index,UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
 		{
 			PageViewItemInfo* item=PageViewItemInfo::create(alignh,alignv,widget);
 
@@ -92,9 +86,10 @@ class PageViewContentPanel: public Entity2D
 			{
 				index=m_pageItem->size();
 			}
-
 			m_pageItem->insert(index,item);
+			addChild(widget);
 			layout();
+
 		}
 
 		void removePageItem(UiWidget* widget)
@@ -105,13 +100,17 @@ class PageViewContentPanel: public Entity2D
 
 		void removePageItem(int index)
 		{
+			PageViewItemInfo* item_info=(PageViewItemInfo*)m_pageItem->get(index);
+			removeChild(item_info->m_widget);
 			m_pageItem->remove(index);
 			layout();
 		}
 
 		void clearPageItem()
 		{
+			clearChild();
 			m_pageItem->clear();
+			layout();
 		}
 
 		int getPageItemNu()
@@ -119,23 +118,24 @@ class PageViewContentPanel: public Entity2D
 			return m_pageItem->size();
 		}
 
-		void setMode(int mode)
+		void setMode(E_ScrollDirection mode)
 		{
 			m_mode=mode;
 			layout();
 		}
 
-		int getMode()
+		E_ScrollDirection getMode()
 		{
 			return m_mode;
 		}
+
+
 		void setSize(float width,float height)
 		{
 			m_width=width;
 			m_height=height;
 			layout();
 		}
-
 
 
 		void setPageItemAlign(UiWidget* widget)
@@ -145,22 +145,22 @@ class PageViewContentPanel: public Entity2D
 			setPageItemAlign(index,item->m_alignH,item->m_alignV);
 		}
 
-		void setPageItemAlign(UiWidget* widget,int alignh,int alignv)
+		void setPageItemAlign(UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
 		{
 			int index=getPageItemIndex(widget);
 			setPageItemAlign(index,alignh,alignv);
 		}
 
-		void setPageItemAlign(int index,int alignh,int alignv)
+		void setPageItemAlign(int index,E_AlignH alignh,E_AlignV alignv)
 		{
 			setPageItemAlign(m_mode,index,alignh,alignv);
 		}
 
-		void setPageItemAlign(int mode,int index,int alignh,int alignv)
+		void setPageItemAlign(E_ScrollDirection mode,int index,E_AlignH alignh,E_AlignV alignv)
 		{
 			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
 			float start_x,start_y;
-			if(mode==PageView::SCROLL_HORIZONTAL)
+			if(mode==E_ScrollDirection::HORIZONTAL)
 			{
 				start_x=m_width*index;
 				start_y=0;
@@ -177,37 +177,32 @@ class PageViewContentPanel: public Entity2D
 			switch(alignh)
 			{
 			
-				case PageView::ALIGN_LEFT:
+				case E_AlignH::LEFT:
 					item->m_widget->setPositionX(start_x-sminx);
 					break;
 				
-				case PageView::ALIGN_CENTER:
+				case E_AlignH::CENTER:
 					item->m_widget->setPositionX(start_x+m_width/2-(sminx+smaxx)/2);
 					break;
 
-				case PageView::ALIGN_RIGHT:
+				case E_AlignH::RIGHT:
 					item->m_widget->setPositionX(start_y+m_width-smaxx);
 					break;
-				default:
-					FS_TRACE_WARN("Unkown ALign For Page Item");
 			}
 
 			switch(alignv)
 			{
-				case PageView::ALIGN_TOP:
+				case E_AlignV::TOP:
 					item->m_widget->setPositionY(start_y-smaxy);
 					break;
 
-				case PageView::ALIGN_CENTER:
+				case E_AlignV::CENTER:
 					item->m_widget->setPositionY(start_y-m_height/2-(smaxy+sminy)/2);
 					break;
 
-				case PageView::ALIGN_BOTTOM:
+				case E_AlignV::BOTTOM:
 					item->m_widget->setPositionY(start_y-m_height-sminy);
 					break;
-
-				default:
-					FS_TRACE_WARN("Unkown ALign For Page Item");
 			}
 		}
 
@@ -220,13 +215,13 @@ class PageViewContentPanel: public Entity2D
 		}
 
 
-		int getPageItemAlignH(int index)
+		E_AlignH getPageItemAlignH(int index)
 		{
 			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
 			return item->m_alignH;
 		}
 
-		int getPageItemAlignV(int index)
+		E_AlignV getPageItemAlignV(int index)
 		{
 			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
 			return item->m_alignV;
@@ -248,7 +243,10 @@ class PageViewContentPanel: public Entity2D
 		}
 
 	public:
-		virtual bool hit2D(float x,float y){return true;}
+		bool hit2D(float x,float y) FS_OVERRIDE 
+		{
+			return true;
+		}
 
 		void layout()
 		{
@@ -262,12 +260,16 @@ class PageViewContentPanel: public Entity2D
 };
 
 
-const char* PageView::className()
+
+/* PageView */
+PageView* PageView::create()
 {
-	return FS_PAGE_VIEW_CLASS_NAME;
+	PageView* ret=new PageView(E_ScrollDirection::HORIZONTAL,0,0);
+	return ret;
 }
 
-PageView* PageView::create(int mode,float width,float height)
+
+PageView* PageView::create(E_ScrollDirection mode,float width,float height)
 {
 	PageView* ret=new PageView(mode,width,height);
 	return ret;
@@ -276,16 +278,17 @@ PageView* PageView::create(int mode,float width,float height)
 
 PageView* PageView::create(float width,float height)
 {
-	PageView* ret=new PageView(SCROLL_HORIZONTAL,width,height);
+	PageView* ret=new PageView(E_ScrollDirection::HORIZONTAL,width,height);
 	return ret;
 }
 
-PageView::PageView(int mode,float w,float h)
+
+PageView::PageView(E_ScrollDirection mode,float w,float h)
 {
 	m_contentPanel=PageViewContentPanel::create(mode,w,h);
 	FS_NO_REF_DESTROY(m_contentPanel);
-	addChild(m_contentPanel);
-
+	Entity2D::addChild(m_contentPanel);
+	onPageIndexChanged=nullptr;
 
 	m_xoffset=0;
 	m_yoffset=0;
@@ -310,8 +313,6 @@ PageView::PageView(int mode,float w,float h)
 
 	m_velocityTracker=VelocityTracker::create();
 
-
-
 	setMode(mode);
 
 	setSize(Vector2f(w,h));
@@ -331,7 +332,7 @@ PageView::~PageView()
 		widget->setParentWidget(NULL);
 	}
 
-	removeChild(m_contentPanel);
+	UiWidget::removeChild(m_contentPanel);
 	FS_SAFE_DESTROY(m_contentPanel);
 	FS_SAFE_DEC_REF(m_scrollEasing);
 }
@@ -340,22 +341,23 @@ PageView::~PageView()
 
 
 
-void PageView::setMode(int mode)
+void PageView::setMode(E_ScrollDirection mode)
 {
 	m_contentPanel->setMode(mode);
 }
 
-int PageView::getMode()
+E_ScrollDirection PageView::getMode()
 {
 	return m_contentPanel->getMode();
 }
 
 void PageView::addPage(UiWidget* widget)
 {
-	addPage(widget,ALIGN_CENTER,ALIGN_CENTER);
+	addPage(widget,E_AlignH::CENTER,E_AlignV::CENTER);
 }
 
-void PageView::addPage(UiWidget* widget,int alignh,int alignv)
+
+void PageView::addPage(UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
 {
 	int size=m_contentPanel->getPageItemNu();
 
@@ -364,16 +366,18 @@ void PageView::addPage(UiWidget* widget,int alignh,int alignv)
 
 void PageView::addPage(int index,UiWidget* widget)
 {
-	addPage(index,widget,ALIGN_CENTER,ALIGN_CENTER);
+	addPage(index,widget,E_AlignH::CENTER,E_AlignV::CENTER);
 }
 
-void PageView::addPage(int index,UiWidget* widget,int alignh,int alignv)
+
+void PageView::addPage(int index,UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
 {
 	if(widget->getParentWidget()==this)
 	{
 		FS_TRACE_WARN("widget Alread Add to ListView");
 		return;
 	}
+
 	if(widget->getParentWidget())
 	{
 		FS_TRACE_WARN("widget Alread Add to Other Widget");
@@ -383,19 +387,17 @@ void PageView::addPage(int index,UiWidget* widget,int alignh,int alignv)
 	if(widget)
 	{
 		m_contentPanel->addPageItem(index,widget,alignh,alignv);
-		m_contentPanel->addChild(widget);
 		widget->setParentWidget(this);
 		adjustContentPanel();
 	}
-
 }
 
-void PageView::setPageAlign(int index,int alignh,int alignv)
+void PageView::setPageAlign(int index,E_AlignH alignh,E_AlignV alignv)
 {
 	m_contentPanel->setPageItemAlign(index,alignh,alignv);
 }
 
-void PageView::setPageAlign(UiWidget* widget,int alignh,int alignv)
+void PageView::setPageAlign(UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
 {
 	m_contentPanel->setPageItemAlign(widget,alignh,alignv);
 }
@@ -404,7 +406,6 @@ void PageView::removePage(int index)
 {
 	UiWidget* widget=m_contentPanel->getPageItem(index);
 	removePage(widget);
-
 }
 
 void PageView::removePage(UiWidget* widget)
@@ -416,15 +417,23 @@ void PageView::removePage(UiWidget* widget)
 	}
 	widget->setParentWidget(NULL);
 	m_contentPanel->removePageItem(widget);
-	m_contentPanel->removeChild(widget);
 	adjustContentPanel();
 }
 
 
 void PageView::clearPage()
 {
+	int size=m_contentPanel->getPageItemNu();
+	for(int i=0;i<size;i++)
+	{
+		UiWidget* widget=m_contentPanel->getPageItem(i);
+		widget->setParentWidget(NULL);
+	}
 
+	m_contentPanel->clearPageItem();
 }
+
+
 
 int PageView::getPageNu()
 {
@@ -483,7 +492,7 @@ void PageView::setCurrentPageIndex(int index)
 		m_scrollFinished=true;
 	}
 
-	if(m_contentPanel->getMode()==SCROLL_HORIZONTAL)
+	if(m_contentPanel->getMode()==E_ScrollDirection::HORIZONTAL)
 	{
 		m_xoffset=-index*m_size.x;
 		m_contentPanel->setPosition(m_xoffset,m_yoffset,0);
@@ -491,7 +500,7 @@ void PageView::setCurrentPageIndex(int index)
 		{
 			int old_index=m_currentPageIndex;
 			m_currentPageIndex=index;
-			pageIndexChanged(old_index,m_currentPageIndex);
+			FS_OBJECT_LAMBDA_CALL(this,onPageIndexChanged,pageIndexChanged,old_index,m_currentPageIndex);
 		}
 	}
 	adjustContentPanel();
@@ -584,11 +593,11 @@ bool  PageView::touchMove(float x,float y)
 
 	float diffx=x-m_lastPosX;
 	float diffy=y-m_lastPosY;
-	int mode=m_contentPanel->getMode();
+	E_ScrollDirection mode=m_contentPanel->getMode();
 
 	if(!m_isDraged)
 	{
-		if(mode==SCROLL_HORIZONTAL)
+		if(mode==E_ScrollDirection::HORIZONTAL)
 		{
 			if(Math::abs(diffx)>=m_touchTap)
 			{
@@ -596,7 +605,7 @@ bool  PageView::touchMove(float x,float y)
 				diffx=diffx>0? diffx-m_touchTap:diffx+m_touchTap;
 			}
 		}
-		else if(mode==SCROLL_VERTICAL)
+		else if(mode==E_ScrollDirection::VERTICAL)
 		{
 			if(Math::abs(diffy)>m_touchTap)
 			{
@@ -613,11 +622,11 @@ bool  PageView::touchMove(float x,float y)
 
 	if(m_isDraged)
 	{
-		if(mode==SCROLL_HORIZONTAL)
+		if(mode==E_ScrollDirection::HORIZONTAL)
 		{
 			scrollXBy(diffx);
 		}
-		else if(mode==SCROLL_VERTICAL)
+		else if(mode==E_ScrollDirection::VERTICAL)
 		{
 			scrollYBy(diffy);
 		}
@@ -636,8 +645,8 @@ bool PageView::touchEnd(float x,float y)
 	m_velocityTracker->endTrack(x,y);
 
 	float v=0;
-	int mode =m_contentPanel->getMode();
-	if(mode)
+	E_ScrollDirection mode =m_contentPanel->getMode();
+	if(mode==E_ScrollDirection::HORIZONTAL)
 	{
 		v=m_velocityTracker->getVelocityX();
 	}
@@ -665,40 +674,40 @@ void PageView::update(float dt)
 	updateScroll(dt);
 }
 
-void PageView::childSizeChanged(UiWidget* widget,float w,float h)
+
+void PageView::childSizeChanged(UiWidget* widget)
 {
 	m_contentPanel->setPageItemAlign(widget);
 }
 
-void PageView::childAnchorChanged(UiWidget* widget,float w,float h)
+void PageView::childAnchorChanged(UiWidget* widget)
+{
+	m_contentPanel->setPageItemAlign(widget);
+}
+
+void PageView::childTransformChanged(UiWidget* widget)
 {
 	m_contentPanel->setPageItemAlign(widget);
 }
 
 
-void PageView::sizeChanged(float width,float height)
+
+
+
+void PageView::setSize(const Vector2f& v)
 {
-	m_contentPanel->setSize(width,height);
+	UiWidget::setSize(v);
+	m_contentPanel->setSize(v.x,v.y);
 
 	adjustContentPanel();
 }
 
-void PageView::anchorChanged(float x,float y)
+void PageView::setAnchor(const Vector2f& v)
 {
+	UiWidget::setAnchor(v);
 	adjustContentPanel();
 }
 
-void PageView::removeWidget(UiWidget* widget)
-{
-	removePage(widget);
-}
-
-
-void PageView::layout()
-{
-	adjustContentPanel();
-
-}
 
 
 
@@ -729,19 +738,19 @@ void PageView::scrollYTo(float value)
 void PageView::adjustContentPanel()
 {
 
-	int mode=m_contentPanel->getMode();
+	E_ScrollDirection mode=m_contentPanel->getMode();
 	float left,right,bottom,top;
 
 	getBoundSize2D(&left,&right,&bottom,&top);
 
 	float x=0,y=0;
 
-	if(mode==SCROLL_HORIZONTAL)
+	if(mode==E_ScrollDirection::HORIZONTAL)
 	{
 		x=left+m_xoffset;
 		y=top;
 	}
-	else if(mode==SCROLL_VERTICAL)
+	else if(mode==E_ScrollDirection::VERTICAL)
 	{
 		x=left;
 		y=top+m_yoffset;
@@ -760,9 +769,9 @@ void PageView::adjustContentPanel()
 
 void PageView::checkPageAlign()
 {
-	int mode=m_contentPanel->getMode();
+	E_ScrollDirection mode=m_contentPanel->getMode();
 
-	if(mode==SCROLL_HORIZONTAL)
+	if(mode==E_ScrollDirection::HORIZONTAL)
 	{
 		float next_index=Math::floor(m_xoffset/m_size.x+0.5f);
 
@@ -785,10 +794,10 @@ void PageView::checkPageAlign(float v)
 
 	float supper_v=500;
 
-	int mode=m_contentPanel->getMode();
+	E_ScrollDirection mode=m_contentPanel->getMode();
 
 
-	if(mode==SCROLL_HORIZONTAL)
+	if(mode==E_ScrollDirection::HORIZONTAL)
 	{
 		float cur_index=Math::floor(-m_xoffset/m_size.x);
 		float cur_ret=(-m_xoffset-cur_index*m_size.x)/m_size.x;
@@ -872,9 +881,9 @@ void PageView::updateScroll(float dt)
 	float percent=m_scrollEasing->getValue(m_scrollTimeEscape/m_scrollDuration);
 
 
-	int mode =m_contentPanel->getMode();
+	E_ScrollDirection mode =m_contentPanel->getMode();
 
-	if(mode == SCROLL_HORIZONTAL)
+	if(mode == E_ScrollDirection::HORIZONTAL)
 	{
 		float offset= m_scrollBeginPos+(m_scrollEndPos-m_scrollBeginPos)*percent;
 		if(Math::floatEqual(offset,m_scrollEndPos))
@@ -906,14 +915,14 @@ void PageView::updateScroll(float dt)
 
 	if(m_scrollFinished)
 	{
-		if(mode==SCROLL_HORIZONTAL)
+		if(mode==E_ScrollDirection::HORIZONTAL)
 		{
 			int index=(int)Math::floor(Math::abs(m_xoffset)/m_size.x+0.5f);
 			if(m_currentPageIndex!=index)
 			{
 				int old_index=m_currentPageIndex;
 				m_currentPageIndex=index;
-				pageIndexChanged(old_index,m_currentPageIndex);
+				FS_OBJECT_LAMBDA_CALL(this,onPageIndexChanged,pageIndexChanged,old_index,m_currentPageIndex);
 			}
 
 		}
@@ -924,11 +933,37 @@ void PageView::updateScroll(float dt)
 			{
 				int old_index=m_currentPageIndex;
 				m_currentPageIndex=index;
-				pageIndexChanged(old_index,m_currentPageIndex);
+				FS_OBJECT_LAMBDA_CALL(this,onPageIndexChanged,pageIndexChanged,old_index,m_currentPageIndex);
 			}
 		}
 	}
 }
+
+
+void PageView::addChild(Entity* en) 
+{
+	FS_TRACE_WARN("Can't Add Child  To PageView,Use addPage");
+}
+
+
+void PageView::clearChild()
+{
+	clearPage();
+}
+
+void PageView::removeChild(Entity* en) 
+{
+	UiWidget* ui_widget=dynamic_cast<UiWidget*>(en);
+	if(ui_widget)
+	{
+		removePage(ui_widget);
+	}
+	else 
+	{
+		FS_TRACE_WARN("Entity Is Not Manager By PageView");
+	}
+}
+
 
 
 

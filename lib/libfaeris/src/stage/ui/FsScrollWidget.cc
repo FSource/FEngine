@@ -1,6 +1,7 @@
 #include "FsScrollWidget.h"
 #include "FsScroller.h"
 #include "FsVelocityTracker.h"
+#include "FsClass.h"
 
 #define FS_SCROLL_WIDGET_TOUCH_TAP 5
 
@@ -46,10 +47,10 @@ ScrollWidget::ScrollWidget()
 	m_scrollerX(NULL),
 	m_scrollerY(NULL),
 
-	m_scrollMode(SCROLL_VERTICAL),
+	m_scrollMode(E_ScrollDirection::VERTICAL),
 
-	m_alignh(ALIGN_CENTER),
-	m_alignv(ALIGN_TOP),
+	m_alignh(E_AlignH::CENTER),
+	m_alignv(E_AlignV::TOP),
 
 	m_velocityTracker(NULL),
 	m_edgeBounceEnabled(true)
@@ -68,13 +69,6 @@ ScrollWidget::~ScrollWidget()
 
 }
 
-
-
-
-const char* ScrollWidget::className()
-{
-	return FS_SCROLL_WIDGET_CLASS_NAME;
-}
 
 
 void ScrollWidget::setMargin(float l,float r,float t,float b)
@@ -137,14 +131,14 @@ void ScrollWidget::getMargin(float* l,float* r,float* t,float* b)
 	*b=m_marginBottom;
 }
 
-void ScrollWidget::setScrollMode(int mode)
+void ScrollWidget::setScrollMode(E_ScrollDirection mode)
 {
 	m_scrollMode=mode;
 	setScrollPercent(0.0f,0.0f);
 	adjustScrollArea();
 }
 
-int ScrollWidget::getScrollMode()
+E_ScrollDirection ScrollWidget::getScrollMode()
 {
 	return m_scrollMode;
 }
@@ -161,22 +155,21 @@ bool ScrollWidget::getEdgeBounceEnabled()
 
 
 
-
+void ScrollWidget::setContentAlign(E_AlignH h,E_AlignV v)
+{
+	m_alignv=v;
+	m_alignh=h;
+	adjustScrollArea();
+}
 
 void ScrollWidget::setContentSize(float width,float height)
 {
 	m_contentWidth=width;
 	m_contentHeight=height;
 	adjustScrollArea();
+
 }
 
-
-void ScrollWidget::setContentAlign(int h,int v)
-{
-	m_alignv=v;
-	m_alignh=h;
-	adjustScrollArea();
-}
 
 
 void ScrollWidget::scrollBy(float x,float y)
@@ -268,7 +261,7 @@ bool ScrollWidget::touchBegin(float x,float y)
 	m_cancelDrag=false;
 
 
-	if(m_scrollMode==SCROLL_HORIZONTAL)
+	if(m_scrollMode==E_ScrollDirection::HORIZONTAL)
 	{
 		if(!m_scrollerX->isFinished())
 		{
@@ -277,7 +270,7 @@ bool ScrollWidget::touchBegin(float x,float y)
 			beginDrag();
 		}
 	}
-	else if(m_scrollMode==SCROLL_VERTICAL)
+	else if(m_scrollMode==E_ScrollDirection::VERTICAL)
 	{
 		if(!m_scrollerY->isFinished())
 		{
@@ -286,7 +279,7 @@ bool ScrollWidget::touchBegin(float x,float y)
 			beginDrag();
 		}
 	}
-	else if(m_scrollMode==SCROLL_ALL)
+	else if(m_scrollMode==E_ScrollDirection::ALL)
 	{
 		if(!m_scrollerX->isFinished()||!m_scrollerY->isFinished())
 		{
@@ -328,7 +321,7 @@ bool ScrollWidget::touchMove(float x,float y)
 
 	if(!m_isDraged)
 	{
-		if(m_scrollMode==SCROLL_HORIZONTAL)
+		if(m_scrollMode==E_ScrollDirection::HORIZONTAL)
 		{
 			if(Math::abs(detal_x) > m_touchTap)
 			{
@@ -343,7 +336,7 @@ bool ScrollWidget::touchMove(float x,float y)
 				}
 			}
 		}
-		else if(m_scrollMode==SCROLL_VERTICAL)
+		else if(m_scrollMode==E_ScrollDirection::VERTICAL)
 		{
 			if(Math::abs(detal_y) > m_touchTap)
 			{
@@ -401,7 +394,7 @@ bool ScrollWidget::touchMove(float x,float y)
 	}
 	if(m_isDraged)
 	{
-		if(m_scrollMode==SCROLL_HORIZONTAL||m_scrollMode==SCROLL_ALL)
+		if(m_scrollMode==E_ScrollDirection::HORIZONTAL||m_scrollMode==E_ScrollDirection::ALL)
 		{
 			if(!m_scrollerX->isFinished())
 			{
@@ -412,7 +405,7 @@ bool ScrollWidget::touchMove(float x,float y)
 			startScrollX(m_scrollX,m_scrollMinX,m_scrollMaxX,detal_x);
 		}
 
-		if(m_scrollMode==SCROLL_VERTICAL || m_scrollMode==SCROLL_ALL)
+		if(m_scrollMode==E_ScrollDirection::VERTICAL || m_scrollMode==E_ScrollDirection::ALL)
 		{
 			if(!m_scrollerY->isFinished())
 			{
@@ -439,7 +432,7 @@ bool  ScrollWidget::touchEnd(float x,float y)
 	m_velocityTracker->endTrack(x,y);
 	float d_accel=200;
 
-	if(m_scrollMode==SCROLL_HORIZONTAL||m_scrollMode==SCROLL_ALL)
+	if(m_scrollMode==E_ScrollDirection::HORIZONTAL||m_scrollMode==E_ScrollDirection::ALL)
 	{
 		if(m_scrollX>m_scrollMaxX||m_scrollX<m_scrollMinX)
 		{
@@ -460,7 +453,7 @@ bool  ScrollWidget::touchEnd(float x,float y)
 
 	}
 
-	if(m_scrollMode==SCROLL_VERTICAL||m_scrollMode==SCROLL_ALL)
+	if(m_scrollMode==E_ScrollDirection::VERTICAL||m_scrollMode==E_ScrollDirection::ALL)
 	{
 		if(m_scrollY>m_scrollMaxY||m_scrollY<m_scrollMinY)
 		{
@@ -592,7 +585,7 @@ void ScrollWidget::updateScroll(float dt)
 	edgeCheckHandle();
 
 	bool need_readjust=false;
-	if(m_scrollMode==SCROLL_HORIZONTAL||m_scrollMode==SCROLL_ALL)
+	if(m_scrollMode==E_ScrollDirection::HORIZONTAL||m_scrollMode==E_ScrollDirection::ALL)
 	{
 
 		if(!m_scrollerX->update(dt))
@@ -612,7 +605,7 @@ void ScrollWidget::updateScroll(float dt)
 	}
 
 
-	if(m_scrollMode==SCROLL_VERTICAL || m_scrollMode == SCROLL_ALL)
+	if(m_scrollMode==E_ScrollDirection::VERTICAL || m_scrollMode == E_ScrollDirection::ALL)
 	{
 
 		if( !m_scrollerY->update(dt))
@@ -650,7 +643,7 @@ void ScrollWidget::edgeCheckHandle()
 	}
 
 
-	if(m_scrollMode==SCROLL_HORIZONTAL)
+	if(m_scrollMode==E_ScrollDirection::HORIZONTAL)
 	{
 		if(!m_scrollerX->isFinished())
 		{
@@ -663,7 +656,7 @@ void ScrollWidget::edgeCheckHandle()
 		}
 	}
 
-	if(m_scrollMode==SCROLL_VERTICAL)
+	if(m_scrollMode==E_ScrollDirection::VERTICAL)
 	{
 		if(!m_scrollerY->isFinished())
 		{
@@ -676,7 +669,7 @@ void ScrollWidget::edgeCheckHandle()
 		}
 	}
 
-	if(m_scrollMode==SCROLL_ALL)
+	if(m_scrollMode==E_ScrollDirection::ALL)
 	{
 
 		if(m_scrollerX->isFinished())
@@ -733,73 +726,79 @@ void ScrollWidget::adjustScrollArea()
 	}
 
 
-	if(m_alignh==ALIGN_LEFT)
+	switch(m_alignh)
 	{
-		m_scrollMaxX=m_edgeBLeft;
-		m_scrollMinX=m_edgeBRight-m_contentWidth;
 
-		if(m_scrollMinX>m_scrollMaxX)
-		{
-			m_scrollMinX=m_scrollMaxX;
-		}
+		case E_AlignH::LEFT:
+			{
+				m_scrollMaxX=m_edgeBLeft;
+				m_scrollMinX=m_edgeBRight-m_contentWidth;
+
+				if(m_scrollMinX>m_scrollMaxX)
+				{
+					m_scrollMinX=m_scrollMaxX;
+				}
+			}
+
+		case E_AlignH::CENTER:
+			{
+				float middle=(m_edgeBLeft+m_edgeBRight)/2;
+				float diff=m_contentWidth/2-(m_edgeBRight-m_edgeBLeft)/2;
+				if(diff<0)
+				{
+					diff=0;
+				}
+
+				m_scrollMinX=middle-diff;
+				m_scrollMaxX=middle+diff;
+			}
+
+		case E_AlignH::RIGHT:
+			{
+				m_scrollMinX=m_edgeBRight;
+				m_scrollMaxX=m_edgeBLeft+m_contentWidth;
+
+				if(m_scrollMaxX<m_scrollMinX)
+				{
+					m_scrollMaxX=m_scrollMinX;
+
+				}
+			}
 	}
 
-	if(m_alignh==ALIGN_CENTER)
+	switch(m_alignv)
 	{
-		float middle=(m_edgeBLeft+m_edgeBRight)/2;
-		float diff=m_contentWidth/2-(m_edgeBRight-m_edgeBLeft)/2;
-		if(diff<0)
-		{
-			diff=0;
-		}
+		case E_AlignV::TOP:
+			{
+				m_scrollMinY=m_edgeBTop;
+				m_scrollMaxY=m_edgeBBottom+m_contentHeight;
+				if(m_scrollMaxY<m_scrollMinY)
+				{
+					m_scrollMaxY=m_scrollMinY;
+				}
+			}
 
-		m_scrollMinX=middle-diff;
-		m_scrollMaxX=middle+diff;
-	}
+		case E_AlignV::CENTER:
+			{
+				float middle=(m_edgeBTop+m_edgeBBottom)/2;
+				float diff=m_contentHeight/2-(m_edgeBTop-m_edgeBBottom)/2;
+				if(diff<0)
+				{
+					diff=0;
+				}
+				m_scrollMinY=middle-diff;
+				m_scrollMaxY=middle+diff;
+			}
 
-	if(m_alignh==ALIGN_RIGHT)
-	{
-		m_scrollMinX=m_edgeBRight;
-		m_scrollMaxX=m_edgeBLeft+m_contentWidth;
-
-		if(m_scrollMaxX<m_scrollMinX)
-		{
-			m_scrollMaxX=m_scrollMinX;
-
-		}
-	}
-
-
-	if(m_alignv==ALIGN_TOP)
-	{
-		m_scrollMinY=m_edgeBTop;
-		m_scrollMaxY=m_edgeBBottom+m_contentHeight;
-		if(m_scrollMaxY<m_scrollMinY)
-		{
-			m_scrollMaxY=m_scrollMinY;
-		}
-	}
-
-	if(m_alignv==ALIGN_CENTER)
-	{
-		float middle=(m_edgeBTop+m_edgeBBottom)/2;
-		float diff=m_contentHeight/2-(m_edgeBTop-m_edgeBBottom)/2;
-		if(diff<0)
-		{
-			diff=0;
-		}
-		m_scrollMinY=middle-diff;
-		m_scrollMaxY=middle+diff;
-	}
-
-	if(m_alignv==ALIGN_BOTTOM)
-	{
-		m_scrollMaxY=m_edgeBBottom;
-		m_scrollMinY=m_edgeBTop-m_contentHeight;
-		if(m_scrollMinY>m_scrollMaxY)
-		{
-			m_scrollMinY=m_scrollMaxY;
-		}
+		case E_AlignV::BOTTOM:
+			{
+				m_scrollMaxY=m_edgeBBottom;
+				m_scrollMinY=m_edgeBTop-m_contentHeight;
+				if(m_scrollMinY>m_scrollMaxY)
+				{
+					m_scrollMinY=m_scrollMaxY;
+				}
+			}
 	}
 
 
@@ -807,26 +806,33 @@ void ScrollWidget::adjustScrollArea()
 
 }
 
-void ScrollWidget::childSizeChanged(UiWidget* widget,float w,float h)
+void ScrollWidget::childSizeChanged(UiWidget* widget)
 {
-	m_contentWidth=w;
-	m_contentHeight=h;
+	m_contentWidth=widget->getWidth();
+	m_contentHeight=widget->getHeight();
 	adjustScrollArea();
 }
 
 
-void ScrollWidget::childAnchorChanged(UiWidget* widget,float w,float h)
+void ScrollWidget::childAnchorChanged(UiWidget* widget)
+{
+	scrollChange(m_scrollX,m_scrollY);
+}
+void ScrollWidget::childTransformChanged(UiWidget* widget)
 {
 	scrollChange(m_scrollX,m_scrollY);
 }
 
-void ScrollWidget::sizeChanged(float width,float height)
+
+void ScrollWidget::setSize(const Vector2&  size)
 {
+	UiWidget::setSize(size);
 	adjustScrollArea();
 }
 
-void ScrollWidget::anchorChanged(float x,float y)
+void ScrollWidget::setAnchor(const Vector2& v)
 {
+	UiWidget::setAnchor(v);
 	adjustScrollArea();
 }
 
@@ -848,6 +854,20 @@ void ScrollWidget::beginDrag()
 void ScrollWidget::endDrag()
 {
 }
+
+
+
+/** User For ScrollWidget FsClass Attr */
+
+
+static FsClass::FsAttributeDeclare S_ScrollWidget_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+
+FS_CLASS_IMPLEMENT_WITH_BASE(ScrollWidget,UiWidget,0,S_ScrollWidget_Main_Attr);
+
+
 
 
 

@@ -42,6 +42,16 @@ UiWidget::UiWidget()
 UiWidget::~UiWidget()
 {
 	assert(m_parentWidget==NULL);
+	int child_nu=m_chirdren->size();
+	for(int i=0;i<child_nu;i++)
+	{
+		UiWidget* ch=dynamic_cast<UiWidget*>( m_chirdren->get(i));
+		if(ch)
+		{
+			assert(ch->getParentWidget()==this);
+			ch->setParentWidget(NULL);
+		}
+	}
 }
 
 
@@ -169,6 +179,12 @@ void UiWidget::childAnchorChanged(UiWidget* widget)
 {
 
 }
+
+void UiWidget::childTransformChanged(UiWidget* widget)
+{
+
+}
+
 
 void UiWidget::setParentWidget(UiWidget* widget)
 {
@@ -470,6 +486,18 @@ void UiWidget::removeChild(Entity* en)
 		{
 			ui_child->setParentWidget(NULL);
 		}
+	}
+}
+
+void UiWidget::detach()
+{
+	if(m_parentWidget)
+	{
+		m_parentWidget->removeChild(this);
+	}
+	else 
+	{
+		Entity2D::detach();
 	}
 }
 

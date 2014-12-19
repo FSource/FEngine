@@ -193,7 +193,7 @@ bool PressButton::touchBegin(float x,float y)
 
 bool PressButton::touchMove(float x,float y)
 {
-	bool hit=hit2D(Vector2f(x,y));
+	bool hit=hit2D(x,y);
 	if(hit)
 	{
 		if(!m_moveIn)
@@ -215,7 +215,7 @@ bool PressButton::touchMove(float x,float y)
 
 bool PressButton::touchEnd(float x,float y)
 {
-	bool hit=hit2D(Vector2f(x,y));
+	bool hit=hit2D(x,y);
 	if(hit)
 	{
 		FS_OBJECT_LAMBDA_CALL(this,onPressUp,pressUp,x,y);
@@ -276,13 +276,13 @@ void PressButton::click()
 
 
 
-bool PressButton::hit2D(const Vector2& v)
+bool PressButton::hit2D(float x,float y)
 {
 	if(m_disabled) 
 	{
 		return false;
 	}
-	return StateButton::hit2D(v);
+	return StateButton::hit2D(x,y);
 }
 
 

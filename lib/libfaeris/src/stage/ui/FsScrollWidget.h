@@ -12,42 +12,28 @@ class Scroller;
 class ScrollWidget:public UiWidget
 {
 	public:
-		enum 
-		{
-			SCROLL_HORIZONTAL,
-			SCROLL_VERTICAL,
-			SCROLL_ALL,
-		};
-
-		enum
-		{
-			ALIGN_TOP,
-			ALIGN_CENTER,
-			ALIGN_BOTTOM,
-			ALIGN_LEFT,
-			ALIGN_RIGHT,
-		};
+		FS_CLASS_DECLARE(ScrollWidget);
 
 	public:
 		/* inherit Entity */
-		virtual  bool touchBegin(float x,float y);
-		virtual  bool touchMove(float x,float y);
-		virtual  bool touchEnd(float x,float y);
+		void update(float dt) FS_OVERRIDE;
 
-		virtual void update(float dt);
-
+		bool touchBegin(float x,float y) FS_OVERRIDE;
+		bool touchMove(float x,float y) FS_OVERRIDE;
+		bool touchEnd(float x,float y) FS_OVERRIDE;
 
 
 		/* inherit UiWidget */
-		virtual void childSizeChanged(UiWidget* widget,float w,float h);
-		virtual void childAnchorChanged(UiWidget* widget,float w,float h);
-
-		virtual void sizeChanged(float width,float height);
-		virtual void anchorChanged(float x,float y);
+		void childSizeChanged(UiWidget* widget) FS_OVERRIDE;
+		void childAnchorChanged(UiWidget* widge) FS_OVERRIDE;
+		void childTransformChanged(UiWidget* widget) FS_OVERRIDE;
 
 
-		/* inherit FsObject */
-		const char* className();
+		using UiWidget::setSize;
+		void setSize(const Vector2& size) FS_OVERRIDE;
+
+		using UiWidget::setAnchor;
+		void setAnchor(const Vector2& size) FS_OVERRIDE;
 
 
 	public:
@@ -72,16 +58,15 @@ class ScrollWidget:public UiWidget
 		void setMarginBottom(float v);
 		float getMarginBottom() const;
 
-		void setScrollMode(int mode);
-		int getScrollMode();
+		void setScrollMode(E_ScrollDirection mode);
+		E_ScrollDirection getScrollMode();
 
 		void setEdgeBounceEnabled(bool enabled);
 		bool getEdgeBounceEnabled();
 
 
 	public:
-		void setContentAlign(int h,int v);
-		void setContentSize(float width,float height);
+		void setContentAlign(E_AlignH h,E_AlignV v);
 
 
 	public: /* scroll support */
@@ -110,6 +95,8 @@ class ScrollWidget:public UiWidget
 
 		void updateScroll(float dt);
 		void edgeCheckHandle();
+
+		void setContentSize(float width,float height);
 
 
 
@@ -144,9 +131,10 @@ class ScrollWidget:public UiWidget
 		Scroller* m_scrollerX;
 		Scroller* m_scrollerY;
 
-		int m_scrollMode;
+		E_ScrollDirection m_scrollMode;
 
-		int m_alignh,m_alignv;
+		E_AlignH m_alignh;
+		E_AlignV m_alignv;
 
 		VelocityTracker* m_velocityTracker;
 

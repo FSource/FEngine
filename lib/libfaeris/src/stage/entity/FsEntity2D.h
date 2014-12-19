@@ -78,14 +78,13 @@ class Entity2D:public Entity
 		bool touchesEnd(float x,float y,int id);
 		*/
 
-	public:
 		virtual void setSize(const Vector2f& v);
 		virtual Vector2f getSize();
 
 		virtual void setAnchor(const Vector2f& v);
 		virtual Vector2f getAnchor();
 
-		virtual bool hit2D(const Vector2f& v);
+		virtual bool hit2D(float x,float y);
 
 	public:
 		void setSize(float x,float y);
@@ -106,7 +105,6 @@ class Entity2D:public Entity
 		void setAnchorY(float v);
 		float getAnchorY();
 
-		bool hit2D(float x,float y);
 
 
 	public:

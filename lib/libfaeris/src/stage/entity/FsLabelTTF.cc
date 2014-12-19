@@ -395,7 +395,7 @@ void LabelTTF::draw(RenderDevice* rd,bool updateMatrix)
 }
 
 
-bool LabelTTF::hit2D(const Vector2f& w_v)
+bool LabelTTF::hit2D(float x,float y)
 {
 	if(m_dirty) /* check dirty */
 	{
@@ -404,7 +404,7 @@ bool LabelTTF::hit2D(const Vector2f& w_v)
 	}
 
 	updateWorldMatrix();
-	Vector3 v=worldToLocal(Vector3(w_v.x,w_v.y,0));
+	Vector3 v=worldToLocal(Vector3(x,y,0));
 
 	float diffx=v.x+m_anchor.x*m_textWidth;
 	float diffy=v.y+m_anchor.y*m_textHeight;

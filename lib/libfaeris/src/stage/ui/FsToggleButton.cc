@@ -146,14 +146,14 @@ bool ToggleButton::touchEnd(float x,float y)
 	return true;
 }
 
-bool ToggleButton::hit2D(const Vector2f&  v)
+bool ToggleButton::hit2D(float x,float y)
 {
 	if(m_disabled)
 	{
 		return false;
 	}
 
-	return StateButton::hit2D(v);
+	return StateButton::hit2D(x,y);
 }
 
 void ToggleButton::initWithColorStyle(const char* filename,const Color4f& on,const Color4f& off)

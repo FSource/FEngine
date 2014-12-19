@@ -2,8 +2,11 @@
 #define _FS_LIST_VIEW_H_
 
 #include "FsMacros.h"
+#include "FsEnums.h"
 #include "FsUiWidget.h"
 #include "FsScrollView.h"
+
+
 
 NS_FS_BEGIN
 
@@ -11,39 +14,17 @@ class ListViewContentPanel;
 class ListView:public ScrollWidget
 {
 	public:
-		enum 
-		{
-			SCROLL_VERTICAL=ScrollWidget::SCROLL_VERTICAL,
-			SCROLL_HORIZONTAL=ScrollWidget::SCROLL_HORIZONTAL,
-		};
-
-		enum 
-		{
-			ITEM_ALIGN_LEFT,
-			ITEM_ALIGN_CENTER,
-			ITEM_ALIGN_RIGHT,
-			ITEM_ALIGN_TOP,
-			ITEM_ALIGN_BOTTOM,
-		};
-
-	public:
-		static ListView* create(int mode,float width,float height);
+		static ListView* create();
+		static ListView* create(E_ScrollDirection mode,float width,float height);
 		static ListView* create(float width,float height);
 
 	public:
-		/* inherit FsObject */
-		virtual const char* className();
-
-
-		/* inherit UiWidget */
-		virtual void removeWidget(UiWidget* widget);
-		virtual void layout();
 
 		/* inherit ScrollWidget */
 		virtual void scrollChange(float x,float y);
 		
 	public:
-		void setMode(int mode);
+		void setMode(E_ScrollDirection mode);
 
 		void setListGap(float value);
 		float getListGap();
@@ -53,10 +34,10 @@ class ListView:public ScrollWidget
 
 	public:
 		void addListItem(UiWidget* widget);
-		void addListItem(UiWidget* widget,int alignh,int alignv);
+		void addListItem(UiWidget* widget,E_AlignH alignh,E_AlignV alignv);
 
 		void addListItem(int index,UiWidget* widget);
-		void addListItem(int index,UiWidget* widget,int alignh,int alignv);
+		void addListItem(int index,UiWidget* widget,E_AlignH alignh,E_AlignV alignv);
 
 		void removeListItem(int index);
 		void removeListItem(UiWidget* widget);
@@ -67,17 +48,28 @@ class ListView:public ScrollWidget
 		UiWidget* getListItem(int index);
 
 		int getListItemIndex(UiWidget* widget);
+		void layout();
+
+	public:
+		using ScrollWidget::setSize;
+		void setSize(const Vector2& v) FS_OVERRIDE;
+
+		using ScrollWidget::setAnchor;
+		void setAnchor(const Vector2& v) FS_OVERRIDE;
+
+		void addChild(Entity* en) FS_OVERRIDE;
+		void removeChild(Entity* en) FS_OVERRIDE;
+		void clearChild() FS_OVERRIDE;
+
 
 	protected:
 
-		ListView(int mode,float width,float height);
+		ListView(E_ScrollDirection mode,float width,float height);
 		virtual ~ListView();
 
-		virtual void childSizeChanged(UiWidget* widget,float w,float h);
-		virtual void childAnchorChanged(UiWidget* widget,float w,float h);
-
-		virtual void sizeChanged(float w,float h);
-		virtual void anchorChanged(float x,float y);
+		void childSizeChanged(UiWidget* widget) FS_OVERRIDE;
+		void childAnchorChanged(UiWidget* widget) FS_OVERRIDE;
+		void childTransformChanged(UiWidget* widget) FS_OVERRIDE;
 
 		void adjustContentSize();
 

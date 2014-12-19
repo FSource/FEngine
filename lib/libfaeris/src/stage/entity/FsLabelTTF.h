@@ -68,7 +68,7 @@ class LabelTTF:public Entity2D
 	public:
 		/* inherit Entity */
 		void draw(RenderDevice* render,bool updateMatrix) FS_OVERRIDE;
-		bool hit2D(const Vector2f& v) FS_OVERRIDE;
+		bool hit2D(float x,float y) FS_OVERRIDE;
 
 		using Entity2D::setAnchor;
 		void setAnchor(const Vector2& v) FS_OVERRIDE;

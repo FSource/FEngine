@@ -310,6 +310,9 @@
     <ClInclude Include="..\..\src\stage\entity\FsSprite2DData.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\stage\action\FsAction.h">
       <Filter>src\stage\action</Filter>
     </ClInclude>
@@ -578,7 +581,6 @@
       <Filter>src\mgr</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\stage\entity\FsEntity2D.h">
-    <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1036,11 +1038,11 @@
     <ClCompile Include="..\..\src\FsEnum.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mgr\FsClassMgr.cc">
-      <Filter>src\mgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\stage\entity\FsEntity2D.cc">
       <Filter>src\stage\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsClassMgr.cc">
+      <Filter>src\mgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
