@@ -570,6 +570,7 @@ static FsClass::FsAttributeDeclare S_LabelTTF_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE("fontName",FsType::FT_CHARS,NULL,LabelTTF_setFontName,LabelTTF_getFontName),
 	FS_CLASS_ATTR_DECLARE("fontSize",FsType::FT_I_1,NULL,LabelTTF_setFontSize,LabelTTF_getFontSize),
 	FS_CLASS_ATTR_DECLARE("textAlign",FsType::FT_CHARS,NULL,LabelTTF_setTextAlign,LabelTTF_getTextAlign),
+	FS_CLASS_ATTR_DECLARE("lineGap",FsType::FT_F_1,NULL,LabelTTF_setLineGap,LabelTTF_getLineGap),
 	FS_CLASS_ATTR_DECLARE("boundSize",FsType::FT_F_2,S_LabelTTF_BoundSize_SubAttr,LabelTTF_setBoundSize,LabelTTF_getBoundSize),
 	FS_CLASS_ATTR_DECLARE("anchor",FsType::FT_F_2,S_LabelTTF_Anchor_SubAttr,LabelTTF_setAnchor,LabelTTF_getAnchor),
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
