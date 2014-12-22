@@ -255,7 +255,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc" />
     <ClCompile Include="..\..\src\FsClass.cc" />
-    <ClCompile Include="..\..\src\FsEnum.cc" />
+    <ClCompile Include="..\..\src\FsEnums.cc" />
     <ClCompile Include="..\..\src\FsFaerisModule.cc" />
     <ClCompile Include="..\..\src\FsGlobal.cc" />
     <ClCompile Include="..\..\src\FsObject.cc" />
@@ -415,7 +415,6 @@
     <None Include="..\..\src\stage\entity\FsEntity.inl" />
     <None Include="..\..\src\support\felis\xir_grammer.y" />
     <None Include="..\..\src\support\util\FsString.inl" />
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -49,6 +49,9 @@
     <ClCompile Include="..\..\src\luaexport\FsLuaFuncExport.cc">
       <Filter>src\luaexport</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsCallBackExt.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\FsLuaEngine.h">
@@ -61,9 +64,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsLuaAction.h">
-      <Filter>src\luaext</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsLuaEntity.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsLuaHttpRequest.h">
@@ -87,14 +87,14 @@
     <ClInclude Include="..\..\src\luaext\FsTAction.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsTEntity.h">
-      <Filter>src\luaext</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsTLuaLayer.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaexport\FsLuaExport.h">
       <Filter>src\luaexport</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsCallBackExt.h">
+      <Filter>src\luaext</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

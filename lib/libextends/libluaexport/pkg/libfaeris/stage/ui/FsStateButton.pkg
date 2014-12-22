@@ -3,42 +3,6 @@ $#include "stage/ui/FsStateButton.h"
 class StateButton:public Entity 
 {
 	public:
-		enum 
-		{
-			FLAG_COLOR,
-			FLAG_OPACITY,
-			FLAG_TEXTURE,
-			FLAG_SIZE,
-			FLAG_ANCHOR ,
-			FLAG_ROTATE,
-			FLAG_SCALE,
-			FLAG_CHILDREN,
-			FLAG_ALL
-		};
-
-
-
-	public:  /* Attribut And State Attribute Setting */
-
-		/* color */
-		void setColor(Color value);
-		void setColor(const Color4f& value);
-		void setColor(int state,const Color4f& value);
-		void setColor(int state,Color value);
-
-		Color4f getColor() const;
-		Color4f getColor(int state) const ;
-
-
-
-		/* opacity */
-		void setOpacity(float value);
-		float getOpacity() const;
-
-		void setOpacity(int state,float value);
-		float getOpacity(int state) const;
-
-
 		/* texture */
 		void setTexture(const char* filename);
 		void setTexture(const char* filename,float width,float height);
@@ -49,8 +13,19 @@ class StateButton:public Entity
 		Texture2D* getTexture() const;
 
 
+		/* State Attribute Setting */
+
+		/* color */
+		void setColor(int state,const Color4f& value);
+		Color4f getColor(int state) const ;
 
 
+		/* opacity */
+		void setOpacity(int state,float value);
+		float getOpacity(int state) const;
+
+
+		/* texture */
 		void setTexture(int state,const char* filename);
 		void setTexture(int state,const char* filename,float width,float height);
 		void setTexture(int state,const char* filename,const Vector2& size);
@@ -61,20 +36,9 @@ class StateButton:public Entity
 
 
 		/* size */
-		void setSize(const Vector2& size);
-		void setSize(float x,float y);
-		Vector2 getSize()const ;
-
-
 		void setSize(int state,float x,float y);
 		void setSize(int state,const Vector2& size);
 		Vector2 getSize(int state) const;
-
-
-		/* anchor */
-		void setAnchor(float x,float y);
-		void setAnchor(const Vector2& size);
-		Vector2 getAnchor()const ;
 
 		void setAnchor(int state,float x,float y);
 		void setAnchor(int state,const Vector2& size);
@@ -97,14 +61,23 @@ class StateButton:public Entity
 		void setChild(int state,FsArray* child);
 		FsArray* getChild(int state)const;
 
-	public: /* tween info */
-		void setTweenInfo(int from,int to,EaseExpr* easing,float time);
 
-		void setTweenFlags(int flags);
+
+	public:
+
+		void setTweenFlags(uint32_t flags);
 		void clearTweenFlags();
 
-		void addTweenFlags(int flags);
-		void removeTweenFlags(int flags);
+		void addTweenFlags(uint32_t flags);
+		void removeTweenFlags(uint32_t flags);
+
+		void setTweenInfo(int from,int to,EaseExpr* easing,float time);
+		void setLinearTween(float time);
+
+		void setState(int st);
+
+		void stopTween();
+
 
 };
 

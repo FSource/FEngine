@@ -1,59 +1,8 @@
 $#include "stage/ui/FsPressButton.h"
-$#include "luaext/FsLuaEntity.h"
 
-class PressButton@__PressButton:public StateButton
+class PressButton:public StateButton
 {
 	public:
-		enum 
-		{
-			FLAG_COLOR,
-			FLAG_OPACITY,
-			FLAG_TEXTURE,
-			FLAG_SIZE,
-			FLAG_ANCHOR ,
-			FLAG_ROTATE,
-			FLAG_SCALE,
-			FLAG_CHILDREN,
-			FLAG_ALL
-		};
-
-		enum
-		{
-			STATE_UNKOWN,
-			STATE_NORMAL,
-			STATE_PRESS,
-			STATE_DISABLE,
-			STATE_NU,
-			STATE_ALL
-		};
-
-
-
-
-		/* disabled */
-		void setDisabled(bool value);
-		bool getDisabled() const;
-
-
-
-};
-
-class LuaPressButton@PressButton:public PressButton 
-{
-	public:
-		enum 
-		{
-			FLAG_COLOR= 0x1UL,
-			FLAG_OPACITY= 0x2UL,
-			FLAG_TEXTURE= 0x4UL,
-			FLAG_SIZE=0x8UL,
-			FLAG_ANCHOR =0x10UL,
-			FLAG_ROTATE=0x20UL,
-			FLAG_SCALE=0x40UL,
-			FLAG_CHILDREN=0x80UL,
-			FLAG_ALL= 0xFFUL
-		};
-
 		enum 
 		{
 			STATE_UNKOWN=-1,
@@ -63,37 +12,22 @@ class LuaPressButton@PressButton:public PressButton
 			STATE_NU=3,
 			STATE_ALL=4
 		};
+	public:
+		static PressButton* create();
+		static PressButton* createWithDarkStyle(const char* filename,const Color4f& dark);
+		static PressButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark);
+
+		static PressButton* createWithColorStyle(const char* filename,const Color4f& normal,const Color4f& press);
+		static PressButton* createWithColorStyle(Texture2D* tex,const Color4f& normal,const Color4f& press);
+
+		static PressButton* createWithScaleStyle(const char* filename,const Vector3& scale);
+		static PressButton* createWithScaleStyle(Texture2D* tex,const Vector3& scale);
 
 	public:
-		static LuaPressButton* create();
-		static LuaPressButton* createWithDarkStyle(const char* filename,Color4f dark);
-		static LuaPressButton* createWithDarkStyle(const char* filename,Color dark);
 
-		static LuaPressButton* createWithDarkStyle(Texture2D* tex,Color4f dark);
-		static LuaPressButton* createWithDarkStyle(Texture2D* tex,Color dark);
+		void setDisabled(bool value);
+		bool getDisabled() const;
 
-		static LuaPressButton* createWithScaleStyle(const char* filename,Vector3 scale);
-		static LuaPressButton* createWithScaleStyle(Texture2D* tex,Vector3 scale);
-
-
-	public:
-		void onDraw@draw(RenderDevice* r);
-		void onUpdate@update(float dt);
-
-		bool onTouchBegin@touchBegin(float x,float y);
-		bool onTouchMove@touchMove(float x,float y);
-		bool onTouchEnd@touchEnd(float x,float y);
-		bool onHit2D@hit2D(float x,float y);
-
-		void onClick@click();
-		void onCancel@cancel();
-
-		void onPressDown@pressDown(float x,float y);
-		void onPressMoveIn@pressMoveIn(float x,float y);
-		void onPressMoveOut@pressMoveOut(float x,float y);
-		void onPressUp@pressUp(float x,float y);
 
 };
-
-
 

@@ -16,6 +16,7 @@ extern "C"
 
 #include "FsMacros.h"
 #include "FsObject.h"
+#include "luaext/FsCallBackExt.h"
 
 #if defined(FS_OS_WIN32)
 	#pragma warning (disable:4800)

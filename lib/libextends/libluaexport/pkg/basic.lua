@@ -190,6 +190,11 @@ local fsenums =
 }
 
 
+local f_callback={
+	["__Entity__"]="FsLEntity_CallBackAssign",
+	["__Entity2D__"]="FsLEntity2D_CallBackAssign",
+}
+
 
 -- register FsObject types
 for i = 1, #fsobject do
@@ -253,6 +258,7 @@ function post_output_hook(package)
 
 
 
+
 	replace([[if ((tolua_isvaluenil(tolua_S,2,&tolua_err) || !toluaext_is_luatable(tolua_S,2,"LUA_TABLE",0,&tolua_err)))]],
 			[[ if((!toluaext_is_luatable(tolua_S,2,"LUA_TABLE",0,&tolua_err)))]])
 	replace([[toluaext_push_luatable(tolua_S,(void*)&self->m_scriptData,"LUA_TABLE");]],
@@ -279,6 +285,12 @@ function post_output_hook(package)
 
 	replace([[tolua_usertype(tolua_S,"LUA_TABLE");]], [[]])
 
+	for k,v in pairs(f_callback) do 
+		result=string.gsub(result,
+		"tolua_ret = %(([%w_]*)%*%)  ([%w_]*)::"..k.."([^\n]*)\n",
+		"tolua_ret = %(%1%*%) %2::%3 \n   "..v.."(tolua_ret);\n")
+	end
+
 
 	for i=1,#fsobject do 
 		result =string.gsub(result,
@@ -298,12 +310,12 @@ function post_output_hook(package)
 		"tolua_constant%(tolua_S,%1,static_cast<int>("..fsenums[i].."::%3)")
 
 		result=string.gsub(result,
-		 " tolua_usertype%(tolua_S,\""..fsenums[i].."\"%);\n",
-		 "")
+		" tolua_usertype%(tolua_S,\""..fsenums[i].."\"%);\n",
+		"")
 
-		 result=string.gsub(result,
-		 "%*%(%("..fsenums[i].."%*%)",
-		 "(("..fsenums[i]..")")
+		result=string.gsub(result,
+		"%*%(%("..fsenums[i].."%*%)",
+		"(("..fsenums[i]..")")
 
 	end
 

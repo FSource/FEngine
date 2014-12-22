@@ -23,8 +23,8 @@ class Layer2D@__Layer2D:public Layer
 		bool getEliminate();
 
 		/* entity */
-		void add(Entity* entity);
-		void remove(Entity* entity);
+		void add(Entity2D* entity);
+		void remove(Entity2D* entity);
 		void clearEntity();
 		int getEntityNu();
 };

@@ -447,3 +447,21 @@ namespace E_LightType
 };
 
 
+namespace E_ButtonTweenFlag 
+{
+	enum
+	{
+		COLOR= 0x1UL,
+		OPACITY= 0x2UL,
+		TEXTURE= 0x4UL,
+		SIZE=0x8UL,
+		ANCHOR =0x10UL,
+		ROTATE=0x20UL,
+		SCALE=0x40UL,
+		CHILDREN=0x80UL,
+		ALL= 0xFFUL,
+	}
+};
+
+
+

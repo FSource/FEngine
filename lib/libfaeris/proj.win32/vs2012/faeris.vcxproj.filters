@@ -1038,9 +1038,6 @@
     <ClCompile Include="..\..\src\FsVariant.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\FsEnum.cc">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\stage\entity\FsEntity2D.cc">
       <Filter>src\stage\entity</Filter>
     </ClCompile>
@@ -1049,6 +1046,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\sys\thread\FsConditionVariable.cc">
       <Filter>src\sys\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FsEnums.cc">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1070,6 +1070,5 @@
     <None Include="..\..\src\support\util\FsString.inl">
       <Filter>src\support\util</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

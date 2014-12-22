@@ -1,9 +1,10 @@
 $#include "FsLuaExport.h"
 $#include "FsSpineSprite.h"
-$#include "luaext/FsLuaEntity.h"
 
-class SpineSprite@__SpineSprite:public Entity 
+class SpineSprite:public Entity2D
 {
+	public:
+		static SpineSprite* __Entity2D__create@create(const char* filename);
 
 	public:
 
@@ -49,20 +50,6 @@ class SpineSprite@__SpineSprite:public Entity
 		float getCurTime();
 		float getDurationTime();
 
-};
-
-class LuaSpineSprite@SpineSprite:public SpineSprite 
-{
-	public:
-		static LuaSpineSprite* create(const char* filename);
-
-	public:
-		void onDraw@draw(RenderDevice* r);
-		void onUpdate@update(float dt);
-		bool onTouchBegin@touchBegin(float x,float y);
-		bool onTouchMove@touchMove(float x,float y);
-		bool onTouchEnd@touchEnd(float x,float y);
-		bool onHit2D@hit2D(float x,float y);
 };
 
 
