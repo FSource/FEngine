@@ -2,7 +2,7 @@
 #define _FS_UI_WIDGET_H_
 
 #include "FsMacros.h"
-#include "stage/entity/FsEntity.h"
+#include "stage/entity/FsEntity2D.h"
 #include "graphics/FsColor.h"
 #include "math/FsVector2.h"
 
@@ -12,55 +12,75 @@ NS_FS_BEGIN
 class RenderDevice;
 class Texture2D;
 
-class UiWidget:public Entity 
+class UiWidget:public Entity2D
 {
 	public:
+		FS_CLASS_DECLARE(UiWidget);
+
+	public:
 		static UiWidget* create(float width,float height);
-
-	public:
-		virtual const char* className();
-
-		virtual bool hit2D(float x,float y);
-
-		virtual void draws(RenderDevice* r,bool updateMatrix);
-		virtual void draw(RenderDevice* r,bool updateMatrix);
-
+		static UiWidget* create();
 
 	public:
 
-		void setSize(float width,float height);
-		Vector2 getSize();
 
+		void draws(RenderDevice* r,bool updateMatrix) FS_OVERRIDE;
+		void draw(RenderDevice* r,bool updateMatrix) FS_OVERRIDE;
+
+		using Entity2D::setSize;
+		void setSize(const Vector2& v) FS_OVERRIDE;
+
+		using Entity2D::setAnchor;
+		void setAnchor(const Vector2& v) FS_OVERRIDE;
+
+		using Entity2D::setPosition;
+		void setPosition(const Vector3f& v ) FS_OVERRIDE;
+
+		using Entity2D::setRotate;
+		void setRotate(const Vector3f& v) FS_OVERRIDE;
+
+		using Entity2D::setScale;
+		void setScale(const Vector3f& v) FS_OVERRIDE;
+
+		void addChild(Entity* en) FS_OVERRIDE;
+		void removeChild(Entity* en) FS_OVERRIDE;
+		void detach() FS_OVERRIDE;
+
+
+	public:
 		void getBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
 		void getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
 		void getTRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
 
 
-
-		float getWidth();
-		float getHeight();
-
 		void setScissorEnabled(bool clip);
 		bool getScissorEnabled();
 
+		void setListenChildTSAEnabled(bool value) 
+		{ 
+			m_listenChildTSAEnabled =value;
+		}
 
-		void setAnchor(float x,float y);
-		float getAnchorX();
-		float getAnchorY();
-		Vector2 getAnchor();
+		bool getListenChildTSAEnabled()
+		{
+			return m_listenChildTSAEnabled;
+		}
 
+		void setSignalTSAEnabled(bool value)
+		{
+			m_signalParentTSAEnabled=value;
+		}
+		bool getSignalTSAEnabled()
+		{
+			return m_signalParentTSAEnabled;
+		}
 
 		void setBgColor(const Color4f& c);
-
+		Color4f getBgColor();
 		void setBgTexture(Texture2D* tex);
 		void setBgTexture(const char* filename);
-
 		void setBgEnabled(bool value);
 
-	public:
-		virtual void removeWidget(UiWidget* widget);
-		virtual void detach();
-		virtual void layout();
 
 
 	public:
@@ -72,25 +92,17 @@ class UiWidget:public Entity
 		UiWidget();
 		virtual ~UiWidget();
 
-		virtual void sizeChanged(float w,float h);
-		virtual void anchorChanged(float x,float y);
-
-		virtual void childSizeChanged(UiWidget* child,float w,float h);
-		virtual void childAnchorChanged(UiWidget* child,float x,float y);
-
+		virtual void childTransformChanged(UiWidget* child);
+		virtual void childSizeChanged(UiWidget* child);
+		virtual void childAnchorChanged(UiWidget* child);
 
 	protected:
 		FS_FEATURE_WEAK_REF(UiWidget*) m_parentWidget;
 
 		bool m_scissorEnabled;
-
-		Vector2 m_size;
-		Vector2 m_anchor;
-
-
-		Material2D* m_bgMaterial;
 		bool m_bgEnabled;
-
+		bool m_listenChildTSAEnabled;
+		bool m_signalParentTSAEnabled;
 };
 
 

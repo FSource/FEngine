@@ -295,9 +295,6 @@
     <ClInclude Include="..\..\src\stage\entity\FsLabelTTF.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\stage\entity\FsPanel.h">
-      <Filter>src\stage\entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\stage\entity\FsParticle2DEffect.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
@@ -307,13 +304,13 @@
     <ClInclude Include="..\..\src\stage\entity\FsQuad2D.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\stage\entity\FsRichLabelTTF.h">
-      <Filter>src\stage\entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\stage\entity\FsSprite2D.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\stage\entity\FsSprite2DData.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\stage\action\FsAction.h">
@@ -553,9 +550,6 @@
     <ClInclude Include="..\..\src\graphics\material\FsMaterial2D.h">
       <Filter>src\graphics\material</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\stage\entity\FsIMaterial2DEntity.h">
-      <Filter>src\stage\entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\mgr\FsProgramSourceMgr.h">
       <Filter>src\mgr</Filter>
     </ClInclude>
@@ -586,7 +580,7 @@
     <ClInclude Include="..\..\src\mgr\FsClassMgr.h">
       <Filter>src\mgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h">
+    <ClInclude Include="..\..\src\stage\entity\FsEntity2D.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\sys\thread\FsConditionVariable.h">
@@ -769,9 +763,6 @@
       <Filter>src\stage\entity</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stage\entity\FsLabelTTF.cc">
-      <Filter>src\stage\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\entity\FsPanel.cc">
       <Filter>src\stage\entity</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stage\entity\FsParticle2DEffect.cc">
@@ -1020,9 +1011,6 @@
     <ClCompile Include="..\..\src\mgr\FsProgramSourceMgr.cc">
       <Filter>src\mgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\stage\entity\FsIMaterial2DEntity.cc">
-      <Filter>src\stage\entity</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\math\FsBox3D.cc">
       <Filter>src\math</Filter>
     </ClCompile>
@@ -1052,6 +1040,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\FsEnum.cc">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\entity\FsEntity2D.cc">
+      <Filter>src\stage\entity</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\mgr\FsClassMgr.cc">
       <Filter>src\mgr</Filter>

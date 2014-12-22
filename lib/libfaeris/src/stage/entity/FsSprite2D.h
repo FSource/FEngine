@@ -2,8 +2,7 @@
 #define _FS_SPRITE_2D_H_
 
 #include "FsMacros.h"
-#include "stage/entity/FsEntity.h"
-#include "stage/Entity/FsIMaterial2DEntity.h"
+#include "stage/entity/FsEntity2D.h"
 #include "graphics/FsColor.h"
 #include "graphics/material/FsMaterial2D.h"
 
@@ -18,7 +17,7 @@ class AnimationCacheData;
 class Material2D;
 class Program;
 
-class Sprite2D :public Entity ,public IMaterial2DEntity
+class Sprite2D :public Entity2D
 {
 	public:
 

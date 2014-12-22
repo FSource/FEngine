@@ -2,8 +2,7 @@
 #define _FS_STATE_BUTTON_H_
 
 #include "FsMacros.h"
-#include "stage/entity/FsEntity.h"
-#include "stage/Entity/FsIMaterial2DEntity.h"
+#include "stage/entity/FsEntity2D.h"
 #include "support/util/FsArray.h"
 #include "graphics/FsTexture2D.h"
 #include "FsGlobal.h"
@@ -17,10 +16,13 @@ class Program;
 class Material2D;
 class Texture2D;
 
-class StateButton:public Entity,public IMaterial2DEntity
+class StateButton:public Entity2D
 {
+	public:
+		FS_CLASS_DECLARE(StateButton);
+
 	protected:
-		class StateAttr
+		class StateAttr 
 		{
 			public:
 				StateAttr()
@@ -71,27 +73,6 @@ class StateButton:public Entity,public IMaterial2DEntity
 		};
 
 	public:
-		enum 
-		{
-			FLAG_COLOR= 0x1UL,
-			FLAG_OPACITY= 0x2UL,
-			FLAG_TEXTURE= 0x4UL,
-			FLAG_SIZE=0x8UL,
-			FLAG_ANCHOR =0x10UL,
-			FLAG_ROTATE=0x20UL,
-			FLAG_SCALE=0x40UL,
-			FLAG_CHILDREN=0x80UL,
-			FLAG_ALL= 0xFFUL,
-		};
-	public:
-		/* Attribute Setting */
-		/* color */
-		void setColor(const Color4f& value);
-		Color4f getColor() const;
-
-		/* opacity */
-		void setOpacity(float value);
-		float getOpacity() const;
 
 		/* texture */
 		void setTexture(const char* filename);
@@ -101,11 +82,6 @@ class StateButton:public Entity,public IMaterial2DEntity
 		void setTexture(Texture2D* tex,float width,float height);
 		void setTexture(Texture2D* tex,const Vector2& size);
 		Texture2D* getTexture() const;
-
-		/* size */
-		void setSize(const Vector2& size);
-		void setSize(float x,float y);
-		Vector2 getSize()const ;
 
 
 		/* State Attribute Setting */
@@ -131,16 +107,12 @@ class StateButton:public Entity,public IMaterial2DEntity
 
 
 		/* size */
+		using Entity2D::setSize;
 		void setSize(int state,float x,float y);
 		void setSize(int state,const Vector2& size);
 		Vector2 getSize(int state) const;
 
-
-		/* anchor */
-		void setAnchor(float x,float y);
-		void setAnchor(const Vector2& size);
-		Vector2 getAnchor()const ;
-
+		using Entity2D::setAnchor;
 		void setAnchor(int state,float x,float y);
 		void setAnchor(int state,const Vector2& size);
 		Vector2 getAnchor(int state)const ;
@@ -148,12 +120,14 @@ class StateButton:public Entity,public IMaterial2DEntity
 
 
 		/* rotate */
+		using Entity2D::setRotate;
 		void setRotate(int state,float x,float y,float z);
 		void setRotate(int state,const Vector3& value);
 		Vector3 getRotate(int state)const ;
 
 
 		/* scale */
+		using Entity2D::setScale;
 		void setScale(int state,float x,float y,float z);
 		void setScale(int state,const Vector3& value);
 		Vector3 getScale(int state)const ;
@@ -165,12 +139,8 @@ class StateButton:public Entity,public IMaterial2DEntity
 	public:
 
 		/* inherit Entity */
-		virtual void update(float dt);
-		virtual void draw(RenderDevice* render,bool update_matrix);
-		virtual bool hit2D(float x,float y);
-
-		/* inherit FsObject */
-		virtual const char* className();
+		void update(float dt) FS_OVERRIDE;
+		void draw(RenderDevice* render,bool update_matrix) FS_OVERRIDE;
 
 
 	public:
@@ -182,8 +152,13 @@ class StateButton:public Entity,public IMaterial2DEntity
 		void removeTweenFlags(uint32_t flags);
 
 		void setTweenInfo(int from,int to,EaseExpr* easing,float time);
+		void setLinearTween(float time);
 
 		void setState(int st);
+
+		void stopTween();
+
+
 
 	protected:
 		StateButton(int state_nu);
@@ -218,13 +193,11 @@ class StateButton:public Entity,public IMaterial2DEntity
 
 		/* Button Attribute */
 		Texture2D* m_texture;
-		Vector2 m_size;    /* When Size < 0, It Will Used Texture2D Size */
-		Vector2 m_anchor;
-
 
 };
 
 
+void FsStateButton_SetState(StateButton* sb,int state,FsDict* dict);
 
 NS_FS_END 
 

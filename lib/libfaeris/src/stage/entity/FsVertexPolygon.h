@@ -6,8 +6,7 @@
 #include "FsMacros.h"
 #include "FsEnums.h"
 
-#include "stage/entity/FsEntity.h"
-#include "stage/entity/FsIMaterial2DEntity.h"
+#include "stage/entity/FsEntity2D.h"
 #include "graphics/FsRenderDevice.h"
 #include "graphics/FsColor.h"
 
@@ -20,8 +19,11 @@ NS_FS_BEGIN
 
 
 
-class VertexPolygon :public Entity,public IMaterial2DEntity
+class VertexPolygon :public Entity2D
 {
+	public:
+		FS_CLASS_DECLARE(VertexPolygon);
+
 	public:
 		static VertexPolygon* create();
 
@@ -53,7 +55,6 @@ class VertexPolygon :public Entity,public IMaterial2DEntity
 
 
 	public:
-		virtual const char* className();
 		virtual void draw(RenderDevice* r,bool update_matrix);
 
 	protected:

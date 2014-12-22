@@ -4,16 +4,19 @@
 
 NS_FS_BEGIN
 
+DynamicView* DynamicView::create()
+{
+	DynamicView* ret=new DynamicView(0,0);
+	return ret;
+}
+
+
 DynamicView* DynamicView::create(float width,float height)
 {
 	DynamicView* ret=new DynamicView(width,height);
 	return ret;
 }
 
-const char* DynamicView::className()
-{
-	return FS_DYNAMIC_VIEW_CLASS_NAME;
-}
 
 DynamicView::DynamicView(float width,float height)
 {
@@ -28,22 +31,12 @@ DynamicView::DynamicView(float width,float height)
 	m_marginBottom=0;
 
 	setSize(width,height);
-
 }
 
 
 DynamicView::~DynamicView()
 {
-
-	FsDict::Iterator* iter=m_views->takeIterator();
-	while(!iter->done())
-	{
-		ViewInfo* info=(ViewInfo*)iter->getValue();
-		info->m_widget->setParentWidget(NULL);
-		iter->next();
-	}
-	delete iter;
-
+	m_currentView=NULL;
 	FS_SAFE_DESTROY(m_views);
 }
 
@@ -119,10 +112,11 @@ float DynamicView::getMarginBottom() const
 
 void DynamicView::addView(const char* name,UiWidget* view)
 {
-	addView(name,view,ALIGN_CENTER,ALIGN_CENTER);
+	addView(name,view,E_AlignH::CENTER,E_AlignV::CENTER);
 }
 
-void DynamicView::addView(const char* name,UiWidget* view,int alignh,int alignv)
+
+void DynamicView::addView(const char* name,UiWidget* view,E_AlignH alignh,E_AlignV alignv)
 {
 	ViewInfo* info=ViewInfo::create(name,view,alignh,alignv);
 
@@ -189,7 +183,7 @@ void DynamicView::setCurrentView(UiWidget* view)
 	setCurrentViewInfo(info);
 }
 
-void DynamicView::setViewAlign(UiWidget* view,int alignh,int alignv)
+void DynamicView::setViewAlign(UiWidget* view,E_AlignH alignh,E_AlignV alignv)
 {
 	ViewInfo* info=getViewInfo(view);
 	assert(info);
@@ -204,7 +198,7 @@ void DynamicView::setViewAlign(UiWidget* view,int alignh,int alignv)
 
 }
 
-void DynamicView::setCurrentViewAlign(int alignh,int alignv)
+void DynamicView::setCurrentViewAlign(E_AlignH alignh,E_AlignV alignv)
 {
 	if(!m_currentView)
 	{
@@ -215,42 +209,89 @@ void DynamicView::setCurrentViewAlign(int alignh,int alignv)
 	adjustCurrentView();
 }
 
+void DynamicView::clearView()
+{
+	FsDict::Iterator* iter=m_views->takeIterator();
+	while(!iter->done())
+	{
+		ViewInfo* info=(ViewInfo*)iter->getValue();
+		UiWidget::removeChild(info->m_widget);
+		iter->next();
+	}
+	delete iter;
+	m_views->clear();
+	m_currentView=NULL;
 
-void DynamicView::sizeChanged(float w,float h)
+}
+
+
+
+
+
+void DynamicView::setSize(const Vector2& v)
+{
+	UiWidget::setSize(v);
+	adjustCurrentView();
+}
+
+void DynamicView::setAnchor(const Vector2& v)
+{
+	UiWidget::setAnchor(v);
+	adjustCurrentView();
+}
+
+void DynamicView::childSizeChanged(UiWidget* child)
 {
 	adjustCurrentView();
 }
 
-void DynamicView::anchorChanged(float x,float y)
+void DynamicView::childAnchorChanged(UiWidget* child)
 {
 	adjustCurrentView();
 }
 
-void DynamicView::childSizeChanged(UiWidget* child,float w,float h)
+void DynamicView::childTransformChanged(UiWidget* child)
 {
+	adjustCurrentView();
+}
 
-	adjustCurrentView();
-}
-void DynamicView::childAnchorChanged(UiWidget* child,float w,float h)
+
+void DynamicView::addChild(Entity* en) 
 {
-	adjustCurrentView();
+	FS_TRACE_WARN("Can't Add Child To DynamicView,Use addView");
 }
+
+
+void DynamicView::removeChild(Entity* en)
+{
+	UiWidget* ui_widget=dynamic_cast<UiWidget*>(en);
+	if(ui_widget)
+	{
+		removeView(ui_widget);
+	}
+	else 
+	{
+		FS_TRACE_WARN("Entity Is Not Manager By DynamicView");
+	}
+}
+
+
+
+void DynamicView::clearChild()
+{
+	clearView();
+}
+
+
 
 
 
 void DynamicView::currentViewChanged(UiWidget* old_view,UiWidget* new_view)
 {
+
 }
 
-void DynamicView::layout()
-{
-	adjustCurrentView();
-}
 
-void DynamicView::removeWidget(UiWidget* widget)
-{
-	removeView(widget);
-}
 
 
 DynamicView::ViewInfo* DynamicView::getViewInfo(const char* name)
@@ -298,18 +339,14 @@ void DynamicView::removeViewInfo(ViewInfo* info)
 	{
 		setCurrentViewInfo(NULL);
 	}
-
-	info->m_widget->setParentWidget(NULL);
-	remove(info->m_widget);
-
+	UiWidget::removeChild(info->m_widget);
 	m_views->remove(info->m_name);
-	
 }
+
 
 void DynamicView::addViewInfo(ViewInfo* info)
 {
-	info->m_widget->setParentWidget(this);
-	addChild(info->m_widget);
+	UiWidget::addChild(info->m_widget);
 
 	info->m_widget->setVisibles(false);
 	m_views->insert(info->m_name,info);
@@ -342,7 +379,7 @@ void DynamicView::setCurrentViewInfo(ViewInfo* info)
 
 	m_currentView=info;
 	adjustCurrentView();
-	currentViewChanged(old_view,new_view);
+	FS_OBJECT_LAMBDA_CALL(this,onCurrentViewChanged,currentViewChanged,old_view,new_view);
 }
 
 
@@ -359,19 +396,20 @@ void DynamicView::adjustCurrentView()
 
 	getBoundSize2D(&sminx,&smaxx,&sminy,&smaxy);
 	m_currentView->m_widget->getBoundSize2D(&cminx,&cmaxx,&cminy,&cmaxy);
+	m_currentView->m_widget->setSignalTSAEnabled(false);
 
 
 	switch(m_currentView->m_alignh)
 	{
-		case ALIGN_LEFT:
+		case E_AlignH::LEFT:
 			m_currentView->m_widget->setPositionX(sminx+m_marginLeft-cminx);
 			break;
 
-		case ALIGN_RIGHT:
+		case E_AlignH::RIGHT:
 			m_currentView->m_widget->setPositionX(smaxx-m_marginRight-cmaxx);
 			break;
 
-		case ALIGN_CENTER:
+		case E_AlignH::CENTER:
 			float smiddle=(sminx+m_marginLeft+smaxx-m_marginRight)/2.0f;
 			float cmiddle=(cminx+cmaxx)/2.0f;
 			m_currentView->m_widget->setPositionX(smiddle-cmiddle);
@@ -380,21 +418,22 @@ void DynamicView::adjustCurrentView()
 
 	switch(m_currentView->m_alignv)
 	{
-		case ALIGN_TOP:
+		case E_AlignV::TOP:
 			m_currentView->m_widget->setPositionY(smaxy-m_marginTop-cmaxy);
 			break;
 
-		case ALIGN_BOTTOM:
+		case E_AlignV::BOTTOM:
 			m_currentView->m_widget->setPositionY(sminy+m_marginBottom-cminy);
 			break;
 
-		case ALIGN_CENTER:
+		case E_AlignV::CENTER:
 			float smiddle=(sminy+m_marginBottom+smaxy-m_marginTop)/2.0f;
 			float cmiddle=(cminy+cmaxy)/2.0f;
 			m_currentView->m_widget->setPositionY(smiddle-cmiddle);
 			break;
 	}
 
+	m_currentView->m_widget->setSignalTSAEnabled(true);
 }
 
 

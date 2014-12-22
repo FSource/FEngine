@@ -4,8 +4,7 @@
 #include <vector>
 #include "FsMacros.h"
 #include "FsEnums.h"
-#include "stage/entity/FsEntity.h"
-#include "stage/entity/FsIMaterial2DEntity.h"
+#include "stage/entity/FsEntity2D.h"
 #include "math/FsRect2D.h"
 #include "graphics/FsColor.h"
 #include "math/FsVector2.h"
@@ -21,17 +20,10 @@ class Texture2D;
 class Material2D;
 class Program;
 
-class Quad2D:public Entity,public IMaterial2DEntity
+class Quad2D:public Entity2D
 {
 	public:
 		FS_CLASS_DECLARE(Quad2D);
-
-	public:
-		enum 
-		{
-			MODE_COLOR,
-			MODE_TEXTURE
-		};
 
 	public:
 		static Quad2D* create(const Color4f& c,float width,float height);
@@ -52,31 +44,17 @@ class Quad2D:public Entity,public IMaterial2DEntity
 		void setTexture(Texture2D* tex);
 		Texture2D* getTexture();
 
-
 		/* Rect2D */
 		void setRect2D(const Rect2D& rect);
 		Rect2D getRect2D();
 
 
-		void setWidth(float width);
-		void setHeight(float height);
-		float getWidth();
-		float getHeight();
-		void setSize(float width,float height);
-		void getSize(float* width,float* height);
-		void setSize(const Vector2& v);
-		Vector2 getSize();
+	public:
+		using Entity2D::setSize;
+		void setSize(const Vector2& v) FS_OVERRIDE;
 
-
-		void setAnchorX(float x);
-		void setAnchorY(float y);
-		float getAnchorX();
-		float getAnchorY();
-		void setAnchor(float x,float y);
-		void getAnchor(float* x,float* y);
-
-		void setAnchor(const Vector2& v);
-		Vector2 getAnchor();
+		using Entity2D::setAnchor;
+		void setAnchor(const Vector2& v) FS_OVERRIDE;
 
 
 
@@ -115,9 +93,7 @@ class Quad2D:public Entity,public IMaterial2DEntity
 
 	public:
 		/* inherit Entity */
-		virtual void draw(RenderDevice* rd,bool updateMatrix);
-		virtual bool hit2D(float x,float y);
-
+		void draw(RenderDevice* rd,bool updateMatrix) FS_OVERRIDE; 
 
 
 	protected:
@@ -139,8 +115,6 @@ class Quad2D:public Entity,public IMaterial2DEntity
 		int getRenderMode(){return m_renderMode;}
 
 	private:
-		float m_width,m_height;
-		float m_anchorX,m_anchorY;
 
 		Texture2D* m_texture;
 

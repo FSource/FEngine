@@ -7,18 +7,20 @@
 #include "graphics/shader/FsProgramSource.h"
 #include "graphics/shader/FsProgram.h"
 #include "graphics/shader/FsStreamMap.h"
+#include "FsClass.h"
 
 NS_FS_BEGIN
-const char* UiWidget::className()
-{
-	return FS_UI_WIDGET_CLASS_NAME;
-}
-
 
 UiWidget* UiWidget::create(float width,float height)
 {
 	UiWidget* ret=new UiWidget();
-	ret->setSize(width,height);
+	ret->setSize(Vector2(width,height));
+	return ret;
+}
+
+UiWidget* UiWidget::create()
+{
+	UiWidget* ret=new UiWidget();
 	return ret;
 }
 
@@ -30,68 +32,77 @@ UiWidget::UiWidget()
 	setDispatchTouchEnabled(true);
 
 	m_scissorEnabled=true;
-	m_size.set(0.0f,0.0f);
-	m_anchor.set(0.5f,0.5f);
 	m_parentWidget=NULL;
 
-	m_bgMaterial=Material2D::create();
-	FS_NO_REF_DESTROY(m_bgMaterial);
 	setBgTexture((Texture2D*)NULL);
 	m_bgEnabled=false;
+	m_listenChildTSAEnabled=true;
+	m_signalParentTSAEnabled=true;
 }
+
 
 UiWidget::~UiWidget()
 {
 	assert(m_parentWidget==NULL);
-	FS_SAFE_DESTROY(m_bgMaterial);
-}
-
-bool UiWidget::hit2D(float x,float y)
-{
-	Vector3 t=worldToLocal(Vector3(x,y,0));
-
-	float diffx=t.x+m_anchor.x*m_size.x;
-	float diffy=t.y+m_anchor.y*m_size.y;
-
-
-	if ((diffx>=0) && (diffx<m_size.x))
+	int child_nu=m_chirdren->size();
+	for(int i=0;i<child_nu;i++)
 	{
-		if((diffy>=0)&&(diffy<m_size.y))
+		UiWidget* ch=dynamic_cast<UiWidget*>( m_chirdren->get(i));
+		if(ch)
 		{
-			return true;
+			assert(ch->getParentWidget()==this);
+			ch->setParentWidget(NULL);
 		}
 	}
-
-	return false;
 }
 
-void UiWidget::setSize(float width,float height)
+
+
+void UiWidget::setSize(const Vector2& v)
 {
-	m_size.x=width;
-	m_size.y=height;
+	Entity2D::setSize(v);
 
-	sizeChanged(width,height);
-
-	if(m_parentWidget)
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
 	{
-		m_parentWidget->childSizeChanged(this,width,height);
+		m_parentWidget->childSizeChanged(this);
+	}
+}
+void UiWidget::setAnchor(const Vector2& v)
+{
+	Entity2D::setAnchor(v);
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
+	{
+		m_parentWidget->childAnchorChanged(this);
 	}
 }
 
-Vector2 UiWidget::getSize()
+void UiWidget::setPosition(const Vector3f&  v)
 {
-	return m_size;
+	Entity2D::setPosition(v);
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
+	{
+		m_parentWidget->childTransformChanged(this);
+	}
 }
 
-float UiWidget::getWidth()
+void UiWidget::setScale(const Vector3f& v) 
 {
-	return m_size.x;
+	Entity2D::setScale(v);
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
+	{
+		m_parentWidget->childTransformChanged(this);
+	}
 }
 
-float UiWidget::getHeight()
+void UiWidget::setRotate(const Vector3f& v)
 {
-	return m_size.y;
+	Entity2D::setScale(v);
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
+	{
+		m_parentWidget->childTransformChanged(this);
+	}
 }
+
 
 
 void UiWidget::setScissorEnabled(bool enabled)
@@ -104,43 +115,21 @@ bool UiWidget::getScissorEnabled()
 	return m_scissorEnabled;
 }
 
-void UiWidget::setAnchor(float x,float y)
-{
-	m_anchor.x=x;
-	m_anchor.y=y;
-
-	anchorChanged(x,y);
-	if(m_parentWidget)
-	{
-		m_parentWidget->childAnchorChanged(this,x,y);
-	}
-}
-
-Vector2 UiWidget::getAnchor()
-{
-	return m_anchor;
-}
-
-
-float UiWidget::getAnchorX()
-{
-	return m_anchor.x;
-}
-
-float UiWidget::getAnchorY()
-{
-	return m_anchor.y;
-}
-
 
 void UiWidget::setBgColor(const Color4f& c)
 {
-	m_bgMaterial->setColor(c);
+	setColor(c);
 }
+
+Color4f UiWidget::getBgColor()
+{
+	return getColor();
+}
+
 
 void UiWidget::setBgTexture(Texture2D* tex)
 {
-	m_bgMaterial->setColorMap(tex);
+	m_material->setColorMap(tex);
 	if(tex)
 	{
 		static ProgramSource* S_texProgramSource=NULL;
@@ -148,7 +137,7 @@ void UiWidget::setBgTexture(Texture2D* tex)
 		{
 			S_texProgramSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F);
 		}
-		m_bgMaterial->setProgramSource(S_texProgramSource);
+		m_material->setProgramSource(S_texProgramSource);
 	}
 	else 
 	{
@@ -157,7 +146,7 @@ void UiWidget::setBgTexture(Texture2D* tex)
 		{
 			S_colorProgramSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
 		}
-		m_bgMaterial->setProgramSource(S_colorProgramSource);
+		m_material->setProgramSource(S_colorProgramSource);
 	}
 }
 
@@ -180,26 +169,24 @@ void UiWidget::setBgEnabled(bool value)
 
 
 
-void UiWidget::sizeChanged(float x,float y)
-{
-}
-
-void UiWidget::anchorChanged(float x,float y)
-{
-}
 
 
 
-
-void UiWidget::childSizeChanged(UiWidget* widget,float w,float h)
+void UiWidget::childSizeChanged(UiWidget* widget)
 {
 
 }
 
-void UiWidget::childAnchorChanged(UiWidget* widget,float x,float y)
+void UiWidget::childAnchorChanged(UiWidget* widget)
 {
 
 }
+
+void UiWidget::childTransformChanged(UiWidget* widget)
+{
+
+}
+
 
 void UiWidget::setParentWidget(UiWidget* widget)
 {
@@ -211,6 +198,7 @@ UiWidget* UiWidget::getParentWidget()
 {
 	return m_parentWidget;
 }
+
 
 void UiWidget::draws(RenderDevice* r,bool updateMatrix)
 {
@@ -422,7 +410,7 @@ void UiWidget::draw(RenderDevice* rd,bool updateMatrix)
 		return;
 	}
 
-	Program* prog=m_bgMaterial->getProgram(NULL);
+	Program* prog=m_material->getProgram(NULL);
 	if(!prog)
 	{
 		return;
@@ -436,7 +424,7 @@ void UiWidget::draw(RenderDevice* rd,bool updateMatrix)
 
 	rd->setWorldMatrix(&m_worldMatrix);
 	rd->setProgram(prog);
-	m_bgMaterial->configRenderDevice(rd);
+	m_material->configRenderDevice(rd);
 
 	rd->disableAllAttrArray();
 
@@ -477,31 +465,79 @@ void UiWidget::draw(RenderDevice* rd,bool updateMatrix)
 
 }
 
-void UiWidget::removeWidget(UiWidget* widget)
+
+
+void UiWidget::addChild(Entity* en)
 {
-	FS_TRACE_WARN("Can't Call UiWidget::removeWidget");
+	Entity2D::addChild(en);
+	UiWidget* ui_child=dynamic_cast<UiWidget*>(en);
+	if(ui_child)
+	{
+		ui_child->setParentWidget(this);
+	}
 }
 
-
-void UiWidget::layout()
+void UiWidget::removeChild(Entity* en)
 {
+	Entity2D::removeChild(en);
+
+	UiWidget* ui_child=dynamic_cast<UiWidget*>(en);
+	if(ui_child)
+	{
+		if(ui_child->m_parentWidget==this)
+		{
+			ui_child->setParentWidget(NULL);
+		}
+	}
 }
-
-
 
 void UiWidget::detach()
 {
 	if(m_parentWidget)
 	{
-		m_parentWidget->removeWidget(this);
+		m_parentWidget->removeChild(this);
 	}
-	else
+	else 
 	{
-		Entity::detach();
+		Entity2D::detach();
 	}
 }
 
 
+
+
+/*** User For UiWidget FsClass Attr */
+static UiWidget* UiWidget_NewInstace(FsDict* attr)
+{
+	UiWidget* ret=UiWidget::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+	return ret;
+}
+
+
+FS_CLASS_ATTR_SET_GET_FUNCTION(UiWidget,setBgColor,getBgColor,Color4f);
+FS_CLASS_ATTR_SET_CHARS_FUNCTION(UiWidget,setBgTexture);
+FS_CLASS_ATTR_SET_GET_FUNCTION(UiWidget,setScissorEnabled,getScissorEnabled,bool);
+
+
+static FsClass::FsAttributeDeclare S_UiWidget_Main_Attr[]=
+{
+	FS_CLASS_ATTR_DECLARE("bgColor",FsType::FT_COLOR_4,NULL,UiWidget_setBgColor,UiWidget_getBgColor),
+	FS_CLASS_ATTR_DECLARE("bgTextureUrl",FsType::FT_CHARS,NULL,UiWidget_setBgTexture,0),
+	FS_CLASS_ATTR_DECLARE("scissorEnabled",FsType::FT_B_1,NULL,UiWidget_setScissorEnabled,UiWidget_getScissorEnabled),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+FS_CLASS_IMPLEMENT_WITH_BASE(UiWidget,Entity2D,UiWidget_NewInstace,S_UiWidget_Main_Attr);
+
+
+
+
+
 NS_FS_END
+
 
 

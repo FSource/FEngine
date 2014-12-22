@@ -168,14 +168,12 @@
     <ClInclude Include="..\..\src\stage\action\FsScaleAction.h" />
     <ClInclude Include="..\..\src\stage\action\FsSeqAction.h" />
     <ClInclude Include="..\..\src\stage\entity\FsEntity.h" />
-    <ClInclude Include="..\..\src\stage\entity\FsIMaterial2DEntity.h" />
+    <ClInclude Include="..\..\src\stage\entity\FsEntity2D.h" />
     <ClInclude Include="..\..\src\stage\entity\FsLabelBitmap.h" />
     <ClInclude Include="..\..\src\stage\entity\FsLabelTTF.h" />
-    <ClInclude Include="..\..\src\stage\entity\FsPanel.h" />
     <ClInclude Include="..\..\src\stage\entity\FsParticle2DEffect.h" />
     <ClInclude Include="..\..\src\stage\entity\FsParticle2DEmitter.h" />
     <ClInclude Include="..\..\src\stage\entity\FsQuad2D.h" />
-    <ClInclude Include="..\..\src\stage\entity\FsRichLabelTTF.h" />
     <ClInclude Include="..\..\src\stage\entity\FsSprite2D.h" />
     <ClInclude Include="..\..\src\stage\entity\FsSprite2DData.h" />
     <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h" />
@@ -323,10 +321,9 @@
     <ClCompile Include="..\..\src\stage\action\FsScaleAction.cc" />
     <ClCompile Include="..\..\src\stage\action\FsSeqAction.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsEntity.cc" />
-    <ClCompile Include="..\..\src\stage\entity\FsIMaterial2DEntity.cc" />
+    <ClCompile Include="..\..\src\stage\entity\FsEntity2D.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsLabelBitmap.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsLabelTTF.cc" />
-    <ClCompile Include="..\..\src\stage\entity\FsPanel.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsParticle2DEffect.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsParticle2DEmitter.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsQuad2D.cc" />

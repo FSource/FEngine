@@ -152,6 +152,7 @@ bool ToggleButton::hit2D(float x,float y)
 	{
 		return false;
 	}
+
 	return StateButton::hit2D(x,y);
 }
 
@@ -172,7 +173,7 @@ void ToggleButton::initWithColorStyle(Texture2D* tex,const Color4f& on,const Col
 {
 	setTexture(tex);
 
-	setTweenFlags(FLAG_COLOR);
+	setTweenFlags(E_ButtonTweenFlag::COLOR);
 	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
 
 	setColor(STATE_ON,on);
@@ -201,7 +202,7 @@ void ToggleButton::initWithTextureStyle(const char* fileon,const char* fileoff)
 void ToggleButton::initWithTextureStyle(Texture2D* on,Texture2D* off)
 {
 	setTexture(on);
-	setTweenFlags(FLAG_TEXTURE|FLAG_COLOR);
+	setTweenFlags(E_ButtonTweenFlag::TEXTURE|E_ButtonTweenFlag::COLOR);
 	setTweenInfo(STATE_ALL,STATE_ALL,LinearEase::create(),0.1f);
 
 	setTexture(STATE_ON,on);

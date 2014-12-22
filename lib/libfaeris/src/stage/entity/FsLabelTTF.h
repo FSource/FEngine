@@ -4,11 +4,10 @@
 #include <string>
 
 #include "FsMacros.h"
-#include "stage/entity/FsEntity.h"
+#include "stage/entity/FsEntity2D.h"
 #include "graphics/FsColor.h"
 #include "graphics/FsTypoPage.h"
 #include "graphics/FsFontTTF.h"
-#include "stage/entity/FsIMaterial2DEntity.h"
 #include "graphics/shader/FsProgram.h"
 
 NS_FS_BEGIN
@@ -20,7 +19,7 @@ class Program;
 
 class FontTTF;
 
-class LabelTTF:public Entity,public IMaterial2DEntity
+class LabelTTF:public Entity2D
 {
 	public:
 		FS_CLASS_DECLARE(LabelTTF);
@@ -64,21 +63,16 @@ class LabelTTF:public Entity,public IMaterial2DEntity
 		void setLineGap(float line_gap);
 		float getLineGap();
 
-		void setAnchor(const Vector2& v );
-		void setAnchor(float x,float y);
-		void setAnchorX(float v);
-		void setAnchorY(float v);
-
-		Vector2 getAnchor();
-		void getAnchor(float* x,float* y);
-		float getAnchorX();
-		float getAnchorY();
 
 
 	public:
 		/* inherit Entity */
-		virtual void draw(RenderDevice* render,bool updateMatrix);
-		virtual bool hit2D(float x,float y);
+		void draw(RenderDevice* render,bool updateMatrix) FS_OVERRIDE;
+		bool hit2D(float x,float y) FS_OVERRIDE;
+
+		using Entity2D::setAnchor;
+		void setAnchor(const Vector2& v) FS_OVERRIDE;
+
 
 
 	protected:
@@ -108,7 +102,6 @@ class LabelTTF:public Entity,public IMaterial2DEntity
 		
 		float m_boundWidth,m_boundHeight;
 
-		float m_anchorX,m_anchorY;
 
 		float m_lineGap;
 

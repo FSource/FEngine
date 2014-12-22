@@ -12,7 +12,7 @@
 
 NS_FS_BEGIN
 class FsArray;
-class Entity;
+class Entity2D;
 
 class Layer2D:public Layer
 {
@@ -41,8 +41,8 @@ public:
 
 	public:
 		/* entity */
-		virtual void add(Entity* entity);
-		virtual void remove(Entity* entity);
+		virtual void add(Entity2D* entity);
+		virtual void remove(Entity2D* entity);
 
 		void clearEntity();
 		int getEntityNu();
@@ -74,11 +74,11 @@ public:
 		virtual bool touchesEnd(TouchEvent* event);
 
 	protected:
-		void getEntityInView(std::vector<Entity*>* entitys);
-		void sortEntity(std::vector<Entity*>* entitys);
+		void getEntityInView(std::vector<Entity2D*>* entitys);
+		void sortEntity(std::vector<Entity2D*>* entitys);
 		void updateAllWorldMatrix();
 		void updateEntity(float dt);
-		void getTouchEnabledEntity(std::vector<Entity*>*);
+		void getTouchEnabledEntity(std::vector<Entity2D*>*);
 
 		Layer2D();
 		virtual ~Layer2D();
@@ -90,7 +90,7 @@ public:
 		bool m_eliminate;
 
 		FsSlowDict* m_entity;  /* direct add to layer */
-		Entity* m_touchFocus;
+		Entity2D* m_touchFocus;
 		uint32_t m_addOlder;
 
 };

@@ -7,14 +7,13 @@
 #include <vector>
 
 #include "FsMacros.h"
-#include "stage/entity/FsEntity.h"
+#include "stage/entity/FsEntity2D.h"
 #include "graphics/FsColor.h"
 #include "math/FsVertices.h"
 #include "math/FsFace3.h"
 
 #include "graphics/material/FsMaterial2D.h"
 #include "graphics/shader/FsProgram.h"
-#include "stage/entity/FsIMaterial2DEntity.h"
 
 
 NS_FS_BEGIN
@@ -23,7 +22,7 @@ class Texture2D;
 class Material2D;
 class Program;
 
-class LabelBitmap:public Entity ,public IMaterial2DEntity
+class LabelBitmap:public Entity2D 
 {
 	public:
 		enum{ 

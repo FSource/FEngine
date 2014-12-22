@@ -97,31 +97,20 @@ void Entity::init()
 	FS_SAFE_ADD_REF(m_transform);
 
 	m_worldMatrixDirty=1;
-	m_hasBoundSphere=0;
-	m_hasBoundBox=0;
 	m_visible=1;
 	m_visibles=1;
 	m_zorderDirty=1;
-	m_touchEnabled=0;
-	m_touchesEnabled=0;
-	m_dispatchTouchEnabled=0;
-	m_dispatchTouchesEnabled=0;
 
 	m_zorlder=0.0f;
 
 	m_parent=NULL;
 	m_layer=NULL;
-	m_touchFocus=NULL;
 
 	m_chirdren=FsSlowArray::create();
 	FS_NO_REF_DESTROY(m_chirdren);
 
-
 	onUpdate=nullptr;
 	onDraw=nullptr;
-	onTouchBegin=nullptr;
-	onTouchMove=nullptr;
-	onTouchEnd=nullptr;
 }
 
 void Entity::destruct()
@@ -135,7 +124,6 @@ void Entity::destruct()
 		entity->setParent(NULL);
 	}
 	FS_DESTROY(m_chirdren);
-	m_touchFocus=NULL;
 	delete m_transform;
 
 }
@@ -246,10 +234,6 @@ ITransform* Entity::getTransform()
 
 
 
-bool Entity::hit2D(float x,float y)
-{
-	return false;
-}
 
 void Entity::addChild(Entity* n)
 {
@@ -262,7 +246,7 @@ void Entity::addChild(Entity* n)
 
 	if(n->m_parent)  
 	{
-		n->m_parent->remove(n);
+		n->m_parent->removeChild(n);
 	}
 	else
 	{
@@ -297,7 +281,8 @@ FsArray* Entity::takeAllChild(bool visible)
 	getAllChild(ret,visible);
 	return ret;
 }
-int Entity::childNu()
+
+int Entity::getChildNu()
 {
 	return m_chirdren->size();
 }
@@ -342,7 +327,7 @@ void Entity::setChildVisible(bool visiable, bool rec)
 
 
 
-void Entity::remove(Entity* n)
+void Entity::removeChild(Entity* n)
 {
 	if(n->m_parent!=this)
 	{
@@ -351,17 +336,12 @@ void Entity::remove(Entity* n)
 	}
 	n->setLayer(NULL);
 	n->setParent(NULL);
-	if( m_touchFocus== n)
-	{
-		m_touchFocus=NULL;
-	}
 	m_chirdren->remove(n);
 
 }
 
 void Entity::clearChild()
 {
-	m_touchFocus=NULL;
 	int child_nu=m_chirdren->size();
 	for(int i=0;i<child_nu;i++)
 	{
@@ -456,7 +436,7 @@ void Entity::detach()
 {
 	if(m_parent)
 	{
-		m_parent->remove(this);
+		m_parent->removeChild(this);
 	}
 	else if(m_layer)
 	{
@@ -488,108 +468,34 @@ Matrix4* Entity::getLocalMatrix()
 }
 
 
-
-/* touch */
-void Entity::setTouchEnabled(bool enabled)
+void Entity::setRotate(const Vector3& r)
 {
-	m_touchEnabled=enabled;
-}
-bool Entity::getTouchEnabled()
-{
-	return m_touchEnabled;
+	m_transform->setRotate(r);
+	m_worldMatrixDirty=1;
 }
 
-bool Entity::touchBegin(float x,float y)
+Vector3 Entity::getRotate()
 {
-	m_touchFocus=NULL;
-
-	if(m_dispatchTouchEnabled)
-	{
-		if(m_zorderDirty)
-		{
-			sortChildren();
-			m_zorderDirty=false;
-		}
-		m_chirdren->lock();
-		int child_nu=m_chirdren->size();
-		for(int i=child_nu-1;i>=0;i--)
-		{
-			Entity* e=(Entity*)m_chirdren->get(i);
-			if(e->getVisible()&&e->getTouchEnabled()&&e->getParent()==this&&e->hit2D(x,y))
-			{
-				/* NOTE: entity will detach when called touchBegin */
-				bool ret=FS_OBJECT_LAMBDA_CALL(e,onTouchBegin,touchBegin,x,y);
-				if(ret&&e->getParent()==this)
-				{
-					m_touchFocus=e;
-					break;
-				}
-			}
-		}
-		m_chirdren->unlock();
-		m_chirdren->flush();
-	}
-	return m_touchFocus!=NULL;
-}
-bool Entity::touchMove(float x,float y)
-{
-	if(m_touchFocus)
-	{
-		return FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchMove,touchMove,x,y);
-	}
-
-	return false;
+	return m_transform->getRotate();
 }
 
-bool Entity::touchEnd(float x,float y)
+void Entity::setScale(const Vector3& scale)
 {
-	if(m_touchFocus)
-	{
-		bool ret=FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchEnd,touchEnd,x,y);
-		m_touchFocus=NULL;
-		return ret;
-	}
-	return false;
+	m_transform->setScale(scale);
+	m_worldMatrixDirty=1;
 }
 
 
-
-
-
-
-void Entity::setTouchesEnabled(bool enabled)
+void Entity::setPosition(const Vector3& pos)
 {
-	m_touchesEnabled=enabled;
-}
-bool Entity::getTouchesEnabled()
-{
-	return m_touchesEnabled;
+	m_transform->setPosition(pos);
+	m_worldMatrixDirty=1;
 }
 
-
-void Entity::setDispatchTouchEnabled(bool enabled)
+Vector3 Entity::getPosition()
 {
-	m_dispatchTouchEnabled=enabled;
+	return m_transform->getPosition();
 }
-
-bool Entity::getDispatchTouchEnabled()
-{
-	return m_dispatchTouchEnabled;
-}
-
-void Entity::setDispatchTouchesEnabled(bool enabled)
-{
-	m_dispatchTouchesEnabled=enabled;
-}
-
-bool Entity::getDispatchTouchesEnabled()
-{
-	return m_dispatchTouchesEnabled;
-}
-
-
-
-
 
 /***  Use For Entity FsClass Attribute  **/
 static Entity* Entity_NewInstance(FsDict* attr)
@@ -660,10 +566,6 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setRotateZ,getRotateZ,float);
 FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setVisible,getVisible,bool);
 FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setVisibles,getVisibles,bool);
 FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setZorder,getZorder,float);
-FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setTouchEnabled,getTouchEnabled,bool);
-FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setTouchesEnabled,getTouchesEnabled,bool);
-FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setDispatchTouchEnabled,getDispatchTouchEnabled,bool);
-FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setDispatchTouchesEnabled,getDispatchTouchesEnabled,bool);
 
 
 static FsClass::FsAttributeDeclare S_Entity_Position_SubAttr[]={
@@ -694,17 +596,12 @@ static FsClass::FsAttributeDeclare S_Entity_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE("rotate",FsType::FT_F_3,S_Entity_Rotation_SubAttr,Entity_setRotate,Entity_getRotate),
 	FS_CLASS_ATTR_DECLARE("visible",FsType::FT_B_1,NULL,Entity_setVisible,Entity_getVisible),
 	FS_CLASS_ATTR_DECLARE("visibles",FsType::FT_B_1,NULL,Entity_setVisibles,Entity_getVisibles),
-	FS_CLASS_ATTR_DECLARE("touchEnabled",FsType::FT_B_1,NULL,Entity_setTouchEnabled,Entity_getTouchEnabled),
-	FS_CLASS_ATTR_DECLARE("touchesEnabled",FsType::FT_B_1,NULL,Entity_setTouchesEnabled,Entity_getTouchesEnabled),
-	FS_CLASS_ATTR_DECLARE("touchDispatchEnabled",FsType::FT_B_1,NULL,Entity_setDispatchTouchEnabled,Entity_getDispatchTouchEnabled),
-	FS_CLASS_ATTR_DECLARE("touchesDispatchEnabled",FsType::FT_B_1,NULL,Entity_setDispatchTouchesEnabled,Entity_getDispatchTouchesEnabled),
 
 	FS_CLASS_ATTR_DECLARE("children",FsType::FT_ARRAY,NULL,Entity_SetChildren,0),
 	FS_CLASS_ATTR_DECLARE("zorder",FsType::FT_I_1,NULL,Entity_setZorder,Entity_getZorder),
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
 
 };
-
 
 FS_CLASS_IMPLEMENT_WITH_BASE(Entity,FsObject,Entity_NewInstance,S_Entity_Main_Attr);
 

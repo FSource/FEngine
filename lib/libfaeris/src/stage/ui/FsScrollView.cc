@@ -1,11 +1,19 @@
-
+#include "FsClass.h"
 #include "FsScrollView.h"
+#include "FsGlobal.h"
 
 NS_FS_BEGIN
 
-const char* ScrollView::className()
+ScrollView* ScrollView::create(float width,float height)
 {
-	return "ScrollView";
+	ScrollView* ret=new ScrollView(width,height);
+	return ret; 
+}
+
+ScrollView* ScrollView::create()
+{
+	ScrollView* ret=new ScrollView();
+	return ret; 
 }
 
 
@@ -14,25 +22,24 @@ ScrollView::ScrollView(float width,float height)
 {
 	m_contentWidget=NULL;
 
-	setSize(width,height);
+	setSize(Vector2f(width,height));
 	setScissorEnabled(true);
-
 }
+
+ScrollView::ScrollView()
+{
+	m_contentWidget=NULL;
+}
+
+
+
 
 ScrollView::~ScrollView()
 {
-	if(m_contentWidget)
-	{
-		m_contentWidget->setParentWidget(NULL);
-	}
+
 }
 
 
-ScrollView* ScrollView::create(float width,float height)
-{
-	ScrollView* ret=new ScrollView(width,height);
-	return ret; 
-}
 
 
 void ScrollView::setContentWidget(UiWidget* widget)
@@ -51,8 +58,7 @@ void ScrollView::setContentWidget(UiWidget* widget)
 
 	if(m_contentWidget)
 	{
-		m_contentWidget->setParentWidget(NULL);
-		remove(m_contentWidget);
+		ScrollWidget::removeChild(m_contentWidget);
 		m_contentWidget=NULL;
 		m_contentHeight=0;
 		m_contentWidth=0;
@@ -63,9 +69,8 @@ void ScrollView::setContentWidget(UiWidget* widget)
 	{
 		FS_SAFE_ADD_REF(widget);
 		m_contentWidget=widget;
-		addChild(widget);
+		ScrollWidget::addChild(widget);
 
-		widget->setParentWidget(this);
 		float minx,maxx,miny,maxy;
 		widget->getRSBoundSize2D(&minx,&maxx,&miny,&maxy);
 
@@ -73,9 +78,7 @@ void ScrollView::setContentWidget(UiWidget* widget)
 		m_contentHeight=maxy-miny;
 	}
 
-
 	adjustScrollArea();
-
 	setScrollPercent(0,0);
 }
 
@@ -99,19 +102,20 @@ void ScrollView::scrollChange(float x,float y)
 
 	float middlex=(minx+maxx)/2;
 	float middley=(miny+maxy)/2;
+	m_contentWidget->setSignalTSAEnabled(false);
 
 
 	switch(m_alignv)
 	{
-		case ALIGN_TOP:
+		case E_AlignV::TOP:
 			m_contentWidget->setPositionY(y-maxy);
 			break;
 
-		case ALIGN_CENTER:
+		case E_AlignV::CENTER:
 			m_contentWidget->setPositionY(y-middley);
 			break;
 
-		case ALIGN_BOTTOM:
+		case E_AlignV::BOTTOM:
 			m_contentWidget->setPositionY(y-miny);
 			break;
 		default:
@@ -120,25 +124,95 @@ void ScrollView::scrollChange(float x,float y)
 
 	switch(m_alignh)
 	{
-		case ALIGN_LEFT:
+		case E_AlignH::LEFT:
 			m_contentWidget->setPositionX(x-minx);
 			break;
 
-		case ALIGN_CENTER:
+		case E_AlignH::CENTER:
 			m_contentWidget->setPositionX(x-middlex);
 			break;
 
-		case ALIGN_RIGHT:
+		case E_AlignH::RIGHT:
 			m_contentWidget->setPositionX(x-maxx);
 			break;
 
 		default:
 			FS_TRACE_WARN("Unkown Align For Horizontal");
 	}
+	m_contentWidget->setSignalTSAEnabled(true);
 
 	//FS_TRACE_WARN("%f,%f",x,y);
 
 }
+
+void ScrollView::addChild(Entity* en)
+{
+	FS_TRACE_WARN("Can't Add Child to ScrollView,Use Set ContentWidget");
+}
+
+
+void ScrollView::clearChild()
+{
+	setContentWidget(NULL);
+}
+
+void ScrollView::removeChild(Entity* en)
+{
+	if(en==m_contentWidget)
+	{
+		setContentWidget(NULL);
+	}
+	else 
+	{
+		FS_TRACE_WARN("Entity Is Not Manager By ScrollView");
+	}
+}
+
+
+
+
+/** Used For ScrollView ScrollView FsClass */
+
+ScrollView* ScrollView_NewInstance(FsDict* attr)
+{
+	ScrollView* ret=ScrollView::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+	return ret;
+}
+
+static void ScrollView_setContentWidget(ScrollView* sl,FsDict* dict)
+{
+	FsObject* ob=Global::classMgr()->newInstance(dict);
+	if(ob)
+	{
+		UiWidget* ui_widget=dynamic_cast<UiWidget*>(ob);
+		if(ui_widget)
+		{
+			sl->setContentWidget(ui_widget);
+		}
+		else 
+		{
+			FS_TRACE_WARN("Need UiWidget For ScrollView ContentWidget");
+			ob->decRef();
+		}
+	}
+}
+
+
+static FsClass::FsAttributeDeclare S_ScrollView_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("contentWidget",FsType::FT_DICT,NULL,ScrollView_setContentWidget,0),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+FS_CLASS_IMPLEMENT_WITH_BASE(ScrollView,ScrollWidget,ScrollView_NewInstance,S_ScrollView_Main_Attr);
+
+
+
+
+
 
 
 

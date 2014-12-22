@@ -64,7 +64,22 @@ Texture2D* TextureMgr::loadTexture(const char* name)
 
 }
 
+Texture2D* TextureMgr::loadTexture(FsDict* dict)
+{
+	FsString* url=dict->lookupString("url");
+	if(!url)
+	{
+		FS_TRACE_WARN("No Url In Dict");
+		return NULL;
+	}
 
+	Texture2D* tex=loadTexture(url->cstr());
+	if(tex)
+	{
+		tex->setAttributes(dict);
+	}
+	return tex;
+}
 
 
 NS_FS_END  

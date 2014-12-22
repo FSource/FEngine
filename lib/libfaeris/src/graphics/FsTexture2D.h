@@ -19,6 +19,10 @@
 NS_FS_BEGIN 
 class Texture2D:public Resource
 {
+
+	public:
+		FS_CLASS_DECLARE(Texture2D);
+
 	public:
 		static Texture2D* create(
 				Image2D* image,
@@ -66,10 +70,6 @@ class Texture2D:public Resource
 		void markInvaild();
 		void setResourceUrl(const char* name);
 
-	public:
-		virtual const char* className();
-	
-
 	protected:
 		Texture2D();
 		virtual ~Texture2D();
@@ -103,7 +103,6 @@ class Texture2D:public Resource
 		PlatformTexture m_platformTexture;
 
 		std::string m_resourceUrl;
-
 };
 
 NS_FS_END 

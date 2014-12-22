@@ -4,8 +4,7 @@
 #include <vector>
 #include "FsMacros.h"
 #include "FsObject.h"
-#include "stage/entity/FsEntity.h"
-#include "stage/entity/FsIMaterial2DEntity.h"
+#include "stage/entity/FsEntity2D.h"
 #include "math/FsVertices.h"
 
 NS_FS_BEGIN
@@ -59,7 +58,7 @@ class Particle
 };
 
 
-class Particle2DEffect:public Entity ,public IMaterial2DEntity
+class Particle2DEffect:public Entity2D
 {
 	public:
 

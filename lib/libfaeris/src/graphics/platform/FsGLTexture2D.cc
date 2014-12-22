@@ -394,13 +394,5 @@ Texture2D::Texture2D()
 }
 
 
-const char* Texture2D::className()
-{
-	return FS_TEXTURE2D_CLASS_NAME;
-}
-
-
-
-
 NS_FS_END
 

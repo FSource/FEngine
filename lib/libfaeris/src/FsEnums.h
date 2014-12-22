@@ -401,6 +401,8 @@ enum class E_DrawMode
 	TRIANGLE_FAN,
 	TRIANGLE_INDEX,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(DrawMode);
+
 
 enum class E_AnimPlayMode 
 {
@@ -467,6 +469,8 @@ enum class E_TextureFilter
 	LINEAR,
 	NEAREST,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(TextureFilter);
+
 
 enum class E_TextureWrap 
 {
@@ -475,6 +479,8 @@ enum class E_TextureWrap
 	CLAMP_TO_EDGE,
 	CLAMP_TO_BORDER,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(TextureWrap);
+
 
 
 enum class E_FrontFace 
@@ -518,6 +524,46 @@ FS_ENUM_TO_STR_MAP_DECLARE(MaterialType);
 
 
 
+
+
+enum E_ButtonTweenFlag 
+{
+	COLOR= 0x1UL,
+	OPACITY= 0x2UL,
+	TEXTURE= 0x4UL,
+	SIZE=0x8UL,
+	ANCHOR =0x10UL,
+	ROTATE=0x20UL,
+	SCALE=0x40UL,
+	CHILDREN=0x80UL,
+	ALL= 0xFFUL,
+};
+FS_ENUM_TO_STR_MAP_DECLARE(ButtonTweenFlag);
+
+
+
+
+enum class E_ScrollDirection 
+{
+	VERTICAL,
+	HORIZONTAL,
+	ALL
+		
+};
+
+enum class E_AlignH
+{
+	LEFT,
+	CENTER,
+	RIGHT,
+};
+
+enum class E_AlignV 
+{
+	TOP,
+	CENTER,
+	BOTTOM
+};
 
 
 
