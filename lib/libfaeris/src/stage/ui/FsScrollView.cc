@@ -102,6 +102,7 @@ void ScrollView::scrollChange(float x,float y)
 
 	float middlex=(minx+maxx)/2;
 	float middley=(miny+maxy)/2;
+	m_contentWidget->setSignalTSAEnabled(false);
 
 
 	switch(m_alignv)
@@ -138,6 +139,7 @@ void ScrollView::scrollChange(float x,float y)
 		default:
 			FS_TRACE_WARN("Unkown Align For Horizontal");
 	}
+	m_contentWidget->setSignalTSAEnabled(true);
 
 	//FS_TRACE_WARN("%f,%f",x,y);
 

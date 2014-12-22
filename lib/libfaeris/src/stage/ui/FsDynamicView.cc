@@ -396,6 +396,7 @@ void DynamicView::adjustCurrentView()
 
 	getBoundSize2D(&sminx,&smaxx,&sminy,&smaxy);
 	m_currentView->m_widget->getBoundSize2D(&cminx,&cmaxx,&cminy,&cmaxy);
+	m_currentView->m_widget->setSignalTSAEnabled(false);
 
 
 	switch(m_currentView->m_alignh)
@@ -432,6 +433,7 @@ void DynamicView::adjustCurrentView()
 			break;
 	}
 
+	m_currentView->m_widget->setSignalTSAEnabled(true);
 }
 
 
