@@ -56,13 +56,31 @@ class UiWidget:public Entity2D
 		void setScissorEnabled(bool clip);
 		bool getScissorEnabled();
 
+		void setListenChildTSAEnabled(bool value) 
+		{ 
+			m_listenChildTSAEnabled =value;
+		}
 
+		bool getListenChildTSAEnabled()
+		{
+			return m_listenChildTSAEnabled;
+		}
+
+		void setSignalTSAEnabled(bool value)
+		{
+			m_signalParentTSAEnabled=value;
+		}
+		bool getSignalTSAEnabled()
+		{
+			return m_signalParentTSAEnabled;
+		}
 
 		void setBgColor(const Color4f& c);
 		Color4f getBgColor();
 		void setBgTexture(Texture2D* tex);
 		void setBgTexture(const char* filename);
 		void setBgEnabled(bool value);
+
 
 
 	public:
@@ -83,6 +101,8 @@ class UiWidget:public Entity2D
 
 		bool m_scissorEnabled;
 		bool m_bgEnabled;
+		bool m_listenChildTSAEnabled;
+		bool m_signalParentTSAEnabled;
 };
 
 

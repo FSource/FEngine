@@ -739,6 +739,7 @@ void ScrollWidget::adjustScrollArea()
 					m_scrollMinX=m_scrollMaxX;
 				}
 			}
+			break;
 
 		case E_AlignH::CENTER:
 			{
@@ -752,6 +753,7 @@ void ScrollWidget::adjustScrollArea()
 				m_scrollMinX=middle-diff;
 				m_scrollMaxX=middle+diff;
 			}
+			break;
 
 		case E_AlignH::RIGHT:
 			{
@@ -764,6 +766,7 @@ void ScrollWidget::adjustScrollArea()
 
 				}
 			}
+			break;
 	}
 
 	switch(m_alignv)
@@ -777,6 +780,7 @@ void ScrollWidget::adjustScrollArea()
 					m_scrollMaxY=m_scrollMinY;
 				}
 			}
+			break;
 
 		case E_AlignV::CENTER:
 			{
@@ -789,6 +793,7 @@ void ScrollWidget::adjustScrollArea()
 				m_scrollMinY=middle-diff;
 				m_scrollMaxY=middle+diff;
 			}
+			break;
 
 		case E_AlignV::BOTTOM:
 			{
@@ -799,6 +804,7 @@ void ScrollWidget::adjustScrollArea()
 					m_scrollMinY=m_scrollMaxY;
 				}
 			}
+			break;
 	}
 
 

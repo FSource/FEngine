@@ -158,7 +158,7 @@ class ListViewContentPanel:public Entity2D
 			item->m_alignV=alignv;
 
 			float left,right,top,bottom;
-
+			item->m_widget->setSignalTSAEnabled(false);
 			item->m_widget->getRSBoundSize2D(&left,&right,&top,&bottom);
 			switch(m_mode)
 			{
@@ -210,6 +210,8 @@ class ListViewContentPanel:public Entity2D
 				default:
 					FS_TRACE_WARN("Unkown Mode For ListView");
 			}
+
+			item->m_widget->setSignalTSAEnabled(true);
 		}
 
 		E_AlignH getListItemAlignH(int index)
@@ -314,6 +316,7 @@ class ListViewContentPanel:public Entity2D
 			for(int i=0;i<size;i++)
 			{
 				UiWidget* widget=((ListItemInfo*)m_listItem->get(i))->m_widget;
+				widget->setSignalTSAEnabled(false);
 				float left,right,top,bottom;
 				widget->getRSBoundSize2D(&left,&right,&bottom,&top);
 				widget->setPositionY(start_y-top);
@@ -331,6 +334,7 @@ class ListViewContentPanel:public Entity2D
 				{
 					width=right-left;
 				}
+				widget->setSignalTSAEnabled(true);
 			}
 
 			for(int i=0;i<size;i++)
@@ -339,6 +343,7 @@ class ListViewContentPanel:public Entity2D
 				ListItemInfo* item=(ListItemInfo*)m_listItem->get(i);
 				float left,right,top,bottom;
 				item->m_widget->getRSBoundSize2D(&left,&right,&bottom,&top);
+				item->m_widget->setSignalTSAEnabled(false);
 				switch(item->m_alignH)
 				{
 					case E_AlignH::LEFT:
@@ -356,6 +361,7 @@ class ListViewContentPanel:public Entity2D
 					default:
 						FS_TRACE_WARN("Unkown ALign For List Item");
 				}
+				item->m_widget->setSignalTSAEnabled(true);
 			}
 			m_contentWidth=width;
 			m_contentHeight=height;
@@ -371,6 +377,7 @@ class ListViewContentPanel:public Entity2D
 			for(int i=0;i<size;i++)
 			{
 				UiWidget* widget=((ListItemInfo*)m_listItem->get(i))->m_widget;
+				widget->setSignalTSAEnabled(false);
 				float left,right,top,bottom;
 				widget->getRSBoundSize2D(&left,&right,&bottom,&top);
 				widget->setPositionX(start_x-left);
@@ -389,6 +396,7 @@ class ListViewContentPanel:public Entity2D
 				{
 					height=top-bottom;
 				}
+				widget->setSignalTSAEnabled(true);
 			}
 
 			for(int i=0;i<size;i++)
@@ -396,6 +404,7 @@ class ListViewContentPanel:public Entity2D
 				ListItemInfo* item=(ListItemInfo*) m_listItem->get(i);
 				float left,right,top,bottom;
 				item->m_widget->getRSBoundSize2D(&left,&right,&bottom,&top);
+				item->m_widget->setSignalTSAEnabled(false);
 				switch(item->m_alignV)
 				{
 					case E_AlignV::TOP:
@@ -411,6 +420,7 @@ class ListViewContentPanel:public Entity2D
 					default:
 						FS_TRACE_WARN("Unkown Align For List Item");
 				}
+				item->m_widget->setSignalTSAEnabled(true);
 			}
 			m_contentWidth=width;
 			m_contentHeight=height;
@@ -534,7 +544,6 @@ void ListView::addListItem(int index,UiWidget* widget,E_AlignH alignh,E_AlignV a
 	float x=getScrollPercentX();
 	float y=getScrollPercentY();
 
-
 	if(widget->getParentWidget()==this)
 	{
 		FS_TRACE_WARN("widget Alread Add to ListView");
@@ -556,9 +565,6 @@ void ListView::addListItem(int index,UiWidget* widget,E_AlignH alignh,E_AlignV a
 		adjustContentSize();
 		setScrollPercent(x,y);
 	}
-
-
-
 }
 
 
@@ -710,7 +716,7 @@ void ListView::setSize(const Vector2& v)
 	float x=getScrollPercentX();
 	float y=getScrollPercentY();
 
-	ScrollWidget::setSize(v.x,v.y);
+	ScrollWidget::setSize(v);
 
 	m_contentPanel->setSize(v.x,v.y);
 

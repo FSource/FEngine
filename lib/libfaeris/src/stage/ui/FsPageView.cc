@@ -159,6 +159,7 @@ class PageViewContentPanel: public Entity2D
 		void setPageItemAlign(E_ScrollDirection mode,int index,E_AlignH alignh,E_AlignV alignv)
 		{
 			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
+			item->m_widget->setSignalTSAEnabled(false);
 			float start_x,start_y;
 			if(mode==E_ScrollDirection::HORIZONTAL)
 			{
@@ -167,7 +168,7 @@ class PageViewContentPanel: public Entity2D
 			}
 			else 
 			{
-				start_x=0;
+				start_x=getPositionX();
 				start_y=-m_height*index;
 			
 			}
@@ -178,32 +179,34 @@ class PageViewContentPanel: public Entity2D
 			{
 			
 				case E_AlignH::LEFT:
-					item->m_widget->setPositionX(start_x-sminx);
+					item->m_widget->setPosition(start_x-sminx,-smaxy);
 					break;
 				
 				case E_AlignH::CENTER:
-					item->m_widget->setPositionX(start_x+m_width/2-(sminx+smaxx)/2);
+					//FS_TRACE_WARN("page pos(%f,%f)",start_x+m_width/2-(sminx+smaxx)/2,-smaxy);
+					item->m_widget->setPosition(start_x+m_width/2-(sminx+smaxx)/2,-smaxy);
 					break;
 
 				case E_AlignH::RIGHT:
-					item->m_widget->setPositionX(start_y+m_width-smaxx);
+					item->m_widget->setPosition(start_y+m_width-smaxx,-smaxy);
 					break;
 			}
 
 			switch(alignv)
 			{
 				case E_AlignV::TOP:
-					item->m_widget->setPositionY(start_y-smaxy);
+					item->m_widget->setPosition(-sminx,start_y-smaxy);
 					break;
 
 				case E_AlignV::CENTER:
-					item->m_widget->setPositionY(start_y-m_height/2-(smaxy+sminy)/2);
+					item->m_widget->setPosition(-sminx,start_y-m_height/2-(smaxy+sminy)/2);
 					break;
 
 				case E_AlignV::BOTTOM:
-					item->m_widget->setPositionY(start_y-m_height-sminy);
+					item->m_widget->setPosition(-sminx,start_y-m_height-sminy);
 					break;
 			}
+			item->m_widget->setSignalTSAEnabled(true);
 		}
 
 

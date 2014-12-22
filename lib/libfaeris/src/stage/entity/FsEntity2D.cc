@@ -23,6 +23,11 @@ Entity2D::Entity2D()
 	m_dispatchTouchEnabled=0;
 	m_dispatchTouchesEnabled=0;
 
+	m_size.set(0,0);
+	m_anchor.set(0.5,0.5);
+
+
+
 	onTouchBegin=nullptr;
 	onTouchMove=nullptr;
 	onTouchEnd=nullptr;
@@ -430,6 +435,19 @@ float Entity2D::getAnchorY()
 
 bool Entity2D::hit2D(float x,float y)
 {
+	updateWorldMatrix();
+	Vector3 v=worldToLocal(Vector3(x,y,0));
+
+	float diffx=v.x+m_anchor.x*m_size.x;
+	float diffy=v.y+m_anchor.y*m_size.y;
+
+	if(diffx>=0 && diffx <m_size.x)
+	{
+		if(diffy>=0 && diffy <m_size.y)
+		{
+			return true;
+		}
+	}
 	return false;
 }
 

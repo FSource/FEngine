@@ -36,6 +36,8 @@ UiWidget::UiWidget()
 
 	setBgTexture((Texture2D*)NULL);
 	m_bgEnabled=false;
+	m_listenChildTSAEnabled=true;
+	m_signalParentTSAEnabled=true;
 }
 
 
@@ -60,7 +62,7 @@ void UiWidget::setSize(const Vector2& v)
 {
 	Entity2D::setSize(v);
 
-	if(m_parentWidget)
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
 	{
 		m_parentWidget->childSizeChanged(this);
 	}
@@ -68,7 +70,7 @@ void UiWidget::setSize(const Vector2& v)
 void UiWidget::setAnchor(const Vector2& v)
 {
 	Entity2D::setAnchor(v);
-	if(m_parentWidget)
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
 	{
 		m_parentWidget->childAnchorChanged(this);
 	}
@@ -77,7 +79,7 @@ void UiWidget::setAnchor(const Vector2& v)
 void UiWidget::setPosition(const Vector3f&  v)
 {
 	Entity2D::setPosition(v);
-	if(m_parentWidget)
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
 	{
 		m_parentWidget->childTransformChanged(this);
 	}
@@ -86,7 +88,7 @@ void UiWidget::setPosition(const Vector3f&  v)
 void UiWidget::setScale(const Vector3f& v) 
 {
 	Entity2D::setScale(v);
-	if(m_parentWidget)
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
 	{
 		m_parentWidget->childTransformChanged(this);
 	}
@@ -95,7 +97,7 @@ void UiWidget::setScale(const Vector3f& v)
 void UiWidget::setRotate(const Vector3f& v)
 {
 	Entity2D::setScale(v);
-	if(m_parentWidget)
+	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
 	{
 		m_parentWidget->childTransformChanged(this);
 	}
