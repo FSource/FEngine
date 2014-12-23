@@ -1,4 +1,5 @@
 #include <algorithm>
+#include "FsClass.h"
 #include "stage/layer/FsLayer2D.h"
 #include "support/util/FsArray.h"
 #include "support/util/FsSlowDict.h"
@@ -29,10 +30,6 @@ static bool FsFuncEntity_SortY(Entity2D* left,Entity2D* right)
 	return left->getPositionInWorld().y>right->getPositionInWorld().y;
 }
 
-const char* Layer2D::className()
-{
-	return FS_LAYER_2D_CLASS_NAME;
-}
 
 Layer2D* Layer2D::create()
 {
@@ -418,6 +415,64 @@ void Layer2D::getTouchEnabledEntity(std::vector<Entity2D*>* e)
 	delete iter;
 }
 
+
+
+/*** Used For Layer2D FsClass Attribute */
+
+void Layer2D_setViewArea(Layer2D* l,FsDict* dict)
+{
+	Rect2D view_area=l->getViewArea();
+
+	if(dict->lookupString("x"))
+	{
+		view_area.x=dict->lookupString("x")->toFloatValue();
+	}
+
+	if(dict->lookupString("y"))
+	{
+		view_area.y=dict->lookupString("y")->toFloatValue();
+	}
+
+	if(dict->lookupString("w"))
+	{
+		view_area.width=dict->lookupString("w")->toFloatValue();
+	}
+
+	if(dict->lookupString("h"))
+	{
+		view_area.height=dict->lookupString("h")->toFloatValue();
+	}
+
+	l->setViewArea(view_area);
+}
+
+
+static FsClass::FsAttributeDeclare S_Layer2D_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("viewArea",FsType::FT_DICT,NULL,Layer2D_setViewArea,0),
+
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+
+} ;
+
+FS_CLASS_IMPLEMENT_WITH_BASE(Layer2D,Layer,0,S_Layer2D_Main_Attr);
+
+
+
 NS_FS_END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

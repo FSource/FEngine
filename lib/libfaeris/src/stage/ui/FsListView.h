@@ -65,6 +65,11 @@ class ListView:public ScrollWidget
 	protected:
 
 		ListView(E_ScrollDirection mode,float width,float height);
+		ListView(float width,float height);
+
+		void init(E_ScrollDirection mode,float width,float height);
+
+
 		virtual ~ListView();
 
 		void childSizeChanged(UiWidget* widget) FS_OVERRIDE;

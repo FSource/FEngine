@@ -16,13 +16,16 @@ class Entity2D;
 
 class Layer2D:public Layer
 {
-public:
-	enum 
-	{
-		SORT_NONE,
-		SORT_ORDER_Z,
-		SORT_Y,
-	};
+	public:
+		FS_CLASS_DECLARE(Layer2D);
+
+	public:
+		enum 
+		{
+			SORT_NONE,
+			SORT_ORDER_Z,
+			SORT_Y,
+		};
 	public:
 		static Layer2D* create();
 
@@ -49,29 +52,26 @@ public:
 
 
 	public:
-		/* inherit  Layer */
-		virtual void update(float dt);
-		virtual void draw(RenderDevice *r);
-		virtual Matrix4 getProjectMatrix();
-		virtual Vector3 toLayerCoord(const Vector3& v);
+		void update(float dt) FS_OVERRIDE;
+		void draw(RenderDevice *r) FS_OVERRIDE;
+		Matrix4 getProjectMatrix() FS_OVERRIDE;
+		Vector3 toLayerCoord(const Vector3& v) FS_OVERRIDE;
 
 		void toLayerCoord(float* x,float* y);
 
-		/* inherit FsObject */
-		virtual const char* className();
 
 
 		/* touch event */
-		virtual bool touchBegin(float x,float y);
-		virtual bool touchMove(float x,float y);
-		virtual bool touchEnd(float x,float y);
+		bool touchBegin(float x,float y) FS_OVERRIDE;
+		bool touchMove(float x,float y) FS_OVERRIDE;
+		bool touchEnd(float x,float y) FS_OVERRIDE;
 
 		/* touches event */
-		virtual bool touchesBegin(TouchEvent* event);
-		virtual bool touchesPointerDown(TouchEvent* event);
-		virtual bool touchesMove(TouchEvent* event);
-		virtual bool touchesPointerUp(TouchEvent* event);
-		virtual bool touchesEnd(TouchEvent* event);
+		bool touchesBegin(TouchEvent* event) FS_OVERRIDE;
+		bool touchesPointerDown(TouchEvent* event) FS_OVERRIDE;
+		bool touchesMove(TouchEvent* event) FS_OVERRIDE;
+		bool touchesPointerUp(TouchEvent* event) FS_OVERRIDE;
+		bool touchesEnd(TouchEvent* event) FS_OVERRIDE;
 
 	protected:
 		void getEntityInView(std::vector<Entity2D*>* entitys);

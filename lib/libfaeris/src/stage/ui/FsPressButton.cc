@@ -325,7 +325,7 @@ static FsClass::FsAttributeDeclare S_PressButton_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
 };
 
-FS_CLASS_IMPLEMENT_WITH_BASE(PressButton,StateButton,0,S_PressButton_Main_Attr);
+FS_CLASS_IMPLEMENT_WITH_BASE(PressButton,StateButton,PressButton_NewInstance,S_PressButton_Main_Attr);
 
 
 

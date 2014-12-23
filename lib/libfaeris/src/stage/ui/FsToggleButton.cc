@@ -1,13 +1,10 @@
+#include "FsClass.h"
 #include "FsToggleButton.h"
 
 #include "math/easing/FsLinearEase.h"
 
 NS_FS_BEGIN
 
-const char* ToggleButton::className()
-{
-	return FS_TOGGLE_BUTTON_CLASS_NAME;
-}
 
 
 ToggleButton* ToggleButton::create()
@@ -209,7 +206,6 @@ void ToggleButton::initWithTextureStyle(Texture2D* on,Texture2D* off)
 	setTexture(STATE_OFF,off);
 	setTexture(STATE_DISABLE,on);
 	setColor(STATE_DISABLE,Color4f(0.2f,0.2f,0.2f));
-
 }
 
 
@@ -218,15 +214,45 @@ void ToggleButton::toggleChanged(bool value)
 }
 
 
+/*** Used For ToggleButton FsClass Attribute */
+
+static ToggleButton* ToggleButton_NewInstance(FsDict* attr)
+{
+	ToggleButton* ret=ToggleButton::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+	return ret;
+}
 
 
+static void ToggleButton_setOnAttribute(ToggleButton* pb,FsDict* attr)
+{
+	FsStateButton_SetState(pb,ToggleButton::STATE_ON,attr);
+}
 
+static void ToggleButton_setOffAttribute(ToggleButton* pb,FsDict* attr)
+{
+	FsStateButton_SetState(pb,ToggleButton::STATE_OFF,attr);
+}
+
+static void ToggleButton_setDisableAttribute(ToggleButton* pb,FsDict* attr)
+{
+	FsStateButton_SetState(pb,ToggleButton::STATE_DISABLE,attr);
+}
+
+
+static FsClass::FsAttributeDeclare S_ToggleButton_Main_Attr[]={
+
+	FS_CLASS_ATTR_DECLARE("onState",FsType::FT_DICT,NULL,ToggleButton_setOnAttribute,0),
+	FS_CLASS_ATTR_DECLARE("offState",FsType::FT_DICT,NULL,ToggleButton_setOffAttribute,0),
+	FS_CLASS_ATTR_DECLARE("disableState",FsType::FT_DICT,NULL,ToggleButton_setDisableAttribute,0),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0),
+};
+
+FS_CLASS_IMPLEMENT_WITH_BASE(ToggleButton,StateButton,ToggleButton_NewInstance,S_ToggleButton_Main_Attr);
 
 NS_FS_END 
-
-
-
-
-
 
 

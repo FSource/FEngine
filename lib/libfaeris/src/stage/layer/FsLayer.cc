@@ -1,4 +1,6 @@
 #include <algorithm>
+
+#include "FsClass.h"
 #include "stage/layer/FsLayer.h"
 #include "stage/entity/FsEntity.h"
 #include "stage/FsScene.h"
@@ -6,11 +8,6 @@
 #include "support/util/FsSlowDict.h"
 
 NS_FS_BEGIN
-
-const char* Layer::className()
-{
-	return FS_LAYER_CLASS_NAME;
-}
 
 
 Layer::Layer()
@@ -34,8 +31,6 @@ void Layer::setScene(Scene* scene)
 {
 	m_scene=scene;
 }
-
-
 
 
 /* scissor */ 
@@ -126,11 +121,25 @@ Vector3 Layer::toLayerCoord(const Vector3& v) { return v; }
 
 
 
+/*** Used For Layer  FsClass Attribute */
+
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer,setVisible,getVisible,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer,setTouchEnabled,getTouchEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer,setTouchesEnabled,getTouchesEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer,setDispatchTouchEnabled,getDispatchTouchEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer,setDispatchTouchesEnabled,getDispatchTouchesEnabled,bool);
 
 
+static FsClass::FsAttributeDeclare S_Layer_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("visible",FsType::FT_B_1,NULL,Layer_setVisible,Layer_getVisible),
+	FS_CLASS_ATTR_DECLARE("touchEnabled",FsType::FT_B_1,NULL,Layer_setTouchEnabled,Layer_getTouchEnabled),
+	FS_CLASS_ATTR_DECLARE("touchesEnabled",FsType::FT_B_1,NULL,Layer_setTouchesEnabled,Layer_getTouchesEnabled),
+	FS_CLASS_ATTR_DECLARE("dispatchTouchEnabled",FsType::FT_B_1,NULL,Layer_setDispatchTouchEnabled,Layer_getDispatchTouchEnabled),
+	FS_CLASS_ATTR_DECLARE("dispatchTouchesEnabled",FsType::FT_B_1,NULL,Layer_setDispatchTouchesEnabled,Layer_getDispatchTouchesEnabled),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
 
-
-
+FS_CLASS_IMPLEMENT_WITH_BASE(Layer,FsObject,0,S_Layer_Main_Attr);
 
 
 

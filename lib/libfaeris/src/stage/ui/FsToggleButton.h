@@ -10,6 +10,9 @@ NS_FS_BEGIN
 class ToggleButton:public StateButton 
 {
 	public:
+		FS_CLASS_DECLARE(ToggleButton);
+
+	public:
 		enum 
 		{
 			STATE_ALL=-1,
@@ -39,9 +42,6 @@ class ToggleButton:public StateButton
 		bool touchEnd(float x,float y) FS_OVERRIDE;
 		bool hit2D(float x,float y) FS_OVERRIDE;
 
-
-		/* inherit FsObject */
-		virtual const char* className();
 
 	public:
 		virtual void toggleChanged(bool value);

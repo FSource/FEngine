@@ -449,8 +449,26 @@ ListView* ListView::create()
 }
 
 
+ListView::ListView(float width,float height)
+{
+	init(E_ScrollDirection::VERTICAL,width,height);
+}
 
 ListView::ListView(E_ScrollDirection mode,float w,float h)
+{
+	init(mode,w,h);
+	
+}
+
+
+ListView::~ListView()
+{
+	clearListItem();
+	ScrollWidget::removeChild(m_contentPanel);
+	FS_SAFE_DESTROY(m_contentPanel);
+}
+
+void ListView::init(E_ScrollDirection mode,float w,float h)
 {
 	m_contentPanel=ListViewContentPanel::create(w,h);
 	FS_NO_REF_DESTROY(m_contentPanel);
@@ -469,16 +487,6 @@ ListView::ListView(E_ScrollDirection mode,float w,float h)
 	setSize(w,h);
 	setScissorEnabled(true);
 }
-
-
-ListView::~ListView()
-{
-	clearListItem();
-	ScrollWidget::removeChild(m_contentPanel);
-	FS_SAFE_DESTROY(m_contentPanel);
-}
-
-
 
 
 

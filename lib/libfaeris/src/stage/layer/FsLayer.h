@@ -19,6 +19,9 @@ class Entity;
 class Layer:public ActionTarget
 {
 	public:
+		FS_CLASS_DECLARE(Layer);
+
+	public:
 		/* visible */
 		bool getVisible(){return m_visible;}
 		void setVisible(bool visible){m_visible=visible;}
@@ -26,6 +29,7 @@ class Layer:public ActionTarget
 		/* touch enable */
 		bool touchEnabled(){return m_touchEnabled;}
 		void setTouchEnabled(bool enable){m_touchEnabled=enable;}
+		bool getTouchEnabled(){return m_touchEnabled;}
 		void setTouchesEnabled(bool enable){m_touchesEnabled=enable;}
 		bool getTouchesEnabled(){return m_touchesEnabled;}
 
@@ -75,9 +79,6 @@ class Layer:public ActionTarget
 		virtual void remove(Entity* entity);
 		virtual void clearEntity();
 
-
-		/* inherit FsObject */
-		virtual const char* className();
 	public:
 		std::function<void(Layer*,float)> onUpdate;
 		std::function<void(Layer*,RenderDevice*)> onDraw;
