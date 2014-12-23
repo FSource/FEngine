@@ -70,6 +70,7 @@ class ListView:public ScrollWidget
 
 	protected:
 
+		ListView(float width,float height);
 		ListView(int mode,float width,float height);
 		virtual ~ListView();
 

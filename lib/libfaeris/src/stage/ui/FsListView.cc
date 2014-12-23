@@ -435,6 +435,27 @@ ListView* ListView::create(float width,float height)
 }
 
 
+ListView::ListView(float w,float h)
+{
+	m_contentPanel=ListViewContentPanel::create(w,h);
+	FS_NO_REF_DESTROY(m_contentPanel);
+
+	addChild(m_contentPanel);
+
+	int mode =SCROLL_VERTICAL;
+	setMode(mode);
+	if(mode==SCROLL_VERTICAL)
+	{
+		setContentAlign(ScrollWidget::ALIGN_CENTER,ScrollWidget::ALIGN_TOP);
+	}
+	else 
+	{
+		setContentAlign(ScrollWidget::ALIGN_LEFT,ScrollWidget::ALIGN_CENTER);
+	}
+
+	setSize(w,h);
+	setScissorEnabled(true);
+}
 ListView::ListView(int mode,float w,float h)
 {
 	m_contentPanel=ListViewContentPanel::create(w,h);
