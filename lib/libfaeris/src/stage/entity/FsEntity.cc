@@ -3,6 +3,7 @@
 #include "graphics/FsRenderDevice.h"
 #include "stage/layer/FsLayer.h"
 #include "stage/entity/transform/FsEulerTransform.h"
+#include "FsGlobal.h"
 
 NS_FS_BEGIN
 
@@ -601,6 +602,40 @@ static Entity* Entity_NewInstance(FsDict* attr)
 	return ret;
 }
 
+static void Entity_SetChildren(Entity* en,FsArray* attr)
+{
+	en->clearChild();
+	int child_nu=attr->size();
+
+	for(int i=0;i<child_nu;i++)
+	{
+		FsDict* dict=attr->getDict(i);
+		if(dict)
+		{
+			FsObject* ob=Global::classMgr()->newInstance(dict);
+			if(ob)
+			{
+				Entity* child=dynamic_cast<Entity*>(ob);
+				if(child)
+				{
+					en->addChild(child);
+				}
+				else 
+				{
+					FS_TRACE_WARN("Not SubClass Of Entity,Ingore Item(%d)",i);
+					ob->destroy();
+				}
+			}
+		}
+		else 
+		{
+			FS_TRACE_WARN("Not Dict,Ingore Item(%d)",i);
+		}
+	}
+}
+
+
+
 
 
 /* attr position */
@@ -664,7 +699,9 @@ static FsClass::FsAttributeDeclare S_Entity_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE("touchDispatchEnabled",FsType::FT_B_1,NULL,Entity_setDispatchTouchEnabled,Entity_getDispatchTouchEnabled),
 	FS_CLASS_ATTR_DECLARE("touchesDispatchEnabled",FsType::FT_B_1,NULL,Entity_setDispatchTouchesEnabled,Entity_getDispatchTouchesEnabled),
 
+	FS_CLASS_ATTR_DECLARE("children",FsType::FT_ARRAY,NULL,Entity_SetChildren,0),
 	FS_CLASS_ATTR_DECLARE("zorder",FsType::FT_I_1,NULL,Entity_setZorder,Entity_getZorder),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
 
 };
 

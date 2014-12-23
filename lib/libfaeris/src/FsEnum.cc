@@ -37,6 +37,7 @@ NS_FS_BEGIN
 
 
 
+/* E_MaterialType */
 static EnumStrPair<E_MaterialType>  S_E_MaterialTypeStrMap[] = 
 {
 	EnumStrPair<E_MaterialType>(E_MaterialType::UNKOWN,"unkown"),
@@ -52,6 +53,48 @@ static EnumStrPair<E_MaterialType>  S_E_MaterialTypeStrMap[] =
 
 FS_ENUM_TO_STR_MAP_IMPLEMENT(MaterialType,S_E_MaterialTypeStrMap) 
 
+/* E_TextAlign */
+static EnumStrPair<E_TextAlign> S_E_TextAlignStrMap[]=
+{
+	EnumStrPair<E_TextAlign>(E_TextAlign::LEFT,"left"),
+	EnumStrPair<E_TextAlign>(E_TextAlign::CENTER,"center"),
+	EnumStrPair<E_TextAlign>(E_TextAlign::RIGHT,"right"),
+	EnumStrPair<E_TextAlign>(E_TextAlign::RIGHT,NULL)
+};
+
+FS_ENUM_TO_STR_MAP_IMPLEMENT(TextAlign,S_E_TextAlignStrMap)
+
+/* E_BlendEquation */
+static EnumStrPair<E_BlendEquation> S_E_BlendEquation[]=
+{
+	EnumStrPair<E_BlendEquation>(E_BlendEquation::NONE,"none"),
+	EnumStrPair<E_BlendEquation>(E_BlendEquation::ADD,"add"),
+	EnumStrPair<E_BlendEquation>(E_BlendEquation::SUBTRACT,"subtract"),
+	EnumStrPair<E_BlendEquation>(E_BlendEquation::REVERSE_SUBTRACT,"reverseSubtract"),
+	EnumStrPair<E_BlendEquation>(E_BlendEquation::REVERSE_SUBTRACT,NULL),
+};
+
+FS_ENUM_TO_STR_MAP_IMPLEMENT(BlendEquation,S_E_BlendEquation);
+
+
+
+/* E_BlendFactor */
+static EnumStrPair<E_BlendFactor> S_E_BlendFactor[] =
+{
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::ZERO,"zero"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::ONE,"one"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::SRC_COLOR,"srcColor"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::ONE_MINUS_SRC_COLOR,"oneMinusSrcColor"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::DST_COLOR,"dstColor"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::ONE_MINUS_DST_COLOR,"oneMinusDstColor"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::SRC_ALPHA,"srcAlpha"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::ONE_MINUS_SRC_ALPHA,"oneMinusSrcAlpha"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::DST_ALPHA,"dstAlpha"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::ONE_MINUS_DST_ALPHA,"oneMinusDstAlpha"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::SRC_ALPHA_SATURATE,"srcAlphaSaturate"),
+	EnumStrPair<E_BlendFactor>(E_BlendFactor::SRC_ALPHA_SATURATE,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(BlendFactor,S_E_BlendFactor);
 
 
 

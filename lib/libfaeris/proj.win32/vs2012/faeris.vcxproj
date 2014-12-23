@@ -147,6 +147,7 @@
     <ClInclude Include="..\..\src\math\FsVertices.h" />
     <ClInclude Include="..\..\src\media\FsAudioEngine.h" />
     <ClInclude Include="..\..\src\media\FsAudioPlayer.h" />
+    <ClInclude Include="..\..\src\mgr\FsClassMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsFelisScriptMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsFontTTFMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsProgramSourceMgr.h" />
@@ -248,6 +249,7 @@
     <ClInclude Include="..\..\src\sys\network\FsHttpEngine.h" />
     <ClInclude Include="..\..\src\sys\network\FsHttpReponse.h" />
     <ClInclude Include="..\..\src\sys\network\FsHttpRequest.h" />
+    <ClInclude Include="..\..\src\sys\thread\FsConditionVariable.h" />
     <ClInclude Include="..\..\src\sys\thread\FsMutex.h" />
     <ClInclude Include="..\..\src\sys\thread\FsSemaphore.h" />
     <ClInclude Include="..\..\src\sys\thread\FsThread.h" />
@@ -300,6 +302,7 @@
     <ClCompile Include="..\..\src\math\FsRect2D.cc" />
     <ClCompile Include="..\..\src\media\FsAudioEngine.cc" />
     <ClCompile Include="..\..\src\media\FsAudioPlayer.cc" />
+    <ClCompile Include="..\..\src\mgr\FsClassMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsFelisScriptMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsFontTTFMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsProgramSourceMgr.cc" />
@@ -403,6 +406,7 @@
     <ClCompile Include="..\..\src\sys\network\FsHttpEngine.cc" />
     <ClCompile Include="..\..\src\sys\network\FsHttpReponse.cc" />
     <ClCompile Include="..\..\src\sys\network\FsHttpRequest.cc" />
+    <ClCompile Include="..\..\src\sys\thread\FsConditionVariable.cc" />
     <ClCompile Include="..\..\src\sys\thread\FsMutex.cc" />
     <ClCompile Include="..\..\src\sys\thread\FsSemaphore.cc" />
     <ClCompile Include="..\..\src\sys\thread\FsThread.cc" />

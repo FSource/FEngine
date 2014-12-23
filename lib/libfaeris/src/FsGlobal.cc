@@ -32,6 +32,8 @@ FS_GLOBAL_CC(Material3DMgr,material3DMgr,setMaterial3DMgr);
 
 FS_GLOBAL_CC(FelisScriptMgr,felisScriptMgr,setFelisScriptMgr);
 
+FS_GLOBAL_CC(ClassMgr,classMgr,setClassMgr);
+
 NS_FS_END
 
 

@@ -93,6 +93,12 @@ int FsFaeris_ModuleInit()
 	Global::setFelisScriptMgr(flis_mgr);
 
 
+	ClassMgr* cls_mgr=ClassMgr::create();
+	FS_NO_REF_DESTROY(cls_mgr);
+	Global::setClassMgr(cls_mgr);
+	cls_mgr->preRegisterClass();
+
+
 
 
 
@@ -138,8 +144,8 @@ int FsFaeris_ModuleExit()
 	ProgramSourceMgr* prog_s_mgr=Global::programSourceMgr();
 
 	FelisScriptMgr* felis_mgr=Global::felisScriptMgr();
-
-
+	ClassMgr* cls_mgr=Global::classMgr();
+	cls_mgr->preRegisterClass();
 
 
 	/* remove scheduler target */
@@ -175,6 +181,8 @@ int FsFaeris_ModuleExit()
 	FS_DESTROY(sprite_mgr);
 	FS_DESTROY(prog_s_mgr);
 	FS_DESTROY(felis_mgr);
+	FS_DESTROY(cls_mgr);
+
 
 
 
@@ -195,6 +203,7 @@ int FsFaeris_ModuleExit()
 	Global::dropSprite2DDataMgr();
 	Global::dropProgramSourceMgr();
 	Global::dropFelisScriptMgr();
+	Global::dropClassMgr();
 	return 0;
 }
 

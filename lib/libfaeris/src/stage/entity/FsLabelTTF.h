@@ -23,6 +23,9 @@ class FontTTF;
 class LabelTTF:public Entity,public IMaterial2DEntity
 {
 	public:
+		FS_CLASS_DECLARE(LabelTTF);
+
+	public:
 		static LabelTTF* create();
 		static LabelTTF* create(const char* font,int size);
 		static LabelTTF* create(const char* font,int size,const char* text);
@@ -38,11 +41,21 @@ class LabelTTF:public Entity,public IMaterial2DEntity
 		int getFontSize();
 
 
-		void setTextAlign(int align);
-		int getTextAlign();
+		void setTextAlign(E_TextAlign align);
+		E_TextAlign getTextAlign();
+
+
+		void setBoundWidth(float width);
+		void setBoundHeight(float height);
 
 		void setBoundSize(float width,float height);
+		void setBoundSize(const Vector2& v);
+
 		void getBoundSize(float* width,float* height);
+		Vector2 getBoundSize();
+		float getBoundWidth();
+		float getBoundHeight();
+
 
 		float getTextWidth();
 		float getTextHeight();
@@ -51,8 +64,15 @@ class LabelTTF:public Entity,public IMaterial2DEntity
 		void setLineGap(float line_gap);
 		float getLineGap();
 
+		void setAnchor(const Vector2& v );
 		void setAnchor(float x,float y);
+		void setAnchorX(float v);
+		void setAnchorY(float v);
+
+		Vector2 getAnchor();
 		void getAnchor(float* x,float* y);
+		float getAnchorX();
+		float getAnchorY();
 
 
 	public:
@@ -61,8 +81,6 @@ class LabelTTF:public Entity,public IMaterial2DEntity
 		virtual bool hit2D(float x,float y);
 
 
-		/* inherit FsObject */
-		virtual const char* className();
 	protected:
 		bool init();
 		bool init(const char* font,int size);
@@ -86,7 +104,7 @@ class LabelTTF:public Entity,public IMaterial2DEntity
 		std::string m_fontName;
 		int m_fontSize;
 
-		int m_textAlign;
+		E_TextAlign m_textAlign;
 		
 		float m_boundWidth,m_boundHeight;
 

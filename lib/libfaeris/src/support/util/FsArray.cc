@@ -213,6 +213,7 @@ bool FsArray::remove(FsObject* ob)
 	int pos=itemPos(ob);
 	if(pos==-1)
 	{
+		FS_TRACE_WARN("Item Is Not In Array");
 		return false;
 	}
 	return remove(pos);

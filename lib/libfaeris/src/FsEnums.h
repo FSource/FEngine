@@ -52,12 +52,21 @@ enum
 };
 
 
-enum 
+enum class E_TextAlign
 {
-	FS_TEXT_ALIGN_LEFT,
-	FS_TEXT_ALIGN_CENTER,
-	FS_TEXT_ALIGN_RIGHT,
+	LEFT,
+	CENTER,
+	RIGHT
 };
+FS_ENUM_TO_STR_MAP_DECLARE(TextAlign);
+
+
+
+
+#define FS_TEXT_ALIGN_LEFT 		E_TextAlign::LEFT 
+#define FS_TEXT_ALIGN_CENTER 	E_TextAlign::CENTER
+#define FS_TEXT_ALIGN_RIGHT 	E_TextAlign::RIGHT
+
 
 
 /* file type */
@@ -359,6 +368,7 @@ enum class E_BlendEquation
 	SUBTRACT,
 	REVERSE_SUBTRACT,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(BlendEquation);
 
 
 
@@ -376,6 +386,8 @@ enum class E_BlendFactor
 	ONE_MINUS_DST_ALPHA,
 	SRC_ALPHA_SATURATE,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(BlendFactor);
+
 
 
 enum class E_DrawMode

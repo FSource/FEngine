@@ -316,9 +316,6 @@
     <ClInclude Include="..\..\src\stage\entity\FsSprite2DData.h">
       <Filter>src\stage\entity</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h">
-      <Filter>src\stage\entity</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\stage\action\FsAction.h">
       <Filter>src\stage\action</Filter>
     </ClInclude>
@@ -585,6 +582,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\mgr\FsFelisScriptMgr.h">
       <Filter>src\mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsClassMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h">
+      <Filter>src\stage\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sys\thread\FsConditionVariable.h">
+      <Filter>src\sys\thread</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1046,6 +1052,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\FsEnum.cc">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsClassMgr.cc">
+      <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sys\thread\FsConditionVariable.cc">
+      <Filter>src\sys\thread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@ class Mutex
 		int unlock();
 	private:
 		pthread_mutex_t m_mutex;
+		friend  class ConditionVariable;
 };
 
 

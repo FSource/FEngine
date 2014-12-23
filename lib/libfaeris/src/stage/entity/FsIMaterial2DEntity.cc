@@ -66,6 +66,62 @@ void IMaterial2DEntity::setBlend(E_BlendFactor src,E_BlendFactor dst)
 	}
 }
 
+void IMaterial2DEntity::setBlendSrc(E_BlendFactor src)
+{
+	if(m_material) 
+	{
+		m_material->setBlendSrc(src);
+	}
+}
+
+E_BlendFactor IMaterial2DEntity::getBlendSrc()
+{
+	if(m_material)
+	{
+		m_material->getBlendSrc();
+	}
+	return E_BlendFactor::SRC_ALPHA;
+}
+
+
+void IMaterial2DEntity::setBlendDst(E_BlendFactor dst)
+{
+	if(m_material)
+	{
+		m_material->setBlendDst(dst);
+	}
+}
+
+
+E_BlendFactor IMaterial2DEntity::getBlendDst()
+{
+	if(m_material)
+	{
+		return m_material->getBlendDst();
+	}
+	return E_BlendFactor::ONE_MINUS_SRC_ALPHA;
+}
+
+
+
+void IMaterial2DEntity::setBlendEquation(E_BlendEquation eq)
+{
+	if(m_material)
+	{
+		return m_material->setBlendEquation(eq);
+	}
+}
+
+E_BlendEquation IMaterial2DEntity::getBlendEquation()
+{
+	if(m_material)
+	{
+		return m_material->getBlendEquation();
+	}
+	return E_BlendEquation::ADD;
+}
+
+
 void IMaterial2DEntity::setProgramSource(ProgramSource* ps)
 {
 	if(m_material) m_material->setProgramSource(ps);

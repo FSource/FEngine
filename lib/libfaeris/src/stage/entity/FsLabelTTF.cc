@@ -11,17 +11,13 @@
 #include "graphics/shader/FsStreamMap.h"
 
 
+#include "FsClass.h"
 #include "FsGlobal.h"
 #include "mgr/FsProgramSourceMgr.h"
 
 
 NS_FS_BEGIN
 
-
-const char*  LabelTTF::className()
-{
-	return FS_LABEL_TTF_CLASS_NAME;
-}
 
 LabelTTF* LabelTTF::create()
 {
@@ -183,7 +179,7 @@ int LabelTTF::getFontSize()
 }
 
 
-void LabelTTF::setTextAlign(int align)
+void LabelTTF::setTextAlign(E_TextAlign align)
 {
 	if( m_textAlign==align)
 	{
@@ -199,10 +195,37 @@ void LabelTTF::setTextAlign(int align)
 }
 
 
-int LabelTTF::getTextAlign()
+E_TextAlign LabelTTF::getTextAlign()
 {
 	return m_textAlign;
 }
+
+void LabelTTF::setBoundSize(const Vector2& v)
+{
+	setBoundSize(v.x,v.y);
+}
+
+void LabelTTF::setBoundWidth(float width) 
+{
+	if(m_boundWidth==width)
+	{
+		return ;
+	}
+	m_boundWidth=width;
+	m_dirty=true;
+}
+
+void LabelTTF::setBoundHeight(float height)
+{
+	if(m_boundHeight==height)
+	{
+		return;
+	}
+	m_boundHeight=height;
+	m_dirty=true;
+}
+
+
 
 void LabelTTF::setBoundSize(float width,float height)
 {
@@ -216,11 +239,31 @@ void LabelTTF::setBoundSize(float width,float height)
 }
 
 
+Vector2 LabelTTF::getBoundSize()
+{
+	Vector2 ret;
+	getBoundSize(&ret.x,&ret.y);
+	return ret;
+}
+
 void LabelTTF::getBoundSize(float* width,float* height)
 {
 	*width=m_boundWidth;
 	*height=m_boundHeight;
 }
+
+float LabelTTF::getBoundWidth()
+{
+	return m_boundWidth;
+}
+
+float LabelTTF::getBoundHeight()
+{
+	return m_boundHeight;
+}
+
+
+
 
 float LabelTTF::getTextWidth()
 {
@@ -259,11 +302,18 @@ void LabelTTF::setLineGap(float gap)
 {
 	m_lineGap=gap;
 }
+
 float LabelTTF::getLineGap()
 {
 	return m_lineGap;
 }
 
+
+
+void LabelTTF::setAnchor(const Vector2& v)
+{
+	setAnchor(v.x,v.y);
+}
 
 void LabelTTF::setAnchor(float x,float y)
 {
@@ -275,10 +325,46 @@ void LabelTTF::setAnchor(float x,float y)
 	}
 }
 
+void LabelTTF::setAnchorX(float v)
+{
+	m_anchorX=v;
+	if(!m_dirty)
+	{
+		m_typoPage.setAnchor(v,m_anchorY);
+	}
+}
+
+void LabelTTF::setAnchorY(float v)
+{
+	m_anchorY=v;
+	if(!m_dirty)
+	{
+		m_typoPage.setAnchor(m_anchorX,v);
+	}
+}
+
+
+Vector2 LabelTTF::getAnchor()
+{
+	Vector2 ret;
+	getAnchor(&ret.x,&ret.y);
+	return ret;
+}
+
 void LabelTTF::getAnchor(float* x,float* y)
 {
 	*x=m_anchorX;
 	*y=m_anchorY;
+}
+
+float LabelTTF::getAnchorX()
+{
+	return m_anchorX;
+}
+
+float LabelTTF::getAnchorY()
+{
+	return m_anchorY;
 }
 
 
@@ -418,6 +504,87 @@ void LabelTTF::typoText()
 	m_textWidth=m_typoPage.getTextWidth();
 	m_textHeight=m_typoPage.getTextHeight();
 }
+
+
+
+/** Used For FsLabelTTF Attribute */
+
+static LabelTTF* LabelTTF_NewInstance(FsDict* attr)
+{
+	LabelTTF* ret=LabelTTF::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+	return ret;
+}
+
+
+
+
+
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setColor,getColor,Color4f);
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setOpacity,getOpacity,float);
+FS_CLASS_ATTR_SET_CHARS_FUNCTION(LabelTTF,setProgramSource);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(LabelTTF,setBlendEquation,getBlendEquation,BlendEquation);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(LabelTTF,setBlendSrc,getBlendSrc,BlendFactor);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(LabelTTF,setBlendDst,getBlendDst,BlendFactor);
+
+
+
+FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(LabelTTF,setString,getString);
+FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(LabelTTF,setFontName,getFontName);
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setFontSize,getFontSize,int);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(LabelTTF,setTextAlign,getTextAlign,TextAlign);
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setBoundSize,getBoundSize,Vector2);
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setBoundWidth,getBoundWidth,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setBoundHeight,getBoundHeight,float);
+
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setLineGap,getLineGap,float);
+
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setAnchor,getAnchor,Vector2);
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setAnchorX,getAnchorX,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setAnchorY,getAnchorY,float);
+
+
+static FsClass::FsAttributeDeclare S_LabelTTF_BoundSize_SubAttr[]={
+	FS_CLASS_ATTR_DECLARE("w",FsType::FT_F_1,NULL,LabelTTF_setBoundWidth,LabelTTF_getBoundWidth),
+	FS_CLASS_ATTR_DECLARE("h",FsType::FT_F_1,NULL,LabelTTF_setBoundHeight,LabelTTF_getBoundHeight),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+static FsClass::FsAttributeDeclare S_LabelTTF_Anchor_SubAttr[]={
+	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,LabelTTF_setAnchorX,LabelTTF_getAnchorX),
+	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,LabelTTF_setAnchorY,LabelTTF_getAnchorY),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+static FsClass::FsAttributeDeclare S_LabelTTF_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("color",FsType::FT_COLOR_4,NULL,LabelTTF_setColor,LabelTTF_getColor),
+	FS_CLASS_ATTR_DECLARE("opacity",FsType::FT_F_1,NULL,LabelTTF_setOpacity,LabelTTF_getOpacity),
+	FS_CLASS_ATTR_DECLARE("shader",FsType::FT_CHARS,NULL,LabelTTF_setProgramSource,0),
+	FS_CLASS_ATTR_DECLARE("blendEquation",FsType::FT_CHARS,NULL,LabelTTF_setBlendEquation,LabelTTF_getBlendEquation),
+	FS_CLASS_ATTR_DECLARE("blendSrc",FsType::FT_CHARS,NULL,LabelTTF_setBlendSrc,LabelTTF_getBlendSrc),
+	FS_CLASS_ATTR_DECLARE("blendDst",FsType::FT_CHARS,NULL,LabelTTF_setBlendDst,LabelTTF_getBlendDst),
+	FS_CLASS_ATTR_DECLARE("string",FsType::FT_CHARS,NULL,LabelTTF_setString,LabelTTF_getString),
+	FS_CLASS_ATTR_DECLARE("fontName",FsType::FT_CHARS,NULL,LabelTTF_setFontName,LabelTTF_getFontName),
+	FS_CLASS_ATTR_DECLARE("fontSize",FsType::FT_I_1,NULL,LabelTTF_setFontSize,LabelTTF_getFontSize),
+	FS_CLASS_ATTR_DECLARE("textAlign",FsType::FT_CHARS,NULL,LabelTTF_setTextAlign,LabelTTF_getTextAlign),
+	FS_CLASS_ATTR_DECLARE("lineGap",FsType::FT_F_1,NULL,LabelTTF_setLineGap,LabelTTF_getLineGap),
+	FS_CLASS_ATTR_DECLARE("boundSize",FsType::FT_F_2,S_LabelTTF_BoundSize_SubAttr,LabelTTF_setBoundSize,LabelTTF_getBoundSize),
+	FS_CLASS_ATTR_DECLARE("anchor",FsType::FT_F_2,S_LabelTTF_Anchor_SubAttr,LabelTTF_setAnchor,LabelTTF_getAnchor),
+	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
+
+FS_CLASS_IMPLEMENT_WITH_BASE(LabelTTF,Entity,LabelTTF_NewInstance,S_LabelTTF_Main_Attr);
+
+
+
+
+
+
+
+
 
 NS_FS_END
 

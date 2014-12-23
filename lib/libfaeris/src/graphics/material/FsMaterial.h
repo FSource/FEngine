@@ -45,8 +45,22 @@ class Material:public Resource
 		}
 
 
+		void setBlendEquation(E_BlendEquation eq)
+		{
+			m_blendEquation=eq;
+		}
 		E_BlendEquation getBlendEquation() { return m_blendEquation; }
+
+		void setBlendSrc(E_BlendFactor f)
+		{
+			m_blendSrc=f;
+		}
 		E_BlendFactor getBlendSrc() { return m_blendSrc; }
+
+		void setBlendDst(E_BlendFactor f)
+		{
+			m_blendDst=f;
+		}
 		E_BlendFactor getBlendDst() { return m_blendDst; }
 
 
