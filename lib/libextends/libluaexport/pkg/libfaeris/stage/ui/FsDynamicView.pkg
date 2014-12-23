@@ -1,21 +1,9 @@
 $#include "stage/ui/FsDynamicView.h"
 
-
-
 class DynamicView:public UiWidget
 {
 	public:
-		enum 
-		{
-			ALIGN_TOP,
-			ALIGN_CENTER,
-			ALIGN_BOTTOM,
-			ALIGN_LEFT,
-			ALIGN_RIGHT,
-		};
-
-
-	public:
+		static DynamicView* create();
 		static DynamicView* create(float width,float height);
 
 	public:
@@ -37,7 +25,7 @@ class DynamicView:public UiWidget
 
 	public:
 		void addView(const char* name,UiWidget* view);
-		void addView(const char* name,UiWidget* view,int alignh,int alignv);
+		void addView(const char* name,UiWidget* view,E_AlignH alignh,E_AlignV alignv);
 
 		void removeView(const char* name);
 		void removeView(UiWidget* view);
@@ -48,23 +36,10 @@ class DynamicView:public UiWidget
 		void setCurrentView(const char* name);
 		void setCurrentView(UiWidget* view);
 
-		void setViewAlign(UiWidget* view,int alignh,int alignv);
-		void setCurrentViewAlign(int alignh,int alignv);
+		void setViewAlign(UiWidget* view,E_AlignH alignh,E_AlignV alignv);
+		void setCurrentViewAlign(E_AlignH alignh,E_AlignV alignv);
 
-	public:
-		virtual const char* className();
+		void clearView();
 
-		virtual void sizeChanged(float w,float h);
-		virtual void anchorChanged(float x,float y);
-
-		virtual void childSizeChanged(UiWidget* widget,float w,float h);
-		virtual void childAnchorChanged(UiWidget* widget,float x,float y);
-
-		virtual void layout();
-		virtual void removeWidget(UiWidget* widget);
-
-
-
-	public:
-		virtual void currentViewChanged(UiWidget* old_view,UiWidget* new_view);
 };
+

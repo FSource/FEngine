@@ -155,19 +155,19 @@ class Entity :public ActionTarget
 		void setPositionZ(float t);
 
 	public: /* world transform */
-		void setPositionInWorld(float tx,float ty,float tz);
-		void setPositionInWorld(const Vector3& v);
+		void setPositionInWorld(float tx,float ty,float tz)
+		{
+			FS_TRACE_WARN("NOT IMPLEMET");
+		};
+		void setPositionInWorld(const Vector3& v)
+		{
+			FS_TRACE_WARN("NOT IMPLAEMNT");
+		}
 
 		Vector3 getPositionInWorld();
 		void getPositionInWorld(float* x,float* y,float* z);
 
-	public:
-		void setDispatchTouchEnabled(bool enabled);
-		bool getDispatchTouchEnabled();
-		void setDispatchTouchesEnabled(bool enabled);
-		bool getDispatchTouchesEnabled();
-
-
+	
 	protected:
 		Entity();
 		virtual ~Entity();

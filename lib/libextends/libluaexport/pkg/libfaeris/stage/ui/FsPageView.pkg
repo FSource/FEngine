@@ -3,38 +3,22 @@ $#include "stage/ui/FsPageView.h"
 class PageView:public UiWidget 
 {
 	public:
-		enum 
-		{
-			SCROLL_HORIZONTAL,
-			SCROLL_VERTICAL,
-		};
-
-		enum 
-		{
-			ALIGN_LEFT,
-			ALIGN_RIGHT,
-			ALIGN_CENTER,
-			ALIGN_TOP,
-			ALIGN_BOTTOM,
-		};
-
-
-	public:
+		static PageView* create();
 		static PageView* create(float width,float height);
-		static PageView* create(int mode,float width,float height);
+		static PageView* create(E_ScrollDirection mode,float width,float height);
 
 	public:
-		void setMode(int mode);
-		int getMode();
+		void setMode(E_ScrollDirection mode);
+		E_ScrollDirection getMode();
 
 		void addPage(UiWidget* widget);
-		void addPage(UiWidget* widget,int alignh,int alignv);
+		void addPage(UiWidget* widget,E_AlignH alignh,E_AlignV alignv);
 
 		void addPage(int index,UiWidget* widget);
-		void addPage(int index,UiWidget* widget,int alignh,int alignv);
+		void addPage(int index,UiWidget* widget,E_AlignH alignh,E_AlignV alignv);
 
-		void setPageAlign(int index,int alignh,int alignv);
-		void setPageAlign(UiWidget* widget,int alignh,int alignv);
+		void setPageAlign(int index,E_AlignH alignh,E_AlignV alignv);
+		void setPageAlign(UiWidget* widget,E_AlignH alignh,E_AlignV alignv);
 
 		void removePage(UiWidget* widget);
 		void removePage(int index);
@@ -45,41 +29,19 @@ class PageView:public UiWidget
 		UiWidget* getPage(int index);
 		int getPageIndex(UiWidget* widget);
 
+		void prevPage();
+		void nextPage();
 		void setCurrentPageIndex(int index);
 		int getCurrentPageIndex();
 
 		void setCurrentPage(UiWidget* widget);
 		UiWidget* getCurrentPage();
 
-
 		void slideToPage(UiWidget* widget);
 		void slideToPageIndex(int index);
 		void slideToNextPage();
 		void slideToPrevPage();
 
-
-	public:
-		/* inherit FsObject */
-		virtual const char* className();
-
-		/* inherit Entity */
-		virtual  bool touchBegin(float x,float y);
-		virtual  bool touchMove(float x,float y);
-		virtual  bool touchEnd(float x,float y);
-
-		virtual void update(float dt);
-
-
-		/* inherit UiWidget */
-
-		virtual void childSizeChanged(UiWidget* widget,float w,float h);
-		virtual void childAnchorChanged(UiWidget* widget,float w,float h);
-
-		virtual void sizeChanged(float width,float height);
-		virtual void anchorChanged(float x,float y);
-
-		virtual void removeWidget(UiWidget* widget);
-		virtual void layout();
 };
 
 

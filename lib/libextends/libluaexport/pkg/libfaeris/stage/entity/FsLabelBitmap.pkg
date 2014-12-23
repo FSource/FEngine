@@ -1,26 +1,31 @@
 $#include "stage/entity/FsLabelBitmap.h"
-$#include "luaext/FsLuaEntity.h"
 
-class LabelBitmap@__LabelBitmap:public Entity 
+class LabelBitmap:public Entity2D
 {
 	public:
-		void setMaterial(Material2D* mat);
-		Material2D* getMaterial() ;
+		enum
+		{ 
+			ALIGN_V_TOP,
+			ALIGN_V_CENTER,
+			ALIGN_V_BOTTOM,
+			ALIGN_V_USER_DEFINE,
 
-		/* material */
-		void setColor(const Color4f& c);
-		void setColor(const Color& c);
-		Color4f getColor();
+			ALIGN_H_LEFT,
+			ALIGN_H_RIGHT,
+			ALIGN_H_CENTER,
+			ALIGN_H_USER_DEFINE,
+		};
 
-		void setOpacity(float opacity);
-		float getOpacity();
+		enum
+		{
+			TEXT_ALIGN_LEFT,
+			TEXT_ALIGN_CENTER,
+			TEXT_ALIGN_RIGHT,
+		};
 
-		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor dst);
-		void setBlend(E_BlendFactor src,E_BlendFactor dst);
-
-		void setProgramSource(ProgramSource* ps);
-		void setProgramSource(const char* filename);
-		ProgramSource* getProgramSource();
+	public:
+		static LabelBitmap* __Entity2D__create@create(const char* text,FontBitmap* font);
+		static LabelBitmap* __Entity2D__create@create(FontBitmap* font);
 
 
 
@@ -52,43 +57,4 @@ class LabelBitmap@__LabelBitmap:public Entity
 		void getBounds(float* x,float* y);
 
 };
-
-class LuaLabelBitmap@LabelBitmap:public LabelBitmap
-{
-	public:
-		enum
-		{ 
-			ALIGN_V_TOP,
-			ALIGN_V_CENTER,
-			ALIGN_V_BOTTOM,
-			ALIGN_V_USER_DEFINE,
-
-			ALIGN_H_LEFT,
-			ALIGN_H_RIGHT,
-			ALIGN_H_CENTER,
-			ALIGN_H_USER_DEFINE
-		};
-		enum
-		{
-			TEXT_ALIGN_LEFT,
-			TEXT_ALIGN_CENTER,
-			TEXT_ALIGN_RIGHT
-		};
-
-	public:
-		static LuaLabelBitmap* create(const char* text,FontBitmap* font);
-		static LuaLabelBitmap* create(FontBitmap* font);
-
-	public:
-		void onDraw@draw(RenderDevice* r);
-		void onUpdate@update(float dt);
-		bool onTouchBegin@touchBegin(float x,float y);
-		bool onTouchMove@touchMove(float x,float y);
-		bool onTouchEnd@touchEnd(float x,float y);
-		bool onHit2D@hit2D(float x,float y);
-
-
-}
-
-
 

@@ -193,7 +193,7 @@ bool PressButton::touchBegin(float x,float y)
 
 bool PressButton::touchMove(float x,float y)
 {
-	bool hit=hit2D(x,y);
+	bool hit=FS_OBJECT_LAMBDA_CALL(this,onHit2D,hit2D,x,y);
 	if(hit)
 	{
 		if(!m_moveIn)
@@ -215,7 +215,7 @@ bool PressButton::touchMove(float x,float y)
 
 bool PressButton::touchEnd(float x,float y)
 {
-	bool hit=hit2D(x,y);
+	bool hit=FS_OBJECT_LAMBDA_CALL(this,onHit2D,hit2D,x,y);
 	if(hit)
 	{
 		FS_OBJECT_LAMBDA_CALL(this,onPressUp,pressUp,x,y);
@@ -330,13 +330,6 @@ FS_CLASS_IMPLEMENT_WITH_BASE(PressButton,StateButton,PressButton_NewInstance,S_P
 
 
 NS_FS_END
-
-
-
-
-
-
-
 
 
 

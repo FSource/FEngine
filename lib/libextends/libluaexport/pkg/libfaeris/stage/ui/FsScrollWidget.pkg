@@ -1,55 +1,7 @@
 $#include "stage/ui/FsScrollWidget.h"
 
-
 class ScrollWidget:public UiWidget
 {
-	enum 
-	{
-		SCROLL_HORIZONTAL,
-		SCROLL_VERTICAL,
-		SCROLL_ALL,
-	};
-
-	enum
-	{
-		ALIGN_TOP,
-		ALIGN_CENTER,
-		ALIGN_BOTTOM,
-		ALIGN_LEFT,
-		ALIGN_RIGHT,
-	};
-
-	public:
-		/* inherit Entity */
-		virtual  bool touchBegin(float x,float y);
-		virtual  bool touchMove(float x,float y);
-		virtual  bool touchEnd(float x,float y);
-
-		virtual void update(float dt);
-
-
-
-		/* inherit UiWidget */
-		virtual void childSizeChanged(UiWidget* widget,float w,float h);
-		virtual void childAnchorChanged(UiWidget* widget,float w,float h);
-
-		virtual void setSize(float width,float height);
-		virtual void setAnchor(float x,float y);
-
-
-		/* inherit FsObject */
-		const char* className();
-
-
-
-	public:
-		virtual void scrollChange(float x,float y);
-		virtual void beginDrag();
-		virtual void endDrag();
-
-
-
-
 	public:
 		void setMargin(float l,float r,float t,float b);
 		void getMargin(float* l,float* r,float* t,float* b);
@@ -66,15 +18,15 @@ class ScrollWidget:public UiWidget
 		void setMarginBottom(float v);
 		float getMarginBottom() const;
 
-		void setScrollMode(int mode);
-		int getScrollMode();
+		void setScrollMode(E_ScrollDirection mode);
+		E_ScrollDirection getScrollMode();
 
 		void setEdgeBounceEnabled(bool enabled);
 		bool getEdgeBounceEnabled();
 
+
 	public:
-		void setContentAlign(int w,int h);
-		void setContentSize(float width,float height);
+		void setContentAlign(E_AlignH h,E_AlignV v);
 
 
 	public: /* scroll support */
@@ -89,7 +41,6 @@ class ScrollWidget:public UiWidget
 		float getScrollPercentX();
 		float getScrollPercentY();
 
-		void layout();
 
 };
 

@@ -309,7 +309,7 @@ bool Layer2D::touchBegin(float x,float y)
 		for(int i=entity_nu-1;i>=0;i--)
 		{
 			Entity2D* e=entitys[i];
-			if(e->getLayer()==this&&e->hit2D(tv.x,tv.y))
+			if(e->getLayer()==this&&FS_OBJECT_LAMBDA_CALL(e,onHit2D,hit2D,tv.x,tv.y))
 			{
 				/* NOTE: entity will detach when called touchBegin */
 				bool ret=FS_OBJECT_LAMBDA_CALL(e,onTouchBegin,touchBegin,tv.x,tv.y);

@@ -1,51 +1,101 @@
 $#include "stage/entity/FsEntity.h"
-$#include "luaext/FsLuaEntity.h"
 
-class Entity@__Entity:public ActionTarget
+class Entity:public ActionTarget
 {
 	public:
+		static Entity* __Entity__create@create();
+
+	public:
+
+		/* visible */
+		void setVisible(bool visible){m_visible=visible;}
+		bool getVisible(){return m_visible&&m_visibles;}
+		void setVisibles(bool visible){m_visibles=visible;}
+		bool getVisibles(){return m_visibles;}
+		void setChildVisible(bool visiable,bool rec);
+
+
+	public:
+		virtual void update(float dt);
+		virtual void draw(RenderDevice* r,bool updateMatrix=true);
+
+		virtual void updates(float dt);
+		virtual void draws(RenderDevice* r,bool updateMatrix=true);
+
+		/* relation ship*/
+		virtual int getChildNu();
+		virtual void addChild(Entity* n);
+		virtual void removeChild(Entity* n);
+		virtual void clearChild();
+		virtual void detach();
+
+
+		virtual Matrix4* getWorldMatrix();
+		virtual Matrix4* getLocalMatrix();
+
+
+
+	public:
+
 		Vector3 localToWorld(const Vector3& v);
 		Vector3 worldToLocal(const Vector3& v);
 
-		/* relation ship*/
-		void addChild(Entity* n);
-		Entity* getParent();
-
-		void remove(Entity* n);
-		void detach();
-		void clearChild();
 
 		FsArray* takeAllChild(bool visible);
-		int childNu();
+		void getAllChild(FsArray* array,bool visible);
 
-		Layer* getLayer();
-		Scene* getScene();
-
-		Matrix4* getLocalMatrix();
-		Matrix4* getWorldMatrix();
 
 		bool updateWorldMatrix();
 		void updateAllWorldMatrix();
+		void setChildWorldMatrixDirty();
+
+
+	public: /* zorlder */
+		float getZorder();
+		void setZorder(float z);
+		Layer* getLayer();
+
+		/* please don't call setLayer directly */
+		void setLayer(Layer* layer);
+
+		Entity* getParent();
+		Scene* getScene();
+
+		/* used for layer to sort */
+		uint32_t getAddOlder(){return m_addOlder;}
+		void  setAddOlder(uint32_t older){ m_addOlder=older;}
+
+	public:
+
+		/* transform  */
+		virtual void setPosition(const Vector3& pos);
+
+		virtual void setRotate(const Vector3& r);
+		virtual Vector3 getRotate();
+
+		virtual void setScale(const Vector3& s);
+		virtual Vector3 getScale();
+
+		void setTransform(ITransform* tf);
+		ITransform* getTransform();
+
 
 	public: /* get transform info */
-		Vector3 getPosition();
-		void getPosition(float* x=0, float* y=0,float* z=0);
+		void getPosition(float* x=0,float* y=0,float* z=0);
 		float getPositionX();
 		float getPositionY();
 		float getPositionZ();
 
-		/* scale information */
-		Vector3 getScale();
+		/*  scale information */
 		float getScaleX();
 		float getScaleY();
 		float getScaleZ();
 
+
 		/* rotate information */
-		Vector3 getRotate();
 		float getRotateX();
 		float getRotateY();
 		float getRotateZ();
-
 
 	public: /* transform */
 		void rotate(float rx,float ry,float rz);
@@ -74,77 +124,20 @@ class Entity@__Entity:public ActionTarget
 		void setScaleY(float s);
 		void setScaleZ(float s);
 
-		void setPosition(float tx,float ty,float z=0);
+		void setPosition(float tx,float ty,float tz = 0.0f);
 		void setPositionX(float t);
 		void setPositionY(float t);
 		void setPositionZ(float t);
 
-		/*
+	public: /* world transform */
 		void setPositionInWorld(float tx,float ty,float tz);
-		void setPositionXInWorld(float t);
-		void setPositionYInWorld(float t);
-		void setPositionZInWorld(float t);
-		*/
+		void setPositionInWorld(const Vector3& v);
+
 		Vector3 getPositionInWorld();
 		void getPositionInWorld(float* x=0,float* y=0,float* z=0);
 
-		void setTransform(ITransform* );
-		ITransform* getTransform();
 
-
-	public:
-		float getZorder();
-		void setZorder(float z);
-
-	public:
-		void setVisible(bool visible);
-		void setChildVisible(bool visiable,bool rec);
-		bool getVisible@visible();
-		bool getVisible();
-		void setVisibles(bool visible);
-		bool getVisibles();
-
-
-		void setDispatchTouchEnabled(bool enabled);
-		bool getDispatchTouchEnabled();
-		void setDispatchTouchesEnabled(bool enabled);
-		bool getDispatchTouchesEnabled();
-
-
-		bool hit2D(float x,float y);
-		void draw(RenderDevice* render,bool update_matrix=true);
-		void draws(RenderDevice* render,bool update_matrix=true);
-
-		void update(float dt);
-		void updates(float dt);
-
-
-		/* single touch */
-		void setTouchEnabled(bool enabled);
-		bool getTouchEnabled();
-
-		virtual bool touchBegin(float x,float y);
-		virtual bool touchMove(float x,float y);
-		virtual bool touchEnd(float x,float y);
-
-		/* multi touches */
-		void setTouchesEnabled(bool enabled);
-		bool getTouchesEnabled();
-
-};
-
-class LuaEntity@Entity:public Entity 
-{
-	public:
-		static LuaEntity* create();
-	public:
-		void onUpdate@update(float dt);
-		void onDraw@draw(RenderDevice* r);
-		bool onTouchBegin@touchBegin(float x,float y);
-		bool onTouchMove@touchMove(float x,float y);
-		bool onTouchEnd@touchEnd(float x,float y);
-		bool onHit2D@hit2D(float x,float y);
-};
+}
 
 
 

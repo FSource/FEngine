@@ -4,16 +4,15 @@
 #include "spine/spine.h"
 #include "FsMacros.h"
 #include "FsEnums.h"
-#include "stage/entity/FsEntity.h"
+#include "stage/entity/FsEntity2D.h"
 #include "FsSpineSpriteData.h"
 #include "FsSpineSpriteDataMgr.h"
-#include "stage/entity/FsIMaterial2DEntity.h"
 
 
 NS_FS_BEGIN
 
 class RenderDevice;
-class SpineSprite:public Entity ,public IMaterial2DEntity
+class SpineSprite:public Entity2D
 {
 	public:
 		static SpineSprite* create(const char* filename);

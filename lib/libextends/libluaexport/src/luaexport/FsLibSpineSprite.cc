@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsSpineSprite
-** Generated automatically by tolua++-1.0.92 on 12/15/14 22:18:14.
+** Generated automatically by tolua++-1.0.92 on 12/23/14 01:33:59.
 */
 
 #ifndef __cplusplus
@@ -15,7 +15,6 @@ TOLUA_API int  tolua_FsSpineSprite_open (lua_State* tolua_S);
 
 #include "FsLuaExport.h"
 #include "FsSpineSprite.h"
-#include "luaext/FsLuaEntity.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -33,18 +32,47 @@ static int tolua_collect_Color4f (lua_State* tolua_S)
 static void tolua_reg_types (lua_State* tolua_S)
 {
  toluaext_usertype(tolua_S,"SpineSprite");
- toluaext_usertype(tolua_S,"LuaSpineSprite");
  tolua_usertype(tolua_S,"Color");
  tolua_usertype(tolua_S,"Color4f");
- toluaext_usertype(tolua_S,"RenderDevice");
- toluaext_usertype(tolua_S,"Entity");
+ tolua_usertype(tolua_S,"Entity2D");
  tolua_usertype(tolua_S,"Material2D");
  tolua_usertype(tolua_S,"ProgramSource");
 }
 
+/* method: __Entity2D__create of class  SpineSprite */
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_create00
+static int tolua_FsSpineSprite_SpineSprite_create00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"SpineSprite",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+  {
+   SpineSprite* tolua_ret = (SpineSprite*) SpineSprite::create(filename); 
+   FsLEntity2D_CallBackAssign(tolua_ret);
+    toluaext_pushfsobject2(tolua_S,(void*)tolua_ret,"SpineSprite");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: setMaterial of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setMaterial00
-static int tolua_FsSpineSprite___SpineSprite_setMaterial00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setMaterial00
+static int tolua_FsSpineSprite_SpineSprite_setMaterial00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -76,8 +104,8 @@ static int tolua_FsSpineSprite___SpineSprite_setMaterial00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getMaterial of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_getMaterial00
-static int tolua_FsSpineSprite___SpineSprite_getMaterial00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_getMaterial00
+static int tolua_FsSpineSprite_SpineSprite_getMaterial00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -108,8 +136,8 @@ static int tolua_FsSpineSprite___SpineSprite_getMaterial00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setColor of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setColor00
-static int tolua_FsSpineSprite___SpineSprite_setColor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setColor00
+static int tolua_FsSpineSprite_SpineSprite_setColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -141,8 +169,8 @@ static int tolua_FsSpineSprite___SpineSprite_setColor00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setColor of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setColor01
-static int tolua_FsSpineSprite___SpineSprite_setColor01(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setColor01
+static int tolua_FsSpineSprite_SpineSprite_setColor01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -164,13 +192,13 @@ static int tolua_FsSpineSprite___SpineSprite_setColor01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsSpineSprite___SpineSprite_setColor00(tolua_S);
+ return tolua_FsSpineSprite_SpineSprite_setColor00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getColor of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_getColor00
-static int tolua_FsSpineSprite___SpineSprite_getColor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_getColor00
+static int tolua_FsSpineSprite_SpineSprite_getColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -211,8 +239,8 @@ static int tolua_FsSpineSprite___SpineSprite_getColor00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setOpacity of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setOpacity00
-static int tolua_FsSpineSprite___SpineSprite_setOpacity00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setOpacity00
+static int tolua_FsSpineSprite_SpineSprite_setOpacity00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -244,8 +272,8 @@ static int tolua_FsSpineSprite___SpineSprite_setOpacity00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getOpacity of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_getOpacity00
-static int tolua_FsSpineSprite___SpineSprite_getOpacity00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_getOpacity00
+static int tolua_FsSpineSprite_SpineSprite_getOpacity00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -276,8 +304,8 @@ static int tolua_FsSpineSprite___SpineSprite_getOpacity00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setBlend of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setBlend00
-static int tolua_FsSpineSprite___SpineSprite_setBlend00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setBlend00
+static int tolua_FsSpineSprite_SpineSprite_setBlend00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -313,8 +341,8 @@ static int tolua_FsSpineSprite___SpineSprite_setBlend00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setBlend of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setBlend01
-static int tolua_FsSpineSprite___SpineSprite_setBlend01(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setBlend01
+static int tolua_FsSpineSprite_SpineSprite_setBlend01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -338,13 +366,13 @@ static int tolua_FsSpineSprite___SpineSprite_setBlend01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsSpineSprite___SpineSprite_setBlend00(tolua_S);
+ return tolua_FsSpineSprite_SpineSprite_setBlend00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setProgramSource of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setProgramSource00
-static int tolua_FsSpineSprite___SpineSprite_setProgramSource00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setProgramSource00
+static int tolua_FsSpineSprite_SpineSprite_setProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -376,8 +404,8 @@ static int tolua_FsSpineSprite___SpineSprite_setProgramSource00(lua_State* tolua
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setProgramSource of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setProgramSource01
-static int tolua_FsSpineSprite___SpineSprite_setProgramSource01(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setProgramSource01
+static int tolua_FsSpineSprite_SpineSprite_setProgramSource01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -399,13 +427,13 @@ static int tolua_FsSpineSprite___SpineSprite_setProgramSource01(lua_State* tolua
  }
  return 0;
 tolua_lerror:
- return tolua_FsSpineSprite___SpineSprite_setProgramSource00(tolua_S);
+ return tolua_FsSpineSprite_SpineSprite_setProgramSource00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getProgramSource of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_getProgramSource00
-static int tolua_FsSpineSprite___SpineSprite_getProgramSource00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_getProgramSource00
+static int tolua_FsSpineSprite_SpineSprite_getProgramSource00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -436,8 +464,8 @@ static int tolua_FsSpineSprite___SpineSprite_getProgramSource00(lua_State* tolua
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setSkin of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setSkin00
-static int tolua_FsSpineSprite___SpineSprite_setSkin00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setSkin00
+static int tolua_FsSpineSprite_SpineSprite_setSkin00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -470,8 +498,8 @@ static int tolua_FsSpineSprite___SpineSprite_setSkin00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: updateAnimation of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_updateAnimation00
-static int tolua_FsSpineSprite___SpineSprite_updateAnimation00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_updateAnimation00
+static int tolua_FsSpineSprite_SpineSprite_updateAnimation00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -503,8 +531,8 @@ static int tolua_FsSpineSprite___SpineSprite_updateAnimation00(lua_State* tolua_
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setAnimation of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setAnimation00
-static int tolua_FsSpineSprite___SpineSprite_setAnimation00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setAnimation00
+static int tolua_FsSpineSprite_SpineSprite_setAnimation00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -536,8 +564,8 @@ static int tolua_FsSpineSprite___SpineSprite_setAnimation00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: playAnimation of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_playAnimation00
-static int tolua_FsSpineSprite___SpineSprite_playAnimation00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_playAnimation00
+static int tolua_FsSpineSprite_SpineSprite_playAnimation00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -569,8 +597,8 @@ static int tolua_FsSpineSprite___SpineSprite_playAnimation00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: playAnimation of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_playAnimation01
-static int tolua_FsSpineSprite___SpineSprite_playAnimation01(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_playAnimation01
+static int tolua_FsSpineSprite_SpineSprite_playAnimation01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -590,13 +618,13 @@ static int tolua_FsSpineSprite___SpineSprite_playAnimation01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsSpineSprite___SpineSprite_playAnimation00(tolua_S);
+ return tolua_FsSpineSprite_SpineSprite_playAnimation00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: startAnimation of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_startAnimation00
-static int tolua_FsSpineSprite___SpineSprite_startAnimation00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_startAnimation00
+static int tolua_FsSpineSprite_SpineSprite_startAnimation00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -628,8 +656,8 @@ static int tolua_FsSpineSprite___SpineSprite_startAnimation00(lua_State* tolua_S
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: startAnimation of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_startAnimation01
-static int tolua_FsSpineSprite___SpineSprite_startAnimation01(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_startAnimation01
+static int tolua_FsSpineSprite_SpineSprite_startAnimation01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -649,13 +677,13 @@ static int tolua_FsSpineSprite___SpineSprite_startAnimation01(lua_State* tolua_S
  }
  return 0;
 tolua_lerror:
- return tolua_FsSpineSprite___SpineSprite_startAnimation00(tolua_S);
+ return tolua_FsSpineSprite_SpineSprite_startAnimation00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: stopAnimation of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_stopAnimation00
-static int tolua_FsSpineSprite___SpineSprite_stopAnimation00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_stopAnimation00
+static int tolua_FsSpineSprite_SpineSprite_stopAnimation00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -685,8 +713,8 @@ static int tolua_FsSpineSprite___SpineSprite_stopAnimation00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: isAnimationPlaying of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_isAnimationPlaying00
-static int tolua_FsSpineSprite___SpineSprite_isAnimationPlaying00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_isAnimationPlaying00
+static int tolua_FsSpineSprite_SpineSprite_isAnimationPlaying00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -717,8 +745,8 @@ static int tolua_FsSpineSprite___SpineSprite_isAnimationPlaying00(lua_State* tol
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setCurTime of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_setCurTime00
-static int tolua_FsSpineSprite___SpineSprite_setCurTime00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_setCurTime00
+static int tolua_FsSpineSprite_SpineSprite_setCurTime00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -750,8 +778,8 @@ static int tolua_FsSpineSprite___SpineSprite_setCurTime00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getCurTime of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_getCurTime00
-static int tolua_FsSpineSprite___SpineSprite_getCurTime00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_getCurTime00
+static int tolua_FsSpineSprite_SpineSprite_getCurTime00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -782,8 +810,8 @@ static int tolua_FsSpineSprite___SpineSprite_getCurTime00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getDurationTime of class  SpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite___SpineSprite_getDurationTime00
-static int tolua_FsSpineSprite___SpineSprite_getDurationTime00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_getDurationTime00
+static int tolua_FsSpineSprite_SpineSprite_getDurationTime00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -813,246 +841,6 @@ static int tolua_FsSpineSprite___SpineSprite_getDurationTime00(lua_State* tolua_
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: create of class  LuaSpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_create00
-static int tolua_FsSpineSprite_SpineSprite_create00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"LuaSpineSprite",0,&tolua_err) ||
-     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
-  {
-   LuaSpineSprite* tolua_ret = (LuaSpineSprite*)  LuaSpineSprite::create(filename);
-    toluaext_pushfsobject2(tolua_S,(void*)tolua_ret,"LuaSpineSprite");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'create'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: onDraw of class  LuaSpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_draw00
-static int tolua_FsSpineSprite_SpineSprite_draw00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LuaSpineSprite",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"RenderDevice",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LuaSpineSprite* self = (LuaSpineSprite*)  tolua_tousertype(tolua_S,1,0);
-  RenderDevice* r = ((RenderDevice*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onDraw'", NULL);
-#endif
-  {
-   self->onDraw(r);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'draw'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: onUpdate of class  LuaSpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_update00
-static int tolua_FsSpineSprite_SpineSprite_update00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LuaSpineSprite",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LuaSpineSprite* self = (LuaSpineSprite*)  tolua_tousertype(tolua_S,1,0);
-  float dt = ((float)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onUpdate'", NULL);
-#endif
-  {
-   self->onUpdate(dt);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'update'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: onTouchBegin of class  LuaSpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_touchBegin00
-static int tolua_FsSpineSprite_SpineSprite_touchBegin00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LuaSpineSprite",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LuaSpineSprite* self = (LuaSpineSprite*)  tolua_tousertype(tolua_S,1,0);
-  float x = ((float)  tolua_tonumber(tolua_S,2,0));
-  float y = ((float)  tolua_tonumber(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onTouchBegin'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->onTouchBegin(x,y);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'touchBegin'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: onTouchMove of class  LuaSpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_touchMove00
-static int tolua_FsSpineSprite_SpineSprite_touchMove00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LuaSpineSprite",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LuaSpineSprite* self = (LuaSpineSprite*)  tolua_tousertype(tolua_S,1,0);
-  float x = ((float)  tolua_tonumber(tolua_S,2,0));
-  float y = ((float)  tolua_tonumber(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onTouchMove'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->onTouchMove(x,y);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'touchMove'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: onTouchEnd of class  LuaSpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_touchEnd00
-static int tolua_FsSpineSprite_SpineSprite_touchEnd00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LuaSpineSprite",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LuaSpineSprite* self = (LuaSpineSprite*)  tolua_tousertype(tolua_S,1,0);
-  float x = ((float)  tolua_tonumber(tolua_S,2,0));
-  float y = ((float)  tolua_tonumber(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onTouchEnd'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->onTouchEnd(x,y);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'touchEnd'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: onHit2D of class  LuaSpineSprite */
-#ifndef TOLUA_DISABLE_tolua_FsSpineSprite_SpineSprite_hit2D00
-static int tolua_FsSpineSprite_SpineSprite_hit2D00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"LuaSpineSprite",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  LuaSpineSprite* self = (LuaSpineSprite*)  tolua_tousertype(tolua_S,1,0);
-  float x = ((float)  tolua_tonumber(tolua_S,2,0));
-  float y = ((float)  tolua_tonumber(tolua_S,3,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'onHit2D'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->onHit2D(x,y);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'hit2D'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* Open function */
 TOLUA_API int tolua_FsSpineSprite_open (lua_State* tolua_S)
 {
@@ -1060,42 +848,33 @@ TOLUA_API int tolua_FsSpineSprite_open (lua_State* tolua_S)
  tolua_reg_types(tolua_S);
  tolua_module(tolua_S,NULL,0);
  tolua_beginmodule(tolua_S,NULL);
-  tolua_cclass(tolua_S,"__SpineSprite","SpineSprite","Entity",toluaext_fscollector);
-  tolua_beginmodule(tolua_S,"__SpineSprite");
-   tolua_function(tolua_S,"setMaterial",tolua_FsSpineSprite___SpineSprite_setMaterial00);
-   tolua_function(tolua_S,"getMaterial",tolua_FsSpineSprite___SpineSprite_getMaterial00);
-   tolua_function(tolua_S,"setColor",tolua_FsSpineSprite___SpineSprite_setColor00);
-   tolua_function(tolua_S,"setColor",tolua_FsSpineSprite___SpineSprite_setColor01);
-   tolua_function(tolua_S,"getColor",tolua_FsSpineSprite___SpineSprite_getColor00);
-   tolua_function(tolua_S,"setOpacity",tolua_FsSpineSprite___SpineSprite_setOpacity00);
-   tolua_function(tolua_S,"getOpacity",tolua_FsSpineSprite___SpineSprite_getOpacity00);
-   tolua_function(tolua_S,"setBlend",tolua_FsSpineSprite___SpineSprite_setBlend00);
-   tolua_function(tolua_S,"setBlend",tolua_FsSpineSprite___SpineSprite_setBlend01);
-   tolua_function(tolua_S,"setProgramSource",tolua_FsSpineSprite___SpineSprite_setProgramSource00);
-   tolua_function(tolua_S,"setProgramSource",tolua_FsSpineSprite___SpineSprite_setProgramSource01);
-   tolua_function(tolua_S,"getProgramSource",tolua_FsSpineSprite___SpineSprite_getProgramSource00);
-   tolua_function(tolua_S,"setSkin",tolua_FsSpineSprite___SpineSprite_setSkin00);
-   tolua_function(tolua_S,"updateAnimation",tolua_FsSpineSprite___SpineSprite_updateAnimation00);
-   tolua_function(tolua_S,"setAnimation",tolua_FsSpineSprite___SpineSprite_setAnimation00);
-   tolua_function(tolua_S,"playAnimation",tolua_FsSpineSprite___SpineSprite_playAnimation00);
-   tolua_function(tolua_S,"playAnimation",tolua_FsSpineSprite___SpineSprite_playAnimation01);
-   tolua_function(tolua_S,"startAnimation",tolua_FsSpineSprite___SpineSprite_startAnimation00);
-   tolua_function(tolua_S,"startAnimation",tolua_FsSpineSprite___SpineSprite_startAnimation01);
-   tolua_function(tolua_S,"stopAnimation",tolua_FsSpineSprite___SpineSprite_stopAnimation00);
-   tolua_function(tolua_S,"isAnimationPlaying",tolua_FsSpineSprite___SpineSprite_isAnimationPlaying00);
-   tolua_function(tolua_S,"setCurTime",tolua_FsSpineSprite___SpineSprite_setCurTime00);
-   tolua_function(tolua_S,"getCurTime",tolua_FsSpineSprite___SpineSprite_getCurTime00);
-   tolua_function(tolua_S,"getDurationTime",tolua_FsSpineSprite___SpineSprite_getDurationTime00);
-  tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"SpineSprite","LuaSpineSprite","SpineSprite",toluaext_fscollector);
+  tolua_cclass(tolua_S,"SpineSprite","SpineSprite","Entity2D",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"SpineSprite");
    tolua_function(tolua_S,"create",tolua_FsSpineSprite_SpineSprite_create00);
-   tolua_function(tolua_S,"draw",tolua_FsSpineSprite_SpineSprite_draw00);
-   tolua_function(tolua_S,"update",tolua_FsSpineSprite_SpineSprite_update00);
-   tolua_function(tolua_S,"touchBegin",tolua_FsSpineSprite_SpineSprite_touchBegin00);
-   tolua_function(tolua_S,"touchMove",tolua_FsSpineSprite_SpineSprite_touchMove00);
-   tolua_function(tolua_S,"touchEnd",tolua_FsSpineSprite_SpineSprite_touchEnd00);
-   tolua_function(tolua_S,"hit2D",tolua_FsSpineSprite_SpineSprite_hit2D00);
+   tolua_function(tolua_S,"setMaterial",tolua_FsSpineSprite_SpineSprite_setMaterial00);
+   tolua_function(tolua_S,"getMaterial",tolua_FsSpineSprite_SpineSprite_getMaterial00);
+   tolua_function(tolua_S,"setColor",tolua_FsSpineSprite_SpineSprite_setColor00);
+   tolua_function(tolua_S,"setColor",tolua_FsSpineSprite_SpineSprite_setColor01);
+   tolua_function(tolua_S,"getColor",tolua_FsSpineSprite_SpineSprite_getColor00);
+   tolua_function(tolua_S,"setOpacity",tolua_FsSpineSprite_SpineSprite_setOpacity00);
+   tolua_function(tolua_S,"getOpacity",tolua_FsSpineSprite_SpineSprite_getOpacity00);
+   tolua_function(tolua_S,"setBlend",tolua_FsSpineSprite_SpineSprite_setBlend00);
+   tolua_function(tolua_S,"setBlend",tolua_FsSpineSprite_SpineSprite_setBlend01);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsSpineSprite_SpineSprite_setProgramSource00);
+   tolua_function(tolua_S,"setProgramSource",tolua_FsSpineSprite_SpineSprite_setProgramSource01);
+   tolua_function(tolua_S,"getProgramSource",tolua_FsSpineSprite_SpineSprite_getProgramSource00);
+   tolua_function(tolua_S,"setSkin",tolua_FsSpineSprite_SpineSprite_setSkin00);
+   tolua_function(tolua_S,"updateAnimation",tolua_FsSpineSprite_SpineSprite_updateAnimation00);
+   tolua_function(tolua_S,"setAnimation",tolua_FsSpineSprite_SpineSprite_setAnimation00);
+   tolua_function(tolua_S,"playAnimation",tolua_FsSpineSprite_SpineSprite_playAnimation00);
+   tolua_function(tolua_S,"playAnimation",tolua_FsSpineSprite_SpineSprite_playAnimation01);
+   tolua_function(tolua_S,"startAnimation",tolua_FsSpineSprite_SpineSprite_startAnimation00);
+   tolua_function(tolua_S,"startAnimation",tolua_FsSpineSprite_SpineSprite_startAnimation01);
+   tolua_function(tolua_S,"stopAnimation",tolua_FsSpineSprite_SpineSprite_stopAnimation00);
+   tolua_function(tolua_S,"isAnimationPlaying",tolua_FsSpineSprite_SpineSprite_isAnimationPlaying00);
+   tolua_function(tolua_S,"setCurTime",tolua_FsSpineSprite_SpineSprite_setCurTime00);
+   tolua_function(tolua_S,"getCurTime",tolua_FsSpineSprite_SpineSprite_getCurTime00);
+   tolua_function(tolua_S,"getDurationTime",tolua_FsSpineSprite_SpineSprite_getDurationTime00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

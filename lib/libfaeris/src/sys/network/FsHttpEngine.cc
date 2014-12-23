@@ -3,7 +3,9 @@
 #include "FsHttpRequest.h"
 #include "FsHttpReponse.h"
 
-
+#include "sys/thread/FsThread.h"
+#include "sys/thread/FsMutex.h"
+#include "sys/thread/FsConditionVariable.h"
 
 
 
@@ -33,7 +35,7 @@ void HttpEngine::send(HttpRequest* request)
 	m_requests->push(request);
 	m_reqMutex->unlock();
 
-	m_reqSem->post();
+	m_reqSem->signal();
 }
 
 void HttpEngine::clear()
@@ -46,7 +48,7 @@ void HttpEngine::clear()
 void HttpEngine::stop()
 {
 	m_stop=true;
-	m_reqSem->post();
+	m_reqSem->signal();
 }
 
 
@@ -54,23 +56,27 @@ void HttpEngine::run()
 {
 	while(true)
 	{
-		int ret=m_reqSem->wait();
-
+		FS_TRACE_WARN("HttpEngine Loop");
 		if(m_stop)
 		{
 			break;
 		}
 
-		if(ret==-1)  /* time  out */
-		{
-			continue;
-		}
-
-
 		m_reqMutex->lock();
+
 		if(m_requests->size()==0)
 		{
-			m_reqMutex->unlock();
+			//FS_TRACE_WARN("Begin To Sleep");
+			int ret=m_reqSem->wait(m_reqMutex);
+			if(ret<0)
+			{
+				FS_TRACE_WARN("Wait Error");
+				m_reqMutex->unlock();
+			}
+			else 
+			{
+				m_reqMutex->unlock();
+			}
 			continue;
 		}
 		else 
@@ -119,7 +125,7 @@ bool HttpEngine::init()
 	m_requests=FsArray::create();
 	FS_NO_REF_DESTROY(m_requests);
 
-	m_reqSem=new Semaphore(0);
+	m_reqSem=new ConditionVariable();
 	m_reqMutex=new Mutex();
 	m_stop=false;
 	m_maxConnectTime=30;

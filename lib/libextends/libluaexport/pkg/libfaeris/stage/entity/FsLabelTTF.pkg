@@ -1,26 +1,11 @@
 $#include "stage/entity/FsLabelTTF.h"
-$#include "luaext/FsLuaEntity.h"
 
-class LabelTTF@__LabelTTF:public Entity
+class LabelTTF:public Entity2D
 {
 	public:
-		void setMaterial(Material2D* mat);
-		Material2D* getMaterial() ;
-
-		/* material */
-		void setColor(const Color& c);
-		void setColor(const Color4f& c);
-		Color4f getColor();
-
-		void setOpacity(float opacity);
-		float getOpacity();
-
-		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor dst);
-		void setBlend(E_BlendFactor src,E_BlendFactor dst);
-
-		void setProgramSource(ProgramSource* ps);
-		void setProgramSource(const char* filename);
-		ProgramSource* getProgramSource();
+		static LabelTTF* __Entity2D__create@create();
+		static LabelTTF* __Entity2D__create@create(const char* font,int size);
+		static LabelTTF* __Entity2D__create@create(const char* font,int size,const char* text);
 
 	public:
 		void setString(const char* str);
@@ -36,37 +21,26 @@ class LabelTTF@__LabelTTF:public Entity
 		void setTextAlign(E_TextAlign align);
 		int getTextAlign();
 
+
+		void setBoundWidth(float width);
+		void setBoundHeight(float height);
+
 		void setBoundSize(float width,float height);
-		void getBoundSize(float* width=0,float* height=0);
+		void setBoundSize(const Vector2& v);
+
+		void getBoundSize(float* width,float* height);
+		Vector2 getBoundSize();
+		float getBoundWidth();
+		float getBoundHeight();
+
 
 		float getTextWidth();
 		float getTextHeight();
-		void getTextSize(float* width=0,float* height=0);
-
-
-		void setAnchor(float x,float y);
-		void getAnchor(float* x=0,float* y=0);
+		void getTextSize(float* width,float* height);
 
 		void setLineGap(float line_gap);
 		float getLineGap();
 
-};
-
-class LuaLabelTTF@LabelTTF:public LabelTTF
-{
-	public:
-		static LuaLabelTTF* create();
-		static LuaLabelTTF* create(const char* font,int size);
-		static LuaLabelTTF* create(const char* font,int size,const char* text);
-
-	public:
-		void onDraw@draw(RenderDevice* r);
-		void onUpdate@update(float dt);
-		bool onTouchBegin@touchBegin(float x,float y);
-		bool onTouchMove@touchMove(float x,float y);
-		bool onTouchEnd@touchEnd(float x,float y);
-		bool onHit2D@hit2D(float x,float y);
 
 };
-
 

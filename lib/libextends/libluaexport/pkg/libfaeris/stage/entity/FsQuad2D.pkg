@@ -1,66 +1,34 @@
 $#include "stage/entity/FsQuad2D.h"
-$#include "luaext/FsLuaEntity.h"
 
-class Quad2D@__Quad2D:public Entity 
+class Quad2D:public Entity2D
 {
 	public:
-		enum
-		{
-			MODE_TEXTURE,
-			MODE_COLOR
-		};
+		static Quad2D* __Entity2D__create@create(const Color4f& c,float width,float height);
+		static Quad2D* __Entity2D__create@create(const Color4f& c,const Rect2D& rect);
+
+		static Quad2D* __Entity2D__create@create();
+		static Quad2D* __Entity2D__create@create(const char* tex);
+		static Quad2D* __Entity2D__create@create(const char* tex,const Rect2D& rect);
+		static Quad2D* __Entity2D__create@create(const char* tex,float width,float height);
 
 	public:
-		void setMaterial(Material2D* mat);
-		Material2D* getMaterial() ;
 
-		/* material */
-		void setColor(const Color4f& c);
-		void setColor(const Color& c);
-		Color4f getColor();
-
-		void setOpacity(float opacity);
-		float getOpacity();
-
-		void setBlend(E_BlendEquation eq,E_BlendFactor src,E_BlendFactor dst);
-		void setBlend(E_BlendFactor src,E_BlendFactor dst);
-
-		void setProgramSource(ProgramSource* ps);
-		void setProgramSource(const char* filename);
-		ProgramSource* getProgramSource();
-
-	public:
 		/* texture */
 		void setTexture(const char* tex);
 		void setResourceUrl(const char* name);
+
+
 		void setTexture(Texture2D* tex);
 		Texture2D* getTexture();
-
 
 		/* Rect2D */
 		void setRect2D(const Rect2D& rect);
 		Rect2D getRect2D();
 
 
-		void setWidth(float width);
-		void setHeight(float height);
-		void setSize(float width,float height);
-		float getWidth();
-		float getHeight();
-		void getSize(float* width,float* height);
-
-		void setAnchorX(float x);
-		void setAnchorY(float y);
-		void setAnchor(float x,float y);
-		void getAnchor(float* x,float* y);
-
-		float getAnchorX();
-		float getAnchorY();
-
 	public:
 		void setRegionRect(float x,float y,float w,float h);
 		void setRegionRect(const Rect2D& rect);
-
 
 		void setRegionCircle(float x,float y,float radius,int precision);
 		void setRegionCircle(const Vector2& center,float radius,int precision);
@@ -80,46 +48,14 @@ class Quad2D@__Quad2D:public Entity
 				int precision);
 		void setRegionEllipse(const Vector2& center,float a,float b,
 				float start_angle,float end_angle,
-				int precision);;
+				int precision);
+
 
 		/* When Texture Size Change, You Should ReCall setRegionScale9 to Correct Region*/
 		void setRegionScale9(float edge);
 		void setRegionScale9(const Vector4& edge);
 		void setRegionScale9(float l,float r,float b,float t);
 
-
-
-};
-
-
-
-class LuaQuad2D@Quad2D:public Quad2D
-{
-	public:
-		enum
-		{
-			MODE_TEXTURE,
-			MODE_COLOR
-		};
-
-	public:
-		static LuaQuad2D* create();
-		static LuaQuad2D* create(const char* tex);
-		static LuaQuad2D* create(const char* tex,Rect2D);
-		static LuaQuad2D* create(const char* text,float width,float height);
-
-		static LuaQuad2D* create(const Color4f& c,float width,float height);
-		static LuaQuad2D* create(const Color& c,float width,float height);
-		static LuaQuad2D* create(const Color4f& c,const Rect2D& rect);
-		static LuaQuad2D* create(const Color& c,const Rect2D& rect);
-
-	public:
-		void onDraw@draw(RenderDevice* r);
-		void onUpdate@update(float dt);
-		bool onTouchBegin@touchBegin(float x,float y);
-		bool onTouchMove@touchMove(float x,float y);
-		bool onTouchEnd@touchEnd(float x,float y);
-		bool onHit2D@hit2D(float x,float y);
 };
 
 

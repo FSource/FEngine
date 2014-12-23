@@ -1,8 +1,6 @@
 $#include "stage/ui/FsToggleButton.h"
 
-
-
-class ToggleButton@__ToggleButton:public StateButton 
+class ToggleButton:public StateButton 
 {
 	public:
 		enum 
@@ -14,20 +12,19 @@ class ToggleButton@__ToggleButton:public StateButton
 			STATE_NU=3,
 		};
 
-
 	public:
-		/* inherit Entity*/
-		virtual bool touchBegin(float x,float y);
-		virtual bool touchMove(float x,float y);
-		virtual bool touchEnd(float x,float y);
-		virtual bool hit2D(float x,float y);
+		static ToggleButton* create();
+		static ToggleButton* createWithColorStyle(const char* filename,
+				const Color4f& on,
+				const Color4f& off);
 
+		static ToggleButton* createWithColorStyle(Texture2D* tex,
+				const Color4f& on,
+				const Color4f& off);
 
-		/* inherit FsObject */
-		virtual const char* className();
+		static ToggleButton* createWithTextureStyle(const char* fileon,const char* fileoff);
+		static ToggleButton* createWithTextureStyle(Texture2D* on,Texture2D* off);
 
-	public:
-		virtual void toggleChanged(bool value);
 
 
 	public:
@@ -38,42 +35,4 @@ class ToggleButton@__ToggleButton:public StateButton
 		bool getToggle();
 
 };
-
-
-class LuaToggleButton@ToggleButton:public ToggleButton
-{
-	public:
-		enum 
-		{
-			STATE_ALL=-1,
-			STATE_ON=0,
-			STATE_OFF=1,
-			STATE_DISABLE=2,
-			STATE_NU=3,
-		};
-	public:
-		static LuaToggleButton* create();
-		static LuaToggleButton* createWithDarkStyle(const char* filename,const Color4f& dark);
-		static LuaToggleButton* createWithDarkStyle(const char* filename,Color dark);
-		static LuaToggleButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark);
-		static LuaToggleButton* createWithDarkStyle(Texture2D* tex,Color dark);
-
-		static LuaToggleButton* createWithTextureStyle(const char* fileon,const char* fileoff);
-		static LuaToggleButton* createWithTextureStyle(Texture2D* on,Texture2D* off);
-
-	public:
-
-		void onDraw@draw(RenderDevice* r);
-		void onUpdate@update(float dt);
-
-		bool onTouchBegin@touchBegin(float x,float y);
-		bool onTouchMove@touchMove(float x,float y);
-		bool onTouchEnd@touchEnd(float x,float y);
-		bool onHit2D@hit2D(float x,float y);
-
-		void onToggleChanged@toggleChanged(bool value);
-
-
-};
-
 
