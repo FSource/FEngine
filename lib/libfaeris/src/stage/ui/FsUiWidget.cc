@@ -168,6 +168,12 @@ void UiWidget::setBgEnabled(bool value)
 }
 
 
+bool UiWidget::getBgEnabled()
+{
+	return m_bgEnabled;
+}
+
+
 
 
 
@@ -520,13 +526,18 @@ static UiWidget* UiWidget_NewInstace(FsDict* attr)
 
 FS_CLASS_ATTR_SET_GET_FUNCTION(UiWidget,setBgColor,getBgColor,Color4f);
 FS_CLASS_ATTR_SET_CHARS_FUNCTION(UiWidget,setBgTexture);
+FS_CLASS_ATTR_SET_GET_FUNCTION(UiWidget,setBgEnabled,getBgEnabled,bool);
+
+
 FS_CLASS_ATTR_SET_GET_FUNCTION(UiWidget,setScissorEnabled,getScissorEnabled,bool);
+
 
 
 static FsClass::FsAttributeDeclare S_UiWidget_Main_Attr[]=
 {
 	FS_CLASS_ATTR_DECLARE("bgColor",FsType::FT_COLOR_4,NULL,UiWidget_setBgColor,UiWidget_getBgColor),
 	FS_CLASS_ATTR_DECLARE("bgTextureUrl",FsType::FT_CHARS,NULL,UiWidget_setBgTexture,0),
+	FS_CLASS_ATTR_DECLARE("bgEnabled",FsType::FT_B_1,NULL,UiWidget_setBgEnabled,UiWidget_getBgEnabled),
 	FS_CLASS_ATTR_DECLARE("scissorEnabled",FsType::FT_B_1,NULL,UiWidget_setScissorEnabled,UiWidget_getScissorEnabled),
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
 };

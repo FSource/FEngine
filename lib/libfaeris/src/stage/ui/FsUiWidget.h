@@ -80,6 +80,7 @@ class UiWidget:public Entity2D
 		void setBgTexture(Texture2D* tex);
 		void setBgTexture(const char* filename);
 		void setBgEnabled(bool value);
+		bool getBgEnabled();
 
 
 

@@ -53,21 +53,20 @@ int XirFile::loadData()
 	int begin=m_begin;
 	int mark=m_mark;
 	int read_pos=m_buf_pos;
-	int buf_cap=m_buf_cap;
 
 	int buf_used=m_buf_size-begin;
-	int buf_free=buf_cap-buf_used;
+	int buf_free=m_buf_cap-buf_used;
 
 	if(buf_free<LEX_FILE_DEFAULT_SIZE/2)
 	{
 
-		char* new_buf=new char[buf_cap*2];
+		char* new_buf=new char[m_buf_cap*2];
 		memcpy(new_buf,m_buf+begin,buf_used);
 		delete[] m_buf;
 		m_buf=new_buf;
 		m_buf_cap=m_buf_cap*2;
 	}
-	else
+	else if(begin!=0)
 	{
 		int i;
 		char* buf=m_buf;
@@ -81,7 +80,7 @@ int XirFile::loadData()
 	m_mark=mark-begin;
 	m_buf_pos=read_pos-begin;
 
-	readbyte=m_file->read(m_buf+buf_used,buf_cap-buf_used);
+	readbyte=m_file->read(m_buf+buf_used,m_buf_cap-buf_used);
 	m_buf_size=buf_used+readbyte;
 	return readbyte;
 }

@@ -1,5 +1,6 @@
 #include <algorithm>
 #include "FsClass.h"
+#include "FsGlobal.h"
 #include "stage/layer/FsLayer2D.h"
 #include "support/util/FsArray.h"
 #include "support/util/FsSlowDict.h"
@@ -419,6 +420,18 @@ void Layer2D::getTouchEnabledEntity(std::vector<Entity2D*>* e)
 
 /*** Used For Layer2D FsClass Attribute */
 
+Layer2D* Layer2D_newInstance(FsDict* attr)
+{
+	Layer2D* ret=Layer2D::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+	return  ret;
+}
+
+
+
 void Layer2D_setViewArea(Layer2D* l,FsDict* dict)
 {
 	Rect2D view_area=l->getViewArea();
@@ -433,46 +446,65 @@ void Layer2D_setViewArea(Layer2D* l,FsDict* dict)
 		view_area.y=dict->lookupString("y")->toFloatValue();
 	}
 
-	if(dict->lookupString("w"))
+	if(dict->lookupString("width"))
 	{
-		view_area.width=dict->lookupString("w")->toFloatValue();
+		view_area.width=dict->lookupString("width")->toFloatValue();
 	}
 
-	if(dict->lookupString("h"))
+	if(dict->lookupString("height"))
 	{
-		view_area.height=dict->lookupString("h")->toFloatValue();
+		view_area.height=dict->lookupString("height")->toFloatValue();
 	}
 
 	l->setViewArea(view_area);
 }
 
+void Layer2D_setEntity(Layer2D* l,FsArray* entities)
+{
+	l->clearEntity();
+	int entity_nu=entities->size();
+	for(int i=0;i<entity_nu;i++)
+	{
+		FsDict* dict=entities->getDict(i);
+		if(dict)
+		{
+			FsObject* ob=Global::classMgr()->newInstance(dict);
+			if(ob)
+			{
+				Entity2D* en=dynamic_cast<Entity2D*>(ob);
+				if(en)
+				{
+					l->add(en);
+				}
+				else 
+				{
+					FS_TRACE_WARN("Not SubClass Of Entity2D,Ingore Item(%d)",i);
+					ob->destroy();
+				}
+			}
+		}
+		else 
+		{
+			FS_TRACE_WARN("Not Dict,Ingore Item(%d)",i);
+		}
+	}
+}
+
 
 static FsClass::FsAttributeDeclare S_Layer2D_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE("viewArea",FsType::FT_DICT,NULL,Layer2D_setViewArea,0),
-
+	FS_CLASS_ATTR_DECLARE("entity",FsType::FT_ARRAY,NULL,Layer2D_setEntity,0),
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+};
 
-} ;
 
-FS_CLASS_IMPLEMENT_WITH_BASE(Layer2D,Layer,0,S_Layer2D_Main_Attr);
 
+
+
+
+FS_CLASS_IMPLEMENT_WITH_BASE(Layer2D,Layer,Layer2D_newInstance,S_Layer2D_Main_Attr);
 
 
 NS_FS_END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

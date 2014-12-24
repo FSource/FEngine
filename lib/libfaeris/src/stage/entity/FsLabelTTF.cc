@@ -505,7 +505,7 @@ static FsClass::FsAttributeDeclare S_LabelTTF_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
 };
 
-FS_CLASS_IMPLEMENT_WITH_BASE(LabelTTF,Entity,LabelTTF_NewInstance,S_LabelTTF_Main_Attr);
+FS_CLASS_IMPLEMENT_WITH_BASE(LabelTTF,Entity2D,LabelTTF_NewInstance,S_LabelTTF_Main_Attr);
 
 
 

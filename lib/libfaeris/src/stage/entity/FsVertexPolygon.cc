@@ -247,31 +247,18 @@ static void VertexPolygon_setVertices(VertexPolygon* vp,FsArray* array)
 
 
 
-FS_CLASS_ATTR_SET_GET_FUNCTION(VertexPolygon,setColor,getColor,Color4f);
-FS_CLASS_ATTR_SET_GET_FUNCTION(VertexPolygon,setOpacity,getOpacity,float);
-FS_CLASS_ATTR_SET_CHARS_FUNCTION(VertexPolygon,setProgramSource);
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(VertexPolygon,setBlendEquation,getBlendEquation,BlendEquation);
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(VertexPolygon,setBlendSrc,getBlendSrc,BlendFactor);
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(VertexPolygon,setBlendDst,getBlendDst,BlendFactor);
-
 FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(VertexPolygon,setMode,getMode,DrawMode);
 
 
 static FsClass::FsAttributeDeclare  S_VertexPolygon_Main_Attr[]=
 {
-	FS_CLASS_ATTR_DECLARE("color",FsType::FT_COLOR_4,NULL,VertexPolygon_setColor,VertexPolygon_getColor),
-	FS_CLASS_ATTR_DECLARE("opacity",FsType::FT_F_1,NULL,VertexPolygon_setOpacity,VertexPolygon_getOpacity),
-	FS_CLASS_ATTR_DECLARE("shader",FsType::FT_CHARS,NULL,VertexPolygon_setProgramSource,0),
-	FS_CLASS_ATTR_DECLARE("blendEquation",FsType::FT_CHARS,NULL,VertexPolygon_setBlendEquation,VertexPolygon_getBlendEquation),
-	FS_CLASS_ATTR_DECLARE("blendSrc",FsType::FT_CHARS,NULL,VertexPolygon_setBlendSrc,VertexPolygon_getBlendSrc),
-	FS_CLASS_ATTR_DECLARE("blendDst",FsType::FT_CHARS,NULL,VertexPolygon_setBlendDst,VertexPolygon_getBlendDst),
 	FS_CLASS_ATTR_DECLARE("vertices",FsType::FT_ARRAY,NULL,VertexPolygon_setVertices,0),
 	FS_CLASS_ATTR_DECLARE("mode",FsType::FT_CHARS,NULL,VertexPolygon_setMode,VertexPolygon_getMode),
 
 	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
 };
 
-FS_CLASS_IMPLEMENT_WITH_BASE(VertexPolygon,Entity,VertexPolygon_NewInstance,S_VertexPolygon_Main_Attr);
+FS_CLASS_IMPLEMENT_WITH_BASE(VertexPolygon,Entity2D,VertexPolygon_NewInstance,S_VertexPolygon_Main_Attr);
 
 
 

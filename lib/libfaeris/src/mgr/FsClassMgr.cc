@@ -105,23 +105,64 @@ NS_FS_END
 
 
 
-	/* PreLoad FsClass */
+/* PreLoad FsClass */
+
 #include "stage/entity/FsEntity.h"
 #include "stage/entity/FsQuad2D.h"
 #include "stage/entity/FsLabelTTF.h"
+#include "stage/entity/FsVertexPolygon.h"
+
+#include "stage/ui/FsUiWidget.h"
+#include "stage/ui/FsListView.h"
+#include "stage/ui/FsPageView.h"
+#include "stage/ui/FsDynamicView.h"
 
 
-	NS_FS_BEGIN
+#include "stage/ui/FsStateButton.h"
+#include "stage/ui/FsToggleButton.h"
+#include "stage/ui/FsPressButton.h"
+
+
+#include "stage/FsScene.h"
+#include "stage/layer/FsLayer.h"
+#include "stage/layer/FsLayer2D.h"
+
+
+NS_FS_BEGIN
 
 #define FS_REGISTER_CLASS(cls) \
 	registerClass(#cls,cls::getClass())
 
-	void ClassMgr::preRegisterClass()
+void ClassMgr::preRegisterClass()
 {
 	FS_REGISTER_CLASS(Entity);
 	FS_REGISTER_CLASS(Quad2D);
 	FS_REGISTER_CLASS(LabelTTF);
+	FS_REGISTER_CLASS(VertexPolygon);
+
+	FS_REGISTER_CLASS(UiWidget);
+	FS_REGISTER_CLASS(ListView);
+	FS_REGISTER_CLASS(PageView);
+	FS_REGISTER_CLASS(DynamicView);
+	FS_REGISTER_CLASS(StateButton);
+	FS_REGISTER_CLASS(ToggleButton);
+	FS_REGISTER_CLASS(PressButton);
+	FS_REGISTER_CLASS(Scene);
+	FS_REGISTER_CLASS(Layer);
+	FS_REGISTER_CLASS(Layer2D);
+
 }
 
 NS_FS_END
+
+
+
+
+
+
+
+
+
+
+
 
