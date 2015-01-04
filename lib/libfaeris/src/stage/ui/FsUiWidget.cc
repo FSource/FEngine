@@ -489,6 +489,8 @@ void UiWidget::layout()
 
 
 
+
+
 void UiWidget::detach()
 {
 	if(m_parentWidget)
@@ -501,7 +503,7 @@ void UiWidget::detach()
 	}
 }
 
-
 NS_FS_END
+
 
 
