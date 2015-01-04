@@ -11,6 +11,7 @@
 #include "graphics/shader/FsProgram.h"
 
 NS_FS_BEGIN
+
 class Image2D;
 class Texture2D;
 
@@ -118,16 +119,6 @@ class LabelTTF:public Entity2D
 NS_FS_END
 
 #endif /*_FS_LABLE_TTF_H_*/
-
-
-
-
-
-
-
-
-
-
 
 
 

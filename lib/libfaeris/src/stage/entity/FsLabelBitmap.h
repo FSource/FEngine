@@ -1,156 +1,105 @@
 #ifndef _FS_LABEL_BITMAP_H_
 #define _FS_LABEL_BITMAP_H_
 
-
 #include <string>
-#include <set>
-#include <vector>
-
 #include "FsMacros.h"
 #include "stage/entity/FsEntity2D.h"
-#include "graphics/FsColor.h"
-#include "math/FsVertices.h"
-#include "math/FsFace3.h"
-
-#include "graphics/material/FsMaterial2D.h"
-#include "graphics/shader/FsProgram.h"
-
 
 NS_FS_BEGIN
+
+
 class FontBitmap;
-class Texture2D;
-class Material2D;
-class Program;
 
 class LabelBitmap:public Entity2D 
 {
 	public:
-		enum{ 
-			ALIGN_V_TOP,
-			ALIGN_V_CENTER,
-			ALIGN_V_BOTTOM,
-			ALIGN_V_USER_DEFINE,
-
-			ALIGN_H_LEFT,
-			ALIGN_H_RIGHT,
-			ALIGN_H_CENTER,
-			ALIGN_H_USER_DEFINE,
-		};
-		enum{
-			TEXT_ALIGN_LEFT,
-			TEXT_ALIGN_CENTER,
-			TEXT_ALIGN_RIGHT,
-		};
+		FS_CLASS_DECLARE(LabelBitmap);
 
 	public:
-		static LabelBitmap* create(const char* text,FontBitmap* font);
-		static LabelBitmap* create(FontBitmap* font);
-
+		static LabelBitmap* create();
+		static LabelBitmap* create(const char* font,float size);
+		static LabelBitmap* create(const char* font,const char* text);
+		static LabelBitmap* create(const char* font,float size,const char* text);
 
 
 	public:
-		int setString(const char* utf8_str);
-		int setString(const char* utf8_str,int start);
-		int setString(const char* utf8_str,int start,int num);
-
+		void setString(const char* str);
 		const char* getString();
 
+		void setFontName(const char* font);
+		const char* getFomtName();
 
-		void setAlign(int alignh,int alignv);
-		void setAlignOffset(float x,float y);
+		void setFontSize(float size);
+		float getFontSize();
 
-		void getAlign(int* alignh,int* alignv);
-		void getAlignOffset(float* x,float* y);
+		void setTextAlign(E_TextAlign align);
+		E_TextAlign getTextAlign();
 
+		void setBoundWidth(float width);
+		void setBoundHeight(float height);
 
-		float getWidth();
-		float getHeight();
+		void setBoundSize(float width,float height);
+		void setBoundSize(const Vector2& v);
+		Vector2 getBoundSize();
 
-		/* NOTE: setTextAlign and setBounds will not take effect 
-		 * immediately,it will change at next setString called 
-		 */
-		void setTextAlign(int mode);
-		void setBounds(float x,float y);
+		float getBoundWidth();
+		float getBoundHeight();
 
-		int getTextAlign();
-		void getBounds(float* x,float* y);
+		float getTextWidth();
+		float getTextHeight();
+
+		void getTextSize(float* width,float* height);
+		void setLineGap(float line_gap);
+		float getLineGap();
+
 
 	public:
-		/* override Entity */
-		virtual void draw(RenderDevice* r,bool updateMatrix);
-		virtual bool hit2D(float x,float y);
+		void draw(RenderDevice* rd,bool update_matrix) FS_OVERRIDE;
+		void hit2D(float x,float y) FS_OVERRIDE;
 
-		/* override FsObject */
-		virtual const char* className();
-
+		using  Entity2D::setAnchor;
+		void setAnchor(const Vector2& v) FS_OVERRIDE;
 
 
 	protected:
-		LabelBitmap();
-		virtual ~LabelBitmap();
-		bool init(FontBitmap* font);
+		bool init();
+		bool init(const char* font,float size);
+		bool init(const char* font,float size,const char* text);
+
 		void destruct();
 
-		int setString(uint16_t* utf16_str,int len);
+		LabelBitmap();
+		virtual ~LabelBitmap();
 
-		void calRelOffset();
-		void clear();
-		void generateIndices();
-
+		void typoText();
+		void realignText();
+		void clearTextLine();
 
 	private:
-		int m_alignh,m_alignv;
-		float m_offsetx,m_offsety;
-		int m_textAlign;
+		bool m_dirty;
+		std::string m_text;
+		uint16_t* m_utf16text;
 
-		float m_boundx,m_boundy;
+		std::string m_fontName;
+		float m_fontSize;
+		E_TextAlign m_textAlign;
+
+		float m_boundWidth,m_boundHeight;
+		float m_lineGap;
 
 		FontBitmap* m_font;
-		Texture2D* m_texture;
 
-		/* user setting */
-		uint8_t* m_utf8str;
+		/* compute result */
 
-
-		/* auto generate */
-		float m_width,m_height;
-		float m_relOffsetx,m_relOffsety;
-
-		std::vector<Fs_V2F_T2F> m_vertices;
-		std::vector<Face3> m_indics;
-
+		float m_textWidth,m_textHeight;
+		TypoPage<TypoText> m_typoPage;
 };
 
 
 NS_FS_END 
 
 
+
 #endif /*_FS_LABEL_BITMAP_H_*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

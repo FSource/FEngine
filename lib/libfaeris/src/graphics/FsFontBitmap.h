@@ -65,6 +65,7 @@ class FontBitmap:public Resource
 	public:
 		static FontBitmap* create(const char* fnt);
 		static FontBitmap* create(FsFile* file);
+
 	public:
 		GlyphBitmap* getGlyph(uint16_t char_index);
 
@@ -101,8 +102,6 @@ class FontBitmap:public Resource
 
 		FsArray* m_textures;
 };
-
-
 
 
 

@@ -2,7 +2,6 @@
 #include "FsGlobal.h"
 #include "FsClass.h"
 
-
 NS_FS_BEGIN
 
 Entity2D* Entity2D::create()
@@ -25,8 +24,6 @@ Entity2D::Entity2D()
 
 	m_size.set(0,0);
 	m_anchor.set(0.5,0.5);
-
-
 
 	onTouchBegin=nullptr;
 	onTouchMove=nullptr;
@@ -189,6 +186,7 @@ void Entity2D::setTouchEnabled(bool enabled)
 {
 	m_touchEnabled=enabled;
 }
+
 bool Entity2D::getTouchEnabled()
 {
 	return m_touchEnabled;

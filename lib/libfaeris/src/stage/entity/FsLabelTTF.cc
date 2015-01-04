@@ -511,10 +511,6 @@ FS_CLASS_IMPLEMENT_WITH_BASE(LabelTTF,Entity2D,LabelTTF_NewInstance,S_LabelTTF_M
 
 
 
-
-
-
-
 NS_FS_END
 
 

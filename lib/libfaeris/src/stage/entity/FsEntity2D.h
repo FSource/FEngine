@@ -47,7 +47,6 @@ class Entity2D:public Entity
 	public:
 		Program* getProgram(ProgramFeatureDesc* desc);
 
-
 	public:
 		/* single touch */
 		void setTouchEnabled(bool enabled);
