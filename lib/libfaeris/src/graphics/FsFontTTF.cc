@@ -267,10 +267,6 @@ GlyphTTF* GlyphTTF::create(uint16_t c_id,uint16_t size)
 	return ret;
 }
 
-const char* GlyphTTF::className()
-{
-	return FS_GLYPH_CLASS_NAME;
-}
 
 GlyphTTF::GlyphTTF(uint16_t c_id,uint16_t size)
 {
@@ -422,8 +418,12 @@ GlyphTTF* FontTTF::getGlyphTTF(uint16_t char_index,int size)
 	if(!g)
 	{
 		g=m_data->createGlyphTTF(char_index,size);
-		addToMgr(g);
+		if(g)
+		{
+			addToMgr(g);
+		}
 	}
+
 	if(g)
 	{
 		addToCache(g);

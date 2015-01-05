@@ -27,7 +27,11 @@ GlyphBitmap* GlyphBitmap::create()
 }
 
 GlyphBitmap::GlyphBitmap()
-	:m_char(0),m_x(0),m_y(0),m_width(0),m_height(0),m_xoffset(0),m_yoffset(0),m_xadvance(0),m_page(0)
+	:m_char(0),
+	m_x(0), m_y(0),
+	m_width(0),m_height(0),
+	m_xoffset(0),m_yoffset(0),
+	m_xadvance(0),m_page(0)
 {
 	m_minx=0;
 	m_miny=0;
@@ -42,11 +46,55 @@ GlyphBitmap::GlyphBitmap()
 	m_vrt=0;
 	m_ult=0;
 	m_vlt=0;
+	m_font=NULL;
 }
-const char* GlyphBitmap::className()
+
+
+void GlyphBitmap::getBound(int* minx,int* miny,int* maxx,int* maxy) 
 {
-	return FS_GLYPH_BITMAP_CLASS_NAME;
+	*minx=m_minx;
+	*miny=m_miny;
+	*maxx=m_maxx;
+	*maxy=m_maxy;
 }
+
+int GlyphBitmap::getAdvanceX()
+{
+	return m_xadvance;
+}
+
+int GlyphBitmap::getAscend()
+{
+	return m_font->getAscent();
+}
+
+int GlyphBitmap::getDescend()
+{
+	return m_font->getDescent();
+}
+
+int GlyphBitmap::getHeight() 
+{
+	return m_font->getHeight();
+}
+
+uint16_t GlyphBitmap::getChar()
+{
+	return m_char;
+}
+
+void GlyphBitmap::setFont(FontBitmap* font)
+{
+	m_font=font;
+}
+
+FontBitmap* GlyphBitmap::getFont()
+{
+	return m_font;
+}
+
+
+
 
 
 
@@ -55,9 +103,11 @@ const char* FontBitmap::className()
 	return FS_FONT_BITMAP_CLASS_NAME;
 }
 
+
 FontBitmap::GlyphSet::GlyphSet()
 {
 }
+
 FontBitmap::GlyphSet::~GlyphSet()
 {
 	std::map<int,GlyphBitmap*>::iterator iter;
@@ -81,6 +131,7 @@ void FontBitmap::GlyphSet::insert(int key,GlyphBitmap* g)
 	m_values[key]=g;
 }
 
+
 GlyphBitmap* FontBitmap::GlyphSet::find(int key)
 {
 	std::map<int,GlyphBitmap*>::iterator iter=m_values.find(key);
@@ -95,18 +146,6 @@ GlyphBitmap* FontBitmap::GlyphSet::find(int key)
 }
 
 
-FontBitmap* FontBitmap::create(const char* fnt)
-{
-	FsFile* file=VFS::createFile(fnt);
-	if(file==NULL)
-	{
-		FS_TRACE_WARN("Can't open File(%s) For FontBitmap",fnt);
-		return NULL;
-	}
-	FontBitmap* ret=create(file);
-	file->decRef();
-	return ret;
-}
 
 FontBitmap* FontBitmap::create(FsFile* file)
 {
@@ -319,8 +358,8 @@ bool FontBitmap::init(FsFile* file)
 			/* cache info for typography */
 			glyph->m_minx=v_xoffset;
 			glyph->m_maxx=v_xoffset+v_width;
-			glyph->m_miny=v_yoffset;
-			glyph->m_maxy=v_yoffset+v_height;
+			glyph->m_maxy=base_line-v_yoffset;
+			glyph->m_miny=base_line-v_yoffset-v_height;
 
 			glyph->m_ulb=(float)v_x/(float)scale_w;
 			glyph->m_vlb=(float)(v_y+v_height)/(float)scale_h;
@@ -350,6 +389,8 @@ bool FontBitmap::init(FsFile* file)
 			{
 				max_xadvance=v_xadvance;
 			}
+			glyph->setFont(this);
+
 			glyphs->insert(v_id,glyph);
 		}
 		else
@@ -382,6 +423,7 @@ next_line:
 		g->m_char=' ';
 		g->m_xadvance=max_xadvance;
 		g->m_maxx=max_xadvance;
+		g->setFont(this);
 		glyphs->insert(' ',g);
 	}
 
@@ -393,6 +435,7 @@ next_line:
 		g->m_char='\t';
 		g->m_xadvance=max_xadvance;
 		g->m_maxx=max_xadvance;
+		g->setFont(this);
 		glyphs->insert('\t',g);
 	}
 
@@ -403,6 +446,7 @@ next_line:
 	{
 		g=new GlyphBitmap();
 		g->m_char='\n';
+		g->setFont(this);
 		glyphs->insert('\n',g);
 	}
 
@@ -413,7 +457,11 @@ next_line:
 	m_textureHeight=scale_h;
 
 
+	/*
 	m_ascent=line_height-base_line;
+	m_descent=m_ascent-line_height;
+	*/
+	m_ascent=base_line;
 	m_descent=m_ascent-line_height;
 
 	m_height=line_height;

@@ -110,6 +110,7 @@ NS_FS_END
 #include "stage/entity/FsEntity.h"
 #include "stage/entity/FsQuad2D.h"
 #include "stage/entity/FsLabelTTF.h"
+#include "stage/entity/FsLabelBitmap.h"
 #include "stage/entity/FsVertexPolygon.h"
 
 #include "stage/ui/FsUiWidget.h"
@@ -138,6 +139,7 @@ void ClassMgr::preRegisterClass()
 	FS_REGISTER_CLASS(Entity);
 	FS_REGISTER_CLASS(Quad2D);
 	FS_REGISTER_CLASS(LabelTTF);
+	FS_REGISTER_CLASS(LabelBitmap);
 	FS_REGISTER_CLASS(VertexPolygon);
 
 	FS_REGISTER_CLASS(UiWidget);

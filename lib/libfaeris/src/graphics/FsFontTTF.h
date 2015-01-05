@@ -36,22 +36,19 @@ class GlyphTTF:public TypoGlyph
 		static GlyphTTF* create(uint16_t c,uint16_t size);
 
 	public:
-		virtual const char* className();
-
-	public:
-		void getBound(int* minx,int* miny,int* maxx,int* maxy);
+		void getBound(int* minx,int* miny,int* maxx,int* maxy) FS_OVERRIDE;
 		void setBound(int minx,int miny,int maxx,int maxy);
 
 		void setAdvanceX(int advance);
-		int getAdvanceX();
+		int getAdvanceX() FS_OVERRIDE;
 
-		int getAscend();
-		int getDescend();
-		int getHeight();
+		int getAscend() FS_OVERRIDE;
+		int getDescend() FS_OVERRIDE;
+		int getHeight() FS_OVERRIDE;
 
 
-		uint16_t getChar();
-		uint16_t getSize();
+		uint16_t getChar() FS_OVERRIDE;
+		uint16_t getSize() ;
 
 		Image2D* getImage();
 		void setImage(Image2D* image);

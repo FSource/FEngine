@@ -16,6 +16,7 @@
 #include "extends/FsScriptEngine.h"
 #include "mgr/FsTextureMgr.h"
 #include "mgr/FsFontTTFMgr.h"
+#include "mgr/FsFontBitmapMgr.h"
 #include "mgr/FsSprite2DDataMgr.h"
 #include "mgr/FsProgramSourceMgr.h"
 #include "mgr/FsMeshMgr.h"
@@ -74,6 +75,7 @@ class Global
 	FS_GLOBAL_H(FelisScriptMgr,felisScriptMgr,setFelisScriptMgr);
 	FS_GLOBAL_H(ClassMgr,classMgr,setClassMgr);
 
+	FS_GLOBAL_H(FontBitmapMgr,fontBitmapMgr,setFontBitmapMgr);
 
 };
 NS_FS_END 

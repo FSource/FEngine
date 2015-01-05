@@ -5,23 +5,38 @@
 #include "FsMacros.h"
 #include "mgr/FsResource.h"
 
+#include "graphics/FsTypoPage.h"
+
+
 NS_FS_BEGIN
+
 class FsDict;
 class FsArray;
 class FsFile;
 class Texture2D;
+class FontBitmap;
 
-
-class GlyphBitmap:public FsObject 
+class GlyphBitmap:public TypoGlyph
 {
 	public:
 		static GlyphBitmap* create();
-	public:
-		GlyphBitmap();
+
 
 	public:
-		/* override FsObject */
-		virtual const char* className();
+		void getBound(int* minx,int* miny,int* maxx,int* maxy) FS_OVERRIDE;
+		int getAdvanceX() FS_OVERRIDE;
+		int getAscend() FS_OVERRIDE;
+		int getDescend() FS_OVERRIDE;
+		int getHeight() FS_OVERRIDE;
+		uint16_t getChar() FS_OVERRIDE;
+
+	public:
+		void setFont(FontBitmap* font);
+		FontBitmap* getFont();
+
+
+	protected:
+		GlyphBitmap();
 
 	public:
 		uint16_t m_char;
@@ -44,6 +59,10 @@ class GlyphBitmap:public FsObject
 		float m_urb,m_vrb;
 		float m_urt,m_vrt;
 		float m_ult,m_vlt;
+
+		FS_FEATURE_WEAK_REF(FontBitmap*) m_font;
+
+		friend class FontBitmap;
 };
 
 class FontBitmap:public Resource
@@ -63,7 +82,6 @@ class FontBitmap:public Resource
 		};
 
 	public:
-		static FontBitmap* create(const char* fnt);
 		static FontBitmap* create(FsFile* file);
 
 	public:

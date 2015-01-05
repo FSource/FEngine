@@ -34,6 +34,8 @@ FS_GLOBAL_CC(FelisScriptMgr,felisScriptMgr,setFelisScriptMgr);
 
 FS_GLOBAL_CC(ClassMgr,classMgr,setClassMgr);
 
+FS_GLOBAL_CC(FontBitmapMgr,fontBitmapMgr,setFontBitmapMgr);
+
 NS_FS_END
 
 

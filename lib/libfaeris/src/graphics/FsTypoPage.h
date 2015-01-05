@@ -29,23 +29,31 @@ class TypoGlyph:public FsObject
 class TypoText
 {
 	public:
-		TypoText(TypoGlyph* g,const Vector2& pen)
+		TypoText(TypoGlyph* g,const Vector2& pen,float scale)
 		{
 			m_glyph=g;
 			g->addRef();
-			int minx,miny,maxx,maxy;
-			m_glyph->getBound(&minx,&miny,&maxx,&maxy);
-			m_vertices[0].x=pen.x+float(minx);
-			m_vertices[0].y=pen.y+float(miny);
+			int iminx,iminy,imaxx,imaxy;
+			m_glyph->getBound(&iminx,&iminy,&imaxx,&imaxy);
 
-			m_vertices[1].x=pen.x+float(maxx);
-			m_vertices[1].y=pen.y+float(miny);
+			float minx=iminx*scale;
+			float miny=iminy*scale;
+			float maxx=imaxx*scale;
+			float maxy=imaxy*scale;
 
-			m_vertices[2].x=pen.x+float(minx);
-			m_vertices[2].y=pen.y+float(maxy);
+			m_vertices[0].x=pen.x+minx;
+			m_vertices[0].y=pen.y+miny;
 
-			m_vertices[3].x=pen.x+float(maxx);
-			m_vertices[3].y=pen.y+float(maxy);
+			m_vertices[1].x=pen.x+maxx;
+			m_vertices[1].y=pen.y+miny;
+
+			m_vertices[2].x=pen.x+minx;
+			m_vertices[2].y=pen.y+maxy;
+
+			m_vertices[3].x=pen.x+maxx;
+			m_vertices[3].y=pen.y+maxy;
+
+			m_scale=scale;
 		}
 		virtual ~TypoText()
 		{
@@ -68,13 +76,14 @@ class TypoText
 		float getMaxx() { return m_vertices[3].x; }
 		float getMaxy() { return m_vertices[3].y; }
 
-		float getAscend() {return (float)m_glyph->getAscend();}
-		float getDescend() {return (float)m_glyph->getDescend();}
+		float getAscend() {return (float)m_glyph->getAscend()*m_scale;}
+		float getDescend() {return (float)m_glyph->getDescend()*m_scale;}
 
 
 	public:
 		Vector2 m_vertices[4];
 		TypoGlyph* m_glyph;
+		float m_scale;
 };
 
 
@@ -109,9 +118,9 @@ class TypoLine
 			return m_texts[i];
 		}
 
-		TypoText* pushText(TypoGlyph* g,const Vector2& pen)
+		TypoText* pushText(TypoGlyph* g,const Vector2& pen,float scale)
 		{
-			T_TypoText* text=new T_TypoText(g,pen);
+			T_TypoText* text=new T_TypoText(g,pen,scale);
 			m_texts.push_back(text);
 
 			if(m_minx>text->getMinx()) { m_minx=text->getMinx();}
@@ -237,7 +246,7 @@ class TypoPage
 			}
 		}
 
-		T_TypoText* pushText(TypoGlyph* g)
+		T_TypoText* pushText(TypoGlyph* g,float scale)
 		{
 
 			if (m_current==NULL)
@@ -256,14 +265,19 @@ class TypoPage
 				{
 					m_current=new TypoLine<T_TypoText>;
 				}
-				int minx,miny,maxx,maxy;
-				g->getBound(&minx,&miny,&maxx,&maxy);
+				int iminx,iminy,imaxx,imaxy;
+				g->getBound(&iminx,&iminy,&imaxx,&imaxy);
+				float minx=iminx*scale;
+				float miny=iminy*scale;
+				float maxx=imaxx*scale;
+				float maxy=imaxy*scale;
+
 				if( m_current->getTextNu()== 0)
 				{
 					m_pen.x=-float(minx);
 				}
 
-				float height=float(g->getHeight());
+				float height=float(g->getHeight())*scale;
 				if(!canExpandHeight(height))
 				{
 					m_done=true;
@@ -288,8 +302,8 @@ class TypoPage
 				else 
 				{
 				
-					T_TypoText* ret=m_current->pushText(g,m_pen);
-					m_pen.x+=g->getAdvanceX();
+					T_TypoText* ret=m_current->pushText(g,m_pen,scale);
+					m_pen.x+=g->getAdvanceX()*scale;
 
 					return ret;
 				}

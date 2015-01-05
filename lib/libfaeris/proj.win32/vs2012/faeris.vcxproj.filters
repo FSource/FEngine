@@ -586,6 +586,9 @@
     <ClInclude Include="..\..\src\sys\thread\FsConditionVariable.h">
       <Filter>src\sys\thread</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\mgr\FsFontBitmapMgr.h">
+      <Filter>src\mgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1049,6 +1052,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\FsEnums.cc">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\FsFontBitmapMgr.cc">
+      <Filter>src\mgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

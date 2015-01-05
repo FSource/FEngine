@@ -74,9 +74,16 @@ int FsFaeris_ModuleInit()
 	Global::setTextureMgr(tex_mgr);
 
 
-	FontTTFMgr* font_mgr=FontTTFMgr::create();
-	FS_NO_REF_DESTROY(font_mgr);
-	Global::setFontTTFMgr(font_mgr);
+	FontTTFMgr* font_ttf_mgr=FontTTFMgr::create();
+	FS_NO_REF_DESTROY(font_ttf_mgr);
+	Global::setFontTTFMgr(font_ttf_mgr);
+
+	FontBitmapMgr* font_bmp_mgr=FontBitmapMgr::create();
+	FS_NO_REF_DESTROY(font_bmp_mgr);
+	Global::setFontBitmapMgr(font_bmp_mgr);
+
+
+
 
 	Sprite2DDataMgr* sprite_mgr=Sprite2DDataMgr::create();
 	FS_NO_REF_DESTROY(sprite_mgr);
@@ -139,7 +146,8 @@ int FsFaeris_ModuleExit()
 
 	/* manager */
 	TextureMgr* tex_mgr=Global::textureMgr();
-	FontTTFMgr* font_mgr=Global::fontTTFMgr();
+	FontTTFMgr* font_ttf_mgr=Global::fontTTFMgr();
+	FontBitmapMgr* font_bmp_mgr=Global::fontBitmapMgr();
 	Sprite2DDataMgr* sprite_mgr=Global::sprite2DDataMgr();
 	ProgramSourceMgr* prog_s_mgr=Global::programSourceMgr();
 
@@ -177,7 +185,8 @@ int FsFaeris_ModuleExit()
 
 	/* mgr */
 	FS_DESTROY(tex_mgr);
-	FS_DESTROY(font_mgr);
+	FS_DESTROY(font_ttf_mgr);
+	FS_DESTROY(font_bmp_mgr);
 	FS_DESTROY(sprite_mgr);
 	FS_DESTROY(prog_s_mgr);
 	FS_DESTROY(felis_mgr);
@@ -200,6 +209,7 @@ int FsFaeris_ModuleExit()
 	Global::dropRenderDevice();
 	Global::dropTextureMgr();
 	Global::dropFontTTFMgr();
+	Global::dropFontBitmapMgr();
 	Global::dropSprite2DDataMgr();
 	Global::dropProgramSourceMgr();
 	Global::dropFelisScriptMgr();

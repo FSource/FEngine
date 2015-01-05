@@ -4,6 +4,8 @@
 #include <string>
 #include "FsMacros.h"
 #include "stage/entity/FsEntity2D.h"
+#include "graphics/FsTypoPage.h"
+#include "math/FsVertices.h"
 
 NS_FS_BEGIN
 
@@ -17,7 +19,7 @@ class LabelBitmap:public Entity2D
 
 	public:
 		static LabelBitmap* create();
-		static LabelBitmap* create(const char* font,float size);
+		static LabelBitmap* create(const char* font);
 		static LabelBitmap* create(const char* font,const char* text);
 		static LabelBitmap* create(const char* font,float size,const char* text);
 
@@ -27,7 +29,7 @@ class LabelBitmap:public Entity2D
 		const char* getString();
 
 		void setFontName(const char* font);
-		const char* getFomtName();
+		const char* getFontName();
 
 		void setFontSize(float size);
 		float getFontSize();
@@ -39,6 +41,7 @@ class LabelBitmap:public Entity2D
 		void setBoundHeight(float height);
 
 		void setBoundSize(float width,float height);
+
 		void setBoundSize(const Vector2& v);
 		Vector2 getBoundSize();
 
@@ -55,7 +58,7 @@ class LabelBitmap:public Entity2D
 
 	public:
 		void draw(RenderDevice* rd,bool update_matrix) FS_OVERRIDE;
-		void hit2D(float x,float y) FS_OVERRIDE;
+		bool hit2D(float x,float y) FS_OVERRIDE;
 
 		using  Entity2D::setAnchor;
 		void setAnchor(const Vector2& v) FS_OVERRIDE;
@@ -89,10 +92,16 @@ class LabelBitmap:public Entity2D
 
 		FontBitmap* m_font;
 
-		/* compute result */
 
+		/* compute result */
 		float m_textWidth,m_textHeight;
 		TypoPage<TypoText> m_typoPage;
+
+		bool m_drawDirty;
+
+
+		std::vector<Fs_V2F_T2F> m_finishVertices;
+		std::vector<Face3> m_faces;
 };
 
 

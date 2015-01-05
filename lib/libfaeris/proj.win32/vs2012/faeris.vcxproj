@@ -149,6 +149,7 @@
     <ClInclude Include="..\..\src\media\FsAudioPlayer.h" />
     <ClInclude Include="..\..\src\mgr\FsClassMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsFelisScriptMgr.h" />
+    <ClInclude Include="..\..\src\mgr\FsFontBitmapMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsFontTTFMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsProgramSourceMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsResource.h" />
@@ -302,6 +303,7 @@
     <ClCompile Include="..\..\src\media\FsAudioPlayer.cc" />
     <ClCompile Include="..\..\src\mgr\FsClassMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsFelisScriptMgr.cc" />
+    <ClCompile Include="..\..\src\mgr\FsFontBitmapMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsFontTTFMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsProgramSourceMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsResource.cc" />

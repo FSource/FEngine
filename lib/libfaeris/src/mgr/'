@@ -1,0 +1,33 @@
+#include "FsFontBitmapMgr.h"
+#include "graphics/FsFontBitmap.h"
+
+
+NS_FS_BEGIN
+
+FontBitmapMgr* FontBitmapMgr::create()
+{
+	return new FontBitmapMgr();
+}
+
+
+FontBitmap* FontBitmapMgr::loadFontTTF(const char* name)
+{
+	return (FontBitmap*) load(name);
+}
+
+const char* FontBitmapMgr::className()
+{
+	return 
+}
+
+
+
+
+
+
+NS_FS_END 
+
+
+
+
+

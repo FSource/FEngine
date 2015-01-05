@@ -65,7 +65,7 @@ LabelTTF::LabelTTF()
 	m_fontName="";
 	m_fontSize=20;
 
-	m_textAlign=FS_TEXT_ALIGN_LEFT;
+	m_textAlign=E_TextAlign::LEFT;
 
 	m_boundWidth=0;
 	m_boundHeight=0;
@@ -130,9 +130,6 @@ void LabelTTF::setString(const char* str)
 		return;
 	}
 	m_text=std::string(str);
-
-	FS_SAFE_DELETES(m_utf16text);
-	m_utf16text=FsIconv_UTF8_to_UNICODE(str);
 	m_dirty=true;
 }
 
@@ -148,6 +145,7 @@ void LabelTTF::setFontName(const char* font_name)
 		return;
 	}
 
+	m_fontName=font_name;
 
 	FontTTF* font=(FontTTF*)Global::fontTTFMgr()->load(font_name);
 	FS_TRACE_WARN_ON(font==NULL,"Load FontName %s Failed",font_name);
@@ -300,6 +298,7 @@ void LabelTTF::getTextSize(float* width,float* height)
 void LabelTTF::setLineGap(float gap)
 {
 	m_lineGap=gap;
+	m_dirty=true;
 }
 
 float LabelTTF::getLineGap()
@@ -326,7 +325,7 @@ void LabelTTF::draw(RenderDevice* rd,bool updateMatrix)
 {
 	Program* prog=m_material->getProgram(NULL);
 
-	if(!m_font||!m_utf16text||!prog)
+	if(!m_font||!prog)
 	{
 		return; 
 	}
@@ -444,7 +443,14 @@ void LabelTTF::typoText()
 	while((!m_typoPage.done())&&(*p_text))
 	{
 		GlyphTTF* g=m_font->getGlyphTTF(*p_text,m_fontSize);
-		m_typoPage.pushText(g);
+		if(g)
+		{
+			m_typoPage.pushText(g,1.0f);
+		}
+		else 
+		{
+			FS_TRACE_WARN("Can't Load Glyph(%d) For LabelTTF, Ignore",*p_text);
+		}
 
 		p_text++;
 	}
