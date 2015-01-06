@@ -33,6 +33,7 @@ SRC=  \
 	FsGlobal.cc \
 	FsObject.cc \
 	FsVariant.cc \
+	FsEnum.cc \
 	FsClass.cc \
 	FsFaerisModule.cc \
 	extends/FsScriptEngine.cc \
@@ -95,6 +96,7 @@ SRC=  \
 	sys/thread/FsThread.cc \
 	sys/thread/FsSemaphore.cc \
 	sys/thread/FsMutex.cc \
+	sys/thread/FsConditionVariable.cc \
 	sys/network/FsHttpEngine.cc \
 	sys/network/FsHttpReponse.cc \
 	sys/network/FsHttpRequest.cc \
@@ -132,6 +134,7 @@ SRC=  \
 	mgr/FsSprite2DDataMgr.cc \
 	mgr/FsProgramSourceMgr.cc \
 	mgr/FsFelisScriptMgr.cc \
+	mgr/FsClassMgr.cc \
 	scheduler/FsScheduler.cc \
 	scheduler/FsSchedulerTarget.cc \
 	scheduler/FsTask.cc \

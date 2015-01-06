@@ -64,8 +64,14 @@ class ListView:public ScrollWidget
 
 	protected:
 
+<<<<<<< HEAD
 		ListView(E_ScrollDirection mode,float width,float height);
 		ListView(float width,float height);
+=======
+		ListView(float width,float height);
+		ListView(int mode,float width,float height);
+		virtual ~ListView();
+>>>>>>> v3.1
 
 		void init(E_ScrollDirection mode,float width,float height);
 
