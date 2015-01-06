@@ -9,6 +9,7 @@
 #include "graphics/FsRenderDevice.h"
 #include "support/util/FsArray.h"
 #include "graphics/shader/FsStreamMap.h"
+#include "graphics/shader/FsProgram.h"
 
 
 #include "FsClass.h"

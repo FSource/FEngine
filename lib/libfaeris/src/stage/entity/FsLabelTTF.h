@@ -8,7 +8,6 @@
 #include "graphics/FsColor.h"
 #include "graphics/FsTypoPage.h"
 #include "graphics/FsFontTTF.h"
-#include "graphics/shader/FsProgram.h"
 
 NS_FS_BEGIN
 
@@ -119,8 +118,6 @@ class LabelTTF:public Entity2D
 NS_FS_END
 
 #endif /*_FS_LABLE_TTF_H_*/
-
-
 
 
 

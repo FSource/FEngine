@@ -482,20 +482,6 @@ void LabelBitmap::destruct()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /** Used For FsLabelBitmap Attribute */
 
 static LabelBitmap* LabelBitmap_NewInstance(FsDict* attr)
