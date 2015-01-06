@@ -525,7 +525,6 @@ static UiWidget* UiWidget_NewInstace(FsDict* attr)
 	return ret;
 }
 
-<<<<<<< HEAD
 
 FS_CLASS_ATTR_SET_GET_FUNCTION(UiWidget,setBgColor,getBgColor,Color4f);
 FS_CLASS_ATTR_SET_CHARS_FUNCTION(UiWidget,setBgTexture);
@@ -551,8 +550,6 @@ FS_CLASS_IMPLEMENT_WITH_BASE(UiWidget,Entity2D,UiWidget_NewInstace,S_UiWidget_Ma
 
 
 
-=======
->>>>>>> v3.1
 NS_FS_END
 
 
