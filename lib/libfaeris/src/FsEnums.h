@@ -551,6 +551,13 @@ enum class E_ScrollDirection
 		
 };
 
+enum class E_AxisDirection 
+{
+	VERTICAL,
+	HORIZONTAL
+};
+
+
 enum class E_AlignH
 {
 	LEFT,

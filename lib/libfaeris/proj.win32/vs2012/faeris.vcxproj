@@ -187,6 +187,7 @@
     <ClInclude Include="..\..\src\stage\layer\FsColorLayer.h" />
     <ClInclude Include="..\..\src\stage\layer\FsLayer.h" />
     <ClInclude Include="..\..\src\stage\layer\FsLayer2D.h" />
+    <ClInclude Include="..\..\src\stage\ui\FsDialog.h" />
     <ClInclude Include="..\..\src\stage\ui\FsDynamicView.h" />
     <ClInclude Include="..\..\src\stage\ui\FsListView.h" />
     <ClInclude Include="..\..\src\stage\ui\FsPageView.h" />
@@ -340,6 +341,7 @@
     <ClCompile Include="..\..\src\stage\layer\FsColorLayer.cc" />
     <ClCompile Include="..\..\src\stage\layer\FsLayer.cc" />
     <ClCompile Include="..\..\src\stage\layer\FsLayer2D.cc" />
+    <ClCompile Include="..\..\src\stage\ui\FsDialog.cc" />
     <ClCompile Include="..\..\src\stage\ui\FsDynamicView.cc" />
     <ClCompile Include="..\..\src\stage\ui\FsListView.cc" />
     <ClCompile Include="..\..\src\stage\ui\FsPageView.cc" />

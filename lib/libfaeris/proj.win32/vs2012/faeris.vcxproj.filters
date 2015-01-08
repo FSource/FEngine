@@ -589,6 +589,9 @@
     <ClInclude Include="..\..\src\mgr\FsFontBitmapMgr.h">
       <Filter>src\mgr</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsDialog.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1055,6 +1058,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\mgr\FsFontBitmapMgr.cc">
       <Filter>src\mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsDialog.cc">
+      <Filter>src\stage\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
