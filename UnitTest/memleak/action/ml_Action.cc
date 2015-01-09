@@ -10,9 +10,9 @@
 #include "FsGlobal.h"
 #include "FsFaerisModule.h"
 #include "stage/action/FsAction.h"
-#include "stage/action/FsRotateZByAction.h"
-#include "stage/action/FsScaleToAction.h"
-#include "stage/action/FsMoveByAction.h"
+#include "stage/action/FsRotateAction.h"
+#include "stage/action/FsScaleAction.h"
+#include "stage/action/FsMoveAction.h"
 #include "stage/action/FsSeqAction.h"
 #include "stage/action/FsPauseAction.h"
 
@@ -31,9 +31,9 @@ class MyEntity:public Quad2D
 			int y=rand()%640;
 			setPosition(x,y,0);
 
-			Action* a1=MoveByAction::create(20,20,2);
-			Action* a2=ScaleToAction::create(2,2,2);
-			Action* a3=RotateZByAction::create(30,2);
+			Action* a1=MoveAction::createBy(Vector3(x,y,0),Vector3(20,20,0),2);
+			Action* a2=ScaleAction::createFromTo(Vector3(1,1,1),Vector3(2,2,1),1);
+			Action* a3=RotateAction::createFromTo(Vector3(0,0,0),Vector3(0,0,30),2);
 
 			doAction(a1);
 			doAction(a2);
@@ -41,12 +41,12 @@ class MyEntity:public Quad2D
 
 			SeqAction* sq=SeqAction::create();
 			sq->addAction(PauseAction::create(5));
-			sq->addAction(MoveByAction::create(-20,-20,2));
+			sq->addAction(MoveAction::createBy(Vector3(20,20,0),Vector3(-20,-20,0),2));
 
 			SeqAction* sq2=SeqAction::create();
 
-			sq2->addAction(ScaleToAction::create(1,1,2));
-			sq2->addAction(RotateZByAction::create(-30,2));
+			sq2->addAction(ScaleAction::createFromTo(Vector3(2,2,2),Vector3(1,1,1),2));
+			sq2->addAction(RotateAction::createBy(Vector3(0,0,30),Vector3(0,0,-30),2));
 
 			sq->addAction(sq2);
 
@@ -117,7 +117,7 @@ int main()
 	FsFaeris_ModuleInit();
 
 	Window* win=Global::window();
-	Render* render=Global::render();
+	RenderDevice* render=Global::renderDevice();
 
 	win->setPosition(100,100);
 	win->setSize(960,640);

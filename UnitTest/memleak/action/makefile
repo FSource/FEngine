@@ -29,7 +29,7 @@ BIN_OBJ_NAME=$(BIN:%.cc=%.o)
 BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 
 CC=g++
-FLAGS=-g -Wall   -include sys/types.h -DLINUX
+FLAGS=-g -Wall   -include sys/types.h -DLINUX  -std=c++11
 INCLUDE=  -I.   \
 		  -I../../../lib/libfaeris/src
 
