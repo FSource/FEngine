@@ -19,7 +19,10 @@ class SeekBar:public ProcessBar
 
 		Texture2D* getSeekTexture();
 		void setSeekMargin(float ml,float mb);
+		void setSeekMargin(const Vector2f& v);
+		Vector2f getSeekMargin();
 
+		void setSeekSize(float w,float h);
 		void setSeekSize(const Vector2f& v);
 		Vector2f getSeekSize();
 
@@ -42,6 +45,7 @@ class SeekBar:public ProcessBar
 	protected:
 		Texture2D* m_seekTexture;
 		Vector2f m_seekSize;
+		Vector2f m_seekMargin;
 
 		Vector2f m_beginDragPos;
 		

@@ -34,6 +34,45 @@ void SeekBar::setSeekTexture(Texture2D* tex)
 	FS_TRACE_WARN_ON(m_seekTexture,tex);
 }
 
+Texture2D* SeekBar::getSeekTexture()
+{
+	return m_seekTexture;
+}
+
+void SeekBar::setSeekMargin(float ml,float mb)
+{
+	m_seekMargin.set(ml,mb);
+}
+
+void SeekBar::setSeekMargin(const Vector2f& v)
+{
+	m_seekMargin=v;
+}
+
+Vector2f SeekBar::getSeekMargin()
+{
+	return m_seekMargin;
+}
+
+
+void SeekBar::setSeekSize(float w,float h)
+{
+	m_seekSize.set(w,h);
+}
+
+void SeekBar::setSeekSize(const Vector2f& v)
+{
+	m_seekSize=v;
+}
+
+Vector2f SeekBar::getSeekSize()
+{
+	return m_seekSize;
+}
+
+
+
+
 
 
 
