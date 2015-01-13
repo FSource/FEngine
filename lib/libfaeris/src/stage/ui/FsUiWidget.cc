@@ -34,10 +34,15 @@ UiWidget::UiWidget()
 	m_scissorEnabled=true;
 	m_parentWidget=NULL;
 
-	setBgTexture((Texture2D*)NULL);
 	m_bgEnabled=false;
 	m_listenChildTSAEnabled=true;
 	m_signalParentTSAEnabled=true;
+
+	m_bgMaterial=Material2D::create();
+	setBgTexture((Texture2D*)NULL);
+	FS_NO_REF_DESTROY(m_bgMaterial);
+
+
 }
 
 
@@ -54,6 +59,7 @@ UiWidget::~UiWidget()
 			ch->setParentWidget(NULL);
 		}
 	}
+	FS_DESTROY(m_bgMaterial);
 }
 
 
@@ -118,18 +124,18 @@ bool UiWidget::getScissorEnabled()
 
 void UiWidget::setBgColor(const Color4f& c)
 {
-	setColor(c);
+	m_bgMaterial->setColor(c);
 }
 
 Color4f UiWidget::getBgColor()
 {
-	return getColor();
+	return m_bgMaterial->getColor();
 }
 
 
 void UiWidget::setBgTexture(Texture2D* tex)
 {
-	m_material->setColorMap(tex);
+	m_bgMaterial->setColorMap(tex);
 	if(tex)
 	{
 		static ProgramSource* S_texProgramSource=NULL;
@@ -137,7 +143,7 @@ void UiWidget::setBgTexture(Texture2D* tex)
 		{
 			S_texProgramSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F);
 		}
-		m_material->setProgramSource(S_texProgramSource);
+		m_bgMaterial->setProgramSource(S_texProgramSource);
 	}
 	else 
 	{
@@ -146,7 +152,7 @@ void UiWidget::setBgTexture(Texture2D* tex)
 		{
 			S_colorProgramSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
 		}
-		m_material->setProgramSource(S_colorProgramSource);
+		m_bgMaterial->setProgramSource(S_colorProgramSource);
 	}
 }
 
@@ -310,102 +316,6 @@ void UiWidget::draws(RenderDevice* r,bool updateMatrix)
 
 }
 
-void UiWidget::getBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
-{
-	float top=(1.0f-m_anchor.y)*m_size.y;
-	float  bottom=-m_anchor.y*m_size.y;
-
-	float left=-m_anchor.x*m_size.x;
-	float right=(1.0f-m_anchor.x)*m_size.x;
-
-	*minx=left;
-	*maxx=right;
-	*miny=bottom;
-	*maxy=top;
-}
-
-
-
-
-void UiWidget::getTRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
-{
-	float top,bottom,left,right;
-	getRSBoundSize2D(&left,&right,&bottom,&top);
-
-	Vector3 t=getPosition();
-	*minx=left+t.x;
-	*maxx=right+t.x;
-
-	*miny=bottom+t.y;
-	*maxy=top+t.y;
-}
-
-
-void UiWidget::getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
-{
-	float top=(1.0f-m_anchor.y)*m_size.y;
-	float  bottom=-m_anchor.y*m_size.y;
-
-	float left=-m_anchor.x*m_size.x;
-	float right=(1.0f-m_anchor.x)*m_size.x;
-	Vector3 s=getScale();
-	Vector3 r=getRotate();
-
-
-	if(Math::floatEqual(s.x,1.0f) 
-			&&Math::floatEqual(s.y,1.0f)
-			&&Math::floatEqual(r.x,0.0f)
-			&&Math::floatEqual(r.y,0.0f)
-			&&Math::floatEqual(r.z,0.0f))
-	{
-		*minx=left;
-		*maxx=right;
-		*miny=bottom;
-		*maxy=top;
-		return;
-	}
-
-
-	Matrix4 mat;
-	mat.makeCompose(Vector3(0,0,0),r,E_EulerOrientType::XYZ,s);
-
-	/* D-----C 
-	 * |     |
-	 * A-----B
-	 */
-
-	Vector3 vv[4]={
-		Vector3(left,bottom,0),
-		Vector3(right,bottom,0),
-		Vector3(right,top,0),
-		Vector3(left,top,0),
-	};
-
-	for(int i=0;i<4;i++)
-	{
-		vv[i]=mat.mulVector3(vv[i]);
-	}
-
-	float t_minx=vv[0].x;
-	float t_maxx=vv[0].x;
-
-	float t_miny=vv[0].y;
-	float t_maxy=vv[0].y;
-
-	for(int i=1;i<4;i++)
-	{
-		if(t_minx>vv[i].x) t_minx=vv[i].x;
-		if(t_maxx<vv[i].x) t_maxx=vv[i].x;
-
-		if(t_miny>vv[i].y) t_miny=vv[i].y;
-		if(t_maxy<vv[i].y) t_maxy=vv[i].y;
-	}
-
-	*minx=t_minx;
-	*maxx=t_maxx;
-	*miny=t_miny;
-	*maxy=t_maxy;
-}
 
 
 
@@ -416,7 +326,7 @@ void UiWidget::draw(RenderDevice* rd,bool updateMatrix)
 		return;
 	}
 
-	Program* prog=m_material->getProgram(NULL);
+	Program* prog=m_bgMaterial->getProgram(NULL);
 	if(!prog)
 	{
 		return;
@@ -430,7 +340,7 @@ void UiWidget::draw(RenderDevice* rd,bool updateMatrix)
 
 	rd->setWorldMatrix(&m_worldMatrix);
 	rd->setProgram(prog);
-	m_material->configRenderDevice(rd);
+	m_bgMaterial->configRenderDevice(rd);
 
 	rd->disableAllAttrArray();
 

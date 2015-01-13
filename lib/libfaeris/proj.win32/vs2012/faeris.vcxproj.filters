@@ -592,6 +592,9 @@
     <ClInclude Include="..\..\src\stage\ui\FsDialog.h">
       <Filter>src\stage\ui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\stage\ui\FsProcessBar.h">
+      <Filter>src\stage\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1060,6 +1063,9 @@
       <Filter>src\mgr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stage\ui\FsDialog.cc">
+      <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\ui\FsProcessBar.cc">
       <Filter>src\stage\ui</Filter>
     </ClCompile>
   </ItemGroup>

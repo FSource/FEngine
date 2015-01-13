@@ -301,6 +301,8 @@ bool Layer2D::touchBegin(float x,float y)
 	m_touchFocus=NULL;
 	m_entity->lock();
 	Vector3 tv=toLayerCoord(Vector3(x,y,0));
+	bool block_event=false;
+
 	if(m_dispatchTouchEnabled)
 	{
 		std::vector<Entity2D*> entitys;
@@ -323,13 +325,21 @@ bool Layer2D::touchBegin(float x,float y)
 					}
 					break;  
 				}
+
+				if(e->getBlockTouchEnabled())
+				{
+					block_event=true;
+					break;
+				}
 			}
 		}
 	}
 	m_entity->unlock();
 	m_entity->flush();
-	return m_touchFocus!=NULL;
+	return m_touchFocus!=NULL || block_event;
 }
+
+
 bool Layer2D::touchMove(float x,float y)
 {
 	m_entity->lock();

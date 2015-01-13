@@ -48,10 +48,6 @@ class UiWidget:public Entity2D
 
 
 	public:
-		void getBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
-		void getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
-		void getTRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
-
 
 		void setScissorEnabled(bool clip);
 		bool getScissorEnabled();
@@ -104,6 +100,9 @@ class UiWidget:public Entity2D
 		bool m_bgEnabled;
 		bool m_listenChildTSAEnabled;
 		bool m_signalParentTSAEnabled;
+
+		Material2D* m_bgMaterial;
+
 };
 
 

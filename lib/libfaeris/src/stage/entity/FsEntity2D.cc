@@ -21,6 +21,8 @@ Entity2D::Entity2D()
 	m_touchesEnabled=0;
 	m_dispatchTouchEnabled=0;
 	m_dispatchTouchesEnabled=0;
+	m_blockTouchEnabled=0;
+	m_blockTouchesEnabled=0;
 
 	m_size.set(0,0);
 	m_anchor.set(0.5,0.5);
@@ -191,6 +193,30 @@ bool Entity2D::getTouchEnabled()
 {
 	return m_touchEnabled;
 }
+
+void Entity2D::setBlockTouchEnabled(bool enabled)
+{
+	m_blockTouchEnabled=enabled;
+}
+
+bool Entity2D::getBlockTouchEnabled()
+{
+	return m_blockTouchEnabled;
+}
+
+void Entity2D::setBlockTouchesEnabled(bool enabled)
+{
+	m_blockTouchesEnabled=enabled;
+}
+
+bool Entity2D::getBlockTouchesEnabled()
+{
+	return m_blockTouchesEnabled;
+}
+
+
+
+
 
 bool Entity2D::touchBegin(float x,float y)
 {
@@ -431,6 +457,102 @@ float Entity2D::getAnchorY()
 	return getAnchor().y;
 }
 
+void Entity2D::getBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
+{
+	float top=(1.0f-m_anchor.y)*m_size.y;
+	float  bottom=-m_anchor.y*m_size.y;
+
+	float left=-m_anchor.x*m_size.x;
+	float right=(1.0f-m_anchor.x)*m_size.x;
+
+	*minx=left;
+	*maxx=right;
+	*miny=bottom;
+	*maxy=top;
+}
+
+
+
+
+void Entity2D::getTRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
+{
+	float top,bottom,left,right;
+	getRSBoundSize2D(&left,&right,&bottom,&top);
+
+	Vector3 t=getPosition();
+	*minx=left+t.x;
+	*maxx=right+t.x;
+
+	*miny=bottom+t.y;
+	*maxy=top+t.y;
+}
+
+
+void Entity2D::getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
+{
+	float top=(1.0f-m_anchor.y)*m_size.y;
+	float  bottom=-m_anchor.y*m_size.y;
+
+	float left=-m_anchor.x*m_size.x;
+	float right=(1.0f-m_anchor.x)*m_size.x;
+	Vector3 s=getScale();
+	Vector3 r=getRotate();
+
+
+	if(Math::floatEqual(s.x,1.0f) 
+			&&Math::floatEqual(s.y,1.0f)
+			&&Math::floatEqual(r.x,0.0f)
+			&&Math::floatEqual(r.y,0.0f)
+			&&Math::floatEqual(r.z,0.0f))
+	{
+		*minx=left;
+		*maxx=right;
+		*miny=bottom;
+		*maxy=top;
+		return;
+	}
+
+
+	Matrix4 mat;
+	mat.makeCompose(Vector3(0,0,0),r,E_EulerOrientType::XYZ,s);
+
+	/* D-----C 
+	 * |     |
+	 * A-----B
+	 */
+
+	Vector3 vv[4]={
+		Vector3(left,bottom,0),
+		Vector3(right,bottom,0),
+		Vector3(right,top,0),
+		Vector3(left,top,0),
+	};
+
+	for(int i=0;i<4;i++)
+	{
+		vv[i]=mat.mulVector3(vv[i]);
+	}
+
+	float t_minx=vv[0].x;
+	float t_maxx=vv[0].x;
+
+	float t_miny=vv[0].y;
+	float t_maxy=vv[0].y;
+
+	for(int i=1;i<4;i++)
+	{
+		if(t_minx>vv[i].x) t_minx=vv[i].x;
+		if(t_maxx<vv[i].x) t_maxx=vv[i].x;
+
+		if(t_miny>vv[i].y) t_miny=vv[i].y;
+		if(t_maxy<vv[i].y) t_maxy=vv[i].y;
+	}
+
+	*minx=t_minx;
+	*maxx=t_maxx;
+	*miny=t_miny;
+	*maxy=t_maxy;
+}
 
 bool Entity2D::hit2D(float x,float y)
 {

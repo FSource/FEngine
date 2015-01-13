@@ -168,6 +168,9 @@ Dialog::Dialog()
 	m_outsideMaterial=Material2D::create();
 	FS_NO_REF_DESTROY(m_outsideMaterial);
 
+	setBlockTouchEnabled(true);
+	setBlockTouchesEnabled(true);
+
 	static ProgramSource* S_programSourceColor=NULL;
 	if(S_programSourceColor==NULL)
 	{

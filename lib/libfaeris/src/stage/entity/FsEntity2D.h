@@ -62,6 +62,13 @@ class Entity2D:public Entity
 		void setDispatchTouchesEnabled(bool enabled);
 		bool getDispatchTouchesEnabled();
 
+		/* block event */
+		void setBlockTouchEnabled(bool enabled);
+		bool getBlockTouchEnabled();
+		void setBlockTouchesEnabled(bool enabled);
+		bool getBlockTouchesEnabled();
+
+
 
 	public:  /* touch part */
 		virtual bool touchBegin(float x,float y);
@@ -104,6 +111,9 @@ class Entity2D:public Entity
 		void setAnchorY(float v);
 		float getAnchorY();
 
+		void getBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
+		void getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
+		void getTRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
 
 
 	public:
@@ -135,7 +145,10 @@ class Entity2D:public Entity
 				ulong m_touchesEnabled:1;
 				ulong m_dispatchTouchEnabled:1;
 				ulong m_dispatchTouchesEnabled:1;
+				ulong m_blockTouchEnabled:1;
+				ulong m_blockTouchesEnabled:1;
 			};
+
 			ulong m_touchFlags;
 		};
 		Entity2D* m_touchFocus;

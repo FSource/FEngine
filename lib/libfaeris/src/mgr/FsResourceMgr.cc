@@ -131,6 +131,11 @@ Resource* ResourceMgr::findFromCache(FsString* name)
 
 Resource* ResourceMgr::load(const char* filename)
 {
+	if(filename==NULL)
+	{
+		return NULL;
+	}
+
 	FsString* f_name=FsString::create(filename);
 	Resource* ret=findFromCache(f_name);
 	if( !ret)
