@@ -285,7 +285,10 @@ class ListViewContentPanel:public Entity
 		}
 
 	public:
-		virtual bool hit2D(float x,float y){return true;}
+		bool hit2D(float x,float y) FS_OVERRIDE
+		{
+			return true;
+		}
 		void layout()
 		{
 			switch(m_mode)

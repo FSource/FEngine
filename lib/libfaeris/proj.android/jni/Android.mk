@@ -90,6 +90,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/sys/thread/FsThread.cc \
 					../../src/sys/thread/FsSemaphore.cc \
 					../../src/sys/thread/FsMutex.cc \
+					../../src/sys/thread/FsConditionVariable.cc \
 					../../src/sys/network/FsHttpEngine.cc \
 					../../src/sys/network/FsHttpReponse.cc \
 					../../src/sys/network/FsHttpRequest.cc \
@@ -128,6 +129,7 @@ LOCAL_SRC_FILES :=  \
 					../../src/mgr/FsSprite2DDataMgr.cc \
 					../../src/mgr/FsProgramSourceMgr.cc \
 					../../src/mgr/FsFelisScriptMgr.cc \
+					../../src/mgr/FsClassMgr.cc \
 					../../src/scheduler/FsScheduler.cc \
 					../../src/scheduler/FsSchedulerTarget.cc \
 					../../src/scheduler/FsTask.cc \
