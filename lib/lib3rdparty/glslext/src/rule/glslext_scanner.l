@@ -65,7 +65,7 @@ UniformMap 		return tUNIFORM_MAP ;
 [1-9][0-9]*[uU]?|0[xX][0-9a-fA-F]+[uU]?|0[0-7]*[uU]?	PARSE_TEXT_TO_YACC; return tINTEGER;
 
 [_a-zA-Z0-9.]+					PARSE_TEXT_TO_YACC; return tWORD;
-[~`!@#%\^&*-+_|\\'";<>,/?\-]+=?	 PARSE_TEXT_TO_YACC; return tWORD;
+[~`!@#%\^&*-+_|\\'";<>,/?\-=]+=?	 PARSE_TEXT_TO_YACC; return tWORD;
 
 %%
 
