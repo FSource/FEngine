@@ -545,8 +545,9 @@ bool Entity::touchEnd(float x,float y)
 {
 	if(m_touchFocus)
 	{
-		bool ret=FS_OBJECT_LAMBDA_CALL(m_touchFocus,onTouchEnd,touchEnd,x,y);
+		Entity* focus=m_touchFocus;
 		m_touchFocus=NULL;
+		bool ret=FS_OBJECT_LAMBDA_CALL(focus,onTouchEnd,touchEnd,x,y);
 		return ret;
 	}
 	return false;

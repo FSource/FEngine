@@ -1,11 +1,8 @@
 $#include "stage/ui/FsUiWidget.h"
 
 
-class UiWidget:public Entity 
+class UiWidget@__UiWidget:public Entity 
 {
-	public:
-		static UiWidget* create(float width,float height);
-
 	public:
 
 		void setSize(float width,float height);
@@ -46,6 +43,22 @@ class UiWidget:public Entity
 		void setParentWidget(UiWidget* widget);
 		UiWidget* getParentWidget();
 
+
+};
+
+class LuaUiWidget@UiWidget:public UiWidget 
+{
+	public:
+		static LuaUiWidget* create(float width,float height);
+
+	public:
+		void onDraw@draw(RenderDevice* r);
+		void onUpdate@update(float dt);
+
+		bool onTouchBegin@touchBegin(float x,float y);
+		bool onTouchMove@touchMove(float x,float y);
+		bool onTouchEnd@touchEnd(float x,float y);
+		bool onHit2D@hit2D(float x,float y);
 
 };
 

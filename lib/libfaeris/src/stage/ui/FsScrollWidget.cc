@@ -433,7 +433,6 @@ bool ScrollWidget::touchMove(float x,float y)
 
 bool  ScrollWidget::touchEnd(float x,float y)
 {
-	UiWidget::touchEnd(x,y);
 
 	m_isDraged=false;
 	m_velocityTracker->endTrack(x,y);
@@ -478,6 +477,7 @@ bool  ScrollWidget::touchEnd(float x,float y)
 			//FS_TRACE_WARN("v=%f,accel=%f",v,accel);
 		}
 	}
+	UiWidget::touchEnd(x,y);
 
 	return true;
 }

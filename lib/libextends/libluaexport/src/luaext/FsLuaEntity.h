@@ -17,6 +17,7 @@
 #include "stage/entity/FsPanel.h"
 #include "stage/ui/FsPressButton.h"
 #include "stage/ui/FsToggleButton.h"
+#include "stage/ui/FsUiWidget.h"
 
 #if FS_CONFIG(FS_EXPORT_LIB_SPINE_SPRITE)
 #include "FsSpineSprite.h"
@@ -547,9 +548,28 @@ class LuaPanel:public TEntity<Panel>
 			return FS_LUA_PANEL_CLASS_NAME;
 		}
 
+};
+class LuaUiWidget:public TEntity<UiWidget> 
+{
+	public:
+		static LuaUiWidget* create(float width,float height)
+		{
+			LuaUiWidget* ret=new LuaUiWidget();
+			ret->setSize(width,height);
+			return ret;
+
+		}
+	public:
+		virtual const char* className()
+		{
+			return FS_LUA_UI_WIDGET_CLASS_NAME;
+		}
 
 
 };
+
+
+
 
 
 #if FS_CONFIG(FS_EXPORT_LIB_SPINE_SPRITE)

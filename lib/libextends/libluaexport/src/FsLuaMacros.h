@@ -45,6 +45,7 @@
 #define FS_LUA_PARTICLE2D_EFFECT_CLASS_NAME     "LuaParticle2DEffect"
 
 #define FS_LUA_PANEL_CLASS_NAME					"LuaPanel"
+#define FS_LUA_UI_WIDGET_CLASS_NAME				"LuaUiWidget"
 
 #define FS_LUA_PRESS_BUTTON_CLASS_NAME 			"LuaPressButton"
 #define FS_LUA_TOGGLE_BUTTON_CLASS_NAME			"LuaToggleButton"
