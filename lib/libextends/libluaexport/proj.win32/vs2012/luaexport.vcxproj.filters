@@ -69,9 +69,6 @@
     <ClInclude Include="..\..\src\luaext\FsLuaHttpRequest.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsLuaLayer.h">
-      <Filter>src\luaext</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsLuaScene.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
@@ -85,9 +82,6 @@
       <Filter>src\luaext</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsTAction.h">
-      <Filter>src\luaext</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsTLuaLayer.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaexport\FsLuaExport.h">

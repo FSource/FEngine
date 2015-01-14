@@ -105,13 +105,11 @@
     <ClInclude Include="..\..\src\toluaext++.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaAction.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaHttpRequest.h" />
-    <ClInclude Include="..\..\src\luaext\FsLuaLayer.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaScene.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaSchedulerTarget.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaSysEventListener.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaTouchEventListener.h" />
     <ClInclude Include="..\..\src\luaext\FsTAction.h" />
-    <ClInclude Include="..\..\src\luaext\FsTLuaLayer.h" />
     <ClInclude Include="..\..\src\luaexport\FsLuaExport.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
