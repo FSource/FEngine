@@ -1,6 +1,6 @@
 $#include "stage/layer/FsLayer.h"
 
-class Layer@__layer:public ActionTarget
+class Layer:public ActionTarget
 {
 	public:
 		/* visible */

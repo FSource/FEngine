@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 01/14/15 08:28:23.
+** Generated automatically by tolua++-1.0.92 on 01/14/15 08:42:55.
 */
 
 #ifndef __cplusplus
@@ -50,7 +50,7 @@ TOLUA_API int  tolua_FsLibFaeris_open (lua_State* tolua_S);
 #include "luaext/FsLuaScene.h"
 #include "stage/FsDirector.h"
 #include "stage/layer/FsLayer.h"
-#include "luaext/FsLuaLayer.h"
+#include "stage/layer/FsColorLayer.h"
 #include "stage/layer/FsLayer2D.h"
 #include "graphics/FsRenderDevice.h"
 #include "graphics/FsColor.h"
@@ -21348,8 +21348,8 @@ static int tolua_FsLibFaeris_Director_setAutoSwapBuffers00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getVisible of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_getVisible00
-static int tolua_FsLibFaeris___layer_getVisible00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_getVisible00
+static int tolua_FsLibFaeris_Layer_getVisible00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21380,8 +21380,8 @@ static int tolua_FsLibFaeris___layer_getVisible00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getVisible of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_visible00
-static int tolua_FsLibFaeris___layer_visible00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_visible00
+static int tolua_FsLibFaeris_Layer_visible00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21412,8 +21412,8 @@ static int tolua_FsLibFaeris___layer_visible00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setVisible of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_setVisible00
-static int tolua_FsLibFaeris___layer_setVisible00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_setVisible00
+static int tolua_FsLibFaeris_Layer_setVisible00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21445,8 +21445,8 @@ static int tolua_FsLibFaeris___layer_setVisible00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: touchEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_touchEnabled00
-static int tolua_FsLibFaeris___layer_touchEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_touchEnabled00
+static int tolua_FsLibFaeris_Layer_touchEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21477,8 +21477,8 @@ static int tolua_FsLibFaeris___layer_touchEnabled00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setTouchEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_setTouchEnabled00
-static int tolua_FsLibFaeris___layer_setTouchEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_setTouchEnabled00
+static int tolua_FsLibFaeris_Layer_setTouchEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21510,8 +21510,8 @@ static int tolua_FsLibFaeris___layer_setTouchEnabled00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setTouchesEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_setTouchesEnabled00
-static int tolua_FsLibFaeris___layer_setTouchesEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_setTouchesEnabled00
+static int tolua_FsLibFaeris_Layer_setTouchesEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21543,8 +21543,8 @@ static int tolua_FsLibFaeris___layer_setTouchesEnabled00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getTouchesEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_getTouchesEnabled00
-static int tolua_FsLibFaeris___layer_getTouchesEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_getTouchesEnabled00
+static int tolua_FsLibFaeris_Layer_getTouchesEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21575,8 +21575,8 @@ static int tolua_FsLibFaeris___layer_getTouchesEnabled00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setDispatchTouchEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_setDispatchTouchEnabled00
-static int tolua_FsLibFaeris___layer_setDispatchTouchEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_setDispatchTouchEnabled00
+static int tolua_FsLibFaeris_Layer_setDispatchTouchEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21608,8 +21608,8 @@ static int tolua_FsLibFaeris___layer_setDispatchTouchEnabled00(lua_State* tolua_
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getDispatchTouchEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_getDispatchTouchEnabled00
-static int tolua_FsLibFaeris___layer_getDispatchTouchEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_getDispatchTouchEnabled00
+static int tolua_FsLibFaeris_Layer_getDispatchTouchEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21640,8 +21640,8 @@ static int tolua_FsLibFaeris___layer_getDispatchTouchEnabled00(lua_State* tolua_
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setDispatchTouchesEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_setDispatchTouchesEnabled00
-static int tolua_FsLibFaeris___layer_setDispatchTouchesEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_setDispatchTouchesEnabled00
+static int tolua_FsLibFaeris_Layer_setDispatchTouchesEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21673,8 +21673,8 @@ static int tolua_FsLibFaeris___layer_setDispatchTouchesEnabled00(lua_State* tolu
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getDispatchTouchesEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_getDispatchTouchesEnabled00
-static int tolua_FsLibFaeris___layer_getDispatchTouchesEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_getDispatchTouchesEnabled00
+static int tolua_FsLibFaeris_Layer_getDispatchTouchesEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21705,8 +21705,8 @@ static int tolua_FsLibFaeris___layer_getDispatchTouchesEnabled00(lua_State* tolu
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setScissorArea of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_setScissorArea00
-static int tolua_FsLibFaeris___layer_setScissorArea00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_setScissorArea00
+static int tolua_FsLibFaeris_Layer_setScissorArea00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21744,8 +21744,8 @@ static int tolua_FsLibFaeris___layer_setScissorArea00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getScissorArea of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_getScissorArea00
-static int tolua_FsLibFaeris___layer_getScissorArea00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_getScissorArea00
+static int tolua_FsLibFaeris_Layer_getScissorArea00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21787,8 +21787,8 @@ static int tolua_FsLibFaeris___layer_getScissorArea00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: scissorEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_scissorEnabled00
-static int tolua_FsLibFaeris___layer_scissorEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_scissorEnabled00
+static int tolua_FsLibFaeris_Layer_scissorEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21819,8 +21819,8 @@ static int tolua_FsLibFaeris___layer_scissorEnabled00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setScissorEnabled of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_setScissorEnabled00
-static int tolua_FsLibFaeris___layer_setScissorEnabled00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_setScissorEnabled00
+static int tolua_FsLibFaeris_Layer_setScissorEnabled00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21852,8 +21852,8 @@ static int tolua_FsLibFaeris___layer_setScissorEnabled00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getProjectMatrix of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_getProjectMatrix00
-static int tolua_FsLibFaeris___layer_getProjectMatrix00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_getProjectMatrix00
+static int tolua_FsLibFaeris_Layer_getProjectMatrix00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21894,8 +21894,8 @@ static int tolua_FsLibFaeris___layer_getProjectMatrix00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: toLayerCoord of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_toLayerCoord00
-static int tolua_FsLibFaeris___layer_toLayerCoord00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_toLayerCoord00
+static int tolua_FsLibFaeris_Layer_toLayerCoord00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21938,8 +21938,8 @@ static int tolua_FsLibFaeris___layer_toLayerCoord00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getScene of class  Layer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___layer_getScene00
-static int tolua_FsLibFaeris___layer_getScene00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_Layer_getScene00
+static int tolua_FsLibFaeris_Layer_getScene00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21970,8 +21970,8 @@ static int tolua_FsLibFaeris___layer_getScene00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: __Layer__create of class  ColorLayer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ColorLayer_create00
-static int tolua_FsLibFaeris___ColorLayer_create00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ColorLayer_create00
+static int tolua_FsLibFaeris_ColorLayer_create00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -21999,8 +21999,8 @@ static int tolua_FsLibFaeris___ColorLayer_create00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: __Layer__create of class  ColorLayer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ColorLayer_create01
-static int tolua_FsLibFaeris___ColorLayer_create01(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ColorLayer_create01
+static int tolua_FsLibFaeris_ColorLayer_create01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -22020,13 +22020,13 @@ static int tolua_FsLibFaeris___ColorLayer_create01(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_FsLibFaeris___ColorLayer_create00(tolua_S);
+ return tolua_FsLibFaeris_ColorLayer_create00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: __Layer__create of class  ColorLayer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ColorLayer_create02
-static int tolua_FsLibFaeris___ColorLayer_create02(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ColorLayer_create02
+static int tolua_FsLibFaeris_ColorLayer_create02(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -22046,13 +22046,13 @@ static int tolua_FsLibFaeris___ColorLayer_create02(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_FsLibFaeris___ColorLayer_create01(tolua_S);
+ return tolua_FsLibFaeris_ColorLayer_create01(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setColor of class  ColorLayer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ColorLayer_setColor00
-static int tolua_FsLibFaeris___ColorLayer_setColor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ColorLayer_setColor00
+static int tolua_FsLibFaeris_ColorLayer_setColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -22084,8 +22084,8 @@ static int tolua_FsLibFaeris___ColorLayer_setColor00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setColor of class  ColorLayer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ColorLayer_setColor01
-static int tolua_FsLibFaeris___ColorLayer_setColor01(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ColorLayer_setColor01
+static int tolua_FsLibFaeris_ColorLayer_setColor01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -22107,13 +22107,13 @@ static int tolua_FsLibFaeris___ColorLayer_setColor01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_FsLibFaeris___ColorLayer_setColor00(tolua_S);
+ return tolua_FsLibFaeris_ColorLayer_setColor00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getColor of class  ColorLayer */
-#ifndef TOLUA_DISABLE_tolua_FsLibFaeris___ColorLayer_getColor00
-static int tolua_FsLibFaeris___ColorLayer_getColor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_FsLibFaeris_ColorLayer_getColor00
+static int tolua_FsLibFaeris_ColorLayer_getColor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -43461,35 +43461,35 @@ TOLUA_API int tolua_FsLibFaeris_open (lua_State* tolua_S)
    tolua_function(tolua_S,"isRunning",tolua_FsLibFaeris_Director_isRunning00);
    tolua_function(tolua_S,"setAutoSwapBuffers",tolua_FsLibFaeris_Director_setAutoSwapBuffers00);
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"__layer","Layer","ActionTarget",toluaext_fscollector);
-  tolua_beginmodule(tolua_S,"__layer");
-   tolua_function(tolua_S,"getVisible",tolua_FsLibFaeris___layer_getVisible00);
-   tolua_function(tolua_S,"visible",tolua_FsLibFaeris___layer_visible00);
-   tolua_function(tolua_S,"setVisible",tolua_FsLibFaeris___layer_setVisible00);
-   tolua_function(tolua_S,"touchEnabled",tolua_FsLibFaeris___layer_touchEnabled00);
-   tolua_function(tolua_S,"setTouchEnabled",tolua_FsLibFaeris___layer_setTouchEnabled00);
-   tolua_function(tolua_S,"setTouchesEnabled",tolua_FsLibFaeris___layer_setTouchesEnabled00);
-   tolua_function(tolua_S,"getTouchesEnabled",tolua_FsLibFaeris___layer_getTouchesEnabled00);
-   tolua_function(tolua_S,"setDispatchTouchEnabled",tolua_FsLibFaeris___layer_setDispatchTouchEnabled00);
-   tolua_function(tolua_S,"getDispatchTouchEnabled",tolua_FsLibFaeris___layer_getDispatchTouchEnabled00);
-   tolua_function(tolua_S,"setDispatchTouchesEnabled",tolua_FsLibFaeris___layer_setDispatchTouchesEnabled00);
-   tolua_function(tolua_S,"getDispatchTouchesEnabled",tolua_FsLibFaeris___layer_getDispatchTouchesEnabled00);
-   tolua_function(tolua_S,"setScissorArea",tolua_FsLibFaeris___layer_setScissorArea00);
-   tolua_function(tolua_S,"getScissorArea",tolua_FsLibFaeris___layer_getScissorArea00);
-   tolua_function(tolua_S,"scissorEnabled",tolua_FsLibFaeris___layer_scissorEnabled00);
-   tolua_function(tolua_S,"setScissorEnabled",tolua_FsLibFaeris___layer_setScissorEnabled00);
-   tolua_function(tolua_S,"getProjectMatrix",tolua_FsLibFaeris___layer_getProjectMatrix00);
-   tolua_function(tolua_S,"toLayerCoord",tolua_FsLibFaeris___layer_toLayerCoord00);
-   tolua_function(tolua_S,"getScene",tolua_FsLibFaeris___layer_getScene00);
+  tolua_cclass(tolua_S,"Layer","Layer","ActionTarget",toluaext_fscollector);
+  tolua_beginmodule(tolua_S,"Layer");
+   tolua_function(tolua_S,"getVisible",tolua_FsLibFaeris_Layer_getVisible00);
+   tolua_function(tolua_S,"visible",tolua_FsLibFaeris_Layer_visible00);
+   tolua_function(tolua_S,"setVisible",tolua_FsLibFaeris_Layer_setVisible00);
+   tolua_function(tolua_S,"touchEnabled",tolua_FsLibFaeris_Layer_touchEnabled00);
+   tolua_function(tolua_S,"setTouchEnabled",tolua_FsLibFaeris_Layer_setTouchEnabled00);
+   tolua_function(tolua_S,"setTouchesEnabled",tolua_FsLibFaeris_Layer_setTouchesEnabled00);
+   tolua_function(tolua_S,"getTouchesEnabled",tolua_FsLibFaeris_Layer_getTouchesEnabled00);
+   tolua_function(tolua_S,"setDispatchTouchEnabled",tolua_FsLibFaeris_Layer_setDispatchTouchEnabled00);
+   tolua_function(tolua_S,"getDispatchTouchEnabled",tolua_FsLibFaeris_Layer_getDispatchTouchEnabled00);
+   tolua_function(tolua_S,"setDispatchTouchesEnabled",tolua_FsLibFaeris_Layer_setDispatchTouchesEnabled00);
+   tolua_function(tolua_S,"getDispatchTouchesEnabled",tolua_FsLibFaeris_Layer_getDispatchTouchesEnabled00);
+   tolua_function(tolua_S,"setScissorArea",tolua_FsLibFaeris_Layer_setScissorArea00);
+   tolua_function(tolua_S,"getScissorArea",tolua_FsLibFaeris_Layer_getScissorArea00);
+   tolua_function(tolua_S,"scissorEnabled",tolua_FsLibFaeris_Layer_scissorEnabled00);
+   tolua_function(tolua_S,"setScissorEnabled",tolua_FsLibFaeris_Layer_setScissorEnabled00);
+   tolua_function(tolua_S,"getProjectMatrix",tolua_FsLibFaeris_Layer_getProjectMatrix00);
+   tolua_function(tolua_S,"toLayerCoord",tolua_FsLibFaeris_Layer_toLayerCoord00);
+   tolua_function(tolua_S,"getScene",tolua_FsLibFaeris_Layer_getScene00);
   tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"__ColorLayer","ColorLayer","Layer",toluaext_fscollector);
-  tolua_beginmodule(tolua_S,"__ColorLayer");
-   tolua_function(tolua_S,"create",tolua_FsLibFaeris___ColorLayer_create00);
-   tolua_function(tolua_S,"create",tolua_FsLibFaeris___ColorLayer_create01);
-   tolua_function(tolua_S,"create",tolua_FsLibFaeris___ColorLayer_create02);
-   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___ColorLayer_setColor00);
-   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris___ColorLayer_setColor01);
-   tolua_function(tolua_S,"getColor",tolua_FsLibFaeris___ColorLayer_getColor00);
+  tolua_cclass(tolua_S,"ColorLayer","ColorLayer","Layer",toluaext_fscollector);
+  tolua_beginmodule(tolua_S,"ColorLayer");
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ColorLayer_create00);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ColorLayer_create01);
+   tolua_function(tolua_S,"create",tolua_FsLibFaeris_ColorLayer_create02);
+   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris_ColorLayer_setColor00);
+   tolua_function(tolua_S,"setColor",tolua_FsLibFaeris_ColorLayer_setColor01);
+   tolua_function(tolua_S,"getColor",tolua_FsLibFaeris_ColorLayer_getColor00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Layer2D","Layer2D","Layer",toluaext_fscollector);
   tolua_beginmodule(tolua_S,"Layer2D");

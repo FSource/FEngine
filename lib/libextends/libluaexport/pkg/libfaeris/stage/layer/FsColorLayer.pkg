@@ -1,6 +1,6 @@
-$#include "luaext/FsLuaLayer.h"
+$#include "stage/layer/FsColorLayer.h"
 
-class ColorLayer@__ColorLayer:public Layer
+class ColorLayer:public Layer
 {
 	public:
 		static ColorLayer* __Layer__create@create();
