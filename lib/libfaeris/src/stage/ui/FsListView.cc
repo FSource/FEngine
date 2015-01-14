@@ -1,5 +1,6 @@
 #include <assert.h>
 #include "FsListView.h"
+#include "FsClass.h"
 
 NS_FS_BEGIN
 
@@ -767,6 +768,9 @@ void ListView::removeChild(Entity* en)
 }
 
 
+/** Used For ListView FsClass */
+
+FS_CLASS_IMPLEMENT_WITH_BASE(ListView,ScrollWidget,0,0);
 
 
 NS_FS_END

@@ -4,8 +4,8 @@ $#include "stage/ui/FsUiWidget.h"
 class UiWidget:public Entity2D
 {
 	public:
-		static UiWidget* create(float width,float height);
-		static UiWidget* create();
+		static UiWidget* __UiWidget__create@create(float width,float height);
+		static UiWidget* __UiWidget__create@create();
 
 	public:
 		void getBoundSize2D(float* minx,float* maxx,float* miny,float* maxy);
@@ -24,6 +24,8 @@ class UiWidget:public Entity2D
 		bool getSignalTSAEnabled();
 
 		void setBgColor(const Color4f& c);
+		void setBgColor(Color c);
+
 		Color4f getBgColor();
 		void setBgTexture(Texture2D* tex);
 		void setBgTexture(const char* filename);

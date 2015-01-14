@@ -3,13 +3,13 @@ $#include "stage/ui/FsPageView.h"
 class PageView:public UiWidget 
 {
 	public:
-		static PageView* create();
-		static PageView* create(float width,float height);
-		static PageView* create(E_ScrollDirection mode,float width,float height);
+		static PageView* __PageView__create@create();
+		static PageView* __PageView__create@create(float width,float height);
+		static PageView* __PageView__create@create(E_ScrollDirection mode,float width,float height);
 
 	public:
 		void setMode(E_ScrollDirection mode);
-		E_ScrollDirection getMode();
+		int getMode();
 
 		void addPage(UiWidget* widget);
 		void addPage(UiWidget* widget,E_AlignH alignh,E_AlignV alignv);

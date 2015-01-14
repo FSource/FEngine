@@ -13,15 +13,19 @@ class PressButton:public StateButton
 			STATE_ALL=4
 		};
 	public:
-		static PressButton* create();
-		static PressButton* createWithDarkStyle(const char* filename,const Color4f& dark);
-		static PressButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark);
+		static PressButton* __PressButton__create@create();
+		static PressButton* __PressButton__createWithDarkStyle@createWithDarkStyle(const char* filename,const Color4f& dark);
+		static PressButton* __PressButton__createWithDarkStyle@createWithDarkStyle(const char* filename,Color dark);
+		static PressButton* __PressButton__createWithDarkStyle@createWithDarkStyle(Texture2D* tex,const Color4f& dark);
+		static PressButton* __PressButton__createWithDarkStyle@createWithDarkStyle(Texture2D* tex,Color dark);
 
-		static PressButton* createWithColorStyle(const char* filename,const Color4f& normal,const Color4f& press);
-		static PressButton* createWithColorStyle(Texture2D* tex,const Color4f& normal,const Color4f& press);
+		static PressButton* __PressButton__createWithColorStyle@createWithColorStyle(const char* filename,const Color4f& normal,const Color4f& press);
+		static PressButton* __PressButton__createWithColorStyle@createWithColorStyle(const char* filename,const Color normal,Color press);
 
-		static PressButton* createWithScaleStyle(const char* filename,const Vector3& scale);
-		static PressButton* createWithScaleStyle(Texture2D* tex,const Vector3& scale);
+		static PressButton* __PressButton__createWithColorStyle@createWithColorStyle(Texture2D* tex,Color normal,Color press);
+
+		static PressButton* __PressButton__createWithScaleStyle@createWithScaleStyle(const char* filename,const Vector3& scale);
+		static PressButton* __PressButton__createWithScaleStyle@createWithScaleStyle(Texture2D* tex,const Vector3& scale);
 
 	public:
 

@@ -19,7 +19,7 @@ class ScrollWidget:public UiWidget
 		float getMarginBottom() const;
 
 		void setScrollMode(E_ScrollDirection mode);
-		E_ScrollDirection getScrollMode();
+		int getScrollMode();
 
 		void setEdgeBounceEnabled(bool enabled);
 		bool getEdgeBounceEnabled();

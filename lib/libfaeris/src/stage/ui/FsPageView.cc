@@ -2,6 +2,7 @@
 #include "math/easing/FsBounceEase.h"
 #include "math/easing/FsCubicEase.h"
 #include "FsVelocityTracker.h"
+#include "FsClass.h"
 
 NS_FS_BEGIN
 
@@ -179,31 +180,31 @@ class PageViewContentPanel: public Entity2D
 			{
 			
 				case E_AlignH::LEFT:
-					item->m_widget->setPosition(start_x-sminx,-smaxy);
+					item->m_widget->setPositionX(start_x-sminx);
 					break;
 				
 				case E_AlignH::CENTER:
 					//FS_TRACE_WARN("page pos(%f,%f)",start_x+m_width/2-(sminx+smaxx)/2,-smaxy);
-					item->m_widget->setPosition(start_x+m_width/2-(sminx+smaxx)/2,-smaxy);
+					item->m_widget->setPositionX(start_x+m_width/2-(sminx+smaxx)/2);
 					break;
 
 				case E_AlignH::RIGHT:
-					item->m_widget->setPosition(start_y+m_width-smaxx,-smaxy);
+					item->m_widget->setPositionX(start_y+m_width-smaxx);
 					break;
 			}
 
 			switch(alignv)
 			{
 				case E_AlignV::TOP:
-					item->m_widget->setPosition(-sminx,start_y-smaxy);
+					item->m_widget->setPositionY(start_y-smaxy);
 					break;
 
 				case E_AlignV::CENTER:
-					item->m_widget->setPosition(-sminx,start_y-m_height/2-(smaxy+sminy)/2);
+					item->m_widget->setPositionY(start_y-m_height/2-(smaxy+sminy)/2);
 					break;
 
 				case E_AlignV::BOTTOM:
-					item->m_widget->setPosition(-sminx,start_y-m_height-sminy);
+					item->m_widget->setPositionY(start_y-m_height-sminy);
 					break;
 			}
 			item->m_widget->setSignalTSAEnabled(true);
@@ -974,6 +975,13 @@ void PageView::removeChild(Entity* en)
 void PageView::pageIndexChanged(int old_index,int new_index)
 {
 }
+
+
+
+/** Used For PageView FsClass */
+
+FS_CLASS_IMPLEMENT_WITH_BASE(PageView,UiWidget,0,0);
+
 
 
 

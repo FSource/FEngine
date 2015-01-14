@@ -3,7 +3,7 @@ $#include "stage/ui/FsScrollView.h"
 class ScrollView:public ScrollWidget 
 {
 	public:
-		static ScrollView* create(float width,float height);
+		static ScrollView* __ScrollView__create@create(float width,float height);
 
 	public:
 		void setContentWidget(UiWidget* widget);

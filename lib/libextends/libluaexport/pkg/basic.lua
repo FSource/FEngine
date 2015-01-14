@@ -91,25 +91,13 @@ local fsobject= {
 	-- ui 
 	
 	"DynamicView",
-	"LuaDynamicView",
-
 	"ListView",
-	"LuaListView",
-
+	"PageView",
 	"PressButton",
-	"LuaPressButton",
-
 	"ScrollView",
-	"LuaScrollView",
-
 	"StateButton",
-	"LuaStateButton",
-
 	"ToggleButton",
-	"LuaToggleButton",
-	
 	"UiWidget",
-	"LuaUiWidget",
 
 
 
@@ -187,12 +175,26 @@ local fsenums =
 	"E_BoneType",
 	"E_LightType",
 	"E_TextAlign",
+	"E_ButtonTweenFlag",
+	"E_ScrollDirection",
+	"E_AxisDirection",
+	"E_AlignH",
+	"E_AlignV",
 }
 
 
 local f_callback={
 	["__Entity__"]="FsLEntity_CallBackAssign",
 	["__Entity2D__"]="FsLEntity2D_CallBackAssign",
+	["__PressButton__"]="FsLPressButton_CallBackAssign",
+	["__ToggleButton__"]="FsLToggleButton_CallBackAssign",
+	["__DynamicView__"]="FsLDynamicView_CallBackAssign",
+	["__ListView__"]="FsLEntity2D_CallBackAssign",
+	["__PageView__"]="FsLPageView_CallBackAssign",
+	["__ScrollView__"]="FsLEntity2D_CallBackAssign",
+	["__UiWidget__"]="FsLEntity2D_CallBackAssign",
+	["__Layer__"]="FsLLayer_CallBackAssign",
+
 }
 
 

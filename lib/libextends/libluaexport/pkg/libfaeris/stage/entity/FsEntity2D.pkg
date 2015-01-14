@@ -13,6 +13,7 @@ class Entity2D : public Entity
 		Material2D* getMaterial() ;
 
 		/* material */
+		void setColor(Color c);
 		void setColor(const Color4f& c);
 		Color4f getColor();
 

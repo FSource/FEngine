@@ -1,60 +1,43 @@
 $#include "stage/entity/FsLabelBitmap.h"
 
-class LabelBitmap:public Entity2D
+class LabelBitmap:public Entity2D 
 {
 	public:
-		enum
-		{ 
-			ALIGN_V_TOP,
-			ALIGN_V_CENTER,
-			ALIGN_V_BOTTOM,
-			ALIGN_V_USER_DEFINE,
-
-			ALIGN_H_LEFT,
-			ALIGN_H_RIGHT,
-			ALIGN_H_CENTER,
-			ALIGN_H_USER_DEFINE,
-		};
-
-		enum
-		{
-			TEXT_ALIGN_LEFT,
-			TEXT_ALIGN_CENTER,
-			TEXT_ALIGN_RIGHT,
-		};
-
-	public:
-		static LabelBitmap* __Entity2D__create@create(const char* text,FontBitmap* font);
-		static LabelBitmap* __Entity2D__create@create(FontBitmap* font);
-
+		static LabelBitmap* __Entity2D__create@create();
+		static LabelBitmap* __Entity2D__create@create(const char* font);
+		static LabelBitmap* __Entity2D__create@create(const char* font,const char* text);
+		static LabelBitmap* __Entity2D__create@create(const char* font,float size,const char* text);
 
 
 	public:
-		int setString(const char* utf8_str);
-		int setString(const char* utf8_str,int start);
-		int setString(const char* utf8_str,int start,int num);
-
+		void setString(const char* str);
 		const char* getString();
 
+		void setFontName(const char* font);
+		const char* getFontName();
 
-		void setAlign(int alignh,int alignv);
-		void setAlignOffset(float x,float y);
+		void setFontSize(float size);
+		float getFontSize();
 
-		void getAlign(int* alignh,int* alignv);
-		void getAlignOffset(float* x,float* y);
-
-
-		float getWidth();
-		float getHeight();
-
-		/* NOTE: setTextAlign and setBounds will not take effect 
-		 * immediately,it will change at next setString called 
-		 */
-		void setTextAlign(int mode);
-		void setBounds(float x,float y);
-
+		void setTextAlign(E_TextAlign align);
 		int getTextAlign();
-		void getBounds(float* x,float* y);
+
+		void setBoundWidth(float width);
+		void setBoundHeight(float height);
+
+		void setBoundSize(float width,float height);
+
+		void setBoundSize(const Vector2& v);
+		Vector2 getBoundSize();
+
+		float getBoundWidth();
+		float getBoundHeight();
+
+		float getTextWidth();
+		float getTextHeight();
+
+		void getTextSize(float* width,float* height);
+		void setLineGap(float line_gap);
+		float getLineGap();
 
 };
-

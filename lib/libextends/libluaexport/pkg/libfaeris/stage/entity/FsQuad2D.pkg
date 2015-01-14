@@ -6,6 +6,9 @@ class Quad2D:public Entity2D
 		static Quad2D* __Entity2D__create@create(const Color4f& c,float width,float height);
 		static Quad2D* __Entity2D__create@create(const Color4f& c,const Rect2D& rect);
 
+		static Quad2D* __Entity2D__create@create(Color c,float width,float height);
+		static Quad2D* __Entity2D__create@create(Color c,const Rect2D& rect);
+
 		static Quad2D* __Entity2D__create@create();
 		static Quad2D* __Entity2D__create@create(const char* tex);
 		static Quad2D* __Entity2D__create@create(const char* tex,const Rect2D& rect);

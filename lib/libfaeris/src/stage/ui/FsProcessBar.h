@@ -11,6 +11,9 @@ NS_FS_BEGIN
 class ProcessBar:public Entity2D
 {
 	public:
+		FS_CLASS_DECLARE(ProcessBar);
+
+	public:
 		static ProcessBar* create();
 		static ProcessBar* create(const char* bg,const char* fg);
 		static ProcessBar* create(Texture2D* bg,Texture2D* fg);

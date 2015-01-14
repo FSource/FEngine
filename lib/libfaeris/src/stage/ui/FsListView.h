@@ -14,6 +14,9 @@ class ListViewContentPanel;
 class ListView:public ScrollWidget
 {
 	public:
+		FS_CLASS_DECLARE(ListView);
+
+	public:
 		static ListView* create();
 		static ListView* create(E_ScrollDirection mode,float width,float height);
 		static ListView* create(float width,float height);
@@ -60,6 +63,8 @@ class ListView:public ScrollWidget
 		void addChild(Entity* en) FS_OVERRIDE;
 		void removeChild(Entity* en) FS_OVERRIDE;
 		void clearChild() FS_OVERRIDE;
+
+
 
 
 	protected:

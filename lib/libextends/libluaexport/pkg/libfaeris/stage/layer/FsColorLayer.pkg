@@ -3,6 +3,10 @@ $#include "luaext/FsLuaLayer.h"
 class ColorLayer@__ColorLayer:public Layer
 {
 	public:
+		static ColorLayer* __Layer__create@create();
+		static ColorLayer* __Layer__create@create(Color4f c);
+		static ColorLayer* __Layer__create@create(Color c);
+	public:
 		void setColor(Color c);
 		void setColor(Color4f c);
 		Color4f getColor();
@@ -10,18 +14,3 @@ class ColorLayer@__ColorLayer:public Layer
 };
 
 
-class LuaColorLayer@ColorLayer:public ColorLayer 
-{
-	public:
-		static LuaColorLayer* create();
-		static LuaColorLayer* create(Color4f c);
-		static LuaColorLayer* create(Color c);
-
-	public:
-		void onUpdate@update(float dt);
-		void onDraw@draw(RenderDevice* render);
-
-		bool onTouchBegin@touchBegin(float x,float y);
-		bool onTouchEnd@touchEnd(float x,float y);
-		bool onTouchMove@touchMove(float x,float y);
-}

@@ -1,5 +1,6 @@
 #include "FsDynamicView.h"
 #include "support/util/FsDict.h"
+#include "FsClass.h"
 
 
 NS_FS_BEGIN
@@ -437,8 +438,8 @@ void DynamicView::adjustCurrentView()
 }
 
 
-
-
+/** DynamicView FsAttribute */
+FS_CLASS_IMPLEMENT_WITH_BASE(DynamicView,UiWidget,0,0);
 
 
 NS_FS_END

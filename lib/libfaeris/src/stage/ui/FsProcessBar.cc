@@ -3,6 +3,7 @@
 #include "graphics/FsTexture2D.h"
 #include "graphics/shader/FsProgram.h"
 #include "graphics/shader/FsStreamMap.h"
+#include "FsClass.h"
 
 
 
@@ -340,12 +341,8 @@ void ProcessBar::initWithTexture(Texture2D* bg,Texture2D* fg)
 
 
 
-
-
-
-
-
-
+/** Used For ProcessBar FsClass */
+FS_CLASS_IMPLEMENT_WITH_BASE(ProcessBar,Entity2D,0,0);
 
 
 

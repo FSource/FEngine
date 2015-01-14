@@ -3,8 +3,8 @@ $#include "stage/ui/FsDynamicView.h"
 class DynamicView:public UiWidget
 {
 	public:
-		static DynamicView* create();
-		static DynamicView* create(float width,float height);
+		static DynamicView* __DynamicView__create@create();
+		static DynamicView* __DynamicView__create@create(float width,float height);
 
 	public:
 		void setMargin(float l,float r,float t,float b);

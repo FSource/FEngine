@@ -12,6 +12,9 @@ class PageViewContentPanel;
 class VelocityTracker;
 class PageView:public UiWidget 
 {
+	public:
+		FS_CLASS_DECLARE(PageView);
+
 
 	public:
 		static PageView* create();

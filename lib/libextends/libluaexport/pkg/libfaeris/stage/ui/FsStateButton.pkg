@@ -1,6 +1,6 @@
 $#include "stage/ui/FsStateButton.h"
 
-class StateButton:public Entity 
+class StateButton:public Entity2D 
 {
 	public:
 		/* texture */
@@ -17,6 +17,7 @@ class StateButton:public Entity
 
 		/* color */
 		void setColor(int state,const Color4f& value);
+		void setColor(int state,Color value);
 		Color4f getColor(int state) const ;
 
 
@@ -36,6 +37,7 @@ class StateButton:public Entity
 
 
 		/* size */
+
 		void setSize(int state,float x,float y);
 		void setSize(int state,const Vector2& size);
 		Vector2 getSize(int state) const;
@@ -46,10 +48,14 @@ class StateButton:public Entity
 
 
 
+
+
 		/* rotate */
 		void setRotate(int state,float x,float y,float z);
 		void setRotate(int state,const Vector3& value);
 		Vector3 getRotate(int state)const ;
+
+
 
 
 		/* scale */
@@ -62,6 +68,24 @@ class StateButton:public Entity
 		FsArray* getChild(int state)const;
 
 
+		/* show father */
+		void setSize(float x,float y);
+		virtual void setSize(const Vector2f& v);
+		virtual Vector2f getSize();
+
+		virtual void setAnchor(const Vector2f& v);
+		virtual Vector2f getAnchor();
+
+
+		void setRotate(float rx,float ry,float rz);
+
+		void setScale(float sx,float sy,float sz);
+
+		virtual void setRotate(const Vector3& r);
+		virtual Vector3 getRotate();
+
+		virtual void setScale(const Vector3& s);
+		virtual Vector3 getScale();
 
 	public:
 

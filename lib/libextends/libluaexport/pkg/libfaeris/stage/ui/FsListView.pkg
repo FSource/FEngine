@@ -3,9 +3,9 @@ $#include "stage/ui/FsListView.h"
 class ListView:public ScrollWidget
 {
 	public:
-		static ListView* create();
-		static ListView* create(E_ScrollDirection mode,float width,float height);
-		static ListView* create(float width,float height);
+		static ListView* __ListView__create@create();
+		static ListView* __ListView__create@create(E_ScrollDirection mode,float width,float height);
+		static ListView* __ListView__create@create(float width,float height);
 
 	public:
 
@@ -13,10 +13,12 @@ class ListView:public ScrollWidget
 		virtual void scrollChange(float x,float y);
 
 	public:
-		void setMode(E_ScrollDirection mode);
-
 		void setListGap(float value);
 		float getListGap();
+
+		void setMode(E_ScrollDirection mode);
+
+
 
 		Vector2 getListItemSize();
 

@@ -1,6 +1,6 @@
 $#include "stage/entity/FsVertexPolygon.h"
 
-class VertexPolygon:public Entity
+class VertexPolygon:public Entity2D
 {
 	public:
 		static VertexPolygon* __Entity2D__create@create();

@@ -12,6 +12,9 @@ class FsDict;
 
 class DynamicView:public UiWidget
 {
+	public:
+		FS_CLASS_DECLARE(DynamicView);
+
 	protected:
 		class ViewInfo:public FsObject 
 		{

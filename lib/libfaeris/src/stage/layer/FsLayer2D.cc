@@ -353,6 +353,7 @@ bool Layer2D::touchMove(float x,float y)
 	m_entity->flush();
 	return ret;
 }
+
 bool Layer2D::touchEnd(float x,float y)
 {
 	m_entity->lock();
@@ -362,7 +363,7 @@ bool Layer2D::touchEnd(float x,float y)
 	{
 		Entity2D* en=m_touchFocus;
 		m_touchFocus=NULL;
-		ret=FS_OBJECT_LAMBDA_CALL(en,onTouchMove,touchEnd,tv.x,tv.y);
+		ret=FS_OBJECT_LAMBDA_CALL(en,onTouchEnd,touchEnd,tv.x,tv.y);
 	}
 	m_entity->unlock();
 	m_entity->flush();

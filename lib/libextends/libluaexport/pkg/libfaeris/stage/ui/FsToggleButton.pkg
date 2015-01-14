@@ -13,18 +13,34 @@ class ToggleButton:public StateButton
 		};
 
 	public:
-		static ToggleButton* create();
-		static ToggleButton* createWithColorStyle(const char* filename,
+		static ToggleButton* __ToggleButton__create@create();
+		static ToggleButton* __ToggleButton__createWithColorStyle@createWithColorStyle(
+				const char* filename,
 				const Color4f& on,
 				const Color4f& off);
 
-		static ToggleButton* createWithColorStyle(Texture2D* tex,
+		static ToggleButton* __ToggleButton__createWithColorStyle@createWithColorStyle(
+				const char* filename,
+				Color on,
+				Color off);
+
+		static ToggleButton* __ToggleButton__createWithColorStyle@createWithColorStyle(
+				Texture2D* tex,
 				const Color4f& on,
 				const Color4f& off);
 
-		static ToggleButton* createWithTextureStyle(const char* fileon,const char* fileoff);
-		static ToggleButton* createWithTextureStyle(Texture2D* on,Texture2D* off);
+		static ToggleButton* __ToggleButton__createWithColorStyle@createWithColorStyle(
+				Texture2D* tex,
+				Color on,
+				Color off);
 
+		static ToggleButton* __ToggleButton__createWithTextureStyle@createWithTextureStyle(
+				const char* fileon,
+				const char* fileoff);
+
+		static ToggleButton* __ToggleButton__createWithTextureStyle@createWithTextureStyle(
+				Texture2D* on,
+				Texture2D* off);
 
 
 	public:

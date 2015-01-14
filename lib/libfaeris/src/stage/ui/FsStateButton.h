@@ -108,11 +108,13 @@ class StateButton:public Entity2D
 
 		/* size */
 		using Entity2D::setSize;
+		using Entity2D::getSize;
 		void setSize(int state,float x,float y);
 		void setSize(int state,const Vector2& size);
 		Vector2 getSize(int state) const;
 
 		using Entity2D::setAnchor;
+		using Entity2D::getAnchor;
 		void setAnchor(int state,float x,float y);
 		void setAnchor(int state,const Vector2& size);
 		Vector2 getAnchor(int state)const ;
@@ -121,6 +123,7 @@ class StateButton:public Entity2D
 
 		/* rotate */
 		using Entity2D::setRotate;
+		using Entity2D::getRotate;
 		void setRotate(int state,float x,float y,float z);
 		void setRotate(int state,const Vector3& value);
 		Vector3 getRotate(int state)const ;
@@ -128,6 +131,7 @@ class StateButton:public Entity2D
 
 		/* scale */
 		using Entity2D::setScale;
+		using Entity2D::getScale;
 		void setScale(int state,float x,float y,float z);
 		void setScale(int state,const Vector3& value);
 		Vector3 getScale(int state)const ;

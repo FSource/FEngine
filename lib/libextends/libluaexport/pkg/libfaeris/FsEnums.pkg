@@ -465,3 +465,46 @@ namespace E_ButtonTweenFlag
 
 
 
+
+namespace E_ScrollDirection 
+{
+	enum 
+	{
+		VERTICAL,
+		HORIZONTAL,
+		ALL
+	}
+};
+
+
+
+namespace E_AxisDirection 
+{
+	enum 
+	{
+		VERTICAL,
+		HORIZONTAL
+	}
+};
+
+
+namespace E_AlignH
+{
+	enum 
+	{
+		LEFT,
+		CENTER,
+		RIGHT,
+	}
+};
+
+namespace E_AlignV 
+{
+	enum
+	{
+		TOP,
+		CENTER,
+		BOTTOM
+	}
+};
+

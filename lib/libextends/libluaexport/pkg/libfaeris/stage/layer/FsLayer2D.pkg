@@ -1,8 +1,17 @@
 $#include "stage/layer/FsLayer2D.h"
 
-class Layer2D@__Layer2D:public Layer
+class Layer2D:public Layer
 {
 	public:
+		enum 
+		{
+			SORT_NONE,
+			SORT_ORDER_Z,
+			SORT_Y,
+		};
+
+	public:
+		static Layer2D* __Layer__create@create();
 
 	public:
 		Matrix4 getProjectMatrix();
@@ -28,35 +37,6 @@ class Layer2D@__Layer2D:public Layer
 		void clearEntity();
 		int getEntityNu();
 };
-
-class LuaLayer2D@Layer2D:public Layer2D
-{
-	public:
-		enum 
-		{
-			SORT_NONE,
-			SORT_ORDER_Z,
-			SORT_Y,
-		};
-
-	public:
-		static LuaLayer2D* create();
-
-	public:
-		void onUpdate@update(float dt);
-		void onDraw@draw(RenderDevice* render);
-
-		bool onTouchBegin@touchBegin(float x,float y);
-		bool onTouchEnd@touchEnd(float x,float y);
-		bool onTouchMove@touchMove(float x,float y);
-
-		void onTouchesBegin@touchesBegin(TouchEvent* event);
-		void onTouchesPointerDown@touchesPointerDown(TouchEvent* event);
-		void onTouchesMove@touchesMove(TouchEvent* event);
-		void onTouchesPointerUp@touchesPointerUp(TouchEvent* event);
-		void onTouchesEnd@touchesEnd(TouchEvent* event);
-};
-
 
 
 

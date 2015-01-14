@@ -1,6 +1,6 @@
 $#include "stage/entity/FsSprite2D.h"
 
-class Sprite2D:public Entity 
+class Sprite2D:public Entity2D
 {
 	public:
 		static Sprite2D* __Entity2D__create@create();
