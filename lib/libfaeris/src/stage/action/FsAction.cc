@@ -4,6 +4,13 @@
 
 NS_FS_BEGIN
 
+Action* Action::create()
+{
+	Action* ret=new Action;
+	return ret;
+}
+
+
 const char* Action::className()
 {
 	return FS_ACTION_CLASS_NAME;

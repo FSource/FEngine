@@ -1,18 +1,12 @@
-$#include "luaext/FsLuaAction.h"
+$#include "stage/action/FsRotateAction.h"
 
-class LuaRotateAction@RotateAction:public Curve3Action
+class RotateAction:public Curve3Action
 {
 	public:
-		static LuaRotateAction* createFromTo(const Vector3& from,const Vector3& to,float time);
-		static LuaRotateAction* createBy(const Vector3& from,const Vector3& by,float time);
-		static LuaRotateAction* create(Curve3* curve,float time);
+		static RotateAction* __Action__createFromTo@createFromTo(const Vector3& from,const Vector3& to,float time);
+		static RotateAction* __Action__createBy@createBy(const Vector3& from,const Vector3& by,float time);
+		static RotateAction* __Action__create@create(Curve3* curve,float time);
 
-	public:
-		bool onUpdate@update(ActionTarget* target,float dt,float* out=0);
-		bool onRun@run(ActionTarget* target,float dt,float* out=0);
-		void onBegin@begin();
-		void onFinish@finish();
-		void onRestart@restart();
 };
 
 

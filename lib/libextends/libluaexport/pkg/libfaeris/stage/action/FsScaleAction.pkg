@@ -1,18 +1,12 @@
-$#include "luaext/FsLuaAction.h"
+$#include "stage/action/FsScaleAction.h"
 
-class LuaScaleAction@ScaleAction:public Curve3Action
+class ScaleAction:public Curve3Action
 {
 	public:
-		static LuaScaleAction* createFromTo(const Vector3& from,const Vector3& to,float time);
-		static LuaScaleAction* createBy(const Vector3& from,const Vector3& by,float time);
-		static LuaScaleAction* create(Curve3* curve,float time);
+		static ScaleAction* __Action__createFromTo@createFromTo(const Vector3& from,const Vector3& to,float time);
+		static ScaleAction* __Action__createBy@createBy(const Vector3& from,const Vector3& by,float time);
+		static ScaleAction* __Action__create@create(Curve3* curve,float time);
 
-	public:
-		bool onUpdate@update(ActionTarget* target,float dt,float* out=0);
-		bool onRun@run(ActionTarget* target,float dt,float* out=0);
-		void onBegin@begin();
-		void onFinish@finish();
-		void onRestart@restart();
 };
 
 

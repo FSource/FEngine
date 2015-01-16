@@ -12,6 +12,9 @@ class ActionTarget;
 
 class Action:public FsObject 
 {
+	public:
+		static Action* create();
+
 
 	public:
 		virtual bool update(ActionTarget* target,float dt,float* out);

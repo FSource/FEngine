@@ -194,7 +194,8 @@ local f_callback={
 	["__ScrollView__"]="FsLEntity2D_CallBackAssign",
 	["__UiWidget__"]="FsLEntity2D_CallBackAssign",
 	["__Layer__"]="FsLLayer_CallBackAssign",
-
+	["__Action__"]="FsLAction_CallBackAssign",
+	["__FixTimeAction__"]="FsLFixTimeAction_CallBackAssign",
 }
 
 

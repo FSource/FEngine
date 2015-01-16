@@ -1,21 +1,17 @@
 $#include "stage/action/FsAction.h"
-$#include "luaext/FsLuaAction.h"
 
-class Action@__Action:public FsObject 
-{
-};
 
-class LuaAction@Action:public Action 
+class Action
 {
 	public:
-		static LuaAction* create();
+		static Action* __Action__create@create();
 
 	public:
-		bool onUpdate@update(ActionTarget* target,float dt,float* out=0);
-		bool onRun@run(ActionTarget* target,float dt,float* out=0);
-		void onBegin@begin();
-		void onFinish@finish();
-		void onRestart@restart();
+		bool update(ActionTarget* target,float dt,float* out=0);
+		bool run(ActionTarget* target,float dt,float* out=0);
+		void begin();
+		void finish();
+		void restart();
 };
 
 

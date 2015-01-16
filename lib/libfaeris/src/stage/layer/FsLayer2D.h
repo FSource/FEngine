@@ -43,11 +43,16 @@ class Layer2D:public Layer
 		bool getEliminate();
 
 	public:
-		/* entity */
-		virtual void add(Entity2D* entity);
-		virtual void remove(Entity2D* entity);
 
-		void clearEntity();
+		void add(Entity* entity) FS_OVERRIDE;
+		void remove(Entity* entity) FS_OVERRIDE;
+		void clearEntity() FS_OVERRIDE;
+
+
+		/* entity */
+		void add(Entity2D* entity);
+		void remove(Entity2D* entity);
+
 		int getEntityNu();
 
 

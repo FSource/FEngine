@@ -155,6 +155,7 @@ $pfile "media/FsAudioEngine.pkg"
 $pfile "sys/network/FsHttpEngine.pkg"
 
 
+$NS_FS_USE
 
 
 

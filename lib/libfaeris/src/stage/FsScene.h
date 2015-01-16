@@ -90,6 +90,7 @@ class Scene:public ActionTarget
 		std::function<void(Scene*,TouchEvent*)> onTouchesPointerUp;
 		std::function<void(Scene*,TouchEvent*)> onTouchesEnd;
 		std::function<void(Scene*,int ,int)> 	onKeypadEvent;
+		std::function<void(Scene*,const char* text,int length)> onInputTextEvent;
 
 
 

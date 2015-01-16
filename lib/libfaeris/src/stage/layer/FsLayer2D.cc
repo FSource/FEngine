@@ -251,6 +251,20 @@ void Layer2D::remove(Entity2D* entity)
 	}
 }
 
+
+void Layer2D::add(Entity* entity) 
+{
+	Entity2D* en=dynamic_cast<Entity2D*>(entity);
+	FS_TRACE_WARN_ON(en==NULL,"Only Entity2D and SubClass Can Add To Layer2D");
+	add(en);
+}
+
+
+void Layer2D::remove(Entity* entity)
+{
+	remove((Entity2D*)entity);
+}
+
 void Layer2D::clearEntity()
 {
 	FsDict::Iterator* iter=m_entity->takeIterator();

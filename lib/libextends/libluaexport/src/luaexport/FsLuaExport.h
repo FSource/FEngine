@@ -16,12 +16,19 @@ extern "C"
 
 #include "FsMacros.h"
 #include "FsObject.h"
-#include "luaext/FsCallBackExt.h"
+
+#include "luaext/FsObjectCallBackExt.h"
+#include "luaext/FsEntityCallBackExt.h"
+#include "luaext/FsLayerCallBackExt.h"
+#include "luaext/FsSceneCallBackExt.h"
+#include "luaext/FsActionCallBackExt.h"
+
 
 #if defined(FS_OS_WIN32)
 	#pragma warning (disable:4800)
 #endif   /*FS_OS_WIN32 */
-NS_FS_USE
+
+
 
 typedef int LUA_FUNCTION;
 typedef int LUA_TABLE;

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: Box2D
-** Generated automatically by tolua++-1.0.92 on 01/14/15 08:43:05.
+** Generated automatically by tolua++-1.0.92 on 01/16/15 07:36:38.
 */
 
 #ifndef __cplusplus
@@ -48,6 +48,7 @@ TOLUA_API int  tolua_Box2D_open (lua_State* tolua_S);
 #include "box2d/fb2Draw.h"
 #include "box2d/fb2ContactListener.h"
 #include "box2d/fb2Transform.h"
+NS_FS_USE
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus

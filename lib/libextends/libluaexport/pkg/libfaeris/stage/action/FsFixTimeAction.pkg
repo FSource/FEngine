@@ -1,8 +1,11 @@
-$#include "luaext/FsLuaAction.h"
+$#include "stage/action/FsFixTimeAction.h"
 
 
 class FixTimeAction:public Action 
 {
+	public:
+		static FixTimeAction* __FixTimeAction__create@create(float time);
+
 	public:
 		void setTotalTime(float time);
 		float getTotalTime();

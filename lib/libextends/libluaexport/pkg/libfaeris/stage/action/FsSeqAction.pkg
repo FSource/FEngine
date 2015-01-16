@@ -1,22 +1,14 @@
-$#include "luaext/FsLuaAction.h"
+$#include "stage/action/FsSeqAction.h"
 
-class LuaSeqAction@SeqAction:public Action 
+class SeqAction:public Action 
 {
 	public:
-		static LuaSeqAction* create();
+		static SeqAction* __Action__create@create();
 		
 	public:
 		void addAction(Action* action);
 		void removeAction(Action* action);
 		void clearAction();
-
-	public:
-		bool onUpdate@update(ActionTarget* target,float dt,float* out=0);
-		bool onRun@run(ActionTarget* target,float dt,float* out=0);
-		void onBegin@begin();
-		void onFinish@finish();
-		void onRestart@restart();
-
 
 };
 

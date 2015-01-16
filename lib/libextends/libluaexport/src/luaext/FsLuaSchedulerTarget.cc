@@ -17,6 +17,7 @@ void LuaSchedulerTarget::update(int priority,float dt)
 {
 	onUpdate(priority,dt);
 }
+
 const char* LuaSchedulerTarget::className()
 {
 	return FS_LUA_SCHEDULER_TARGET_CLASS_NAME;

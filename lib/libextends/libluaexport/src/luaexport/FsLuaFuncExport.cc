@@ -14,6 +14,7 @@
 #include "sys/FsSys.h"
 
 
+NS_FS_USE
 
 /* all function */
 int luaf_xorstring(lua_State* l)

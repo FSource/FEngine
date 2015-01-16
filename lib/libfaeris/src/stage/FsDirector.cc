@@ -452,7 +452,7 @@ void Director::inputTextEvent(const char* text,int length)
 {
 	if(m_stop) return ;
 	if(!m_current) return;
-	m_current->inputTextEvent(text,length);
+	FS_OBJECT_LAMBDA_CALL(m_current,onInputTextEvent,inputTextEvent,text,length);
 }
 
 

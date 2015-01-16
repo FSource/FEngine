@@ -3,14 +3,15 @@ $#include "stage/layer/FsLayer.h"
 class Layer:public ActionTarget
 {
 	public:
+	public:
 		/* visible */
 		bool getVisible();
-		bool getVisible@visible();
 		void setVisible(bool visible);
 
 		/* touch enable */
 		bool touchEnabled();
 		void setTouchEnabled(bool enable);
+		bool getTouchEnabled();
 		void setTouchesEnabled(bool enable);
 		bool getTouchesEnabled();
 
@@ -27,13 +28,34 @@ class Layer:public ActionTarget
 		void setScissorEnabled(bool enable){m_scissorEnabled=enable;}
 
 
-		/* project matrix */
-		Matrix4 getProjectMatrix();
-		Vector3 toLayerCoord(const Vector3& v);
-
-
 		/* scene */
 		Scene* getScene();
+
+	public:
+
+		/* event hook */
+		 void update(float dt);
+		 void draw(RenderDevice* render);
+
+		/* touch event */
+		bool touchBegin(float x,float y);
+		bool touchMove(float x,float y);
+		bool touchEnd(float x,float y);
+
+		/* touches event */
+		bool touchesBegin(TouchEvent* event);
+		bool touchesPointerDown(TouchEvent* event);
+		bool touchesMove(TouchEvent* event);
+		bool touchesPointerUp(TouchEvent* event);
+		bool touchesEnd(TouchEvent* event);
+
+		/* project matrix */
+		Matrix4 getProjectMatrix()=0;
+		Vector3 toLayerCoord(const Vector3& v);
+
+		void add(Entity* entity);
+		void remove(Entity* entity);
+		void clearEntity();
 };
 
 

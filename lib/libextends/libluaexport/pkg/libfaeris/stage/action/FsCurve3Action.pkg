@@ -1,4 +1,4 @@
-$#include "luaext/FsLuaAction.h"
+$#include "stage/action/FsCurve3Action.h"
 
 namespace CurveUsedMarkBit {
 	enum

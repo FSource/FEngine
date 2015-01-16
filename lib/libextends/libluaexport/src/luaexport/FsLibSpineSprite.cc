@@ -1,6 +1,6 @@
 /*
 ** Lua binding: FsSpineSprite
-** Generated automatically by tolua++-1.0.92 on 01/14/15 08:43:04.
+** Generated automatically by tolua++-1.0.92 on 01/16/15 07:36:37.
 */
 
 #ifndef __cplusplus
@@ -15,6 +15,7 @@ TOLUA_API int  tolua_FsSpineSprite_open (lua_State* tolua_S);
 
 #include "FsLuaExport.h"
 #include "FsSpineSprite.h"
+NS_FS_USE
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus

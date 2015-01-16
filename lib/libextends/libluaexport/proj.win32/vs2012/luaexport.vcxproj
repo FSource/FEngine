@@ -85,13 +85,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\FsLuaEngine.cc" />
-    <ClCompile Include="..\..\src\luaext\FsCallBackExt.cc" />
-    <ClCompile Include="..\..\src\toluaext++.cc" />
+    <ClCompile Include="..\..\src\luaext\FsActionCallBackExt.cc" />
+    <ClCompile Include="..\..\src\luaext\FsEntityCallBackExt.cc" />
+    <ClCompile Include="..\..\src\luaext\FsLayerCallBackExt.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaHttpRequest.cc" />
-    <ClCompile Include="..\..\src\luaext\FsLuaScene.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaSchedulerTarget.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaSysEventListener.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaTouchEventListener.cc" />
+    <ClCompile Include="..\..\src\luaext\FsObjectCallBackExt.cc" />
+    <ClCompile Include="..\..\src\luaext\FsSceneCallBackExt.cc" />
+    <ClCompile Include="..\..\src\toluaext++.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLibBox2d.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLibFaerisExport.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLibLuaScript.cc" />
@@ -101,15 +104,16 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\FsLuaEngine.h" />
     <ClInclude Include="..\..\src\FsLuaMacros.h" />
-    <ClInclude Include="..\..\src\luaext\FsCallBackExt.h" />
-    <ClInclude Include="..\..\src\toluaext++.h" />
-    <ClInclude Include="..\..\src\luaext\FsLuaAction.h" />
+    <ClInclude Include="..\..\src\luaext\FsActionCallBackExt.h" />
+    <ClInclude Include="..\..\src\luaext\FsEntityCallBackExt.h" />
+    <ClInclude Include="..\..\src\luaext\FsLayerCallBackExt.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaHttpRequest.h" />
-    <ClInclude Include="..\..\src\luaext\FsLuaScene.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaSchedulerTarget.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaSysEventListener.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaTouchEventListener.h" />
-    <ClInclude Include="..\..\src\luaext\FsTAction.h" />
+    <ClInclude Include="..\..\src\luaext\FsObjectCallBackExt.h" />
+    <ClInclude Include="..\..\src\luaext\FsSceneCallBackExt.h" />
+    <ClInclude Include="..\..\src\toluaext++.h" />
     <ClInclude Include="..\..\src\luaexport\FsLuaExport.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

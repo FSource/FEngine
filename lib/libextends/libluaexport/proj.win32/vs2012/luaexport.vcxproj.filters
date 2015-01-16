@@ -19,21 +19,6 @@
     <ClCompile Include="..\..\src\toluaext++.cc">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\luaext\FsLuaHttpRequest.cc">
-      <Filter>src\luaext</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\luaext\FsLuaScene.cc">
-      <Filter>src\luaext</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\luaext\FsLuaSchedulerTarget.cc">
-      <Filter>src\luaext</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\luaext\FsLuaSysEventListener.cc">
-      <Filter>src\luaext</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\luaext\FsLuaTouchEventListener.cc">
-      <Filter>src\luaext</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\luaexport\FsLibBox2d.cc">
       <Filter>src\luaexport</Filter>
     </ClCompile>
@@ -49,7 +34,31 @@
     <ClCompile Include="..\..\src\luaexport\FsLuaFuncExport.cc">
       <Filter>src\luaexport</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\luaext\FsCallBackExt.cc">
+    <ClCompile Include="..\..\src\luaext\FsActionCallBackExt.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsEntityCallBackExt.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLayerCallBackExt.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaHttpRequest.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaSchedulerTarget.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaSysEventListener.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsLuaTouchEventListener.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsObjectCallBackExt.cc">
+      <Filter>src\luaext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\luaext\FsSceneCallBackExt.cc">
       <Filter>src\luaext</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,13 +72,19 @@
     <ClInclude Include="..\..\src\toluaext++.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsLuaAction.h">
+    <ClInclude Include="..\..\src\luaexport\FsLuaExport.h">
+      <Filter>src\luaexport</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsActionCallBackExt.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsEntityCallBackExt.h">
+      <Filter>src\luaext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\luaext\FsLayerCallBackExt.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsLuaHttpRequest.h">
-      <Filter>src\luaext</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsLuaScene.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsLuaSchedulerTarget.h">
@@ -81,13 +96,10 @@
     <ClInclude Include="..\..\src\luaext\FsLuaTouchEventListener.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsTAction.h">
+    <ClInclude Include="..\..\src\luaext\FsObjectCallBackExt.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\luaexport\FsLuaExport.h">
-      <Filter>src\luaexport</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsCallBackExt.h">
+    <ClInclude Include="..\..\src\luaext\FsSceneCallBackExt.h">
       <Filter>src\luaext</Filter>
     </ClInclude>
   </ItemGroup>

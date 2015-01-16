@@ -1,23 +1,21 @@
-#include "FsCallBackExt.h"
+
+#include "stage/entity/FsEntity.h"
+#include "stage/entity/FsEntity2D.h"
+#include "stage/ui/FsPressButton.h"
+#include "stage/ui/FsToggleButton.h"
+#include "stage/ui/FsPageView.h"
+#include "stage/ui/FsDynamicView.h"
+
+
+#include "FsObjectCallBackExt.h"
+#include "FsEntityCallBackExt.h"
+
+#include "FsGlobal.h"
+#include "FsLuaEngine.h"
+
+
 
 NS_FS_BEGIN
-
-
-/* --------------------  FsObject -----------------------*/
-static void FsLFsObject_onFinalize(FsObject* ob)
-{
-	LuaEngine* engine=(LuaEngine*)Global::scriptEngine();
-	if(engine)
-	{
-		engine->callFunctionInTable(ob->m_scriptData,"onFinalize",1,0,"u<FsObject>",ob);
-	}
-}
-
-void FsLFsObject_CallBackAssign(FsObject* ob)
-{
-	ob->onFinalize=FsLFsObject_onFinalize;
-}
-
 
 /*   -------------------- Entity  ------------------------*/
 static void FsLEntity_onUpdate(Entity* en,float dt)
@@ -28,6 +26,7 @@ static void FsLEntity_onUpdate(Entity* en,float dt)
 		en->update(dt);
 	}
 }
+
 
 static void FsLEntity_onDraw(Entity* en,RenderDevice* r,bool updateMatrix)
 {
@@ -235,157 +234,4 @@ void FsLDynamicView_CallBackAssign(DynamicView* dv)
 
 
 
-
-
-
-
-
-
-
-
-/* ---------------------------- Layer --------------------*/
-
-
-
-static void FsLLayer_onUpdate(Layer* ly,float dt)
-{
-	LuaEngine* se=(LuaEngine*)Global::scriptEngine();
-	if(!se->callFunctionInTable(ly->m_scriptData,"onUpdate",2,0,"fn",ly,dt))
-	{
-		ly->update(dt);
-	}
-}
-
-
-
-static void FsLLayer_onDraw(Layer* ly,RenderDevice* render)
-{
-	LuaEngine* se=(LuaEngine*) Global::scriptEngine();
-
-	if(!se->callFunctionInTable(ly->m_scriptData,"onDraw",2,0,"ff",ly,render))
-	{
-		ly->draw(render);
-	}
-}
-
-static bool FsLLayer_onTouchBegin(Layer* ly,float x,float y)
-{
-	LuaEngine* se=(LuaEngine*)Global::scriptEngine();
-	if(!se->callFunctionInTable(ly->m_scriptData,"onTouchBegin",3,1,"fnn",ly,x,y))
-	{
-		return ly->touchBegin(x,y);
-	}
-	bool ret=se->toBoolean(-1);
-	se->pop();
-	return ret;
-}
-
-
-static bool FsLLayer_onTouchMove(Layer* ly,float x,float y)
-{
-	LuaEngine* se=(LuaEngine*)Global::scriptEngine();
-	if(!se->callFunctionInTable(ly->m_scriptData,"onTouchMove",3,1,"fnn",ly,x,y))
-	{
-		return ly->touchMove(x,y);
-	}
-	bool ret=se->toBoolean(-1);
-	se->pop();
-	return ret;
-}
-
-static bool FsLLayer_onTouchEnd(Layer* ly,float x,float y)
-{
-	LuaEngine* se=(LuaEngine*)Global::scriptEngine();
-	if(!se->callFunctionInTable(ly->m_scriptData,"onTouchEnd",3,1,"fnn",ly,x,y))
-	{
-		return  ly->touchEnd(x,y);
-	}
-
-	bool ret=se->toBoolean(-1);
-	se->pop();
-	return ret;
-}
-
-static bool FsLLayer_onTouchesBegin(Layer* ly,TouchEvent* event)
-{
-	LuaEngine* se=(LuaEngine*)Global::scriptEngine();
-	if(!se->callFunctionInTable(ly->m_scriptData,"onTouchesBegin",3,1,"fiu<TouchEvent>",ly,event->getPointsNu(),event))
-	{
-		return  ly->touchesBegin(event);
-	}
-	bool ret=se->toBoolean(-1);
-	se->pop();
-	return ret;
-}
-
-static bool FsLLayer_onTouchesPointerDown(Layer* ly,TouchEvent* event)
-{
-	LuaEngine* se=(LuaEngine*)Global::scriptEngine();
-	if(!se->callFunctionInTable(ly->m_scriptData,"onTouchesPointerDown",3,1,"fiu<TouchEvent>",ly,event->getPointsNu(),event))
-	{
-		return  ly->touchesPointerDown(event);
-	}
-	bool ret=se->toBoolean(-1);
-	se->pop();
-	return ret;
-}
-static bool FsLLayer_onTouchesMove(Layer* ly,TouchEvent* event)
-{
-	LuaEngine* se=(LuaEngine*)Global::scriptEngine();
-	if(!se->callFunctionInTable(ly->m_scriptData,"onTouchesMove",3,1,"fiu<TouchEvent>",ly,event->getPointsNu(),event))
-	{
-		return  ly->touchesMove(event);
-	}
-	bool ret=se->toBoolean(-1);
-	se->pop();
-	return ret;
-}
-static bool FsLLayer_onTouchesPointerUp(Layer* ly,TouchEvent* event)
-{
-	LuaEngine* se=(LuaEngine*)Global::scriptEngine();
-	if(!se->callFunctionInTable(ly->m_scriptData,"onTouchesPointerUp",3,1,"fiu<TouchEvent>",ly,event->getPointsNu(),event))
-	{
-		return  ly->touchesPointerUp(event);
-	}
-	bool ret=se->toBoolean(-1);
-	se->pop();
-	return ret;
-}
-
-static bool FsLLayer_onTouchesEnd(Layer* ly,TouchEvent* event)
-{
-	LuaEngine* se=(LuaEngine*)Global::scriptEngine();
-	if(!se->callFunctionInTable(ly->m_scriptData,"onTouchesEnd",3,1,"fiu<TouchEvent>",ly,event->getPointsNu(),event))
-	{
-		return  ly->touchesEnd(event);
-	}
-	bool ret=se->toBoolean(-1);
-	se->pop();
-	return ret;
-}
-
-
-void FsLLayer_CallBackAssign(Layer* ly)
-{
-	ly->onUpdate=FsLLayer_onUpdate;
-	ly->onDraw=FsLLayer_onDraw;
-	ly->onTouchBegin=FsLLayer_onTouchBegin;
-	ly->onTouchMove=FsLLayer_onTouchMove;
-	ly->onTouchEnd=FsLLayer_onTouchEnd;
-
-	ly->onTouchesBegin=FsLLayer_onTouchesBegin;
-	ly->onTouchesPointerDown=FsLLayer_onTouchesPointerDown;
-	ly->onTouchesMove=FsLLayer_onTouchesMove;
-	ly->onTouchesPointerUp=FsLLayer_onTouchesPointerUp;
-	ly->onTouchesEnd=FsLLayer_onTouchesEnd;
-
-}
-
-
-
-
-
-
-
 NS_FS_END 
-

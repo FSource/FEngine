@@ -118,7 +118,9 @@ $pfile "b2WheelJoint.pkg"
 $pfile "b2World.pkg"
 $pfile "b2WorldCallbacks.pkg"
 
+
 $pfile "fb2Draw.pkg"
 $pfile "fb2ContactListener.pkg"
 $pfile "fb2Transform.pkg"
 
+$NS_FS_USE

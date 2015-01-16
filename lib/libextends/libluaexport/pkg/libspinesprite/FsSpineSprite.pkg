@@ -1,6 +1,8 @@
 $#include "FsLuaExport.h"
 $#include "FsSpineSprite.h"
 
+$NS_FS_USE
+
 class SpineSprite:public Entity2D
 {
 	public:

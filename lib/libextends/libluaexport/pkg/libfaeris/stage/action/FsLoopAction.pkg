@@ -1,12 +1,11 @@
-$#include "luaext/FsLuaAction.h"
+$#include "stage/action/FsLoopAction.h"
 
 
-class LuaLoopAction@LoopAction:public Action 
+class LoopAction:public Action 
 {
 	public:
-		static LuaLoopAction* create(Action* action,int loop_nu);
-		static LuaLoopAction* create(Action* action);
-
+		static LoopAction* __Action__create@create(Action* action,int loop_nu);
+		static LoopAction* __Action__create@create(Action* action);
 
 	public:
 		int getTotalLoopNu();
@@ -14,12 +13,6 @@ class LuaLoopAction@LoopAction:public Action
 
 		int getCurLoopNu();
 		void setCurLoopNu(int count);
-	public:
-		bool onUpdate@update(ActionTarget* target,float dt,float* out=0);
-		bool onRun@run(ActionTarget* target,float dt,float* out=0);
-		void onBegin@begin();
-		void onFinish@finish();
-		void onRestart@restart();
 };
 
 
