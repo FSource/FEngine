@@ -8,6 +8,8 @@
 #include "graphics/shader/FsProgram.h"
 #include "graphics/shader/FsStreamMap.h"
 #include "FsClass.h"
+#include "stage/filter/FsFilter.h"
+#include "stage/layer/FsLayer2D.h"
 
 NS_FS_BEGIN
 

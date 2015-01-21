@@ -181,6 +181,12 @@
     <ClInclude Include="..\..\src\stage\entity\transform\FsEulerTransform.h" />
     <ClInclude Include="..\..\src\stage\entity\transform\FsITransform.h" />
     <ClInclude Include="..\..\src\stage\entity\transform\FsQuaternionTransform.h" />
+    <ClInclude Include="..\..\src\stage\filter\FsBlurFilter.h" />
+    <ClInclude Include="..\..\src\stage\filter\FsBrightnessFilter.h" />
+    <ClInclude Include="..\..\src\stage\filter\FsColorMatrixFilter.h" />
+    <ClInclude Include="..\..\src\stage\filter\FsFilter.h" />
+    <ClInclude Include="..\..\src\stage\filter\FsGrayFilter.h" />
+    <ClInclude Include="..\..\src\stage\filter\FsOpacityFilter.h" />
     <ClInclude Include="..\..\src\stage\FsActionTarget.h" />
     <ClInclude Include="..\..\src\stage\FsDirector.h" />
     <ClInclude Include="..\..\src\stage\FsScene.h" />
@@ -336,6 +342,11 @@
     <ClCompile Include="..\..\src\stage\entity\FsVertexPolygon.cc" />
     <ClCompile Include="..\..\src\stage\entity\transform\FsEulerTransform.cc" />
     <ClCompile Include="..\..\src\stage\entity\transform\FsQuaternionTransform.cc" />
+    <ClCompile Include="..\..\src\stage\filter\FsBrightnessFilter.cc" />
+    <ClCompile Include="..\..\src\stage\filter\FsColorMatrixFilter.cc" />
+    <ClCompile Include="..\..\src\stage\filter\FsFilter.cc" />
+    <ClCompile Include="..\..\src\stage\filter\FsGrayFilter.cc" />
+    <ClCompile Include="..\..\src\stage\filter\FsOpacityFilter.cc" />
     <ClCompile Include="..\..\src\stage\FsActionTarget.cc" />
     <ClCompile Include="..\..\src\stage\FsDirector.cc" />
     <ClCompile Include="..\..\src\stage\FsScene.cc" />

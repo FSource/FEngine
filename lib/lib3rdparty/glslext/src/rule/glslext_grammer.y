@@ -98,7 +98,7 @@ uniform_map : tWORD tASSIGN  tDOLLAR tL_RB  tWORD tR_RB new_lines
 	{
 		param->addUniformMap($1,NULL,$5);
 	};
-uniform_map : tWORD tASSIGN  tDOLLAR tL_RB tWORD tL_SB tINTEGER tL_SB new_lines 
+uniform_map : tWORD tASSIGN  tDOLLAR tL_RB tWORD tL_SB tINTEGER tR_SB tR_RB new_lines 
 	{
 		param->addUniformMap($1,NULL,$5,atoi($7->c_str()));
 		delete $7;

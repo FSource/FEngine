@@ -21,6 +21,7 @@ UniformMap
     u_pointLightColor = $(L.POINT_LIGHT_COLOR)
 	u_pointLightPosition=$(L.POINT_LIGHT_POSITION)
 	u_pointLightDistance=$(L.POINT_LIGHT_DISTANCE)
+	u_sss=$(M.EXT[0])
 
 	u_colorMap=$(M.COLOR_MAP)
 }

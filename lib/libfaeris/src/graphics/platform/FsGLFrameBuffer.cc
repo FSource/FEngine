@@ -117,6 +117,35 @@ error:
 }
 
 
+void FrameBuffer::setSize(int width,int height)
+{
+	int32_t old_fbo_id;
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &old_fbo_id);
+
+	/* Bind Frame Buffer */
+	glBindFramebuffer(GL_FRAMEBUFFER,m_fboId);
+	glBindRenderbuffer(GL_RENDERBUFFER,m_depthBuffer);
+	glRenderbufferStorage(GL_RENDERBUFFER,GL_DEPTH_COMPONENT16,width,height);
+
+
+	/* Color Buffer */
+	glBindTexture(GL_TEXTURE_2D,m_colorTexture->getPlatformTexture());
+	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width,height,0,GL_RGBA,GL_UNSIGNED_BYTE,NULL);
+
+
+	/* restore */
+	glBindFramebuffer(GL_FRAMEBUFFER,old_fbo_id);
+
+	m_width=width;
+	m_height=height;
+
+
+
+}
+
+
+
+
 void FrameBuffer::destruct()
 {
 	FS_SAFE_DEC_REF(m_colorTexture);

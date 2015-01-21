@@ -27,6 +27,8 @@ class FrameBuffer:public RenderTarget
 		int getWidth(){return m_width;}
 		int getHeight(){return m_height;}
 
+		void setSize(int width,int height);
+
 	protected:
 		FrameBuffer();
 		virtual ~FrameBuffer();

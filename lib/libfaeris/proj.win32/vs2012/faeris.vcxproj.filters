@@ -83,6 +83,9 @@
     <Filter Include="src\stage\entity\transform">
       <UniqueIdentifier>{181b0bc0-f70e-40b3-95a2-3be850184a80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\stage\filter">
+      <UniqueIdentifier>{855d387a-a895-4c16-9d39-c905bff269ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\extends\FsScriptEngine.h">
@@ -595,6 +598,24 @@
     <ClInclude Include="..\..\src\stage\ui\FsProcessBar.h">
       <Filter>src\stage\ui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\stage\filter\FsBlurFilter.h">
+      <Filter>src\stage\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\filter\FsBrightnessFilter.h">
+      <Filter>src\stage\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\filter\FsColorMatrixFilter.h">
+      <Filter>src\stage\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\filter\FsFilter.h">
+      <Filter>src\stage\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\filter\FsGrayFilter.h">
+      <Filter>src\stage\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\filter\FsOpacityFilter.h">
+      <Filter>src\stage\filter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1067,6 +1088,21 @@
     </ClCompile>
     <ClCompile Include="..\..\src\stage\ui\FsProcessBar.cc">
       <Filter>src\stage\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\filter\FsBrightnessFilter.cc">
+      <Filter>src\stage\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\filter\FsColorMatrixFilter.cc">
+      <Filter>src\stage\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\filter\FsFilter.cc">
+      <Filter>src\stage\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\filter\FsGrayFilter.cc">
+      <Filter>src\stage\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\filter\FsOpacityFilter.cc">
+      <Filter>src\stage\filter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
