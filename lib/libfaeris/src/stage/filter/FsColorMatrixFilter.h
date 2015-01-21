@@ -17,6 +17,20 @@ class ColorMatrixFilter:public Filter
 	public:
 		void setColorMatrix(const Matrix4& mat);
 		const Matrix4& getColorMatrix();
+		void setColorOffset(const Vector4f& offset);
+		const Vector4f& getColorOffset();
+
+		void setSaturation(float value);
+		void setBrightness(float b);
+		void setContrast(float c);
+		void setInvert();
+		
+
+		void setSepia();
+		void se
+
+
+
 
 	protected:
 		ColorMatrixFilter();
@@ -24,6 +38,7 @@ class ColorMatrixFilter:public Filter
 
 	protected:
 		UniformMat4f* m_colorMatrix;
+		UniformValue4f* m_colorOffset;
 };
 
 

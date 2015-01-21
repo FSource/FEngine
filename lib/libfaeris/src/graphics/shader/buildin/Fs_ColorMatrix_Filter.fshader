@@ -6,6 +6,7 @@ UniformMap    \n\
 	u_color = $(M.COLOR)   \n\
 	u_opacity = $(M.OPACITY)   \n\
 	u_colorMatrix=$(M.EXT[0]) \n\
+	u_colorOffset=$(M.EXT[1]) \n\
 }   \n\
    \n\
 AttributeMap    \n\
@@ -44,9 +45,10 @@ FragmentShader   \n\
 	uniform sampler2D u_texture0;   	\n\
 	uniform float 	  u_opacity;   		\n\
 	uniform mat4 	  u_colorMatrix;   	\n\
+	uniform vec4 	  u_colorOffset;		\n\
 	void main()											     \n\
 	{													     \n\
 		vec4 tmp= texture2D(u_texture0,v_texCoord) ;		 \n\
-		gl_FragColor =u_colorMatrix*tmp;					 \n\
+		gl_FragColor =u_colorMatrix*tmp+u_colorOffset;		 \n\
 	}														 \n\
 }"   ; 

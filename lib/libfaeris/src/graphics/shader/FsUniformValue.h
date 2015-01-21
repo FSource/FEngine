@@ -302,9 +302,9 @@ extern const char UniformValueMatrix4f_ClassName[];
 
 
 typedef TUniformValue<float,E_UniformType::UT_F_1,UniformValue1f_ClassName>    UniformValue1f;
-typedef TUniformValue<float,E_UniformType::UT_F_2,UniformValue2f_ClassName>    UniformValue2f;
-typedef TUniformValue<float,E_UniformType::UT_F_3,UniformValue3f_ClassName>    UniformValue3f;
-typedef TUniformValue<float,E_UniformType::UT_F_4,UniformValue4f_ClassName>    UniformValue4f;
+typedef TUniformValue<Vector2f,E_UniformType::UT_F_2,UniformValue2f_ClassName>    UniformValue2f;
+typedef TUniformValue<Vector3f,E_UniformType::UT_F_3,UniformValue3f_ClassName>    UniformValue3f;
+typedef TUniformValue<Vector4f,E_UniformType::UT_F_4,UniformValue4f_ClassName>    UniformValue4f;
 
 typedef TUniformValue<int32_t,E_UniformType::UT_I_1,UniformValue1i_ClassName>  UniformValue1i;
 typedef TUniformValue<int32_t,E_UniformType::UT_I_2,UniformValue2i_ClassName>  UniformValue2i;
