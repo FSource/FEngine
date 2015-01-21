@@ -42,6 +42,8 @@ UiWidget::UiWidget()
 	setBgTexture((Texture2D*)NULL);
 	FS_NO_REF_DESTROY(m_bgMaterial);
 
+	m_filter=NULL;
+
 
 }
 
@@ -60,6 +62,7 @@ UiWidget::~UiWidget()
 		}
 	}
 	FS_DESTROY(m_bgMaterial);
+	FS_SAFE_DEC_REF(m_filter);
 }
 
 
@@ -180,6 +183,18 @@ bool UiWidget::getBgEnabled()
 }
 
 
+void UiWidget::setFilter(Filter* filter)
+{
+	FS_SAFE_ASSIGN(m_filter,filter);
+}
+
+Filter* UiWidget::getFilter()
+{
+	return m_filter;
+}
+
+
+
 
 
 
@@ -223,7 +238,7 @@ void UiWidget::draws(RenderDevice* r,bool updateMatrix)
 	{
 		bool old_scissor_enabled=r->getScissorEnabled();
 		Rect2D old_scissor_area=r->getScissorArea();
-		
+
 		float minx=-m_anchor.x*m_size.x;
 		float maxx=minx+m_size.x;
 		float miny=-m_anchor.y*m_size.y;
@@ -252,7 +267,7 @@ void UiWidget::draws(RenderDevice* r,bool updateMatrix)
 		{
 			if (tminx>t[i].x) { tminx=t[i].x ;}
 			if(tmaxx<t[i].x) { tmaxx=t[i].x; }
-		   	if(tminy>t[i].y) { tminy=t[i].y; }
+			if(tminy>t[i].y) { tminy=t[i].y; }
 			if(tmaxy<t[i].y) { tmaxy=t[i].y ;}
 		}
 		Matrix4 proj=m_layer->getProjectMatrix();
@@ -300,18 +315,44 @@ void UiWidget::draws(RenderDevice* r,bool updateMatrix)
 			return;
 		}
 
-		r->setScissorEnabled(true);
-
 		r->setScissorArea(sminx,sminy,w<0?0:w,h<0?0:h);
 
-		Entity::draws(r,updateMatrix);
+		if(m_filter)
+		{
+			Matrix4 mat;
+			m_filter->begin(r,tminx,tmaxx,tminy,tmaxy);
+			{
+				Entity::draws(r,updateMatrix);
+			}
+			m_filter->end(r);
+			m_filter->apply(r,tminx,tmaxx,tminy,tmaxy);
+		}
+		else 
+		{
+			r->setScissorEnabled(true);
+			Entity::draws(r,updateMatrix);
+		}
 
 		r->setScissorEnabled(old_scissor_enabled);
 		r->setScissorArea(old_scissor_area);
 	}
 	else 
 	{
-		Entity::draws(r,updateMatrix);
+		if(m_filter)
+		{
+			Rect2D rect=((Layer2D*)getLayer())->getViewArea();
+			m_filter->begin(r,rect.x,rect.x+rect.width,rect.y,rect.y+rect.height);
+			{
+				Entity::draws(r,updateMatrix);
+			}
+			m_filter->end(r);
+			m_filter->apply(r,rect.x,rect.x+rect.width,rect.y,rect.y+rect.height);
+		}
+		else 
+		{
+			Entity::draws(r,updateMatrix);
+		}
+
 	}
 
 }
@@ -349,7 +390,7 @@ void UiWidget::draw(RenderDevice* rd,bool updateMatrix)
 
 	float left=-m_anchor.x*m_size.x;
 	float right=(1.0f-m_anchor.x)*m_size.x;
-	
+
 
 	Vector2f vertices[4]={
 		Vector2f(left,bottom),
@@ -367,7 +408,7 @@ void UiWidget::draw(RenderDevice* rd,bool updateMatrix)
 
 	StreamMap* map_v=prog->getStreamMap(E_StreamType::VERTICES);
 	StreamMap* map_u=prog->getStreamMap(E_StreamType::UVS);
-	
+
 	if(map_v)
 	{
 		rd->setAndEnableVertexAttrPointer(map_v->m_location,2,FS_FLOAT,4,0,&vertices[0]);

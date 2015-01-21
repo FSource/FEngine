@@ -11,6 +11,7 @@
 NS_FS_BEGIN
 class RenderDevice;
 class Texture2D;
+class Filter;
 
 class UiWidget:public Entity2D
 {
@@ -78,6 +79,9 @@ class UiWidget:public Entity2D
 		void setBgEnabled(bool value);
 		bool getBgEnabled();
 
+		void setFilter(Filter* filter);
+		Filter* getFilter();
+
 
 
 	public:
@@ -102,6 +106,7 @@ class UiWidget:public Entity2D
 		bool m_signalParentTSAEnabled;
 
 		Material2D* m_bgMaterial;
+		Filter* m_filter;
 
 };
 

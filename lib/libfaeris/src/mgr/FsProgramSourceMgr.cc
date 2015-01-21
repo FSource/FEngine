@@ -83,10 +83,24 @@ static const char* FS_PRE_PROGRAM_SOURCE_LAMBERT_SOURCE=
 static const char* FS_PRE_PROGRAM_SOURCE_PHONG_SOURCE=
 #include "graphics/shader/buildin/Fs_Phong.fshader"
 
+static const char* FS_PRE_PROGRAM_SOURCE_FILTER_OPACITY_SOURCE=
+#include "graphics/shader/buildin/Fs_Opacity_Filter.fshader"
+
+static const char* FS_PRE_PROGRAM_SOURCE_FILTER_GRAY_SOURCE=
+#include "graphics/shader/buildin/Fs_Gray_Filter.fshader"
+
+static const char* FS_PRE_PROGRAM_SOURCE_FILTER_BRIGHTNESS_SOURCE=
+#include "graphics/shader/buildin/Fs_Brightness_Filter.fshader"
+
+static const char* FS_PRE_PROGRAM_SOURCE_FILTER_COLOR_MATRIX_SOURCE=
+#include "graphics/shader/buildin/Fs_ColorMatrix_Filter.fshader"
+
+
 void ProgramSourceMgr::loadPreDefineShader()
 {
-	ST_PreDefineShader shader[FS_MAX_PRE_PROGRAM_SOURCE_NU]=
+	ST_PreDefineShader shader[]=
 	{
+		/* 2d party */
 		{
 			FS_PRE_PROGRAM_SOURCE_V4F,
 			FS_PRE_PROGRAM_SOURCE_V4F_SOURCE,
@@ -103,10 +117,14 @@ void ProgramSourceMgr::loadPreDefineShader()
 			FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F,
 			FS_PRE_PROGRAM_SOURCE_V4F_T2F_C4F_SOURCE
 		},
+
 		{
 			FS_PRE_PROGRAM_SOURCE_PARTICLE,
 			FS_PRE_PROGRAM_SOURCE_PARTICLE_SOURCE,
 		},
+
+
+		/* 3d party */
 		{
 			FS_PRE_PROGRAM_SOURCE_COLOR,
 			FS_PRE_PROGRAM_SOURCE_COLOR_SOURCE,
@@ -126,27 +144,56 @@ void ProgramSourceMgr::loadPreDefineShader()
 		{
 			FS_PRE_PROGRAM_SOURCE_PHONG,
 			FS_PRE_PROGRAM_SOURCE_PHONG_SOURCE
-		}
-	};
+		},
 
-	for(int i=0;i<FS_MAX_PRE_PROGRAM_SOURCE_NU;i++)
+		/* filter party */
+		{
+			FS_PRE_PROGRAM_SOURCE_FILTER_OPACITY,
+			FS_PRE_PROGRAM_SOURCE_FILTER_OPACITY_SOURCE
+		},
+		{
+			FS_PRE_PROGRAM_SOURCE_FILTER_GRAY,
+			FS_PRE_PROGRAM_SOURCE_FILTER_GRAY_SOURCE,
+		},
+		{
+			FS_PRE_PROGRAM_SOURCE_FILTER_BRIGHTNESS,
+			FS_PRE_PROGRAM_SOURCE_FILTER_BRIGHTNESS_SOURCE,
+		},
+		{
+			FS_PRE_PROGRAM_SOURCE_FILTER_COLOR_MATRIX,
+			FS_PRE_PROGRAM_SOURCE_FILTER_COLOR_MATRIX_SOURCE,
+		},
+		{
+			NULL,
+			NULL,
+		}
+		
+
+	};
+	
+	ST_PreDefineShader* p_shader=shader;
+
+	while(p_shader->key!=NULL)
 	{
-		int length=strlen(shader[i].source);
-		FsFile* file=MemFile::create(shader[i].source,length);
+		int length=strlen(p_shader->source);
+		FsFile* file=MemFile::create(p_shader->source,length);
 		ProgramSource* ps=ProgramSource::create(file);
 		file->autoDestroy();
 
 		if(!ps)
 		{
-			FS_TRACE_WARN("Can't Load PreDefine Shader(%s)",shader[i].key);
+			FS_TRACE_WARN("Can't Load PreDefine Shader(%s)",p_shader->key);
+			p_shader++;
 			continue;
 		}
 
-		FsString* key=FsString::create(shader[i].key);
+		FsString* key=FsString::create(p_shader->key);
 
 		addCache(key,ps);
 		key->autoDestroy();
+		p_shader++;
 	}
+
 }
 
 

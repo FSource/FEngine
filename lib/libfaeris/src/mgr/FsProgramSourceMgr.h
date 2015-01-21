@@ -7,6 +7,7 @@
 NS_FS_BEGIN
 
 
+/* 2d party */
 #define FS_PRE_PROGRAM_SOURCE_V4F "__V4F__.fshader"
 #define FS_PRE_PROGRAM_SOURCE_V4F_T2F "__V4F_T2F__.fshader"
 #define FS_PRE_PROGRAM_SOURCE_V4F_T2F_A1F "__V4F_T2F_A1F__.fshader"
@@ -14,12 +15,19 @@ NS_FS_BEGIN
 #define FS_PRE_PROGRAM_SOURCE_PARTICLE "__PARTICLE__.fshader"
 
 
+/* 3d party */
 #define FS_PRE_PROGRAM_SOURCE_COLOR  "__COLOR__.fshader" 
 #define FS_PRE_PROGRAM_SOURCE_TEXTURE "__TEXTURE__.fshader"
 #define FS_PRE_PROGRAM_SOURCE_CONSTANT "__CONSTANT__.fshader"
 #define FS_PRE_PROGRAM_SOURCE_LAMBERT  "__LAMBERT__.fshader"
 #define FS_PRE_PROGRAM_SOURCE_PHONG "__PHONG__.fshader"
 
+
+/* filter party */
+#define FS_PRE_PROGRAM_SOURCE_FILTER_OPACITY "__FILTER_OPACIYT__.fshader"
+#define FS_PRE_PROGRAM_SOURCE_FILTER_GRAY  "__FILTER_GRAY__.fshader"
+#define FS_PRE_PROGRAM_SOURCE_FILTER_BRIGHTNESS "__FILTER_BRIGHTNESS__.fshader"
+#define FS_PRE_PROGRAM_SOURCE_FILTER_COLOR_MATRIX  "__FILTER_COLOR_MATRIX__.fshader"
 
 
 
