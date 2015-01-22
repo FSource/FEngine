@@ -27,7 +27,6 @@ class ColorMatrixFilter:public Filter
 		
 
 		void setSepia();
-		void se
 
 
 
