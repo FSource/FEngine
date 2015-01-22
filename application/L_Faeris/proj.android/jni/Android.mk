@@ -45,7 +45,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += libthirdParty_static
 
 
 
-LOCAL_LDLIBS    += -llog -lGLESv2  -lEGL
+LOCAL_LDLIBS    += -llog -lGLESv2  -lEGL -lm
 
 
 include $(BUILD_SHARED_LIBRARY)
