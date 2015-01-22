@@ -43,7 +43,7 @@ long SegFile::read(void* buf,long length)
 
 
 	m_stream->seek(m_offset+m_curpos,E_FileSeek::SET);
-	int readbyte=m_stream->read(buf,length);
+	int readbyte=(int)m_stream->read(buf,length);
 	if(readbyte>0)
 	{
 		m_curpos+=readbyte;
@@ -71,7 +71,7 @@ long SegFile::write(const void* buf,long length)
 	}
 
 	m_stream->seek(m_offset+m_curpos,E_FileSeek::SET);
-	int writebyte=m_stream->write(buf,length);
+	int writebyte=(int)m_stream->write(buf,length);
 	if(writebyte>0)
 	{
 		m_curpos+=writebyte;

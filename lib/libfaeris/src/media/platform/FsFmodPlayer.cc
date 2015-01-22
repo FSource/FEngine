@@ -55,7 +55,7 @@ Sound* FmodPlayer::createSound(const char* filename)
 		return NULL;
 
 	}
-	int length=file->getLength();
+	int length=(int)file->getLength();
 	if(length<=0)
 	{
 		FS_TRACE_WARN("No File Content");

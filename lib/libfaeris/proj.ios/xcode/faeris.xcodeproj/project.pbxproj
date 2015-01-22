@@ -1497,12 +1497,12 @@
 				OTHER_CFLAGS = (
 					../../../lib3rdparty/zlib/include,
 					../../../lib3rdparty/minizip/include,
-					../../../lib3rdparty/libtga/isrc,
+					../../../lib3rdparty/libtga/src,
 					../../../lib3rdparty/libpng/include,
 					../../../lib3rdparty/libjpeg/src,
 					../../../lib3rdparty/jsonc/src,
 					../../../lib3rdparty/freetype/include.ios/,
-					../../../lib3rdparty/curl/ios/include,
+					../../../lib3rdparty/curl/include/ios,
 					"-I../../src/support/",
 					"-I../../src",
 				);
@@ -1542,12 +1542,12 @@
 				OTHER_CFLAGS = (
 					../../../lib3rdparty/zlib/include,
 					../../../lib3rdparty/minizip/include,
-					../../../lib3rdparty/libtga/isrc,
+					../../../lib3rdparty/libtga/src,
 					../../../lib3rdparty/libpng/include,
 					../../../lib3rdparty/libjpeg/src,
 					../../../lib3rdparty/jsonc/src,
 					../../../lib3rdparty/freetype/include.ios/,
-					../../../lib3rdparty/curl/ios/include,
+					../../../lib3rdparty/curl/include/ios,
 					"-I../../src/support/",
 					"-I../../src",
 				);
@@ -1559,6 +1559,23 @@
 		DCC010941A716ABB0060D167 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				OTHER_CFLAGS = (
+					"-I../../../lib3rdparty/zlib/include",
+					"-I../../../lib3rdparty/minizip/include",
+					"-I../../../lib3rdparty/libtga/src",
+					"-I../../../lib3rdparty/libpng/include",
+					"-I../../../lib3rdparty/libjpeg/src",
+					"-I../../../lib3rdparty/jsonc/src",
+					"-I../../../lib3rdparty/freetype/include.ios/",
+					"-I../../../lib3rdparty/curl/include/ios",
+					"-I../../src/support/",
+					"-I../../src",
+					"-I../../../lib3rdparty/fmod/include/ios",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1568,6 +1585,23 @@
 		DCC010951A716ABB0060D167 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				OTHER_CFLAGS = (
+					"-I../../../lib3rdparty/zlib/include",
+					"-I../../../lib3rdparty/minizip/include",
+					"-I../../../lib3rdparty/libtga/src",
+					"-I../../../lib3rdparty/libpng/include",
+					"-I../../../lib3rdparty/libjpeg/src",
+					"-I../../../lib3rdparty/jsonc/src",
+					"-I../../../lib3rdparty/freetype/include.ios/",
+					"-I../../../lib3rdparty/curl/include/ios",
+					"-I../../src/support/",
+					"-I../../src",
+					"-I../../../lib3rdparty/fmod/include/ios",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

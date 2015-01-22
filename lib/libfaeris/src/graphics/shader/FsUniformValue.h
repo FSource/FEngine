@@ -85,7 +85,7 @@ class TUniformValue:public UniformValue
 
 	public:
 		void set(const T& d){m_data=d;}
-		T get(){return m_data;}
+		const T& get(){return m_data;}
 
 	public:
 		void* getData() FS_OVERRIDE
