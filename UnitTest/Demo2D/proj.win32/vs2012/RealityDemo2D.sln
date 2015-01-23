@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealityDemo2D", "RealityDemo3D.vcxproj", "{7C77EFF4-8607-4B91-BD36-FB37A7034118}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1A220C0A-1B8C-4B0D-9EF8-157B34855925} = {1A220C0A-1B8C-4B0D-9EF8-157B34855925}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libfaeris", "..\..\..\..\lib\libfaeris\proj.win32\vs2012\faeris.vcxproj", "{1A220C0A-1B8C-4B0D-9EF8-157B34855925}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C77EFF4-8607-4B91-BD36-FB37A7034118}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7C77EFF4-8607-4B91-BD36-FB37A7034118}.Debug|Win32.Build.0 = Debug|Win32
+		{7C77EFF4-8607-4B91-BD36-FB37A7034118}.Release|Win32.ActiveCfg = Release|Win32
+		{7C77EFF4-8607-4B91-BD36-FB37A7034118}.Release|Win32.Build.0 = Release|Win32
+		{1A220C0A-1B8C-4B0D-9EF8-157B34855925}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1A220C0A-1B8C-4B0D-9EF8-157B34855925}.Debug|Win32.Build.0 = Debug|Win32
+		{1A220C0A-1B8C-4B0D-9EF8-157B34855925}.Release|Win32.ActiveCfg = Release|Win32
+		{1A220C0A-1B8C-4B0D-9EF8-157B34855925}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
