@@ -1,7 +1,8 @@
 /*
 ** Lua binding: FsLibFaeris
-** Generated automatically by tolua++-1.0.92 on 01/16/15 07:36:28.
+** Generated automatically by tolua++-1.0.92 on 01/23/15 09:04:34.
 */
+
 
 #ifndef __cplusplus
 #include "stdlib.h"
