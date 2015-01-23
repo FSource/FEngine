@@ -1,0 +1,108 @@
+class:Layer2D
+
+viewArea:{
+	x:0
+	y:0
+	width:960
+	height:640
+}
+
+
+entity:[
+	{
+		class:LabelTTF
+
+		fontName:"font/arial.ttf"
+		fontSize:20 
+		string:"Hello World Anchor(0,0)"
+		position:{x:480,y:320}
+		anchor:{x:0,y:0}
+	}
+	{
+		class:LabelTTF
+
+		fontName:"font/arial.ttf"
+		fontSize:20 
+		string:"Hello World Anchor(1,0)"
+		position:{x:480,y:320}
+		anchor:{x:1,y:0}
+	}
+
+	{
+		class:LabelTTF
+
+		fontName:"font/arial.ttf"
+		fontSize:20 
+		string:"Hello World Anchor(1,1)"
+		position:{x:480,y:320}
+		anchor:{x:1,y:1}
+	}
+	{
+		class:LabelTTF
+
+		fontName:"font/arial.ttf"
+		fontSize:20 
+		string:"Hello World Anchor(0,1)"
+		position:{x:480,y:320}
+		anchor:{x:0,y:1}
+	}
+	{
+		class:LabelTTF
+
+		fontName:"font/arial.ttf"
+		fontSize:20 
+		string:"Hello World Anchor(rotate 30)"
+		position:{x:480,y:320}
+		rotate:{z:30}
+		anchor:{x:0,y:0.5}
+	}
+
+	{
+		class:LabelTTF
+
+		fontName:"font/arial.ttf"
+		fontSize:20 
+		string:"Hello World Anchor(rotate -30,color red)"
+		position:{x:480,y:320}
+		anchor:{x:0,y:0.5}
+		rotate:{z:-30}
+		color:[1.0,0.0,0.0,1.0]
+	}
+
+	{
+		class:LabelTTF
+
+		fontName:"font/arial.ttf"
+		fontSize:20 
+		string:"Hello World Anchor Bound Size(200,0)"
+		boundSize:{w:200,h:0}
+		position:{x:480,y:640}
+		anchor:{x:0,y:1}
+		color:[1.0,0.0,0.0,1.0]
+	}
+	{
+		class:LabelTTF
+
+		fontName:"font/arial.ttf"
+		fontSize:20 
+		string:"Hello World Anchor Bound Size(200,110)QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"  
+		boundSize:{w:200,h:0}
+		position:{x:180,y:640}
+		anchor:{x:0,y:1}
+		color:[1.0,0.0,0.0,1.0]
+	}
+
+	{
+		class:LabelTTF
+
+		fontName:"font/arial.ttf"
+		fontSize:50 
+		string:"Hello World Anchor(Font 50)"
+		position:{x:480,y:220}
+	}
+
+]
+
+
+
+

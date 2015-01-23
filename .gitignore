@@ -1,4 +1,5 @@
-!UnitTest/Demo2D/assets
+assets
+!UnitTest/Demo2D/assets/
 .DS_Store
 Build 
 DerivedData
@@ -59,7 +60,6 @@ temp
 *.DLL
 *.class
 *.swo
-assets
 *.mp3
 *.debug
 *.release
