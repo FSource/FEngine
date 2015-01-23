@@ -1,0 +1,22 @@
+<map id="Scene" name="Scene">
+<area shape="rect" id="node8" href="$class_layer.html" title="Layer" alt="" coords="66,555,121,581"/>
+<area shape="rect" id="node2" href="$class_action_target.html" title="ActionTarget" alt="" coords="118,333,213,360"/>
+<area shape="rect" id="node3" href="$class_fs_object.html" title="FsObject" alt="" coords="772,5,847,32"/>
+<area shape="rect" id="node4" href="$class_fs_slow_array.html" title="FsSlowArray" alt="" coords="132,212,228,239"/>
+<area shape="rect" id="node5" href="$class_fs_array.html" title="FsArray" alt="" coords="605,109,673,136"/>
+<area shape="rect" id="node12" href="$class_resource.html" title="Resource" alt="" coords="634,212,711,239"/>
+<area shape="rect" id="node13" href="$class_fs_string.html" title="FsString" alt="" coords="698,109,769,136"/>
+<area shape="rect" id="node14" href="$class_resource_mgr.html" title="ResourceMgr" alt="" coords="756,333,855,360"/>
+<area shape="rect" id="node15" href="$class_fs_dict.html" title="FsDict" alt="" coords="944,212,1004,239"/>
+<area shape="rect" id="node16" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="898,109,1020,136"/>
+<area shape="rect" id="node19" href="$class_stream_map.html" title="StreamMap" alt="" coords="1202,160,1292,187"/>
+<area shape="rect" id="node20" href="$class_program_feature_desc.html" title="ProgramFeatureDesc" alt="" coords="1050,160,1196,187"/>
+<area shape="rect" id="node10" href="$class_material2_d.html" title="Material2D" alt="" coords="469,555,553,581"/>
+<area shape="rect" id="node18" href="$class_program.html" title="Program" alt="" coords="892,333,962,360"/>
+<area shape="rect" id="node6" href="$class_color4f.html" title="Color4f" alt="" coords="237,333,300,360"/>
+<area shape="rect" id="node7" href="$class_color_layer.html" title="ColorLayer" alt="" coords="238,644,322,671"/>
+<area shape="rect" id="node9" href="$class_rect2_d.html" title="Rect2D" alt="" coords="25,465,90,492"/>
+<area shape="rect" id="node11" href="$class_material.html" title="Material" alt="" coords="508,415,576,441"/>
+<area shape="rect" id="node17" href="$class_program_source.html" title="ProgramSource" alt="" coords="767,465,879,492"/>
+<area shape="rect" id="node21" href="$class_texture2_d.html" title="Texture2D" alt="" coords="588,415,669,441"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="FelisScriptMgr::FelisResource" name="FelisScriptMgr::FelisResource">
+<area shape="rect" id="node2" href="$class_resource.html" title="Resource" alt="" coords="235,199,312,225"/>
+<area shape="rect" id="node5" href="$class_resource_mgr.html" title="ResourceMgr" alt="" coords="261,288,360,315"/>
+<area shape="rect" id="node3" href="$class_fs_object.html" title="FsObject" alt="" coords="255,5,329,32"/>
+<area shape="rect" id="node4" href="$class_fs_string.html" title="FsString" alt="" coords="257,109,327,136"/>
+<area shape="rect" id="node6" href="$class_fs_dict.html" title="FsDict" alt="" coords="78,199,138,225"/>
+<area shape="rect" id="node7" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="109,109,232,136"/>
+</map>

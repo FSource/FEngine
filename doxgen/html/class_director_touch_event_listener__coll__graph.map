@@ -1,0 +1,30 @@
+<map id="DirectorTouchEventListener" name="DirectorTouchEventListener">
+<area shape="rect" id="node4" href="$class_director.html" title="Director" alt="" coords="1471,117,1538,144"/>
+<area shape="rect" id="node2" href="$class_touch_event_listener.html" title="TouchEventListener" alt="" coords="176,93,311,120"/>
+<area shape="rect" id="node3" href="$class_fs_object.html" title="FsObject" alt="" coords="5,489,80,516"/>
+<area shape="rect" id="node5" href="$class_scheduler_target.html" title="SchedulerTarget" alt="" coords="708,144,824,171"/>
+<area shape="rect" id="node7" href="$class_action_target.html" title="ActionTarget" alt="" coords="854,308,949,335"/>
+<area shape="rect" id="node8" href="$class_fs_slow_array.html" title="FsSlowArray" alt="" coords="546,376,642,403"/>
+<area shape="rect" id="node9" href="$class_fs_array.html" title="FsArray" alt="" coords="209,455,277,481"/>
+<area shape="rect" id="node16" href="$class_resource.html" title="Resource" alt="" coords="555,824,633,851"/>
+<area shape="rect" id="node17" href="$class_fs_string.html" title="FsString" alt="" coords="208,753,279,780"/>
+<area shape="rect" id="node18" href="$class_resource_mgr.html" title="ResourceMgr" alt="" coords="852,932,951,959"/>
+<area shape="rect" id="node19" href="$class_fs_dict.html" title="FsDict" alt="" coords="564,708,624,735"/>
+<area shape="rect" id="node20" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="182,649,305,676"/>
+<area shape="rect" id="node23" href="$class_stream_map.html" title="StreamMap" alt="" coords="363,579,452,605"/>
+<area shape="rect" id="node24" href="$class_program_feature_desc.html" title="ProgramFeatureDesc" alt="" coords="335,613,480,640"/>
+<area shape="rect" id="node27" href="$class_keypad_event_listener.html" title="KeypadEventListener" alt="" coords="335,5,479,32"/>
+<area shape="rect" id="node29" href="$class_input_text_event_listener.html" title="InputTextEventListener" alt="" coords="1285,195,1439,221"/>
+<area shape="rect" id="node26" href="$class_director_keypad_event_listener.html" title="DirectorKeypadEventListener" alt="" coords="1753,27,1942,53"/>
+<area shape="rect" id="node28" href="$class_director_input_text_event_listener.html" title="DirectorInputTextEventListener" alt="" coords="1748,163,1947,189"/>
+<area shape="rect" id="node6" href="$class_scene.html" title="Scene" alt="" coords="1176,361,1235,388"/>
+<area shape="rect" id="node12" href="$class_layer.html" title="Layer" alt="" coords="1477,348,1532,375"/>
+<area shape="rect" id="node14" href="$class_material2_d.html" title="Material2D" alt="" coords="1463,624,1547,651"/>
+<area shape="rect" id="node22" href="$class_program.html" title="Program" alt="" coords="866,648,937,675"/>
+<area shape="rect" id="node10" href="$class_color4f.html" title="Color4f" alt="" coords="870,535,933,561"/>
+<area shape="rect" id="node11" href="$class_color_layer.html" title="ColorLayer" alt="" coords="1805,443,1889,469"/>
+<area shape="rect" id="node13" href="$class_rect2_d.html" title="Rect2D" alt="" coords="1173,432,1238,459"/>
+<area shape="rect" id="node15" href="$class_material.html" title="Material" alt="" coords="1018,816,1086,843"/>
+<area shape="rect" id="node21" href="$class_program_source.html" title="ProgramSource" alt="" coords="1149,677,1261,704"/>
+<area shape="rect" id="node25" href="$class_texture2_d.html" title="Texture2D" alt="" coords="1011,863,1093,889"/>
+</map>

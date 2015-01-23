@@ -1,0 +1,7 @@
+<map id="InputTextDispatcher" name="InputTextDispatcher">
+<area shape="rect" id="node2" href="$class_t_event_dispatcher.html" title="TEventDispatcher\&lt; InputText\lEvent, InputTextEventListener \&gt;" alt="" coords="5,285,211,327"/>
+<area shape="rect" id="node3" href="$class_scheduler_target.html" title="SchedulerTarget" alt="" coords="18,145,134,172"/>
+<area shape="rect" id="node4" href="$class_fs_object.html" title="FsObject" alt="" coords="133,5,208,32"/>
+<area shape="rect" id="node5" href="$class_fs_slow_array.html" title="FsSlowArray" alt="" coords="113,196,209,223"/>
+<area shape="rect" id="node6" href="$class_fs_array.html" title="FsArray" alt="" coords="193,95,261,121"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="ScrollView" name="ScrollView">
+<area shape="rect" id="node2" href="$class_scroll_widget.html" title="ScrollWidget" alt="" coords="5,379,101,405"/>
+<area shape="rect" id="node3" href="$class_ui_widget.html" title="UiWidget" alt="" coords="16,304,91,331"/>
+<area shape="rect" id="node4" href="$class_entity2_d.html" title="Entity2D" alt="" coords="17,229,89,256"/>
+<area shape="rect" id="node5" href="$class_entity.html" title="Entity" alt="" coords="25,155,81,181"/>
+<area shape="rect" id="node6" href="$class_action_target.html" title="ActionTarget" alt="" coords="6,80,101,107"/>
+<area shape="rect" id="node7" href="$class_fs_object.html" title="FsObject" alt="" coords="16,5,91,32"/>
+</map>

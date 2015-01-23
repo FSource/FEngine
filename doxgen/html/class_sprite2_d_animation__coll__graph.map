@@ -1,0 +1,4 @@
+<map id="Sprite2DAnimation" name="Sprite2DAnimation">
+<area shape="rect" id="node2" href="$class_fs_object.html" title="FsObject" alt="" coords="39,5,113,32"/>
+<area shape="rect" id="node3" href="$class_fs_string.html" title="FsString" alt="" coords="87,81,158,108"/>
+</map>

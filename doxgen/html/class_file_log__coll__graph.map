@@ -1,0 +1,5 @@
+<map id="FileLog" name="FileLog">
+<area shape="rect" id="node2" href="$class_fs_log.html" title="FsLog" alt="" coords="5,81,64,108"/>
+<area shape="rect" id="node3" href="$class_fs_file.html" title="FsFile" alt="" coords="88,81,147,108"/>
+<area shape="rect" id="node4" href="$class_fs_object.html" title="FsObject" alt="" coords="80,5,155,32"/>
+</map>

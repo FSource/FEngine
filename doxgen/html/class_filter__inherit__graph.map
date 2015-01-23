@@ -1,0 +1,8 @@
+<map id="Filter" name="Filter">
+<area shape="rect" id="node3" href="$class_blur_filter.html" title="BlurFilter" alt="" coords="5,155,80,181"/>
+<area shape="rect" id="node4" href="$class_brightness_filter.html" title="BrightnessFilter" alt="" coords="105,155,218,181"/>
+<area shape="rect" id="node5" href="$class_color_matrix_filter.html" title="ColorMatrixFilter" alt="" coords="243,155,360,181"/>
+<area shape="rect" id="node6" href="$class_gray_filter.html" title="GrayFilter" alt="" coords="385,155,463,181"/>
+<area shape="rect" id="node7" href="$class_opacity_filter.html" title="OpacityFilter" alt="" coords="488,155,584,181"/>
+<area shape="rect" id="node2" href="$class_fs_object.html" title="FsObject" alt="" coords="264,5,339,32"/>
+</map>

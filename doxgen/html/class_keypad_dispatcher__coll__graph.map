@@ -1,0 +1,7 @@
+<map id="KeypadDispatcher" name="KeypadDispatcher">
+<area shape="rect" id="node2" href="$class_t_event_dispatcher.html" title="TEventDispatcher\&lt; Keypad\lEvent, KeypadEventListener \&gt;" alt="" coords="5,285,201,327"/>
+<area shape="rect" id="node3" href="$class_scheduler_target.html" title="SchedulerTarget" alt="" coords="13,145,129,172"/>
+<area shape="rect" id="node4" href="$class_fs_object.html" title="FsObject" alt="" coords="129,5,203,32"/>
+<area shape="rect" id="node5" href="$class_fs_slow_array.html" title="FsSlowArray" alt="" coords="109,196,205,223"/>
+<area shape="rect" id="node6" href="$class_fs_array.html" title="FsArray" alt="" coords="188,95,256,121"/>
+</map>

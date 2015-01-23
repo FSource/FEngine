@@ -1,0 +1,8 @@
+<map id="Sprite2DDataMgr" name="Sprite2DDataMgr">
+<area shape="rect" id="node2" href="$class_resource_mgr.html" title="ResourceMgr" alt="" coords="61,300,159,327"/>
+<area shape="rect" id="node4" href="$class_resource.html" title="Resource" alt="" coords="182,389,259,416"/>
+<area shape="rect" id="node3" href="$class_fs_object.html" title="FsObject" alt="" coords="214,5,289,32"/>
+<area shape="rect" id="node5" href="$class_fs_string.html" title="FsString" alt="" coords="272,160,343,187"/>
+<area shape="rect" id="node6" href="$class_fs_dict.html" title="FsDict" alt="" coords="123,211,183,237"/>
+<area shape="rect" id="node7" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="91,109,214,136"/>
+</map>

@@ -1,0 +1,31 @@
+<map id="Sprite2D" name="Sprite2D">
+<area shape="rect" id="node2" href="$class_entity2_d.html" title="Entity2D" alt="" coords="977,683,1049,709"/>
+<area shape="rect" id="node3" href="$class_entity.html" title="Entity" alt="" coords="478,579,534,605"/>
+<area shape="rect" id="node4" href="$class_action_target.html" title="ActionTarget" alt="" coords="379,315,473,341"/>
+<area shape="rect" id="node10" href="$class_layer.html" title="Layer" alt="" coords="11,447,65,473"/>
+<area shape="rect" id="node12" href="$class_scene.html" title="Scene" alt="" coords="155,772,214,799"/>
+<area shape="rect" id="node5" href="$class_fs_object.html" title="FsObject" alt="" coords="1146,5,1221,32"/>
+<area shape="rect" id="node6" href="$class_fs_slow_array.html" title="FsSlowArray" alt="" coords="401,212,497,239"/>
+<area shape="rect" id="node7" href="$class_fs_array.html" title="FsArray" alt="" coords="645,109,713,136"/>
+<area shape="rect" id="node9" href="$class_i_transform.html" title="ITransform" alt="" coords="1886,264,1969,291"/>
+<area shape="rect" id="node17" href="$class_resource.html" title="Resource" alt="" coords="1106,212,1183,239"/>
+<area shape="rect" id="node18" href="$class_fs_string.html" title="FsString" alt="" coords="1301,109,1372,136"/>
+<area shape="rect" id="node19" href="$class_resource_mgr.html" title="ResourceMgr" alt="" coords="1237,315,1335,341"/>
+<area shape="rect" id="node20" href="$class_fs_dict.html" title="FsDict" alt="" coords="1731,212,1791,239"/>
+<area shape="rect" id="node21" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="1734,109,1857,136"/>
+<area shape="rect" id="node24" href="$class_stream_map.html" title="StreamMap" alt="" coords="811,160,900,187"/>
+<area shape="rect" id="node25" href="$class_program_feature_desc.html" title="ProgramFeatureDesc" alt="" coords="939,160,1084,187"/>
+<area shape="rect" id="node28" href="$class_sprite2_d_animation.html" title="Sprite2DAnimation" alt="" coords="1325,212,1455,239"/>
+<area shape="rect" id="node30" href="$class_animation_cache_data.html" title="AnimationCacheData" alt="" coords="1511,528,1655,555"/>
+<area shape="rect" id="node15" href="$class_material2_d.html" title="Material2D" alt="" coords="892,579,976,605"/>
+<area shape="rect" id="node23" href="$class_program.html" title="Program" alt="" coords="880,315,951,341"/>
+<area shape="rect" id="node29" href="$class_sprite2_d_data.html" title="Sprite2DData" alt="" coords="1437,315,1535,341"/>
+<area shape="rect" id="node8" href="$class_matrix4.html" title="Matrix4" alt="" coords="701,447,767,473"/>
+<area shape="rect" id="node14" href="$class_color_layer.html" title="ColorLayer" alt="" coords="49,683,133,709"/>
+<area shape="rect" id="node11" href="$class_rect2_d.html" title="Rect2D" alt="" coords="5,315,71,341"/>
+<area shape="rect" id="node13" href="$class_color4f.html" title="Color4f" alt="" coords="105,447,168,473"/>
+<area shape="rect" id="node16" href="$class_material.html" title="Material" alt="" coords="1069,365,1137,392"/>
+<area shape="rect" id="node22" href="$class_program_source.html" title="ProgramSource" alt="" coords="1102,447,1214,473"/>
+<area shape="rect" id="node26" href="$class_texture2_d.html" title="Texture2D" alt="" coords="803,365,884,392"/>
+<area shape="rect" id="node27" href="$class_t_vector2.html" title="TVector2\&lt; float \&gt;" alt="" coords="1001,579,1123,605"/>
+</map>

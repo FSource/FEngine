@@ -1,0 +1,4 @@
+<map id="AudioPlayer" name="AudioPlayer">
+<area shape="rect" id="node2" href="$class_android_audio_player.html" title="AndroidAudioPlayer" alt="" coords="5,80,141,107"/>
+<area shape="rect" id="node3" href="$class_fmod_player.html" title="FmodPlayer" alt="" coords="166,80,258,107"/>
+</map>

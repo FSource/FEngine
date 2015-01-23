@@ -1,0 +1,12 @@
+<map id="Resource" name="Resource">
+<area shape="rect" id="node3" href="$class_felis_script_mgr_1_1_felis_resource.html" title="FelisScriptMgr::FelisResource" alt="" coords="253,5,451,32"/>
+<area shape="rect" id="node4" href="$class_font_bitmap.html" title="FontBitmap" alt="" coords="307,56,397,83"/>
+<area shape="rect" id="node5" href="$class_font_t_t_f.html" title="FontTTF" alt="" coords="317,107,387,133"/>
+<area shape="rect" id="node6" href="$class_material.html" title="Material" alt="" coords="318,157,386,184"/>
+<area shape="rect" id="node8" href="$class_program.html" title="Program" alt="" coords="317,208,387,235"/>
+<area shape="rect" id="node9" href="$class_program_source.html" title="ProgramSource" alt="" coords="296,259,408,285"/>
+<area shape="rect" id="node10" href="$class_sprite2_d_data.html" title="Sprite2DData" alt="" coords="303,309,401,336"/>
+<area shape="rect" id="node11" href="$class_texture2_d.html" title="Texture2D" alt="" coords="311,360,393,387"/>
+<area shape="rect" id="node2" href="$class_fs_object.html" title="FsObject" alt="" coords="5,183,80,209"/>
+<area shape="rect" id="node7" href="$class_material2_d.html" title="Material2D" alt="" coords="499,157,583,184"/>
+</map>

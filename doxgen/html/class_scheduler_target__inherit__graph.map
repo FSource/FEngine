@@ -1,0 +1,14 @@
+<map id="SchedulerTarget" name="SchedulerTarget">
+<area shape="rect" id="node3" href="$class_director.html" title="Director" alt="" coords="362,5,429,32"/>
+<area shape="rect" id="node4" href="$class_event_graper.html" title="EventGraper" alt="" coords="349,56,442,83"/>
+<area shape="rect" id="node5" href="$class_t_event_dispatcher.html" title="TEventDispatcher\&lt; T\l_Event, T_Listener \&gt;" alt="" coords="324,107,467,149"/>
+<area shape="rect" id="node6" href="$class_t_event_dispatcher.html" title="TEventDispatcher\&lt; InputText\lEvent, InputTextEventListener \&gt;" alt="" coords="293,173,498,214"/>
+<area shape="rect" id="node8" href="$class_t_event_dispatcher.html" title="TEventDispatcher\&lt; Keypad\lEvent, KeypadEventListener \&gt;" alt="" coords="297,238,493,279"/>
+<area shape="rect" id="node10" href="$class_t_event_dispatcher.html" title="TEventDispatcher\&lt; SysEvent,\l SysEventListener \&gt;" alt="" coords="298,303,493,345"/>
+<area shape="rect" id="node12" href="$class_t_event_dispatcher.html" title="TEventDispatcher\&lt; TouchEvent,\l TouchEventListener \&gt;" alt="" coords="292,369,499,410"/>
+<area shape="rect" id="node2" href="$class_fs_object.html" title="FsObject" alt="" coords="5,115,80,141"/>
+<area shape="rect" id="node7" href="$class_input_text_dispatcher.html" title="InputTextDispatcher" alt="" coords="547,180,684,207"/>
+<area shape="rect" id="node9" href="$class_keypad_dispatcher.html" title="KeypadDispatcher" alt="" coords="551,245,679,272"/>
+<area shape="rect" id="node11" href="$class_sys_dispatcher.html" title="SysDispatcher" alt="" coords="562,311,669,337"/>
+<area shape="rect" id="node13" href="$class_touch_dispatcher.html" title="TouchDispatcher" alt="" coords="556,376,675,403"/>
+</map>

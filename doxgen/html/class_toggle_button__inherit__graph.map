@@ -1,0 +1,7 @@
+<map id="ToggleButton" name="ToggleButton">
+<area shape="rect" id="node2" href="$class_state_button.html" title="StateButton" alt="" coords="9,304,100,331"/>
+<area shape="rect" id="node3" href="$class_entity2_d.html" title="Entity2D" alt="" coords="19,229,91,256"/>
+<area shape="rect" id="node4" href="$class_entity.html" title="Entity" alt="" coords="27,155,83,181"/>
+<area shape="rect" id="node5" href="$class_action_target.html" title="ActionTarget" alt="" coords="7,80,102,107"/>
+<area shape="rect" id="node6" href="$class_fs_object.html" title="FsObject" alt="" coords="17,5,92,32"/>
+</map>

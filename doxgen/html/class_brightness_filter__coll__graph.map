@@ -1,0 +1,21 @@
+<map id="BrightnessFilter" name="BrightnessFilter">
+<area shape="rect" id="node2" href="$class_filter.html" title="Filter" alt="" coords="231,647,281,673"/>
+<area shape="rect" id="node3" href="$class_fs_object.html" title="FsObject" alt="" coords="432,5,507,32"/>
+<area shape="rect" id="node4" href="$class_render_target.html" title="RenderTarget" alt="" coords="43,435,141,461"/>
+<area shape="rect" id="node8" href="$class_resource.html" title="Resource" alt="" coords="213,212,291,239"/>
+<area shape="rect" id="node9" href="$class_fs_string.html" title="FsString" alt="" coords="301,109,371,136"/>
+<area shape="rect" id="node10" href="$class_resource_mgr.html" title="ResourceMgr" alt="" coords="316,303,415,329"/>
+<area shape="rect" id="node11" href="$class_fs_dict.html" title="FsDict" alt="" coords="475,212,535,239"/>
+<area shape="rect" id="node12" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="507,109,629,136"/>
+<area shape="rect" id="node17" href="$class_stream_map.html" title="StreamMap" alt="" coords="614,160,703,187"/>
+<area shape="rect" id="node18" href="$class_fs_array.html" title="FsArray" alt="" coords="722,160,790,187"/>
+<area shape="rect" id="node19" href="$class_program_feature_desc.html" title="ProgramFeatureDesc" alt="" coords="843,160,989,187"/>
+<area shape="rect" id="node6" href="$class_frame_buffer.html" title="FrameBuffer" alt="" coords="210,556,302,583"/>
+<area shape="rect" id="node5" href="$class_matrix4.html" title="Matrix4" alt="" coords="471,556,537,583"/>
+<area shape="rect" id="node7" href="$class_texture2_d.html" title="Texture2D" alt="" coords="166,435,247,461"/>
+<area shape="rect" id="node13" href="$class_material2_d.html" title="Material2D" alt="" coords="363,556,447,583"/>
+<area shape="rect" id="node14" href="$class_material.html" title="Material" alt="" coords="145,353,213,380"/>
+<area shape="rect" id="node15" href="$class_program_source.html" title="ProgramSource" alt="" coords="443,435,555,461"/>
+<area shape="rect" id="node16" href="$class_program.html" title="Program" alt="" coords="630,303,701,329"/>
+<area shape="rect" id="node20" href="$class_color4f.html" title="Color4f" alt="" coords="787,435,850,461"/>
+</map>

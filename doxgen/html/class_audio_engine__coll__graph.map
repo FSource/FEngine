@@ -1,0 +1,5 @@
+<map id="AudioEngine" name="AudioEngine">
+<area shape="rect" id="node2" href="$class_fs_object.html" title="FsObject" alt="" coords="5,5,80,32"/>
+<area shape="rect" id="node3" href="$class_music.html" title="Music" alt="" coords="105,5,162,32"/>
+<area shape="rect" id="node4" href="$class_audio_player.html" title="AudioPlayer" alt="" coords="186,5,278,32"/>
+</map>

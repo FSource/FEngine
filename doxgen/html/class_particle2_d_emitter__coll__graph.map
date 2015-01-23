@@ -1,0 +1,11 @@
+<map id="Particle2DEmitter" name="Particle2DEmitter">
+<area shape="rect" id="node2" href="$class_fs_object.html" title="FsObject" alt="" coords="177,5,252,32"/>
+<area shape="rect" id="node4" href="$class_resource.html" title="Resource" alt="" coords="64,199,141,225"/>
+<area shape="rect" id="node5" href="$class_fs_string.html" title="FsString" alt="" coords="125,109,195,136"/>
+<area shape="rect" id="node6" href="$class_resource_mgr.html" title="ResourceMgr" alt="" coords="149,319,248,345"/>
+<area shape="rect" id="node7" href="$class_fs_dict.html" title="FsDict" alt="" coords="283,199,343,225"/>
+<area shape="rect" id="node8" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="333,109,456,136"/>
+<area shape="rect" id="node3" href="$class_texture2_d.html" title="Texture2D" alt="" coords="43,319,125,345"/>
+<area shape="rect" id="node9" href="$class_t_vector2.html" title="TVector2\&lt; float \&gt;" alt="" coords="272,319,395,345"/>
+<area shape="rect" id="node10" href="$class_color.html" title="Color" alt="" coords="421,319,473,345"/>
+</map>

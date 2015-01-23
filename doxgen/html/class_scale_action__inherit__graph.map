@@ -1,0 +1,6 @@
+<map id="ScaleAction" name="ScaleAction">
+<area shape="rect" id="node2" href="$class_curve3_action.html" title="Curve3Action" alt="" coords="9,229,107,256"/>
+<area shape="rect" id="node3" href="$class_fix_time_action.html" title="FixTimeAction" alt="" coords="5,155,111,181"/>
+<area shape="rect" id="node4" href="$class_action.html" title="Action" alt="" coords="29,80,87,107"/>
+<area shape="rect" id="node5" href="$class_fs_object.html" title="FsObject" alt="" coords="21,5,95,32"/>
+</map>

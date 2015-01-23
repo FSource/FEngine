@@ -1,0 +1,7 @@
+<map id="ResourceMgr" name="ResourceMgr">
+<area shape="rect" id="node3" href="$class_resource.html" title="Resource" alt="" coords="144,389,221,416"/>
+<area shape="rect" id="node2" href="$class_fs_object.html" title="FsObject" alt="" coords="165,5,240,32"/>
+<area shape="rect" id="node4" href="$class_fs_string.html" title="FsString" alt="" coords="274,160,345,187"/>
+<area shape="rect" id="node5" href="$class_fs_dict.html" title="FsDict" alt="" coords="138,211,198,237"/>
+<area shape="rect" id="node6" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="43,109,165,136"/>
+</map>

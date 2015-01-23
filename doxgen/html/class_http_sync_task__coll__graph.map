@@ -1,0 +1,6 @@
+<map id="HttpSyncTask" name="HttpSyncTask">
+<area shape="rect" id="node2" href="$class_task.html" title="Task" alt="" coords="5,81,56,108"/>
+<area shape="rect" id="node3" href="$class_fs_object.html" title="FsObject" alt="" coords="92,5,167,32"/>
+<area shape="rect" id="node4" href="$class_http_reponse.html" title="HttpReponse" alt="" coords="81,81,178,108"/>
+<area shape="rect" id="node5" href="$class_http_request.html" title="HttpRequest" alt="" coords="202,81,297,108"/>
+</map>

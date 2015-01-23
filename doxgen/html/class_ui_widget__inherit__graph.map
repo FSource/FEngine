@@ -1,0 +1,12 @@
+<map id="UiWidget" name="UiWidget">
+<area shape="rect" id="node6" href="$class_dialog.html" title="Dialog" alt="" coords="5,379,64,405"/>
+<area shape="rect" id="node7" href="$class_dynamic_view.html" title="DynamicView" alt="" coords="88,379,189,405"/>
+<area shape="rect" id="node8" href="$class_page_view.html" title="PageView" alt="" coords="213,379,293,405"/>
+<area shape="rect" id="node9" href="$class_scroll_widget.html" title="ScrollWidget" alt="" coords="317,379,413,405"/>
+<area shape="rect" id="node2" href="$class_entity2_d.html" title="Entity2D" alt="" coords="160,229,232,256"/>
+<area shape="rect" id="node3" href="$class_entity.html" title="Entity" alt="" coords="168,155,224,181"/>
+<area shape="rect" id="node4" href="$class_action_target.html" title="ActionTarget" alt="" coords="149,80,243,107"/>
+<area shape="rect" id="node5" href="$class_fs_object.html" title="FsObject" alt="" coords="159,5,233,32"/>
+<area shape="rect" id="node10" href="$class_list_view.html" title="ListView" alt="" coords="279,453,350,480"/>
+<area shape="rect" id="node11" href="$class_scroll_view.html" title="ScrollView" alt="" coords="375,453,457,480"/>
+</map>

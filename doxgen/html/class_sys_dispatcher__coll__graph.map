@@ -1,0 +1,7 @@
+<map id="SysDispatcher" name="SysDispatcher">
+<area shape="rect" id="node2" href="$class_t_event_dispatcher.html" title="TEventDispatcher\&lt; SysEvent,\l SysEventListener \&gt;" alt="" coords="5,285,200,327"/>
+<area shape="rect" id="node3" href="$class_scheduler_target.html" title="SchedulerTarget" alt="" coords="13,145,129,172"/>
+<area shape="rect" id="node4" href="$class_fs_object.html" title="FsObject" alt="" coords="128,5,203,32"/>
+<area shape="rect" id="node5" href="$class_fs_slow_array.html" title="FsSlowArray" alt="" coords="108,196,204,223"/>
+<area shape="rect" id="node6" href="$class_fs_array.html" title="FsArray" alt="" coords="187,95,255,121"/>
+</map>

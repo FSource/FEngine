@@ -1,0 +1,11 @@
+<map id="ResourceMgr" name="ResourceMgr">
+<area shape="rect" id="node3" href="$class_felis_script_mgr.html" title="FelisScriptMgr" alt="" coords="289,5,395,32"/>
+<area shape="rect" id="node4" href="$class_font_bitmap_mgr.html" title="FontBitmapMgr" alt="" coords="287,56,397,83"/>
+<area shape="rect" id="node5" href="$class_font_t_t_f_mgr.html" title="FontTTFMgr" alt="" coords="296,107,388,133"/>
+<area shape="rect" id="node6" href="$class_material3_d_mgr.html" title="Material3DMgr" alt="" coords="289,157,395,184"/>
+<area shape="rect" id="node7" href="$class_mesh_mgr.html" title="MeshMgr" alt="" coords="304,208,380,235"/>
+<area shape="rect" id="node8" href="$class_program_source_mgr.html" title="ProgramSourceMgr" alt="" coords="275,259,409,285"/>
+<area shape="rect" id="node9" href="$class_sprite2_d_data_mgr.html" title="Sprite2DDataMgr" alt="" coords="281,309,403,336"/>
+<area shape="rect" id="node10" href="$class_texture_mgr.html" title="TextureMgr" alt="" coords="299,360,385,387"/>
+<area shape="rect" id="node2" href="$class_fs_object.html" title="FsObject" alt="" coords="5,183,80,209"/>
+</map>

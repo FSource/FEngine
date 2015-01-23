@@ -1,0 +1,8 @@
+<map id="FgzPackage" name="FgzPackage">
+<area shape="rect" id="node2" href="$class_package.html" title="Package" alt="" coords="5,160,79,187"/>
+<area shape="rect" id="node3" href="$class_fs_object.html" title="FsObject" alt="" coords="113,5,187,32"/>
+<area shape="rect" id="node4" href="$class_fgz_reader.html" title="FgzReader" alt="" coords="101,300,186,327"/>
+<area shape="rect" id="node5" href="$class_fs_file.html" title="FsFile" alt="" coords="122,160,181,187"/>
+<area shape="rect" id="node6" href="$class_fs_dict.html" title="FsDict" alt="" coords="248,211,308,237"/>
+<area shape="rect" id="node7" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="238,109,361,136"/>
+</map>

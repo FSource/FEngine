@@ -1,0 +1,8 @@
+<map id="Material" name="Material">
+<area shape="rect" id="node2" href="$class_resource.html" title="Resource" alt="" coords="45,199,122,225"/>
+<area shape="rect" id="node5" href="$class_resource_mgr.html" title="ResourceMgr" alt="" coords="143,288,242,315"/>
+<area shape="rect" id="node3" href="$class_fs_object.html" title="FsObject" alt="" coords="189,5,263,32"/>
+<area shape="rect" id="node4" href="$class_fs_string.html" title="FsString" alt="" coords="105,109,176,136"/>
+<area shape="rect" id="node6" href="$class_fs_dict.html" title="FsDict" alt="" coords="264,199,324,225"/>
+<area shape="rect" id="node7" href="$class_fs_dict_1_1_dict_entry.html" title="FsDict::DictEntry" alt="" coords="314,109,437,136"/>
+</map>
