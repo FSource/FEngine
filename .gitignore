@@ -1,5 +1,6 @@
 assets
 !UnitTest/Demo2D/assets/
+
 .DS_Store
 Build 
 DerivedData
@@ -42,7 +43,7 @@ grammar.tab.c
 *~
 *.ttf
 *.ttc
-*.jpg
+
 *.tga
 *.lib
 *.ncb
