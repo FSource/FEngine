@@ -24,6 +24,8 @@
 
 NS_FS_BEGIN
 
+int FsFaeris_PlatformInit();
+
 int FsFaeris_ModuleInit()
 {
 
@@ -121,6 +123,11 @@ int FsFaeris_ModuleInit()
 	scheduler->add(director,Scheduler::LOWEST);
 
 	/* set Global */
+
+	render->setRenderTarget(window);
+	render->setClearColor(Color(0,0,0));
+
+	FsFaeris_PlatformInit();
 
 	return 0;
 }
@@ -235,6 +242,52 @@ void FsFaeris_ConfigResourceMgr(ResourceMgr* mgr,FsDict* dict)
 		}
 	}
 }
+
+
+#if FS_PLATFORM_OS(FS_OS_WIN32)
+	#define FS_CONFIGURE_FILE "win32.fgame"
+#elif FS_PLATFORM_OS(FS_OS_LINUX)
+	#define FS_CONFIGURE_FILE "linux.fgame"
+#elif FS_PLATFORM_OS(FS_OS_ANDROID)
+	#define FS_CONFIGURE_FILE "android.fgame"
+#elif FS_PLATFORM_OS(FS_OS_OSX)
+	#define FS_CONFIGURE_FILE "osx.fgame"
+#elif FS_PLATFORM_OS(FS_OS_IOS)
+	#define FS_CONFIGURE_FILE "ios.fgame"
+#endif 
+
+
+
+int FsFaeris_LoadConfig(const char* filename)
+{
+	const char* config=FS_CONFIGURE_FILE;
+	if(filename)
+	{
+		config=filename;
+	}
+
+	FsFile* file=VFS::createFile(config);
+	if(file==NULL)
+	{
+		FS_TRACE_WARN("Can't Find Config File(%s)",config);
+		return -1;
+	}
+
+	FsDict* dict=ScriptUtil::parseScript(file);
+	file->decRef();
+
+	if(!dict)
+	{
+		FS_TRACE_INFO("Can't Parse Config File(%s)",config);
+		return -1;
+	}
+	FsFaeris_LoadConfig(dict);
+	dict->decRef();
+
+	return 0;
+}
+
+
 
 int FsFaeris_LoadConfig(FsDict* dict)
 {
@@ -428,11 +481,71 @@ int FsFaeris_ConfigENV(FsDict* dict)
 	return 0;
 }
 
-
-
 NS_FS_END
 
 
+
+
+/* PLATFORM INIT */
+
+#if FS_PLATFORM_OS(FS_OS_WIN32) || FS_PLATFORM_OS(FS_OS_LINUX) ||FS_PLATFORM_OS(FS_OS_OSX) 
+NS_FS_BEGIN
+int FsFaeris_PlatformInit()
+{
+	Global::window()->show();
+	Global::director()->setAutoSwapBuffers(true);
+
+	return 0;
+}
+NS_FS_END
+
+#elif FS_PLATFORM_OS(FS_OS_ANDROID) 
+#include <jni.h>
+#include "sys/FsSys.h"
+#include "sys/io/FsVFS.h"
+#include "sys/io/FsPackage.h"
+NS_FS_BEGIN
+int FsFaeris_PlatformInit() 
+{
+	/* set root dir */
+	std::string data_dir(Sys::currentDir());
+	VFS::setRoot(data_dir.c_str());
+	FS_TRACE_INFO("root dir(%s)",data_dir.c_str());
+
+	/* map apk to vfs */
+	std::string apk_path(Sys::apkPath());
+	Package* package=Package::create(apk_path.c_str(),Package::PACKAGE_ZIP);
+
+	FS_TRACE_INFO("apk path=%s",apk_path.c_str());
+
+
+	if(package==NULL)
+	{
+		FS_TRACE_WARN("load package %s  failed",apk_path.c_str());
+	}
+	else 
+	{
+		VFS::mapPackage("",package,VFS::FS_MAP_HIGH);
+	}
+
+	/* add extern filter */
+	char buf[1024];
+	sprintf(buf,"/mnt/sdcard/fgame/%s/",Sys::packageName());
+	FS_TRACE_INFO("extern read(%s)",buf);
+
+	VFS::PrefixNameFilter*  sdcard_filter=VFS::PrefixNameFilter::create(buf);
+	VFS::addFilter(sdcard_filter);
+
+	/* add name filter */
+	VFS::PrefixNameFilter* assets_filter=VFS::PrefixNameFilter::create("assets/");
+	VFS::addFilter(assets_filter);
+}
+NS_FS_END
+
+
+#elif FS_PLATFORM_OS(FS_OS_IOS)
+
+#endif 
 
 
 

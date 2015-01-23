@@ -15,7 +15,16 @@ NS_FS_USE
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif	
+
+	jint JNI_OnLoad(JavaVM* vm, void* reserved)
+	{
+
+
+		Sys::setJavaVM(vm);
+
+		return JNI_VERSION_1_4;
+	}
 
 	/*
 	 * Class:     com_faeris_lib_Fs_Jni

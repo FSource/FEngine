@@ -18,7 +18,7 @@ class ArcCurve3:public Curve3
 		void setEndRadius(float v){m_endRadius=v;}
 		void setRadius(float s,float e){m_startRadius=s;m_endRadius=e;}
 
-		void setCenter(T_Vector v){m_center=v;}
+		void setCenter(Vector3 v){m_center=v;}
 
 	public:
 		virtual  Vector3 getValue(float t)
