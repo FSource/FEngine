@@ -45,7 +45,7 @@ class Dir:
 
 
 if __name__ == "__main__":
-	print sys.argv
+	#print sys.argv
 	if len(sys.argv)>=2 : 
 		files_dir=sys.argv[1] 
 	else: 
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 	d=Dir(files_dir)
 	for k in d.listFiles():
-		print "src/"+k
+		print files_dir+"/"+k
 	#print d.listFiles()
 	
 

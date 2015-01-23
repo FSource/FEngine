@@ -1,1 +1,1 @@
-python Dir.py "../../../lib/libfaeris/src" 
+python Dir.py "../../../lib/libfaeris/src"  >files  
