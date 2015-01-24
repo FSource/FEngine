@@ -3,6 +3,7 @@ assets
 
 .DS_Store
 Build 
+build
 DerivedData
 demo
 tmp
