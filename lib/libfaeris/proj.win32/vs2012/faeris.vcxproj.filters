@@ -616,6 +616,9 @@
     <ClInclude Include="..\..\src\stage\filter\FsOpacityFilter.h">
       <Filter>src\stage\filter</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\FsFaeris.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">

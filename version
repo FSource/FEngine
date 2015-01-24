@@ -1,5 +1,11 @@
 Current Version V3.1 
 
+Version V3.2 
+	@Rewrite LabelBitmap
+	@Add Lambda Call For Call Back
+	@Add Entity2D, ProcessBar,Dialog Class
+	@Add ClassMgr And Class For FsObject
+
 
 Version V3.1 
 	@Add Scale9 Support For Quad2D 

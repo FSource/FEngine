@@ -1,7 +1,9 @@
+assets
+!UnitTest/Demo2D/assets/
+
 .DS_Store
 Build 
 DerivedData
-demo2d
 demo
 tmp
 libreality
@@ -41,7 +43,7 @@ grammar.tab.c
 *~
 *.ttf
 *.ttc
-*.jpg
+
 *.tga
 *.lib
 *.ncb
@@ -59,7 +61,6 @@ temp
 *.DLL
 *.class
 *.swo
-assets
 *.mp3
 *.debug
 *.release
