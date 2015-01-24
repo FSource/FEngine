@@ -107,7 +107,6 @@
 		DCC012B71A716AEC0060D167 /* FsScroller.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011A61A716AEC0060D167 /* FsScroller.cc */; };
 		DCC012B81A716AEC0060D167 /* FsScrollView.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011A81A716AEC0060D167 /* FsScrollView.cc */; };
 		DCC012B91A716AEC0060D167 /* FsScrollWidget.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011AA1A716AEC0060D167 /* FsScrollWidget.cc */; };
-		DCC012BA1A716AEC0060D167 /* FsSeekBar.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011AC1A716AEC0060D167 /* FsSeekBar.cc */; };
 		DCC012BB1A716AEC0060D167 /* FsStateButton.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011AE1A716AEC0060D167 /* FsStateButton.cc */; };
 		DCC012BC1A716AEC0060D167 /* FsToggleButton.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011B01A716AEC0060D167 /* FsToggleButton.cc */; };
 		DCC012BD1A716AEC0060D167 /* FsUiWidget.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011B21A716AEC0060D167 /* FsUiWidget.cc */; };
@@ -140,7 +139,6 @@
 		DCC012DA1A716AEC0060D167 /* FsImageJpeg.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011E71A716AEC0060D167 /* FsImageJpeg.cc */; };
 		DCC012DB1A716AEC0060D167 /* FsImagePng.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011E91A716AEC0060D167 /* FsImagePng.cc */; };
 		DCC012DC1A716AEC0060D167 /* FsImageTga.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011EB1A716AEC0060D167 /* FsImageTga.cc */; };
-		DCC012DD1A716AEC0060D167 /* FsShaderLoader.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011EE1A716AEC0060D167 /* FsShaderLoader.cc */; };
 		DCC012DE1A716AEC0060D167 /* FsArray.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011F11A716AEC0060D167 /* FsArray.cc */; };
 		DCC012DF1A716AEC0060D167 /* FsDict.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011F31A716AEC0060D167 /* FsDict.cc */; };
 		DCC012E01A716AEC0060D167 /* FsInteger.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011F51A716AEC0060D167 /* FsInteger.cc */; };
@@ -150,8 +148,6 @@
 		DCC012E41A716AEC0060D167 /* FsSlowArray.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011FD1A716AEC0060D167 /* FsSlowArray.cc */; };
 		DCC012E51A716AEC0060D167 /* FsSlowDict.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011FF1A716AEC0060D167 /* FsSlowDict.cc */; };
 		DCC012E61A716AEC0060D167 /* FsString.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC012011A716AEC0060D167 /* FsString.cc */; };
-		DCC012E71A716AEC0060D167 /* FsLogAndroid.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC012051A716AEC0060D167 /* FsLogAndroid.cc */; };
-		DCC012E81A716AEC0060D167 /* FsLogDefault.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC012061A716AEC0060D167 /* FsLogDefault.cc */; };
 		DCC012E91A716AEC0060D167 /* FsInputTextDispatcher.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC012091A716AEC0060D167 /* FsInputTextDispatcher.cc */; };
 		DCC012EA1A716AEC0060D167 /* FsKeypadDispatcher.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC0120B1A716AEC0060D167 /* FsKeypadDispatcher.cc */; };
 		DCC012EB1A716AEC0060D167 /* FsSysDispatcher.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC0120D1A716AEC0060D167 /* FsSysDispatcher.cc */; };
@@ -167,7 +163,6 @@
 		DCC012F51A716AEC0060D167 /* FsSysFile.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC012241A716AEC0060D167 /* FsSysFile.cc */; };
 		DCC012F61A716AEC0060D167 /* FsVFS.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC012261A716AEC0060D167 /* FsVFS.cc */; };
 		DCC012F71A716AEC0060D167 /* FsZipPackage.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC012281A716AEC0060D167 /* FsZipPackage.cc */; };
-		DCC012F81A716AEC0060D167 /* FsSysStdFile.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC0122B1A716AEC0060D167 /* FsSysStdFile.cc */; };
 		DCC012FA1A716AEC0060D167 /* FsHttpEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC0122E1A716AEC0060D167 /* FsHttpEngine.cc */; };
 		DCC012FB1A716AEC0060D167 /* FsHttpReponse.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC012301A716AEC0060D167 /* FsHttpReponse.cc */; };
 		DCC012FC1A716AEC0060D167 /* FsHttpRequest.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC012321A716AEC0060D167 /* FsHttpRequest.cc */; };
@@ -433,8 +428,6 @@
 		DCC011A91A716AEC0060D167 /* FsScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsScrollView.h; sourceTree = "<group>"; };
 		DCC011AA1A716AEC0060D167 /* FsScrollWidget.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsScrollWidget.cc; sourceTree = "<group>"; };
 		DCC011AB1A716AEC0060D167 /* FsScrollWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsScrollWidget.h; sourceTree = "<group>"; };
-		DCC011AC1A716AEC0060D167 /* FsSeekBar.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsSeekBar.cc; sourceTree = "<group>"; };
-		DCC011AD1A716AEC0060D167 /* FsSeekBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsSeekBar.h; sourceTree = "<group>"; };
 		DCC011AE1A716AEC0060D167 /* FsStateButton.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsStateButton.cc; sourceTree = "<group>"; };
 		DCC011AF1A716AEC0060D167 /* FsStateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsStateButton.h; sourceTree = "<group>"; };
 		DCC011B01A716AEC0060D167 /* FsToggleButton.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsToggleButton.cc; sourceTree = "<group>"; };
@@ -492,8 +485,6 @@
 		DCC011EA1A716AEC0060D167 /* FsImagePng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsImagePng.h; sourceTree = "<group>"; };
 		DCC011EB1A716AEC0060D167 /* FsImageTga.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsImageTga.cc; sourceTree = "<group>"; };
 		DCC011EC1A716AEC0060D167 /* FsImageTga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsImageTga.h; sourceTree = "<group>"; };
-		DCC011EE1A716AEC0060D167 /* FsShaderLoader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsShaderLoader.cc; sourceTree = "<group>"; };
-		DCC011EF1A716AEC0060D167 /* FsShaderLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsShaderLoader.h; sourceTree = "<group>"; };
 		DCC011F11A716AEC0060D167 /* FsArray.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsArray.cc; sourceTree = "<group>"; };
 		DCC011F21A716AEC0060D167 /* FsArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsArray.h; sourceTree = "<group>"; };
 		DCC011F31A716AEC0060D167 /* FsDict.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsDict.cc; sourceTree = "<group>"; };
@@ -513,8 +504,6 @@
 		DCC012011A716AEC0060D167 /* FsString.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsString.cc; sourceTree = "<group>"; };
 		DCC012021A716AEC0060D167 /* FsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsString.h; sourceTree = "<group>"; };
 		DCC012031A716AEC0060D167 /* FsString.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FsString.inl; sourceTree = "<group>"; };
-		DCC012051A716AEC0060D167 /* FsLogAndroid.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLogAndroid.cc; sourceTree = "<group>"; };
-		DCC012061A716AEC0060D167 /* FsLogDefault.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLogDefault.cc; sourceTree = "<group>"; };
 		DCC012091A716AEC0060D167 /* FsInputTextDispatcher.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsInputTextDispatcher.cc; sourceTree = "<group>"; };
 		DCC0120A1A716AEC0060D167 /* FsInputTextDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsInputTextDispatcher.h; sourceTree = "<group>"; };
 		DCC0120B1A716AEC0060D167 /* FsKeypadDispatcher.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsKeypadDispatcher.cc; sourceTree = "<group>"; };
@@ -547,7 +536,6 @@
 		DCC012271A716AEC0060D167 /* FsVFS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsVFS.h; sourceTree = "<group>"; };
 		DCC012281A716AEC0060D167 /* FsZipPackage.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsZipPackage.cc; sourceTree = "<group>"; };
 		DCC012291A716AEC0060D167 /* FsZipPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsZipPackage.h; sourceTree = "<group>"; };
-		DCC0122B1A716AEC0060D167 /* FsSysStdFile.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsSysStdFile.cc; sourceTree = "<group>"; };
 		DCC0122E1A716AEC0060D167 /* FsHttpEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsHttpEngine.cc; sourceTree = "<group>"; };
 		DCC0122F1A716AEC0060D167 /* FsHttpEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsHttpEngine.h; sourceTree = "<group>"; };
 		DCC012301A716AEC0060D167 /* FsHttpReponse.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsHttpReponse.cc; sourceTree = "<group>"; };
@@ -975,8 +963,6 @@
 				DCC011A91A716AEC0060D167 /* FsScrollView.h */,
 				DCC011AA1A716AEC0060D167 /* FsScrollWidget.cc */,
 				DCC011AB1A716AEC0060D167 /* FsScrollWidget.h */,
-				DCC011AC1A716AEC0060D167 /* FsSeekBar.cc */,
-				DCC011AD1A716AEC0060D167 /* FsSeekBar.h */,
 				DCC011AE1A716AEC0060D167 /* FsStateButton.cc */,
 				DCC011AF1A716AEC0060D167 /* FsStateButton.h */,
 				DCC011B01A716AEC0060D167 /* FsToggleButton.cc */,
@@ -995,7 +981,6 @@
 				DCC011B71A716AEC0060D167 /* data */,
 				DCC011CC1A716AEC0060D167 /* felis */,
 				DCC011E21A716AEC0060D167 /* image */,
-				DCC011ED1A716AEC0060D167 /* loader */,
 				DCC011F01A716AEC0060D167 /* util */,
 			);
 			path = support;
@@ -1071,15 +1056,6 @@
 			path = image;
 			sourceTree = "<group>";
 		};
-		DCC011ED1A716AEC0060D167 /* loader */ = {
-			isa = PBXGroup;
-			children = (
-				DCC011EE1A716AEC0060D167 /* FsShaderLoader.cc */,
-				DCC011EF1A716AEC0060D167 /* FsShaderLoader.h */,
-			);
-			path = loader;
-			sourceTree = "<group>";
-		};
 		DCC011F01A716AEC0060D167 /* util */ = {
 			isa = PBXGroup;
 			children = (
@@ -1102,18 +1078,8 @@
 				DCC012011A716AEC0060D167 /* FsString.cc */,
 				DCC012021A716AEC0060D167 /* FsString.h */,
 				DCC012031A716AEC0060D167 /* FsString.inl */,
-				DCC012041A716AEC0060D167 /* platform */,
 			);
 			path = util;
-			sourceTree = "<group>";
-		};
-		DCC012041A716AEC0060D167 /* platform */ = {
-			isa = PBXGroup;
-			children = (
-				DCC012051A716AEC0060D167 /* FsLogAndroid.cc */,
-				DCC012061A716AEC0060D167 /* FsLogDefault.cc */,
-			);
-			path = platform;
 			sourceTree = "<group>";
 		};
 		DCC012071A716AEC0060D167 /* sys */ = {
@@ -1129,7 +1095,6 @@
 				DCC012181A716AEC0060D167 /* FsWindow.h */,
 				DCC012191A716AEC0060D167 /* io */,
 				DCC0122D1A716AEC0060D167 /* network */,
-				DCC012361A716AEC0060D167 /* platform */,
 				DCC012461A716AEC0060D167 /* thread */,
 			);
 			path = sys;
@@ -1170,17 +1135,8 @@
 				DCC012271A716AEC0060D167 /* FsVFS.h */,
 				DCC012281A716AEC0060D167 /* FsZipPackage.cc */,
 				DCC012291A716AEC0060D167 /* FsZipPackage.h */,
-				DCC0122A1A716AEC0060D167 /* platform */,
 			);
 			path = io;
-			sourceTree = "<group>";
-		};
-		DCC0122A1A716AEC0060D167 /* platform */ = {
-			isa = PBXGroup;
-			children = (
-				DCC0122B1A716AEC0060D167 /* FsSysStdFile.cc */,
-			);
-			path = platform;
 			sourceTree = "<group>";
 		};
 		DCC0122D1A716AEC0060D167 /* network */ = {
@@ -1201,13 +1157,6 @@
 			isa = PBXGroup;
 			children = (
 				DCC012351A716AEC0060D167 /* FsCurlHttp.cc */,
-			);
-			path = platform;
-			sourceTree = "<group>";
-		};
-		DCC012361A716AEC0060D167 /* platform */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = platform;
 			sourceTree = "<group>";
@@ -1383,7 +1332,6 @@
 				DCC012B61A716AEC0060D167 /* FsProcessBar.cc in Sources */,
 				DCC012A11A716AEC0060D167 /* FsSprite2D.cc in Sources */,
 				DCC012A91A716AEC0060D167 /* FsGrayFilter.cc in Sources */,
-				DCC012BA1A716AEC0060D167 /* FsSeekBar.cc in Sources */,
 				DCC012CC1A716AEC0060D167 /* sl_simple_str.cc in Sources */,
 				DCC012531A716AEC0060D167 /* FsGlobal.cc in Sources */,
 				DCC012AE1A716AEC0060D167 /* FsColorLayer.cc in Sources */,
@@ -1406,10 +1354,8 @@
 				DCC012941A716AEC0060D167 /* FsLoopAction.cc in Sources */,
 				DCC012701A716AEC0060D167 /* FsCubicEase.cc in Sources */,
 				DCC012FB1A716AEC0060D167 /* FsHttpReponse.cc in Sources */,
-				DCC012E71A716AEC0060D167 /* FsLogAndroid.cc in Sources */,
 				DCC012D11A716AEC0060D167 /* type_map.cc in Sources */,
 				DCC012F51A716AEC0060D167 /* FsSysFile.cc in Sources */,
-				DCC012E81A716AEC0060D167 /* FsLogDefault.cc in Sources */,
 				DCC012C41A716AEC0060D167 /* FsIconv.cc in Sources */,
 				DCC013081A716AEC0060D167 /* FsConditionVariable.cc in Sources */,
 				DCC012A21A716AEC0060D167 /* FsSprite2DData.cc in Sources */,
@@ -1417,7 +1363,6 @@
 				DCC012E51A716AEC0060D167 /* FsSlowDict.cc in Sources */,
 				DCC012561A716AEC0060D167 /* FsColor.cc in Sources */,
 				DCC012B41A716AEC0060D167 /* FsPageView.cc in Sources */,
-				DCC012DD1A716AEC0060D167 /* FsShaderLoader.cc in Sources */,
 				DCC012651A716AEC0060D167 /* FsProgram.cc in Sources */,
 				DCC012541A716AEC0060D167 /* FsObject.cc in Sources */,
 				DCC012971A716AEC0060D167 /* FsRotateAction.cc in Sources */,
@@ -1432,7 +1377,6 @@
 				DCC0128D1A716AEC0060D167 /* FsTextureMgr.cc in Sources */,
 				DCC0129C1A716AEC0060D167 /* FsLabelBitmap.cc in Sources */,
 				DCC012C31A716AEC0060D167 /* FsHash.cc in Sources */,
-				DCC012F81A716AEC0060D167 /* FsSysStdFile.cc in Sources */,
 				DCC012A51A716AEC0060D167 /* FsQuaternionTransform.cc in Sources */,
 				DCC0127B1A716AEC0060D167 /* FsBox3D.cc in Sources */,
 				DCC012E31A716AEC0060D167 /* FsScriptUtil.cc in Sources */,
@@ -1479,6 +1423,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1531,6 +1476,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1575,6 +1521,9 @@
 					"-I../../src/support/",
 					"-I../../src",
 					"-I../../../lib3rdparty/fmod/include/ios",
+					"-I../../../lib3rdparty/GL/include",
+					"-DIOS",
+					"-I../../../lib3rdparty/glslext/src",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1601,6 +1550,9 @@
 					"-I../../src/support/",
 					"-I../../src",
 					"-I../../../lib3rdparty/fmod/include/ios",
+					"-I../../../lib3rdparty/GL/include",
+					"-DIOS",
+					"-I../../../lib3rdparty/glslext/src",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -67,7 +67,7 @@ int _FsBase64_Decode(uint8_t* src_buf,uint src_length, uint8_t* dst_buf,uint* ds
 	uint src_idx=0,dst_idx=0;
 	uint errors=0;
 	uint  v,bits=0;
-	uint8_t c;
+	uint8_t c=0;
 	uint char_nu=0;
 	for(src_idx=0;src_idx<src_length;src_idx++)
 	{

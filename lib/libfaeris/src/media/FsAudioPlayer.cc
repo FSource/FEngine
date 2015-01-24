@@ -32,7 +32,7 @@
 
 
 
-#if FS_PLATFORM_OS(FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_WIN32)  || FS_PLATFORM_OS(FS_OS_OSX)
+#if FS_PLATFORM_OS(FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_WIN32)  || FS_PLATFORM_OS(FS_OS_OSX) || FS_PLATFORM_OS(FS_OS_IOS)
 	#include "platform/FsFmodPlayer.h"
 #elif FS_PLATFORM_OS(FS_OS_ANDROID)
 	#include "platform/FsAndroidAudioPlayer.h"
@@ -45,7 +45,7 @@
 NS_FS_BEGIN
 AudioPlayer* AudioPlayer::create(int channel_nu)
 {
-#if FS_PLATFORM_OS(FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_WIN32)  || FS_PLATFORM_OS(FS_OS_OSX) 
+#if FS_PLATFORM_OS(FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_WIN32)  || FS_PLATFORM_OS(FS_OS_OSX) || FS_PLATFORM_OS(FS_OS_IOS)
 	return FmodPlayer::create(channel_nu);
 #elif FS_PLATFORM_OS(FS_OS_ANDROID)
 	return AndroidAudioPlayer::create(channel_nu);
@@ -61,7 +61,7 @@ AudioPlayer::~AudioPlayer()
 
 NS_FS_END
 
-#if FS_PLATFORM_OS(FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_WIN32)  || FS_PLATFORM_OS(FS_OS_OSX) 
+#if FS_PLATFORM_OS(FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_WIN32)  || FS_PLATFORM_OS(FS_OS_OSX)  || FS_PLATFORM_OS(FS_OS_IOS)
 	#include "platform/FsFmodPlayer.cc"
 #elif FS_PLATFORM_OS(FS_OS_ANDROID)
 	#include "platform/FsAndroidAudioPlayer.cc"

@@ -297,9 +297,9 @@ class TypoPage
 				int iminx,iminy,imaxx,imaxy;
 				g->getBound(&iminx,&iminy,&imaxx,&imaxy);
 				float minx=iminx*scale;
-				float miny=iminy*scale;
+				//float miny=iminy*scale;
 				float maxx=imaxx*scale;
-				float maxy=imaxy*scale;
+				//float maxy=imaxy*scale;
 
 				if( m_current->getTextNu()== 0)
 				{

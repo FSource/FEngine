@@ -61,11 +61,12 @@ enum
 	#define FS_OS_ANDROID
 	#define FS_CUR_PLATFORM FS_PLATFORM_ANDROID
 
-#elif defined(OSX) || defined(__APPLE__)
+#elif defined(OSX) || defined(TARGET_OS_MAC)
 	#define FS_OS_OSX 	
 	#define FS_CUR_PLATFORM FS_PLATFORM_OSX
-#elif defined(IOS)
-	#define FS_OS_IOS 
+
+#elif defined(IOS) || defined(TARGET_OS_IPHONE)
+	#define FS_OS_IOS
 	#define FS_CUR_PLATFORM FS_PLATFORM_IOS
 #else
 	#error "UNKOWN PLATFORM OS"

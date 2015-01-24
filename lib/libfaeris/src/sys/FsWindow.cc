@@ -56,6 +56,8 @@ NS_FS_END
 	#include "platform/glfw/FsGlfwWindow.cc"
 #elif FS_PLATFORM_OS(FS_OS_ANDROID)
 	#include "platform/android/FsWindowAndroid.cc"
+#elif FS_PLATFORM_OS(FS_OS_IOS)
+
 #else 
 	#error "UnSupport Platform"
 #endif 
