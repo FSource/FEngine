@@ -128,7 +128,6 @@
 		DCC012CE1A716AEC0060D167 /* sl_specific_symbol.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011D21A716AEC0060D167 /* sl_specific_symbol.cc */; };
 		DCC012CF1A716AEC0060D167 /* sl_top.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011D41A716AEC0060D167 /* sl_top.cc */; };
 		DCC012D01A716AEC0060D167 /* sl_white_space.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011D51A716AEC0060D167 /* sl_white_space.cc */; };
-		DCC012D11A716AEC0060D167 /* type_map.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011D61A716AEC0060D167 /* type_map.cc */; };
 		DCC012D21A716AEC0060D167 /* xir_file.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011D71A716AEC0060D167 /* xir_file.cc */; };
 		DCC012D31A716AEC0060D167 /* xir_grammer.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011D91A716AEC0060D167 /* xir_grammer.cc */; };
 		DCC012D51A716AEC0060D167 /* xir_parser.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC011DB1A716AEC0060D167 /* xir_parser.cc */; };
@@ -186,7 +185,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DCC010991A716AD20060D167 /* libfaeris.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfaeris.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC010991A716AD20060D167 /* libfaerisd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfaerisd.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC0109D1A716AEC0060D167 /* FsScriptEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsScriptEngine.cc; sourceTree = "<group>"; };
 		DCC0109E1A716AEC0060D167 /* FsScriptEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsScriptEngine.h; sourceTree = "<group>"; };
 		DCC0109F1A716AEC0060D167 /* FsClass.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsClass.cc; sourceTree = "<group>"; };
@@ -464,7 +463,6 @@
 		DCC011D31A716AEC0060D167 /* sl_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sl_state.h; sourceTree = "<group>"; };
 		DCC011D41A716AEC0060D167 /* sl_top.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sl_top.cc; sourceTree = "<group>"; };
 		DCC011D51A716AEC0060D167 /* sl_white_space.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sl_white_space.cc; sourceTree = "<group>"; };
-		DCC011D61A716AEC0060D167 /* type_map.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = type_map.cc; sourceTree = "<group>"; };
 		DCC011D71A716AEC0060D167 /* xir_file.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xir_file.cc; sourceTree = "<group>"; };
 		DCC011D81A716AEC0060D167 /* xir_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xir_file.h; sourceTree = "<group>"; };
 		DCC011D91A716AEC0060D167 /* xir_grammer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xir_grammer.cc; sourceTree = "<group>"; };
@@ -568,7 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC0109B1A716AEC0060D167 /* src */,
-				DCC010991A716AD20060D167 /* libfaeris.a */,
+				DCC010991A716AD20060D167 /* libfaerisd.a */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1024,7 +1022,6 @@
 				DCC011D31A716AEC0060D167 /* sl_state.h */,
 				DCC011D41A716AEC0060D167 /* sl_top.cc */,
 				DCC011D51A716AEC0060D167 /* sl_white_space.cc */,
-				DCC011D61A716AEC0060D167 /* type_map.cc */,
 				DCC011D71A716AEC0060D167 /* xir_file.cc */,
 				DCC011D81A716AEC0060D167 /* xir_file.h */,
 				DCC011D91A716AEC0060D167 /* xir_grammer.cc */,
@@ -1193,7 +1190,7 @@
 			);
 			name = faeris;
 			productName = faeris;
-			productReference = DCC010991A716AD20060D167 /* libfaeris.a */;
+			productReference = DCC010991A716AD20060D167 /* libfaerisd.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -1354,7 +1351,6 @@
 				DCC012941A716AEC0060D167 /* FsLoopAction.cc in Sources */,
 				DCC012701A716AEC0060D167 /* FsCubicEase.cc in Sources */,
 				DCC012FB1A716AEC0060D167 /* FsHttpReponse.cc in Sources */,
-				DCC012D11A716AEC0060D167 /* type_map.cc in Sources */,
 				DCC012F51A716AEC0060D167 /* FsSysFile.cc in Sources */,
 				DCC012C41A716AEC0060D167 /* FsIconv.cc in Sources */,
 				DCC013081A716AEC0060D167 /* FsConditionVariable.cc in Sources */,
@@ -1507,6 +1503,7 @@
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../library/ios/";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				OTHER_CFLAGS = (
@@ -1526,7 +1523,7 @@
 					"-I../../../lib3rdparty/glslext/src",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)d";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1536,6 +1533,7 @@
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../library/ios/";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				OTHER_CFLAGS = (

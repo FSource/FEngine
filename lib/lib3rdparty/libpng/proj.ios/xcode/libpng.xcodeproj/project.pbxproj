@@ -17,7 +17,6 @@
 		DCC00EE01A7160BA0060D167 /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00ECF1A7160BA0060D167 /* pngrtran.c */; };
 		DCC00EE11A7160BA0060D167 /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00ED01A7160BA0060D167 /* pngrutil.c */; };
 		DCC00EE21A7160BA0060D167 /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00ED11A7160BA0060D167 /* pngset.c */; };
-		DCC00EE31A7160BA0060D167 /* pngtest.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00ED31A7160BA0060D167 /* pngtest.c */; };
 		DCC00EE41A7160BA0060D167 /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00ED41A7160BA0060D167 /* pngtrans.c */; };
 		DCC00EE51A7160BA0060D167 /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00ED51A7160BA0060D167 /* pngwio.c */; };
 		DCC00EE61A7160BA0060D167 /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00ED61A7160BA0060D167 /* pngwrite.c */; };
@@ -56,7 +55,6 @@
 		DCC00ED01A7160BA0060D167 /* pngrutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrutil.c; sourceTree = "<group>"; };
 		DCC00ED11A7160BA0060D167 /* pngset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngset.c; sourceTree = "<group>"; };
 		DCC00ED21A7160BA0060D167 /* pngstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngstruct.h; sourceTree = "<group>"; };
-		DCC00ED31A7160BA0060D167 /* pngtest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngtest.c; sourceTree = "<group>"; };
 		DCC00ED41A7160BA0060D167 /* pngtrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngtrans.c; sourceTree = "<group>"; };
 		DCC00ED51A7160BA0060D167 /* pngwio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwio.c; sourceTree = "<group>"; };
 		DCC00ED61A7160BA0060D167 /* pngwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwrite.c; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 				DCC00ED01A7160BA0060D167 /* pngrutil.c */,
 				DCC00ED11A7160BA0060D167 /* pngset.c */,
 				DCC00ED21A7160BA0060D167 /* pngstruct.h */,
-				DCC00ED31A7160BA0060D167 /* pngtest.c */,
 				DCC00ED41A7160BA0060D167 /* pngtrans.c */,
 				DCC00ED51A7160BA0060D167 /* pngwio.c */,
 				DCC00ED61A7160BA0060D167 /* pngwrite.c */,
@@ -178,7 +175,6 @@
 				DCC00EE81A7160BA0060D167 /* pngwutil.c in Sources */,
 				DCC00ED91A7160BA0060D167 /* png.c in Sources */,
 				DCC00EE51A7160BA0060D167 /* pngwio.c in Sources */,
-				DCC00EE31A7160BA0060D167 /* pngtest.c in Sources */,
 				DCC00EE21A7160BA0060D167 /* pngset.c in Sources */,
 				DCC00EDD1A7160BA0060D167 /* pngpread.c in Sources */,
 				DCC00EDB1A7160BA0060D167 /* pngget.c in Sources */,
