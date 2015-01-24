@@ -153,7 +153,6 @@ int FsFaeris_ModuleExit()
 
 	FelisScriptMgr* felis_mgr=Global::felisScriptMgr();
 	ClassMgr* cls_mgr=Global::classMgr();
-	cls_mgr->preRegisterClass();
 
 
 	/* remove scheduler target */
