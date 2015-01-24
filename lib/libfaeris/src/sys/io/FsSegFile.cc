@@ -1,3 +1,32 @@
+/*************************************************************************/
+/*  FsSegFile.cc                                                         */
+/*************************************************************************/
+/* Copyright (C) 2012-2014 nosiclin@foxmail.com                          */
+/* Copyright (C) 2014-2015 www.fsource.cn                                */
+/*                                                                       */
+/* http://www.fsource.cn                                                 */
+/*                                                                       */
+/* Permission is hereby granted, free of charge, to any person obtaining */
+/* a copy of this software and associated documentation files (the       */
+/* "Software"), to deal in the Software without restriction, including   */
+/* without limitation the rights to use, copy, modify, merge, publish,   */
+/* distribute, sublicense, and/or sell copies of the Software, and to    */
+/* permit persons to whom the Software is furnished to do so, subject to */
+/* the following conditions:                                             */
+/*                                                                       */
+/* The above copyright notice and this permission notice shall be        */
+/* included in all copies or substantial portions of the Software.       */
+/*                                                                       */
+/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,       */
+/* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF    */
+/* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.*/
+/* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY  */
+/* CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,  */
+/* TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE     */
+/* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
+/*************************************************************************/
+
+
 #include "sys/io/FsSegFile.h"
 
 NS_FS_BEGIN 
@@ -43,7 +72,7 @@ long SegFile::read(void* buf,long length)
 
 
 	m_stream->seek(m_offset+m_curpos,E_FileSeek::SET);
-	int readbyte=m_stream->read(buf,length);
+	int readbyte=(int)m_stream->read(buf,length);
 	if(readbyte>0)
 	{
 		m_curpos+=readbyte;
@@ -71,7 +100,7 @@ long SegFile::write(const void* buf,long length)
 	}
 
 	m_stream->seek(m_offset+m_curpos,E_FileSeek::SET);
-	int writebyte=m_stream->write(buf,length);
+	int writebyte=(int)m_stream->write(buf,length);
 	if(writebyte>0)
 	{
 		m_curpos+=writebyte;

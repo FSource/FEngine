@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{3c22d214-ca35-496a-874f-415be615080e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\demoStart">
+      <UniqueIdentifier>{c9a86c68-9598-4b8b-b1e7-0cd016cf86a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\demoChoose">
+      <UniqueIdentifier>{b8ab22e6-5741-451b-a584-7b2c7bcf97cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Common">
+      <UniqueIdentifier>{d1dfb651-3554-42e8-bf8b-9cf27ab378be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\LayoutDemo">
+      <UniqueIdentifier>{e8c21063-8652-4f61-a801-39f6f809925f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ActionDemo">
+      <UniqueIdentifier>{14ef2657-eec8-4757-a9b5-a7759c32417d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FilterDemo">
+      <UniqueIdentifier>{e7c15883-7e10-4567-8ab3-7a670c71fba3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\FsWin32Main.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demoChoose\DemoChooseLayer.cc">
+      <Filter>src\demoChoose</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demoChoose\DemoItem.cc">
+      <Filter>src\demoChoose</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demoStart\DemoStartLayer.cc">
+      <Filter>src\demoStart</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\DmBackLayer.cc">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\DmTextureChooseWidget.cc">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\DmListItem.cc">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\DmListView.cc">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\LayoutDemo\DmLayoutScene.cc">
+      <Filter>src\LayoutDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ActionDemo\DmActionScene.cc">
+      <Filter>src\ActionDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FilterDemo\DmFilterScene.cc">
+      <Filter>src\FilterDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\DmColorSlider.cc">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\DmSlideBar.cc">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\demoStart\DemoStartLayer.h">
+      <Filter>src\demoStart</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\config.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo3D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demoChoose\DemoChooseLayer.h">
+      <Filter>src\demoChoose</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demoChoose\DemoItem.h">
+      <Filter>src\demoChoose</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Common\DmBackLayer.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Common\DmTextureChooseWidget.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Common\DmListItem.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Common\DmListView.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\LayoutDemo\DmLayoutScene.h">
+      <Filter>src\LayoutDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ActionDemo\DmActionScene.h">
+      <Filter>src\ActionDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FilterDemo\DmFilterScene.h">
+      <Filter>src\FilterDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Common\DmColorSlider.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Common\DmSlideBar.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

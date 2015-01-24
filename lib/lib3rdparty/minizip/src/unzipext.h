@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include "ioapi.h"
+
 extern  unsigned int  ZEXPORT unzextGetFileOffset OF((unzFile file));
 
 

@@ -1,0 +1,52 @@
+class:Layer2D
+
+viewArea:{
+	x:0
+	y:0
+	width:960
+	height:640
+}
+
+
+entity:[
+	{
+		class:UiWidget 
+		size:{w:200,h:300}
+		bgEnabled:true 
+		bgColor:[1.0,0.0,0.1,0.4]
+		bgTextureUrl:"images/Coin.png"
+		position:{x:400,y:320}
+		children:[
+			{
+				class:LabelTTF
+
+				fontName:"font/arial.ttf"
+				fontSize:20 
+				string:"Hello World scissorEnabled My Name Is To Long"
+			}
+		]
+		
+	}
+	{
+		class:UiWidget 
+		size:{w:200,h:300}
+		bgEnabled:true 
+		scissorEnabled: false
+		bgColor:[1.0,0.0,0.1,0.4]
+		bgTextureUrl:"images/Coin.png"
+		position:{x:700,y:320}
+		children:[
+			{
+				class:LabelTTF
+
+				fontName:"font/arial.ttf"
+				fontSize:20 
+				string:"Hello World  scissorDisabled Is To Long"
+				color:[1.0,0.0,0.0]
+			}
+		]
+		
+	}
+]
+
+

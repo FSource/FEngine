@@ -1,0 +1,117 @@
+filterList:[
+	{
+		name:"NoneFilter"
+		filter:"NoneFilter"
+	}
+	{
+		name:"GrayFilter"
+		filter:"Gray"
+	}
+	{
+		name:"OpacityFilter"
+		filter:"Opacity"
+		opacity:0.5
+	}
+	{
+		name:"BrightnessFilter"
+		filter:"Brightness"
+		brightness:0.5
+	}
+	{
+		name:"DarknessFilter"
+		filter:"Brightness"
+		brightness:-0.5
+	}
+	{
+		name:"ColorMatrix"
+		filter:"ColorMatrix"
+		colorMatrix:[
+   			0.1, 0.2, 0.7, 0,  #--red coefficients
+    		0.1, 0.2, 0.7, 0,  #--green coefficients
+    		0.1, 0.2, 0.7, 0,  #--blue coefficients
+    		0.1, 0.2, 0.7, 0   #--alpha coefficients
+		]
+
+	}
+	{
+		name:"Black&White"
+		filter:"ColorMatrix"
+		colorMatrix:[
+   			1.5, 1.5, 1.5, 0,  #--red coefficients
+    		1.5, 1.5, 1.5, 0,  #--green coefficients
+    		1.5, 1.5, 1.5, 0,  #--blue coefficients
+    		0, 0, 0, 1   #--alpha coefficients
+		]
+		colorOffset:[-1,-1,-1,0]
+	}
+	{
+		name:"Saturation"
+		filter:"ColorMatrix"
+		saturation:"1.5"
+	}
+	{
+		name:"Brightness"
+		filter:"ColorMatrix"
+		brightness:0.5
+	}
+	{
+		name:"Constast"
+		filter:"ColorMatrix"
+		constrast:1.5
+	}
+	{
+		name:"Invert"
+		filter:"ColorMatrix"
+		invert:true
+	}
+	{
+		name:"Sepia"
+		filter:"ColorMatrix"
+		sepia:true
+	}
+
+]
+
+
+shaderList:[
+	{
+		name:"1.jpg",
+		url:"ShaderDemo/images/blur/1.jpg"
+	}
+	{
+		name:"2.jpg",
+		url:"ShaderDemo/images/blur/2.jpg"
+	}
+	{
+		name:"3.jpg",
+		url:"ShaderDemo/images/blur/3.jpg"
+	}
+	{
+		name:"4.jpg",
+		url:"ShaderDemo/images/blur/4.jpg"
+	}
+	{
+		name:"5.jpg",
+		url:"ShaderDemo/images/blur/5.jpg"
+	}
+	{
+		name:"6.jpg",
+		url:"ShaderDemo/images/blur/6.jpg"
+	}
+	{
+		name:"7.jpg",
+		url:"ShaderDemo/images/blur/7.jpg"
+	}
+	{
+		name:"8.jpg",
+		url:"ShaderDemo/images/blur/8.jpg"
+	}
+	{
+		name:"9.jpg",
+		url:"ShaderDemo/images/blur/9.jpg"
+	}
+	{
+		name:"10.jpg",
+		url:"ShaderDemo/images/blur/10.jpg"
+	}
+]

@@ -1,0 +1,269 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DCC00F471A71623B0060D167 /* fpconv.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00F3F1A71623B0060D167 /* fpconv.c */; };
+		DCC00F481A71623B0060D167 /* lua_cjson.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00F411A71623B0060D167 /* lua_cjson.c */; };
+		DCC00F4A1A71623B0060D167 /* strbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00F451A71623B0060D167 /* strbuf.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DCC00F201A7161C40060D167 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DCC00F3C1A7161DA0060D167 /* libljsond.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libljsond.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC00F3F1A71623B0060D167 /* fpconv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fpconv.c; sourceTree = "<group>"; };
+		DCC00F401A71623B0060D167 /* fpconv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fpconv.h; sourceTree = "<group>"; };
+		DCC00F411A71623B0060D167 /* lua_cjson.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua_cjson.c; sourceTree = "<group>"; };
+		DCC00F421A71623B0060D167 /* lua_cjson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cjson.h; sourceTree = "<group>"; };
+		DCC00F451A71623B0060D167 /* strbuf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strbuf.c; sourceTree = "<group>"; };
+		DCC00F461A71623B0060D167 /* strbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strbuf.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCC00F1F1A7161C40060D167 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DCC00F191A7161C40060D167 = {
+			isa = PBXGroup;
+			children = (
+				DCC00F3E1A71623B0060D167 /* src */,
+				DCC00F3C1A7161DA0060D167 /* libljsond.a */,
+			);
+			sourceTree = "<group>";
+		};
+		DCC00F3E1A71623B0060D167 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DCC00F3F1A71623B0060D167 /* fpconv.c */,
+				DCC00F401A71623B0060D167 /* fpconv.h */,
+				DCC00F411A71623B0060D167 /* lua_cjson.c */,
+				DCC00F421A71623B0060D167 /* lua_cjson.h */,
+				DCC00F451A71623B0060D167 /* strbuf.c */,
+				DCC00F461A71623B0060D167 /* strbuf.h */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DCC00F211A7161C40060D167 /* ljson */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCC00F361A7161C40060D167 /* Build configuration list for PBXNativeTarget "ljson" */;
+			buildPhases = (
+				DCC00F1E1A7161C40060D167 /* Sources */,
+				DCC00F1F1A7161C40060D167 /* Frameworks */,
+				DCC00F201A7161C40060D167 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ljson;
+			productName = ljson;
+			productReference = DCC00F3C1A7161DA0060D167 /* libljsond.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCC00F1A1A7161C40060D167 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = NosicLin;
+				TargetAttributes = {
+					DCC00F211A7161C40060D167 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = DCC00F1D1A7161C40060D167 /* Build configuration list for PBXProject "ljson" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DCC00F191A7161C40060D167;
+			productRefGroup = DCC00F191A7161C40060D167;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCC00F211A7161C40060D167 /* ljson */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCC00F1E1A7161C40060D167 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCC00F481A71623B0060D167 /* lua_cjson.c in Sources */,
+				DCC00F471A71623B0060D167 /* fpconv.c in Sources */,
+				DCC00F4A1A71623B0060D167 /* strbuf.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DCC00F341A7161C40060D167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../../library/ios/3rdparty";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-I../../src",
+					"-I../../../lua/include",
+				);
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DCC00F351A7161C40060D167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../../library/ios/3rdparty";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = (
+					"-I../../src",
+					"-I../../../lua/include",
+				);
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DCC00F371A7161C40060D167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = (
+					"-I../../src",
+					"-I../../../lua/include/",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)d";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DCC00F381A7161C40060D167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = (
+					"-I../../src",
+					"-I../../../lua/include/",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCC00F1D1A7161C40060D167 /* Build configuration list for PBXProject "ljson" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCC00F341A7161C40060D167 /* Debug */,
+				DCC00F351A7161C40060D167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCC00F361A7161C40060D167 /* Build configuration list for PBXNativeTarget "ljson" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCC00F371A7161C40060D167 /* Debug */,
+				DCC00F381A7161C40060D167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DCC00F1A1A7161C40060D167 /* Project object */;
+}
