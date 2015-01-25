@@ -8,6 +8,11 @@
 #import <OpenGLES/ES2/glext.h>
 #import <CoreFoundation/CoreFoundation.h>
 
+namespace  Faeris
+{
+    class Window;
+}
+
 
 @interface FsGLESView: UIView 
 {
@@ -40,6 +45,8 @@
     
     int m_width;
     int m_height;
+    
+    Faeris::Window* m_fswindow;
 }
 
 /* class method */
@@ -49,6 +56,8 @@
 /* instance method */
 -(id) initWithFrame:(CGRect)frame ;
 -(BOOL) initOpengles;
+-(GLuint) getFrameBuffer;
+-(void) setFsWindow:(Faeris::Window*)fswindow;
 -(void)swapBuffers;
 -(int) getWidth;
 -(int) getHeight;

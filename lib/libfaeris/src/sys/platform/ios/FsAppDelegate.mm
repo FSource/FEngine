@@ -22,16 +22,21 @@ static FsAppDelegate* ms_shareDelegate=nil;
     return ms_shareDelegate;
 }
 
+-(FsGLESView*) getGlesView
+{
+    return m_glesView;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    ms_shareDelegate=self;
+    //ms_shareDelegate=self;
     
     m_window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
+    m_glesView= [FsGLESView viewWithFrame: [m_window bounds]];
     
     UIViewController* view_controller = [[UIViewController alloc] initWithNibName:nil bundle:nil];
     view_controller.wantsFullScreenLayout = YES;
-    view_controller.view = [FsGLESView viewWithFrame: [m_window bounds]];
-    
+    view_controller.view = m_glesView;
 
 
     [m_window setRootViewController:view_controller];

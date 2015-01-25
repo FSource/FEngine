@@ -2,15 +2,35 @@
 #include "GL_IOS/gl_ios_es.h"
 #include "graphics/FsRenderDevice.h"
 
+#import "FsAppDelegate.h"
+#import "FsGLESView.h"
 
 
 
 
 
-NS_FS_BEGIN 
+NS_FS_BEGIN
+
+class PlatformWindow
+{
+    public:
+        static PlatformWindow* create()
+        {
+            return new PlatformWindow;
+        }
+    
+    public:
+        PlatformWindow()
+        {
+            m_glesView=nil;
+        }
+    public:
+        FsGLESView* m_glesView;
+};
 
 Window* Window::create()
 {
+
 	Window* ret=new Window();
 	ret->init();
 
@@ -21,26 +41,28 @@ Window* Window::create()
 void Window::makeCurrent(RenderDevice* r)
 {
 
-	/*
-	glBindFramebuffer(GL_FRAMEBUFFER,0);
-	r->setViewport(0,0,m_window->m_width,m_window->m_height);
 
+
+	glBindFramebuffer(GL_FRAMEBUFFER,[m_window->m_glesView getFrameBuffer]);
+	int width=[m_window->m_glesView getWidth];
+	int height=[m_window->m_glesView getHeight];
+
+
+	r->setViewport(0,0,width,height);
 	m_renderDevice=r;
-	*/
+
 }
 
 
 void Window::loseCurrent(RenderDevice* r)
 {
-	/*
 	m_renderDevice=NULL;
-	*/
 }
 
 
 void Window::swapBuffers()
 {
-	/* TODO */
+    [m_window->m_glesView swapBuffers];
 }
 
 void Window::setCaption(const char* name)
@@ -61,14 +83,10 @@ void Window::setSize(uint width,uint height)
 
 void Window::sizeChanged(uint width,uint height)
 {
-	/*
-	m_window->m_width=width;
-	m_window->m_height=height;
 	if(m_renderDevice)
 	{
 		m_renderDevice->setViewport(0,0,width,height);
 	}
-	*/
 }
 
 
@@ -95,13 +113,19 @@ void Window::setFullScreen(bool full)
 
 int  Window::getWidth()
 {
-	//return m_window->m_width;
+	if(m_window)
+	{
+		return [m_window->m_glesView getWidth];
+	}
     return 0;
 }
 
 int Window::getHeight()
 {
-	//return m_window->m_height;
+	if(m_window)
+	{
+		return [m_window->m_glesView getHeight];
+	}
     return 0;
 }
 
@@ -128,9 +152,14 @@ Window::~Window()
 {
 }
 
+
 bool Window::init()
 {
-	//m_window=new PlatformWindow();
+	FsAppDelegate* delegate=[FsAppDelegate getShareAppDelegate];
+    m_window=PlatformWindow::create();
+    m_window->m_glesView=[delegate getGlesView];
+    [m_window->m_glesView setFsWindow:this];
+    
     return true;
 }
 

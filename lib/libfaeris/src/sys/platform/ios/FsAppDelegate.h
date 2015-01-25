@@ -6,13 +6,15 @@
 
 @class FsGLESView;
 
-@interface FsAppDelegate :NSObject <UIApplicationDelegate>
+@interface FsAppDelegate :UIResponder <UIApplicationDelegate>
 {
 	UIWindow* m_window;
-	FsGLESView* ms_glesView;
+	FsGLESView* m_glesView;
+    
 }
 
-+(FsAppDelegate*) getShareAppDelegate ;
++(FsAppDelegate*) getShareAppDelegate;
+-(FsGLESView*) getGlesView;
 
 
 @end 
