@@ -578,14 +578,6 @@ NS_FS_END
 
 #elif FS_PLATFORM_OS(FS_OS_IOS)
 
-NS_FS_BEGIN
-int FsFaeris_PlatformInit()
-{
-	return 0;
-}
-
-NS_FS_END 
-
 #endif 
 
 

@@ -1,6 +1,3 @@
-#ifndef _FS_GL_ES_VIEW_H_
-#define _FS_GL_ES_VIEW_H_
-
 #import <UIKit/UIKit.h>
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/EAGLDrawable.h>
@@ -57,6 +54,7 @@ namespace  Faeris
 -(id) initWithFrame:(CGRect)frame ;
 -(BOOL) initOpengles;
 -(GLuint) getFrameBuffer;
+-(GLuint) getColorRenderBuffer;
 -(void) setFsWindow:(Faeris::Window*)fswindow;
 -(void)swapBuffers;
 -(int) getWidth;
@@ -64,6 +62,6 @@ namespace  Faeris
 
 @end 
 
-#endif /*_FS_GL_ES_VIEW_H_*/
+
 
 

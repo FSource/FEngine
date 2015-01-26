@@ -25,9 +25,11 @@ bool DemoStartLayer::init()
 	setDispatchTouchEnabled(true);
 	setSortMode(Layer2D::SORT_ORDER_Z);
 	
+    
 	Quad2D *back = Quad2D::create(Color(172, 218, 224), GAME_WIDTH, GAME_HEIGHT);
 	back->setPosition(GAME_WIDTH/2, GAME_HEIGHT/2);
 	add(back);
+    
 
 	LabelTTF * label = LabelTTF::create("font/wawati.ttc", 60, "RealityEngine  Demo");
 	label->setPosition(GAME_WIDTH/2, GAME_HEIGHT/2 + 150);

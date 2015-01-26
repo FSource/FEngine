@@ -44,6 +44,8 @@ void Window::makeCurrent(RenderDevice* r)
 
 
 	glBindFramebuffer(GL_FRAMEBUFFER,[m_window->m_glesView getFrameBuffer]);
+  	glBindRenderbuffer(GL_RENDERBUFFER,[m_window->m_glesView getColorRenderBuffer]);
+    
 	int width=[m_window->m_glesView getWidth];
 	int height=[m_window->m_glesView getHeight];
 

@@ -174,7 +174,6 @@
 #include "support/image/FsImageJpeg.h"
 #include "support/image/FsImagePng.h"
 #include "support/image/FsImageTga.h"
-#include "support/loader/FsShaderLoader.h"
 #include "support/util/FsArray.h"
 #include "support/util/FsDict.h"
 #include "support/util/FsInteger.h"

@@ -3,11 +3,15 @@
 #import "FsGlobal.h"
 #import "sys/event/FsSysDispatcher.h"
 #import "FsFaerisModule.h"
+#import "scheduler/FsScheduler.h"
 
 #import "FsGLESView.h"
 
 NS_FS_USE
 
+@interface FsAppDelegate ()
+
+@end
 
 
 
@@ -22,6 +26,7 @@ static FsAppDelegate* ms_shareDelegate=nil;
     return ms_shareDelegate;
 }
 
+
 -(FsGLESView*) getGlesView
 {
     return m_glesView;
@@ -29,8 +34,7 @@ static FsAppDelegate* ms_shareDelegate=nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //ms_shareDelegate=self;
-    
+    ms_shareDelegate=self;
     m_window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
     m_glesView= [FsGLESView viewWithFrame: [m_window bounds]];
     
@@ -45,9 +49,16 @@ static FsAppDelegate* ms_shareDelegate=nil;
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
     
     
-    FS_TRACE_WARN(("Applcaition didFinishLauching"));
-    Faeris::FsFaeris_ModuleInit();
 
+    FsFaeris_ModuleInit();
+    FsMain_Entry(0,NULL);
+    
+    m_interval=1;
+    m_displaylink=nil;
+    
+    
+    [self mainLoop];
+  //  FS_TRACE_WARN(("Applcaition didFinishLauching"));
     return YES;
 }
 
@@ -94,4 +105,29 @@ static FsAppDelegate* ms_shareDelegate=nil;
 	FsFaeris_ModuleExit();
 }
 
-@end 
+-(void)doUpdate:(float) dt
+{
+   // FS_TRACE_WARN("update %f",dt);
+    Global::scheduler()->update(dt);
+}
+
+-(void) displayEvent:(id) sender
+{
+    [self doUpdate:1.0/60.0];
+}
+
+-(void)mainLoop
+{
+    //FS_TRACE_WARN(("Do MainLoop"));
+    
+    m_displaylink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(displayEvent:)];
+    [m_displaylink setFrameInterval: m_interval];
+    [m_displaylink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+@end
+
+
+
+
+

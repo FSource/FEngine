@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC4413AD1A766D7600758891 /* libfaerisd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59D1B61A73FA98000A4799 /* libfaerisd.a */; };
+		DC4413AF1A76798100758891 /* FsIosMain.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC4413AE1A76798100758891 /* FsIosMain.cc */; };
 		DC59D1651A73F5AE000A4799 /* DmActionScene.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC59D1421A73F5AE000A4799 /* DmActionScene.cc */; };
 		DC59D1661A73F5AE000A4799 /* DmBackLayer.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC59D1451A73F5AE000A4799 /* DmBackLayer.cc */; };
 		DC59D1671A73F5AE000A4799 /* DmColorSlider.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC59D1471A73F5AE000A4799 /* DmColorSlider.cc */; };
@@ -21,7 +23,6 @@
 		DC59D1721A73F5AE000A4799 /* DmLayoutScene.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC59D1611A73F5AE000A4799 /* DmLayoutScene.cc */; };
 		DC59D1771A73F67A000A4799 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC59D1761A73F67A000A4799 /* Default-568h@2x.png */; };
 		DC59D1791A73F745000A4799 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC59D1781A73F745000A4799 /* Info.plist */; };
-		DC59D1B91A73FAB2000A4799 /* libfaeris.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59D1B81A73FAB2000A4799 /* libfaeris.a */; };
 		DC59D1C21A73FB02000A4799 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59D1BA1A73FB02000A4799 /* libcurl.a */; };
 		DC59D1C31A73FB02000A4799 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59D1BB1A73FB02000A4799 /* libfreetype.a */; };
 		DC59D1C41A73FB02000A4799 /* liblibglslext.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59D1BC1A73FB02000A4799 /* liblibglslext.a */; };
@@ -33,9 +34,19 @@
 		DC59D1CC1A73FB41000A4799 /* libjsonc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59D1CB1A73FB41000A4799 /* libjsonc.a */; };
 		DC59D1CE1A73FB64000A4799 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59D1CD1A73FB64000A4799 /* OpenGLES.framework */; };
 		DC59D1D01A73FDAA000A4799 /* FsIosMain.m in Sources */ = {isa = PBXBuildFile; fileRef = DC59D1CF1A73FDAA000A4799 /* FsIosMain.m */; };
+		DC91F1321A76961500AC38E0 /* FilterDemo in Resources */ = {isa = PBXBuildFile; fileRef = DC91F12A1A76961500AC38E0 /* FilterDemo */; };
+		DC91F1331A76961500AC38E0 /* font in Resources */ = {isa = PBXBuildFile; fileRef = DC91F12B1A76961500AC38E0 /* font */; };
+		DC91F1341A76961500AC38E0 /* images in Resources */ = {isa = PBXBuildFile; fileRef = DC91F12C1A76961500AC38E0 /* images */; };
+		DC91F1351A76961500AC38E0 /* LayoutDemo in Resources */ = {isa = PBXBuildFile; fileRef = DC91F12D1A76961500AC38E0 /* LayoutDemo */; };
+		DC91F1361A76961500AC38E0 /* processBarDemo in Resources */ = {isa = PBXBuildFile; fileRef = DC91F12E1A76961500AC38E0 /* processBarDemo */; };
+		DC91F1371A76961500AC38E0 /* run.bat in Resources */ = {isa = PBXBuildFile; fileRef = DC91F12F1A76961500AC38E0 /* run.bat */; };
+		DC91F1381A76961500AC38E0 /* ShaderDemo in Resources */ = {isa = PBXBuildFile; fileRef = DC91F1301A76961500AC38E0 /* ShaderDemo */; };
+		DC91F1391A76961500AC38E0 /* win32.fgame in Resources */ = {isa = PBXBuildFile; fileRef = DC91F1311A76961500AC38E0 /* win32.fgame */; };
+		DC91F13D1A76A60900AC38E0 /* ios.fgame in Resources */ = {isa = PBXBuildFile; fileRef = DC91F13C1A76A60900AC38E0 /* ios.fgame */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC4413AE1A76798100758891 /* FsIosMain.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsIosMain.cc; sourceTree = "<group>"; };
 		DC59D1421A73F5AE000A4799 /* DmActionScene.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DmActionScene.cc; sourceTree = "<group>"; };
 		DC59D1431A73F5AE000A4799 /* DmActionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DmActionScene.h; sourceTree = "<group>"; };
 		DC59D1451A73F5AE000A4799 /* DmBackLayer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DmBackLayer.cc; sourceTree = "<group>"; };
@@ -67,7 +78,6 @@
 		DC59D1781A73F745000A4799 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC59D17A1A73F74A000A4799 /* Demo2D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo2D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC59D1B61A73FA98000A4799 /* libfaerisd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfaerisd.a; path = ../../../../lib/library/ios/libfaerisd.a; sourceTree = "<group>"; };
-		DC59D1B81A73FAB2000A4799 /* libfaeris.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfaeris.a; path = ../../../../lib/library/ios/libfaeris.a; sourceTree = "<group>"; };
 		DC59D1BA1A73FB02000A4799 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../../lib/library/ios/3rdparty/libcurl.a; sourceTree = "<group>"; };
 		DC59D1BB1A73FB02000A4799 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../../lib/library/ios/3rdparty/libfreetype.a; sourceTree = "<group>"; };
 		DC59D1BC1A73FB02000A4799 /* liblibglslext.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibglslext.a; path = ../../../../lib/library/ios/3rdparty/liblibglslext.a; sourceTree = "<group>"; };
@@ -79,6 +89,15 @@
 		DC59D1CB1A73FB41000A4799 /* libjsonc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjsonc.a; path = ../../../../lib/library/ios/3rdparty/libjsonc.a; sourceTree = "<group>"; };
 		DC59D1CD1A73FB64000A4799 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DC59D1CF1A73FDAA000A4799 /* FsIosMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FsIosMain.m; sourceTree = "<group>"; };
+		DC91F12A1A76961500AC38E0 /* FilterDemo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FilterDemo; sourceTree = "<group>"; };
+		DC91F12B1A76961500AC38E0 /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
+		DC91F12C1A76961500AC38E0 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		DC91F12D1A76961500AC38E0 /* LayoutDemo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LayoutDemo; sourceTree = "<group>"; };
+		DC91F12E1A76961500AC38E0 /* processBarDemo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = processBarDemo; sourceTree = "<group>"; };
+		DC91F12F1A76961500AC38E0 /* run.bat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = run.bat; sourceTree = "<group>"; };
+		DC91F1301A76961500AC38E0 /* ShaderDemo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ShaderDemo; sourceTree = "<group>"; };
+		DC91F1311A76961500AC38E0 /* win32.fgame */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = win32.fgame; sourceTree = "<group>"; };
+		DC91F13C1A76A60900AC38E0 /* ios.fgame */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ios.fgame; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC4413AD1A766D7600758891 /* libfaerisd.a in Frameworks */,
 				DC59D1CE1A73FB64000A4799 /* OpenGLES.framework in Frameworks */,
 				DC59D1CC1A73FB41000A4799 /* libjsonc.a in Frameworks */,
 				DC59D1C21A73FB02000A4799 /* libcurl.a in Frameworks */,
@@ -96,7 +116,6 @@
 				DC59D1C71A73FB02000A4799 /* liblibtga.a in Frameworks */,
 				DC59D1C81A73FB02000A4799 /* libminizip.a in Frameworks */,
 				DC59D1C91A73FB02000A4799 /* libzlib.a in Frameworks */,
-				DC59D1B91A73FAB2000A4799 /* libfaeris.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +125,7 @@
 		DC40DC8E1A73F2C60067D7C0 = {
 			isa = PBXGroup;
 			children = (
+				DC91F0CA1A76952100AC38E0 /* Resource */,
 				DC59D1CA1A73FB0B000A4799 /* library */,
 				DC59D1751A73F67A000A4799 /* assets */,
 				DC59D1401A73F5AE000A4799 /* src */,
@@ -116,6 +136,7 @@
 		DC59D1401A73F5AE000A4799 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				DC4413AE1A76798100758891 /* FsIosMain.cc */,
 				DC59D1CF1A73FDAA000A4799 /* FsIosMain.m */,
 				DC59D1411A73F5AE000A4799 /* ActionDemo */,
 				DC59D1441A73F5AE000A4799 /* Common */,
@@ -227,10 +248,26 @@
 				DC59D1BF1A73FB02000A4799 /* liblibtga.a */,
 				DC59D1C01A73FB02000A4799 /* libminizip.a */,
 				DC59D1C11A73FB02000A4799 /* libzlib.a */,
-				DC59D1B81A73FAB2000A4799 /* libfaeris.a */,
 				DC59D1B61A73FA98000A4799 /* libfaerisd.a */,
 			);
 			name = library;
+			sourceTree = "<group>";
+		};
+		DC91F0CA1A76952100AC38E0 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DC91F12A1A76961500AC38E0 /* FilterDemo */,
+				DC91F12B1A76961500AC38E0 /* font */,
+				DC91F12C1A76961500AC38E0 /* images */,
+				DC91F12D1A76961500AC38E0 /* LayoutDemo */,
+				DC91F12E1A76961500AC38E0 /* processBarDemo */,
+				DC91F1301A76961500AC38E0 /* ShaderDemo */,
+				DC91F12F1A76961500AC38E0 /* run.bat */,
+				DC91F13C1A76A60900AC38E0 /* ios.fgame */,
+				DC91F1311A76961500AC38E0 /* win32.fgame */,
+			);
+			name = Resource;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,8 +327,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC91F1391A76961500AC38E0 /* win32.fgame in Resources */,
+				DC91F1361A76961500AC38E0 /* processBarDemo in Resources */,
+				DC91F1371A76961500AC38E0 /* run.bat in Resources */,
+				DC91F13D1A76A60900AC38E0 /* ios.fgame in Resources */,
+				DC91F1341A76961500AC38E0 /* images in Resources */,
 				DC59D1791A73F745000A4799 /* Info.plist in Resources */,
+				DC91F1321A76961500AC38E0 /* FilterDemo in Resources */,
+				DC91F1351A76961500AC38E0 /* LayoutDemo in Resources */,
 				DC59D1771A73F67A000A4799 /* Default-568h@2x.png in Resources */,
+				DC91F1381A76961500AC38E0 /* ShaderDemo in Resources */,
+				DC91F1331A76961500AC38E0 /* font in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +357,7 @@
 				DC59D1681A73F5AE000A4799 /* DmListItem.cc in Sources */,
 				DC59D1721A73F5AE000A4799 /* DmLayoutScene.cc in Sources */,
 				DC59D1661A73F5AE000A4799 /* DmBackLayer.cc in Sources */,
+				DC4413AF1A76798100758891 /* FsIosMain.cc in Sources */,
 				DC59D1671A73F5AE000A4799 /* DmColorSlider.cc in Sources */,
 				DC59D16A1A73F5AE000A4799 /* DmSlideBar.cc in Sources */,
 				DC59D1691A73F5AE000A4799 /* DmListView.cc in Sources */,
@@ -410,6 +457,7 @@
 					"$(inherited)",
 					/Users/NosicLin/CodeSpace/Faeris/lib/library/ios/3rdparty,
 					/Users/NosicLin/CodeSpace/Faeris/lib/library/ios,
+					/Users/NosicLin/CodeSpace/Faeris/lib/libfaeris/proj.ios/xcode/../../../library/ios,
 				);
 				OTHER_CFLAGS = (
 					"-I../../src",
@@ -433,6 +481,7 @@
 					"$(inherited)",
 					/Users/NosicLin/CodeSpace/Faeris/lib/library/ios/3rdparty,
 					/Users/NosicLin/CodeSpace/Faeris/lib/library/ios,
+					/Users/NosicLin/CodeSpace/Faeris/lib/libfaeris/proj.ios/xcode/../../../library/ios,
 				);
 				OTHER_CFLAGS = (
 					"-I../../src",

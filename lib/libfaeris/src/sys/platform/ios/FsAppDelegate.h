@@ -1,7 +1,3 @@
-#ifndef _FS_APP_DELEGATE_H_
-#define _FS_APP_DELEGATE_H_
-
-
 #import <UIKit/UIKit.h>
 
 @class FsGLESView;
@@ -10,15 +6,21 @@
 {
 	UIWindow* m_window;
 	FsGLESView* m_glesView;
+    id m_displaylink;
+    int m_fps;
+    int m_interval;
     
 }
 
+
 +(FsAppDelegate*) getShareAppDelegate;
 -(FsGLESView*) getGlesView;
+-(void) doUpdate:(float)dt;
+-(void) mainLoop;
+-(void) displayEvent:(id) sender;
 
 
-@end 
-#endif /*_FS_APP_DELEGATE_H_*/
+@end
 
 
 

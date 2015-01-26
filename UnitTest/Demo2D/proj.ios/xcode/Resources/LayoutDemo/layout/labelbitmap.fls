@@ -1,0 +1,73 @@
+class:Layer2D
+
+viewArea:{
+	x:0
+	y:0
+	width:960
+	height:640
+}
+
+
+entity:[
+	{
+		class:VertexPolygon
+		vertices:[
+			[0,320],
+			[960,320],
+			[480,0],
+			[480,640],
+			[0,240],
+			[960,240]
+		]
+		mode:"lines"
+		color:[1.0,0.0,0.0,1.0]
+	}
+
+	{
+		class:LabelBitmap
+
+		fontName:"font/b2.fnt"
+		fontSize:1.0
+		string:"Hellpppp World Anchor(0,0)"
+		position:{x:480,y:320}
+		anchor:{x:0,y:0}
+	}
+	{
+		class:LabelBitmap
+
+		fontName:"font/b2.fnt"
+		fontSize:1.0
+		string:"Hellpppp World Anchor(0,1)"
+		position:{x:480,y:320}
+		anchor:{x:0,y:1}
+	}
+	{
+		class:LabelBitmap
+
+		fontName:"font/b2.fnt"
+		fontSize:1.0
+		string:"Hellpppp World Anchor(1,0)"
+		position:{x:480,y:320}
+		anchor:{x:1,y:0}
+	}
+	{
+		class:LabelBitmap
+
+		fontName:"font/b2.fnt"
+		fontSize:1.0
+		string:"Hellpppp World Anchor(1,1)"
+		position:{x:480,y:320}
+		anchor:{x:1,y:1}
+	}
+	{
+		class:LabelBitmap
+
+		fontName:"font/b2.fnt"
+		string:"Hellpppp World Size(0.5)"
+		position:{x:480,y:240}
+	}
+]
+
+
+
+

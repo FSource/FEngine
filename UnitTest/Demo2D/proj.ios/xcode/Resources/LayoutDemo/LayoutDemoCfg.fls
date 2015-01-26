@@ -1,0 +1,29 @@
+layoutList:[
+	{
+		name:"Quad2D Test"
+		url:"LayoutDemo/layout/quad2d.fls"
+	}
+	{
+		name:"LabelTTF Test",
+		url:"LayoutDemo/layout/labelttf.fls"
+
+	}
+	{
+		name:"LabelBmp Anchor ",
+		url:"LayoutDemo/layout/labelbitmap.fls"
+
+	}
+	{
+		name:"LabelBmp Bound",
+		url:"LayoutDemo/layout/labelbmp_boundsize.fls"
+
+	}
+	{
+		name:"VertexPolygon Test",
+		url:"LayoutDemo/layout/vertexpolygon.fls"
+	}
+	{
+		name:"UiWidget Test",
+		url:"LayoutDemo/layout/ui_widget.fls"
+	}
+]
