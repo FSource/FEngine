@@ -1,32 +1,3 @@
-/*************************************************************************/
-/*  FsScroller.h                                                         */
-/*************************************************************************/
-/* Copyright (C) 2012-2014 nosiclin@foxmail.com                          */
-/* Copyright (C) 2014-2015 www.fsource.cn                                */
-/*                                                                       */
-/* http://www.fsource.cn                                                 */
-/*                                                                       */
-/* Permission is hereby granted, free of charge, to any person obtaining */
-/* a copy of this software and associated documentation files (the       */
-/* "Software"), to deal in the Software without restriction, including   */
-/* without limitation the rights to use, copy, modify, merge, publish,   */
-/* distribute, sublicense, and/or sell copies of the Software, and to    */
-/* permit persons to whom the Software is furnished to do so, subject to */
-/* the following conditions:                                             */
-/*                                                                       */
-/* The above copyright notice and this permission notice shall be        */
-/* included in all copies or substantial portions of the Software.       */
-/*                                                                       */
-/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,       */
-/* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF    */
-/* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.*/
-/* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY  */
-/* CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,  */
-/* TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE     */
-/* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
-/*************************************************************************/
-
-
 #ifndef _FS_SCROLLER_H_
 #define _FS_SCROLLER_H_
 
@@ -34,93 +5,77 @@
 #include "FsObject.h"
 
 
-#define FS_SCROLL_DEFAULT_DURATION 0.25f
-
 NS_FS_BEGIN
 
-
-class EaseExpr;
-class Scroller:public FsObject 
+class Scroll 
 {
 	public:
-		enum
-		{
-			SCROLL,
-			FLING,
-			BOUNCE_BACK,
-		};
-
-	public:
-		static Scroller* create();
+		void touchBegin(float x,float y);
+		void touchMove(float x,float y);
+		void touchEnd(float x,float y);
 
 	public:
 
-		void startScroll(float start,float min,float max,float delta,float duration=FS_SCROLL_DEFAULT_DURATION);
-		void fling(float start,float min,float max,float velocity,float accel,float range);
-		void bounceBack(float start,float min,float max,float range);
+		/* executed as soon as user touches the screen 
+		 * but before the scrolling has initiated.
+		 */
+		virtual void beforeScrollStart();
 
-		bool isFinished();
-		void abortAnimation();
-		void finishAnimation();
+		/* called when scroll initiated but didn't happen*/
+		virtual void scrollCancel();
 
-		float getCurPos();
+		/* called when the scroll started.*/
+		virtual bool scrollStart();
 
-		int getScrollMode();
 
+		/* called when the content is scrolling */
+		virtual void scroll(float x,float y);
+
+
+		/* called content stopped scrolling */
+		virtual void scrollEnd();
+
+		/* user flicked left/right */
+		virtual void flick();
 
 	public:
-		virtual const char* className();
-		virtual bool update(float dt);
-
+		void update(float dt);
+		void stopAnimation(bool force);
 
 	protected:
-		Scroller();
-		virtual ~Scroller();
+		/* configure attr */
+		bool m_scrollXEnabled;
+		bool m_scrollYEnabled;
 
+		bool m_directionLockedEnabled;
+		float m_directionLockThreshold;
 
-		void updateFling(float dt);
-		void updateScroll(float dt);
-		void updateBounceBack(float dt);
+		/* bounce */
+		bool m_bounceEnabled;
+		bool m_bounceTime;
+		EaseExpr* m_bounceEasing;
 
-
-
-
-	private:
-		int m_mode;
-
-		bool m_finish;
-
-
-		/* common */
-		float m_duration;
-		float m_timePassed;
-
-		float m_curPos;
-		float m_maxPos;
-		float m_minPos;
-
-		/* scroll mode*/
-		float m_delta,m_start,m_final;
-		EaseExpr* m_scrollEasing;
-
-
-		/* fling mode */
-		float m_startVelocity;
-		float m_curVelocity;
-
-		float m_accel;
-
-		bool m_flingDecrease;
-		float m_flingEdgeRange;
+		/* translate */
+		EaseExpr* m_transitionExpr;
 
 
 
-		EaseExpr* m_flingEasing;
 
-		/* bounceBack mode */
-		EaseExpr* m_bounceExpr;
+		float m_minScrollX;
+		float m_maxScrollX;
+		float m_minScrollY;
+		float m_maxScrollY;
+
+
+
+
+		bool m_isInTransition;
+
+		float m_positionX;
+		float m_positionY;
 
 };
+
 
 
 
