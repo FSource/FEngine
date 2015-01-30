@@ -7,10 +7,6 @@ class ListView:public ScrollWidget
 		static ListView* __ListView__create@create(E_ScrollDirection mode,float width,float height);
 		static ListView* __ListView__create@create(float width,float height);
 
-	public:
-
-		/* inherit ScrollWidget */
-		virtual void scrollChange(float x,float y);
 
 	public:
 		void setListGap(float value);

@@ -1,7 +1,7 @@
 $#include "stage/action/FsAction.h"
 
 
-class Action
+class Action:public FsObject
 {
 	public:
 		static Action* __Action__create@create();

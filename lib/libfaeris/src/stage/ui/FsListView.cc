@@ -508,10 +508,14 @@ void ListView::init(E_ScrollDirection mode,float w,float h)
 
 	if(mode==E_ScrollDirection::VERTICAL)
 	{
+		setScrollXEnabled(false);
+		setScrollYEnabled(true);
 		setContentAlign(E_AlignH::CENTER,E_AlignV::TOP);
 	}
 	else 
 	{
+		setScrollXEnabled(true);
+		setScrollYEnabled(false);
 		setContentAlign(E_AlignH::LEFT,E_AlignV::CENTER);
 	}
 	setSize(w,h);
@@ -524,7 +528,7 @@ void ListView::init(E_ScrollDirection mode,float w,float h)
 
 void ListView::setMode(E_ScrollDirection mode)
 {
-	setScrollMode(mode);
+	//setScrollMode(mode);
 	m_contentPanel->setMode(mode);
 
 	adjustContentSize();
@@ -666,7 +670,7 @@ void ListView::layout()
 }
 
 
-void ListView::scrollChange(float x,float y)
+void ListView::layoutContentWidget(float x,float y)
 {
 	//FS_TRACE_WARN("x=%f,y=%f",x,y);
 

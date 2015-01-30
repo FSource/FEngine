@@ -35,7 +35,7 @@
 
 NS_FS_BEGIN
 
-class QuartEase:EaseExpr 
+class QuartEase:public EaseExpr 
 {
 	public:
 		static QuartEase* create();

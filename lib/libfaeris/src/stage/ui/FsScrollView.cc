@@ -89,8 +89,7 @@ void ScrollView::setContentWidget(UiWidget* widget)
 	{
 		ScrollWidget::removeChild(m_contentWidget);
 		m_contentWidget=NULL;
-		m_contentHeight=0;
-		m_contentWidth=0;
+		setContentSize(0,0);
 	}
 
 
@@ -103,11 +102,8 @@ void ScrollView::setContentWidget(UiWidget* widget)
 		float minx,maxx,miny,maxy;
 		widget->getRSBoundSize2D(&minx,&maxx,&miny,&maxy);
 
-		m_contentWidth=maxx-minx;
-		m_contentHeight=maxy-miny;
+		setContentSize(maxx-minx,maxy-miny);
 	}
-
-	adjustScrollArea();
 	setScrollPercent(0,0);
 }
 
@@ -117,7 +113,7 @@ UiWidget* ScrollView::getContentWidget()
 }
 
 
-void ScrollView::scrollChange(float x,float y)
+void ScrollView::layoutContentWidget(float x,float y)
 {
 	if(!m_contentWidget)
 	{

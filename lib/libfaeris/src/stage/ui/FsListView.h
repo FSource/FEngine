@@ -50,10 +50,6 @@ class ListView:public ScrollWidget
 		static ListView* create(E_ScrollDirection mode,float width,float height);
 		static ListView* create(float width,float height);
 
-	public:
-
-		/* inherit ScrollWidget */
-		virtual void scrollChange(float x,float y);
 		
 	public:
 		void setMode(E_ScrollDirection mode);
@@ -111,6 +107,8 @@ class ListView:public ScrollWidget
 		void childTransformChanged(UiWidget* widget) FS_OVERRIDE;
 
 		void adjustContentSize();
+
+		void layoutContentWidget(float x,float y) FS_OVERRIDE;
 
 
 	protected:

@@ -200,7 +200,6 @@
     <ClInclude Include="..\..\src\stage\ui\FsPageView.h" />
     <ClInclude Include="..\..\src\stage\ui\FsPressButton.h" />
     <ClInclude Include="..\..\src\stage\ui\FsProcessBar.h" />
-    <ClInclude Include="..\..\src\stage\ui\FsScroller.h" />
     <ClInclude Include="..\..\src\stage\ui\FsScrollView.h" />
     <ClInclude Include="..\..\src\stage\ui\FsScrollWidget.h" />
     <ClInclude Include="..\..\src\stage\ui\FsStateButton.h" />
@@ -360,7 +359,6 @@
     <ClCompile Include="..\..\src\stage\ui\FsPageView.cc" />
     <ClCompile Include="..\..\src\stage\ui\FsPressButton.cc" />
     <ClCompile Include="..\..\src\stage\ui\FsProcessBar.cc" />
-    <ClCompile Include="..\..\src\stage\ui\FsScroller.cc" />
     <ClCompile Include="..\..\src\stage\ui\FsScrollView.cc" />
     <ClCompile Include="..\..\src\stage\ui\FsScrollWidget.cc" />
     <ClCompile Include="..\..\src\stage\ui\FsStateButton.cc" />
