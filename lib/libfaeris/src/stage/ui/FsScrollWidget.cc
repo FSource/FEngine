@@ -138,6 +138,8 @@ bool ScrollWidget::touchBegin(float x,float y)
 		m_lastPosY=y;
 		m_isAnimating=false;
 		m_isDrag=true;
+		
+		UiWidget::touchBegin(x,y);
 		return true;
 	}
 	m_isAnimating=false;
@@ -185,7 +187,7 @@ bool ScrollWidget::touchMove(float x,float y)
 
 	if(!m_isDrag)
 	{
-		FS_TRACE_WARN("%f,%f,d=%f,%f",cur_time,m_startTime,abs_distx,abs_disty);
+		//FS_TRACE_WARN("%f,%f,d=%f,%f",cur_time,m_startTime,abs_distx,abs_disty);
 		if((cur_time-m_startTime)<m_tapTimeToScroll &&((abs_distx<m_tapDistanceToScroll)&& (abs_disty<m_tapDistanceToScroll)))
 		{
 			return true;
@@ -295,7 +297,7 @@ bool ScrollWidget::touchEnd(float x,float y)
 
 	if(doEdgeOut(m_bounceTime))
 	{
-		FS_TRACE_WARN("doEdgeOut");
+		//FS_TRACE_WARN("doEdgeOut");
 		UiWidget::touchEnd(x,y);
 		return true;
 	}
@@ -306,7 +308,7 @@ bool ScrollWidget::touchEnd(float x,float y)
 		m_isAnimating=false;
 		FS_OBJECT_LAMBDA_CALL(this,onScrollCancel,scrollCancel);
 
-		FS_TRACE_WARN("undrag");
+		//FS_TRACE_WARN("undrag");
 		UiWidget::touchEnd(x,y);
 		return true;
 	}
@@ -359,12 +361,12 @@ bool ScrollWidget::touchEnd(float x,float y)
 	float time=Math::maxf(time_x,time_y);
 	if(des_x<m_minScrollX||des_x>m_maxScrollX||des_y<m_minScrollY||des_y>m_maxScrollY)
 	{
-		FS_TRACE_WARN("bounce out easing");
+		//FS_TRACE_WARN("bounce out easing");
 		scrollTo(des_x,des_y,time,m_animatingOutEdgeEasing);
 	}
 	else 
 	{
-		FS_TRACE_WARN("normal easing");
+		//FS_TRACE_WARN("normal easing");
 		scrollTo(des_x,des_y,time,m_animatingEasing);
 	}
 
@@ -504,7 +506,7 @@ void ScrollWidget::calMomentum(float cur_pos,float start,
 
 	float distance=cur_pos-start;
 	float speed=Math::abs(distance)/duration;
-	FS_TRACE_WARN("distance=%f,speed=%f",distance,speed);
+	//FS_TRACE_WARN("distance=%f,speed=%f",distance,speed);
 
 	if(deceleration<=0)
 	{
@@ -519,14 +521,23 @@ void ScrollWidget::calMomentum(float cur_pos,float start,
 
 	if(destination<min)
 	{
-		destination= min-(wrap_size/4.0f);
+		float tmp= min-(wrap_size/4.0f);
+		if (destination<tmp)
+		{
+			destination= tmp;
+		}
+
 		distance=Math::abs(destination-cur_pos);
 		duration=distance/speed;
 	}
 
 	else if(destination>max)
 	{
-		destination=max+(wrap_size/4.0f);
+		float tmp= max+(wrap_size/4.0f);
+		if(destination> tmp) 
+		{
+			destination=tmp;
+		}
 		distance=Math::abs(destination-cur_pos);
 		duration=distance/speed;
 	}
@@ -760,82 +771,82 @@ void ScrollWidget::adjustScrollArea()
 	switch(m_alignh)
 	{
 
-		case E_AlignH::LEFT:
+	case E_AlignH::LEFT:
+		{
+			m_maxScrollX=m_edgeBLeft;
+			m_minScrollX=m_edgeBRight-m_contentWidth;
+
+			if(m_minScrollX>m_maxScrollX)
 			{
-				m_maxScrollX=m_edgeBLeft;
-				m_minScrollX=m_edgeBRight-m_contentWidth;
-
-				if(m_minScrollX>m_maxScrollX)
-				{
-					m_minScrollX=m_maxScrollX;
-				}
+				m_minScrollX=m_maxScrollX;
 			}
-			break;
+		}
+		break;
 
-		case E_AlignH::CENTER:
+	case E_AlignH::CENTER:
+		{
+			float middle=(m_edgeBLeft+m_edgeBRight)/2;
+			float diff=m_contentWidth/2-(m_edgeBRight-m_edgeBLeft)/2;
+			if(diff<0)
 			{
-				float middle=(m_edgeBLeft+m_edgeBRight)/2;
-				float diff=m_contentWidth/2-(m_edgeBRight-m_edgeBLeft)/2;
-				if(diff<0)
-				{
-					diff=0;
-				}
-
-				m_minScrollX=middle-diff;
-				m_maxScrollX=middle+diff;
+				diff=0;
 			}
-			break;
 
-		case E_AlignH::RIGHT:
+			m_minScrollX=middle-diff;
+			m_maxScrollX=middle+diff;
+		}
+		break;
+
+	case E_AlignH::RIGHT:
+		{
+			m_minScrollX=m_edgeBRight;
+			m_maxScrollX=m_edgeBLeft+m_contentWidth;
+
+			if(m_maxScrollX<m_minScrollX)
 			{
-				m_minScrollX=m_edgeBRight;
-				m_maxScrollX=m_edgeBLeft+m_contentWidth;
+				m_maxScrollX=m_minScrollX;
 
-				if(m_maxScrollX<m_minScrollX)
-				{
-					m_maxScrollX=m_minScrollX;
-
-				}
 			}
-			break;
+		}
+		break;
 	}
 
 	switch(m_alignv)
 	{
-		case E_AlignV::TOP:
+	case E_AlignV::TOP:
+		{
+			m_minScrollY=m_edgeBTop;
+			m_maxScrollY=m_edgeBBottom+m_contentHeight;
+			if(m_maxScrollY<m_minScrollY)
 			{
-				m_minScrollY=m_edgeBTop;
-				m_maxScrollY=m_edgeBBottom+m_contentHeight;
-				if(m_maxScrollY<m_minScrollY)
-				{
-					m_maxScrollY=m_minScrollY;
-				}
+				m_maxScrollY=m_minScrollY;
 			}
-			break;
+		}
+		break;
 
-		case E_AlignV::CENTER:
+	case E_AlignV::CENTER:
+		{
+			float middle=(m_edgeBTop+m_edgeBBottom)/2;
+			float diff=m_contentHeight/2-(m_edgeBTop-m_edgeBBottom)/2;
+			if(diff<0)
 			{
-				float middle=(m_edgeBTop+m_edgeBBottom)/2;
-				float diff=m_contentHeight/2-(m_edgeBTop-m_edgeBBottom)/2;
-				if(diff<0)
-				{
-					diff=0;
-				}
-				m_minScrollY=middle-diff;
-				m_maxScrollY=middle+diff;
+				diff=0;
 			}
-			break;
+			m_minScrollY=middle-diff;
+			m_maxScrollY=middle+diff;
+		}
+		break;
 
-		case E_AlignV::BOTTOM:
+	case E_AlignV::BOTTOM:
+		{
+			m_maxScrollY=m_edgeBBottom;
+			m_minScrollY=m_edgeBTop-m_contentHeight;
+			if(m_minScrollY>m_maxScrollY)
 			{
-				m_maxScrollY=m_edgeBBottom;
-				m_minScrollY=m_edgeBTop-m_contentHeight;
-				if(m_minScrollY>m_maxScrollY)
-				{
-					m_minScrollY=m_maxScrollY;
-				}
+				m_minScrollY=m_maxScrollY;
 			}
-			break;
+		}
+		break;
 	}
 
 	layoutContentWidget(m_positionX,m_positionY);
