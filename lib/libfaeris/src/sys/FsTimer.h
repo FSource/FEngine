@@ -3,7 +3,7 @@
 #include "FsMacros.h"
 #include "FsConfig.h"
 
-#if FS_PLATFORM_OS(FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_ANDROID) || FS_PLATFORM_OS(FS_OS_OSX)
+#if FS_PLATFORM_OS(FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_ANDROID) || FS_PLATFORM_OS(FS_OS_OSX) || FS_PLATFORM_OS(FS_OS_IOS)
 	#include <sys/time.h>
 	typedef struct timeval PlatformTimeVal;
 #elif FS_PLATFORM_OS(FS_OS_WIN32)
@@ -16,6 +16,7 @@
 #else 
 	#error "Unsupport Platform OS"
 #endif 
+
 
 NS_FS_BEGIN
 
