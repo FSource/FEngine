@@ -1,0 +1,277 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC1E4AF81A7F537B0009E59F /* fb2ContactListener.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AF21A7F537B0009E59F /* fb2ContactListener.cc */; };
+		DC1E4AF91A7F537B0009E59F /* fb2Draw.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AF41A7F537B0009E59F /* fb2Draw.cc */; };
+		DC1E4AFA1A7F537B0009E59F /* fb2Transform.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AF61A7F537B0009E59F /* fb2Transform.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DC1E4A7C1A7F4AD90009E59F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DC1E4A981A7F4B130009E59F /* liblib3rdextendsd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblib3rdextendsd.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC1E4AF21A7F537B0009E59F /* fb2ContactListener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fb2ContactListener.cc; sourceTree = "<group>"; };
+		DC1E4AF31A7F537B0009E59F /* fb2ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fb2ContactListener.h; sourceTree = "<group>"; };
+		DC1E4AF41A7F537B0009E59F /* fb2Draw.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fb2Draw.cc; sourceTree = "<group>"; };
+		DC1E4AF51A7F537B0009E59F /* fb2Draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fb2Draw.h; sourceTree = "<group>"; };
+		DC1E4AF61A7F537B0009E59F /* fb2Transform.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fb2Transform.cc; sourceTree = "<group>"; };
+		DC1E4AF71A7F537B0009E59F /* fb2Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fb2Transform.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC1E4A7B1A7F4AD90009E59F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC1E4A751A7F4AD90009E59F = {
+			isa = PBXGroup;
+			children = (
+				DC1E4AF01A7F537B0009E59F /* src */,
+				DC1E4A981A7F4B130009E59F /* liblib3rdextendsd.a */,
+			);
+			sourceTree = "<group>";
+		};
+		DC1E4AF01A7F537B0009E59F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DC1E4AF11A7F537B0009E59F /* box2d */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+		DC1E4AF11A7F537B0009E59F /* box2d */ = {
+			isa = PBXGroup;
+			children = (
+				DC1E4AF21A7F537B0009E59F /* fb2ContactListener.cc */,
+				DC1E4AF31A7F537B0009E59F /* fb2ContactListener.h */,
+				DC1E4AF41A7F537B0009E59F /* fb2Draw.cc */,
+				DC1E4AF51A7F537B0009E59F /* fb2Draw.h */,
+				DC1E4AF61A7F537B0009E59F /* fb2Transform.cc */,
+				DC1E4AF71A7F537B0009E59F /* fb2Transform.h */,
+			);
+			path = box2d;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC1E4A7D1A7F4AD90009E59F /* lib3rdextends */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC1E4A921A7F4AD90009E59F /* Build configuration list for PBXNativeTarget "lib3rdextends" */;
+			buildPhases = (
+				DC1E4A7A1A7F4AD90009E59F /* Sources */,
+				DC1E4A7B1A7F4AD90009E59F /* Frameworks */,
+				DC1E4A7C1A7F4AD90009E59F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lib3rdextends;
+			productName = libextends;
+			productReference = DC1E4A981A7F4B130009E59F /* liblib3rdextendsd.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC1E4A761A7F4AD90009E59F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = NosicLin;
+				TargetAttributes = {
+					DC1E4A7D1A7F4AD90009E59F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = DC1E4A791A7F4AD90009E59F /* Build configuration list for PBXProject "lib3rdextends" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DC1E4A751A7F4AD90009E59F;
+			productRefGroup = DC1E4A751A7F4AD90009E59F;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC1E4A7D1A7F4AD90009E59F /* lib3rdextends */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC1E4A7A1A7F4AD90009E59F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC1E4AF91A7F537B0009E59F /* fb2Draw.cc in Sources */,
+				DC1E4AFA1A7F537B0009E59F /* fb2Transform.cc in Sources */,
+				DC1E4AF81A7F537B0009E59F /* fb2ContactListener.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DC1E4A901A7F4AD90009E59F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../../library/ios/";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DC1E4A911A7F4AD90009E59F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../../library/ios/";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC1E4A931A7F4AD90009E59F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = (
+					"-I../../../../lib3rdparty/Box2D/",
+					"-DIOS",
+					"-I../../../../libfaeris/src/support",
+					"-I../../../../libfaeris/src",
+					"-I../../src",
+					"-I../../../../libextends/libluaexport/src",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib3rdextendsd;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DC1E4A941A7F4AD90009E59F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = (
+					"-I../../../../lib3rdparty/Box2D/",
+					"-DIOS",
+					"-I../../../../libfaeris/src/support",
+					"-I../../../../libfaeris/src",
+					"-I../../src",
+					"-I../../../../libextends/libluaexport/src",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = lib3rdextends;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC1E4A791A7F4AD90009E59F /* Build configuration list for PBXProject "lib3rdextends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC1E4A901A7F4AD90009E59F /* Debug */,
+				DC1E4A911A7F4AD90009E59F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC1E4A921A7F4AD90009E59F /* Build configuration list for PBXNativeTarget "lib3rdextends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC1E4A931A7F4AD90009E59F /* Debug */,
+				DC1E4A941A7F4AD90009E59F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC1E4A761A7F4AD90009E59F /* Project object */;
+}
