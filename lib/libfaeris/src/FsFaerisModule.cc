@@ -527,6 +527,8 @@ int FsFaeris_PlatformInit()
 }
 NS_FS_END
 
+
+
 #elif FS_PLATFORM_OS(FS_OS_ANDROID) 
 #include <jni.h>
 #include "sys/FsSys.h"
@@ -567,8 +569,11 @@ int FsFaeris_PlatformInit()
 	/* add name filter */
 	VFS::PrefixNameFilter* assets_filter=VFS::PrefixNameFilter::create("assets/");
 	VFS::addFilter(assets_filter);
+	return 0;
 }
 NS_FS_END
+
+
 
 
 #elif FS_PLATFORM_OS(FS_OS_IOS)

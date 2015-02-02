@@ -33,6 +33,7 @@
 #include <float.h>
 #include <math.h>
 #include <limits.h>
+#include <cJson.h>
 
 NS_FS_BEGIN
 

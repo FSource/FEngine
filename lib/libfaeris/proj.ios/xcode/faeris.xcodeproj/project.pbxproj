@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC59D1D31A74C3CE000A4799 /* FsAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC59D1D21A74C3CE000A4799 /* FsAppDelegate.mm */; };
+		DC59D1D61A74CA49000A4799 /* FsWindowIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC59D1D51A74CA49000A4799 /* FsWindowIos.mm */; };
+		DC59D1D91A74E0C2000A4799 /* FsGLESView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC59D1D81A74E0C2000A4799 /* FsGLESView.mm */; };
+		DC91F13B1A76A1F100AC38E0 /* FsFlatformIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC91F13A1A76A1F100AC38E0 /* FsFlatformIos.mm */; };
 		DCC0124F1A716AEC0060D167 /* FsScriptEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC0109D1A716AEC0060D167 /* FsScriptEngine.cc */; };
 		DCC012501A716AEC0060D167 /* FsClass.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC0109F1A716AEC0060D167 /* FsClass.cc */; };
 		DCC012511A716AEC0060D167 /* FsEnums.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC010A21A716AEC0060D167 /* FsEnums.cc */; };
@@ -185,6 +189,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DC59D1D21A74C3CE000A4799 /* FsAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FsAppDelegate.mm; path = platform/ios/FsAppDelegate.mm; sourceTree = "<group>"; };
+		DC59D1D41A74C3F8000A4799 /* FsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FsAppDelegate.h; path = platform/ios/FsAppDelegate.h; sourceTree = "<group>"; };
+		DC59D1D51A74CA49000A4799 /* FsWindowIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FsWindowIos.mm; path = platform/ios/FsWindowIos.mm; sourceTree = "<group>"; };
+		DC59D1D71A74E0C2000A4799 /* FsGLESView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FsGLESView.h; path = platform/ios/FsGLESView.h; sourceTree = "<group>"; };
+		DC59D1D81A74E0C2000A4799 /* FsGLESView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FsGLESView.mm; path = platform/ios/FsGLESView.mm; sourceTree = "<group>"; };
+		DC91F13A1A76A1F100AC38E0 /* FsFlatformIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FsFlatformIos.mm; path = platform/ios/FsFlatformIos.mm; sourceTree = "<group>"; };
 		DCC010991A716AD20060D167 /* libfaerisd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfaerisd.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC0109D1A716AEC0060D167 /* FsScriptEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsScriptEngine.cc; sourceTree = "<group>"; };
 		DCC0109E1A716AEC0060D167 /* FsScriptEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsScriptEngine.h; sourceTree = "<group>"; };
@@ -562,6 +572,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC59D1D11A74C3AB000A4799 /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				DC91F13A1A76A1F100AC38E0 /* FsFlatformIos.mm */,
+				DC59D1D71A74E0C2000A4799 /* FsGLESView.h */,
+				DC59D1D81A74E0C2000A4799 /* FsGLESView.mm */,
+				DC59D1D51A74CA49000A4799 /* FsWindowIos.mm */,
+				DC59D1D41A74C3F8000A4799 /* FsAppDelegate.h */,
+				DC59D1D21A74C3CE000A4799 /* FsAppDelegate.mm */,
+			);
+			name = platform;
+			sourceTree = "<group>";
+		};
 		DCC010761A716ABB0060D167 = {
 			isa = PBXGroup;
 			children = (
@@ -1082,6 +1105,7 @@
 		DCC012071A716AEC0060D167 /* sys */ = {
 			isa = PBXGroup;
 			children = (
+				DC59D1D11A74C3AB000A4799 /* platform */,
 				DCC012081A716AEC0060D167 /* event */,
 				DCC012121A716AEC0060D167 /* FsKeyCode.h */,
 				DCC012131A716AEC0060D167 /* FsSys.cc */,
@@ -1252,6 +1276,7 @@
 				DCC012F71A716AEC0060D167 /* FsZipPackage.cc in Sources */,
 				DCC012511A716AEC0060D167 /* FsEnums.cc in Sources */,
 				DCC012871A716AEC0060D167 /* FsFontBitmapMgr.cc in Sources */,
+				DC59D1D31A74C3CE000A4799 /* FsAppDelegate.mm in Sources */,
 				DCC013091A716AEC0060D167 /* FsMutex.cc in Sources */,
 				DCC0128B1A716AEC0060D167 /* FsResourceMgr.cc in Sources */,
 				DCC012B21A716AEC0060D167 /* FsDynamicView.cc in Sources */,
@@ -1278,6 +1303,7 @@
 				DCC012F01A716AEC0060D167 /* FsFgzPackage.cc in Sources */,
 				DCC012D91A716AEC0060D167 /* FsImageFaw.cc in Sources */,
 				DCC012891A716AEC0060D167 /* FsProgramSourceMgr.cc in Sources */,
+				DC91F13B1A76A1F100AC38E0 /* FsFlatformIos.mm in Sources */,
 				DCC012571A716AEC0060D167 /* FsFontBitmap.cc in Sources */,
 				DCC012B81A716AEC0060D167 /* FsScrollView.cc in Sources */,
 				DCC0129B1A716AEC0060D167 /* FsEntity2D.cc in Sources */,
@@ -1362,6 +1388,7 @@
 				DCC012651A716AEC0060D167 /* FsProgram.cc in Sources */,
 				DCC012541A716AEC0060D167 /* FsObject.cc in Sources */,
 				DCC012971A716AEC0060D167 /* FsRotateAction.cc in Sources */,
+				DC59D1D91A74E0C2000A4799 /* FsGLESView.mm in Sources */,
 				DCC012921A716AEC0060D167 /* FsCurve3Action.cc in Sources */,
 				DCC0130B1A716AEC0060D167 /* FsThread.cc in Sources */,
 				DCC012CB1A716AEC0060D167 /* sl_double_quote_str.cc in Sources */,
@@ -1387,6 +1414,7 @@
 				DCC0126D1A716AEC0060D167 /* FsBezierEase.cc in Sources */,
 				DCC012B31A716AEC0060D167 /* FsListView.cc in Sources */,
 				DCC012951A716AEC0060D167 /* FsMoveAction.cc in Sources */,
+				DC59D1D61A74CA49000A4799 /* FsWindowIos.mm in Sources */,
 				DCC012BE1A716AEC0060D167 /* FsVelocityTracker.cc in Sources */,
 				DCC012931A716AEC0060D167 /* FsFixTimeAction.cc in Sources */,
 				DCC0129F1A716AEC0060D167 /* FsParticle2DEmitter.cc in Sources */,
@@ -1501,6 +1529,7 @@
 		DCC010941A716ABB0060D167 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../library/ios/";
@@ -1531,6 +1560,7 @@
 		DCC010951A716ABB0060D167 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../library/ios/";
