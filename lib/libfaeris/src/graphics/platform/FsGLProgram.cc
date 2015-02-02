@@ -3,7 +3,9 @@
 	#include "GL_Android/gles_2.0.h"
 #elif FS_PLATFORM_OS(FS_OS_OSX)
 	#include "GL/glew.h"
-#else 
+#elif FS_PLATFORM_OS(FS_OS_IOS)
+    #include "GL_IOS/gl_ios_es.h"
+#else
 	#include "GL/glew.h"
 #endif 
 
