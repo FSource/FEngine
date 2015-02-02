@@ -5,13 +5,21 @@ include $(CLEAR_VARS)
 LOCAL_MODULE :=freetype_static 
 
 LOCAL_SRC_FILES := ../../src/base/ftbbox.c  \
+				   ../../src/base/ftbase.c \
+				   ../../src/base/ftbitmap.c \
+				   ../../src/base/ftfstype.c \
 				   ../../src/base/ftgxval.c \
+				   ../../src/base/ftgasp.c \
+				   ../../src/base/ftglyph.c \
+				   ../../src/base/ftinit.c \
 				   ../../src/base/ftlcdfil.c \
 				   ../../src/base/ftmm.c \
 				   ../../src/base/ftotval.c \
 				   ../../src/base/ftpatent.c \
 				   ../../src/base/ftpfr.c \
 				   ../../src/base/ftsynth.c \
+				   ../../src/base/ftstroke.c \
+				   ../../src/base/ftsystem.c \
 				   ../../src/base/fttype1.c \
 				   ../../src/base/ftwinfnt.c \
 				   ../../src/base/ftxf86.c \
@@ -30,17 +38,9 @@ LOCAL_SRC_FILES := ../../src/base/ftbbox.c  \
 				   ../../src/autofit/autofit.c \
 				   ../../src/bdf/bdf.c \
 				   ../../src/cff/cff.c \
-				   ../../src/base/ftbase.c \
-				   ../../src/base/ftbitmap.c \
 				   ../../src/cache/ftcache.c \
-				   ../../src/base/ftfstype.c \
-				   ../../src/base/ftgasp.c \
-				   ../../src/base/ftglyph.c \
 				   ../../src/gzip/ftgzip.c \
-				   ../../src/base/ftinit.c \
 				   ../../src/lzw/ftlzw.c \
-				   ../../src/base/ftstroke.c \
-				   ../../src/base/ftsystem.c \
 				   ../../src/smooth/smooth.c \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../include  

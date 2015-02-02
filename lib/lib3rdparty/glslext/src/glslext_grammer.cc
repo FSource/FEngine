@@ -417,7 +417,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   79
+#define YYLAST   81
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  21
@@ -426,7 +426,7 @@ union yyalloc
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  39
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  82
+#define YYNSTATES  83
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -530,8 +530,8 @@ static const yytype_int8 yypact[] =
       18,    29,    -5,    50,    -1,    -1,    40,    17,    -5,    -5,
       -5,    41,    42,    -5,     1,    -5,    -5,    -5,    26,    -5,
       -5,    48,    -5,    46,     4,    52,    -5,    59,    60,    -1,
-      54,    55,    -2,    62,    -5,    58,    -5,    -1,    67,    -1,
-      -5,    -1
+      54,    55,    -2,    62,    -5,    58,    -5,    -1,    65,    -1,
+      69,    -5,    -1
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -547,14 +547,14 @@ static const yytype_uint8 yydefact[] =
       24,     0,     0,    10,     0,    12,    28,    14,     0,    16,
       19,     0,    21,     0,     0,     0,    38,     0,     0,    13,
        0,     0,     0,     0,    38,     0,    38,    17,     0,    22,
-      38,    18
+       0,    38,    18
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
       -5,    -5,    -5,    47,    -5,    -5,    -5,    -5,    -5,    -5,
-      -5,    -5,    -5,    -5,    -5,    53,    45,    11,    -4
+      -5,    -5,    -5,    -5,    -5,    56,    45,    11,    -4
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -576,10 +576,11 @@ static const yytype_uint8 yytable[] =
       33,    34,    64,    25,    35,    36,    37,    38,    39,     9,
       26,    27,    49,    53,    57,    60,     9,     9,    49,    54,
       58,    61,    69,    50,    65,    66,    68,    70,    71,    28,
-      77,    76,    79,    72,    73,    78,    81,    80,    43,    47
+      77,    76,    79,    72,    73,    78,    80,    82,    81,    47,
+       0,    43
 };
 
-static const yytype_uint8 yycheck[] =
+static const yytype_int8 yycheck[] =
 {
        4,     5,     6,     7,     8,     0,    10,     9,    10,     3,
        4,     5,     6,     7,    12,    12,    15,    18,    14,    23,
@@ -588,7 +589,8 @@ static const yytype_uint8 yycheck[] =
       11,    12,    16,    12,    15,    16,    17,    18,    19,    18,
       12,    12,    41,    13,    13,    13,    18,    18,    47,    19,
       19,    19,    66,    13,    16,    19,    14,     8,     8,    22,
-      74,     9,    76,    19,    19,    17,    80,    10,    25,    34
+      74,     9,    76,    19,    19,    17,    11,    81,     9,    34,
+      -1,    25
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -603,7 +605,7 @@ static const yytype_uint8 yystos[] =
       13,    29,    32,    13,    19,    27,    13,    13,    19,    30,
       13,    19,    33,    15,    16,    16,    19,    14,    14,    39,
        8,     8,    19,    19,     9,    10,     9,    39,    17,    39,
-      10,    39
+      11,     9,    39
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -619,7 +621,7 @@ static const yytype_uint8 yyr1[] =
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     3,     1,     3,     1,     1,     1,     1,     1,
-       6,     0,     2,     4,     6,     0,     2,     7,     9,     6,
+       6,     0,     2,     4,     6,     0,     2,     7,    10,     6,
        0,     2,     7,     5,     5,     1,     1,     2,     3,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     0,     2
 };
@@ -1308,7 +1310,7 @@ yyreduce:
     {
 	param->addFeature((yyvsp[-3].istring),(yyvsp[-1].istring));
 }
-#line 1312 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1314 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 17:
@@ -1316,16 +1318,16 @@ yyreduce:
     {
 		param->addUniformMap((yyvsp[-6].istring),NULL,(yyvsp[-2].istring));
 	}
-#line 1320 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1322 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 102 "../src/rule/glslext_grammer.y" /* yacc.c:1646  */
     {
-		param->addUniformMap((yyvsp[-8].istring),NULL,(yyvsp[-4].istring),atoi((yyvsp[-2].istring)->c_str()));
-		delete (yyvsp[-2].istring);
+		param->addUniformMap((yyvsp[-9].istring),NULL,(yyvsp[-5].istring),atoi((yyvsp[-3].istring)->c_str()));
+		delete (yyvsp[-3].istring);
 	}
-#line 1329 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1331 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 22:
@@ -1333,7 +1335,7 @@ yyreduce:
     {
 		param->addAttributeMap((yyvsp[-6].istring),NULL,(yyvsp[-2].istring));
 	}
-#line 1337 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1339 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 23:
@@ -1341,7 +1343,7 @@ yyreduce:
     {
 		param->setVertexSrc((yyvsp[-1].istring));
 	}
-#line 1345 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1347 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 24:
@@ -1350,7 +1352,7 @@ yyreduce:
 		param->setFragmentSrc((yyvsp[-1].istring));
 		
 	}
-#line 1354 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1356 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 25:
@@ -1358,7 +1360,7 @@ yyreduce:
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1362 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1364 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 26:
@@ -1366,7 +1368,7 @@ yyreduce:
     {
 	(yyval.istring)=(yyvsp[0].istring);
 }
-#line 1370 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1372 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 27:
@@ -1377,7 +1379,7 @@ yyreduce:
 	(yyval.istring)=(yyvsp[-1].istring);
 	delete (yyvsp[0].istring);
 }
-#line 1381 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1383 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 28:
@@ -1388,7 +1390,7 @@ yyreduce:
 	tmp->append("  }");
 	(yyval.istring)=tmp;
 }
-#line 1392 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1394 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 29:
@@ -1396,7 +1398,7 @@ yyreduce:
     {
 		(yyval.istring)=new std::string("\n");
 	}
-#line 1400 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1402 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 30:
@@ -1404,7 +1406,7 @@ yyreduce:
     {
 		(yyval.istring)=new std::string("(");
 	}
-#line 1408 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1410 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 31:
@@ -1412,7 +1414,7 @@ yyreduce:
     {
 		(yyval.istring)=new std::string(")");
 	}
-#line 1416 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1418 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 32:
@@ -1420,7 +1422,7 @@ yyreduce:
     {
 		(yyval.istring)=new std::string("[");
 	}
-#line 1424 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1426 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 33:
@@ -1428,7 +1430,7 @@ yyreduce:
     {
 		(yyval.istring)=new std::string("]");
 	}
-#line 1432 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1434 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 34:
@@ -1436,7 +1438,7 @@ yyreduce:
     {
 		(yyval.istring)=new std::string(":");
 	}
-#line 1440 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1442 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 35:
@@ -1444,7 +1446,7 @@ yyreduce:
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1448 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1450 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 36:
@@ -1452,7 +1454,7 @@ yyreduce:
     {
 		(yyval.istring)=(yyvsp[0].istring);
 	}
-#line 1456 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1458 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
   case 37:
@@ -1460,11 +1462,11 @@ yyreduce:
     {
 		(yyval.istring)=new std::string("=");
 	}
-#line 1464 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1466 "../src/glslext_grammer.cc" /* yacc.c:1646  */
     break;
 
 
-#line 1468 "../src/glslext_grammer.cc" /* yacc.c:1646  */
+#line 1470 "../src/glslext_grammer.cc" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

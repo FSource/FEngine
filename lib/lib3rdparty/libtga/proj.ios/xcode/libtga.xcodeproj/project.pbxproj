@@ -1,0 +1,259 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DCC00F151A7161820060D167 /* tga.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00F0E1A7161820060D167 /* tga.c */; };
+		DCC00F161A7161820060D167 /* tgaio.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00F111A7161820060D167 /* tgaio.c */; };
+		DCC00F171A7161820060D167 /* tgaread.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00F131A7161820060D167 /* tgaread.c */; };
+		DCC00F181A7161820060D167 /* tgawrite.c in Sources */ = {isa = PBXBuildFile; fileRef = DCC00F141A7161820060D167 /* tgawrite.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DCC00EF01A7161100060D167 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DCC00F0C1A7161360060D167 /* liblibtgad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibtgad.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC00F0E1A7161820060D167 /* tga.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tga.c; sourceTree = "<group>"; };
+		DCC00F0F1A7161820060D167 /* tga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tga.h; sourceTree = "<group>"; };
+		DCC00F101A7161820060D167 /* tgaconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tgaconfig.h; sourceTree = "<group>"; };
+		DCC00F111A7161820060D167 /* tgaio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tgaio.c; sourceTree = "<group>"; };
+		DCC00F121A7161820060D167 /* tgaio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tgaio.h; sourceTree = "<group>"; };
+		DCC00F131A7161820060D167 /* tgaread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tgaread.c; sourceTree = "<group>"; };
+		DCC00F141A7161820060D167 /* tgawrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tgawrite.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCC00EEF1A7161100060D167 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DCC00EE91A7161100060D167 = {
+			isa = PBXGroup;
+			children = (
+				DCC00F0D1A7161820060D167 /* src */,
+				DCC00F0C1A7161360060D167 /* liblibtgad.a */,
+			);
+			sourceTree = "<group>";
+		};
+		DCC00F0D1A7161820060D167 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DCC00F0E1A7161820060D167 /* tga.c */,
+				DCC00F0F1A7161820060D167 /* tga.h */,
+				DCC00F101A7161820060D167 /* tgaconfig.h */,
+				DCC00F111A7161820060D167 /* tgaio.c */,
+				DCC00F121A7161820060D167 /* tgaio.h */,
+				DCC00F131A7161820060D167 /* tgaread.c */,
+				DCC00F141A7161820060D167 /* tgawrite.c */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DCC00EF11A7161100060D167 /* libtga */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCC00F061A7161100060D167 /* Build configuration list for PBXNativeTarget "libtga" */;
+			buildPhases = (
+				DCC00EEE1A7161100060D167 /* Sources */,
+				DCC00EEF1A7161100060D167 /* Frameworks */,
+				DCC00EF01A7161100060D167 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libtga;
+			productName = libtga;
+			productReference = DCC00F0C1A7161360060D167 /* liblibtgad.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCC00EEA1A7161100060D167 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = NosicLin;
+				TargetAttributes = {
+					DCC00EF11A7161100060D167 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = DCC00EED1A7161100060D167 /* Build configuration list for PBXProject "libtga" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DCC00EE91A7161100060D167;
+			productRefGroup = DCC00EE91A7161100060D167;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCC00EF11A7161100060D167 /* libtga */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCC00EEE1A7161100060D167 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCC00F161A7161820060D167 /* tgaio.c in Sources */,
+				DCC00F151A7161820060D167 /* tga.c in Sources */,
+				DCC00F181A7161820060D167 /* tgawrite.c in Sources */,
+				DCC00F171A7161820060D167 /* tgaread.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DCC00F041A7161100060D167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DCC00F051A7161100060D167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DCC00F071A7161100060D167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../../library/ios/3rdparty";
+				OTHER_CFLAGS = "-I../../src";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)d";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DCC00F081A7161100060D167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../../library/ios/3rdparty";
+				OTHER_CFLAGS = "-I../../src";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCC00EED1A7161100060D167 /* Build configuration list for PBXProject "libtga" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCC00F041A7161100060D167 /* Debug */,
+				DCC00F051A7161100060D167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCC00F061A7161100060D167 /* Build configuration list for PBXNativeTarget "libtga" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCC00F071A7161100060D167 /* Debug */,
+				DCC00F081A7161100060D167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DCC00EEA1A7161100060D167 /* Project object */;
+}
