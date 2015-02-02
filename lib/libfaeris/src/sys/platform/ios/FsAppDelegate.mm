@@ -5,7 +5,9 @@
 #import "FsFaerisModule.h"
 #import "scheduler/FsScheduler.h"
 
+#import "sys/FsTimer.h"
 #import "FsGLESView.h"
+
 
 NS_FS_USE
 
@@ -19,6 +21,8 @@ NS_FS_USE
 
 
 static FsAppDelegate* ms_shareDelegate=nil;
+static Timer ms_timer;
+
 
 
 +(FsAppDelegate*) getShareAppDelegate
@@ -34,6 +38,7 @@ static FsAppDelegate* ms_shareDelegate=nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    m_lastUpdateTime=ms_timer.now();
     ms_shareDelegate=self;
     m_window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
     m_glesView= [FsGLESView viewWithFrame: [m_window bounds]];
@@ -113,7 +118,10 @@ static FsAppDelegate* ms_shareDelegate=nil;
 
 -(void) displayEvent:(id) sender
 {
-    [self doUpdate:1.0/60.0];
+    float time=ms_timer.now();
+    float diff=time-m_lastUpdateTime;
+    m_lastUpdateTime=time;
+    [self doUpdate:diff/1000.0f];
 }
 
 -(void)mainLoop

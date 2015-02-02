@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
+
+
 @class FsGLESView;
 
 @interface FsAppDelegate :UIResponder <UIApplicationDelegate>
@@ -9,6 +11,7 @@
     id m_displaylink;
     int m_fps;
     int m_interval;
+    float m_lastUpdateTime;
     
 }
 
