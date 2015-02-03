@@ -28,13 +28,13 @@
 		DC1E4BCC1A7F5C320009E59F /* libminizipd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BBE1A7F5C320009E59F /* libminizipd.a */; };
 		DC1E4BCD1A7F5C320009E59F /* libtolua++d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BBF1A7F5C320009E59F /* libtolua++d.a */; };
 		DC1E4BCE1A7F5C320009E59F /* libzlibd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BC01A7F5C320009E59F /* libzlibd.a */; };
-		DC1E4BE01A7F62000009E59F /* libfmodex_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BDF1A7F62000009E59F /* libfmodex_iphonesimulator.a */; };
 		DC1E4BE21A7F621B0009E59F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BE11A7F621B0009E59F /* AudioToolbox.framework */; };
 		DC1E4BE41A7F62240009E59F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BE31A7F62240009E59F /* CoreAudio.framework */; };
 		DC1E4BEA1A7F625C0009E59F /* android.fgame in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE51A7F625C0009E59F /* android.fgame */; };
 		DC1E4BEB1A7F625C0009E59F /* fdata.fgz in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE61A7F625C0009E59F /* fdata.fgz */; };
 		DC1E4BED1A7F625C0009E59F /* ios.fgame in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE81A7F625C0009E59F /* ios.fgame */; };
 		DC1E4BEE1A7F625C0009E59F /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE91A7F625C0009E59F /* sounds */; };
+		DC1E4BF71A7FC82F0009E59F /* libfmodex_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BF61A7FC82F0009E59F /* libfmodex_iphonesimulator.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,13 +60,13 @@
 		DC1E4BBE1A7F5C320009E59F /* libminizipd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libminizipd.a; path = ../../../../lib/library/ios/3rdparty/libminizipd.a; sourceTree = "<group>"; };
 		DC1E4BBF1A7F5C320009E59F /* libtolua++d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libtolua++d.a"; path = "../../../../lib/library/ios/3rdparty/libtolua++d.a"; sourceTree = "<group>"; };
 		DC1E4BC01A7F5C320009E59F /* libzlibd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzlibd.a; path = ../../../../lib/library/ios/3rdparty/libzlibd.a; sourceTree = "<group>"; };
-		DC1E4BDF1A7F62000009E59F /* libfmodex_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodex_iphonesimulator.a; path = ../../../../lib/library/ios/3rdparty/libfmodex_iphonesimulator.a; sourceTree = "<group>"; };
 		DC1E4BE11A7F621B0009E59F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DC1E4BE31A7F62240009E59F /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		DC1E4BE51A7F625C0009E59F /* android.fgame */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = android.fgame; path = assets/android.fgame; sourceTree = "<group>"; };
 		DC1E4BE61A7F625C0009E59F /* fdata.fgz */ = {isa = PBXFileReference; lastKnownFileType = file; name = fdata.fgz; path = assets/fdata.fgz; sourceTree = "<group>"; };
 		DC1E4BE81A7F625C0009E59F /* ios.fgame */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ios.fgame; path = assets/ios.fgame; sourceTree = "<group>"; };
 		DC1E4BE91A7F625C0009E59F /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = assets/sounds; sourceTree = "<group>"; };
+		DC1E4BF61A7FC82F0009E59F /* libfmodex_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodex_iphonesimulator.a; path = ../../../../lib/library/ios/3rdparty/libfmodex_iphonesimulator.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,9 +74,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1E4BF71A7FC82F0009E59F /* libfmodex_iphonesimulator.a in Frameworks */,
 				DC1E4BE41A7F62240009E59F /* CoreAudio.framework in Frameworks */,
 				DC1E4BE21A7F621B0009E59F /* AudioToolbox.framework in Frameworks */,
-				DC1E4BE01A7F62000009E59F /* libfmodex_iphonesimulator.a in Frameworks */,
 				DC1E4BC11A7F5C320009E59F /* libBox2Dd.a in Frameworks */,
 				DC1E4BC21A7F5C320009E59F /* libcurl.a in Frameworks */,
 				DC1E4BC41A7F5C320009E59F /* libfreetype.a in Frameworks */,
@@ -125,9 +125,9 @@
 		DC1E4BCF1A7F5C370009E59F /* library */ = {
 			isa = PBXGroup;
 			children = (
+				DC1E4BF61A7FC82F0009E59F /* libfmodex_iphonesimulator.a */,
 				DC1E4BE31A7F62240009E59F /* CoreAudio.framework */,
 				DC1E4BE11A7F621B0009E59F /* AudioToolbox.framework */,
-				DC1E4BDF1A7F62000009E59F /* libfmodex_iphonesimulator.a */,
 				DC1E4BB31A7F5C320009E59F /* libBox2Dd.a */,
 				DC1E4BB41A7F5C320009E59F /* libcurl.a */,
 				DC1E4BB61A7F5C320009E59F /* libfreetype.a */,
