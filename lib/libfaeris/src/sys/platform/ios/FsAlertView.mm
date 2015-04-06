@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Nestor. All rights reserved.
 //
 
-#import <functional>
 #import "FsAlertView.h"
 
 
@@ -21,6 +20,9 @@ typedef enum {
     
     FsAlertViewStringBlock textFieldBlock;
 }
+
+static FsAlertView* ms_shareDelegate=nil;
+
 
 @synthesize alertView;
 
@@ -57,6 +59,7 @@ typedef enum {
     alertView.tag = FsAlertViewTypeNormal;
     
     [alertView show];
+	ms_shareDelegate=self;
     
     return self;
 }
@@ -83,6 +86,8 @@ typedef enum {
     
     [alertView show];
     
+	ms_shareDelegate=self;
+
     return self;
 }
 

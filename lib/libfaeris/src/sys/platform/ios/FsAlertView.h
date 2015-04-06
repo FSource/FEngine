@@ -1,10 +1,3 @@
-//
-//  STAlertView.h
-//  STAlertView
-//
-//  Created by Nestor on 09/28/2014.
-//  Copyright (c) 2014 Nestor. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 
@@ -58,6 +51,12 @@ Show a native UIAlertView with two buttons. The text and the title is custom, an
    otherButtonTitles:(NSString *)otherButtonTitles
    cancelButtonBlock:(FsAlertViewBlock)cancelButtonBlock
     otherButtonBlock:(FsAlertViewStringBlock)otherButtonBlock;
+
+
+
+- (void) alertView:(UIAlertView *)theAlertView clickedButtonAtIndex:(NSInteger)buttonIndex ;
+
+- (void) alertViewCancel:(UIAlertView *)theAlertView ;
 
 @end
 

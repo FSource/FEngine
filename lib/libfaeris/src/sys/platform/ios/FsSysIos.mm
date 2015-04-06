@@ -11,6 +11,7 @@
 
 #import "FsAlertView.h"
 
+
 NS_FS_BEGIN
 /*
 FsLong Sys::getTime()
@@ -74,10 +75,12 @@ void Sys::openInputTextDialog(const char* title,const char* msg,
 		int input_mode,int input_flag,
 		int return_type,int max_length)
 {
+    
+    
     FsAlertView* alert_view=[[FsAlertView alloc] initWithTitle: [[NSString alloc] initWithUTF8String: title]
 		message:@"Input You Text"
-        textFieldHint: [[NSString alloc] initWithUTF8String:msg]
-		textFieldValue:nil
+        textFieldHint: nil
+		textFieldValue:[[NSString alloc] initWithUTF8String:msg]
 		cancelButtonTitle:@"Cancel"
 		otherButtonTitles:@"Ok"
 
@@ -90,6 +93,8 @@ void Sys::openInputTextDialog(const char* title,const char* msg,
                 dispatcher->dispatchEvent(new InputTextEvent([result UTF8String]));
             }
         } ];
+     
+
 
 }
 
