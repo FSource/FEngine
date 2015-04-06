@@ -40,6 +40,7 @@ namespace  Faeris
     GLuint m_msaaColorBuffer;
     GLuint m_msaaRenderBuffer;
     
+    int m_touchPointNu;
     int m_width;
     int m_height;
     

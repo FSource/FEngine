@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC1E4B9E1A7F56F40009E59F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4B9C1A7F56F40009E59F /* Default-568h@2x.png */; };
+		DC1E4B9F1A7F56F40009E59F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4B9D1A7F56F40009E59F /* Info.plist */; };
+		DC1E4BA71A7F583A0009E59F /* FsIosMain.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4BA41A7F583A0009E59F /* FsIosMain.m */; };
+		DC1E4BAA1A7F59A80009E59F /* FsIosMain.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4BA91A7F59A80009E59F /* FsIosMain.cc */; };
+		DC1E4BAF1A7F5C020009E59F /* libfaerisd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BAB1A7F5C020009E59F /* libfaerisd.a */; };
+		DC1E4BB01A7F5C020009E59F /* liblib3rdextendsd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BAC1A7F5C020009E59F /* liblib3rdextendsd.a */; };
+		DC1E4BB11A7F5C020009E59F /* liblibluaexportd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BAD1A7F5C020009E59F /* liblibluaexportd.a */; };
+		DC1E4BB21A7F5C020009E59F /* liblibspinesprited.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BAE1A7F5C020009E59F /* liblibspinesprited.a */; };
+		DC1E4BC11A7F5C320009E59F /* libBox2Dd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BB31A7F5C320009E59F /* libBox2Dd.a */; };
+		DC1E4BC21A7F5C320009E59F /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BB41A7F5C320009E59F /* libcurl.a */; };
+		DC1E4BC41A7F5C320009E59F /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BB61A7F5C320009E59F /* libfreetype.a */; };
+		DC1E4BC51A7F5C320009E59F /* libjsoncd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BB71A7F5C320009E59F /* libjsoncd.a */; };
+		DC1E4BC61A7F5C320009E59F /* liblibglslextd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BB81A7F5C320009E59F /* liblibglslextd.a */; };
+		DC1E4BC71A7F5C320009E59F /* liblibjpegd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BB91A7F5C320009E59F /* liblibjpegd.a */; };
+		DC1E4BC81A7F5C320009E59F /* liblibpngd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BBA1A7F5C320009E59F /* liblibpngd.a */; };
+		DC1E4BC91A7F5C320009E59F /* liblibtgad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BBB1A7F5C320009E59F /* liblibtgad.a */; };
+		DC1E4BCA1A7F5C320009E59F /* libljsond.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BBC1A7F5C320009E59F /* libljsond.a */; };
+		DC1E4BCB1A7F5C320009E59F /* libluad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BBD1A7F5C320009E59F /* libluad.a */; };
+		DC1E4BCC1A7F5C320009E59F /* libminizipd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BBE1A7F5C320009E59F /* libminizipd.a */; };
+		DC1E4BCD1A7F5C320009E59F /* libtolua++d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BBF1A7F5C320009E59F /* libtolua++d.a */; };
+		DC1E4BCE1A7F5C320009E59F /* libzlibd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BC01A7F5C320009E59F /* libzlibd.a */; };
+		DC1E4BE21A7F621B0009E59F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BE11A7F621B0009E59F /* AudioToolbox.framework */; };
+		DC1E4BE41A7F62240009E59F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BE31A7F62240009E59F /* CoreAudio.framework */; };
+		DC1E4BEA1A7F625C0009E59F /* android.fgame in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE51A7F625C0009E59F /* android.fgame */; };
+		DC1E4BEB1A7F625C0009E59F /* fdata.fgz in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE61A7F625C0009E59F /* fdata.fgz */; };
+		DC1E4BED1A7F625C0009E59F /* ios.fgame in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE81A7F625C0009E59F /* ios.fgame */; };
+		DC1E4BEE1A7F625C0009E59F /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE91A7F625C0009E59F /* sounds */; };
+		DC1E4BF71A7FC82F0009E59F /* libfmodex_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BF61A7FC82F0009E59F /* libfmodex_iphonesimulator.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DC1E4B9B1A7F56200009E59F /* L_Faeris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = L_Faeris.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC1E4B9C1A7F56F40009E59F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DC1E4B9D1A7F56F40009E59F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC1E4BA41A7F583A0009E59F /* FsIosMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FsIosMain.m; sourceTree = "<group>"; };
+		DC1E4BA91A7F59A80009E59F /* FsIosMain.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsIosMain.cc; sourceTree = "<group>"; };
+		DC1E4BAB1A7F5C020009E59F /* libfaerisd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfaerisd.a; path = ../../../../lib/library/ios/libfaerisd.a; sourceTree = "<group>"; };
+		DC1E4BAC1A7F5C020009E59F /* liblib3rdextendsd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblib3rdextendsd.a; path = ../../../../lib/library/ios/liblib3rdextendsd.a; sourceTree = "<group>"; };
+		DC1E4BAD1A7F5C020009E59F /* liblibluaexportd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibluaexportd.a; path = ../../../../lib/library/ios/liblibluaexportd.a; sourceTree = "<group>"; };
+		DC1E4BAE1A7F5C020009E59F /* liblibspinesprited.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibspinesprited.a; path = ../../../../lib/library/ios/liblibspinesprited.a; sourceTree = "<group>"; };
+		DC1E4BB31A7F5C320009E59F /* libBox2Dd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBox2Dd.a; path = ../../../../lib/library/ios/3rdparty/libBox2Dd.a; sourceTree = "<group>"; };
+		DC1E4BB41A7F5C320009E59F /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../../lib/library/ios/3rdparty/libcurl.a; sourceTree = "<group>"; };
+		DC1E4BB61A7F5C320009E59F /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../../lib/library/ios/3rdparty/libfreetype.a; sourceTree = "<group>"; };
+		DC1E4BB71A7F5C320009E59F /* libjsoncd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjsoncd.a; path = ../../../../lib/library/ios/3rdparty/libjsoncd.a; sourceTree = "<group>"; };
+		DC1E4BB81A7F5C320009E59F /* liblibglslextd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibglslextd.a; path = ../../../../lib/library/ios/3rdparty/liblibglslextd.a; sourceTree = "<group>"; };
+		DC1E4BB91A7F5C320009E59F /* liblibjpegd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibjpegd.a; path = ../../../../lib/library/ios/3rdparty/liblibjpegd.a; sourceTree = "<group>"; };
+		DC1E4BBA1A7F5C320009E59F /* liblibpngd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibpngd.a; path = ../../../../lib/library/ios/3rdparty/liblibpngd.a; sourceTree = "<group>"; };
+		DC1E4BBB1A7F5C320009E59F /* liblibtgad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibtgad.a; path = ../../../../lib/library/ios/3rdparty/liblibtgad.a; sourceTree = "<group>"; };
+		DC1E4BBC1A7F5C320009E59F /* libljsond.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libljsond.a; path = ../../../../lib/library/ios/3rdparty/libljsond.a; sourceTree = "<group>"; };
+		DC1E4BBD1A7F5C320009E59F /* libluad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libluad.a; path = ../../../../lib/library/ios/3rdparty/libluad.a; sourceTree = "<group>"; };
+		DC1E4BBE1A7F5C320009E59F /* libminizipd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libminizipd.a; path = ../../../../lib/library/ios/3rdparty/libminizipd.a; sourceTree = "<group>"; };
+		DC1E4BBF1A7F5C320009E59F /* libtolua++d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libtolua++d.a"; path = "../../../../lib/library/ios/3rdparty/libtolua++d.a"; sourceTree = "<group>"; };
+		DC1E4BC01A7F5C320009E59F /* libzlibd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzlibd.a; path = ../../../../lib/library/ios/3rdparty/libzlibd.a; sourceTree = "<group>"; };
+		DC1E4BE11A7F621B0009E59F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		DC1E4BE31A7F62240009E59F /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		DC1E4BE51A7F625C0009E59F /* android.fgame */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = android.fgame; path = assets/android.fgame; sourceTree = "<group>"; };
+		DC1E4BE61A7F625C0009E59F /* fdata.fgz */ = {isa = PBXFileReference; lastKnownFileType = file; name = fdata.fgz; path = assets/fdata.fgz; sourceTree = "<group>"; };
+		DC1E4BE81A7F625C0009E59F /* ios.fgame */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ios.fgame; path = assets/ios.fgame; sourceTree = "<group>"; };
+		DC1E4BE91A7F625C0009E59F /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = assets/sounds; sourceTree = "<group>"; };
+		DC1E4BF61A7FC82F0009E59F /* libfmodex_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodex_iphonesimulator.a; path = ../../../../lib/library/ios/3rdparty/libfmodex_iphonesimulator.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC1E4B6F1A7F55F70009E59F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC1E4BF71A7FC82F0009E59F /* libfmodex_iphonesimulator.a in Frameworks */,
+				DC1E4BE41A7F62240009E59F /* CoreAudio.framework in Frameworks */,
+				DC1E4BE21A7F621B0009E59F /* AudioToolbox.framework in Frameworks */,
+				DC1E4BC11A7F5C320009E59F /* libBox2Dd.a in Frameworks */,
+				DC1E4BC21A7F5C320009E59F /* libcurl.a in Frameworks */,
+				DC1E4BC41A7F5C320009E59F /* libfreetype.a in Frameworks */,
+				DC1E4BC51A7F5C320009E59F /* libjsoncd.a in Frameworks */,
+				DC1E4BC61A7F5C320009E59F /* liblibglslextd.a in Frameworks */,
+				DC1E4BC71A7F5C320009E59F /* liblibjpegd.a in Frameworks */,
+				DC1E4BC81A7F5C320009E59F /* liblibpngd.a in Frameworks */,
+				DC1E4BC91A7F5C320009E59F /* liblibtgad.a in Frameworks */,
+				DC1E4BCA1A7F5C320009E59F /* libljsond.a in Frameworks */,
+				DC1E4BCB1A7F5C320009E59F /* libluad.a in Frameworks */,
+				DC1E4BCC1A7F5C320009E59F /* libminizipd.a in Frameworks */,
+				DC1E4BCD1A7F5C320009E59F /* libtolua++d.a in Frameworks */,
+				DC1E4BCE1A7F5C320009E59F /* libzlibd.a in Frameworks */,
+				DC1E4BAF1A7F5C020009E59F /* libfaerisd.a in Frameworks */,
+				DC1E4BB01A7F5C020009E59F /* liblib3rdextendsd.a in Frameworks */,
+				DC1E4BB11A7F5C020009E59F /* liblibluaexportd.a in Frameworks */,
+				DC1E4BB21A7F5C020009E59F /* liblibspinesprited.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC1E4B691A7F55F70009E59F = {
+			isa = PBXGroup;
+			children = (
+				DC1E4BEF1A7F627B0009E59F /* assets */,
+				DC1E4BCF1A7F5C370009E59F /* library */,
+				DC1E4BA21A7F583A0009E59F /* src */,
+				DC1E4B9C1A7F56F40009E59F /* Default-568h@2x.png */,
+				DC1E4B9D1A7F56F40009E59F /* Info.plist */,
+				DC1E4B9B1A7F56200009E59F /* L_Faeris.app */,
+			);
+			sourceTree = "<group>";
+		};
+		DC1E4BA21A7F583A0009E59F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DC1E4BA91A7F59A80009E59F /* FsIosMain.cc */,
+				DC1E4BA41A7F583A0009E59F /* FsIosMain.m */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+		DC1E4BCF1A7F5C370009E59F /* library */ = {
+			isa = PBXGroup;
+			children = (
+				DC1E4BF61A7FC82F0009E59F /* libfmodex_iphonesimulator.a */,
+				DC1E4BE31A7F62240009E59F /* CoreAudio.framework */,
+				DC1E4BE11A7F621B0009E59F /* AudioToolbox.framework */,
+				DC1E4BB31A7F5C320009E59F /* libBox2Dd.a */,
+				DC1E4BB41A7F5C320009E59F /* libcurl.a */,
+				DC1E4BB61A7F5C320009E59F /* libfreetype.a */,
+				DC1E4BB71A7F5C320009E59F /* libjsoncd.a */,
+				DC1E4BB81A7F5C320009E59F /* liblibglslextd.a */,
+				DC1E4BB91A7F5C320009E59F /* liblibjpegd.a */,
+				DC1E4BBA1A7F5C320009E59F /* liblibpngd.a */,
+				DC1E4BBB1A7F5C320009E59F /* liblibtgad.a */,
+				DC1E4BBC1A7F5C320009E59F /* libljsond.a */,
+				DC1E4BBD1A7F5C320009E59F /* libluad.a */,
+				DC1E4BBE1A7F5C320009E59F /* libminizipd.a */,
+				DC1E4BBF1A7F5C320009E59F /* libtolua++d.a */,
+				DC1E4BC01A7F5C320009E59F /* libzlibd.a */,
+				DC1E4BAB1A7F5C020009E59F /* libfaerisd.a */,
+				DC1E4BAC1A7F5C020009E59F /* liblib3rdextendsd.a */,
+				DC1E4BAD1A7F5C020009E59F /* liblibluaexportd.a */,
+				DC1E4BAE1A7F5C020009E59F /* liblibspinesprited.a */,
+			);
+			name = library;
+			sourceTree = "<group>";
+		};
+		DC1E4BEF1A7F627B0009E59F /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				DC1E4BE51A7F625C0009E59F /* android.fgame */,
+				DC1E4BE61A7F625C0009E59F /* fdata.fgz */,
+				DC1E4BE81A7F625C0009E59F /* ios.fgame */,
+				DC1E4BE91A7F625C0009E59F /* sounds */,
+			);
+			name = assets;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC1E4B711A7F55F70009E59F /* L_Faeris */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC1E4B951A7F55F70009E59F /* Build configuration list for PBXNativeTarget "L_Faeris" */;
+			buildPhases = (
+				DC1E4B6E1A7F55F70009E59F /* Sources */,
+				DC1E4B6F1A7F55F70009E59F /* Frameworks */,
+				DC1E4B701A7F55F70009E59F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = L_Faeris;
+			productName = L_Faeris;
+			productReference = DC1E4B9B1A7F56200009E59F /* L_Faeris.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC1E4B6A1A7F55F70009E59F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = NosicLin;
+				TargetAttributes = {
+					DC1E4B711A7F55F70009E59F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = DC1E4B6D1A7F55F70009E59F /* Build configuration list for PBXProject "L_Faeris" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DC1E4B691A7F55F70009E59F;
+			productRefGroup = DC1E4B691A7F55F70009E59F;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC1E4B711A7F55F70009E59F /* L_Faeris */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC1E4B701A7F55F70009E59F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC1E4B9F1A7F56F40009E59F /* Info.plist in Resources */,
+				DC1E4B9E1A7F56F40009E59F /* Default-568h@2x.png in Resources */,
+				DC1E4BEE1A7F625C0009E59F /* sounds in Resources */,
+				DC1E4BEB1A7F625C0009E59F /* fdata.fgz in Resources */,
+				DC1E4BED1A7F625C0009E59F /* ios.fgame in Resources */,
+				DC1E4BEA1A7F625C0009E59F /* android.fgame in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC1E4B6E1A7F55F70009E59F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC1E4BA71A7F583A0009E59F /* FsIosMain.m in Sources */,
+				DC1E4BAA1A7F59A80009E59F /* FsIosMain.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DC1E4B931A7F55F70009E59F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DC1E4B941A7F55F70009E59F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC1E4B961A7F55F70009E59F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/NosicLin/CodeSpace/Faeris/lib/library/ios,
+					/Users/NosicLin/CodeSpace/Faeris/lib/library/ios/3rdparty,
+				);
+				OTHER_CFLAGS = (
+					"-I../../../../lib/libfaeris/src",
+					"-DIOS",
+					"-I../../../../lib/libextends/libluaexport/src",
+					"-I../../../../lib/libfaeris/src/support",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DC1E4B971A7F55F70009E59F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/NosicLin/CodeSpace/Faeris/lib/library/ios,
+					/Users/NosicLin/CodeSpace/Faeris/lib/library/ios/3rdparty,
+				);
+				OTHER_CFLAGS = (
+					"-I../../../../lib/libfaeris/src",
+					"-DIOS",
+					"-I../../../../lib/libextends/libluaexport/src",
+					"-I../../../../lib/libfaeris/src/support",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC1E4B6D1A7F55F70009E59F /* Build configuration list for PBXProject "L_Faeris" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC1E4B931A7F55F70009E59F /* Debug */,
+				DC1E4B941A7F55F70009E59F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC1E4B951A7F55F70009E59F /* Build configuration list for PBXNativeTarget "L_Faeris" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC1E4B961A7F55F70009E59F /* Debug */,
+				DC1E4B971A7F55F70009E59F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC1E4B6A1A7F55F70009E59F /* Project object */;
+}

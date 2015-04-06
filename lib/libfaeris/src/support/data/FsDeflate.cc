@@ -31,11 +31,13 @@ int FsDeflate_Compress(const uint8_t* src_buf,uint32_t src_length,
 int FsDeflate_UnCompress(const uint8_t* src_buf,uint32_t src_length,
 		uint8_t* dst_buf,uint32_t* dst_length)
 {
-	int ret=uncompress((Bytef*) dst_buf,(uLongf*) dst_length,(const Bytef*) src_buf,(uLong) src_length);
+    uLongf dst_l=*dst_length;
+	int ret=uncompress((Bytef*) dst_buf,(uLongf*) &dst_l,(const Bytef*) src_buf,(uLong) src_length);
 	if(ret!=Z_OK)
 	{
 		return -1;
 	}
+    *dst_length=dst_l;
 	return 0;
 }
 

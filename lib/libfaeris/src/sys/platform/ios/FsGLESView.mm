@@ -55,6 +55,8 @@ NS_FS_USE
 
 		m_width=0;
 		m_height=0;
+        
+        m_touchPointNu=0;
 
 		CAEAGLLayer* eaglLayer = (CAEAGLLayer *)self.layer;
 
@@ -249,6 +251,14 @@ NS_FS_USE
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+ 
+    int touch_event=TouchDispatcher::TOUCHES_BEGIN;
+    if(m_touchPointNu>0)
+    {
+        touch_event=TouchDispatcher::TOUCHES_POINTER_DOWN;
+    }
+    
+    m_touchPointNu+=[touches count];
 
     FS_TRACE_WARN("Touch Begin");
     TouchPoint  touches_points[FS_IOS_MAX_TOUCHES_COUNT];
@@ -268,7 +278,7 @@ NS_FS_USE
     TouchDispatcher* dispatcher= Global::touchDispatcher();
     if(dispatcher)
     {
-        dispatcher->dispatchEvent(new TouchEvent(TouchDispatcher::TOUCHES_BEGIN,i,touches_points));
+        dispatcher->dispatchEvent(new TouchEvent(touch_event,i,touches_points));
     }
 
     
@@ -307,6 +317,15 @@ NS_FS_USE
     FS_TRACE_WARN("Touch End");
     TouchPoint  touches_points[FS_IOS_MAX_TOUCHES_COUNT];
     
+    int touch_event=TouchDispatcher::TOUCHES_POINTER_DOWN;
+    
+    m_touchPointNu-=[touches count];
+    
+    if(m_touchPointNu==0)
+    {
+        touch_event=TouchDispatcher::TOUCHES_END;
+    }
+    
     int i = 0;
     for (UITouch *touch in touches)
     {
@@ -322,10 +341,17 @@ NS_FS_USE
     TouchDispatcher* dispatcher= Global::touchDispatcher();
     if(dispatcher)
     {
-        dispatcher->dispatchEvent(new TouchEvent(TouchDispatcher::TOUCHES_END,i,touches_points));
+        dispatcher->dispatchEvent(new TouchEvent(touch_event,i,touches_points));
     }
 
 
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    FS_TRACE_WARN("Touch Cancel");
+    
+    [self touchesEnded:touches withEvent:event];
 }
 
 

@@ -1,0 +1,363 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC1E4AE21A7F502F0009E59F /* FsLuaEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AC21A7F502F0009E59F /* FsLuaEngine.cc */; };
+		DC1E4AE31A7F502F0009E59F /* FsLibBox2d.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AC61A7F502F0009E59F /* FsLibBox2d.cc */; };
+		DC1E4AE41A7F502F0009E59F /* FsLibFaerisExport.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AC71A7F502F0009E59F /* FsLibFaerisExport.cc */; };
+		DC1E4AE61A7F502F0009E59F /* FsLibLuaScript.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AC91A7F502F0009E59F /* FsLibLuaScript.cc */; };
+		DC1E4AE71A7F502F0009E59F /* FsLibSpineSprite.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4ACA1A7F502F0009E59F /* FsLibSpineSprite.cc */; };
+		DC1E4AE81A7F502F0009E59F /* FsLuaFuncExport.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4ACC1A7F502F0009E59F /* FsLuaFuncExport.cc */; };
+		DC1E4AE91A7F502F0009E59F /* FsLuaHttpRequest.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AD01A7F502F0009E59F /* FsLuaHttpRequest.cc */; };
+		DC1E4AEB1A7F502F0009E59F /* FsLuaScene.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AD51A7F502F0009E59F /* FsLuaScene.cc */; };
+		DC1E4AEC1A7F502F0009E59F /* FsLuaSchedulerTarget.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AD71A7F502F0009E59F /* FsLuaSchedulerTarget.cc */; };
+		DC1E4AED1A7F502F0009E59F /* FsLuaSysEventListener.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AD91A7F502F0009E59F /* FsLuaSysEventListener.cc */; };
+		DC1E4AEE1A7F502F0009E59F /* FsLuaTouchEventListener.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4ADB1A7F502F0009E59F /* FsLuaTouchEventListener.cc */; };
+		DC1E4AEF1A7F502F0009E59F /* toluaext++.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC1E4AE01A7F502F0009E59F /* toluaext++.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DC1E4AA21A7F4E730009E59F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DC1E4ABE1A7F4E960009E59F /* liblibluaexportd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibluaexportd.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC1E4AC21A7F502F0009E59F /* FsLuaEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLuaEngine.cc; sourceTree = "<group>"; };
+		DC1E4AC31A7F502F0009E59F /* FsLuaEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaEngine.h; sourceTree = "<group>"; };
+		DC1E4AC41A7F502F0009E59F /* FsLuaMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaMacros.h; sourceTree = "<group>"; };
+		DC1E4AC61A7F502F0009E59F /* FsLibBox2d.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLibBox2d.cc; sourceTree = "<group>"; };
+		DC1E4AC71A7F502F0009E59F /* FsLibFaerisExport.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLibFaerisExport.cc; sourceTree = "<group>"; };
+		DC1E4AC91A7F502F0009E59F /* FsLibLuaScript.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLibLuaScript.cc; sourceTree = "<group>"; };
+		DC1E4ACA1A7F502F0009E59F /* FsLibSpineSprite.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLibSpineSprite.cc; sourceTree = "<group>"; };
+		DC1E4ACB1A7F502F0009E59F /* FsLuaExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaExport.h; sourceTree = "<group>"; };
+		DC1E4ACC1A7F502F0009E59F /* FsLuaFuncExport.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLuaFuncExport.cc; sourceTree = "<group>"; };
+		DC1E4ACE1A7F502F0009E59F /* FsLuaAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaAction.h; sourceTree = "<group>"; };
+		DC1E4ACF1A7F502F0009E59F /* FsLuaEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaEntity.h; sourceTree = "<group>"; };
+		DC1E4AD01A7F502F0009E59F /* FsLuaHttpRequest.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLuaHttpRequest.cc; sourceTree = "<group>"; };
+		DC1E4AD11A7F502F0009E59F /* FsLuaHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaHttpRequest.h; sourceTree = "<group>"; };
+		DC1E4AD21A7F502F0009E59F /* FsLuaLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaLayer.h; sourceTree = "<group>"; };
+		DC1E4AD51A7F502F0009E59F /* FsLuaScene.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLuaScene.cc; sourceTree = "<group>"; };
+		DC1E4AD61A7F502F0009E59F /* FsLuaScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaScene.h; sourceTree = "<group>"; };
+		DC1E4AD71A7F502F0009E59F /* FsLuaSchedulerTarget.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLuaSchedulerTarget.cc; sourceTree = "<group>"; };
+		DC1E4AD81A7F502F0009E59F /* FsLuaSchedulerTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaSchedulerTarget.h; sourceTree = "<group>"; };
+		DC1E4AD91A7F502F0009E59F /* FsLuaSysEventListener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLuaSysEventListener.cc; sourceTree = "<group>"; };
+		DC1E4ADA1A7F502F0009E59F /* FsLuaSysEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaSysEventListener.h; sourceTree = "<group>"; };
+		DC1E4ADB1A7F502F0009E59F /* FsLuaTouchEventListener.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsLuaTouchEventListener.cc; sourceTree = "<group>"; };
+		DC1E4ADC1A7F502F0009E59F /* FsLuaTouchEventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsLuaTouchEventListener.h; sourceTree = "<group>"; };
+		DC1E4ADD1A7F502F0009E59F /* FsTAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsTAction.h; sourceTree = "<group>"; };
+		DC1E4ADE1A7F502F0009E59F /* FsTEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsTEntity.h; sourceTree = "<group>"; };
+		DC1E4ADF1A7F502F0009E59F /* FsTLuaLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FsTLuaLayer.h; sourceTree = "<group>"; };
+		DC1E4AE01A7F502F0009E59F /* toluaext++.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "toluaext++.cc"; sourceTree = "<group>"; };
+		DC1E4AE11A7F502F0009E59F /* toluaext++.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "toluaext++.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC1E4AA11A7F4E730009E59F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC1E4A9B1A7F4E730009E59F = {
+			isa = PBXGroup;
+			children = (
+				DC1E4AC11A7F502F0009E59F /* src */,
+				DC1E4ABE1A7F4E960009E59F /* liblibluaexportd.a */,
+			);
+			sourceTree = "<group>";
+		};
+		DC1E4AC11A7F502F0009E59F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DC1E4AC21A7F502F0009E59F /* FsLuaEngine.cc */,
+				DC1E4AC31A7F502F0009E59F /* FsLuaEngine.h */,
+				DC1E4AC41A7F502F0009E59F /* FsLuaMacros.h */,
+				DC1E4AC51A7F502F0009E59F /* luaexport */,
+				DC1E4ACD1A7F502F0009E59F /* luaext */,
+				DC1E4AE01A7F502F0009E59F /* toluaext++.cc */,
+				DC1E4AE11A7F502F0009E59F /* toluaext++.h */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+		DC1E4AC51A7F502F0009E59F /* luaexport */ = {
+			isa = PBXGroup;
+			children = (
+				DC1E4AC61A7F502F0009E59F /* FsLibBox2d.cc */,
+				DC1E4AC71A7F502F0009E59F /* FsLibFaerisExport.cc */,
+				DC1E4AC91A7F502F0009E59F /* FsLibLuaScript.cc */,
+				DC1E4ACA1A7F502F0009E59F /* FsLibSpineSprite.cc */,
+				DC1E4ACB1A7F502F0009E59F /* FsLuaExport.h */,
+				DC1E4ACC1A7F502F0009E59F /* FsLuaFuncExport.cc */,
+			);
+			path = luaexport;
+			sourceTree = "<group>";
+		};
+		DC1E4ACD1A7F502F0009E59F /* luaext */ = {
+			isa = PBXGroup;
+			children = (
+				DC1E4ACE1A7F502F0009E59F /* FsLuaAction.h */,
+				DC1E4ACF1A7F502F0009E59F /* FsLuaEntity.h */,
+				DC1E4AD01A7F502F0009E59F /* FsLuaHttpRequest.cc */,
+				DC1E4AD11A7F502F0009E59F /* FsLuaHttpRequest.h */,
+				DC1E4AD21A7F502F0009E59F /* FsLuaLayer.h */,
+				DC1E4AD51A7F502F0009E59F /* FsLuaScene.cc */,
+				DC1E4AD61A7F502F0009E59F /* FsLuaScene.h */,
+				DC1E4AD71A7F502F0009E59F /* FsLuaSchedulerTarget.cc */,
+				DC1E4AD81A7F502F0009E59F /* FsLuaSchedulerTarget.h */,
+				DC1E4AD91A7F502F0009E59F /* FsLuaSysEventListener.cc */,
+				DC1E4ADA1A7F502F0009E59F /* FsLuaSysEventListener.h */,
+				DC1E4ADB1A7F502F0009E59F /* FsLuaTouchEventListener.cc */,
+				DC1E4ADC1A7F502F0009E59F /* FsLuaTouchEventListener.h */,
+				DC1E4ADD1A7F502F0009E59F /* FsTAction.h */,
+				DC1E4ADE1A7F502F0009E59F /* FsTEntity.h */,
+				DC1E4ADF1A7F502F0009E59F /* FsTLuaLayer.h */,
+			);
+			path = luaext;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC1E4AA31A7F4E730009E59F /* libluaexport */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC1E4AB81A7F4E730009E59F /* Build configuration list for PBXNativeTarget "libluaexport" */;
+			buildPhases = (
+				DC1E4AA01A7F4E730009E59F /* Sources */,
+				DC1E4AA11A7F4E730009E59F /* Frameworks */,
+				DC1E4AA21A7F4E730009E59F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libluaexport;
+			productName = libluaexport;
+			productReference = DC1E4ABE1A7F4E960009E59F /* liblibluaexportd.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC1E4A9C1A7F4E730009E59F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = NosicLin;
+				TargetAttributes = {
+					DC1E4AA31A7F4E730009E59F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = DC1E4A9F1A7F4E730009E59F /* Build configuration list for PBXProject "libluaexport" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DC1E4A9B1A7F4E730009E59F;
+			productRefGroup = DC1E4A9B1A7F4E730009E59F;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC1E4AA31A7F4E730009E59F /* libluaexport */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC1E4AA01A7F4E730009E59F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC1E4AEC1A7F502F0009E59F /* FsLuaSchedulerTarget.cc in Sources */,
+				DC1E4AE81A7F502F0009E59F /* FsLuaFuncExport.cc in Sources */,
+				DC1E4AE31A7F502F0009E59F /* FsLibBox2d.cc in Sources */,
+				DC1E4AE91A7F502F0009E59F /* FsLuaHttpRequest.cc in Sources */,
+				DC1E4AE21A7F502F0009E59F /* FsLuaEngine.cc in Sources */,
+				DC1E4AE71A7F502F0009E59F /* FsLibSpineSprite.cc in Sources */,
+				DC1E4AE41A7F502F0009E59F /* FsLibFaerisExport.cc in Sources */,
+				DC1E4AEB1A7F502F0009E59F /* FsLuaScene.cc in Sources */,
+				DC1E4AED1A7F502F0009E59F /* FsLuaSysEventListener.cc in Sources */,
+				DC1E4AEF1A7F502F0009E59F /* toluaext++.cc in Sources */,
+				DC1E4AEE1A7F502F0009E59F /* FsLuaTouchEventListener.cc in Sources */,
+				DC1E4AE61A7F502F0009E59F /* FsLibLuaScript.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DC1E4AB61A7F4E730009E59F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					../../../../lib3rdparty/lua/include,
+					"../../../../lib3rdparty/tolua++/include",
+				);
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DC1E4AB71A7F4E730009E59F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = (
+					../../../../lib3rdparty/lua/include,
+					"../../../../lib3rdparty/tolua++/include",
+				);
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC1E4AB91A7F4E730009E59F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../../library/ios/";
+				OTHER_CFLAGS = (
+					"-I../../../../lib3rdparty/lua/include",
+					"-I../../../../lib3rdparty/tolua++/include",
+					"-DIOS",
+					"-I../../../../libfaeris/src/support",
+					"-I../../../../libfaeris/src",
+					"-I../../src",
+					"-I../../../../lib3rdparty/Box2D",
+					"-I../../../../lib3rdparty/ljson/src",
+					"-I../../src",
+					"-I../../../../libextends/lib3rdextends/src",
+					"-I../../../../libextends/libspinesprite/src",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)d";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DC1E4ABA1A7F4E730009E59F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/../../../../library/ios/";
+				OTHER_CFLAGS = (
+					"-I../../../../lib3rdparty/lua/include",
+					"-I../../../../lib3rdparty/tolua++/include",
+					"-DIOS",
+					"-I../../../../libfaeris/src/support",
+					"-I../../../../libfaeris/src",
+					"-I../../src",
+					"-I../../../../lib3rdparty/Box2D",
+					"-I../../../../lib3rdparty/ljson/src",
+					"-I../../src",
+					"-I../../../../libextends/lib3rdextends/src",
+					"-I../../../../libextends/libspinesprite/src",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC1E4A9F1A7F4E730009E59F /* Build configuration list for PBXProject "libluaexport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC1E4AB61A7F4E730009E59F /* Debug */,
+				DC1E4AB71A7F4E730009E59F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC1E4AB81A7F4E730009E59F /* Build configuration list for PBXNativeTarget "libluaexport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC1E4AB91A7F4E730009E59F /* Debug */,
+				DC1E4ABA1A7F4E730009E59F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC1E4A9C1A7F4E730009E59F /* Project object */;
+}
