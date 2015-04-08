@@ -22,11 +22,14 @@ AndroidAudioPlayer* AndroidAudioPlayer::create(int channel_nu)
 
 Sound* AndroidAudioPlayer::createSound(const char* filename)
 {
+	JniUtil::attachCurrentThread();
+
 	JNIEnv* env=JniUtil::getEnv();
 	jstring jfile_name=env->NewStringUTF(filename);
 
 	jint ret;
 	FS_JNI_CALL_METHOD(m_audioPlayer,JNI_AUDIO_PLAYER_CLASS_NAME,"createSound","(Ljava/lang/String;)I",Int,ret,jfile_name);
+
 	env->DeleteLocalRef(jfile_name);
 
 	if(ret==-1)
@@ -34,6 +37,7 @@ Sound* AndroidAudioPlayer::createSound(const char* filename)
 		FS_TRACE_WARN("Create Sound %s Failed",filename);
 		return NULL;
 	}
+
 	return (Sound*) ((int)ret);
 }
 
@@ -138,9 +142,10 @@ bool AndroidAudioPlayer::init(int channel_nu)
 	FS_JNI_NEW_OBJECT(JNI_AUDIO_PLAYER_CLASS_NAME,"(I)V",m_audioPlayer,channel_nu);
 	if(m_audioPlayer)
 	{
-		env->NewGlobalRef(m_audioPlayer);
+		m_audioPlayer=env->NewGlobalRef(m_audioPlayer);
 		return true;
 	}
+	FS_TRACE_WARN("Create Android AudioPlayer Failed'");
 	return false;
 }
 
@@ -199,7 +204,7 @@ Music* AndroidAudioPlayer::createMusic(const char* filename)
 
 	if(ret!=NULL)
 	{
-		env->NewGlobalRef(ret);
+		ret=env->NewGlobalRef(ret);
 		return new Music(ret);
 	}
 	return NULL;

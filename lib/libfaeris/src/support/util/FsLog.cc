@@ -92,10 +92,6 @@ FileLog::~FileLog()
 
 
 
-
-
-
-
 NS_FS_END
 
 #if FS_PLATFORM_OS(FS_OS_WIN32) || FS_PLATFORM_OS (FS_OS_LINUX) || FS_PLATFORM_OS(FS_OS_OSX) 
@@ -103,8 +99,9 @@ NS_FS_END
 
 #elif FS_PLATFORM_OS(FS_OS_ANDROID) 
 	#include "platform/FsLogAndroid.cc"
+
 #elif FS_PLATFORM_OS(FS_OS_IOS)
 
-#elif 
+#else
     #error "Unkown Platform For Log"
 #endif
