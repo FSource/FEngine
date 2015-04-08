@@ -10,7 +10,7 @@
 #include "sys/io/FsVFS.h"
 
 
-#define FS_MAX_MUSIC_CHANNEL_NU 1
+#define FS_MAX_MUSIC_CHANNEL_NU 4
 
 
 NS_FS_BEGIN
@@ -217,6 +217,10 @@ FmodPlayer::~FmodPlayer()
 
 bool FmodPlayer::init(int channel_nu)
 {
+	if(channel_nu< 8 )
+	{
+		channel_nu=8;
+	}
 	FMOD_RESULT result;
 	FMOD::ChannelGroup* master_grounp;
 
@@ -279,10 +283,11 @@ bool FmodPlayer::init(int channel_nu)
 			FS_TRACE_WARN("Init Music Failed");
 			goto error;
 		}
-		m_musicChannelUsed.resize(FS_MAX_MUSIC_CHANNEL_NU);
 
 	}while(0);
      */
+
+	m_musicChannelUsed.resize(FS_MAX_MUSIC_CHANNEL_NU);
     m_musics=m_sounds;
 
 
@@ -335,6 +340,7 @@ Music* FmodPlayer::createMusic(const char* filename)
 		return NULL;
 	}
 
+	FMOD::Channel* channel=NULL;
 	FMOD_RESULT result;
 	FMOD::Sound* sound=NULL;
 	FMOD_CREATESOUNDEXINFO exinfo;

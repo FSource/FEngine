@@ -152,7 +152,6 @@ int FsFaeris_ModuleExit()
 
 	FelisScriptMgr* felis_mgr=Global::felisScriptMgr();
 	ClassMgr* cls_mgr=Global::classMgr();
-	cls_mgr->preRegisterClass();
 
 
 	/* remove scheduler target */
@@ -499,6 +498,7 @@ NS_FS_END
 NS_FS_BEGIN
 int FsFaeris_PlatformInit() 
 {
+	return 0;
 	/* set root dir */
 	std::string data_dir(Sys::currentDir());
 	VFS::setRoot(data_dir.c_str());
