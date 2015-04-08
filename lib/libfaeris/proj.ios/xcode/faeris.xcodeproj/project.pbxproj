@@ -15,6 +15,7 @@
 		DC59D1D91A74E0C2000A4799 /* FsGLESView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC59D1D81A74E0C2000A4799 /* FsGLESView.mm */; };
 		DC69534A1AD22B1400715C17 /* FsAlertView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC6953491AD22B1400715C17 /* FsAlertView.mm */; };
 		DC69534C1AD22F0200715C17 /* FsSysIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC69534B1AD22F0200715C17 /* FsSysIos.mm */; };
+		DC6953531AD43E6700715C17 /* FsLogIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC6953521AD43E6700715C17 /* FsLogIos.mm */; };
 		DC91F13B1A76A1F100AC38E0 /* FsFlatformIos.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC91F13A1A76A1F100AC38E0 /* FsFlatformIos.mm */; };
 		DCC0124F1A716AEC0060D167 /* FsScriptEngine.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC0109D1A716AEC0060D167 /* FsScriptEngine.cc */; };
 		DCC012501A716AEC0060D167 /* FsClass.cc in Sources */ = {isa = PBXBuildFile; fileRef = DCC0109F1A716AEC0060D167 /* FsClass.cc */; };
@@ -197,6 +198,7 @@
 		DC6953481AD22B1400715C17 /* FsAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FsAlertView.h; path = platform/ios/FsAlertView.h; sourceTree = "<group>"; };
 		DC6953491AD22B1400715C17 /* FsAlertView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FsAlertView.mm; path = platform/ios/FsAlertView.mm; sourceTree = "<group>"; };
 		DC69534B1AD22F0200715C17 /* FsSysIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FsSysIos.mm; path = platform/ios/FsSysIos.mm; sourceTree = "<group>"; };
+		DC6953521AD43E6700715C17 /* FsLogIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FsLogIos.mm; path = ../support/util/platform/FsLogIos.mm; sourceTree = "<group>"; };
 		DC91F13A1A76A1F100AC38E0 /* FsFlatformIos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FsFlatformIos.mm; path = platform/ios/FsFlatformIos.mm; sourceTree = "<group>"; };
 		DCC010991A716AD20060D167 /* libfaerisd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfaerisd.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC0109D1A716AEC0060D167 /* FsScriptEngine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FsScriptEngine.cc; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 		DC59D1D11A74C3AB000A4799 /* platform */ = {
 			isa = PBXGroup;
 			children = (
+				DC6953521AD43E6700715C17 /* FsLogIos.mm */,
 				DC69534B1AD22F0200715C17 /* FsSysIos.mm */,
 				DC6953481AD22B1400715C17 /* FsAlertView.h */,
 				DC6953491AD22B1400715C17 /* FsAlertView.mm */,
@@ -1281,6 +1284,7 @@
 				DCC012551A716AEC0060D167 /* FsVariant.cc in Sources */,
 				DCC0125A1A716AEC0060D167 /* FsImage2D.cc in Sources */,
 				DCC012CF1A716AEC0060D167 /* sl_top.cc in Sources */,
+				DC6953531AD43E6700715C17 /* FsLogIos.mm in Sources */,
 				DCC0125E1A716AEC0060D167 /* FsMaterial.cc in Sources */,
 				DCC012B51A716AEC0060D167 /* FsPressButton.cc in Sources */,
 				DC1E4BD41A7F5C750009E59F /* FsIMaterial2DEntity.cc in Sources */,
@@ -1421,7 +1425,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					../../../lib3rdparty/zlib/include,
 					../../../lib3rdparty/minizip/include,

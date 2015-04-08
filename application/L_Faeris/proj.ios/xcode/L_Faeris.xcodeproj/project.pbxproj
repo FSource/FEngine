@@ -34,7 +34,7 @@
 		DC1E4BEB1A7F625C0009E59F /* fdata.fgz in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE61A7F625C0009E59F /* fdata.fgz */; };
 		DC1E4BED1A7F625C0009E59F /* ios.fgame in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE81A7F625C0009E59F /* ios.fgame */; };
 		DC1E4BEE1A7F625C0009E59F /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = DC1E4BE91A7F625C0009E59F /* sounds */; };
-		DC1E4BF71A7FC82F0009E59F /* libfmodex_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1E4BF61A7FC82F0009E59F /* libfmodex_iphonesimulator.a */; };
+		DC6953511AD4332000715C17 /* libfmodex_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6953501AD4332000715C17 /* libfmodex_iphoneos.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +67,7 @@
 		DC1E4BE81A7F625C0009E59F /* ios.fgame */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ios.fgame; path = assets/ios.fgame; sourceTree = "<group>"; };
 		DC1E4BE91A7F625C0009E59F /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = assets/sounds; sourceTree = "<group>"; };
 		DC1E4BF61A7FC82F0009E59F /* libfmodex_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodex_iphonesimulator.a; path = ../../../../lib/library/ios/3rdparty/libfmodex_iphonesimulator.a; sourceTree = "<group>"; };
+		DC6953501AD4332000715C17 /* libfmodex_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmodex_iphoneos.a; path = ../../../../lib/library/ios/3rdparty/libfmodex_iphoneos.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC1E4BF71A7FC82F0009E59F /* libfmodex_iphonesimulator.a in Frameworks */,
+				DC6953511AD4332000715C17 /* libfmodex_iphoneos.a in Frameworks */,
 				DC1E4BE41A7F62240009E59F /* CoreAudio.framework in Frameworks */,
 				DC1E4BE21A7F621B0009E59F /* AudioToolbox.framework in Frameworks */,
 				DC1E4BC11A7F5C320009E59F /* libBox2Dd.a in Frameworks */,
@@ -103,6 +104,7 @@
 		DC1E4B691A7F55F70009E59F = {
 			isa = PBXGroup;
 			children = (
+				DC6953501AD4332000715C17 /* libfmodex_iphoneos.a */,
 				DC1E4BEF1A7F627B0009E59F /* assets */,
 				DC1E4BCF1A7F5C370009E59F /* library */,
 				DC1E4BA21A7F583A0009E59F /* src */,
@@ -191,6 +193,7 @@
 				TargetAttributes = {
 					DC1E4B711A7F55F70009E59F = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 6Q4BR94H8Z;
 					};
 				};
 			};
@@ -320,6 +323,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -334,6 +339,7 @@
 					"-I../../../../lib/libfaeris/src/support",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -341,6 +347,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -355,6 +363,7 @@
 					"-I../../../../lib/libfaeris/src/support",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -368,7 +377,7 @@
 				DC1E4B941A7F55F70009E59F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		DC1E4B951A7F55F70009E59F /* Build configuration list for PBXNativeTarget "L_Faeris" */ = {
 			isa = XCConfigurationList;
@@ -377,7 +386,7 @@
 				DC1E4B971A7F55F70009E59F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

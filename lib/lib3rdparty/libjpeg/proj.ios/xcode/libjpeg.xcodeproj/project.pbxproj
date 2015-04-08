@@ -411,6 +411,7 @@
 		DCC00ABF1A69843D0060D167 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)d";
 				SKIP_INSTALL = YES;

@@ -10,7 +10,7 @@
 #include "sys/io/FsVFS.h"
 
 
-#define FS_MAX_MUSIC_CHANNEL_NU 32
+#define FS_MAX_MUSIC_CHANNEL_NU 1
 
 
 NS_FS_BEGIN
@@ -263,8 +263,10 @@ bool FmodPlayer::init(int channel_nu)
 		m_channelNu=channel_nu;
 	}while(0);
 
+    
+    /*
 	do
-	{  /* create m_musics */
+	{
 		result=FMOD::System_Create(&m_musics);
 		if(result!=FMOD_OK)
 		{
@@ -280,6 +282,8 @@ bool FmodPlayer::init(int channel_nu)
 		m_musicChannelUsed.resize(FS_MAX_MUSIC_CHANNEL_NU);
 
 	}while(0);
+     */
+    m_musics=m_sounds;
 
 
 
@@ -305,12 +309,14 @@ void FmodPlayer::destory()
 		m_sounds->release();
 		m_sounds=NULL;
 	}
+    /*
 	if(m_musics)
 	{
 		m_musics->close();
 		m_musics->release();
 		m_musics=NULL;
 	}
+     */
 }
 
 

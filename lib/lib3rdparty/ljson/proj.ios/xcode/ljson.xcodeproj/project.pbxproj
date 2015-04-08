@@ -219,6 +219,7 @@
 		DCC00F371A7161C40060D167 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-I../../src",
 					"-I../../../lua/include/",
