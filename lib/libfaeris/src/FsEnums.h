@@ -601,6 +601,25 @@ enum class E_AlignV
 	BOTTOM
 };
 
+enum class E_TrackMode
+{
+	FLAT=0,
+	SMOOTH=1,
+};
+
+enum class E_TrackType 
+{
+	TRANSLATE=0,
+	ROTATE=1,
+	SCALE=2,
+	COLOR=3,
+	OPACITY=4,
+	VISIBALE=5,
+
+	USER_DEFINE1=100,
+};
+
+
 
 
 
