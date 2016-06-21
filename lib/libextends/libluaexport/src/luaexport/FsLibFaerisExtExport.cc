@@ -27,7 +27,7 @@
 /*************************************************************************/
 
 
-** Lua binding: FsLibFaerisExt
+/** Lua binding: FsLibFaerisExt
 ** Generated automatically by tolua++-1.0.92 on 12/20/14 02:24:58.
 */
 

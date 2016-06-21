@@ -6,36 +6,20 @@
 
 NS_FS_BEGIN
 
-class FsAnimation 
+class FsAnimation:public FsObject
 {
 	public:
-		void addAnimation(const char* name,FsTrackSet* tracks);
-		FsTrackSet* getAnimaiton(const char* name);
-
-		void setAnimation(const char* name);
-
-		void start();
-		void stop();
-
-		int isRunning();
-
-		void update(float dt);
-
+		void setAnimType(E_AnimType type);
+		E_AnimType getAnimTye();
 	public:
-		virtual int keyFrameEvent(E_TrackType type, FsTrackKeyFrame& kf);
+		FS_VIRTUAL void update(Animator* at,float time,float dt);
+		FS_VIRTUAL float getTimeLength();
 
-
-	public:
-		std::function<int(E_TrackType type,FsTrackKeyFrame)> onKeyFrameEvent;
-
-
+	protected:
+		E_AnimType m_animType;
+		std::string m_animTypeName;
 };
 
-
 NS_FS_END
-
-
-
-
 
 #endif /*_FS_ANIMATION_H_*/
