@@ -37,7 +37,7 @@ class FsAnimator
 
 
 	public:
-		FS_VIRTUAL bool animationEvent(E_AnimType anim_type,const char* anim_tname,const FsVariant& value)=0;
+		FS_VIRTUAL bool animationEvent(FsAnimationEvent* event);
 		FS_VIRTUAL void updateAnimation(float dt);
 
 	protected:
