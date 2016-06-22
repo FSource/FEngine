@@ -73,6 +73,20 @@ class TLinearCurve:public TCurve<T_Vector>
 		T_Vector m_end;
 };
 
+
+class LinearCurve1:public TLinearCurve<float>
+{
+	public:
+		static LinearCurve1* create(const float& b,const float& e);
+
+	public:
+		virtual const char* className();
+
+	protected:
+		LinearCurve1(const float& b,const float& a);
+}
+
+
 class LinearCurve2:public TLinearCurve<Vector2> 
 {
 	public:
@@ -109,6 +123,7 @@ class LinearCurve4:public TLinearCurve<Vector4>
 	protected:
 		LinearCurve4(const Vector4& b,const Vector4& a);
 };
+
 
 
 

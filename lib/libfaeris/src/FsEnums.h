@@ -601,20 +601,41 @@ enum class E_AlignV
 	BOTTOM
 };
 
-enum class E_TrackMode
+enum class E_LerpMode
 {
 	FLAT=0,
 	SMOOTH=1,
 };
 
-enum class E_TrackType 
+enum class E_AnimType 
 {
-	TRANSLATE=0,
-	ROTATE=1,
-	SCALE=2,
-	COLOR=3,
-	OPACITY=4,
-	VISIBALE=5,
+	UNKOWN=0,
+
+	TRANSLATE=1,
+	TRANSLATE_X=2,
+	TRANSLATE_Y=3,
+	TRANSLATE_Z=4,
+
+	ROTATE=11,
+	ROTATE_X=12,
+	ROTATE_Y=13,
+	ROTATE_Z=14,
+
+	SCALE=21,
+	SCALE_X=22,
+	SCALE_Y=23,
+	SCALE_Z=24,
+
+	COLOR=31,
+	COLOR_R=32,
+	COLOR_G=33,
+	COLOR_B=34,
+	COLOR_A=35,
+
+	OPACITY=40,
+	VISIBALE=50,
+
+
 
 	USER_DEFINE1=100,
 };

@@ -32,6 +32,28 @@
 
 NS_FS_BEGIN
 
+/* LinearCurve1 */
+LinearCurve1* LinearCurve1::create(const float& a,const float& b)
+{
+	return new LinearCurve1(a,b);
+}
+
+
+const char* LinearCurve1::className()
+{
+	return FS_LINEAR_CURVE_1_CLASS_NAME;
+}
+
+
+LinearCurve1::LinearCurve1(const float& b,const float& a)
+	:TLinearCurve<float>(b,a)
+{
+
+}
+
+
+
+
 /* LinearCurve2 */
 LinearCurve2* LinearCurve2::create(const Vector2& b,const Vector2& e)
 {
