@@ -601,7 +601,7 @@ enum class E_AlignV
 	BOTTOM
 };
 
-enum class E_TrackMode
+enum class E_LerpMode
 {
 	FLAT=0,
 	SMOOTH=1,

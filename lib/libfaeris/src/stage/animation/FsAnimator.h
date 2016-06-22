@@ -28,17 +28,26 @@ class FsAnimator
 		void setDefaultPlayer(FsAnimationPlayer* player);
 		void getDefaultPlayer(FsAnimationPlayer* player);
 
-		FsAnimationPlayer* createPlayer();
+		void getPlayerNu();
+		FsAnimationPlayer* getPlayer(int index);
+
+		void addPlayer(FsAnimationPlayer* player);
 		void removePlayer(FsAnimationPlayer* player);
+		void removePlayer(int index);
+
 
 	public:
-		FS_VIRTUAL bool animationEvent(E_AnimType anim_type,const char* anim_tname,const FsVariant& value);
+		FS_VIRTUAL bool animationEvent(E_AnimType anim_type,const char* anim_tname,const FsVariant& value)=0;
+		FS_VIRTUAL void updateAnimation(float dt);
 
+	protected:
+		FsAnimator();
+		~FsAnimator();
 
 	protected:
 		FsDict* m_animations;
 		FsArray* m_players;
-		
+		FsAnimationPlayer* m_defaultPlayer;
 };
 NS_FS_END 
 

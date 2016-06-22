@@ -352,6 +352,7 @@ namespace Faeris
 
 
 /* math/curve */
+#define FS_LINEAR_CURVE_1_CLASS_NAME "LinearCurve1"
 #define FS_LINEAR_CURVE_2_CLASS_NAME "LinearCurve2"
 #define FS_LINEAR_CURVE_3_CLASS_NAME "LinearCurve3"
 #define FS_LINEAR_CURVE_4_CLASS_NAME "LinearCurve4"

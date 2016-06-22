@@ -50,6 +50,7 @@ class TCurve:public FsObject
 typedef TCurve<Vector4> Curve4;
 typedef TCurve<Vector3> Curve3;
 typedef TCurve<Vector2> Curve2;
+typedef TCurve<float > curve1;
 
 
 NS_FS_END
