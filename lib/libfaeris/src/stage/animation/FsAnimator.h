@@ -37,8 +37,9 @@ class FsAnimator
 
 
 	public:
-		FS_VIRTUAL bool animationEvent(FsAnimationEvent* event);
+		FS_VIRTUAL bool animationEvent(int anim_type,FsKeyFrame* keyframe);
 		FS_VIRTUAL void updateAnimation(float dt);
+
 
 	protected:
 		FsAnimator();
