@@ -6,22 +6,30 @@
 
 NS_FS_BEGIN
 
-class FsAttributeAnimation:public FsTrackAnimation 
+class AttributeAnimation:public TrackAnimation 
 {
 	public:
-		static FsAttributeAnimation* create(E_AnimType anim_type,FsType type);
-
+		static AttributeAnimation* create();
+		static AttributeAnimation* create(const char* attr_name,FsType type);
 
 	public:
 		void insert(float time,const FsVariant& value);
 
-		E_AnimType getAnimType();
 		FsType getValueType();
+		void setValueType(FsType type);
+
+		void setAttributeName(const char* name);
+		const char* getAttributeName();
+
+	public:
+		void update(Animator* at,float time,float dt) FS_OVERRIDE;
+
+	protected:
 
 
 	protected:
-		E_AnimType m_animType;
 		FsType m_valueType;
+		std::string m_attrName;
 };
 
 

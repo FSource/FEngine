@@ -9,13 +9,13 @@ NS_FS_BEGIN
 class FsKeyFrame:public FsObject
 {
 	public:
+		FsKeyFrame(float time,FsEaseExpr* ease_expr);
+		virtual  ~FsKeyFrame();
+
+	public:
 		float getTime();
 		void setEaseExpr(FsEaseExpr* ease);
 		FsEaseExpr* getEaseExpr();
-		const FsVariant& getVariant();
-
-	protected:
-		FsKeyFrame(float time,FsEaseExpr* ease_expr);
 
 	protected:
 		float m_time;

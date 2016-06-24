@@ -6,10 +6,13 @@
 
 NS_FS_BEGIN 
 
-class FsKeyFrame;
+class KeyFrame;
 
-class FsTrackAnimation:public FsAnimation
+class TrackAnimation:public Animation
 {
+	public:
+		FS_CLASS_DECLARE(TrackAnimation);
+
 	public:
 		void update(Animator* at,float time,float dt) FS_OVERRIDE;
 		float getTimeLength() FS_OVERRIDE;
@@ -19,20 +22,29 @@ class FsTrackAnimation:public FsAnimation
 		E_LerpMode getLerpMode();
 
 	public:
-		void insertKeyFrame(FsKeyFrame* frame);
+		void insertKeyFrame(KeyFrame* frame);
 		void removeTime(float time);
 		void removeRange(float begin,float end);
-		void removeKeyFrame(FsKeyFrame* frame);
-
 		int getKeyFrameNu();
-		FsKeyFrame* getKeyFrame(int index);
+		void clearKeyFrame();
+
+		KeyFrame* getKeyFrame(int index);
+
+	protected:
+		TrackAnimation();
+		~TrackAnimation();
+
+	protected:
+		int getNearBeforeIndex(float time);
+		int getNearAfterIndex(float time);
+		void calTotoalTime();
 
 
 	private:
 		E_LerpMode m_lerpMode;
 
 		float m_totalTime;
-		std::set<FsKeyFrame*> m_keyFrame;
+		std::vector<KeyFrame*> m_keyFrames;
 };
 
 NS_FS_END

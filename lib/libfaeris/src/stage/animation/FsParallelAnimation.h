@@ -9,6 +9,7 @@ class FsParallelAnimation:public FsAnimation
 	public:
 		void update(Animator* at,float time,float dt) FS_OVERRIDE;
 		float getTimeLength() FS_OVERRIDE;
+
 	public:
 		void addAnimation(FsAnimation* anim);
 		void removeAnimation(FsAnimation* anim);
