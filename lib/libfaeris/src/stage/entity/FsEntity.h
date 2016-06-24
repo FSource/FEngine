@@ -33,7 +33,7 @@
 
 
 #include "FsMacros.h"
-#include "stage/FsActionTarget.h"
+#include "stage/animation/FsAnimator.h"
 #include "math/FsVector3.h"
 #include "math/FsMatrix4.h"
 #include "transform/FsITransform.h"
@@ -45,7 +45,7 @@ NS_FS_BEGIN
 class RenderDevice;
 class Layer;
 class Scene;
-class Entity :public ActionTarget
+class Entity :public Animator
 {
 	public:
 		FS_CLASS_DECLARE(Entity);
