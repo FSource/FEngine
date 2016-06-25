@@ -64,6 +64,31 @@ NS_FS_BEGIN
 
 
 
+/* E_FsType */
+
+static EnumStrPair<E_FsType> S_E_FsTypeStrMap[]={
+	EnumStrPair<E_FsType>(E_FsType::FT_IN_VALID,"invalid"),
+	EnumStrPair<E_FsType>(E_FsType::FT_B_1,"boolean"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_1,"float"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_2,"vector2f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_3,"vector3f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_4,"vector4f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_I_1,"integer"),
+	EnumStrPair<E_FsType>(E_FsType::FT_I_2,"vector2i"),
+	EnumStrPair<E_FsType>(E_FsType::FT_I_3,"vector3i"),
+	EnumStrPair<E_FsType>(E_FsType::FT_I_4,"vector4i"),
+	EnumStrPair<E_FsType>(E_FsType::FT_COLOR_3,"color3f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_COLOR_4,"color4f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_MAT4,"mat4"),
+	EnumStrPair<E_FsType>(E_FsType::FT_CHARS,"string"),
+	EnumStrPair<E_FsType>(E_FsType::FT_OBJECT,"fobject"),
+	EnumStrPair<E_FsType>(E_FsType::FT_STRING,"fstring"),
+	EnumStrPair<E_FsType>(E_FsType::FT_DICT,"fdict"),
+	EnumStrPair<E_FsType>(E_FsType::FT_ARRAY,"farray"),
+	EnumStrPair<E_FsType>(E_FsType::FT_IN_VALID,NULL),
+}
+FS_ENUM_TO_STR_MAP_IMPLEMENT(E_FsType,S_E_FsTypeStrMap) 
+
 
 
 /* E_MaterialType */

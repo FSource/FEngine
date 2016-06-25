@@ -162,7 +162,7 @@ void TrackAnimation::calTotoalTime()
 
 
 /** Used For TrackAnimation Attribute */
-FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(TrackAnimation,setLerpMode,getLerpMode,LerpMode mode);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(TrackAnimation,setLerpMode,getLerpMode,LerpMode);
 
 static FsClass::FsAttributeDeclare S_TrackAnimation_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE("lerpMode",FsType::FT_CHARS,NULL,TrackAnimation_setLerpMode,TrackAnimation_getLerpMode),

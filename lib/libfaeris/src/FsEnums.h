@@ -121,7 +121,7 @@ enum
 };
 
 
-enum class FsType
+enum class E_FsType
 {
 	FT_IN_VALID,
 
@@ -150,6 +150,7 @@ enum class FsType
 	FT_DICT,
 	FT_ARRAY,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(FsType);
 
 
 

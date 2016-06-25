@@ -15,16 +15,18 @@ class AttributeAnimation:public TrackAnimation
 	public:
 		void insert(float time,const FsVariant& value);
 
-		FsType getValueType();
+		FsType getValueType() const;
 		void setValueType(FsType type);
 
 		void setAttributeName(const char* name);
-		const char* getAttributeName();
+		const char* getAttributeName() const;
 
 	public:
 		void update(Animator* at,float time,float dt) FS_OVERRIDE;
 
 	protected:
+		AttributeAnimation();
+		~AttributeAnimation();
 
 
 	protected:

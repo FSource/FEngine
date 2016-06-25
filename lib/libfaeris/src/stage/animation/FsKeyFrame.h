@@ -29,7 +29,7 @@ class FsVariantKeyFrame:public FsKeyFrame
 
 	public:
 		void setValue(const FsVariant& value);
-		const FsVariant& getValue();
+		const FsVariant& getValue() const ;
 
 	protected:
 		FsVariantKeyFrame(float time,const FsVariant& value,FsEaseExpr* ease_expr);
