@@ -33,7 +33,7 @@
 #include <functional>
 
 #include "FsMacros.h"
-#include "stage/FsActionTarget.h"
+#include "stage/animation/FsAnimator.h"
 #include "graphics/FsColor.h"
 
 
@@ -48,7 +48,7 @@ class ObjectMgr;
 class ColorLayer;
 
 
-class Scene:public ActionTarget
+class Scene:public Animator 
 {
 	public:
 		static Scene* create();
