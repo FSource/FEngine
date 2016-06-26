@@ -674,9 +674,9 @@ FS_CLASS_ATTR_SET_CHARS_FUNCTION(Quad2D,setTexture);
 
 static FsClass::FsAttributeDeclare S_Quad2D_Main_Attr[]={
 
-	FS_CLASS_ATTR_DECLARE("textureUrl",FsType::FT_CHARS,NULL,Quad2D_setTexture,0),
-	FS_CLASS_ATTR_DECLARE("texture",FsType::FT_DICT,NULL,Quad2D_setTextureDict,0),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("textureUrl",E_FsType::FT_CHARS,NULL,Quad2D_setTexture,0),
+	FS_CLASS_ATTR_DECLARE("texture",E_FsType::FT_DICT,NULL,Quad2D_setTextureDict,0),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 

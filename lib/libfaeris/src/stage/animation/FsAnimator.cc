@@ -1,30 +1,37 @@
 #include "FsAnimator.h"
+#include "FsAnimation.h"
+#include "FsAnimationEvent.h"
+#include "FsAnimationPlayer.h"
+#include "support/util/FsArray.h"
+#include "support/util/FsDict.h"
+#include "support/util/FsString.h"
+
 
 NS_FS_BEGIN 
 
-void FsAnimator::addAnimation(const char* name,FsAnimation* anim)
+void Animator::addAnimation(const char* name,Animation* anim)
 {
 	FsString* f_name=FsString::create(name);
-	m_animations->insert(name,anim);
+	m_animations->insert(f_name,anim);
 }
 
-void FsAnimator::removeAnimation(const char* name)
+void Animator::removeAnimation(const char* name)
 {
 	FsString* f_name=FsString::create(name);
 	m_animations->remove(f_name);
 	f_name->autoDestroy();
 }
 
-void FsAnimator::startAnimation(const char* name,E_AnimPlayMode mode)
+void Animator::startAnimation(const char* name,E_AnimPlayMode mode)
 {
-	FsAnimation* anim=(FsAnimation*)m_animations->lookup(name)
+	Animation* anim=(Animation*)m_animations->lookup(name);
 	if(m_defaultPlayer&&anim)
 	{
 		m_defaultPlayer->start(anim,mode);
 	}
 }
 
-void FsAnimator::startAnimation(FsAnimation* animation,E_AnimPlayMode mode)
+void Animator::startAnimation(Animation* animation,E_AnimPlayMode mode)
 {
 	if(m_defaultPlayer)
 	{
@@ -32,14 +39,14 @@ void FsAnimator::startAnimation(FsAnimation* animation,E_AnimPlayMode mode)
 	}
 }
 
-void FsAnimator::stopAniamtion()
+void Animator::stopAniamtion()
 {
 	if(m_defaultPlayer)
 	{
 		m_defaultPlayer->stop();
 	}
 }
-void FsAnimator::pauseAniamtion()
+void Animator::pauseAniamtion()
 {
 	if(m_defaultPlayer)
 	{
@@ -47,7 +54,7 @@ void FsAnimator::pauseAniamtion()
 	}
 }
 
-void FsAnimator::playAnimation()
+void Animator::playAnimation()
 {
 	if(m_defaultPlayer)
 	{
@@ -56,7 +63,7 @@ void FsAnimator::playAnimation()
 	}
 }
 
-bool FsAnimator::isAnimationStop()
+bool Animator::isAnimationStop()
 {
 	if(m_defaultPlayer)
 	{
@@ -65,7 +72,7 @@ bool FsAnimator::isAnimationStop()
 	return true;
 }
 
-bool FsAnimator::isAnimationPause()
+bool Animator::isAnimationPause()
 {
 	if(m_defaultPlayer)
 	{
@@ -75,71 +82,92 @@ bool FsAnimator::isAnimationPause()
 	return true;
 }
 
-void FsAnimator::setDefaultPlayer(FsAnimationPlayer* player)
+void Animator::setDefaultPlayer(AnimationPlayer* player)
 {
 	FS_SAFE_ASSIGN(m_defaultPlayer,player);
 }
 
-void FsAnimator::getDefaultPlayer()
+AnimationPlayer* Animator::getDefaultPlayer()
 {
 	return m_defaultPlayer;
 }
 
-int FsAnimator::getPlayerNu()
+int Animator::getPlayerNu()
 {
 	return m_players->size();
 }
 
-FsAnimationPlayer* FsAnimator::getPlayer(int index)
+AnimationPlayer* Animator::getPlayer(int index)
 {
-	return (FsAnimationPlayer*)m_players->get(index)
+	return (AnimationPlayer*)m_players->get(index);
 }
 
-void FsAnimator::addPlayer(FsAnimationPlayer* player)
+void Animator::addPlayer(AnimationPlayer* player)
 {
 	m_players->push(player);
 }
 
-void FsAnimator::removePlayer(FsAnimationPlayer* player)
+void Animator::removePlayer(AnimationPlayer* player)
 {
 	m_players->remove(player);
 }
 
-void FsAnimator::removePlayer(int index)
+void Animator::removePlayer(int index)
 {
 	m_players->remove(index);
 }
 
-void FsAnimator::updateAnimation(float dt)
+
+bool Animator::animationEvent(AnimationEvent* event)
+{
+	E_AnimEventType type=event->getEventType();
+
+	if(type==E_AnimEventType::ATTRIBUTE)
+	{
+		const FsVariant& value=((AttributeAnimationEvent*)event)->getValue();
+		const char* attr_name= ((AttributeAnimationEvent*)event)->getAttributeName();
+		setAttribute(attr_name,value);
+		return true;
+	}
+	return false;
+}
+
+
+void Animator::updateAnimation(float dt)
 {
 	int size=m_players->size();
 
 	for(int i=0;i<size;i++)
 	{
-		FsAnimationPlayer* player=(FsAnimationPlayer*)m_players->get(i);
-		player->update(dt);
+		AnimationPlayer* player=(AnimationPlayer*)m_players->get(i);
+		player->update(this,dt);
 	}
 }
 
 
 
 
-FsAnimator::FsAnimator()
+
+
+Animator::Animator()
 {
 	m_animations=FsDict::create();
-	FS_NO_REF_DESTORY(m_animations);
+	FS_NO_REF_DESTROY(m_animations);
 
 	m_players=FsArray::create();
-	FS_NO_REF_DESTORY(m_players);
+	FS_NO_REF_DESTROY(m_players);
 
-	m_defaultPlayer=FsAnimationPlayer::create();
+	m_defaultPlayer=AnimationPlayer::create();
 	m_defaultPlayer->addRef();
+
+	onAnimationEvent=nullptr;
+
 }
 
-FsAnimator::~FsAnimator()
+Animator::~Animator()
 {
-	FS_DESTORY(m_animations);
-	FS_DESTORY(m_players);
+	FS_DESTROY(m_animations);
+	FS_DESTROY(m_players);
 	m_defaultPlayer->decRef();
 }
 

@@ -60,7 +60,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../../../lib/library/win32/3rdparty;../../../../lib/library/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;freetyped.lib;fmodex.lib;libmd5modeld.lib;libobjmodeld.lib;libtgad.lib;zlibd.lib;libpngd.lib;libjpegd.lib;ljsond.lib;jsoncd.lib;glslextd.lib;luad.lib;minizipd.lib;libcurld.lib;libfaerisd.lib;pthreadVC.lib;tolua++d.lib;wsock32.lib;Wldap32.lib;Ws2_32.lib;Winmm.lib;libbox2dd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;freetyped.lib;fmodex.lib;libmd5modeld.lib;libobjmodeld.lib;libtgad.lib;zlibd.lib;libpngd.lib;libjpegd.lib;ljsond.lib;jsoncd.lib;glslextd.lib;luad.lib;minizipd.lib;libcurld.lib;libfaerisd.lib;pthreadVC2.lib;tolua++d.lib;wsock32.lib;Wldap32.lib;Ws2_32.lib;Winmm.lib;libbox2dd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,7 +81,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\ActionDemo\DmActionScene.cc" />
     <ClCompile Include="..\..\src\Common\DmBackLayer.cc" />
     <ClCompile Include="..\..\src\Common\DmColorSlider.cc" />
     <ClCompile Include="..\..\src\Common\DmListItem.cc" />
@@ -96,7 +95,6 @@
     <ClCompile Include="..\..\src\LayoutDemo\DmLayoutScene.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\ActionDemo\DmActionScene.h" />
     <ClInclude Include="..\..\src\Common\DmBackLayer.h" />
     <ClInclude Include="..\..\src\Common\DmColorSlider.h" />
     <ClInclude Include="..\..\src\Common\DmListItem.h" />

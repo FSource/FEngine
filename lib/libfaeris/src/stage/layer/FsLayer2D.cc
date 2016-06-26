@@ -315,7 +315,6 @@ int Layer2D::getEntityNu()
 
 void Layer2D::update(float dt)
 {
-	updateAction(dt);
 	updateEntity(dt);
 }
 
@@ -546,9 +545,9 @@ void Layer2D_setEntity(Layer2D* l,FsArray* entities)
 
 
 static FsClass::FsAttributeDeclare S_Layer2D_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("viewArea",FsType::FT_DICT,NULL,Layer2D_setViewArea,0),
-	FS_CLASS_ATTR_DECLARE("entity",FsType::FT_ARRAY,NULL,Layer2D_setEntity,0),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("viewArea",E_FsType::FT_DICT,NULL,Layer2D_setViewArea,0),
+	FS_CLASS_ATTR_DECLARE("entity",E_FsType::FT_ARRAY,NULL,Layer2D_setEntity,0),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 

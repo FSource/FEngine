@@ -896,7 +896,7 @@ void ScrollWidget::endDrag()
 
 
 static FsClass::FsAttributeDeclare S_ScrollWidget_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 

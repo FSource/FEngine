@@ -232,8 +232,8 @@ static void ScrollView_setContentWidget(ScrollView* sl,FsDict* dict)
 
 
 static FsClass::FsAttributeDeclare S_ScrollView_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("contentWidget",FsType::FT_DICT,NULL,ScrollView_setContentWidget,0),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("contentWidget",E_FsType::FT_DICT,NULL,ScrollView_setContentWidget,0),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(ScrollView,ScrollWidget,ScrollView_NewInstance,S_ScrollView_Main_Attr);

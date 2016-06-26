@@ -2,21 +2,27 @@
 #define _FS_ANIMATOR_H_
 
 #include "FsMacros.h"
-
+#include "FsEnums.h"
+#include "FsObject.h"
 NS_FS_BEGIN
 
-class FsAnimation;
-class FsAnimationPlayer;
+class AnimationEvent;
+class Animation;
+class AnimationPlayer;
+class KeyFrame;
+class FsDict;
+class FsArray;
+class AnimationEvent;
 
-class FsAnimator 
+class Animator:public FsObject
 {
 	public:
-		void addAnimation(const char* name,FsAnimation* anim);
+		void addAnimation(const char* name,Animation* anim);
 		void removeAnimation(const char* name);
 
 		/* control default player*/
 		void startAnimation(const char* name,E_AnimPlayMode mode);
-		void startAnimation(FsAnimation* animation,E_AnimPlayMode mode);
+		void startAnimation(Animation* animation,E_AnimPlayMode mode);
 
 		void stopAniamtion();
 		void pauseAniamtion();
@@ -25,30 +31,33 @@ class FsAnimator
 		bool isAnimationPause();
 
 		/* default player */
-		void setDefaultPlayer(FsAnimationPlayer* player);
-		void getDefaultPlayer(FsAnimationPlayer* player);
+		void setDefaultPlayer(AnimationPlayer* player);
+		AnimationPlayer* getDefaultPlayer();
 
-		void getPlayerNu();
-		FsAnimationPlayer* getPlayer(int index);
+		int getPlayerNu();
+		AnimationPlayer* getPlayer(int index);
 
-		void addPlayer(FsAnimationPlayer* player);
-		void removePlayer(FsAnimationPlayer* player);
+		void addPlayer(AnimationPlayer* player);
+		void removePlayer(AnimationPlayer* player);
 		void removePlayer(int index);
 
 
 	public:
-		FS_VIRTUAL bool animationEvent(int anim_type,FsKeyFrame* keyframe);
+		FS_VIRTUAL bool animationEvent(AnimationEvent* event);
 		FS_VIRTUAL void updateAnimation(float dt);
+
+	public:
+		std::function<bool(Animator* at,AnimationEvent* event)> onAnimationEvent;
 
 
 	protected:
-		FsAnimator();
-		~FsAnimator();
+		Animator();
+		virtual ~Animator();
 
 	protected:
 		FsDict* m_animations;
 		FsArray* m_players;
-		FsAnimationPlayer* m_defaultPlayer;
+		AnimationPlayer* m_defaultPlayer;
 };
 NS_FS_END 
 

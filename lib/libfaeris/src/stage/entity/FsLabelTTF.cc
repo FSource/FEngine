@@ -525,21 +525,21 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(LabelTTF,setLineGap,getLineGap,float);
 
 
 static FsClass::FsAttributeDeclare S_LabelTTF_BoundSize_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("w",FsType::FT_F_1,NULL,LabelTTF_setBoundWidth,LabelTTF_getBoundWidth),
-	FS_CLASS_ATTR_DECLARE("h",FsType::FT_F_1,NULL,LabelTTF_setBoundHeight,LabelTTF_getBoundHeight),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("w",E_FsType::FT_F_1,NULL,LabelTTF_setBoundWidth,LabelTTF_getBoundWidth),
+	FS_CLASS_ATTR_DECLARE("h",E_FsType::FT_F_1,NULL,LabelTTF_setBoundHeight,LabelTTF_getBoundHeight),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 
 static FsClass::FsAttributeDeclare S_LabelTTF_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("string",FsType::FT_CHARS,NULL,LabelTTF_setString,LabelTTF_getString),
-	FS_CLASS_ATTR_DECLARE("fontName",FsType::FT_CHARS,NULL,LabelTTF_setFontName,LabelTTF_getFontName),
-	FS_CLASS_ATTR_DECLARE("fontSize",FsType::FT_I_1,NULL,LabelTTF_setFontSize,LabelTTF_getFontSize),
-	FS_CLASS_ATTR_DECLARE("textAlign",FsType::FT_CHARS,NULL,LabelTTF_setTextAlign,LabelTTF_getTextAlign),
-	FS_CLASS_ATTR_DECLARE("lineGap",FsType::FT_F_1,NULL,LabelTTF_setLineGap,LabelTTF_getLineGap),
-	FS_CLASS_ATTR_DECLARE("boundSize",FsType::FT_F_2,S_LabelTTF_BoundSize_SubAttr,LabelTTF_setBoundSize,LabelTTF_getBoundSize),
-	FS_CLASS_ATTR_DECLARE("lineGap",FsType::FT_F_2,NULL,LabelTTF_setLineGap,LabelTTF_getLineGap),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("string",E_FsType::FT_CHARS,NULL,LabelTTF_setString,LabelTTF_getString),
+	FS_CLASS_ATTR_DECLARE("fontName",E_FsType::FT_CHARS,NULL,LabelTTF_setFontName,LabelTTF_getFontName),
+	FS_CLASS_ATTR_DECLARE("fontSize",E_FsType::FT_I_1,NULL,LabelTTF_setFontSize,LabelTTF_getFontSize),
+	FS_CLASS_ATTR_DECLARE("textAlign",E_FsType::FT_CHARS,NULL,LabelTTF_setTextAlign,LabelTTF_getTextAlign),
+	FS_CLASS_ATTR_DECLARE("lineGap",E_FsType::FT_F_1,NULL,LabelTTF_setLineGap,LabelTTF_getLineGap),
+	FS_CLASS_ATTR_DECLARE("boundSize",E_FsType::FT_F_2,S_LabelTTF_BoundSize_SubAttr,LabelTTF_setBoundSize,LabelTTF_getBoundSize),
+	FS_CLASS_ATTR_DECLARE("lineGap",E_FsType::FT_F_2,NULL,LabelTTF_setLineGap,LabelTTF_getLineGap),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(LabelTTF,Entity2D,LabelTTF_NewInstance,S_LabelTTF_Main_Attr);

@@ -536,20 +536,20 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(LabelBitmap,setLineGap,getLineGap,float);
 
 
 static FsClass::FsAttributeDeclare S_LabelBitmap_BoundSize_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("w",FsType::FT_F_1,NULL,LabelBitmap_setBoundWidth,LabelBitmap_getBoundWidth),
-	FS_CLASS_ATTR_DECLARE("h",FsType::FT_F_1,NULL,LabelBitmap_setBoundHeight,LabelBitmap_getBoundHeight),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("w",E_FsType::FT_F_1,NULL,LabelBitmap_setBoundWidth,LabelBitmap_getBoundWidth),
+	FS_CLASS_ATTR_DECLARE("h",E_FsType::FT_F_1,NULL,LabelBitmap_setBoundHeight,LabelBitmap_getBoundHeight),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 static FsClass::FsAttributeDeclare S_labelBitmap_Main_Attr[]={
 
-	FS_CLASS_ATTR_DECLARE("string",FsType::FT_CHARS,NULL,LabelBitmap_setString,LabelBitmap_getString),
-	FS_CLASS_ATTR_DECLARE("fontName",FsType::FT_CHARS,NULL,LabelBitmap_setFontName,LabelBitmap_getFontName),
-	FS_CLASS_ATTR_DECLARE("fontSize",FsType::FT_F_1,NULL,LabelBitmap_setFontSize,LabelBitmap_getFontSize),
-	FS_CLASS_ATTR_DECLARE("textAlign",FsType::FT_CHARS,NULL,LabelBitmap_setTextAlign,LabelBitmap_getTextAlign),
-	FS_CLASS_ATTR_DECLARE("boundSize",FsType::FT_F_2,S_LabelBitmap_BoundSize_SubAttr,LabelBitmap_setBoundSize,LabelBitmap_getBoundSize),
-	FS_CLASS_ATTR_DECLARE("lineGap",FsType::FT_F_2,NULL,LabelBitmap_setLineGap,LabelBitmap_getLineGap),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("string",E_FsType::FT_CHARS,NULL,LabelBitmap_setString,LabelBitmap_getString),
+	FS_CLASS_ATTR_DECLARE("fontName",E_FsType::FT_CHARS,NULL,LabelBitmap_setFontName,LabelBitmap_getFontName),
+	FS_CLASS_ATTR_DECLARE("fontSize",E_FsType::FT_F_1,NULL,LabelBitmap_setFontSize,LabelBitmap_getFontSize),
+	FS_CLASS_ATTR_DECLARE("textAlign",E_FsType::FT_CHARS,NULL,LabelBitmap_setTextAlign,LabelBitmap_getTextAlign),
+	FS_CLASS_ATTR_DECLARE("boundSize",E_FsType::FT_F_2,S_LabelBitmap_BoundSize_SubAttr,LabelBitmap_setBoundSize,LabelBitmap_getBoundSize),
+	FS_CLASS_ATTR_DECLARE("lineGap",E_FsType::FT_F_2,NULL,LabelBitmap_setLineGap,LabelBitmap_getLineGap),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 
 };
 FS_CLASS_IMPLEMENT_WITH_BASE(LabelBitmap,Entity2D,LabelBitmap_NewInstance,S_labelBitmap_Main_Attr);

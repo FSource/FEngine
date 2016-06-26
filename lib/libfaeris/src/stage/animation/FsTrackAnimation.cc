@@ -1,4 +1,9 @@
 #include "FsTrackAnimation.h"
+#include "FsClass.h"
+#include "FsKeyFrame.h"
+
+
+NS_FS_BEGIN
 
 void TrackAnimation::update(Animator* at,float time,float dt) 
 {
@@ -10,7 +15,7 @@ float TrackAnimation::getTimeLength()
 	return m_totalTime;
 }
 
-float TrackAnimation::setLerpMode(E_LerpMode mode)
+void TrackAnimation::setLerpMode(E_LerpMode mode)
 {
 	m_lerpMode=mode;
 }
@@ -161,13 +166,58 @@ void TrackAnimation::calTotoalTime()
 }
 
 
+void TrackAnimation::getNearKeyFrame(float time,KeyFrame** prev,KeyFrame** next)
+{
+	int pre_index=getNearBeforeIndex(time);
+	int next_index=getNearAfterIndex(time);
+	if(pre_index==-1)
+	{
+		*prev=NULL;
+	}
+	else 
+	{
+		*prev=m_keyFrames[pre_index];
+	}
+
+
+	if(next_index==(int) m_keyFrames.size())
+	{
+		*next=NULL;
+	}
+	else 
+	{
+		*next=m_keyFrames[next_index];
+	}
+}
+
+std::vector<KeyFrame*>  TrackAnimation::getKeyFrame(float begin,float end)
+{
+	int pre_index=getNearAfterIndex(begin);
+	int next_index=getNearBeforeIndex(end);
+
+	std::vector<KeyFrame*> ret;
+
+	for(int i=pre_index;i<=next_index;i++)
+	{
+		ret.push_back(m_keyFrames[i]);
+	}
+
+	return ret;
+}
+
+
+
 /** Used For TrackAnimation Attribute */
 FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(TrackAnimation,setLerpMode,getLerpMode,LerpMode);
 
 static FsClass::FsAttributeDeclare S_TrackAnimation_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("lerpMode",FsType::FT_CHARS,NULL,TrackAnimation_setLerpMode,TrackAnimation_getLerpMode),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("lerpMode",E_FsType::FT_CHARS,NULL,TrackAnimation_setLerpMode,TrackAnimation_getLerpMode),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(TrackAnimation,FsObject,0,S_TrackAnimation_Main_Attr);
 
+
+
+
+NS_FS_END

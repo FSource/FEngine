@@ -197,7 +197,7 @@ bool FsClass::FsAttribute::callSet(FsObject* ob,const FsVariant& v)
 		}
 	}
 
-	if (v.getType()== FsType::FT_DICT) 
+	if (v.getType()== E_FsType::FT_DICT) 
 	{
 		if(m_subAttributes)
 		{

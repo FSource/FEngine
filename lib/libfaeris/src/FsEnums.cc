@@ -86,8 +86,8 @@ static EnumStrPair<E_FsType> S_E_FsTypeStrMap[]={
 	EnumStrPair<E_FsType>(E_FsType::FT_DICT,"fdict"),
 	EnumStrPair<E_FsType>(E_FsType::FT_ARRAY,"farray"),
 	EnumStrPair<E_FsType>(E_FsType::FT_IN_VALID,NULL),
-}
-FS_ENUM_TO_STR_MAP_IMPLEMENT(E_FsType,S_E_FsTypeStrMap) 
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(FsType,S_E_FsTypeStrMap) 
 
 
 
@@ -195,6 +195,17 @@ static EnumStrPair<E_ButtonTweenFlag> S_E_ButtonTweenFlag[]={
 	EnumStrPair<E_ButtonTweenFlag>(E_ButtonTweenFlag::ANCHOR,NULL)
 };
 FS_ENUM_TO_STR_MAP_IMPLEMENT(ButtonTweenFlag,S_E_ButtonTweenFlag);
+
+
+
+
+static EnumStrPair<E_LerpMode> S_E_LerpMode[]={
+	EnumStrPair<E_LerpMode>(E_LerpMode::FLAT,"flat"),
+	EnumStrPair<E_LerpMode>(E_LerpMode::SMOOTH,"smooth"),
+	EnumStrPair<E_LerpMode>(E_LerpMode::FLAT,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(LerpMode,S_E_LerpMode);
+
 
 
 NS_FS_END 

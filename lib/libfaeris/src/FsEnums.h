@@ -436,9 +436,8 @@ FS_ENUM_TO_STR_MAP_DECLARE(DrawMode);
 
 enum class E_AnimPlayMode 
 {
+	NORMAL,
 	LOOP,
-	START,
-	END
 };
 
 
@@ -607,8 +606,11 @@ enum class E_LerpMode
 	FLAT=0,
 	SMOOTH=1,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(LerpMode);
 
-enum class E_AnimType 
+
+
+enum class E_AnimEventType 
 {
 	UNKOWN=0,
 	ATTRIBUTE=1,

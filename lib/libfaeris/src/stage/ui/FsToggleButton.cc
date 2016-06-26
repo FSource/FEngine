@@ -274,10 +274,10 @@ static void ToggleButton_setDisableAttribute(ToggleButton* pb,FsDict* attr)
 
 static FsClass::FsAttributeDeclare S_ToggleButton_Main_Attr[]={
 
-	FS_CLASS_ATTR_DECLARE("onState",FsType::FT_DICT,NULL,ToggleButton_setOnAttribute,0),
-	FS_CLASS_ATTR_DECLARE("offState",FsType::FT_DICT,NULL,ToggleButton_setOffAttribute,0),
-	FS_CLASS_ATTR_DECLARE("disableState",FsType::FT_DICT,NULL,ToggleButton_setDisableAttribute,0),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0),
+	FS_CLASS_ATTR_DECLARE("onState",E_FsType::FT_DICT,NULL,ToggleButton_setOnAttribute,0),
+	FS_CLASS_ATTR_DECLARE("offState",E_FsType::FT_DICT,NULL,ToggleButton_setOffAttribute,0),
+	FS_CLASS_ATTR_DECLARE("disableState",E_FsType::FT_DICT,NULL,ToggleButton_setDisableAttribute,0),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0),
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(ToggleButton,StateButton,ToggleButton_NewInstance,S_ToggleButton_Main_Attr);

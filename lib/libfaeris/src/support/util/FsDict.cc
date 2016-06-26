@@ -141,6 +141,9 @@ void FsDict::simpleInsert(FsObject* key,long code,FsObject* value)
 	p->m_key=key;
 	p->m_value=value;
 	p->m_code=code;
+
+
+
 	m_fill++;
 	m_used++;
 }

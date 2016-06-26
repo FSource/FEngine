@@ -109,7 +109,9 @@ class  FsDict:public FsObject
 				long m_code;
 				FsObject* m_key;
 				FsObject* m_value;
-			public:
+
+				DictEntry* m_prev;
+				DictEntry* m_next;
 		};
 	public:
 		static FsDict* create();
@@ -145,7 +147,12 @@ class  FsDict:public FsObject
 		long m_used;  /* real key num */
 		ulong m_mask;
 		DictEntry* m_table;
+
+		DictEntry* m_entryListHead;
+		DictEntry* m_entryListTail;
+
 };
+
 NS_FS_END 
 
 #endif /*_FS_UTIL_DICT_H_*/

@@ -51,7 +51,7 @@ class FsClass :public FsObject
 		class FsAttributeDeclare
 		{
 			public:
-				FsAttributeDeclare(const char* _name,FsType _type,FsAttributeDeclare* _sub,
+				FsAttributeDeclare(const char* _name,E_FsType _type,FsAttributeDeclare* _sub,
 									AttrSetFunc _setFunc,AttrGetFunc _getFunc)
 				{
 					name=_name;
@@ -63,7 +63,7 @@ class FsClass :public FsObject
 
 			public:
 				const char* name;
-				FsType attrType;
+				E_FsType attrType;
 				FsAttributeDeclare* subAttributeDeclare;
 				AttrSetFunc setFunc;
 				AttrGetFunc getFunc;
@@ -91,7 +91,7 @@ class FsClass :public FsObject
 
 			protected:
 				FsString* m_name;
-				FsType m_attrType;
+				E_FsType m_attrType;
 				FsDict* m_subAttributes;
 				AttrSetFunc m_setFunc;
 				AttrGetFunc m_getFunc;

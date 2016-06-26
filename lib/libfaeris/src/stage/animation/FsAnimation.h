@@ -6,8 +6,11 @@
 
 NS_FS_BEGIN
 
-class FsAnimation:public FsObject
+class Animator;
+class Animation:public FsObject
 {
+	public:
+		FS_CLASS_DECLARE(Animation);
 	public:
 		FS_VIRTUAL void update(Animator* at,float time,float dt)=0;
 		FS_VIRTUAL float getTimeLength()=0;

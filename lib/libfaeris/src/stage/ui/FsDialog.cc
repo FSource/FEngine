@@ -236,13 +236,13 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(Dialog,setDetachOnTouchOutside,getDetachOnTouchOu
 
 static FsClass::FsAttributeDeclare S_Dialog_Main_Attr[]={
 
-	FS_CLASS_ATTR_DECLARE("darkOutsideColor",FsType::FT_COLOR_4,NULL,Dialog_setDarkOutsideColor,Dialog_getDarkOutsideColor),
+	FS_CLASS_ATTR_DECLARE("darkOutsideColor",E_FsType::FT_COLOR_4,NULL,Dialog_setDarkOutsideColor,Dialog_getDarkOutsideColor),
 
-	FS_CLASS_ATTR_DECLARE("darkOutsideEnabled",FsType::FT_B_1,NULL,Dialog_setDarkOutsideEnabled,Dialog_getDarkOutsideEnabled),
+	FS_CLASS_ATTR_DECLARE("darkOutsideEnabled",E_FsType::FT_B_1,NULL,Dialog_setDarkOutsideEnabled,Dialog_getDarkOutsideEnabled),
 
-	FS_CLASS_ATTR_DECLARE("detachOnTouchOutside",FsType::FT_B_1,NULL,Dialog_setDetachOnTouchOutside,Dialog_getDetachOnTouchOutside),
+	FS_CLASS_ATTR_DECLARE("detachOnTouchOutside",E_FsType::FT_B_1,NULL,Dialog_setDetachOnTouchOutside,Dialog_getDetachOnTouchOutside),
 
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 
 };
 

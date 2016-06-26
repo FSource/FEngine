@@ -53,7 +53,7 @@ class TVector2
 
 		TVector2<T> add(const TVector2<T>& v)const;
 		TVector2<T> sub(const TVector2<T>& v)const;
-		TVector2<T> scale(T k) const ;
+		TVector2<T> scale(float k) const ;
 
 		T dot(const TVector2<T>& v)const;
 

@@ -51,7 +51,7 @@ class FsVariant
 	public:
 		FsVariant();
 
-		FsVariant(FsType t,const void* value);
+		FsVariant(E_FsType t,const void* value);
 
 		FsVariant(float v);
 		FsVariant(const Vector2& v);
@@ -77,26 +77,28 @@ class FsVariant
 
 
 		FsVariant& operator= (const FsVariant& v);
+		FsVariant operator* (float value) const;
+		FsVariant operator+ (const FsVariant& value) const;
 
 
 	public:
-		FsType getType() const;
+		E_FsType getType() const;
 		void* getValue() const;
 
 		bool isValid() const;
-		FsVariant getCast(FsType t) const;
+		FsVariant getCast(E_FsType t) const;
 
 
 
 	protected:
-		void init(FsType t,const void* value);
+		void init(E_FsType t,const void* value);
 		void destruct();
 
 
 
 
 	private:
-		FsType m_type;
+		E_FsType m_type;
 		union 
 		{
 			bool* m_b1;

@@ -71,6 +71,11 @@ inline float maxf(float a,float b)
 }
 
 
+inline float fmod(float a,float b)
+{
+	return ::fmod(a,b);
+}
+
 
 inline float clampf(float value,float min,float max)
 {

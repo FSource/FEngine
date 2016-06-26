@@ -1,6 +1,7 @@
 #ifndef _FS_TRACK_ANIMATION_H_ 
 #define _FS_TRACK_ANIMATION_H_ 
 
+#include <vector>
 #include "FsMacros.h"
 #include "FsAnimation.h"
 
@@ -39,8 +40,11 @@ class TrackAnimation:public Animation
 		int getNearAfterIndex(float time);
 		void calTotoalTime();
 
+		void getNearKeyFrame(float time,KeyFrame** prev,KeyFrame** next);
+		std::vector<KeyFrame*> getKeyFrame(float beign,float end);
 
-	private:
+
+	protected:
 		E_LerpMode m_lerpMode;
 
 		float m_totalTime;

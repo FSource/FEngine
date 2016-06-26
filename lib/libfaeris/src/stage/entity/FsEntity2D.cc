@@ -640,36 +640,36 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(Entity2D,setAnchorX,getAnchorX,float);
 FS_CLASS_ATTR_SET_GET_FUNCTION(Entity2D,setAnchorY,getAnchorY,float);
 
 static FsClass::FsAttributeDeclare S_Entity2D_Anchor_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,Entity2D_setAnchorX,Entity2D_getAnchorX),
-	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,Entity2D_setAnchorY,Entity2D_getAnchorY),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("x",E_FsType::FT_F_1,NULL,Entity2D_setAnchorX,Entity2D_getAnchorX),
+	FS_CLASS_ATTR_DECLARE("y",E_FsType::FT_F_1,NULL,Entity2D_setAnchorY,Entity2D_getAnchorY),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 static FsClass::FsAttributeDeclare S_Entity2D_Size_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("w",FsType::FT_F_1,NULL,Entity2D_setWidth,Entity2D_getWidth),
-	FS_CLASS_ATTR_DECLARE("h",FsType::FT_F_1,NULL,Entity2D_setHeight,Entity2D_getHeight),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("w",E_FsType::FT_F_1,NULL,Entity2D_setWidth,Entity2D_getWidth),
+	FS_CLASS_ATTR_DECLARE("h",E_FsType::FT_F_1,NULL,Entity2D_setHeight,Entity2D_getHeight),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 
 
 static FsClass::FsAttributeDeclare S_Entity2D_Main_Attr[]={
 
-	FS_CLASS_ATTR_DECLARE("color",FsType::FT_COLOR_4,NULL,Entity2D_setColor,Entity2D_getColor),
-	FS_CLASS_ATTR_DECLARE("opacity",FsType::FT_F_1,NULL,Entity2D_setOpacity,Entity2D_getOpacity),
-	FS_CLASS_ATTR_DECLARE("shader",FsType::FT_CHARS,NULL,Entity2D_setProgramSource,0),
-	FS_CLASS_ATTR_DECLARE("blendEquation",FsType::FT_CHARS,NULL,Entity2D_setBlendEquation,Entity2D_getBlendEquation),
-	FS_CLASS_ATTR_DECLARE("blendSrc",FsType::FT_CHARS,NULL,Entity2D_setBlendSrc,Entity2D_getBlendSrc),
-	FS_CLASS_ATTR_DECLARE("blendDst",FsType::FT_CHARS,NULL,Entity2D_setBlendDst,Entity2D_getBlendDst),
+	FS_CLASS_ATTR_DECLARE("color",E_FsType::FT_COLOR_4,NULL,Entity2D_setColor,Entity2D_getColor),
+	FS_CLASS_ATTR_DECLARE("opacity",E_FsType::FT_F_1,NULL,Entity2D_setOpacity,Entity2D_getOpacity),
+	FS_CLASS_ATTR_DECLARE("shader",E_FsType::FT_CHARS,NULL,Entity2D_setProgramSource,0),
+	FS_CLASS_ATTR_DECLARE("blendEquation",E_FsType::FT_CHARS,NULL,Entity2D_setBlendEquation,Entity2D_getBlendEquation),
+	FS_CLASS_ATTR_DECLARE("blendSrc",E_FsType::FT_CHARS,NULL,Entity2D_setBlendSrc,Entity2D_getBlendSrc),
+	FS_CLASS_ATTR_DECLARE("blendDst",E_FsType::FT_CHARS,NULL,Entity2D_setBlendDst,Entity2D_getBlendDst),
 
-	FS_CLASS_ATTR_DECLARE("anchor",FsType::FT_F_2,S_Entity2D_Anchor_SubAttr,Entity2D_setAnchor,Entity2D_getAnchor),
-	FS_CLASS_ATTR_DECLARE("size",FsType::FT_F_2,S_Entity2D_Size_SubAttr,Entity2D_setSize,Entity2D_getSize),
+	FS_CLASS_ATTR_DECLARE("anchor",E_FsType::FT_F_2,S_Entity2D_Anchor_SubAttr,Entity2D_setAnchor,Entity2D_getAnchor),
+	FS_CLASS_ATTR_DECLARE("size",E_FsType::FT_F_2,S_Entity2D_Size_SubAttr,Entity2D_setSize,Entity2D_getSize),
 
-	FS_CLASS_ATTR_DECLARE("touchEnabled",FsType::FT_B_1,NULL,Entity2D_setTouchEnabled,Entity2D_getTouchEnabled),
-	FS_CLASS_ATTR_DECLARE("touchesEnabled",FsType::FT_B_1,NULL,Entity2D_setTouchesEnabled,Entity2D_getTouchesEnabled),
-	FS_CLASS_ATTR_DECLARE("touchDispatchEnabled",FsType::FT_B_1,NULL,Entity2D_setDispatchTouchEnabled,Entity2D_getDispatchTouchEnabled),
-	FS_CLASS_ATTR_DECLARE("touchesDispatchEnabled",FsType::FT_B_1,NULL,Entity2D_setDispatchTouchesEnabled,Entity2D_getDispatchTouchesEnabled),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("touchEnabled",E_FsType::FT_B_1,NULL,Entity2D_setTouchEnabled,Entity2D_getTouchEnabled),
+	FS_CLASS_ATTR_DECLARE("touchesEnabled",E_FsType::FT_B_1,NULL,Entity2D_setTouchesEnabled,Entity2D_getTouchesEnabled),
+	FS_CLASS_ATTR_DECLARE("touchDispatchEnabled",E_FsType::FT_B_1,NULL,Entity2D_setDispatchTouchEnabled,Entity2D_getDispatchTouchEnabled),
+	FS_CLASS_ATTR_DECLARE("touchesDispatchEnabled",E_FsType::FT_B_1,NULL,Entity2D_setDispatchTouchesEnabled,Entity2D_getDispatchTouchesEnabled),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(Entity2D,Entity,Entity2D_NewInstance,S_Entity2D_Main_Attr);

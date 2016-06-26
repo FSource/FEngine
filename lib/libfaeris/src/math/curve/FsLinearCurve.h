@@ -84,7 +84,7 @@ class LinearCurve1:public TLinearCurve<float>
 
 	protected:
 		LinearCurve1(const float& b,const float& a);
-}
+};
 
 
 class LinearCurve2:public TLinearCurve<Vector2> 

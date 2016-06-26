@@ -214,7 +214,6 @@ void Scene::exit()
 }
 void Scene::update(float dt)
 {
-	updateAction(dt);
 	updateLayers(dt);
 }
 

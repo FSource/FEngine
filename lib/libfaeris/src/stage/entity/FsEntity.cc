@@ -57,7 +57,7 @@ Entity::~Entity()
 
 void Entity::update(float dt)
 {
-	updateAction(dt);
+
 }
 
 void Entity::updates(float dt)
@@ -598,37 +598,37 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(Entity,setZorder,getZorder,float);
 
 
 static FsClass::FsAttributeDeclare S_Entity_Position_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,Entity_setPositionX,Entity_getPositionX),
-	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,Entity_setPositionY,Entity_getPositionY),
-	FS_CLASS_ATTR_DECLARE("z",FsType::FT_F_1,NULL,Entity_setPositionZ,Entity_getPositionZ),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("x",E_FsType::FT_F_1,NULL,Entity_setPositionX,Entity_getPositionX),
+	FS_CLASS_ATTR_DECLARE("y",E_FsType::FT_F_1,NULL,Entity_setPositionY,Entity_getPositionY),
+	FS_CLASS_ATTR_DECLARE("z",E_FsType::FT_F_1,NULL,Entity_setPositionZ,Entity_getPositionZ),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 static FsClass::FsAttributeDeclare S_Entity_Rotation_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,Entity_setRotateX,Entity_getRotateX),
-	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,Entity_setRotateY,Entity_getRotateY),
-	FS_CLASS_ATTR_DECLARE("z",FsType::FT_F_1,NULL,Entity_setRotateZ,Entity_getRotateZ),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("x",E_FsType::FT_F_1,NULL,Entity_setRotateX,Entity_getRotateX),
+	FS_CLASS_ATTR_DECLARE("y",E_FsType::FT_F_1,NULL,Entity_setRotateY,Entity_getRotateY),
+	FS_CLASS_ATTR_DECLARE("z",E_FsType::FT_F_1,NULL,Entity_setRotateZ,Entity_getRotateZ),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 static FsClass::FsAttributeDeclare S_Entity_Scale_SubAttr[]={
-	FS_CLASS_ATTR_DECLARE("x",FsType::FT_F_1,NULL,Entity_setScaleX,Entity_getScaleX),
-	FS_CLASS_ATTR_DECLARE("y",FsType::FT_F_1,NULL,Entity_setScaleY,Entity_getScaleY),
-	FS_CLASS_ATTR_DECLARE("z",FsType::FT_F_1,NULL,Entity_setScaleZ,Entity_getScaleZ),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("x",E_FsType::FT_F_1,NULL,Entity_setScaleX,Entity_getScaleX),
+	FS_CLASS_ATTR_DECLARE("y",E_FsType::FT_F_1,NULL,Entity_setScaleY,Entity_getScaleY),
+	FS_CLASS_ATTR_DECLARE("z",E_FsType::FT_F_1,NULL,Entity_setScaleZ,Entity_getScaleZ),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 
 static FsClass::FsAttributeDeclare S_Entity_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("position",FsType::FT_F_3,S_Entity_Position_SubAttr,Entity_setPosition,Entity_getPosition),
-	FS_CLASS_ATTR_DECLARE("scale",FsType::FT_F_3,S_Entity_Scale_SubAttr,Entity_setScale,Entity_getScale),
-	FS_CLASS_ATTR_DECLARE("rotate",FsType::FT_F_3,S_Entity_Rotation_SubAttr,Entity_setRotate,Entity_getRotate),
-	FS_CLASS_ATTR_DECLARE("visible",FsType::FT_B_1,NULL,Entity_setVisible,Entity_getVisible),
-	FS_CLASS_ATTR_DECLARE("visibles",FsType::FT_B_1,NULL,Entity_setVisibles,Entity_getVisibles),
+	FS_CLASS_ATTR_DECLARE("position",E_FsType::FT_F_3,S_Entity_Position_SubAttr,Entity_setPosition,Entity_getPosition),
+	FS_CLASS_ATTR_DECLARE("scale",E_FsType::FT_F_3,S_Entity_Scale_SubAttr,Entity_setScale,Entity_getScale),
+	FS_CLASS_ATTR_DECLARE("rotate",E_FsType::FT_F_3,S_Entity_Rotation_SubAttr,Entity_setRotate,Entity_getRotate),
+	FS_CLASS_ATTR_DECLARE("visible",E_FsType::FT_B_1,NULL,Entity_setVisible,Entity_getVisible),
+	FS_CLASS_ATTR_DECLARE("visibles",E_FsType::FT_B_1,NULL,Entity_setVisibles,Entity_getVisibles),
 
-	FS_CLASS_ATTR_DECLARE("children",FsType::FT_ARRAY,NULL,Entity_SetChildren,0),
-	FS_CLASS_ATTR_DECLARE("zorder",FsType::FT_I_1,NULL,Entity_setZorder,Entity_getZorder),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("children",E_FsType::FT_ARRAY,NULL,Entity_SetChildren,0),
+	FS_CLASS_ATTR_DECLARE("zorder",E_FsType::FT_I_1,NULL,Entity_setZorder,Entity_getZorder),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(Entity,FsObject,Entity_NewInstance,S_Entity_Main_Attr);

@@ -5,7 +5,6 @@
 //#include "processBarDemo/DmProcessBarDemo.h"
 
 #include "Common/DmBackLayer.h"
-#include "ActionDemo/DmActionScene.h"
 #include "FilterDemo/DmFilterScene.h"
 
 
@@ -60,12 +59,6 @@ void DemoChooseLayer::initItems()
 				}));
 
 
-	m_demoItems.push_back(new DemoItem(
-				"ActionDemo",[]()->Scene*
-				{
-				ActionScene* scene=ActionScene::create();
-				return scene;
-				}));
 	m_demoItems.push_back(new DemoItem("FilterDemo",[]()->Scene*
 	{
 			DmFilterScene* scene=DmFilterScene::create();

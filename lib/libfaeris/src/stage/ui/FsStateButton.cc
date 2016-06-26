@@ -733,7 +733,7 @@ static void StateButton_setTweenFlag(StateButton* sb,FsArray* tweens)
 
 void FsStateButton_SetState(StateButton* sb,int state,FsDict* dict)
 {
-	FsVariant color=FsVariant(dict->lookup("color")).getCast(FsType::FT_COLOR_4);
+	FsVariant color=FsVariant(dict->lookup("color")).getCast(E_FsType::FT_COLOR_4);
 	if(color.isValid())
 	{
 		sb->setColor(state,*((Color4f*)color.getValue()));
@@ -866,9 +866,9 @@ FS_CLASS_ATTR_SET_FUNCTION(StateButton,setLinearTween,float);
 
 
 static FsClass::FsAttributeDeclare S_StateButton_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("linearTweenTime",FsType::FT_F_1,NULL,StateButton_setLinearTween,0),
-	FS_CLASS_ATTR_DECLARE("tweenFlags",FsType::FT_ARRAY,NULL,StateButton_setTweenFlag,0),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("linearTweenTime",E_FsType::FT_F_1,NULL,StateButton_setLinearTween,0),
+	FS_CLASS_ATTR_DECLARE("tweenFlags",E_FsType::FT_ARRAY,NULL,StateButton_setTweenFlag,0),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 
