@@ -65,11 +65,16 @@ FsDict::FsDict()
 	m_mask=FS_DICT_MIN_SIZE-1;
 	m_table=(DictEntry*)malloc(sizeof(DictEntry)*FS_DICT_MIN_SIZE);
 	memset(m_table,0,sizeof(DictEntry)*FS_DICT_MIN_SIZE);
+	m_entryListHead=NULL;
+	m_entryListTail=NULL;
 }
 bool FsDict::validEntry(FsDict::DictEntry* entry)
 {
 	return entry->m_key!=NULL&&entry->m_key!=s_dict_dummy_entry;
 }
+
+
+
 
 FsDict::DictEntry* FsDict::lookupEntry(FsObject* key,long code)
 {
@@ -138,11 +143,14 @@ void FsDict::simpleInsert(FsObject* key,long code,FsObject* value)
 		p=table+(i&mask);
 	}
 	FS_ASSERT(p->m_value==NULL);
+	FS_ASSERT(p->m_prev==NULL);
+	FS_ASSERT(p->m_next==NULL);
+
 	p->m_key=key;
 	p->m_value=value;
 	p->m_code=code;
 
-
+	addEntryToList(p);
 
 	m_fill++;
 	m_used++;
@@ -153,8 +161,14 @@ void FsDict::resize(long minisize)
 	DictEntry* old_table=0;
 	DictEntry* new_table=0;
 	DictEntry* p=0;
+
+
+	DictEntry* entry_head=m_entryListHead;
+
+	m_entryListHead=NULL;
+	m_entryListTail=NULL;
+
 	long new_size=FS_DICT_MIN_SIZE;
-	long i;
 
 	while(new_size<minisize&&new_size>0) new_size<<=1;
 	FS_TRACE_ERROR_ON(new_size<0,"Can't Alloc Memory For Resize Hash Object");
@@ -167,21 +181,14 @@ void FsDict::resize(long minisize)
 	m_mask=new_size-1;
 	m_used=0;
 
-	i=m_fill;
 	m_fill=0;
 
-	for(p=old_table;i>0;p++)
+	while(entry_head)
 	{
-		if(p->m_key!=NULL)
-		{
-			i--;
-			if(p->m_key!=s_dict_dummy_entry)
-			{
-
-				simpleInsert(p->m_key,p->m_code,p->m_value);
-			}
-		}
+		simpleInsert(entry_head->m_key,entry_head->m_code,entry_head->m_value);
+		entry_head=entry_head->m_next;
 	}
+
 	free(old_table);
 }
 bool FsDict::remove(FsObject* key)
@@ -194,6 +201,8 @@ bool FsDict::remove(FsObject* key)
 	}
 	DictEntry* p=lookupEntry(key,code);
 
+
+
 	if(p->m_key==NULL||p->m_key==s_dict_dummy_entry)
 	{
 		FS_TRACE_WARN(" %s Key Not Map ",key->className());
@@ -204,6 +213,9 @@ bool FsDict::remove(FsObject* key)
 
 	p->m_value->decRef();
 	p->m_value=NULL;
+
+	addEntryToList(p);
+
 	m_used--;
 	return true;
 }
@@ -264,7 +276,9 @@ bool FsDict::insert(FsObject* key,FsObject* value)
 	{
 		p->m_value->decRef();
 		p->m_value=NULL;
+		removeEntryFromList(p);
 	}
+
 
 	if(p->m_key==NULL)
 	{
@@ -277,6 +291,9 @@ bool FsDict::insert(FsObject* key,FsObject* value)
 
 	p->m_value=value;
 	p->m_code=code;
+
+	addEntryToList(p);
+
 
 	/* check space, make sure 1/3 free slot */
 	if(used<m_used && (ulong)m_fill*3>m_mask*2)
@@ -295,12 +312,18 @@ void FsDict::clear()
 		{
 			e->m_key->decRef();
 			e->m_value->decRef();
+			e->m_prev=NULL;
+			e->m_next=NULL;
 		}
 		e->m_value=NULL;
 		e->m_key=NULL;
+
 	}
 	m_used=0;
 	m_fill=0;
+
+	m_entryListHead=NULL;
+	m_entryListTail=NULL;
 }
 
 FsDict::Iterator* FsDict::takeIterator()
@@ -328,6 +351,9 @@ FsDict::~FsDict()
 		}
 	}
 	free(m_table);
+
+	m_entryListHead=NULL;
+	m_entryListTail=NULL;
 }
 
 
@@ -387,14 +413,46 @@ FsString* FsDict::lookupString(const char* key)
 	}
 }
 
+void FsDict::addEntryToList(DictEntry* en)
+{
+	FS_ASSERT(en->m_prev==NULL);
+	FS_ASSERT(en->m_next==NULL);
+
+	if(m_entryListTail==NULL&&m_entryListHead==NULL)
+	{
+		m_entryListTail=en;
+		m_entryListHead=en;
+		return;
+	}
+
+	m_entryListTail->m_next=en;
+	en->m_prev=m_entryListTail;
+
+	m_entryListTail=en;
+}
+
+void FsDict::removeEntryFromList(DictEntry* en)
+{
+	if(en->m_prev==NULL)
+	{
+		m_entryListHead=en->m_next;
+	}
+	else 
+	{
+		en->m_prev->m_next=en->m_next;
+	}
 
 
-
-
-
-
-
-
-
+	if(en->m_next==NULL)
+	{
+		m_entryListTail=en->m_prev;
+	}
+	else 
+	{
+		en->m_next->m_prev=en->m_prev;
+	}
+	en->m_next=NULL;
+	en->m_prev=NULL;
+}
 NS_FS_END 
 
