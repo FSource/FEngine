@@ -5,6 +5,9 @@
 #include "support/util/FsArray.h"
 #include "support/util/FsDict.h"
 #include "support/util/FsString.h"
+#include "FsGlobal.h"
+#include "mgr/FsClassMgr.h"
+#include "FsClass.h"
 
 
 NS_FS_BEGIN 
@@ -22,6 +25,11 @@ void Animator::removeAnimation(const char* name)
 	f_name->autoDestroy();
 }
 
+void Animator::clearAnimation()
+{
+	m_animations->clear();
+}
+
 Animation* Animator::getAnimation(const char* name)
 {
 	return (Animation*) m_animations->lookup(name);
@@ -37,9 +45,16 @@ FsDict* Animator::getAnimations()
 void Animator::startAnimation(const char* name,E_AnimPlayMode mode)
 {
 	Animation* anim=(Animation*)m_animations->lookup(name);
-	if(m_defaultPlayer&&anim)
+	if(m_defaultPlayer)
 	{
-		m_defaultPlayer->start(anim,mode);
+		if(anim)
+		{
+			m_defaultPlayer->start(anim,mode);
+		}
+		else 
+		{
+			m_defaultPlayer->stop();
+		}
 	}
 }
 
@@ -158,9 +173,6 @@ void Animator::updateAnimation(float dt)
 
 
 
-
-
-
 Animator::Animator()
 {
 	m_animations=FsDict::create();
@@ -171,6 +183,8 @@ Animator::Animator()
 
 	m_defaultPlayer=AnimationPlayer::create();
 	m_defaultPlayer->addRef();
+
+	m_players->push(m_defaultPlayer);
 
 	onAnimationEvent=nullptr;
 
@@ -184,12 +198,54 @@ Animator::~Animator()
 }
 
 
+/** Used For  Animator Attribute **/
+
+static void Animator_setAnimations(Animator* at,FsDict* attr)
+{
+	int size=attr->size();
+	at->clearAnimation();
+
+	FsDict::Iterator* iter=attr->takeIterator();
+	while(!iter->done())
+	{
+		FsObject* key=iter->getKey();
+		FsObject* value=iter->getValue();
+		if(!FsString::checkType(key)||!FsDict::checkType(value))
+		{
+			FS_TRACE_WARN("Error Type For Key(%s),Value(%s)",key->className(),value->className());
+			iter->next();
+			continue;
+		}
+
+		FsString* name=(FsString*) key;
+		FsDict* dict=(FsDict*) value;
+
+		FsObject* ob_an =Global::classMgr()->newInstance(dict);
+		if(ob_an)
+		{
+			Animation* anim=dynamic_cast<Animation*>(ob_an);
+			if(anim)
+			{
+				at->addAnimation(name->cstr(),anim);
+			}
+			else 
+			{
+				FS_TRACE_WARN("Can't Cast Type(%s) To Animation",ob_an->className());
+			}
+		}
+		iter->next();
+	}
+	delete iter;
+}
 
 
+static FsClass::FsAttributeDeclare S_Animator_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("animations",E_FsType::FT_DICT,NULL,Animator_setAnimations,0),
 
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
+};
 
-
-
+FS_CLASS_IMPLEMENT_WITH_BASE(Animator,FsObject,0,S_Animator_Main_Attr);
 
 
 NS_FS_END 

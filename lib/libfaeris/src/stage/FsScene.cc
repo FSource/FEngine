@@ -214,6 +214,7 @@ void Scene::exit()
 }
 void Scene::update(float dt)
 {
+	updateAnimation(dt);
 	updateLayers(dt);
 }
 

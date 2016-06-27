@@ -57,7 +57,7 @@ Entity::~Entity()
 
 void Entity::update(float dt)
 {
-
+	updateAnimation(dt);
 }
 
 void Entity::updates(float dt)
@@ -621,8 +621,23 @@ static FsClass::FsAttributeDeclare S_Entity_Scale_SubAttr[]={
 
 static FsClass::FsAttributeDeclare S_Entity_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE("position",E_FsType::FT_F_3,S_Entity_Position_SubAttr,Entity_setPosition,Entity_getPosition),
+	FS_CLASS_ATTR_DECLARE("positionX",E_FsType::FT_F_1,NULL,Entity_setPositionX,Entity_getPositionX),
+	FS_CLASS_ATTR_DECLARE("positionY",E_FsType::FT_F_1,NULL,Entity_setPositionY,Entity_getPositionY),
+	FS_CLASS_ATTR_DECLARE("positionZ",E_FsType::FT_F_1,NULL,Entity_setPositionZ,Entity_getPositionZ),
+
 	FS_CLASS_ATTR_DECLARE("scale",E_FsType::FT_F_3,S_Entity_Scale_SubAttr,Entity_setScale,Entity_getScale),
+	FS_CLASS_ATTR_DECLARE("scaleX",E_FsType::FT_F_1,NULL,Entity_setScaleX,Entity_getScaleX),
+	FS_CLASS_ATTR_DECLARE("scaleY",E_FsType::FT_F_1,NULL,Entity_setScaleY,Entity_getScaleY),
+	FS_CLASS_ATTR_DECLARE("scaleZ",E_FsType::FT_F_1,NULL,Entity_setScaleZ,Entity_getScaleZ),
+
+
+
 	FS_CLASS_ATTR_DECLARE("rotate",E_FsType::FT_F_3,S_Entity_Rotation_SubAttr,Entity_setRotate,Entity_getRotate),
+	FS_CLASS_ATTR_DECLARE("rotateX",E_FsType::FT_F_1,NULL,Entity_setRotateX,Entity_getRotateX),
+	FS_CLASS_ATTR_DECLARE("rotateY",E_FsType::FT_F_1,NULL,Entity_setRotateY,Entity_getRotateY),
+	FS_CLASS_ATTR_DECLARE("rotateZ",E_FsType::FT_F_1,NULL,Entity_setRotateZ,Entity_getRotateZ),
+
+
 	FS_CLASS_ATTR_DECLARE("visible",E_FsType::FT_B_1,NULL,Entity_setVisible,Entity_getVisible),
 	FS_CLASS_ATTR_DECLARE("visibles",E_FsType::FT_B_1,NULL,Entity_setVisibles,Entity_getVisibles),
 
@@ -631,7 +646,7 @@ static FsClass::FsAttributeDeclare S_Entity_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
-FS_CLASS_IMPLEMENT_WITH_BASE(Entity,FsObject,Entity_NewInstance,S_Entity_Main_Attr);
+FS_CLASS_IMPLEMENT_WITH_BASE(Entity,Animator,Entity_NewInstance,S_Entity_Main_Attr);
 
 
 NS_FS_END

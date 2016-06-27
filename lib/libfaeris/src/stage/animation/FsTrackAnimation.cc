@@ -20,6 +20,11 @@ void TrackAnimation::setLerpMode(E_LerpMode mode)
 	m_lerpMode=mode;
 }
 
+E_LerpMode TrackAnimation::getLerpMode() const
+{
+	return m_lerpMode;
+}
+
 void TrackAnimation::insertKeyFrame(KeyFrame* frame)
 {
 	float time=frame->getTime();
@@ -215,7 +220,7 @@ static FsClass::FsAttributeDeclare S_TrackAnimation_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
-FS_CLASS_IMPLEMENT_WITH_BASE(TrackAnimation,FsObject,0,S_TrackAnimation_Main_Attr);
+FS_CLASS_IMPLEMENT_WITH_BASE(TrackAnimation,Animation,0,S_TrackAnimation_Main_Attr);
 
 
 

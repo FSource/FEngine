@@ -14,7 +14,7 @@ class KeyFrame:public FsObject
 		virtual  ~KeyFrame();
 
 	public:
-		float getTime();
+		float getTime() const;
 		void setEaseExpr(EaseExpr* ease);
 		EaseExpr* getEaseExpr();
 
@@ -44,9 +44,10 @@ class PoseKeyFrame:public KeyFrame
 	public:
 		static PoseKeyFrame* create(float time,int anim_index,float anim_time,EaseExpr* ease_expr);
 	public:
-		void setValue(int anim_index,float anim_time);
-		int getAnimIndex();
-		float getAnimTime();
+		void setAnimIndex(int anim_index);
+		int getAnimIndex() const;
+		void setAnimTime(float time);
+		float getAnimTime() const;
 
 	protected:
 		PoseKeyFrame(float time,int anim_index,float anim_time,EaseExpr* ease_expr);

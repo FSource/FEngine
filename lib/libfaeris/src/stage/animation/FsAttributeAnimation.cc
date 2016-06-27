@@ -170,7 +170,7 @@ static void AttributeAnimation_setKeyFrames(AttributeAnimation* am,FsArray* attr
 		if(dict)
 		{
 			float time=0;
-			if(ScriptUtil::getFloat(dict,"time",&time))
+			if(!ScriptUtil::getFloat(dict,"time",&time))
 			{
 				FS_TRACE_WARN("time not find in keyframe(%d) ignore",i);
 				continue;
@@ -186,6 +186,8 @@ static void AttributeAnimation_setKeyFrames(AttributeAnimation* am,FsArray* attr
 		}
 	}
 }
+
+/** Used For AttributeAnimation Attribute */
 
 FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(AttributeAnimation,setValueType,getValueType,FsType);
 FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(AttributeAnimation,setAttributeName,getAttributeName);
