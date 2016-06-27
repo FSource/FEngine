@@ -19,6 +19,9 @@ class Animator:public FsObject
 	public:
 		void addAnimation(const char* name,Animation* anim);
 		void removeAnimation(const char* name);
+		Animation* getAnimation(const char* name);
+		FsDict* getAnimations();
+
 
 		/* control default player*/
 		void startAnimation(const char* name,E_AnimPlayMode mode);
@@ -40,6 +43,7 @@ class Animator:public FsObject
 		void addPlayer(AnimationPlayer* player);
 		void removePlayer(AnimationPlayer* player);
 		void removePlayer(int index);
+
 
 
 	public:

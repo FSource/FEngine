@@ -41,6 +41,11 @@ void DmListView::setFocus(DmListItem* l,bool callback)
 
 }
 
+void DmListView::clearChild()
+{
+	m_focus=NULL;
+	ListView::clearChild();
+}
 
 
 void DmListView::setSelected(int index,bool callback)

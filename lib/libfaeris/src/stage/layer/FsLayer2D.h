@@ -84,6 +84,8 @@ class Layer2D:public Layer
 
 		int getEntityNu();
 
+		void traverseEntity(std::function<void(Entity2D*)> fn);
+
 
 	public:
 		void update(float dt) FS_OVERRIDE;

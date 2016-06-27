@@ -19,6 +19,9 @@
     <Filter Include="src\FilterDemo">
       <UniqueIdentifier>{e7c15883-7e10-4567-8ab3-7a670c71fba3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\animationDemo">
+      <UniqueIdentifier>{b3c0e428-fbae-411b-8c01-015d329f0143}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\FsWin32Main.cc">
@@ -56,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Common\DmSlideBar.cc">
       <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\animationDemo\DmAnimationScene.cc">
+      <Filter>src\animationDemo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Common\DmSlideBar.h">
       <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\animationDemo\DmAnimationScene.h">
+      <Filter>src\animationDemo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

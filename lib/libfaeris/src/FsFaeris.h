@@ -78,7 +78,6 @@
 #include "math/easing/FsQuintEase.h"
 #include "math/easing/FsSineEase.h"
 #include "math/FsBox3D.h"
-#include "math/FsCamera.h"
 #include "math/FsFace3.h"
 #include "math/FsMath.h"
 #include "math/FsMathUtil.h"

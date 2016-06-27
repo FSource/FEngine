@@ -1,0 +1,30 @@
+class:Layer2D
+
+viewArea:{
+	x:0
+	y:0
+	width:960
+	height:640
+}
+
+
+entity:[
+	{
+		class:Quad2D ,
+		textureUrl:"images/Coin.png",
+		position:{x:480,y:320}
+		rotate:{z:30}
+		scale:{x:0.5}
+		animations:{
+			test1:{
+				
+			}
+		}
+	}
+]
+
+
+animationsList:[
+	test1,test2,test3
+]
+

@@ -240,7 +240,6 @@ bool FsClass::callSets(FsObject* ob,FsDict* dict)
 	while(!iter->done())
 	{
 		FsString* name=(FsString*)iter->getKey();
-		printf("key=%s\n",name->cstr());
 		FsObject* value=iter->getValue();
 		callSet(ob,name,value);
 		iter->next();

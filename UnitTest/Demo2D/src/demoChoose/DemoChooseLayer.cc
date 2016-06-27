@@ -2,7 +2,8 @@
 #include "demo3D.h"
 #include "DemoItem.h"
 #include "LayoutDemo/DmLayoutScene.h"
-//#include "processBarDemo/DmProcessBarDemo.h"
+#include "processBarDemo/DmProcessBarDemo.h"
+#include "animationDemo/DmAnimationScene.h"
 
 #include "Common/DmBackLayer.h"
 #include "FilterDemo/DmFilterScene.h"
@@ -65,7 +66,17 @@ void DemoChooseLayer::initItems()
 			return scene;
 	}));
 
+	m_demoItems.push_back(new DemoItem("ProcessBarDemo",[]()->Scene*
+	{
+			DmProcessBarDemo* scene=DmProcessBarDemo::create();
+			return scene;
+	}));
 
+	m_demoItems.push_back(new DemoItem("AnimationDemo",[]()->Scene*
+	{
+			DmAnimationScene* scene=DmAnimationScene::create();
+			return scene;
+	}));
 }
 
 

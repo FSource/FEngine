@@ -22,6 +22,18 @@ void Animator::removeAnimation(const char* name)
 	f_name->autoDestroy();
 }
 
+Animation* Animator::getAnimation(const char* name)
+{
+	return (Animation*) m_animations->lookup(name);
+}
+
+
+FsDict* Animator::getAnimations()
+{
+	return m_animations;
+}
+
+
 void Animator::startAnimation(const char* name,E_AnimPlayMode mode)
 {
 	Animation* anim=(Animation*)m_animations->lookup(name);

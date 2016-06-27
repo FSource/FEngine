@@ -27,16 +27,16 @@ class DmFilterScene:public Scene
 		void setCurrentFilter(int index);
 
 
-private:
-	Layer2D* m_layer2D;
-	UiWidget* m_centerWidget;
-	Quad2D* m_quad;
+	private:
+		Layer2D* m_layer2D;
+		UiWidget* m_centerWidget;
+		Quad2D* m_quad;
 
-	FsArray* m_shaderList;
-	FsArray* m_filterList;
+		FsArray* m_shaderList;
+		FsArray* m_filterList;
 
-	DmListView* m_shaderListView;
-	DmListView* m_filterListView;
+		DmListView* m_shaderListView;
+		DmListView* m_filterListView;
 
 
 };

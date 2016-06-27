@@ -313,6 +313,26 @@ int Layer2D::getEntityNu()
 	return m_entity->size();
 }
 
+
+void Layer2D::traverseEntity(std::function<void(Entity2D*)> fn)
+{
+	m_entity->lock();
+	FsDict::Iterator* iter=m_entity->takeIterator();
+	while(!iter->done())
+	{
+		Entity2D* entity=(Entity2D*)iter->getValue();
+		if(entity->getLayer()==this) 
+		{
+			fn(entity);
+		}
+		iter->next();
+	}
+	delete iter;
+
+	m_entity->unlock();
+	m_entity->flush();
+
+}
 void Layer2D::update(float dt)
 {
 	updateEntity(dt);

@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\animationDemo\DmAnimationScene.cc" />
     <ClCompile Include="..\..\src\Common\DmBackLayer.cc" />
     <ClCompile Include="..\..\src\Common\DmColorSlider.cc" />
     <ClCompile Include="..\..\src\Common\DmListItem.cc" />
@@ -95,6 +96,7 @@
     <ClCompile Include="..\..\src\LayoutDemo\DmLayoutScene.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\animationDemo\DmAnimationScene.h" />
     <ClInclude Include="..\..\src\Common\DmBackLayer.h" />
     <ClInclude Include="..\..\src\Common\DmColorSlider.h" />
     <ClInclude Include="..\..\src\Common\DmListItem.h" />

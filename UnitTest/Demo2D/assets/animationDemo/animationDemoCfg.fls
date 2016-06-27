@@ -1,0 +1,29 @@
+layoutList:[
+	{
+		name:"Quad2D"
+		url:"animationDemo/layout/quad2d.fls"
+	}
+	{
+		name:"LabelTTF",
+		url:"animationDemo/layout/labelttf.fls"
+
+	}
+	{
+		name:"LabelBmp",
+		url:"animationDemo/layout/labelbitmap.fls"
+
+	}
+	{
+		name:"LabelBmp",
+		url:"animationDemo/layout/labelbmp_boundsize.fls"
+
+	}
+	{
+		name:"VertexPolygon",
+		url:"animationDemo/layout/vertexpolygon.fls"
+	}
+	{
+		name:"UiWidget",
+		url:"animationDemo/layout/ui_widget.fls"
+	}
+]
