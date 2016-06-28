@@ -329,6 +329,7 @@
     <ClCompile Include="..\..\src\stage\animation\FsAnimator.cc" />
     <ClCompile Include="..\..\src\stage\animation\FsAttributeAnimation.cc" />
     <ClCompile Include="..\..\src\stage\animation\FsKeyFrame.cc" />
+    <ClCompile Include="..\..\src\stage\animation\FsParallelAnimation.cc" />
     <ClCompile Include="..\..\src\stage\animation\FsTrackAnimation.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsEntity.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsEntity2D.cc" />

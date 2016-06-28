@@ -202,7 +202,6 @@ Animator::~Animator()
 
 static void Animator_setAnimations(Animator* at,FsDict* attr)
 {
-	int size=attr->size();
 	at->clearAnimation();
 
 	FsDict::Iterator* iter=attr->takeIterator();

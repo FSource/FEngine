@@ -160,6 +160,7 @@ NS_FS_END
 #include "stage/animation/FsAnimation.h"
 #include "stage/animation/FsTrackAnimation.h"
 #include "stage/animation/FsAttributeAnimation.h"
+#include "stage/animation/FsParallelAnimation.h"
 
 
 NS_FS_BEGIN
@@ -188,6 +189,7 @@ void ClassMgr::preRegisterClass()
 	FS_REGISTER_CLASS(Animation);
 	FS_REGISTER_CLASS(TrackAnimation);
 	FS_REGISTER_CLASS(AttributeAnimation);
+	FS_REGISTER_CLASS(ParallelAnimation);
 }
 
 NS_FS_END

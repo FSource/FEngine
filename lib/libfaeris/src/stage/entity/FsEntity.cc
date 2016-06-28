@@ -527,7 +527,7 @@ Vector3 Entity::getPosition()
 }
 
 /***  Use For Entity FsClass Attribute  **/
-static Entity* Entity_NewInstance(FsDict* attr)
+static Entity* S_Entity_NewInstance(FsDict* attr)
 {
 	Entity* ret=Entity::create();
 	if(attr)
@@ -646,7 +646,7 @@ static FsClass::FsAttributeDeclare S_Entity_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
-FS_CLASS_IMPLEMENT_WITH_BASE(Entity,Animator,Entity_NewInstance,S_Entity_Main_Attr);
+FS_CLASS_IMPLEMENT_WITH_BASE(Entity,Animator,S_Entity_NewInstance,S_Entity_Main_Attr);
 
 
 NS_FS_END
