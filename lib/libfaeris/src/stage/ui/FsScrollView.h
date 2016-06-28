@@ -54,8 +54,8 @@ class ScrollView:public ScrollWidget
 		void clearChild() FS_OVERRIDE;
 		void removeChild(Entity* en) FS_OVERRIDE;
 
-	public:
-		virtual void scrollChange(float x,float y);
+	protected:
+		void layoutContentWidget(float x,float y) FS_OVERRIDE;
 
 	protected:
 		ScrollView();

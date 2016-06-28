@@ -256,9 +256,6 @@
     <ClInclude Include="..\..\src\stage\ui\FsPressButton.h">
       <Filter>src\stage\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\stage\ui\FsScroller.h">
-      <Filter>src\stage\ui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\stage\ui\FsScrollView.h">
       <Filter>src\stage\ui</Filter>
     </ClInclude>
@@ -760,9 +757,6 @@
       <Filter>src\stage\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stage\ui\FsPressButton.cc">
-      <Filter>src\stage\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\ui\FsScroller.cc">
       <Filter>src\stage\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stage\ui\FsScrollView.cc">

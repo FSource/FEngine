@@ -18,26 +18,15 @@ class ScrollWidget:public UiWidget
 		void setMarginBottom(float v);
 		float getMarginBottom() const;
 
-		void setScrollMode(E_ScrollDirection mode);
-		int getScrollMode();
-
-		void setEdgeBounceEnabled(bool enabled);
-		bool getEdgeBounceEnabled();
-
-
 	public:
 		void setContentAlign(E_AlignH h,E_AlignV v);
 
 
-	public: /* scroll support */
-		void scrollBy(float x,float y);
-		void scrollTo(float x,float y);
-
+	public: 
 		void setScrollPercent(float x,float y);
 		void setScrollPercentX(float x);
 		void setScrollPercentY(float y);
 
-		void getScrollPercent(float* x,float* y);
 		float getScrollPercentX();
 		float getScrollPercentY();
 

@@ -60,29 +60,18 @@ local fsobject= {
 
 
 
-	"FontTTF",
 	"LabelTTF",
-	"LuaLabelTTF",
 
 
-	"FontBitmap",
 	"LabelBitmap",
-	"LuaLabelBitmap",
 
 	"Particle2DEffect",
-	"LuaParticle2DEffect",
-
-	"Panel",
-	"LuaPanel",
 
 	"Quad2D",
-	"LuaQuad2D",
 
 	"Sprite2D",
-	"LuaSprite2D",
 
 	"VertexPolygon",
-	"LuaVertexPolygon",
 
 	"ITransform",
 	"Transform",
@@ -126,28 +115,13 @@ local fsobject= {
 
 	--action 
 	"Action",
-	"LuaAction",
-
 	"Curve3Action",
-	"LuaCurve3Action",
-
 	"FixTimeAction",
-	"LuaFixTimeAction",
-
 	"MoveAction",
-	"LuaMoveAction",
-
 	"PauseAction",
-	"LuaPauseAction",
-
 	"RotateAction",
-	"LuaRotateAction",
-
 	"ScaleAction",
-	"LuaScaleAction",
-
 	"SeqAction",
-	"LuaAction"
 }
 
 

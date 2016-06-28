@@ -33,7 +33,7 @@
 #include "FsEaseExpr.h"
 NS_FS_BEGIN
 
-class CircleEase:EaseExpr 
+class CircleEase: public EaseExpr 
 {
 	public:
 		static CircleEase* create();

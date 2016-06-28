@@ -137,7 +137,6 @@
 #include "stage/ui/FsPageView.h"
 #include "stage/ui/FsPressButton.h"
 #include "stage/ui/FsProcessBar.h"
-#include "stage/ui/FsScroller.h"
 #include "stage/ui/FsScrollView.h"
 #include "stage/ui/FsScrollWidget.h"
 #include "stage/ui/FsStateButton.h"

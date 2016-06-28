@@ -1,42 +1,16 @@
-/*************************************************************************/
-/*  FsScrollWidget.h                                                     */
-/*************************************************************************/
-/* Copyright (C) 2012-2014 nosiclin@foxmail.com                          */
-/* Copyright (C) 2014-2015 www.fsource.cn                                */
-/*                                                                       */
-/* http://www.fsource.cn                                                 */
-/*                                                                       */
-/* Permission is hereby granted, free of charge, to any person obtaining */
-/* a copy of this software and associated documentation files (the       */
-/* "Software"), to deal in the Software without restriction, including   */
-/* without limitation the rights to use, copy, modify, merge, publish,   */
-/* distribute, sublicense, and/or sell copies of the Software, and to    */
-/* permit persons to whom the Software is furnished to do so, subject to */
-/* the following conditions:                                             */
-/*                                                                       */
-/* The above copyright notice and this permission notice shall be        */
-/* included in all copies or substantial portions of the Software.       */
-/*                                                                       */
-/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,       */
-/* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF    */
-/* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.*/
-/* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY  */
-/* CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,  */
-/* TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE     */
-/* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
-/*************************************************************************/
-
-
-#ifndef _FS_SCROLL_WIDGET_H_
-#define _FS_SCROLL_WIDGET_H_
+#ifndef _FS_SCROLLER_H_
+#define _FS_SCROLLER_H_
+#include <functional>
 
 #include "FsMacros.h"
+#include "FsObject.h"
+
 #include "FsUiWidget.h"
+#include "sys/FsTimer.h"
 
 NS_FS_BEGIN
 
-class VelocityTracker;
-class Scroller;
+class EaseExpr;
 
 class ScrollWidget:public UiWidget
 {
@@ -44,15 +18,23 @@ class ScrollWidget:public UiWidget
 		FS_CLASS_DECLARE(ScrollWidget);
 
 	public:
-		/* inherit Entity */
+		enum class E_DirectionMoveMode
+		{
+			VERTICAL,
+			HORIZONTAL,
+			BOTH,
+		};
+
+	public:
+		/* inherit UiWidget*/
 		void update(float dt) FS_OVERRIDE;
 
-		bool touchBegin(float x,float y) FS_OVERRIDE;
+		bool touchBegin(float x,float y) FS_OVERRIDE; 
 		bool touchMove(float x,float y) FS_OVERRIDE;
 		bool touchEnd(float x,float y) FS_OVERRIDE;
+		//bool touchCancel(float x,float y) FS_OVERRIDE;
 
 
-		/* inherit UiWidget */
 		void childSizeChanged(UiWidget* widget) FS_OVERRIDE;
 		void childAnchorChanged(UiWidget* widge) FS_OVERRIDE;
 		void childTransformChanged(UiWidget* widget) FS_OVERRIDE;
@@ -66,9 +48,36 @@ class ScrollWidget:public UiWidget
 
 
 	public:
-		virtual void scrollChange(float x,float y);
-		virtual void beginDrag();
-		virtual void endDrag();
+
+		/* executed as soon as user touches the screen 
+		 * but before the scrolling has initiated.
+		 */
+		virtual void beforeScrollStart();
+
+		/* called when scroll initiated but didn't happen*/
+		virtual void scrollCancel();
+
+		/* called when the scroll started.*/
+		virtual void scrollStart();
+
+
+		/* called when the content is scrolling */
+		virtual void scroll();
+
+
+		/* called content stopped scrolling */
+		virtual void scrollEnd();
+
+		/* user flicked left/right */
+		virtual void flick();
+
+	public:
+		std::function<void(ScrollWidget*)> onBeforeScrollStart;
+		std::function<void(ScrollWidget*)> onScrollCancel;
+		std::function<void(ScrollWidget*)> onScrollStart;
+		std::function<void(ScrollWidget*)> onScroll;
+		std::function<void(ScrollWidget*)> onScrollEnd;
+		std::function<void(ScrollWidget*)> onFlick;
 
 
 	public:
@@ -87,92 +96,171 @@ class ScrollWidget:public UiWidget
 		void setMarginBottom(float v);
 		float getMarginBottom() const;
 
-		void setScrollMode(E_ScrollDirection mode);
-		E_ScrollDirection getScrollMode();
-
-		void setEdgeBounceEnabled(bool enabled);
-		bool getEdgeBounceEnabled();
-
-
-	public:
 		void setContentAlign(E_AlignH h,E_AlignV v);
-
-
-	public: /* scroll support */
-		void scrollBy(float x,float y);
-		void scrollTo(float x,float y);
 
 		void setScrollPercent(float x,float y);
 		void setScrollPercentX(float x);
 		void setScrollPercentY(float y);
-
-		void getScrollPercent(float* x,float* y);
 		float getScrollPercentX();
 		float getScrollPercentY();
 
-		void layout();
+		void setScrollXEnabled(bool value);
+		void setScrollYEnabled(bool value);
+		bool getScrollXEnabled();
+		bool getScrollYEnabled();
+		
+
+
+
+
+	public:
+
+		void stopScroll();
+		void finishScroll();
+
 
 	protected:
-
 		ScrollWidget();
-		virtual ~ScrollWidget();
+		~ScrollWidget();
 
-		void adjustScrollArea();
 
-		void startScrollX(float cur,float min,float max,float delta);
-		void startScrollY(float cur,float min,float max,float delta);
-
+	protected:
 		void updateScroll(float dt);
-		void edgeCheckHandle();
+		bool doEdgeOut(float time);
+		void scrollSet(float x,float y);
+
+		void scrollBy(float x,float y,float duration,EaseExpr* easing);
+		void scrollTo(float x,float y,float duration,EaseExpr* easing); 
 
 		void setContentSize(float width,float height);
+		void adjustContentLayout(float x,float y);
+
+		void calMomentum(float cur_pos,float start, float duration, float min, float max,
+						 float wrap_size, float deceleration, float* des, float *time );
+		void adjustScrollArea();
 
 
+		/* call back */
+		virtual void layoutContentWidget(float x,float y);
 
+		
 
 	protected:
-		float m_scrollX,m_scrollY;
+		/* configure attr */
+		bool m_scrollXEnabled;
+		bool m_scrollYEnabled;
 
-		float m_touchTap;
-
-		float m_contentWidth,m_contentHeight;
-
-		float m_marginLeft,m_marginRight,m_marginTop,m_marginBottom;
-
-		float m_scrollMinX,m_scrollMaxX;
-		float m_scrollMinY,m_scrollMaxY;
+		bool m_directionLockedEnabled;
+		float m_directionLockThreshold;
 
 
-		/* attr cache */
-		float m_edgeLeft,m_edgeRight,m_edgeTop,m_edgeBottom;
-		float m_edgeBLeft,m_edgeBRight,m_edgeBTop,m_edgeBBottom;
+		float m_tapDistanceToScroll;
+		float m_tapTimeToScroll;
+
+		bool m_blockEventOnScroll;
+
+		/* momentum */
+		float m_momentumEnabled;
+		float m_deceleration;
 
 
-		/* drag info */
 
-		bool m_cancelDrag,m_isDraged;
-		float m_lastMotionPosX, m_lastMotionPosY; 
-
-
-		bool m_press;
-		int m_scrollState;
-
-		Scroller* m_scrollerX;
-		Scroller* m_scrollerY;
-
-		E_ScrollDirection m_scrollMode;
+		/* content size */
+		float m_contentWidth;
+		float m_contentHeight;
 
 		E_AlignH m_alignh;
 		E_AlignV m_alignv;
 
-		VelocityTracker* m_velocityTracker;
+		/* margin */
+		float m_marginLeft;
+		float m_marginRight;
+		float m_marginTop;
+		float m_marginBottom;
 
-		bool m_edgeBounceEnabled;
+
+		/* bounce */
+		bool m_bounceEnabled;
+		float m_bounceTime;
+		EaseExpr* m_bounceEasing;
+
+		/* translate */
+		EaseExpr* m_animatingEasing;
+		EaseExpr* m_animatingOutEdgeEasing;
+
+
+
+		/* scroll range */
+		float m_minScrollX;
+		float m_maxScrollX;
+		float m_minScrollY;
+		float m_maxScrollY;
+
+		/* scroll position */
+		float m_positionX;
+		float m_positionY;
+
+
+		Timer m_timer;
+
+
+		/* for touch event */
+		float m_startX;
+		float m_startY;
+		float m_startTime;
+
+
+		float m_distX;
+		float m_distY;
+
+		int m_directionX;
+		int m_directionY;
+
+		float m_lastPosX;
+		float m_lastPosY;
+
+		E_DirectionMoveMode m_directionMoveMode;
+
+
+		/* edge */
+		float m_edgeLeft;
+		float m_edgeRight;
+		float m_edgeTop;
+		float m_edgeBottom;
+
+		float m_edgeBLeft;
+		float m_edgeBRight;
+		float m_edgeBTop;
+		float m_edgeBBottom;
+
+
+
+
+		/* animating */
+		bool m_isAnimating;
+		bool m_isDrag;
+
+		float m_animatingFromX;
+		float m_animatingToX;
+
+		float m_animatingFromY;
+		float m_animatingToY;
+
+		float m_animatingTotalTime;
+		float m_animatingElapseTime;
+
+		EaseExpr* m_animatingEasingUse;
 
 };
 
+
+
+
 NS_FS_END
 
-#endif /*_FS_SCROLL_WIDGET_H_*/
 
+
+
+
+#endif /*_FS_SCROLLER_H_*/
 
