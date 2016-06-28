@@ -28,11 +28,12 @@ BIN_NAME_WITH_PATH=$(addprefix bin/,$(BIN_NAME))
 BIN_OBJ_NAME=$(BIN:%.cc=%.o)
 BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 
+
 CC=g++
-FLAGS=-g -Wall  -DLINUX
-INCLUDE=-I. -I./debug   -I../   -I../../../src -I../../../thirdparty
-LIB=-Llib -L../lib  -L../../../build/lib -l$(PROJECT) -l$(PROJECT)debug \
-   	-lfsys -lcore -lutil 
+FLAGS=-g -Wall  -DLINUX  -std=c++11
+INCLUDE=-I. -I./debug   -I../   -I../../../lib/libfaeris/src -I../../../lib/lib3rdparty
+LIB=-Llib -L../lib  -L../../../lib/library/linux/ -L../../../lib/library/linux/3rdparty/  -l$(PROJECT) -l$(PROJECT)debug \
+   	-lfaeris -ljsonc
 
 
 

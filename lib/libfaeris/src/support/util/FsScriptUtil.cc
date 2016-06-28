@@ -82,7 +82,6 @@ static bool s_ArrayWrite(FsArray* ay,FsFile* file)
 		if(ob!=NULL)
 		{
 			s_ObjectWrite(ob,file,-1);
-			ob->decRef();
 		}
 		file->writeStr(",");
 		iter.next();
@@ -117,8 +116,6 @@ static bool s_DictWrite(FsDict* dt,FsFile* file,int indent)
 			s_ObjectWrite(value,file,-1);
 			file->writeStr(",");
 		}
-		key->decRef();
-		value->decRef();
 		iter.next();
 	}
 	if(indent!=-1)
@@ -280,8 +277,6 @@ bool ScriptUtil::saveScript(FsFile* file,FsDict* dict,int indent)
 			s_ObjectWrite(value,file,-1);
 			file->writeStr(",");
 		}
-		key->decRef();
-		value->decRef();
 		iter.next();
 	}
 	return true;

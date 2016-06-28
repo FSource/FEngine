@@ -1,5 +1,5 @@
-#include "fsys/FsSysFile.h"
-#include "util/FsScriptUtil.h"
+#include "sys/io/FsSysFile.h"
+#include "support/util/FsScriptUtil.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,7 +35,7 @@ int main(int argc,char** argv)
 	}  
 	else 
 	{
-		f=SysFile::open(filename);
+		f=SysFile::create(filename);
 	}
 
 	if(strcmp(outfile,"stdout")==0)
@@ -44,7 +44,7 @@ int main(int argc,char** argv)
 	}
 	else 
 	{
-		o=SysFile::open(outfile,FsFile::FS_IO_WRONLY|FsFile::FS_IO_TRUNC);
+		o=SysFile::create(outfile,FsFile::FS_IO_WRONLY|FsFile::FS_IO_TRUNC);
 	}
 
 	if(f==NULL)

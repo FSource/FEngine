@@ -1,9 +1,9 @@
-#include "script/xir_scanner.h"
-#include "script/xir_parser.h"
-#include "script/xir_token.h"
-#include "script/sl_state.h"
+#include "support/felis/xir_scanner.h"
+#include "support/felis/xir_parser.h"
+#include "support/felis/xir_token.h"
+#include "support/felis/sl_state.h"
 
-#include "fsys/FsSysFile.h"
+#include "sys/io/FsSysFile.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,7 +17,7 @@ int main(int argc,char** argv)
 		exit(-1);
 	}
 
-	SysFile* f=SysFile::open(argv[1]);
+	SysFile* f=SysFile::create(argv[1]);
 	if(f==NULL)
 	{
 		printf("Open File(%s) Failed\n",argv[1]);
@@ -36,8 +36,8 @@ int main(int argc,char** argv)
 		printf("Parse Failed\n");
 	}
 
+	f->autoDestroy();
 	delete s;
-	delete f;
 	delete pm;
 	return 0;
 }

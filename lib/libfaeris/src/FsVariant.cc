@@ -26,6 +26,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
 /*************************************************************************/
 
+#include <string.h>
 
 #include "FsVariant.h"
 #include "support/util/FsScriptUtil.h"
