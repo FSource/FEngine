@@ -20,7 +20,7 @@ class TrackAnimation:public Animation
 
 	public:
 		void setLerpMode(E_LerpMode mode);
-		E_LerpMode getLerpMode();
+		E_LerpMode getLerpMode() const;
 
 	public:
 		void insertKeyFrame(KeyFrame* frame);

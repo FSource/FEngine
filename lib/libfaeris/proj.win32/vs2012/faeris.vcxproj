@@ -324,10 +324,12 @@
     <ClCompile Include="..\..\src\scheduler\FsScheduler.cc" />
     <ClCompile Include="..\..\src\scheduler\FsSchedulerTarget.cc" />
     <ClCompile Include="..\..\src\scheduler\FsTask.cc" />
+    <ClCompile Include="..\..\src\stage\animation\FsAnimation.cc" />
     <ClCompile Include="..\..\src\stage\animation\FsAnimationEvent.cc" />
     <ClCompile Include="..\..\src\stage\animation\FsAnimationPlayer.cc" />
     <ClCompile Include="..\..\src\stage\animation\FsAnimator.cc" />
     <ClCompile Include="..\..\src\stage\animation\FsAttributeAnimation.cc" />
+    <ClCompile Include="..\..\src\stage\animation\FsKeyFrame.cc" />
     <ClCompile Include="..\..\src\stage\animation\FsTrackAnimation.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsEntity.cc" />
     <ClCompile Include="..\..\src\stage\entity\FsEntity2D.cc" />

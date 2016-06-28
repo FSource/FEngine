@@ -134,7 +134,7 @@ FsVariant::~FsVariant()
 FsVariant& FsVariant::operator=(const FsVariant& v)
 {
 	destruct();
-	init(v.m_type,m_value);
+	init(v.m_type,v.m_value);
 	return *this;
 }
 

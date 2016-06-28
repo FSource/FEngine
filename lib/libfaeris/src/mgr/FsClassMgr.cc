@@ -157,6 +157,10 @@ NS_FS_END
 #include "stage/layer/FsLayer.h"
 #include "stage/layer/FsLayer2D.h"
 
+#include "stage/animation/FsAnimation.h"
+#include "stage/animation/FsTrackAnimation.h"
+#include "stage/animation/FsAttributeAnimation.h"
+
 
 NS_FS_BEGIN
 
@@ -181,7 +185,9 @@ void ClassMgr::preRegisterClass()
 	FS_REGISTER_CLASS(Scene);
 	FS_REGISTER_CLASS(Layer);
 	FS_REGISTER_CLASS(Layer2D);
-
+	FS_REGISTER_CLASS(Animation);
+	FS_REGISTER_CLASS(TrackAnimation);
+	FS_REGISTER_CLASS(AttributeAnimation);
 }
 
 NS_FS_END

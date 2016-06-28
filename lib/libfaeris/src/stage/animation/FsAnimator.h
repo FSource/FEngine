@@ -17,8 +17,13 @@ class AnimationEvent;
 class Animator:public FsObject
 {
 	public:
+		FS_CLASS_DECLARE(Animator);
+
+	public:
 		void addAnimation(const char* name,Animation* anim);
 		void removeAnimation(const char* name);
+		void clearAnimation();
+
 		Animation* getAnimation(const char* name);
 		FsDict* getAnimations();
 

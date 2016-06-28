@@ -1098,6 +1098,12 @@
     <ClCompile Include="..\..\src\stage\animation\FsAnimationPlayer.cc">
       <Filter>src\stage\animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsAnimation.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsKeyFrame.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\math\FsVector2.inl">

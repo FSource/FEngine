@@ -93,6 +93,7 @@ void Layer::clearEntity()
 
 void Layer::update(float dt)
 {
+	updateAnimation(dt);
 }
 
 
@@ -168,7 +169,7 @@ static FsClass::FsAttributeDeclare S_Layer_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
-FS_CLASS_IMPLEMENT_WITH_BASE(Layer,FsObject,0,S_Layer_Main_Attr);
+FS_CLASS_IMPLEMENT_WITH_BASE(Layer,Animator,0,S_Layer_Main_Attr);
 
 
 
