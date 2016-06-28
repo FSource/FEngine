@@ -20,35 +20,26 @@ INCLUDE_DIR=-I../src \
 		   	-I../../lib3rdparty/zlib/include \
 			-I../../lib3rdparty/curl/include \
 			-I../../lib3rdparty/fmod/include \
+			-I../../lib3rdparty/GL/include \
+			-I../../lib3rdparty/jsonc/src \
+			-I../../lib3rdparty/glfw/include \
 			-I../../lib3rdparty/libjpeg/src \
 
 #Source File 
 SRC= FsGlobal.cc \
 	 FsObject.cc \
+	 FsClass.cc \
+	 FsEnums.cc \
+	 FsVariant.cc \
 	 FsFaerisModule.cc  \
 	 extends/FsScriptEngine.cc \
-	 stage/FsActionTarget.cc \
-	 stage/action/FsAction.cc \
-	 stage/action/FsMoveByAction.cc \
-	 stage/action/FsMoveToAction.cc \
-	 stage/action/FsPauseAction.cc \
-	 stage/action/FsRotateZByAction.cc \
-	 stage/action/FsRotateZToAction.cc \
-	 stage/action/FsScaleByAction.cc \
-	 stage/action/FsScaleToAction.cc \
-	 stage/action/FsSeqAction.cc \
-	 stage/entity/FsColorQuad2D.cc \
 	 stage/entity/FsEntity.cc \
 	 stage/entity/FsLabelBitmap.cc \
 	 stage/entity/FsLabelTTF.cc \
 	 stage/entity/FsParticle2DEffect.cc \
 	 stage/entity/FsParticle2DEmitter.cc \
 	 stage/entity/FsQuad2D.cc \
-	 stage/entity/FsSprite2D.cc \
-	 stage/entity/FsSprite2DData.cc \
 	 stage/entity/FsVertexPolygon.cc \
-	 stage/entity/FsPanel.cc \
-	 stage/entity/FsButton.cc \
 	 stage/layer/FsColorLayer.cc \
 	 stage/layer/FsLayer.cc \
 	 stage/layer/FsLayer2D.cc \
@@ -79,12 +70,8 @@ SRC= FsGlobal.cc \
 	 graphics/FsFontBitmap.cc \
 	 graphics/FsFontTTF.cc \
 	 graphics/FsImage2D.cc \
-	 graphics/FsProgram.cc \
-	 graphics/FsRender.cc \
 	 graphics/FsTexture2D.cc \
 	 graphics/material/FsMaterial.cc \
-	 graphics/material/FsColorMaterial.cc \
-	 graphics/material/FsTextureMaterial.cc \
 	 math/FsMathUtil.cc \
 	 math/FsMatrix4.cc \
 	 math/FsQuaternion.cc \
@@ -94,8 +81,7 @@ SRC= FsGlobal.cc \
 	 mgr/FsResourceMgr.cc \
 	 mgr/FsSprite2DDataMgr.cc \
 	 mgr/FsTextureMgr.cc \
-	 mgr/FsObjectMgr.cc \
-	 mgr/FsProgramMgr.cc \
+	 mgr/FsFelisScriptMgr.cc \
 	 scheduler/FsScheduler.cc \
 	 scheduler/FsSchedulerTarget.cc \
 	 scheduler/FsTask.cc \
@@ -104,6 +90,7 @@ SRC= FsGlobal.cc \
 	 support/data/FsEncrypt.cc \
 	 support/data/FsHash.cc \
 	 support/data/FsIconv.cc \
+	 support/data/FsJson.cc \
 	 support/data/FsUnicode.cc \
 	 support/data/FsFgzReader.cc \
 	 support/data/FsZipReader.cc \
@@ -132,7 +119,7 @@ SRC= FsGlobal.cc \
 	 support/util/FsSlowArray.cc \
 	 support/util/FsSlowDict.cc \
 	 support/util/FsString.cc \
-	 media/FsAudioEngine.cc \
+	 #media/FsAudioEngine.cc \
 	 media/FsAudioPlayer.cc \
 
 

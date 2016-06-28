@@ -160,7 +160,6 @@ void FsDict::resize(long minisize)
 {
 	DictEntry* old_table=0;
 	DictEntry* new_table=0;
-	DictEntry* p=0;
 
 
 	DictEntry* entry_head=m_entryListHead;
@@ -214,7 +213,7 @@ bool FsDict::remove(FsObject* key)
 	p->m_value->decRef();
 	p->m_value=NULL;
 
-	addEntryToList(p);
+	removeEntryFromList(p);
 
 	m_used--;
 	return true;

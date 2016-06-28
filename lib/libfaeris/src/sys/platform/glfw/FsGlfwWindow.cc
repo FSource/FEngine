@@ -81,7 +81,6 @@ void EventGraper::update(int priority,float dt)
 	glfwPollEvents();
 }
 
-static bool s_mouse_capture=false;
 
 class PlatformWindow 
 {
