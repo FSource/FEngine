@@ -79,8 +79,8 @@ class Layer2D:public Layer
 
 
 		/* entity */
-		void add(Entity2D* entity);
-		void remove(Entity2D* entity);
+		void addEntity2D(Entity2D* entity);
+		void removeEntit2D(Entity2D* entity);
 
 		int getEntityNu();
 

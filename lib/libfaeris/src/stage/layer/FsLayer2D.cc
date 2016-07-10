@@ -238,7 +238,7 @@ Layer2D::~Layer2D()
 }
 
 
-void Layer2D::add(Entity2D* entity)
+void Layer2D::addEntity2D(Entity2D* entity)
 {
 	FS_TRACE_WARN_ON(entity==NULL,"Entity Is NULL");
 	if(entity->getLayer()==this)
@@ -259,7 +259,7 @@ void Layer2D::add(Entity2D* entity)
 }
 
 
-void Layer2D::remove(Entity2D* entity)
+void Layer2D::removeEntit2D(Entity2D* entity)
 {
 	if(entity->getLayer()!=this)
 	{
