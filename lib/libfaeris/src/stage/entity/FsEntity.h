@@ -76,6 +76,7 @@ class Entity :public Animator
 		virtual void removeChild(Entity* n);
 		virtual void clearChild();
 		virtual void detach();
+                virtual  Entity* getChild(int index);
 
 
 		virtual Matrix4* getWorldMatrix();

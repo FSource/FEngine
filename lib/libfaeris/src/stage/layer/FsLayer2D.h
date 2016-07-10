@@ -80,7 +80,7 @@ class Layer2D:public Layer
 
 		/* entity */
 		void addEntity2D(Entity2D* entity);
-		void removeEntit2D(Entity2D* entity);
+		void removeEntity2D(Entity2D* entity);
 
 		int getEntityNu();
 

@@ -380,6 +380,14 @@ void Entity::clearChild()
 	}
 	m_chirdren->clear();
 }
+Entity* Entity::getChild(int index)
+{
+	return (Entity*)m_chirdren->get(index);
+}
+
+
+
+
 
 Layer* Entity::getLayer()
 {
