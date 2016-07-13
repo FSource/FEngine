@@ -63,6 +63,8 @@ class FsVariant
 		FsVariant(const Vector3i& v);
 		FsVariant(const Vector4i& v);
 
+		FsVariant(const Color4f& v);
+		FsVariant(const Color3f& v);
 
 		FsVariant(const Matrix4& v);
 		FsVariant(const char* v);
@@ -71,6 +73,7 @@ class FsVariant
 		FsVariant(FsString* v);
 		FsVariant(FsDict*  v);
 		FsVariant(FsArray* v);
+	
 
 		FsVariant(const FsVariant& value);
 		~FsVariant();

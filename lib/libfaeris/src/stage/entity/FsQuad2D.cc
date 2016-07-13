@@ -115,6 +115,7 @@ void Quad2D::setTexture(Texture2D* tex)
 	{
 		m_size.x=(float)m_texture->getWidth();
 		m_size.y=(float)m_texture->getHeight();
+		m_resourceUrl=tex->getResourceUrl();
 	}
 	m_vertiesDirty=true;
 
@@ -145,6 +146,7 @@ void Quad2D::setTexture(Texture2D* tex)
 
 void Quad2D::setTexture(const char* filename)
 {
+	m_resourceUrl=filename;
 	Texture2D* tex=Global::textureMgr()->loadTexture(filename);
 	setTexture(tex);
 }
@@ -157,11 +159,7 @@ void Quad2D::setResourceUrl(const char* name)
 
 const char* Quad2D::getResourceUrl()
 {
-	if(m_texture)
-	{
-		return m_texture->getResourceUrl();
-	}
-	return "";
+	return m_resourceUrl.c_str();
 }
 
 
@@ -240,7 +238,7 @@ void Quad2D::setRegionRect(float x,float y,float w,float h)
 	m_vertiesMode=E_DrawMode::TRIANGLE_STRIP;
 
 	m_vertiesDirty=true;
-
+	m_resourceUrl="";
 }
 
 void Quad2D::setRegionRect(const Rect2D& rect)

@@ -85,6 +85,15 @@ FsVariant::FsVariant(const Vector4i& v)
 	init(E_FsType::FT_I_4,&v);
 }
 
+FsVariant::FsVariant(const Color3f& v)
+{
+	init(E_FsType::FT_COLOR_3,&v);
+}
+
+FsVariant::FsVariant(const Color4f& v)
+{
+	init(E_FsType::FT_COLOR_4,&v);
+}
 
 
 FsVariant::FsVariant(const Matrix4& v)

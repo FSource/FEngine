@@ -157,6 +157,8 @@ class Quad2D:public Entity2D
 		E_DrawMode m_vertiesMode;
 
 		int m_renderMode;
+
+		std::string m_resourceUrl;
 };
 
 NS_FS_END 
