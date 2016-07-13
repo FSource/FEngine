@@ -59,7 +59,8 @@ NS_FS_BEGIN
 			p++; \
 		} \
 		return  map[0].m_enum; \
-	}
+	} \
+	const char* FsEnum_##t##GetEnumName(int index){return map[index].m_name;} \
 
 
 

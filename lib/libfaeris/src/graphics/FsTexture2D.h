@@ -98,6 +98,7 @@ class Texture2D:public Resource
 
 		void markInvaild();
 		void setResourceUrl(const char* name);
+		const char* getResourceUrl();
 
 	protected:
 		Texture2D();

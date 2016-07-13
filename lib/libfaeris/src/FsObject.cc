@@ -39,7 +39,6 @@ NS_FS_BEGIN
 
 
 
-FS_CLASS_IMPLEMENT(FsObject,0,NULL)
 
 
 int FsObject::m_objectNu=0;
@@ -108,7 +107,40 @@ void FsObject::setAttributes(FsDict* dict)
 	fsl->callSets(this,dict);
 }
 
+void FsObject::setObjectName(const char* name)
+{
+	int length=strlen(name);
+	if(m_objectName)
+	{
+		delete[] m_objectName;
+		m_objectName=NULL;
+	}
+	m_objectName= new char[length+1];
+	memcpy(m_objectName,name,length+1);
 
+}
+const char* FsObject::getObjectName()
+{
+	if(m_objectName==NULL)
+	{
+		return "";
+	}
+	return m_objectName;
+}
+
+
+/* Attribute Used For FsObject */
+FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(FsObject,setObjectName,getObjectName);
+FS_CLASS_ATTR_GET_CHARS_FUNCTION(FsObject,className);
+
+
+static FsClass::FsAttributeDeclare S_Object_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("className",E_FsType::FT_CHARS,NULL,0,FsObject_className),
+	FS_CLASS_ATTR_DECLARE("objectName",E_FsType::FT_CHARS,NULL,FsObject_setObjectName,FsObject_getObjectName),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
+};
+
+FS_CLASS_IMPLEMENT(FsObject,NULL,S_Object_Main_Attr);
 
 NS_FS_END 
 

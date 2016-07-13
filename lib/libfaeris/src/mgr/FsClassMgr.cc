@@ -135,7 +135,7 @@ NS_FS_END
 
 
 /* PreLoad FsClass */
-
+#include "FsObject.h"
 #include "stage/entity/FsEntity.h"
 #include "stage/entity/FsQuad2D.h"
 #include "stage/entity/FsLabelTTF.h"
@@ -170,6 +170,7 @@ NS_FS_BEGIN
 
 void ClassMgr::preRegisterClass()
 {
+	FS_REGISTER_CLASS(FsObject);
 	FS_REGISTER_CLASS(Entity);
 	FS_REGISTER_CLASS(Quad2D);
 	FS_REGISTER_CLASS(LabelTTF);

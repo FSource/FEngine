@@ -192,6 +192,11 @@ class FsClass :public FsObject
 	{ \
 		ob->set(v); \
 	} 
+#define FS_CLASS_ATTR_GET_CHARS_FUNCTION(cls,get)  \
+	static  const char* cls##_##get(cls* ob) \
+	{ \
+		return ob->get(); \
+	} 
 
 
 #define FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(cls,set,get)  \

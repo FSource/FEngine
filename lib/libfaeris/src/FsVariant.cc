@@ -835,12 +835,11 @@ void FsVariant::init(E_FsType t,const void* value)
 			break;
 
 		case E_FsType::FT_CHARS:
-			{
-
+			{		
 				int size=strlen((const char*) value);
 				m_chars=new char[size+1];
 				strcpy(m_chars,(const char*)value);
-				m_chars[size]='\0';
+				m_chars[size]='\0';			
 			}
 
 			break;
@@ -927,7 +926,7 @@ void FsVariant::destruct()
 			break;
 
 		case E_FsType::FT_CHARS:
-			delete m_chars;
+			delete[] m_chars;
 			break;
 
 		case E_FsType::FT_OBJECT:

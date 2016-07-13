@@ -68,6 +68,7 @@ class Quad2D:public Entity2D
 		/* texture */
 		void setTexture(const char* tex);
 		void setResourceUrl(const char* name);
+		const char* getResourceUrl();
 
 
 		void setTexture(Texture2D* tex);

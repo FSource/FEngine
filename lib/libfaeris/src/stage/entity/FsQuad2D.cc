@@ -155,6 +155,15 @@ void Quad2D::setResourceUrl(const char* name)
 	setTexture(name);
 }
 
+const char* Quad2D::getResourceUrl()
+{
+	if(m_texture)
+	{
+		return m_texture->getResourceUrl();
+	}
+	return "";
+}
+
 
 Texture2D* Quad2D::getTexture()
 {
@@ -669,12 +678,12 @@ static void Quad2D_setTextureDict(Quad2D* q,FsDict* attr)
 }
 
 
-FS_CLASS_ATTR_SET_CHARS_FUNCTION(Quad2D,setTexture);
+FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(Quad2D,setResourceUrl,getResourceUrl);
 
 
 static FsClass::FsAttributeDeclare S_Quad2D_Main_Attr[]={
 
-	FS_CLASS_ATTR_DECLARE("textureUrl",E_FsType::FT_CHARS,NULL,Quad2D_setTexture,0),
+	FS_CLASS_ATTR_DECLARE("resourceUrl",E_FsType::FT_CHARS,NULL,Quad2D_setResourceUrl,Quad2D_getResourceUrl),
 	FS_CLASS_ATTR_DECLARE("texture",E_FsType::FT_DICT,NULL,Quad2D_setTextureDict,0),
 	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };

@@ -56,11 +56,16 @@ class FsObject
 		void setAttribute(const char* name,const FsVariant& v);
 		FsVariant getAttribute(const char* name);
 
+	public:
+		void setObjectName(const char* name);
+		const char* getObjectName();
+
 	/* object attribute */
 	private:
 		bool m_refDelete;
 		int m_refNu;
 		void* m_userData;
+		char* m_objectName;
 
 	public:
 		int refCnt(){return m_refNu;}
@@ -110,8 +115,10 @@ class FsObject
 		FsObject()
 			:m_refDelete(true),
 			m_refNu(0),
-#if FS_CONFIG(FS_SCRIPT_SUPPORT)
 			m_userData(NULL),
+			m_objectName(NULL),
+#if FS_CONFIG(FS_SCRIPT_SUPPORT)
+	
 			m_scriptData(-1)
 #endif 
 		{ 

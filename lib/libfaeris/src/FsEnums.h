@@ -52,7 +52,8 @@ class EnumStrPair
 
 #define FS_ENUM_TO_STR_MAP_DECLARE(t) \
 	const char* FsEnum_##t##ToStr(const E_##t& t);   \
-	E_##t FsEnum_StrTo##t(const char* name) 
+	E_##t FsEnum_StrTo##t(const char* name);  \
+	const char* FsEnum_##t##GetEnumName(int index) 
 
 
 

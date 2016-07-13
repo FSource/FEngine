@@ -399,6 +399,10 @@ void Texture2D::setResourceUrl(const char* name)
 {
 	m_resourceUrl=std::string(name);
 }
+const char* Texture2D::getResourceUrl()
+{
+	return m_resourceUrl.c_str();
+}
 
 Texture2D::~Texture2D()
 {

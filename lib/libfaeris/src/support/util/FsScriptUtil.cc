@@ -36,6 +36,7 @@
 #include "support/util/FsString.h"
 #include "support/felis/xir_parser.h"
 #include "support/data/FsJson.h"
+#include "sys/io/FsMemFile.h"
 
 NS_FS_BEGIN
 static bool s_ObjectWrite(FsObject* ob,FsFile* file,int indent);
@@ -251,6 +252,15 @@ FsDict* ScriptUtil::parseJson(const char* json)
 FsDict* ScriptUtil::parseScript(FsFile* file)
 {
 	return XirParser::create(file);
+}
+
+FsDict* ScriptUtil::parseScript(const char* str)
+{
+	MemFile* file=MemFile::create(str,strlen(str));
+	file->setRefDelete(false);
+	FsDict* ret= XirParser::create(file);
+	file->destroy();
+	return ret;
 }
 
 

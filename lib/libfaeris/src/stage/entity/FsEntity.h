@@ -187,10 +187,14 @@ class Entity :public Animator
 	public: /* world transform */
 		void setPositionInWorld(float tx,float ty,float tz)
 		{
+			FS_UNUSED_PARAM(tx);
+			FS_UNUSED_PARAM(ty);
+			FS_UNUSED_PARAM(tz);
 			FS_TRACE_WARN("NOT IMPLEMET");
 		};
 		void setPositionInWorld(const Vector3& v)
 		{
+			FS_UNUSED_PARAM(v);
 			FS_TRACE_WARN("NOT IMPLAEMNT");
 		}
 
