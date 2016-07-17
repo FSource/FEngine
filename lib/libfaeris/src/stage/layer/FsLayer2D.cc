@@ -256,6 +256,7 @@ void Layer2D::addEntity2D(Entity2D* entity)
 	m_entity->insert(entity,entity);
 	entity->setAddOlder(m_addOlder++);
 	entity->setLayer(this);
+	entity->setWorldMatrixDirty(true);
 }
 
 

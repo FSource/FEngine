@@ -508,7 +508,7 @@ void Entity2D::getTRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy
 	float top,bottom,left,right;
 	getRSBoundSize2D(&left,&right,&bottom,&top);
 
-	Vector3 t=getPosition();
+	Vector3 t=getPositionInWorld();
 	*minx=left+t.x;
 	*maxx=right+t.x;
 

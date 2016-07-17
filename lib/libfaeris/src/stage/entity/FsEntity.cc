@@ -231,6 +231,10 @@ void Entity::setChildWorldMatrixDirty()
 		node->m_worldMatrixDirty=1;
 	}
 }
+void Entity::setWorldMatrixDirty(bool dirty)
+{
+	m_worldMatrixDirty=dirty;
+}
 
 
 Vector3 Entity::localToWorld(const Vector3& v)
