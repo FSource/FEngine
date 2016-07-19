@@ -538,6 +538,29 @@ Vector3 Entity::getPosition()
 	return m_transform->getPosition();
 }
 
+
+void Entity::setPositionInWorld(float tx,float ty,float tz)
+{
+	setPositionInWorld(Vector3f(tx,ty,tz));
+
+}
+void Entity::setPositionInWorld(const Vector3& v)
+{
+	if(m_parent)
+	{
+		Matrix4* mat=m_parent->getWorldMatrix();
+		Matrix4 inverse;
+		mat->getInverse(&inverse);
+
+		Vector3f t=inverse.mulVector3(v);
+		setPosition(t);
+	}
+	else 
+	{
+		setPosition(v);
+	}
+}
+
 /***  Use For Entity FsClass Attribute  **/
 static Entity* S_Entity_NewInstance(FsDict* attr)
 {

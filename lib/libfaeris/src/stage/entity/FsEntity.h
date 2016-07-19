@@ -186,19 +186,8 @@ class Entity :public Animator
 		void setPositionZ(float t);
 
 	public: /* world transform */
-		void setPositionInWorld(float tx,float ty,float tz)
-		{
-			FS_UNUSED_PARAM(tx);
-			FS_UNUSED_PARAM(ty);
-			FS_UNUSED_PARAM(tz);
-			FS_TRACE_WARN("NOT IMPLEMET");
-		};
-		void setPositionInWorld(const Vector3& v)
-		{
-			FS_UNUSED_PARAM(v);
-			FS_TRACE_WARN("NOT IMPLAEMNT");
-		}
-
+		void setPositionInWorld(float tx,float ty,float tz);
+		void setPositionInWorld(const Vector3& v);
 		Vector3 getPositionInWorld();
 		void getPositionInWorld(float* x,float* y,float* z);
 
