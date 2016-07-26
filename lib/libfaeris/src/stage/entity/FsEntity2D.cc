@@ -488,11 +488,12 @@ float Entity2D::getAnchorY()
 
 void Entity2D::getBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
 {
-	float top=(1.0f-m_anchor.y)*m_size.y;
-	float  bottom=-m_anchor.y*m_size.y;
+	Vector2 size=getSize();
+	float top=(1.0f-m_anchor.y)*size.y;
+	float  bottom=-m_anchor.y*size.y;
 
-	float left=-m_anchor.x*m_size.x;
-	float right=(1.0f-m_anchor.x)*m_size.x;
+	float left=-m_anchor.x*size.x;
+	float right=(1.0f-m_anchor.x)*size.x;
 
 	*minx=left;
 	*maxx=right;
@@ -519,11 +520,12 @@ void Entity2D::getTRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy
 
 void Entity2D::getRSBoundSize2D(float* minx,float* maxx,float* miny,float* maxy)
 {
-	float top=(1.0f-m_anchor.y)*m_size.y;
-	float  bottom=-m_anchor.y*m_size.y;
+	Vector2 size=getSize();
+	float top=(1.0f-m_anchor.y)*size.y;
+	float  bottom=-m_anchor.y*size.y;
 
-	float left=-m_anchor.x*m_size.x;
-	float right=(1.0f-m_anchor.x)*m_size.x;
+	float left=-m_anchor.x*size.x;
+	float right=(1.0f-m_anchor.x)*size.x;
 	Vector3 s=getScale();
 	Vector3 r=getRotate();
 
@@ -587,13 +589,14 @@ bool Entity2D::hit2D(float x,float y)
 {
 	updateWorldMatrix();
 	Vector3 v=worldToLocal(Vector3(x,y,0));
+	Vector2f size=getSize();
 
-	float diffx=v.x+m_anchor.x*m_size.x;
-	float diffy=v.y+m_anchor.y*m_size.y;
+	float diffx=v.x+m_anchor.x*Math::abs(size.x);
+	float diffy=v.y+m_anchor.y*Math::abs(size.y);
 
-	if(diffx>=0 && diffx <m_size.x)
+	if(diffx>=0 && diffx <Math::abs(size.x))
 	{
-		if(diffy>=0 && diffy <m_size.y)
+		if(diffy>=0 && diffy <Math::abs(size.y))
 		{
 			return true;
 		}

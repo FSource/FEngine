@@ -152,6 +152,20 @@ void LabelTTF::destruct()
 }
 
 
+
+
+void LabelTTF::setSize(const Vector2f& v)
+{
+}
+
+Vector2f LabelTTF::getSize()
+{
+	float width,height;
+	getTextSize(&width,&height);
+	
+	return Vector2f(width,height);
+
+}
 void LabelTTF::setString(const char* str)
 {
 	FS_TRACE_WARN_ON(str==NULL,"NULL String");
@@ -538,7 +552,6 @@ static FsClass::FsAttributeDeclare S_LabelTTF_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE("textAlign",E_FsType::FT_CHARS,NULL,LabelTTF_setTextAlign,LabelTTF_getTextAlign),
 	FS_CLASS_ATTR_DECLARE("lineGap",E_FsType::FT_F_1,NULL,LabelTTF_setLineGap,LabelTTF_getLineGap),
 	FS_CLASS_ATTR_DECLARE("boundSize",E_FsType::FT_F_2,S_LabelTTF_BoundSize_SubAttr,LabelTTF_setBoundSize,LabelTTF_getBoundSize),
-	FS_CLASS_ATTR_DECLARE("lineGap",E_FsType::FT_F_2,NULL,LabelTTF_setLineGap,LabelTTF_getLineGap),
 	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
