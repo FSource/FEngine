@@ -45,11 +45,13 @@ int FsFaeris_LoadConfig(const char* file);
 int FsFaeris_LoadConfig(FsDict* dict);
 
 
+
 int FsFaeris_ConfigManager(FsDict* dict);
 int FsFaeris_ConfigVFS(FsDict* dict);
 int FsFaeris_ConfigWin(FsDict* dict);
 int FsFaeris_ConfigENV(FsDict* dict);
 
+int FsFaeris_LoadSysResource();
 
 void FsMain_Entry(int argc,char** argv);
 

@@ -86,6 +86,9 @@
     <Filter Include="src\stage\animation">
       <UniqueIdentifier>{87c67f93-db09-4939-beae-117102410e04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\mgr\buildin">
+      <UniqueIdentifier>{825a2b9c-ec91-43ee-8ca7-104465a52e38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\extends\FsScriptEngine.h">
@@ -622,6 +625,9 @@
     <ClInclude Include="..\..\src\stage\animation\FsAnimationEvent.h">
       <Filter>src\stage\animation</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\mgr\buildin\FsSysResource_Font.h">
+      <Filter>src\mgr\buildin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -1100,6 +1106,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\stage\animation\FsParallelAnimation.cc">
       <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\buildin\FsSysResource_Font.cc">
+      <Filter>src\mgr\buildin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

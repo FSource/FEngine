@@ -439,9 +439,15 @@ namespace Faeris
 
 
 
+/* build in resource */
+#define  FS_BUILDIN_FONT_NAME "__buildin__/sysfont.ttf"
+
+
 
 
 #include "FsTypes.h"
+
+
 
 
 

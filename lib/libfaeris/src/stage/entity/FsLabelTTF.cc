@@ -116,6 +116,8 @@ LabelTTF::LabelTTF()
 		S_programSource=(ProgramSource* )Global::programSourceMgr()->load("__V4F_T2F__.fshader");
 	}
 	setProgramSource(S_programSource);
+
+
 }
 
 
@@ -126,6 +128,7 @@ LabelTTF::~LabelTTF()
 
 bool LabelTTF::init()
 {
+	setFontName(FS_BUILDIN_FONT_NAME);
 	return true;
 }
 

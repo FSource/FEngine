@@ -136,7 +136,7 @@ void UiWidget::setScale(const Vector3f& v)
 
 void UiWidget::setRotate(const Vector3f& v)
 {
-	Entity2D::setScale(v);
+	Entity2D::setRotate(v);
 	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
 	{
 		m_parentWidget->childTransformChanged(this);

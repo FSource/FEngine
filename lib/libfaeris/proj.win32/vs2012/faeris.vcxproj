@@ -148,6 +148,7 @@
     <ClInclude Include="..\..\src\math\FsVertices.h" />
     <ClInclude Include="..\..\src\media\FsAudioEngine.h" />
     <ClInclude Include="..\..\src\media\FsAudioPlayer.h" />
+    <ClInclude Include="..\..\src\mgr\buildin\FsSysResource_Font.h" />
     <ClInclude Include="..\..\src\mgr\FsClassMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsFelisScriptMgr.h" />
     <ClInclude Include="..\..\src\mgr\FsFontBitmapMgr.h" />
@@ -311,6 +312,7 @@
     <ClCompile Include="..\..\src\math\FsRect2D.cc" />
     <ClCompile Include="..\..\src\media\FsAudioEngine.cc" />
     <ClCompile Include="..\..\src\media\FsAudioPlayer.cc" />
+    <ClCompile Include="..\..\src\mgr\buildin\FsSysResource_Font.cc" />
     <ClCompile Include="..\..\src\mgr\FsClassMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsFelisScriptMgr.cc" />
     <ClCompile Include="..\..\src\mgr\FsFontBitmapMgr.cc" />
