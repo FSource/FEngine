@@ -578,8 +578,9 @@ enum class E_ScrollDirection
 	VERTICAL,
 	HORIZONTAL,
 	ALL
-		
 };
+FS_ENUM_TO_STR_MAP_DECLARE(ScrollDirection);
+
 
 enum class E_AxisDirection 
 {
@@ -594,6 +595,7 @@ enum class E_AlignH
 	CENTER,
 	RIGHT,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(AlignH);
 
 enum class E_AlignV 
 {
@@ -601,6 +603,7 @@ enum class E_AlignV
 	CENTER,
 	BOTTOM
 };
+FS_ENUM_TO_STR_MAP_DECLARE(AlignV);
 
 enum class E_LerpMode
 {

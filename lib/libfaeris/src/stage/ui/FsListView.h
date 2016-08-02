@@ -53,6 +53,7 @@ class ListView:public ScrollWidget
 		
 	public:
 		void setMode(E_ScrollDirection mode);
+		E_ScrollDirection getMode();
 
 		void setListGap(float value);
 		float getListGap();
@@ -94,6 +95,7 @@ class ListView:public ScrollWidget
 
 	protected:
 
+		ListView();
 		ListView(E_ScrollDirection mode,float width,float height);
 		ListView(float width,float height);
 

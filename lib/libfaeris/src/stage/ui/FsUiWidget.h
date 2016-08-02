@@ -104,7 +104,10 @@ class UiWidget:public Entity2D
 		void setBgColor(const Color4f& c);
 		Color4f getBgColor();
 		void setBgTexture(Texture2D* tex);
-		void setBgTexture(const char* filename);
+
+		void setBgTextureUrl(const char* filename);
+		const char* getBgTextureUrl();
+
 		void setBgEnabled(bool value);
 		bool getBgEnabled();
 
@@ -136,6 +139,8 @@ class UiWidget:public Entity2D
 
 		Material2D* m_bgMaterial;
 		Filter* m_filter;
+
+		std::string m_bgTextureUrl;
 
 };
 

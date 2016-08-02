@@ -207,6 +207,33 @@ static EnumStrPair<E_LerpMode> S_E_LerpMode[]={
 };
 FS_ENUM_TO_STR_MAP_IMPLEMENT(LerpMode,S_E_LerpMode);
 
+static EnumStrPair<E_ScrollDirection> S_E_ScrollDirection[]={
+	EnumStrPair<E_ScrollDirection>(E_ScrollDirection::VERTICAL,"vertical"),
+	EnumStrPair<E_ScrollDirection>(E_ScrollDirection::HORIZONTAL,"horizontal"),
+	EnumStrPair<E_ScrollDirection>(E_ScrollDirection::ALL,"all"),
+	EnumStrPair<E_ScrollDirection>(E_ScrollDirection::HORIZONTAL,NULL),
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(ScrollDirection,S_E_ScrollDirection);
+
+
+static EnumStrPair<E_AlignH> S_E_AlignH[]={
+	EnumStrPair<E_AlignH>(E_AlignH::LEFT,"left"),
+	EnumStrPair<E_AlignH>(E_AlignH::CENTER,"center"),
+	EnumStrPair<E_AlignH>(E_AlignH::RIGHT,"right"),
+	EnumStrPair<E_AlignH>(E_AlignH::RIGHT,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(AlignH,S_E_AlignH);
+
+static EnumStrPair<E_AlignV> S_E_AlignV[]={
+	EnumStrPair<E_AlignV>(E_AlignV::TOP,"top"),
+	EnumStrPair<E_AlignV>(E_AlignV::CENTER,"center"),
+	EnumStrPair<E_AlignV>(E_AlignV::BOTTOM,"bottom"),
+	EnumStrPair<E_AlignV>(E_AlignV::BOTTOM,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(AlignV,S_E_AlignV);
+
+
+
 
 
 NS_FS_END 

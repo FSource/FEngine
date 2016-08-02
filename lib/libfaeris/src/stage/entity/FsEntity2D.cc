@@ -128,7 +128,7 @@ E_BlendFactor Entity2D::getBlendSrc()
 {
 	if(m_material)
 	{
-		m_material->getBlendSrc();
+		return m_material->getBlendSrc();
 	}
 	return E_BlendFactor::SRC_ALPHA;
 }

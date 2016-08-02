@@ -894,8 +894,14 @@ void ScrollWidget::layoutContentWidget(float x,float y)
 
 /** User For ScrollWidget FsClass Attr */
 
+FS_CLASS_ATTR_SET_GET_FUNCTION(ScrollWidget,setScrollPercentX,getScrollPercentX,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(ScrollWidget,setScrollPercentY,getScrollPercentY,float);
+
 
 static FsClass::FsAttributeDeclare S_ScrollWidget_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("scrollX",E_FsType::FT_F_1,NULL,ScrollWidget_setScrollPercentX,ScrollWidget_getScrollPercentX),
+	FS_CLASS_ATTR_DECLARE("scrollY",E_FsType::FT_F_1,NULL,ScrollWidget_setScrollPercentY,ScrollWidget_getScrollPercentY),
+
 	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
