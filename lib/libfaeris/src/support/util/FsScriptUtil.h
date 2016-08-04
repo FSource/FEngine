@@ -43,7 +43,7 @@ class ScriptUtil
 		static FS_FEATURE_NEW_OBJECT(FsDict*) parseJson(const char* json);
 
 		static FS_FEATURE_NEW_OBJECT(FsDict*) parseScript(FsFile* file);
-		static FS_FEATURE_NEW_OBJECT(FsDict*) parseScript(const char* string);
+		static FS_FEATURE_NEW_OBJECT(FsDict*) parseScriptFromStr(const char* string);
 
 		static bool saveScript(FsFile* file,FsDict* dict,int indent=0);
 

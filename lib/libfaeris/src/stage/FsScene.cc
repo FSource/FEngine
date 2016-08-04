@@ -31,6 +31,8 @@
 #include "stage/layer/FsLayer.h"
 #include "support/util/FsSlowArray.h"
 #include "stage/layer/FsColorLayer.h"
+#include "FsClass.h"
+#include "FsGlobal.h"
 
 
 
@@ -426,11 +428,6 @@ void Scene::inputTextEvent(const char* text,int length)
 
 
 
-const char* Scene::className()
-{
-	return FS_SCENE_CLASS_NAME;
-}
-
 Scene::Scene()
 {
 	init();
@@ -486,6 +483,69 @@ void Scene::destruct()
 	FS_DESTROY(m_layers);
 	FS_DESTROY(m_fadeLayer);
 }
+
+
+/**  Used For Scene FSClass Attribute **/
+static Scene* S_Scene_NewInstance(FsDict* attr)
+{
+	Scene* ret=Scene::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+	return ret;
+}
+static void Scene_SetLayers(Scene* sn,FsArray* attr)
+{
+	sn->clear();
+
+	int child_nu=attr->size();
+
+	for(int i=0;i<child_nu;i++)
+	{
+		FsDict* dict=attr->getDict(i);
+		if(dict)
+		{
+			FsObject* ob=Global::classMgr()->newInstance(dict);
+			if(ob)
+			{
+				Layer* ly=dynamic_cast<Layer*>(ob);
+				if(ly)
+				{
+					sn->push(ly);
+				}
+				else 
+				{
+					FS_TRACE_WARN("Not SubClass Of Layer,Ingore Item(%d)",i);
+					ob->destroy();
+				}
+			}
+		}
+		else 
+		{
+			FS_TRACE_WARN("Not Dict,Ingore Item(%d)",i);
+		}
+	}
+}
+
+FS_CLASS_ATTR_SET_GET_FUNCTION(Scene,setTouchEnabled,getTouchEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Scene,setTouchesEnabled,getTouchesEnabled,bool);
+
+
+static FsClass::FsAttributeDeclare S_Scene_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("touchEnabled",E_FsType::FT_B_1,NULL,Scene_setTouchEnabled,Scene_getTouchEnabled),
+	FS_CLASS_ATTR_DECLARE("touchesEnabled",E_FsType::FT_B_1,NULL,Scene_setTouchesEnabled,Scene_getTouchesEnabled),
+
+	FS_CLASS_ATTR_DECLARE("layers",E_FsType::FT_ARRAY,NULL,Scene_SetLayers,0),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
+
+};
+
+
+
+
+FS_CLASS_IMPLEMENT_WITH_BASE(Scene,Animator,S_Scene_NewInstance,S_Scene_Main_Attr);
+
 
 
 NS_FS_END

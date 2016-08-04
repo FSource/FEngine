@@ -254,7 +254,7 @@ FsDict* ScriptUtil::parseScript(FsFile* file)
 	return XirParser::create(file);
 }
 
-FsDict* ScriptUtil::parseScript(const char* str)
+FsDict* ScriptUtil::parseScriptFromStr(const char* str)
 {
 	MemFile* file=MemFile::create(str,strlen(str));
 	file->setRefDelete(false);

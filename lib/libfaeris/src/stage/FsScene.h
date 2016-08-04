@@ -51,6 +51,9 @@ class ColorLayer;
 class Scene:public Animator 
 {
 	public:
+		FS_CLASS_DECLARE(Scene);
+
+	public:
 		static Scene* create();
 
 	public:
@@ -100,8 +103,6 @@ class Scene:public Animator
 
 		virtual void inputTextEvent(const char* text,int length);
 
-		/*  inherit FsObject */
-		virtual const char* className();
 
 	public:
 		std::function<void(Scene*)> onEnter;

@@ -45,7 +45,7 @@ class ClassMgr:public FsObject
 		static ClassMgr* create();
 
 	public:
-		FsObject* newInstance(FsDict* dict);
+		virtual FsObject* newInstance(FsDict* dict);
 
 	public:
 		FsClass* getClass(FsString* name);
