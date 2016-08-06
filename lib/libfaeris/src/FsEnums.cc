@@ -81,6 +81,7 @@ static EnumStrPair<E_FsType> S_E_FsTypeStrMap[]={
 	EnumStrPair<E_FsType>(E_FsType::FT_COLOR_3,"color3f"),
 	EnumStrPair<E_FsType>(E_FsType::FT_COLOR_4,"color4f"),
 	EnumStrPair<E_FsType>(E_FsType::FT_MAT4,"mat4"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_RECT2D,"rect2df"),
 	EnumStrPair<E_FsType>(E_FsType::FT_CHARS,"string"),
 	EnumStrPair<E_FsType>(E_FsType::FT_OBJECT,"fobject"),
 	EnumStrPair<E_FsType>(E_FsType::FT_STRING,"fstring"),

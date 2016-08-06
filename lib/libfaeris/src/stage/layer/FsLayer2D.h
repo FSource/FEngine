@@ -60,7 +60,21 @@ class Layer2D:public Layer
 
 	public:
 		void setViewArea(const Rect2D& area);
+
+		void setViewAreaX(float x);
+		float getViewAreaX();
+
+		void setViewAreaY(float y);
+		float getViewAreaY();
+
+		void setViewAreaWidth(float w);
+		float getViewAreaWidth();
+
+		void setViewAreaHeight(float h);
+		float getViewAreaHeight();
+
 		Rect2D getViewArea() const;
+
 		void setViewArea(float x,float y,float width,float height);
 		void getViewArea(float* x,float* y,float* width,float* height);
 

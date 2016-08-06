@@ -38,6 +38,7 @@
 #include "math/FsVector4.h"
 #include "math/FsMatrix4.h"
 #include "graphics/FsColor.h"
+#include "math/FsRect2D.h"
 
 
 NS_FS_BEGIN
@@ -67,12 +68,15 @@ class FsVariant
 		FsVariant(const Color3f& v);
 
 		FsVariant(const Matrix4& v);
+		FsVariant(const Rect2D& v);
+		
 		FsVariant(const char* v);
 
 		FsVariant(FsObject* v);
 		FsVariant(FsString* v);
 		FsVariant(FsDict*  v);
 		FsVariant(FsArray* v);
+
 	
 
 		FsVariant(const FsVariant& value);
@@ -124,6 +128,8 @@ class FsVariant
 			Color4f* m_c4;
 
 			Matrix4* m_mat4;
+			Rect2D* m_rect2d;
+
 			char* m_chars;
 
 

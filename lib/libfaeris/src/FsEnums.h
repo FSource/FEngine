@@ -143,6 +143,8 @@ enum class E_FsType
 	FT_COLOR_4,
 
 	FT_MAT4,
+	FT_F_RECT2D,
+
 
 	FT_CHARS,
 

@@ -135,16 +135,16 @@ class FsClass :public FsObject
 
 
 #define FS_CLASS_IMPLEMENT(cls,new_instnce,attrs) \
-	FsClass* cls::m_fsclass=NULL; \
-	FsClass* cls::getClass() \
+	Faeris::FsClass* cls::m_fsclass=NULL; \
+	Faeris::FsClass* cls::getClass() \
 	{ \
 		if( cls::m_fsclass==NULL) \
 		{ \
-			cls::m_fsclass=FsClass::create(#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
+			cls::m_fsclass=Faeris::FsClass::create(#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
 		} \
 		return cls::m_fsclass; \
 	} \
-	FsClass* cls::objectClass()  \
+	Faeris::FsClass* cls::objectClass()  \
 	{ \
 		return cls::getClass(); \
 	} \
@@ -162,16 +162,16 @@ class FsClass :public FsObject
 
 
 #define FS_CLASS_IMPLEMENT_WITH_BASE(cls,base_cls,new_instnce,attrs) \
-	FsClass* cls::m_fsclass=NULL; \
-	FsClass* cls::getClass() \
+	Faeris::FsClass* cls::m_fsclass=NULL; \
+	Faeris::FsClass* cls::getClass() \
 	{ \
 		if( cls::m_fsclass==NULL) \
 		{ \
-			cls::m_fsclass=FsClass::create(base_cls::getClass(),#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
+			cls::m_fsclass=Faeris::FsClass::create(base_cls::getClass(),#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
 		} \
 		return cls::m_fsclass; \
 	} \
-	FsClass* cls::objectClass()  \
+	Faeris::FsClass* cls::objectClass()  \
 	{ \
 		return cls::getClass(); \
 	} \
@@ -247,10 +247,10 @@ class FsClass :public FsObject
 
 
 #define FS_CLASS_ATTR_DECLARE(name,type,sub_attr,set_func,get_func) \
-	FsClass::FsAttributeDeclare(name,type, \
+	Faeris::FsClass::FsAttributeDeclare(name,type, \
 			sub_attr, \
-			(FsClass::AttrSetFunc)set_func, \
-			(FsClass::AttrGetFunc)get_func)
+			(Faeris::FsClass::AttrSetFunc)set_func, \
+			(Faeris::FsClass::AttrGetFunc)get_func)
  
 
 

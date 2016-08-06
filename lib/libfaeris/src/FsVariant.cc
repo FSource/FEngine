@@ -101,6 +101,12 @@ FsVariant::FsVariant(const Matrix4& v)
 	init(E_FsType::FT_MAT4,&v);
 }
 
+FsVariant::FsVariant(const Rect2D& v)
+{
+	init(E_FsType::FT_F_RECT2D,&v);
+}
+
+
 FsVariant::FsVariant(FsObject* v)
 {
 	init(E_FsType::FT_OBJECT,v);
@@ -125,6 +131,8 @@ FsVariant::FsVariant(const char* str)
 {
 	init(E_FsType::FT_CHARS,str);
 }
+
+
 
 FsVariant::FsVariant(const FsVariant& value)
 {
@@ -723,6 +731,17 @@ FsVariant FsVariant::getCast(E_FsType t) const
 							return FsVariant(E_FsType::FT_MAT4,&v);
 						}
 						break;
+
+					case E_FsType::FT_F_RECT2D:
+						{
+							Rect2D v;
+							for(int i=0;i<array_nu&&i<4;i++)
+							{
+								ScriptUtil::getFloat(m_array,i,&v.v[i]);
+							}
+							return FsVariant(E_FsType::FT_F_RECT2D,&v);
+						}
+						break;
 					default:
 						break;
 				}
@@ -734,32 +753,6 @@ FsVariant FsVariant::getCast(E_FsType t) const
 
 	return FsVariant();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -842,6 +835,12 @@ void FsVariant::init(E_FsType t,const void* value)
 			m_mat4=new Matrix4();
 			*m_mat4=*(Matrix4*)value;
 			break;
+
+		case E_FsType::FT_F_RECT2D:
+			m_rect2d=new Rect2D();
+			*m_rect2d=*(Rect2D*)value;
+			break;
+
 
 		case E_FsType::FT_CHARS:
 			{		
@@ -932,6 +931,9 @@ void FsVariant::destruct()
 
 		case E_FsType::FT_MAT4:
 			delete m_mat4;
+			break;
+		case E_FsType::FT_F_RECT2D:
+			delete m_rect2d;
 			break;
 
 		case E_FsType::FT_CHARS:
