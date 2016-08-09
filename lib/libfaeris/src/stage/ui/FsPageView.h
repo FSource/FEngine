@@ -61,6 +61,10 @@ class PageView:public UiWidget
 		void addPage(int index,UiWidget* widget,E_AlignH alignh,E_AlignV alignv);
 
 		void setPageAlign(int index,E_AlignH alignh,E_AlignV alignv);
+		E_AlignH getPageAlignH(int index);
+		E_AlignV getPageAlignV(int index);
+
+
 		void setPageAlign(UiWidget* widget,E_AlignH alignh,E_AlignV alignv);
 
 

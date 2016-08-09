@@ -37,7 +37,7 @@ NS_FS_BEGIN
 
 class PageViewContentPanel: public Entity2D
 {
-	protected:
+	public:
 		class PageViewItemInfo:public FsObject 
 	{
 
@@ -261,6 +261,12 @@ class PageViewContentPanel: public Entity2D
 		{
 			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
 			return item->m_widget;
+		}
+
+		PageViewContentPanel::PageViewItemInfo* getPageItemInfo(int index)
+		{
+			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
+			return item;
 		}
 
 
@@ -489,6 +495,33 @@ void PageView::setPageAlign(int index,E_AlignH alignh,E_AlignV alignv)
 	m_contentPanel->setPageItemAlign(index,alignh,alignv);
 }
 
+E_AlignH PageView::getPageAlignH(int index)
+{	
+	if(index<0 || index>=m_contentPanel->getPageItemNu())
+	{
+		return E_AlignH::CENTER;
+	}
+
+	PageViewContentPanel::PageViewItemInfo* info=m_contentPanel->getPageItemInfo( index);
+
+	return info->m_alignH;
+}
+
+
+E_AlignV PageView::getPageAlignV(int index)
+{
+	if(index<0 || index>=m_contentPanel->getPageItemNu())
+	{
+		return E_AlignV::CENTER;
+	}
+
+	PageViewContentPanel::PageViewItemInfo* info=m_contentPanel->getPageItemInfo( index);
+
+	return info->m_alignV;
+
+}
+
+
 void PageView::setPageAlign(UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
 {
 	int index=m_contentPanel->getPageItemIndex(widget);
@@ -662,6 +695,10 @@ void PageView::setCurrentPage(UiWidget* widget)
 
 UiWidget* PageView::getCurrentPage()
 {
+	if(m_currentPageIndex>=getPageNu())
+	{
+		return NULL;
+	}
 	return m_contentPanel->getPageItem(m_currentPageIndex);
 }
 

@@ -828,6 +828,11 @@ static ListView* S_ListView_NewInstance(FsDict* attr)
 
 }
 
+static void S_ListView_setListItem(ListView* view,FsArray* attr)
+{
+
+}
+
 
 FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(ListView,setMode,getMode,ScrollDirection);
 FS_CLASS_ATTR_SET_GET_FUNCTION(ListView,setListGap,getListGap,float);
