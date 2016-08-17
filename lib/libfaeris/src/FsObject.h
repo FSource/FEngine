@@ -118,8 +118,8 @@ class FsObject
 			m_userData(NULL),
 			m_objectName(NULL),
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
-	
-			m_scriptData(-1)
+			m_scriptData(-1),
+			m_scriptUrl(NULL)
 #endif 
 		{ 
 
@@ -137,6 +137,10 @@ class FsObject
 		int m_scriptData; /* script data */
 	public:
 		void dropScriptData();
+		const char* getScriptUrl();
+		void setScriptUrl(const char* url);
+	private:
+		char* m_scriptUrl;
 #endif 
 
 };
