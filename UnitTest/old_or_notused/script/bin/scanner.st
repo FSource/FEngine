@@ -20,4 +20,10 @@ material:{
 }
 
 
+name:"幸运的四叶草"
+
+file:"你好啊"
+sss:abcd
+file2:sss
+
 
