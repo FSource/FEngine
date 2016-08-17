@@ -52,6 +52,10 @@ class LabelBitmap:public Entity2D
 		static LabelBitmap* create(const char* font,const char* text);
 		static LabelBitmap* create(const char* font,float size,const char* text);
 
+	public:
+		virtual void setSize(const Vector2f& v);
+		virtual Vector2f getSize();
+
 
 	public:
 		void setString(const char* str);

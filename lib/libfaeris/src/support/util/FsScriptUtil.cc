@@ -233,6 +233,11 @@ static bool s_StringWrite(FsString* str,FsFile* file)
 			need_quote=true;
 			break;
 		}
+		if(chs[i]>127||chs[i]<32)
+		{
+			need_quote=true;
+			break;
+		}
 	}
 
 	if(str->length()==0)

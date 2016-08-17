@@ -87,6 +87,19 @@ LabelBitmap* LabelBitmap::create(const char* font,float size,const char* text)
 }
 
 
+void LabelBitmap::setSize(const Vector2f& v)
+{
+}
+
+Vector2f LabelBitmap::getSize()
+{
+	float width,height;
+	getTextSize(&width,&height);
+	
+	return Vector2f(width,height);
+
+}
+
 void LabelBitmap::setString(const char* str)
 {
 	FS_TRACE_WARN_ON(str==NULL,"NULL String");

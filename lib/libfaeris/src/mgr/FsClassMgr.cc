@@ -61,7 +61,7 @@ ClassMgr* ClassMgr::create()
 
 FsObject* ClassMgr::newInstance(FsDict* dict)
 {
-	FsString* name=dict->lookupString("class");
+	FsString* name=dict->lookupString("className");
 	if(name)
 	{
 		FsClass* cls=getClass(name);

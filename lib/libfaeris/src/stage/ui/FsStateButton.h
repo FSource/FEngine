@@ -253,6 +253,7 @@ class StateButton:public Entity2D
 
 
 void FsStateButton_SetState(StateButton* sb,int state,FsDict* dict);
+FsDict* FsStateButton_getState(StateButton* sb,int state);
 
 NS_FS_END 
 

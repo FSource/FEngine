@@ -543,7 +543,6 @@ static FsClass::FsAttributeDeclare S_Scene_Main_Attr[]={
 
 
 
-
 FS_CLASS_IMPLEMENT_WITH_BASE(Scene,Animator,S_Scene_NewInstance,S_Scene_Main_Attr);
 
 

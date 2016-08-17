@@ -30,6 +30,7 @@
 #include <assert.h>
 #include "FsListView.h"
 #include "FsClass.h"
+#include "FsGlobal.h"
 
 NS_FS_BEGIN
 
@@ -830,6 +831,34 @@ static ListView* S_ListView_NewInstance(FsDict* attr)
 
 static void S_ListView_setListItem(ListView* view,FsArray* attr)
 {
+	view->clearListItem();
+	int list_nu=attr->size();
+
+	for(int i=0;i<list_nu;i++)
+	{
+		FsDict* dict=attr->getDict(i);
+		if(dict)
+		{
+			FsObject* ob=Global::classMgr()->newInstance(dict);
+			if(ob)
+			{
+				UiWidget* child=dynamic_cast<UiWidget*>(ob);
+				if(child)
+				{
+					view->addListItem(child);
+				}
+				else 
+				{
+					FS_TRACE_WARN("Not SubClass Of Entity,Ingore Item(%d)",i);
+					ob->destroy();
+				}
+			}
+		}
+		else 
+		{
+			FS_TRACE_WARN("Not Dict,Ingore Item(%d)",i);
+		}
+	}
 
 }
 
@@ -841,6 +870,7 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(ListView,setListGap,getListGap,float);
 static FsClass::FsAttributeDeclare S_ListView_Main_Attr[]={
 	FS_CLASS_ATTR_DECLARE("mode",E_FsType::FT_CHARS,0,ListView_setMode,ListView_getMode),
 	FS_CLASS_ATTR_DECLARE("listGap",E_FsType::FT_F_1,0,ListView_setListGap,ListView_getListGap),
+	FS_CLASS_ATTR_DECLARE("listItems",E_FsType::FT_ARRAY,0,S_ListView_setListItem,0),
 	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 

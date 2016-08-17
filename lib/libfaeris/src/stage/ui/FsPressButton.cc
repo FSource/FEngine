@@ -336,21 +336,166 @@ static void PressButton_setNormalAttribute(PressButton* pb,FsDict* attr)
 	FsStateButton_SetState(pb,PressButton::STATE_NORMAL,attr);
 }
 
+static FsDict* PressButton_getNormalAttribute(PressButton* pb)
+{
+
+	return FsStateButton_getState(pb,PressButton::STATE_NORMAL);
+}
+
 static void PressButton_setPressAttribute(PressButton* pb,FsDict* attr)
 {
 	FsStateButton_SetState(pb,PressButton::STATE_PRESS,attr);
 }
+
+static FsDict* PressButton_getPressAttribute(PressButton* pb)
+{
+
+	return FsStateButton_getState(pb,PressButton::STATE_PRESS);
+}
+
 
 static void PressButton_setDisableAttribute(PressButton* pb,FsDict* attr)
 {
 	FsStateButton_SetState(pb,PressButton::STATE_DISABLE,attr);
 }
 
+static FsDict* PressButton_getDisableAttribute(PressButton* pb)
+{
+
+	return FsStateButton_getState(pb,PressButton::STATE_DISABLE);
+}
+
+
+
+
+
+/* normal state */
+static void PressButton_setNormalAttributeTextureUrl(PressButton* pb,const char* url)
+{
+	pb->setTextureUrl(PressButton::STATE_NORMAL,url);
+}
+
+static const char* PressButton_getNormalAttributeTextureUrl(PressButton* pb)
+{
+	return pb->getTextureUrl(PressButton::STATE_NORMAL);
+}
+
+static void PressButton_setNormalAttributeColor(PressButton* pb,const Color4f& value)
+{
+	pb->setColor(PressButton::STATE_NORMAL,value);
+}
+
+static Color4f* PressButton_getNormalAttributeColor(PressButton* pb)
+{
+	static Color4f ret;
+	ret= pb->getColor(PressButton::STATE_NORMAL);
+	return &ret;
+}
+
+static void PressButton_setNormalAttributeScale(PressButton* pb,const Vector3& value)
+{
+	pb->setScale(PressButton::STATE_NORMAL,value);
+}
+
+static Vector3f* PressButton_getNormalAttributeScale(PressButton* pb)
+{
+	static Vector3f ret;
+	ret=pb->getScale(PressButton::STATE_NORMAL);
+	return &ret;
+}
+
+
+
+/* normal state */
+static void PressButton_setPressAttributeTextureUrl(PressButton* pb,const char* url)
+{
+	pb->setTextureUrl(PressButton::STATE_PRESS,url);
+}
+
+static const char* PressButton_getPressAttributeTextureUrl(PressButton* pb)
+{
+	return pb->getTextureUrl(PressButton::STATE_PRESS);
+}
+
+static void PressButton_setPressAttributeColor(PressButton* pb,const Color4f& value)
+{
+	pb->setColor(PressButton::STATE_PRESS,value);
+}
+
+static Color4f* PressButton_getPressAttributeColor(PressButton* pb)
+{
+	static Color4f ret;
+	ret= pb->getColor(PressButton::STATE_PRESS);
+	return &ret;
+}
+
+static void PressButton_setPressAttributeScale(PressButton* pb,const Vector3& value)
+{
+	pb->setScale(PressButton::STATE_PRESS,value);
+}
+
+static Vector3f* PressButton_getPressAttributeScale(PressButton* pb)
+{
+	static Vector3f ret;
+	ret= pb->getScale(PressButton::STATE_PRESS);
+	return &ret;
+}
+
+
+/* normal state */
+static void PressButton_setDisableAttributeTextureUrl(PressButton* pb,const char* url)
+{
+	pb->setTextureUrl(PressButton::STATE_DISABLE,url);
+}
+
+static const char*  PressButton_getDisableAttributeTextureUrl(PressButton* pb)
+{
+	return pb->getTextureUrl(PressButton::STATE_DISABLE);
+}
+
+static void PressButton_setDisableAttributeColor(PressButton* pb,const Color4f& value)
+{
+	pb->setColor(PressButton::STATE_DISABLE,value);
+}
+  
+static Color4f* PressButton_getDisableAttributeColor(PressButton* pb)
+{
+	static Color4f ret;
+	ret= pb->getColor(PressButton::STATE_DISABLE);
+	return &ret;
+}
+
+static void PressButton_setDisableAttributeScale(PressButton* pb,const Vector3& value)
+{
+	pb->setScale(PressButton::STATE_DISABLE,value);
+}
+
+static Vector3f* PressButton_getDisableAttributeScale(PressButton* pb)
+{
+	static Vector3f ret;
+	ret= pb->getScale(PressButton::STATE_DISABLE);
+	return &ret;
+}
+
 
 static FsClass::FsAttributeDeclare S_PressButton_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("normalState",E_FsType::FT_DICT,NULL,PressButton_setNormalAttribute,0),
-	FS_CLASS_ATTR_DECLARE("pressState",E_FsType::FT_DICT,NULL,PressButton_setPressAttribute,0),
-	FS_CLASS_ATTR_DECLARE("disableState",E_FsType::FT_DICT,NULL,PressButton_setDisableAttribute,0),
+	FS_CLASS_ATTR_DECLARE("normalState",E_FsType::FT_DICT,NULL,PressButton_setNormalAttribute,PressButton_getNormalAttribute),
+	FS_CLASS_ATTR_DECLARE("pressState",E_FsType::FT_DICT,NULL,PressButton_setPressAttribute,PressButton_getPressAttribute),
+	FS_CLASS_ATTR_DECLARE("disableState",E_FsType::FT_DICT,NULL,PressButton_setDisableAttribute,PressButton_getDisableAttribute),
+
+	FS_CLASS_ATTR_DECLARE("normalState.textureUrl",E_FsType::FT_CHARS,NULL,PressButton_setNormalAttributeTextureUrl,PressButton_getNormalAttributeTextureUrl),
+	FS_CLASS_ATTR_DECLARE("normalState.color",E_FsType::FT_COLOR_4,NULL,PressButton_setNormalAttributeColor,PressButton_getNormalAttributeColor),
+	FS_CLASS_ATTR_DECLARE("normalState.scale",E_FsType::FT_F_3,NULL,PressButton_setNormalAttributeScale,PressButton_getNormalAttributeScale),
+
+	FS_CLASS_ATTR_DECLARE("pressState.textureUrl",E_FsType::FT_CHARS,NULL,PressButton_setPressAttributeTextureUrl,PressButton_getPressAttributeTextureUrl),
+	FS_CLASS_ATTR_DECLARE("pressState.color",E_FsType::FT_COLOR_4,NULL,PressButton_setPressAttributeColor,PressButton_getPressAttributeColor),
+	FS_CLASS_ATTR_DECLARE("pressState.scale",E_FsType::FT_F_3,NULL,PressButton_setPressAttributeScale,PressButton_getPressAttributeScale),
+
+	FS_CLASS_ATTR_DECLARE("disableState.textureUrl",E_FsType::FT_CHARS,NULL,PressButton_setDisableAttributeTextureUrl,PressButton_getDisableAttributeTextureUrl),
+	FS_CLASS_ATTR_DECLARE("disableState.color",E_FsType::FT_COLOR_4,NULL,PressButton_setDisableAttributeColor,PressButton_getDisableAttributeColor),
+	FS_CLASS_ATTR_DECLARE("disableState.scale",E_FsType::FT_F_3,NULL,PressButton_setDisableAttributeScale,PressButton_getDisableAttributeScale),
+	
+
 	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 

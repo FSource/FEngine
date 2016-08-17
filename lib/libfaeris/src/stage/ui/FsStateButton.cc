@@ -887,6 +887,67 @@ static void StateButton_setTweenFlag(StateButton* sb,FsArray* tweens)
 	sb->setTweenFlags(flags);
 }
 
+
+FsDict* FsStateButton_getState(StateButton* ob,int state)
+{
+	char buf[128];
+	FsDict* ret=FsDict::create();
+
+	/* color */
+	Color4f  color=ob->getColor(state);
+	FsArray* fs_color=FsArray::create();
+	sprintf(buf,"%f",color.r);
+	fs_color->push(FsString::create(buf));
+	sprintf(buf,"%f",color.g);
+	fs_color->push(FsString::create(buf));
+	sprintf(buf,"%f",color.b);
+	fs_color->push(FsString::create(buf));
+	sprintf(buf,"%f",color.a);
+	fs_color->push(FsString::create(buf));
+	ret->insert(FsString::create("color"),fs_color);
+
+	/* texture url*/
+	ret->insert(FsString::create("textureUrl"),FsString::create(ob->getTextureUrl(state)));
+
+	/* opacity */
+	float opacity=ob->getOpacity(state);
+	sprintf(buf,"%f",opacity);
+	ret->insert(FsString::create("opacity"),FsString::create(buf));
+
+
+	/* texture url */
+	ret->insert(FsString::create("textureUrl"),FsString::create(ob->getTextureUrl(state)));
+
+	/* size */
+	Vector2 size=ob->getSize(state);
+	FsArray* fs_size=FsArray::create();
+
+	sprintf(buf,"%f",size.x);
+	fs_size->push(FsString::create(buf));
+	sprintf(buf,"%f",size.y);
+	fs_size->push(FsString::create(buf));
+
+	ret->insert(FsString::create("size"),fs_size);
+
+	/* scale */
+	Vector3 scale=ob->getScale(state);
+	FsArray* fs_scale=FsArray::create();
+	sprintf(buf,"%f",scale.x);
+	fs_scale->push(FsString::create(buf));
+	sprintf(buf,"%f",scale.y);
+	fs_scale->push(FsString::create(buf));
+	sprintf(buf,"%f",scale.z);
+	fs_scale->push(FsString::create(buf));
+
+	ret->insert(FsString::create("scale"),fs_scale);
+
+
+	return ret;
+
+
+
+}
+
 void FsStateButton_SetState(StateButton* sb,int state,FsDict* dict)
 {
 	FsVariant color=FsVariant(dict->lookup("color")).getCast(E_FsType::FT_COLOR_4);
@@ -908,73 +969,31 @@ void FsStateButton_SetState(StateButton* sb,int state,FsDict* dict)
 		sb->setOpacity(state,opacity->toFloatValue());
 	}
 
-	FsDict* size=dict->lookupDict("size");
-	if(size)
-	{
-		float x=0,y=0;
-		if(size->lookupString("w"))
-		{
-			x=size->lookupString("w")->toFloatValue();
-		}
-		if(size->lookupString("h"))
-		{
-			y=size->lookupString("h")->toFloatValue();
-		}
 
-		sb->setSize(state,x,y);
+	FsVariant size=FsVariant(dict->lookup("size")).getCast(E_FsType::FT_F_2);
+	if(size.isValid())
+	{
+		sb->setSize(state,*((Vector2f*)size.getValue()));
 	}
 
-	FsDict* anchor=dict->lookupDict("anchor");
-	if(anchor)
+	FsVariant anchor=FsVariant(dict->lookup("anchor")).getCast(E_FsType::FT_F_2);
+	if(anchor.isValid())
 	{
-		float x=0.5,y=0.5;
-		if(anchor->lookupString("x"))
-		{
-			x=anchor->lookupString("x")->toFloatValue();
-		}
-		if(anchor->lookupString("y"))
-		{
-			y=anchor->lookupString("y")->toFloatValue();
-		}
-		sb->setAnchor(state,x,y);
+		sb->setAnchor(state,*((Vector2f*)size.getValue()));
 	}
 
-	FsDict* rotate=dict->lookupDict("rotate");
-	if(rotate)
+
+	FsVariant rotate=FsVariant(dict->lookup("rotate")).getCast(E_FsType::FT_F_3);
+	if(rotate.isValid())
 	{
-		float x=0,y=0,z=0;
-		if(rotate->lookupString("x"))
-		{
-			x=rotate->lookupString("x")->toFloatValue();
-		}
-		if(rotate->lookupString("y"))
-		{
-			y=rotate->lookupString("y")->toFloatValue();
-		}
-		if(rotate->lookupString("z"))
-		{
-			z=rotate->lookupString("z")->toFloatValue();
-		}
-		sb->setRotate(state,x,y,z);
+		sb->setRotate(state,*((Vector3f*)anchor.getValue()));
 	}
 
-	FsDict* scale=dict->lookupDict("scale");
-	if(scale)
+
+	FsVariant scale=FsVariant(dict->lookup("scale")).getCast(E_FsType::FT_F_3);
+	if(scale.isValid())
 	{
-		float x=1,y=1,z=1;
-		if(scale->lookupString("x"))
-		{
-			x=scale->lookupString("x")->toFloatValue();
-		}
-		if(scale->lookupString("y"))
-		{
-			y=scale->lookupString("y")->toFloatValue();
-		}
-		if(rotate->lookupString("z"))
-		{
-			z=scale->lookupString("z")->toFloatValue();
-		}
-		sb->setScale(state,x,y,z);
+		sb->setScale(state,*((Vector3f*)scale.getValue()));
 	}
 
 	FsArray* child=dict->lookupArray("children");
