@@ -17,6 +17,11 @@ $pfile "FsEnums.pkg"
 
 
 
+<<<<<<< HEAD
+=======
+/* stage */
+$pfile "stage/animation/FsAnimator.pkg"
+>>>>>>> 3634866fcd93e245f4d9f3cf35bc1ab9d78d2757
 
 
 /* entity */
@@ -24,7 +29,6 @@ $pfile "stage/entity/FsEntity.pkg"
 $pfile "stage/entity/FsEntity2D.pkg"
 $pfile "stage/entity/FsQuad2D.pkg"
 $pfile "stage/entity/FsLabelTTF.pkg"
-$pfile "stage/entity/FsSprite2D.pkg"
 $pfile "stage/entity/FsLabelBitmap.pkg"
 $pfile "stage/entity/FsParticle2DEmitter.pkg"
 $pfile "stage/entity/FsParticle2DEffect.pkg"
@@ -131,6 +135,12 @@ $pfile "sys/event/FsKeypadDispatcher.pkg"
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 3634866fcd93e245f4d9f3cf35bc1ab9d78d2757
 /* media */
 $pfile "media/FsAudioEngine.pkg"
 

@@ -1,6 +1,10 @@
 $#include "stage/entity/FsEntity.h"
 
+<<<<<<< HEAD
 class Entity:public FsObject
+=======
+class Entity:public Animator
+>>>>>>> 3634866fcd93e245f4d9f3cf35bc1ab9d78d2757
 {
 	public:
 		static Entity* __Entity__create@create();

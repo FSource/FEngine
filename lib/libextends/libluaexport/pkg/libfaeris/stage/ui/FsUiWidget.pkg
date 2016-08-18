@@ -23,14 +23,13 @@ class UiWidget:public Entity2D
 		void setSignalTSAEnabled(bool value);
 		bool getSignalTSAEnabled();
 
-		void setBgColor(const Color4f& c);
 		void setBgColor(Color c);
-
+		void setBgColor(const Color4f& c);
 		Color4f getBgColor();
 		void setBgTexture(Texture2D* tex);
-		void setBgTexture(const char* filename);
-		void setBgEnabled(bool value);
 
+		void setBgTextureUrl(const char* filename);
+		const char* getBgTextureUrl();
 
 	public:
 		void setParentWidget(UiWidget* widget);
