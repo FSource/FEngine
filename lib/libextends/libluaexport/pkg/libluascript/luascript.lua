@@ -118,10 +118,16 @@ function f_getattrenv(o)
 end
 
 
-
-
-
-
+function f_setScriptUrl(o,url)
+	local class=f_requre(url)
+	if not class then 
+		return false
+	end
+	f_extends(o,class)
+	o:assignScriptHook()
+	o:onLoad()
+	return true
+end
 
 
 $]

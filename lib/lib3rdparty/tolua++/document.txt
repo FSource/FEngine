@@ -1,0 +1,3 @@
+1. 在LUA_REGISTRYINDEX 中 Map<元表，字符串> 方式，来记录C++对像的类名称
+2. 在LUA_REGISTRYINDEX 中 Map<表，字符串> 方式，来记录c++类的名称
+
