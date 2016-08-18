@@ -451,6 +451,18 @@ void LuaEngine::releaseData(int data)
 {
 	toluaext_remove_luatable(m_state,data);
 }
+
+bool LuaEngine::loadScript(FsObject* ob,const char* url)
+{
+	if(callFunctionInName("f_loadScriptUrl","fs",ob,url))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+
 int LuaEngine::collectGarbage()
 {
 	lua_gc(m_state,LUA_GCCOLLECT,0);

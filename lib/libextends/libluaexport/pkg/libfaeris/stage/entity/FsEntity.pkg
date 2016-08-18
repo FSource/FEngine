@@ -1,6 +1,6 @@
 $#include "stage/entity/FsEntity.h"
 
-class Entity:public ActionTarget
+class Entity:public FsObject
 {
 	public:
 		static Entity* __Entity__create@create();

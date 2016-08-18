@@ -1,6 +1,6 @@
 $#include "stage/FsScene.h"
 
-class Scene:public ActionTarget
+class Scene:public FsObject
 {
 	public:
 		static Scene* create();

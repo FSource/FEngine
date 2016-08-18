@@ -1,6 +1,6 @@
 $#include "stage/layer/FsLayer.h"
 
-class Layer:public ActionTarget
+class Layer:public FsObject
 {
 	public:
 	public:

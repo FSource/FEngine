@@ -110,6 +110,8 @@ class LuaEngine:public ScriptEngine
 		virtual int executeString(const char* str);
 		virtual void releaseData(int data);
 		virtual int collectGarbage();
+		virtual bool loadScript(FsObject* ob,const char* url);
+
 		/* inherit FsObject */
 		virtual const char* className();
 

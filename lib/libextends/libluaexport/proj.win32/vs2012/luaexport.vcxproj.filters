@@ -28,14 +28,8 @@
     <ClCompile Include="..\..\src\luaexport\FsLibLuaScript.cc">
       <Filter>src\luaexport</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\luaexport\FsLibSpineSprite.cc">
-      <Filter>src\luaexport</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\luaexport\FsLuaFuncExport.cc">
       <Filter>src\luaexport</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\luaext\FsActionCallBackExt.cc">
-      <Filter>src\luaext</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\luaext\FsEntityCallBackExt.cc">
       <Filter>src\luaext</Filter>
@@ -74,9 +68,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\luaexport\FsLuaExport.h">
       <Filter>src\luaexport</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\luaext\FsActionCallBackExt.h">
-      <Filter>src\luaext</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\luaext\FsEntityCallBackExt.h">
       <Filter>src\luaext</Filter>

@@ -85,7 +85,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\FsLuaEngine.cc" />
-    <ClCompile Include="..\..\src\luaext\FsActionCallBackExt.cc" />
     <ClCompile Include="..\..\src\luaext\FsEntityCallBackExt.cc" />
     <ClCompile Include="..\..\src\luaext\FsLayerCallBackExt.cc" />
     <ClCompile Include="..\..\src\luaext\FsLuaHttpRequest.cc" />
@@ -98,13 +97,11 @@
     <ClCompile Include="..\..\src\luaexport\FsLibBox2d.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLibFaerisExport.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLibLuaScript.cc" />
-    <ClCompile Include="..\..\src\luaexport\FsLibSpineSprite.cc" />
     <ClCompile Include="..\..\src\luaexport\FsLuaFuncExport.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\FsLuaEngine.h" />
     <ClInclude Include="..\..\src\FsLuaMacros.h" />
-    <ClInclude Include="..\..\src\luaext\FsActionCallBackExt.h" />
     <ClInclude Include="..\..\src\luaext\FsEntityCallBackExt.h" />
     <ClInclude Include="..\..\src\luaext\FsLayerCallBackExt.h" />
     <ClInclude Include="..\..\src\luaext\FsLuaHttpRequest.h" />

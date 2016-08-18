@@ -49,7 +49,18 @@ FsObject::~FsObject()
 
 #if FS_CONFIG(FS_SCRIPT_SUPPORT)
 	dropScriptData();
+	if(m_scriptUrl)
+	{
+		delete[] m_scriptUrl;
+		m_scriptUrl=NULL;
+	}
 #endif 
+
+	if(m_objectName)
+	{
+		delete[] m_objectName;
+		m_objectName=NULL;
+	}
 
 
 	FsObject::m_objectNu--;

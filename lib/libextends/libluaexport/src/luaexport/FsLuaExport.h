@@ -50,7 +50,7 @@ extern "C"
 #include "luaext/FsEntityCallBackExt.h"
 #include "luaext/FsLayerCallBackExt.h"
 #include "luaext/FsSceneCallBackExt.h"
-#include "luaext/FsActionCallBackExt.h"
+
 
 
 #if defined(FS_OS_WIN32)
