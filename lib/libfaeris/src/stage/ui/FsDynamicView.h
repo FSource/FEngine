@@ -138,7 +138,7 @@ class DynamicView:public UiWidget
 		void clearChild() FS_OVERRIDE;
 		void removeChild(Entity* en) FS_OVERRIDE;
 
-
+		Entity* getChildByName(const char* name,bool reverse=false) FS_OVERRIDE;
 
 	public:
 		virtual void currentViewChanged(UiWidget* old_view,UiWidget* new_view);

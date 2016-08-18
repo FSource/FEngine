@@ -76,14 +76,14 @@ end
 local l_loadmodule={}
 
 function f_require(filename)
-	if l_loadmodule[filename]  then 
-		return  true
+	if l_loadmodule[filename]~=nil then 
+		return  l_loadmodule[filename];
 	end
-	if f_import(filename) then 
-		l_loadmodule[filename]=true
-		return true 
-	end
-	return false 
+
+	local ret=f_dofile(filename)
+	l_loadmodule[filename]=ret
+	return ret
+
 end
 
 
@@ -119,10 +119,11 @@ end
 
 
 function f_setScriptUrl(o,url)
-	local class=f_requre(url)
+	local class=f_require(url)
 	if not class then 
 		return false
 	end
+
 	f_extends(o,class)
 	o:assignScriptHook()
 	o:onLoad()

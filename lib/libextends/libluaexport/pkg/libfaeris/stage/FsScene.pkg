@@ -1,10 +1,6 @@
 $#include "stage/FsScene.h"
 
-<<<<<<< HEAD
-class Scene:public FsObject
-=======
 class Scene:public Animator
->>>>>>> 3634866fcd93e245f4d9f3cf35bc1ab9d78d2757
 {
 	public:
 		static Scene* create();
@@ -21,6 +17,7 @@ class Scene:public Animator
 
 		Layer* top();
 		Layer* getLayer(int index);
+		Layer* getLayerByName(const char* name);
 
 		/* fade */
 		void setFadeEnabled(bool fade);
@@ -52,6 +49,9 @@ class Scene:public Animator
 		void touchesEnd(TouchEvent* event);
 
 		void keypadEvent(int type,int keycode);
+
+	public:
+		void __FUNC__FsLScene_CallBackAssign@assignScriptHook();
 };
 
 

@@ -54,13 +54,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../src/;../../../../lib/libreality/src;../../../../lib/libfaeris/src/support;../../../../lib/libfaeris/src;../../../../lib/libextends/libnetwork/src;../../../../lib/libextends/lib3rdextends/src;../../../../lib/lib3rdparty/c99/include;../../../../lib/lib3rdparty/fmod/include;../../../../lib/lib3rdparty/freetype/include;../../../../lib/lib3rdparty/GL/include;../../../../lib/lib3rdparty/pthread/include;../../../../lib/lib3rdparty/minizip/include;../../../../lib/lib3rdparty/jsonc/src;../../../../lib/lib3rdparty/libpng/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/;../../../../lib/libreality/src;../../../../lib/libfaeris/src/support;../../../../lib/libfaeris/src;../../../../lib/libextends/libluaexport/src;../../../../lib/libextends/libnetwork/src;../../../../lib/libextends/lib3rdextends/src;../../../../lib/lib3rdparty/c99/include;../../../../lib/lib3rdparty/fmod/include;../../../../lib/lib3rdparty/freetype/include;../../../../lib/lib3rdparty/GL/include;../../../../lib/lib3rdparty/pthread/include;../../../../lib/lib3rdparty/minizip/include;../../../../lib/lib3rdparty/jsonc/src;../../../../lib/lib3rdparty/libpng/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../../../lib/library/win32/3rdparty;../../../../lib/library/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;freetyped.lib;fmodex.lib;libmd5modeld.lib;libobjmodeld.lib;libtgad.lib;zlibd.lib;libpngd.lib;libjpegd.lib;ljsond.lib;jsoncd.lib;glslextd.lib;luad.lib;minizipd.lib;libcurld.lib;libfaerisd.lib;pthreadVC2.lib;tolua++d.lib;wsock32.lib;Wldap32.lib;Ws2_32.lib;Winmm.lib;libbox2dd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;freetyped.lib;fmodex.lib;libmd5modeld.lib;libobjmodeld.lib;libtgad.lib;zlibd.lib;libpngd.lib;libjpegd.lib;ljsond.lib;jsoncd.lib;glslextd.lib;luad.lib;minizipd.lib;libcurld.lib;libfaerisd.lib;pthreadVC.lib;tolua++d.lib;wsock32.lib;Wldap32.lib;Ws2_32.lib;Winmm.lib;libbox2dd.lib;libluaexportd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

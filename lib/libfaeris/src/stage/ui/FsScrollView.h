@@ -53,6 +53,7 @@ class ScrollView:public ScrollWidget
 		void addChild(Entity* en) FS_OVERRIDE;
 		void clearChild() FS_OVERRIDE;
 		void removeChild(Entity* en) FS_OVERRIDE;
+		Entity* getChildByName(const char* name,bool reverse=false) FS_OVERRIDE;
 
 	protected:
 		void layoutContentWidget(float x,float y) FS_OVERRIDE;

@@ -41,5 +41,8 @@ class DynamicView:public UiWidget
 
 		void clearView();
 
+	public:
+		void __FUNC__FsLDynamicView_CallBackAssign@assignScriptHook();
+
 };
 

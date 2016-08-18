@@ -193,6 +193,10 @@ void ScrollView::removeChild(Entity* en)
 	}
 }
 
+Entity* ScrollView::getChildByName(const char* name,bool reverse)
+{
+	return NULL;
+}
 
 
 

@@ -75,6 +75,9 @@ class ListView:public ScrollWidget
 	
 		int getListItemNu();
 		UiWidget* getListItem(int index);
+		UiWidget* getListItemByName(const char* name);
+
+		Entity* getChildByName(const char* name,bool reverse=false) FS_OVERRIDE;
 
 		int getListItemIndex(UiWidget* widget);
 		void layout();

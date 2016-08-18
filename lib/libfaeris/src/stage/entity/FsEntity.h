@@ -77,6 +77,7 @@ class Entity :public Animator
 		virtual void clearChild();
 		virtual void detach();
 		virtual Entity* getChild(int index);
+		virtual Entity* getChildByName(const char* name,bool reverse=false);
 
 
 		virtual Matrix4* getWorldMatrix();

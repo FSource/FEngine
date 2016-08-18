@@ -1,4 +1,4 @@
-class:Layer2D
+className:Layer2D
 
 viewArea:{
 	x:0
@@ -10,14 +10,14 @@ viewArea:{
 
 entity:[
 	{
-		class:Quad2D ,
-		textureUrl:"images/Coin.png",
+		className:Quad2D ,
+		resourceUrl:"images/Coin.png",
 		position:{x:480,y:320}
 		rotate:{z:30}
 		scale:{x:0.5}
 		animations:{
 			PositionSmooth:{
-				class:AttributeAnimation,
+				className:AttributeAnimation,
 				valueType:vector3f,
 				lerpMode:smooth,
 				attributeName:position,
@@ -29,7 +29,7 @@ entity:[
 				
 			},
 			PositionFlat:{
-				class:AttributeAnimation,
+				className:AttributeAnimation,
 				valueType:vector3f,
 				lerpMode:flat,
 				attributeName:position,
@@ -49,7 +49,7 @@ entity:[
 				
 			}
 			Rotate:{
-				class:AttributeAnimation,
+				className:AttributeAnimation,
 				valueType:float,
 				lerpMode:smooth,
 				attributeName:rotateZ,
@@ -67,7 +67,7 @@ entity:[
 			}
 
 			Scale:{
-				class:AttributeAnimation,
+				className:AttributeAnimation,
 				valueType:vector3f,
 				lerpMode:smooth,
 				attributeName:scale,
@@ -86,10 +86,10 @@ entity:[
 				]
 			}
 			Parallel:{
-				class:ParallelAnimation,
+				className:ParallelAnimation,
 				subAnimations:[
 					{
-						class:AttributeAnimation,
+						className:AttributeAnimation,
 						valueType:vector3f,
 						lerpMode:smooth,
 						attributeName:scale,
@@ -108,7 +108,7 @@ entity:[
 						]
 					}
 					{
-						class:AttributeAnimation,
+						className:AttributeAnimation,
 						valueType:float,
 						lerpMode:smooth,
 						attributeName:rotateZ,
@@ -125,7 +125,7 @@ entity:[
 						]
 					}
 					{
-						class:AttributeAnimation,
+						className:AttributeAnimation,
 						valueType:vector3f,
 						lerpMode:smooth,
 						attributeName:position,

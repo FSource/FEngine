@@ -33,6 +33,7 @@ class ListView:public ScrollWidget
 
 		int getListItemNu();
 		UiWidget* getListItem(int index);
+		UiWidget* getListItemByName(const char* name);
 
 		int getListItemIndex(UiWidget* widget);
 		void layout();

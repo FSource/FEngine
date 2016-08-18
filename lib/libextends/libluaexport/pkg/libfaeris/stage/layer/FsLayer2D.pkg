@@ -36,6 +36,7 @@ class Layer2D:public Layer
 		void remove(Entity2D* entity);
 		void clearEntity();
 		int getEntityNu();
+		Entity2D* getEntityByName(const char* name,bool reverse=false);
 };
 
 

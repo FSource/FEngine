@@ -135,6 +135,21 @@ Layer* Scene::getLayer(int index)
 	return (Layer*)m_layers->get(index);
 }
 
+Layer* Scene::getLayerByName(const char* name)
+{
+	int size=m_layers->size();
+	for(int i=0;i<size;i++)
+	{
+		Layer* ly=(Layer*)m_layers->get(i);
+		if(strcmp(ly->getObjectName(),name)==0)
+		{
+			return ly;
+		}
+	}
+
+	return NULL;
+}
+
 int Scene::getLayerIndex(Layer* layer)
 {
 	int layer_nu=m_layers->size();

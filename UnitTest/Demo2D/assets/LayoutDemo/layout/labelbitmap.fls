@@ -1,4 +1,4 @@
-class:Layer2D
+className:Layer2D
 
 viewArea:{
 	x:0
@@ -10,7 +10,7 @@ viewArea:{
 
 entity:[
 	{
-		class:VertexPolygon
+		className:VertexPolygon
 		vertices:[
 			[0,320],
 			[960,320],
@@ -24,7 +24,7 @@ entity:[
 	}
 
 	{
-		class:LabelBitmap
+		className:LabelBitmap
 
 		fontName:"font/b2.fnt"
 		fontSize:1.0
@@ -33,7 +33,7 @@ entity:[
 		anchor:{x:0,y:0}
 	}
 	{
-		class:LabelBitmap
+		className:LabelBitmap
 
 		fontName:"font/b2.fnt"
 		fontSize:1.0
@@ -42,7 +42,7 @@ entity:[
 		anchor:{x:0,y:1}
 	}
 	{
-		class:LabelBitmap
+		className:LabelBitmap
 
 		fontName:"font/b2.fnt"
 		fontSize:1.0
@@ -51,7 +51,7 @@ entity:[
 		anchor:{x:1,y:0}
 	}
 	{
-		class:LabelBitmap
+		className:LabelBitmap
 
 		fontName:"font/b2.fnt"
 		fontSize:1.0
@@ -60,7 +60,7 @@ entity:[
 		anchor:{x:1,y:1}
 	}
 	{
-		class:LabelBitmap
+		className:LabelBitmap
 
 		fontName:"font/b2.fnt"
 		string:"Hellpppp World Size(0.5)"

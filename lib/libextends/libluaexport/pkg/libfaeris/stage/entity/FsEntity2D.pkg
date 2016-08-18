@@ -91,5 +91,8 @@ class Entity2D : public Entity
 		void setAnchorY(float v);
 		float getAnchorY();
 
+	public:
+		void __FUNC__FsLEntity_CallBackAssign@assignScriptHook();
+
 }
 

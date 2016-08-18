@@ -16,9 +16,14 @@ class FsObject
 
 	public:
 		const char* className();
+		const char* getObjectName();
 
 	public:
 		LUA_TABLE m_scriptData@__fdata;
+
+	public:
+		void __FUNC__FsLFsObject_CallBackAssign@assignScriptHook();
+
 };
 
 

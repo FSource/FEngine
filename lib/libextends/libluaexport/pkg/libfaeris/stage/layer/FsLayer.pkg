@@ -1,10 +1,6 @@
 $#include "stage/layer/FsLayer.h"
 
-<<<<<<< HEAD
-class Layer:public FsObject
-=======
 class Layer:public Animator
->>>>>>> 3634866fcd93e245f4d9f3cf35bc1ab9d78d2757
 {
 	public:
 	public:
@@ -60,6 +56,10 @@ class Layer:public Animator
 		void add(Entity* entity);
 		void remove(Entity* entity);
 		void clearEntity();
+
+	public:
+		void __FUNC__FsLLayer_CallBackAssign@assignScriptHook();
+
 };
 
 

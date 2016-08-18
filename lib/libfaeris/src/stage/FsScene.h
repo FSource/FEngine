@@ -66,6 +66,7 @@ class Scene:public Animator
 		int layerNu();
 		Layer* top();
 		Layer* getLayer(int index);
+		Layer* getLayerByName(const char* name);
 		int getLayerIndex(Layer* layer);
 		void clear();
 

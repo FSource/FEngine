@@ -305,6 +305,10 @@ void DynamicView::removeChild(Entity* en)
 	}
 }
 
+Entity* DynamicView::getChildByName(const char* name,bool reverse) 
+{
+	return NULL;
+}
 
 
 void DynamicView::clearChild()

@@ -50,5 +50,8 @@ class ToggleButton:public StateButton
 		void setToggle(bool value,bool callback=false);
 		bool getToggle();
 
+	public:
+		void __FUNC__FsLToggleButton_CallBackAssign@assignScriptHook();
+
 };
 

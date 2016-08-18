@@ -97,6 +97,7 @@ class Layer2D:public Layer
 		void removeEntity2D(Entity2D* entity);
 
 		int getEntityNu();
+		Entity2D* getEntityByName(const char* name,bool reverse=false);
 
 		void traverseEntity(std::function<void(Entity2D*)> fn);
 

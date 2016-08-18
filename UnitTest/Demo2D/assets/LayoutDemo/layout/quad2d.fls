@@ -1,4 +1,4 @@
-class:Layer2D
+className:Layer2D
 
 viewArea:{
 	x:0
@@ -10,11 +10,11 @@ viewArea:{
 
 entity:[
 	{
-		class:Quad2D ,
-		textureUrl:"images/Coin.png",
+		className:Quad2D ,
+		resourceUrl:"images/Coin.png",
 		position:{x:480,y:320}
-		rotate:{z:30}
-		scale:{x:0.5}
+		#rotate:{z:30}
+		#scale:{x:0.5}
 	}
 ]
 

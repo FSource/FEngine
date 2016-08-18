@@ -1,4 +1,4 @@
-class:Layer2D
+className:Layer2D
 
 viewArea:{
 	x:0
@@ -10,7 +10,7 @@ viewArea:{
 
 entity:[
 	{
-		class:UiWidget 
+		className:UiWidget 
 		size:{w:200,h:300}
 		bgEnabled:true 
 		bgColor:[1.0,0.0,0.1,0.4]
@@ -18,7 +18,7 @@ entity:[
 		position:{x:400,y:320}
 		children:[
 			{
-				class:LabelTTF
+				className:LabelTTF
 
 				fontName:"font/arial.ttf"
 				fontSize:20 
@@ -28,7 +28,7 @@ entity:[
 		
 	}
 	{
-		class:UiWidget 
+		className:UiWidget 
 		size:{w:200,h:300}
 		bgEnabled:true 
 		scissorEnabled: false
@@ -37,7 +37,7 @@ entity:[
 		position:{x:700,y:320}
 		children:[
 			{
-				class:LabelTTF
+				className:LabelTTF
 
 				fontName:"font/arial.ttf"
 				fontSize:20 

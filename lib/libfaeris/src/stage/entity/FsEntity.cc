@@ -390,6 +390,37 @@ Entity* Entity::getChild(int index)
 }
 
 
+Entity* Entity::getChildByName(const char* name,bool reverse)
+{
+	if(name==NULL)
+	{
+		return NULL;
+	}
+	int size=m_chirdren->size();
+	for(int i=0;i<size;i++)
+	{
+		Entity* en=(Entity*)m_chirdren->get(i);
+		if(strcmp(en->getObjectName(),name)==0)
+		{
+			return en;
+		}
+	}
+
+	if(reverse)
+	{
+		for(int i=0;i<size;i++)
+		{
+			Entity* en=(Entity*)m_chirdren->get(i);
+			Entity* ch=getChildByName(name,true);
+			if(ch)
+			{
+				return ch;
+			}
+		}
+	}
+	return NULL;
+}
+
 
 
 

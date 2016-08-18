@@ -1140,6 +1140,11 @@ void PageView::removeChild(Entity* en)
 	}
 }
 
+Entity* PageView::getChildByName(const char* name,bool reverse)
+{
+	return NULL;
+}
+
 
 
 

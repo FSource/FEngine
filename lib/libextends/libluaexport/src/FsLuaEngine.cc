@@ -346,46 +346,85 @@ bool LuaEngine::callFunctionInTable(int lua_table,const char* func_name,int argn
 }
 
 
-bool LuaEngine::callFunctionInName(const char* luaFunc, const char* argt, ...) const
+bool LuaEngine::callFunctionInName(const char* luaFunc, int argnu,int retnu,const char* fmt,...) 
 {
+	int top=lua_gettop(m_state);
 	lua_getglobal(m_state, luaFunc);
-	int argn = argt ? strlen(argt) : 0;
 
 	va_list ap;
-	va_start(ap, argt);
+	va_start(ap,fmt);
 
-	for (int i=0; i<argn; i++)
+	int rel_arg=0;
+	char pstr;
+	const char* src=fmt;
+	while((pstr=*(src++)))
 	{
-		switch (argt[i])
+		switch(pstr)
 		{
-		case 'c':
-			{
-				const char* str = va_arg(ap, const char*);
-				lua_pushstring(m_state, str);
-			}
-			break;
-		case 'p':
-			{
-				void* p = va_arg(ap, void*);
-				lua_pushlightuserdata(m_state, p);
-			}
-			break;
-		case 'i':
-			{
-				int v = va_arg(ap, int);
-				lua_pushinteger(m_state, v);
-			}
-			break;
-		case 'f':
-			{
-				double d = va_arg(ap, double);
-				lua_pushnumber(m_state, d);
-			}
-			break;
+			case 'n':
+				{
+					float value=(float)va_arg(ap,double);
+					pushNumber(value);
+					rel_arg++;
+				}
+				break;
+			case 'i':
+				{
+					int value=va_arg(ap,int);
+					pushInteger(value);
+					rel_arg++;
+				}
+				break;
+			case 'f':
+				{
+					FsObject* value=va_arg(ap,FsObject*);
+					pushFsObject(value);
+					rel_arg++;
+				}
+				break;
+			case 's':
+				{
+					const char* value=va_arg(ap,const char*);
+					pushString(value);
+					rel_arg++;
+				}
+				break;
+			case 'b':
+				{
+					bool value=(bool)va_arg(ap,int);
+					pushBoolean(value);
+					rel_arg++;
+				}
+				break;
+			case 'u':
+				{
+					void* value=va_arg(ap,void*);
+					src++;        					 /* skip '<' */
+					char t_pchar;
+					std::string t_name;
+					while((t_pchar=*(src++))!='>')   /* get type name */
+					{
+						t_name.append(1,t_pchar);
+					}
+					pushUserType(value,t_name.c_str());
+					rel_arg++;
+					break;
+				}
+			default:
+				{
+					FS_TRACE_WARN("Unkown Format Type");
+				}
 		}
 	}
+	va_end(ap);
 
-	if(lua_pcall(m_state,argn,0,0))
+	if(argnu!=rel_arg)
+	{
+		FS_TRACE_WARN("Some Error For Args(needarg=%d,realarg=%d)",argnu,rel_arg);
+		lua_settop(m_state,top);
+		return false;
+	}
+	if(lua_pcall(m_state,argnu,retnu,0))
 	{
 		FsUtil_Log("[LUA_ERROR] %s",lua_tostring(m_state,-1));
 		lua_remove(m_state,-1);
@@ -454,7 +493,7 @@ void LuaEngine::releaseData(int data)
 
 bool LuaEngine::loadScript(FsObject* ob,const char* url)
 {
-	if(callFunctionInName("f_loadScriptUrl","fs",ob,url))
+	if(callFunctionInName("f_setScriptUrl",2,1,"fs",ob,url))
 	{
 		return true;
 	}

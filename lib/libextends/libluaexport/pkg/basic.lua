@@ -262,6 +262,11 @@ function post_output_hook(package)
 
 	replace([[tolua_usertype(tolua_S,"LUA_TABLE");]], [[]])
 
+	result=string.gsub(result,
+		"self%->__FUNC__([%w_]*)%(",
+		"%1(self")
+
+
 	for k,v in pairs(f_callback) do 
 		result=string.gsub(result,
 		"tolua_ret = %(([%w_]*)%*%)  ([%w_]*)::"..k.."([^\n]*)\n",

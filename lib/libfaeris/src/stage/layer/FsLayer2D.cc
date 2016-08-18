@@ -358,6 +358,49 @@ int Layer2D::getEntityNu()
 }
 
 
+Entity2D* Layer2D::getEntityByName(const char* name,bool reverse)
+{
+	FsDict::Iterator* iter=m_entity->takeIterator();
+	while(!iter->done())
+	{
+		Entity2D* entity=(Entity2D*)iter->getValue();
+		if(entity->getLayer()==this) 
+		{
+			if(strcmp(entity->getObjectName(),name)==0)
+			{
+				delete iter;
+				return entity;
+
+			}
+		}
+		iter->next();
+	}
+	delete iter;
+
+
+	if(reverse)
+	{
+		iter=m_entity->takeIterator();
+		while(!iter->done())
+		{
+			Entity2D* entity=(Entity2D*)iter->getValue();
+			if(entity->getLayer()==this) 
+			{
+				Entity2D* ch=(Entity2D*)entity->getChildByName(name,true);
+				if(ch)
+				{
+					delete iter;
+					return ch;
+				}
+			}
+			iter->next();
+		}
+		delete iter;
+	}
+	return NULL;
+
+}
+
 void Layer2D::traverseEntity(std::function<void(Entity2D*)> fn)
 {
 	m_entity->lock();

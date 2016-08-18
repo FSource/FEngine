@@ -191,6 +191,30 @@ int luaf_import(lua_State* l)
 	return 1;
 }
 
+int luaf_dofile(lua_State* l)
+{
+	const char* file=luaL_checkstring(l,1);
+
+	LuaEngine* engine=(LuaEngine*)Global::scriptEngine();
+	if(engine==NULL)
+	{
+		lua_pushnil(l);
+	}
+	int top=lua_gettop(l);
+	if(engine->executeFile(file)==0)
+	{
+		int top2=lua_gettop(l);
+		return top2-top;
+	}
+	else 
+	{
+		FS_TRACE_WARN("Can't f_dofile File(%s)",file);
+		lua_pushnil(l);
+	}
+	return 1;
+}
+
+
 int luaf_exit(lua_State* l)
 {
 	Scheduler* s=Global::scheduler();
@@ -309,6 +333,7 @@ static const struct luaL_reg luafuncs[]=
 	{"f_log",luaf_log},
 	{"f_logtag",luaf_logtag},
 	{"f_import",luaf_import},
+	{"f_dofile",luaf_dofile},
 	{"f_exit",luaf_exit},
 	{"f_getenv",luaf_getenv},
 	{"f_setenv",luaf_setenv},

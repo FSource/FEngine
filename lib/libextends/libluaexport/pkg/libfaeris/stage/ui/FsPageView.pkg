@@ -42,6 +42,9 @@ class PageView:public UiWidget
 		void slideToNextPage();
 		void slideToPrevPage();
 
+	public:
+		void __FUNC__FsLPageView_CallBackAssign@assignScriptHook();
+
 };
 
 

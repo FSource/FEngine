@@ -671,6 +671,34 @@ UiWidget* ListView::getListItem(int index)
 	return m_contentPanel->getListItem(index);
 }
 
+UiWidget* ListView::getListItemByName(const char* name)
+{
+	if(name==NULL)
+	{
+		return NULL;
+	}
+
+	int size=m_contentPanel->getListItemNu();
+	for(int i=0;i<size;i++)
+	{
+		UiWidget* widget=m_contentPanel->getListItem(i);
+		if(strcmp(widget->getObjectName(),name)==0)
+		{
+			return widget;
+		}
+	}
+	return NULL;
+}
+
+
+
+
+Entity* ListView::getChildByName(const char* name,bool reverse)
+{
+	return NULL;
+}
+
+
 int ListView::getListItemIndex(UiWidget* widget)
 {
 	return m_contentPanel->getListItemIndex(widget);

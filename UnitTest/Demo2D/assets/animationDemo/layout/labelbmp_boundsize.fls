@@ -1,4 +1,4 @@
-class:Layer2D
+className:Layer2D
 
 viewArea:{
 	x:0
@@ -10,7 +10,7 @@ viewArea:{
 
 entity:[
 	{
-		class:VertexPolygon
+		className:VertexPolygon
 		vertices:[
 			[0,320],
 			[960,320],
@@ -24,7 +24,7 @@ entity:[
 	}
 
 	{
-		class:LabelBitmap
+		className:LabelBitmap
 
 		fontName:"font/b2.fnt"
 		fontSize:0.5
@@ -35,7 +35,7 @@ entity:[
 	}
 
 	{
-		class:LabelBitmap
+		className:LabelBitmap
 
 		fontName:"font/b2.fnt"
 		fontSize:1
@@ -45,7 +45,7 @@ entity:[
 		position:{x:480,y:200}
 	}
 	{
-		class:LabelBitmap
+		className:LabelBitmap
 
 		fontName:"font/b2.fnt"
 		fontSize:0.3

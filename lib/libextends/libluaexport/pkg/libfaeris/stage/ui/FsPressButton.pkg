@@ -32,6 +32,8 @@ class PressButton:public StateButton
 		void setDisabled(bool value);
 		bool getDisabled() const;
 
+	public:
+		void __FUNC__FsLPressButton_CallBackAssign@assignScriptHook();
 
 };
 
