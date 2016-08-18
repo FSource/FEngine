@@ -3,13 +3,12 @@ $#include "stage/ui/FsStateButton.h"
 class StateButton:public Entity2D 
 {
 	public:
+
 		/* texture */
-		void setTexture(const char* filename);
-		void setTexture(const char* filename,float width,float height);
-		void setTexture(const char* filename,const Vector2& size);
+		void setTextureUrl(const char* filename);
+		const char* getTextureUrl();
+
 		void setTexture(Texture2D* tex);
-		void setTexture(Texture2D* tex,float width,float height);
-		void setTexture(Texture2D* tex,const Vector2& size);
 		Texture2D* getTexture() const;
 
 
@@ -17,7 +16,6 @@ class StateButton:public Entity2D
 
 		/* color */
 		void setColor(int state,const Color4f& value);
-		void setColor(int state,Color value);
 		Color4f getColor(int state) const ;
 
 
@@ -27,16 +25,11 @@ class StateButton:public Entity2D
 
 
 		/* texture */
-		void setTexture(int state,const char* filename);
-		void setTexture(int state,const char* filename,float width,float height);
-		void setTexture(int state,const char* filename,const Vector2& size);
+		void setTextureUrl(int state,const char* filename);
+		const char* getTextureUrl(int state);
 		void setTexture(int state,Texture2D* tex);
-		void setTexture(int state,Texture2D* tex,float width,float height);
-		void setTexture(int state,Texture2D* tex,const Vector2& size);
 		Texture2D* getTexture(int state) const;
 
-
-		/* size */
 
 		void setSize(int state,float x,float y);
 		void setSize(int state,const Vector2& size);
@@ -48,14 +41,10 @@ class StateButton:public Entity2D
 
 
 
-
-
 		/* rotate */
 		void setRotate(int state,float x,float y,float z);
 		void setRotate(int state,const Vector3& value);
 		Vector3 getRotate(int state)const ;
-
-
 
 
 		/* scale */
@@ -68,29 +57,36 @@ class StateButton:public Entity2D
 		FsArray* getChild(int state)const;
 
 
-		/* show father */
-		void setSize(float x,float y);
-		virtual void setSize(const Vector2f& v);
-		virtual Vector2f getSize();
-
-		virtual void setAnchor(const Vector2f& v);
-		virtual Vector2f getAnchor();
-
-
-		void setRotate(float rx,float ry,float rz);
-
-		void setScale(float sx,float sy,float sz);
-
-		virtual void setRotate(const Vector3& r);
-		virtual Vector3 getRotate();
-
-		virtual void setScale(const Vector3& s);
-		virtual Vector3 getScale();
 
 	public:
 
 		void setTweenFlags(uint32_t flags);
 		void clearTweenFlags();
+
+		void setTweenColorEnabled(bool value);
+		bool getTweenColorEnabled();
+
+		void setTweenOpacityEnabled(bool value);
+		bool getTweenOpacityEnabled();
+
+		void setTweenTextureEnabled(bool value);
+		bool getTweenTextureEnabled();
+
+		void setTweenSizeEnabled(bool value);
+		bool getTweenSizeEnabled();
+
+		void setTweenAnchorEnabled(bool value);
+		bool getTweenAnchorEnabled();
+
+		void setTweenRotateEnabled(bool value);
+		bool getTweenRotateEnabled();
+
+		void setTweenScaleEnabled(bool value);
+		bool getTweenScaleEnabled();
+
+		void setTweenChildrenEnabled(bool value);
+		bool getTweenChildrenEnabled();
+
 
 		void addTweenFlags(uint32_t flags);
 		void removeTweenFlags(uint32_t flags);
@@ -99,7 +95,6 @@ class StateButton:public Entity2D
 		void setLinearTween(float time);
 
 		void setState(int st);
-
 		void stopTween();
 
 

@@ -1,0 +1,39 @@
+$#include "stage/animation/FsAnimator.h"
+
+class Animator:public FsObject
+{
+
+	public:
+		void addAnimation(const char* name,Animation* anim);
+		void removeAnimation(const char* name);
+		void clearAnimation();
+
+		Animation* getAnimation(const char* name);
+		FsDict* getAnimations();
+
+
+		/* control default player*/
+		void startAnimation(const char* name,E_AnimPlayMode mode);
+		void startAnimation(Animation* animation,E_AnimPlayMode mode);
+
+		void stopAniamtion();
+		void pauseAniamtion();
+		void playAnimation();
+		bool isAnimationStop();
+		bool isAnimationPause();
+
+		/* default player */
+		void setDefaultPlayer(AnimationPlayer* player);
+		AnimationPlayer* getDefaultPlayer();
+
+		int getPlayerNu();
+		AnimationPlayer* getPlayer(int index);
+
+		void addPlayer(AnimationPlayer* player);
+		void removePlayer(AnimationPlayer* player);
+		void removePlayer(int index);
+
+
+
+}
+

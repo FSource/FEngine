@@ -320,9 +320,8 @@ namespace E_AnimPlayMode
 {
 	enum  E_AnimPlayMode 
 	{
+		NORMAL,
 		LOOP,
-		START,
-		END
 	};
 }
 

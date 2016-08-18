@@ -18,7 +18,7 @@ $pfile "FsEnums.pkg"
 
 
 /* stage */
-$pfile "stage/FsActionTarget.pkg"
+$pfile "stage/animation/FsAnimator.pkg"
 
 
 /* entity */
@@ -26,7 +26,6 @@ $pfile "stage/entity/FsEntity.pkg"
 $pfile "stage/entity/FsEntity2D.pkg"
 $pfile "stage/entity/FsQuad2D.pkg"
 $pfile "stage/entity/FsLabelTTF.pkg"
-$pfile "stage/entity/FsSprite2D.pkg"
 $pfile "stage/entity/FsLabelBitmap.pkg"
 $pfile "stage/entity/FsParticle2DEmitter.pkg"
 $pfile "stage/entity/FsParticle2DEffect.pkg"
@@ -133,17 +132,6 @@ $pfile "sys/event/FsKeypadDispatcher.pkg"
 
 
 
-
-/* stage/action */
-$pfile "stage/action/FsAction.pkg"
-$pfile "stage/action/FsFixTimeAction.pkg"
-$pfile "stage/action/FsCurve3Action.pkg"
-$pfile "stage/action/FsLoopAction.pkg"
-$pfile "stage/action/FsPauseAction.pkg"
-$pfile "stage/action/FsRotateAction.pkg"
-$pfile "stage/action/FsScaleAction.pkg"
-$pfile "stage/action/FsMoveAction.pkg"
-$pfile "stage/action/FsSeqAction.pkg"
 
 
 
