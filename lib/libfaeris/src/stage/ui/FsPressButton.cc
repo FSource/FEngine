@@ -348,10 +348,10 @@ static void PressButton_setDisableAttribute(PressButton* pb,FsDict* attr)
 
 
 static FsClass::FsAttributeDeclare S_PressButton_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("normalState",FsType::FT_DICT,NULL,PressButton_setNormalAttribute,0),
-	FS_CLASS_ATTR_DECLARE("pressState",FsType::FT_DICT,NULL,PressButton_setPressAttribute,0),
-	FS_CLASS_ATTR_DECLARE("disableState",FsType::FT_DICT,NULL,PressButton_setDisableAttribute,0),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("normalState",E_FsType::FT_DICT,NULL,PressButton_setNormalAttribute,0),
+	FS_CLASS_ATTR_DECLARE("pressState",E_FsType::FT_DICT,NULL,PressButton_setPressAttribute,0),
+	FS_CLASS_ATTR_DECLARE("disableState",E_FsType::FT_DICT,NULL,PressButton_setDisableAttribute,0),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(PressButton,StateButton,PressButton_NewInstance,S_PressButton_Main_Attr);

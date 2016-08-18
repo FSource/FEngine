@@ -33,7 +33,7 @@
 
 
 #include "FsMacros.h"
-#include "stage/FsActionTarget.h"
+#include "stage/animation/FsAnimator.h"
 #include "math/FsVector3.h"
 #include "math/FsMatrix4.h"
 #include "transform/FsITransform.h"
@@ -45,7 +45,7 @@ NS_FS_BEGIN
 class RenderDevice;
 class Layer;
 class Scene;
-class Entity :public ActionTarget
+class Entity :public Animator
 {
 	public:
 		FS_CLASS_DECLARE(Entity);
@@ -76,6 +76,7 @@ class Entity :public ActionTarget
 		virtual void removeChild(Entity* n);
 		virtual void clearChild();
 		virtual void detach();
+		virtual Entity* getChild(int index);
 
 
 		virtual Matrix4* getWorldMatrix();
@@ -101,6 +102,7 @@ class Entity :public ActionTarget
 		bool updateWorldMatrix();
 		void updateAllWorldMatrix();
 		void setChildWorldMatrixDirty();
+		void setWorldMatrixDirty(bool dirty);
 
 
 	public: /* zorlder */
@@ -184,15 +186,8 @@ class Entity :public ActionTarget
 		void setPositionZ(float t);
 
 	public: /* world transform */
-		void setPositionInWorld(float tx,float ty,float tz)
-		{
-			FS_TRACE_WARN("NOT IMPLEMET");
-		};
-		void setPositionInWorld(const Vector3& v)
-		{
-			FS_TRACE_WARN("NOT IMPLAEMNT");
-		}
-
+		void setPositionInWorld(float tx,float ty,float tz);
+		void setPositionInWorld(const Vector3& v);
 		Vector3 getPositionInWorld();
 		void getPositionInWorld(float* x,float* y,float* z);
 

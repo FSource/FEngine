@@ -36,11 +36,12 @@
 #include "support/util/FsString.h"
 #include "support/felis/xir_parser.h"
 #include "support/data/FsJson.h"
+#include "sys/io/FsMemFile.h"
 
 NS_FS_BEGIN
 static bool s_ObjectWrite(FsObject* ob,FsFile* file,int indent);
 static void s_IndentWrite(FsFile* file,int indent);
-static bool s_ArrayWrite(FsArray* ay,FsFile* file);
+static bool s_ArrayWrite(FsArray* ay,FsFile* file,int indent);
 static bool s_DictWrite(FsDict* dt,FsFile* file,int indent);
 static bool s_StringWrite(FsString* str,FsFile* file);
 
@@ -57,7 +58,7 @@ static bool s_ObjectWrite(FsObject* ob,FsFile* file,int indent)
 	}
 	else if(FsArray::checkType(ob))
 	{
-		s_ArrayWrite((FsArray*)ob,file);
+		s_ArrayWrite((FsArray*)ob,file,indent);
 	}
 	else 
 	{
@@ -72,20 +73,43 @@ static void s_IndentWrite(FsFile* file,int indent)
 		file->writeStr("\t");
 	}
 }
-static bool s_ArrayWrite(FsArray* ay,FsFile* file)
+static bool s_ArrayWrite(FsArray* ay,FsFile* file,int indent)
 {
-	FsArray::Iterator iter(ay);
+	int size=ay->size();
+
+
+	int pre_is_string=true;
 	file->writeStr("[");
-	while(!iter.done())
+	for(int i=0;i<size;i++)
 	{
-		FsObject* ob=iter.getValue();
-		if(ob!=NULL)
+		FsObject* ob=ay->get(i); 
+		std::string delimiter=",";
+
+		if(FsString::checkType(ob))
 		{
-			s_ObjectWrite(ob,file,-1);
-			ob->decRef();
+
+			s_StringWrite((FsString*)ob,file);
+			pre_is_string=true;
 		}
-		file->writeStr(",");
-		iter.next();
+		else 
+		{
+			if(!pre_is_string)
+			{
+				s_IndentWrite(file,indent+1);
+			}
+			else 
+			{
+				file->writeStr("\n");
+				s_IndentWrite(file,indent+1);
+			}
+			s_ObjectWrite(ob,file,indent+1);
+			delimiter=",\n";
+			pre_is_string=false;
+		}
+		if(i!=size-1)
+		{
+			file->writeStr(delimiter.c_str());
+		}
 	}
 	file->writeStr("]");
 	return true;
@@ -117,8 +141,6 @@ static bool s_DictWrite(FsDict* dt,FsFile* file,int indent)
 			s_ObjectWrite(value,file,-1);
 			file->writeStr(",");
 		}
-		key->decRef();
-		value->decRef();
 		iter.next();
 	}
 	if(indent!=-1)
@@ -213,6 +235,11 @@ static bool s_StringWrite(FsString* str,FsFile* file)
 		}
 	}
 
+	if(str->length()==0)
+	{
+		need_quote=true;
+	}
+
 	if(need_quote)
 	{
 		file->writeStr("\"");
@@ -256,6 +283,15 @@ FsDict* ScriptUtil::parseScript(FsFile* file)
 	return XirParser::create(file);
 }
 
+FsDict* ScriptUtil::parseScriptFromStr(const char* str)
+{
+	MemFile* file=MemFile::create(str,strlen(str));
+	file->setRefDelete(false);
+	FsDict* ret= XirParser::create(file);
+	file->destroy();
+	return ret;
+}
+
 
 
 bool ScriptUtil::saveScript(FsFile* file,FsDict* dict,int indent)
@@ -280,8 +316,6 @@ bool ScriptUtil::saveScript(FsFile* file,FsDict* dict,int indent)
 			s_ObjectWrite(value,file,-1);
 			file->writeStr(",");
 		}
-		key->decRef();
-		value->decRef();
 		iter.next();
 	}
 	return true;

@@ -3,8 +3,8 @@
 #include <string.h>
 #include <time.h>
 
-#include "util/FsDict.h"
-#include "util/FsString.h"
+#include "support/util/FsDict.h"
+#include "support/util/FsString.h"
 
 #define DEFALULT_SIZE 10000
 
@@ -65,7 +65,6 @@ int test_find_exist_value()
 			h->decRef();
 			return 0;
 		}
-		value->decRef();
 	}
 	for(i=0;i<DEFALULT_SIZE;i++)
 	{
@@ -81,7 +80,6 @@ int test_find_exist_value()
 			h->decRef();
 			return 0;
 		}
-		value->decRef();
 	}
 	h->decRef();
 	return 1;
@@ -146,7 +144,6 @@ int test_insert_exist_value()
 			h->decRef();
 			return 0;
 		}
-		value1->decRef();
 	}
 	for(i=0;i<DEFALULT_SIZE;i++)
 	{
@@ -164,7 +161,6 @@ int test_insert_exist_value()
 			h->decRef();
 			return 0;
 		}
-		value->decRef();
 	}
 	h->decRef();
 	return 1;
@@ -198,7 +194,6 @@ int test_del_exist_item()
 			h->decRef();
 			return 0;
 		}
-		value->decRef();
 
 		ret=FsDict_Del(h,key);
 		if(ret==false)
@@ -323,8 +318,11 @@ int main(int argc,char** argv)
 	{
 		sprintf(buffer,"%d",i);
 		all_keys[i]=(FsObject*)new FsString(buffer);
+		all_keys[i]->addRef();
+
 		sprintf(buffer,"%d",i*10);
 		all_value[i]=(FsObject*)new FsString(buffer);
+		all_value[i]->addRef();
 	}
 
 	Func_Test(test_map_no_exist);
@@ -333,6 +331,7 @@ int main(int argc,char** argv)
 	Func_Test(test_insert_exist_value);
 	Func_Test(test_del_exist_item);
 	Func_Test(test_del_no_exist_item);
+
 	for(i=0;i<DEFALULT_SIZE*2;i++)
 	{
 		all_keys[i]->decRef();

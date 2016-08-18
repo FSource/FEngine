@@ -93,6 +93,7 @@ void Layer::clearEntity()
 
 void Layer::update(float dt)
 {
+	updateAnimation(dt);
 }
 
 
@@ -160,15 +161,15 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(Layer,setDispatchTouchesEnabled,getDispatchTouche
 
 
 static FsClass::FsAttributeDeclare S_Layer_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("visible",FsType::FT_B_1,NULL,Layer_setVisible,Layer_getVisible),
-	FS_CLASS_ATTR_DECLARE("touchEnabled",FsType::FT_B_1,NULL,Layer_setTouchEnabled,Layer_getTouchEnabled),
-	FS_CLASS_ATTR_DECLARE("touchesEnabled",FsType::FT_B_1,NULL,Layer_setTouchesEnabled,Layer_getTouchesEnabled),
-	FS_CLASS_ATTR_DECLARE("dispatchTouchEnabled",FsType::FT_B_1,NULL,Layer_setDispatchTouchEnabled,Layer_getDispatchTouchEnabled),
-	FS_CLASS_ATTR_DECLARE("dispatchTouchesEnabled",FsType::FT_B_1,NULL,Layer_setDispatchTouchesEnabled,Layer_getDispatchTouchesEnabled),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("visible",E_FsType::FT_B_1,NULL,Layer_setVisible,Layer_getVisible),
+	FS_CLASS_ATTR_DECLARE("touchEnabled",E_FsType::FT_B_1,NULL,Layer_setTouchEnabled,Layer_getTouchEnabled),
+	FS_CLASS_ATTR_DECLARE("touchesEnabled",E_FsType::FT_B_1,NULL,Layer_setTouchesEnabled,Layer_getTouchesEnabled),
+	FS_CLASS_ATTR_DECLARE("dispatchTouchEnabled",E_FsType::FT_B_1,NULL,Layer_setDispatchTouchEnabled,Layer_getDispatchTouchEnabled),
+	FS_CLASS_ATTR_DECLARE("dispatchTouchesEnabled",E_FsType::FT_B_1,NULL,Layer_setDispatchTouchesEnabled,Layer_getDispatchTouchesEnabled),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
-FS_CLASS_IMPLEMENT_WITH_BASE(Layer,FsObject,0,S_Layer_Main_Attr);
+FS_CLASS_IMPLEMENT_WITH_BASE(Layer,Animator,0,S_Layer_Main_Attr);
 
 
 

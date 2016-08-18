@@ -50,13 +50,10 @@ class ListView:public ScrollWidget
 		static ListView* create(E_ScrollDirection mode,float width,float height);
 		static ListView* create(float width,float height);
 
-	public:
-
-		/* inherit ScrollWidget */
-		virtual void scrollChange(float x,float y);
 		
 	public:
 		void setMode(E_ScrollDirection mode);
+		E_ScrollDirection getMode();
 
 		void setListGap(float value);
 		float getListGap();
@@ -98,6 +95,7 @@ class ListView:public ScrollWidget
 
 	protected:
 
+		ListView();
 		ListView(E_ScrollDirection mode,float width,float height);
 		ListView(float width,float height);
 
@@ -111,6 +109,8 @@ class ListView:public ScrollWidget
 		void childTransformChanged(UiWidget* widget) FS_OVERRIDE;
 
 		void adjustContentSize();
+
+		void layoutContentWidget(float x,float y) FS_OVERRIDE;
 
 
 	protected:

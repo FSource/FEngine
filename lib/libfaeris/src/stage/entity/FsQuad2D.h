@@ -68,6 +68,7 @@ class Quad2D:public Entity2D
 		/* texture */
 		void setTexture(const char* tex);
 		void setResourceUrl(const char* name);
+		const char* getResourceUrl();
 
 
 		void setTexture(Texture2D* tex);
@@ -156,6 +157,8 @@ class Quad2D:public Entity2D
 		E_DrawMode m_vertiesMode;
 
 		int m_renderMode;
+
+		std::string m_resourceUrl;
 };
 
 NS_FS_END 

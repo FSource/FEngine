@@ -51,7 +51,7 @@ class FsClass :public FsObject
 		class FsAttributeDeclare
 		{
 			public:
-				FsAttributeDeclare(const char* _name,FsType _type,FsAttributeDeclare* _sub,
+				FsAttributeDeclare(const char* _name,E_FsType _type,FsAttributeDeclare* _sub,
 									AttrSetFunc _setFunc,AttrGetFunc _getFunc)
 				{
 					name=_name;
@@ -63,7 +63,7 @@ class FsClass :public FsObject
 
 			public:
 				const char* name;
-				FsType attrType;
+				E_FsType attrType;
 				FsAttributeDeclare* subAttributeDeclare;
 				AttrSetFunc setFunc;
 				AttrGetFunc getFunc;
@@ -91,7 +91,7 @@ class FsClass :public FsObject
 
 			protected:
 				FsString* m_name;
-				FsType m_attrType;
+				E_FsType m_attrType;
 				FsDict* m_subAttributes;
 				AttrSetFunc m_setFunc;
 				AttrGetFunc m_getFunc;
@@ -135,16 +135,16 @@ class FsClass :public FsObject
 
 
 #define FS_CLASS_IMPLEMENT(cls,new_instnce,attrs) \
-	FsClass* cls::m_fsclass=NULL; \
-	FsClass* cls::getClass() \
+	Faeris::FsClass* cls::m_fsclass=NULL; \
+	Faeris::FsClass* cls::getClass() \
 	{ \
 		if( cls::m_fsclass==NULL) \
 		{ \
-			cls::m_fsclass=FsClass::create(#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
+			cls::m_fsclass=Faeris::FsClass::create(#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
 		} \
 		return cls::m_fsclass; \
 	} \
-	FsClass* cls::objectClass()  \
+	Faeris::FsClass* cls::objectClass()  \
 	{ \
 		return cls::getClass(); \
 	} \
@@ -162,16 +162,16 @@ class FsClass :public FsObject
 
 
 #define FS_CLASS_IMPLEMENT_WITH_BASE(cls,base_cls,new_instnce,attrs) \
-	FsClass* cls::m_fsclass=NULL; \
-	FsClass* cls::getClass() \
+	Faeris::FsClass* cls::m_fsclass=NULL; \
+	Faeris::FsClass* cls::getClass() \
 	{ \
 		if( cls::m_fsclass==NULL) \
 		{ \
-			cls::m_fsclass=FsClass::create(base_cls::getClass(),#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
+			cls::m_fsclass=Faeris::FsClass::create(base_cls::getClass(),#cls,(FsClass::NewInstanceFunc)new_instnce,attrs); \
 		} \
 		return cls::m_fsclass; \
 	} \
-	FsClass* cls::objectClass()  \
+	Faeris::FsClass* cls::objectClass()  \
 	{ \
 		return cls::getClass(); \
 	} \
@@ -191,6 +191,11 @@ class FsClass :public FsObject
 	static  void cls##_##set(cls* ob,const char* v) \
 	{ \
 		ob->set(v); \
+	} 
+#define FS_CLASS_ATTR_GET_CHARS_FUNCTION(cls,get)  \
+	static  const char* cls##_##get(cls* ob) \
+	{ \
+		return ob->get(); \
 	} 
 
 
@@ -242,10 +247,10 @@ class FsClass :public FsObject
 
 
 #define FS_CLASS_ATTR_DECLARE(name,type,sub_attr,set_func,get_func) \
-	FsClass::FsAttributeDeclare(name,type, \
+	Faeris::FsClass::FsAttributeDeclare(name,type, \
 			sub_attr, \
-			(FsClass::AttrSetFunc)set_func, \
-			(FsClass::AttrGetFunc)get_func)
+			(Faeris::FsClass::AttrSetFunc)set_func, \
+			(Faeris::FsClass::AttrGetFunc)get_func)
  
 
 

@@ -33,7 +33,7 @@
 #include <functional>
 
 #include "FsMacros.h"
-#include "stage/FsActionTarget.h"
+#include "stage/animation/FsAnimator.h"
 #include "graphics/FsColor.h"
 
 
@@ -48,8 +48,11 @@ class ObjectMgr;
 class ColorLayer;
 
 
-class Scene:public ActionTarget
+class Scene:public Animator 
 {
+	public:
+		FS_CLASS_DECLARE(Scene);
+
 	public:
 		static Scene* create();
 
@@ -100,8 +103,6 @@ class Scene:public ActionTarget
 
 		virtual void inputTextEvent(const char* text,int length);
 
-		/*  inherit FsObject */
-		virtual const char* className();
 
 	public:
 		std::function<void(Scene*)> onEnter;

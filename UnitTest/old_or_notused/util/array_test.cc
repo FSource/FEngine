@@ -4,11 +4,12 @@
 #include <time.h>
 
 
-#include "util/FsArray.h"
-#include "util/FsString.h"
+#include "support/util/FsArray.h"
+#include "support/util/FsString.h"
 
 using namespace Faeris;
 #define I_TO_GR(v) ((FsObject*)v)
+typedef unsigned long FsUlong;
 
 
 FsUlong FsArray_Size(FsArray* ay)
@@ -62,7 +63,6 @@ int test_set_and_get_item()
 		c_i=new FsString(i);
 		int r=FsArray_Set(array,i,I_TO_GR(c_i));
 
-		c_i->decRef();
 		c_i=0;
 		if(r<0)
 		{
@@ -86,17 +86,14 @@ int test_set_and_get_item()
 		}
 		if(FsString_GetValue(c_i)!=i)
 		{
-			c_i->decRef();
 			c_i=0;
 			ret=0;
 			goto error;
 		}
-		c_i->decRef();
 		c_i=0;
 	}
 	if(FsArray_Size(array)!=array_size)
 	{
-		c_i->decRef();
 		ret=0;
 		goto error;
 	}
@@ -117,7 +114,6 @@ int test_get_no_exist_item()
 	{
 		c_i=new FsString(i);
 		int r=FsArray_Set(array,i,I_TO_GR(c_i));
-		c_i->decRef();
 		c_i=0;
 		if(r<0)
 		{
@@ -132,7 +128,6 @@ int test_get_no_exist_item()
 		c_i=(FsString*)FsArray_Get(array,i);
 		if(c_i!=NULL)
 		{
-			c_i->decRef();
 			c_i=NULL;
 			ret=0;
 			goto error;
@@ -154,7 +149,6 @@ int test_push_back_item()
 	{
 		c_i=new FsString(i);
 		int r=FsArray_Push(array,I_TO_GR(c_i));
-		c_i->decRef();
 		c_i=NULL;
 		if(r<0)
 		{
@@ -180,12 +174,10 @@ int test_push_back_item()
 		}
 		if(FsString_GetValue(c_i)!=i)
 		{
-			c_i->decRef();
 			c_i=0;
 			ret=0;
 			goto error;
 		}
-		c_i->decRef();
 		c_i=0;
 	}
 error:
@@ -206,7 +198,6 @@ int test_insert_front()
 	{
 		c_i=new FsString(i);
 		int r=FsArray_Insert(array,0,I_TO_GR(c_i));
-		c_i->decRef();
 		c_i=0;
 		if(r<0)
 		{
@@ -225,7 +216,6 @@ int test_insert_front()
 			ret=0;
 			goto error;
 		}
-		c_i->decRef();
 		c_i=0;
 	}
 	/* examine array size */
@@ -249,7 +239,6 @@ int test_insert_front()
 			ret=0;
 			goto error;
 		}
-		c_i->decRef();
 		c_i=0;
 	}
 
@@ -271,7 +260,6 @@ int test_insert_tail()
 	{
 		c_i=new FsString(i);
 		int r=FsArray_Insert(array,i,I_TO_GR(c_i));
-		c_i->decRef();
 		c_i=0;
 		if(r<0)
 		{
@@ -290,7 +278,6 @@ int test_insert_tail()
 			ret=0;
 			goto error;
 		}
-		c_i->decRef();
 		c_i=0;
 	}
 	/* examine array size */
@@ -314,7 +301,6 @@ int test_insert_tail()
 			ret=0;
 			goto error;
 		}
-		c_i->decRef();
 		c_i=0;
 	}
 
@@ -337,7 +323,6 @@ int test_insert_middle()
 		c_i=new FsString(i);
 		int pos=i/2;
 		int r=FsArray_Insert(array,pos,I_TO_GR(c_i));
-		c_i->decRef();
 		c_i=0;
 		if(r<0)
 		{
@@ -356,7 +341,6 @@ int test_insert_middle()
 			ret=0;
 			goto error;
 		}
-		c_i->decRef();
 		c_i=0;
 	}
 	/* examine array size */
@@ -375,7 +359,6 @@ int test_insert_middle()
 			goto error;
 		}
 		int val=FsString_GetValue(c_i);
-		c_i->decRef();
 		c_i=0;
 		if(i<array_size/2)
 		{
@@ -417,7 +400,6 @@ int test_remove_front()
 	{
 		c_i=new FsString(i);
 		int r=FsArray_Set(array,i,I_TO_GR(c_i));
-		c_i->decRef();
 		c_i=0;
 		if(r<0)
 		{
@@ -450,7 +432,6 @@ int test_remove_front()
 			goto error;
 		}
 		int val=FsString_GetValue(c_i);
-		c_i->decRef();
 		c_i=NULL;
 
 		if(val!=array_size/2+i)
@@ -477,7 +458,6 @@ int test_remove_tail()
 	{
 		c_i=new FsString(i);
 		int r=FsArray_Set(array,i,I_TO_GR(c_i));
-		c_i->decRef();
 		c_i=0;
 		if(r<0)
 		{
@@ -510,7 +490,6 @@ int test_remove_tail()
 			goto error;
 		}
 		int val=FsString_GetValue(c_i);
-		c_i->decRef();
 		c_i=NULL;
 
 		if(val!=i)
@@ -536,7 +515,6 @@ int test_remove_middle()
 	{
 		c_i=new FsString(i);
 		int r=FsArray_Set(array,i,I_TO_GR(c_i));
-		c_i->decRef();
 		c_i=0;
 		if(r<0)
 		{
@@ -569,7 +547,6 @@ int test_remove_middle()
 			goto error;
 		}
 		int val=FsString_GetValue(c_i);
-		c_i->decRef();
 		c_i=NULL;
 
 		if(i<array_size/4)
@@ -609,7 +586,6 @@ int test_remove_no_exist_item()
 	{
 		c_i=new FsString(i);
 		int r=FsArray_Set(array,i,I_TO_GR(c_i));
-		c_i->decRef();
 		c_i=0;
 		if(r<0)
 		{

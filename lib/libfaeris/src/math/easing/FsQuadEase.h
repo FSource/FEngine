@@ -33,7 +33,7 @@
 #include "FsEaseExpr.h"
 NS_FS_BEGIN
 
-class QuadEase:EaseExpr 
+class QuadEase: public EaseExpr 
 {
 	public:
 		static QuadEase* create();

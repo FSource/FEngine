@@ -1,0 +1,61 @@
+class:Layer2D
+
+viewArea:{
+	x:0
+	y:0
+	width:960
+	height:640
+}
+
+
+entity:[
+	{
+		class:VertexPolygon
+		vertices:[
+			[0,320],
+			[960,320],
+			[480,0],
+			[480,640],
+			[0,200],
+			[960,200]
+		]
+		mode:"lines"
+		color:[1.0,0.0,0.0,1.0]
+	}
+
+	{
+		class:LabelBitmap
+
+		fontName:"font/b2.fnt"
+		fontSize:0.5
+		string:"Hello World Size(1.0) boundSize(200,0) boundSize(200,0) boundSize(200,0)"
+		boundSize:{w:200,h:0}
+		anchor:{x:0.5,y:1}
+		position:{x:480,y:200}
+	}
+
+	{
+		class:LabelBitmap
+
+		fontName:"font/b2.fnt"
+		fontSize:1
+		string:"Hello World Size(0.5) boundSize(200,0) boundSize(200,0) boundSize(200,0)"
+		boundSize:{w:200,h:0}
+		anchor:{x:0.5,y:0}
+		position:{x:480,y:200}
+	}
+	{
+		class:LabelBitmap
+
+		fontName:"font/b2.fnt"
+		fontSize:0.3
+		string:"Hello World Size(0.3) boundSize(200,0) boundSize(200,0) boundSize(200,0)"
+		boundSize:{w:200,h:0}
+		anchor:{x:0.5,y:1}
+		position:{x:480,y:100}
+	}
+]
+
+
+
+

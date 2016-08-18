@@ -1,7 +1,7 @@
 #ifndef _DM_PROCESS_BAR_H_
 #define _DM_PROCESS_BAR_H_
 
-
+#include "FsFaeris.h"
 
 NS_FS_USE;
 

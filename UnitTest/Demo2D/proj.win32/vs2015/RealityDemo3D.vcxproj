@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7C77EFF4-8607-4B91-BD36-FB37A7034118}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>RealityDemo3D</RootNamespace>
+    <ProjectName>RealityDemo2D</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)/../../bin/</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../src/;../../../../lib/libreality/src;../../../../lib/libfaeris/src/support;../../../../lib/libfaeris/src;../../../../lib/libextends/libnetwork/src;../../../../lib/libextends/lib3rdextends/src;../../../../lib/lib3rdparty/c99/include;../../../../lib/lib3rdparty/fmod/include;../../../../lib/lib3rdparty/freetype/include;../../../../lib/lib3rdparty/GL/include;../../../../lib/lib3rdparty/pthread/include;../../../../lib/lib3rdparty/minizip/include;../../../../lib/lib3rdparty/jsonc/src;../../../../lib/lib3rdparty/libpng/include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../../../lib/library/win32/3rdparty;../../../../lib/library/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;freetyped.lib;fmodex.lib;libmd5modeld.lib;libobjmodeld.lib;libtgad.lib;zlibd.lib;libpngd.lib;libjpegd.lib;ljsond.lib;jsoncd.lib;glslextd.lib;luad.lib;minizipd.lib;libcurld.lib;libfaerisd.lib;pthreadVC2.lib;tolua++d.lib;wsock32.lib;Wldap32.lib;Ws2_32.lib;Winmm.lib;libbox2dd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\animationDemo\DmAnimationScene.cc" />
+    <ClCompile Include="..\..\src\Common\DmBackLayer.cc" />
+    <ClCompile Include="..\..\src\Common\DmColorSlider.cc" />
+    <ClCompile Include="..\..\src\Common\DmListItem.cc" />
+    <ClCompile Include="..\..\src\Common\DmListView.cc" />
+    <ClCompile Include="..\..\src\Common\DmSlideBar.cc" />
+    <ClCompile Include="..\..\src\Common\DmTextureChooseWidget.cc" />
+    <ClCompile Include="..\..\src\demoChoose\DemoChooseLayer.cc" />
+    <ClCompile Include="..\..\src\demoChoose\DemoItem.cc" />
+    <ClCompile Include="..\..\src\demoStart\DemoStartLayer.cc" />
+    <ClCompile Include="..\..\src\FilterDemo\DmFilterScene.cc" />
+    <ClCompile Include="..\..\src\FsWin32Main.cc" />
+    <ClCompile Include="..\..\src\LayoutDemo\DmLayoutScene.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\animationDemo\DmAnimationScene.h" />
+    <ClInclude Include="..\..\src\Common\DmBackLayer.h" />
+    <ClInclude Include="..\..\src\Common\DmColorSlider.h" />
+    <ClInclude Include="..\..\src\Common\DmListItem.h" />
+    <ClInclude Include="..\..\src\Common\DmListView.h" />
+    <ClInclude Include="..\..\src\Common\DmSlideBar.h" />
+    <ClInclude Include="..\..\src\Common\DmTextureChooseWidget.h" />
+    <ClInclude Include="..\..\src\config.h" />
+    <ClInclude Include="..\..\src\demo3D.h" />
+    <ClInclude Include="..\..\src\demoChoose\DemoChooseLayer.h" />
+    <ClInclude Include="..\..\src\demoChoose\DemoItem.h" />
+    <ClInclude Include="..\..\src\demoStart\DemoStartLayer.h" />
+    <ClInclude Include="..\..\src\FilterDemo\DmFilterScene.h" />
+    <ClInclude Include="..\..\src\LayoutDemo\DmLayoutScene.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

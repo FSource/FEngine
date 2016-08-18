@@ -86,6 +86,53 @@ Rect2D Layer2D::getViewArea()const
 	return m_viewArea;
 }
 
+void Layer2D::setViewArea(float x,float y,float width,float height)
+{
+	m_viewArea.set(x,y,width,height);
+}
+
+void Layer2D::setViewAreaX(float x)
+{
+	m_viewArea.x=x;
+}
+float Layer2D::getViewAreaX()
+{
+	return m_viewArea.x;
+}
+
+
+void Layer2D::setViewAreaY(float y)
+{
+	m_viewArea.y=y;
+}
+float Layer2D::getViewAreaY()
+{
+	return m_viewArea.y;
+}
+
+
+
+void Layer2D::setViewAreaWidth(float w)
+{
+	m_viewArea.width=w;
+}
+float Layer2D::getViewAreaWidth()
+{
+	return m_viewArea.width;
+}
+
+
+void Layer2D::setViewAreaHeight(float h)
+{
+	m_viewArea.height=h;
+}
+
+float Layer2D::getViewAreaHeight()
+{
+	return m_viewArea.height;
+}
+
+
 void Layer2D::toLayerCoord(float* x,float* y)
 {
 	*x=*x*m_viewArea.width+m_viewArea.x;
@@ -100,10 +147,6 @@ Vector3 Layer2D::toLayerCoord(const Vector3& v)
 	return Vector3(x,y,0);
 }
 
-void Layer2D::setViewArea(float x,float y,float width,float height)
-{
-	m_viewArea.set(x,y,width,height);
-}
 
 
 void Layer2D::getViewArea(float* x,float* y,float* width,float* height)
@@ -238,7 +281,7 @@ Layer2D::~Layer2D()
 }
 
 
-void Layer2D::add(Entity2D* entity)
+void Layer2D::addEntity2D(Entity2D* entity)
 {
 	FS_TRACE_WARN_ON(entity==NULL,"Entity Is NULL");
 	if(entity->getLayer()==this)
@@ -256,10 +299,11 @@ void Layer2D::add(Entity2D* entity)
 	m_entity->insert(entity,entity);
 	entity->setAddOlder(m_addOlder++);
 	entity->setLayer(this);
+	entity->setWorldMatrixDirty(true);
 }
 
 
-void Layer2D::remove(Entity2D* entity)
+void Layer2D::removeEntity2D(Entity2D* entity)
 {
 	if(entity->getLayer()!=this)
 	{
@@ -285,13 +329,13 @@ void Layer2D::add(Entity* entity)
 {
 	Entity2D* en=dynamic_cast<Entity2D*>(entity);
 	FS_TRACE_WARN_ON(en==NULL,"Only Entity2D and SubClass Can Add To Layer2D");
-	add(en);
+	addEntity2D(en);
 }
 
 
 void Layer2D::remove(Entity* entity)
 {
-	remove((Entity2D*)entity);
+	removeEntity2D((Entity2D*)entity);
 }
 
 void Layer2D::clearEntity()
@@ -313,9 +357,28 @@ int Layer2D::getEntityNu()
 	return m_entity->size();
 }
 
+
+void Layer2D::traverseEntity(std::function<void(Entity2D*)> fn)
+{
+	m_entity->lock();
+	FsDict::Iterator* iter=m_entity->takeIterator();
+	while(!iter->done())
+	{
+		Entity2D* entity=(Entity2D*)iter->getValue();
+		if(entity->getLayer()==this) 
+		{
+			fn(entity);
+		}
+		iter->next();
+	}
+	delete iter;
+
+	m_entity->unlock();
+	m_entity->flush();
+
+}
 void Layer2D::update(float dt)
 {
-	updateAction(dt);
 	updateEntity(dt);
 }
 
@@ -486,33 +549,6 @@ Layer2D* Layer2D_newInstance(FsDict* attr)
 
 
 
-void Layer2D_setViewArea(Layer2D* l,FsDict* dict)
-{
-	Rect2D view_area=l->getViewArea();
-
-	if(dict->lookupString("x"))
-	{
-		view_area.x=dict->lookupString("x")->toFloatValue();
-	}
-
-	if(dict->lookupString("y"))
-	{
-		view_area.y=dict->lookupString("y")->toFloatValue();
-	}
-
-	if(dict->lookupString("width"))
-	{
-		view_area.width=dict->lookupString("width")->toFloatValue();
-	}
-
-	if(dict->lookupString("height"))
-	{
-		view_area.height=dict->lookupString("height")->toFloatValue();
-	}
-
-	l->setViewArea(view_area);
-}
-
 void Layer2D_setEntity(Layer2D* l,FsArray* entities)
 {
 	l->clearEntity();
@@ -545,10 +581,27 @@ void Layer2D_setEntity(Layer2D* l,FsArray* entities)
 }
 
 
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer2D,setViewAreaX,getViewAreaX,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer2D,setViewAreaY,getViewAreaY,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer2D,setViewAreaWidth,getViewAreaWidth,float);
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer2D,setViewAreaHeight,getViewAreaHeight,float);
+
+FS_CLASS_ATTR_SET_GET_FUNCTION(Layer2D,setViewArea,getViewArea,Rect2D);
+
+
+static FsClass::FsAttributeDeclare S_Layer2D_ViewArea_SubAttr[]={
+	FS_CLASS_ATTR_DECLARE("x",E_FsType::FT_F_1,NULL,Layer2D_setViewAreaX,Layer2D_getViewAreaX),
+	FS_CLASS_ATTR_DECLARE("y",E_FsType::FT_F_1,NULL,Layer2D_setViewAreaY,Layer2D_getViewAreaY),
+	FS_CLASS_ATTR_DECLARE("width",E_FsType::FT_F_1,NULL,Layer2D_setViewAreaWidth,Layer2D_getViewAreaWidth),
+	FS_CLASS_ATTR_DECLARE("height",E_FsType::FT_F_1,NULL,Layer2D_setViewAreaHeight,Layer2D_getViewAreaHeight),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
+};
+
+
 static FsClass::FsAttributeDeclare S_Layer2D_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("viewArea",FsType::FT_DICT,NULL,Layer2D_setViewArea,0),
-	FS_CLASS_ATTR_DECLARE("entity",FsType::FT_ARRAY,NULL,Layer2D_setEntity,0),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("viewArea",E_FsType::FT_F_RECT2D,S_Layer2D_ViewArea_SubAttr,Layer2D_setViewArea,Layer2D_getViewArea),
+	FS_CLASS_ATTR_DECLARE("entity",E_FsType::FT_ARRAY,NULL,Layer2D_setEntity,0),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 

@@ -59,6 +59,7 @@ class StateButton:public Entity2D
 					m_color=Color4f::WHITE;
 					m_opacity=1.0;
 					m_texture=NULL;
+					m_textureUrl="";
 					m_size.set(0,0);
 					m_anchor.set(0.5,0.5);
 					m_rotate.set(0,0,0);
@@ -74,6 +75,7 @@ class StateButton:public Entity2D
 				}
 
 			public:
+				std::string m_textureUrl;
 				Texture2D* m_texture;
 				Color4f m_color;
 				float m_opacity;
@@ -104,12 +106,10 @@ class StateButton:public Entity2D
 	public:
 
 		/* texture */
-		void setTexture(const char* filename);
-		void setTexture(const char* filename,float width,float height);
-		void setTexture(const char* filename,const Vector2& size);
+		void setTextureUrl(const char* filename);
+		const char* getTextureUrl();
+
 		void setTexture(Texture2D* tex);
-		void setTexture(Texture2D* tex,float width,float height);
-		void setTexture(Texture2D* tex,const Vector2& size);
 		Texture2D* getTexture() const;
 
 
@@ -126,12 +126,9 @@ class StateButton:public Entity2D
 
 
 		/* texture */
-		void setTexture(int state,const char* filename);
-		void setTexture(int state,const char* filename,float width,float height);
-		void setTexture(int state,const char* filename,const Vector2& size);
+		void setTextureUrl(int state,const char* filename);
+		const char* getTextureUrl(int state);
 		void setTexture(int state,Texture2D* tex);
-		void setTexture(int state,Texture2D* tex,float width,float height);
-		void setTexture(int state,Texture2D* tex,const Vector2& size);
 		Texture2D* getTexture(int state) const;
 
 
@@ -181,6 +178,31 @@ class StateButton:public Entity2D
 		void setTweenFlags(uint32_t flags);
 		void clearTweenFlags();
 
+		void setTweenColorEnabled(bool value);
+		bool getTweenColorEnabled();
+
+		void setTweenOpacityEnabled(bool value);
+		bool getTweenOpacityEnabled();
+
+		void setTweenTextureEnabled(bool value);
+		bool getTweenTextureEnabled();
+
+		void setTweenSizeEnabled(bool value);
+		bool getTweenSizeEnabled();
+
+		void setTweenAnchorEnabled(bool value);
+		bool getTweenAnchorEnabled();
+
+		void setTweenRotateEnabled(bool value);
+		bool getTweenRotateEnabled();
+
+		void setTweenScaleEnabled(bool value);
+		bool getTweenScaleEnabled();
+
+		void setTweenChildrenEnabled(bool value);
+		bool getTweenChildrenEnabled();
+
+
 		void addTweenFlags(uint32_t flags);
 		void removeTweenFlags(uint32_t flags);
 
@@ -188,7 +210,6 @@ class StateButton:public Entity2D
 		void setLinearTween(float time);
 
 		void setState(int st);
-
 		void stopTween();
 
 
@@ -226,6 +247,7 @@ class StateButton:public Entity2D
 
 		/* Button Attribute */
 		Texture2D* m_texture;
+		std::string m_textureUrl;
 
 };
 

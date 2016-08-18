@@ -16,11 +16,11 @@
     <Filter Include="src\LayoutDemo">
       <UniqueIdentifier>{e8c21063-8652-4f61-a801-39f6f809925f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\ActionDemo">
-      <UniqueIdentifier>{14ef2657-eec8-4757-a9b5-a7759c32417d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\FilterDemo">
       <UniqueIdentifier>{e7c15883-7e10-4567-8ab3-7a670c71fba3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\animationDemo">
+      <UniqueIdentifier>{b3c0e428-fbae-411b-8c01-015d329f0143}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,9 +51,6 @@
     <ClCompile Include="..\..\src\LayoutDemo\DmLayoutScene.cc">
       <Filter>src\LayoutDemo</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ActionDemo\DmActionScene.cc">
-      <Filter>src\ActionDemo</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\FilterDemo\DmFilterScene.cc">
       <Filter>src\FilterDemo</Filter>
     </ClCompile>
@@ -62,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Common\DmSlideBar.cc">
       <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\animationDemo\DmAnimationScene.cc">
+      <Filter>src\animationDemo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,9 +95,6 @@
     <ClInclude Include="..\..\src\LayoutDemo\DmLayoutScene.h">
       <Filter>src\LayoutDemo</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ActionDemo\DmActionScene.h">
-      <Filter>src\ActionDemo</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\FilterDemo\DmFilterScene.h">
       <Filter>src\FilterDemo</Filter>
     </ClInclude>
@@ -106,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Common\DmSlideBar.h">
       <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\animationDemo\DmAnimationScene.h">
+      <Filter>src\animationDemo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -95,10 +95,10 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(Texture2D,setMipmapEnabled,getMipmapEnalbed,bool)
 
 
 static FsClass::FsAttributeDeclare S_Texture_MainAttr[]={
-	FS_CLASS_ATTR_DECLARE("wrap",FsType::FT_DICT,NULL,Texture2D_setWrap,0),
-	FS_CLASS_ATTR_DECLARE("filter",FsType::FT_DICT,NULL,Texture2D_setFilter,0),
-	FS_CLASS_ATTR_DECLARE("mipmapEnabled",FsType::FT_B_1,NULL,Texture2D_setMipmapEnabled,Texture2D_getMipmapEnalbed),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("wrap",E_FsType::FT_DICT,NULL,Texture2D_setWrap,0),
+	FS_CLASS_ATTR_DECLARE("filter",E_FsType::FT_DICT,NULL,Texture2D_setFilter,0),
+	FS_CLASS_ATTR_DECLARE("mipmapEnabled",E_FsType::FT_B_1,NULL,Texture2D_setMipmapEnabled,Texture2D_getMipmapEnalbed),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(Texture2D,FsObject,0,S_Texture_MainAttr);

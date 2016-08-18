@@ -37,7 +37,7 @@ NS_FS_BEGIN
 
 class PageViewContentPanel: public Entity2D
 {
-	protected:
+	public:
 		class PageViewItemInfo:public FsObject 
 	{
 
@@ -168,26 +168,42 @@ class PageViewContentPanel: public Entity2D
 		}
 
 
-		void setPageItemAlign(UiWidget* widget)
+		void adjustPageItemAlign(UiWidget* widget)
 		{
 			int index=getPageItemIndex(widget);
+			if(index==-1)
+			{
+				return;
+			}
+
 			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
-			setPageItemAlign(index,item->m_alignH,item->m_alignV);
+			adjustPageItemAlign(index,item->m_alignH,item->m_alignV);
 		}
 
-		void setPageItemAlign(UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
+		void adjustPageItemAlign(UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
 		{
 			int index=getPageItemIndex(widget);
-			setPageItemAlign(index,alignh,alignv);
+			if(index==-1)
+			{
+				return;
+			}
+
+			adjustPageItemAlign(index,alignh,alignv);
 		}
 
-		void setPageItemAlign(int index,E_AlignH alignh,E_AlignV alignv)
+		void adjustPageItemAlign(int index,E_AlignH alignh,E_AlignV alignv)
 		{
-			setPageItemAlign(m_mode,index,alignh,alignv);
+			adjustPageItemAlign(m_mode,index,alignh,alignv);
 		}
 
-		void setPageItemAlign(E_ScrollDirection mode,int index,E_AlignH alignh,E_AlignV alignv)
+
+		void adjustPageItemAlign(E_ScrollDirection mode,int index,E_AlignH alignh,E_AlignV alignv)
 		{
+			if(index<0|| index>=(int)m_pageItem->size())
+			{
+				return;
+			}
+
 			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
 			item->m_widget->setSignalTSAEnabled(false);
 			float start_x,start_y;
@@ -240,13 +256,35 @@ class PageViewContentPanel: public Entity2D
 		}
 
 
+
 		UiWidget* getPageItem(int index)
 		{
 			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
 			return item->m_widget;
-		
 		}
 
+		PageViewContentPanel::PageViewItemInfo* getPageItemInfo(int index)
+		{
+			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
+			return item;
+		}
+
+
+		void setPageItemAlign(int index,E_AlignH h,E_AlignV v)
+		{
+			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
+			item->m_alignH=h;
+			item->m_alignV=v;
+			adjustPageItemAlign(item->m_widget);
+		}
+
+
+		void setPageItemAlignH(int index,E_AlignH h)
+		{
+			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
+			item->m_alignH=h;
+			adjustPageItemAlign(item->m_widget);
+		}
 
 		E_AlignH getPageItemAlignH(int index)
 		{
@@ -258,6 +296,13 @@ class PageViewContentPanel: public Entity2D
 		{
 			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
 			return item->m_alignV;
+		}
+
+		void setPageItemAlignV(int index,E_AlignV v)
+		{
+			PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(index);
+			item->m_alignV=v;
+			adjustPageItemAlign(item->m_widget);
 		}
 
 
@@ -275,6 +320,7 @@ class PageViewContentPanel: public Entity2D
 			return -1;
 		}
 
+
 	public:
 		bool hit2D(float x,float y) FS_OVERRIDE 
 		{
@@ -287,7 +333,7 @@ class PageViewContentPanel: public Entity2D
 			for(int i=0;i<size;i++)
 			{
 				PageViewItemInfo* item=(PageViewItemInfo*) m_pageItem->get(i);
-				setPageItemAlign(i,item->m_alignH,item->m_alignV);
+				adjustPageItemAlign(i,item->m_alignH,item->m_alignV);
 			}
 		}
 };
@@ -315,8 +361,22 @@ PageView* PageView::create(float width,float height)
 	return ret;
 }
 
+PageView::PageView()
+{
+	init(E_ScrollDirection::ALL,0,0);
+}
+
 
 PageView::PageView(E_ScrollDirection mode,float w,float h)
+{
+	init(mode,w,h);
+
+
+}
+
+
+
+void PageView::init(E_ScrollDirection mode ,float w,float h)
 {
 	m_contentPanel=PageViewContentPanel::create(mode,w,h);
 	FS_NO_REF_DESTROY(m_contentPanel);
@@ -427,12 +487,47 @@ void PageView::addPage(int index,UiWidget* widget,E_AlignH alignh,E_AlignV align
 
 void PageView::setPageAlign(int index,E_AlignH alignh,E_AlignV alignv)
 {
+	if(index<0 || index>=m_contentPanel->getPageItemNu())
+	{
+		return;
+	}
+
 	m_contentPanel->setPageItemAlign(index,alignh,alignv);
 }
 
+E_AlignH PageView::getPageAlignH(int index)
+{	
+	if(index<0 || index>=m_contentPanel->getPageItemNu())
+	{
+		return E_AlignH::CENTER;
+	}
+
+	PageViewContentPanel::PageViewItemInfo* info=m_contentPanel->getPageItemInfo( index);
+
+	return info->m_alignH;
+}
+
+
+E_AlignV PageView::getPageAlignV(int index)
+{
+	if(index<0 || index>=m_contentPanel->getPageItemNu())
+	{
+		return E_AlignV::CENTER;
+	}
+
+	PageViewContentPanel::PageViewItemInfo* info=m_contentPanel->getPageItemInfo( index);
+
+	return info->m_alignV;
+
+}
+
+
 void PageView::setPageAlign(UiWidget* widget,E_AlignH alignh,E_AlignV alignv)
 {
-	m_contentPanel->setPageItemAlign(widget,alignh,alignv);
+	int index=m_contentPanel->getPageItemIndex(widget);
+
+	setPageAlign(index,alignh,alignv);
+
 }
 
 void PageView::removePage(int index)
@@ -473,10 +568,12 @@ int PageView::getPageNu()
 	return m_contentPanel->getPageItemNu();
 }
 
+
 UiWidget* PageView::getPage(int index)
 {
 	return m_contentPanel->getPageItem(index);
 }
+
 
 int PageView::getPageIndex(UiWidget* widget)
 {
@@ -509,15 +606,16 @@ void PageView::nextPage()
 
 void PageView::setCurrentPageIndex(int index)
 {
+	if(index>=getPageNu())
+	{
+		index=getPageNu()-1;
+	}
+
 	if(index<0)
 	{
 		index=0;
 	}
 
-	if(index>=getPageNu())
-	{
-		index=getPageNu()-1;
-	}
 
 
 	if(!m_scrollFinished)
@@ -540,6 +638,47 @@ void PageView::setCurrentPageIndex(int index)
 }
 
 
+void PageView::setCurrentPageAlignH(E_AlignH h)
+{
+	if(m_currentPageIndex>=m_contentPanel->getPageItemNu())
+	{
+		return;
+	}
+	m_contentPanel->setPageItemAlignH(m_currentPageIndex,h);
+
+}
+
+E_AlignH PageView::getCurrentPageAlignH()
+{
+	if(m_currentPageIndex>=m_contentPanel->getPageItemNu())
+	{
+		return E_AlignH::CENTER;
+	}
+	return m_contentPanel->getPageItemAlignH(m_currentPageIndex);
+}
+
+void PageView::setCurrentPageAlignV(E_AlignV v)
+{
+	if(m_currentPageIndex>=m_contentPanel->getPageItemNu())
+	{
+		return;
+	}
+	m_contentPanel->setPageItemAlignV(m_currentPageIndex,v);
+}
+
+
+E_AlignV PageView::getCurrentPageAlignV()
+{
+	if(m_currentPageIndex>=m_contentPanel->getPageItemNu())
+	{
+		return E_AlignV::CENTER;
+	}
+	return m_contentPanel->getPageItemAlignV(m_currentPageIndex);
+}
+
+
+
+
 
 
 int PageView::getCurrentPageIndex()
@@ -556,6 +695,10 @@ void PageView::setCurrentPage(UiWidget* widget)
 
 UiWidget* PageView::getCurrentPage()
 {
+	if(m_currentPageIndex>=getPageNu())
+	{
+		return NULL;
+	}
 	return m_contentPanel->getPageItem(m_currentPageIndex);
 }
 
@@ -710,17 +853,17 @@ void PageView::update(float dt)
 
 void PageView::childSizeChanged(UiWidget* widget)
 {
-	m_contentPanel->setPageItemAlign(widget);
+	m_contentPanel->adjustPageItemAlign(widget);
 }
 
 void PageView::childAnchorChanged(UiWidget* widget)
 {
-	m_contentPanel->setPageItemAlign(widget);
+	m_contentPanel->adjustPageItemAlign(widget);
 }
 
 void PageView::childTransformChanged(UiWidget* widget)
 {
-	m_contentPanel->setPageItemAlign(widget);
+	m_contentPanel->adjustPageItemAlign(widget);
 }
 
 
@@ -1009,8 +1152,36 @@ void PageView::pageIndexChanged(int old_index,int new_index)
 
 /** Used For PageView FsClass */
 
-FS_CLASS_IMPLEMENT_WITH_BASE(PageView,UiWidget,0,0);
+static PageView* S_PageView_NewInstance(FsDict* attr)
+{
+	PageView* ret=PageView::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+	return ret;
+}
 
+
+
+
+FS_CLASS_ATTR_SET_GET_FUNCTION(PageView,setCurrentPageIndex,getCurrentPageIndex,int);
+
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(PageView,setMode,getMode,ScrollDirection);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(PageView,setCurrentPageAlignH,getCurrentPageAlignH,AlignH);
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(PageView,setCurrentPageAlignV,getCurrentPageAlignV,AlignV);
+
+
+static FsClass::FsAttributeDeclare S_PageView_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("mode",E_FsType::FT_CHARS,NULL,PageView_setMode,PageView_getMode),
+	FS_CLASS_ATTR_DECLARE("currentPageIndex",E_FsType::FT_I_1,NULL,PageView_setCurrentPageIndex,PageView_getCurrentPageIndex),
+	FS_CLASS_ATTR_DECLARE("currentPageAlignH",E_FsType::FT_CHARS,NULL,PageView_setCurrentPageAlignH,PageView_getCurrentPageAlignH),
+	FS_CLASS_ATTR_DECLARE("currentPageAlignV",E_FsType::FT_CHARS,NULL,PageView_setCurrentPageAlignV,PageView_getCurrentPageAlignV),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0),
+
+};
+
+FS_CLASS_IMPLEMENT_WITH_BASE(PageView,UiWidget,S_PageView_NewInstance,S_PageView_Main_Attr);
 
 
 

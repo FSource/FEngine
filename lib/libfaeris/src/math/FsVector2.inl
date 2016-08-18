@@ -54,9 +54,9 @@ inline TVector2<T> TVector2<T>::sub(const TVector2<T>& v) const
 }
 
 template<typename T>
-inline TVector2<T> TVector2<T>::scale(const T k)const 
+inline TVector2<T> TVector2<T>::scale( float k)const 
 {
-	return TVector2(x*k,y*k);
+	return TVector2((T)(x*k),(T)(y*k));
 }
 
 template<typename T>

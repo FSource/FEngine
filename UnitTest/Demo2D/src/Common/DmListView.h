@@ -16,6 +16,7 @@ class DmListView:public ListView
 	public:
 		void setSelected(int index,bool callback);
 		void setFocus(DmListItem* l,bool callback);
+		void DmListView::clearChild() FS_OVERRIDE;
 
 	protected:
 		DmListView();

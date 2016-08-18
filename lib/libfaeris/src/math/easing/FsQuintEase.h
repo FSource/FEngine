@@ -34,7 +34,7 @@
 #include "FsEaseExpr.h"
 
 NS_FS_BEGIN
-class QuintEase:EaseExpr 
+class QuintEase:public EaseExpr 
 {
 	public:
 		static QuintEase* create();

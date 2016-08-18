@@ -45,11 +45,15 @@
 #include "mgr/FsProgramSourceMgr.h"
 
 #include "sys/io/FsVFS.h"
+#include "sys/io/FsMemFile.h"
 #include "sys/io/FsPackage.h"
 #include "support/util/FsDict.h"
 #include "support/util/FsArray.h"
 #include "support/util/FsScriptUtil.h"
+#include "graphics/FsFontTTF.h"
 
+
+#include "mgr/buildin/FsSysResource_Font.h"
 
 NS_FS_BEGIN
 
@@ -138,6 +142,7 @@ int FsFaeris_ModuleInit()
 
 
 
+	FsFaeris_LoadSysResource();
 
 
 
@@ -502,6 +507,22 @@ int FsFaeris_ConfigWin(FsDict* dict)
 	}
 	return 0;
 }
+
+
+int FsFaeris_LoadSysResource()
+{
+	FsFile* file=MemFile::create(FsSysResource_Font,FsSysResource_FontLen);
+	FontTTF* font=FontTTF::create(file);
+	file->autoDestroy();
+
+
+	/* add ref to font, it will never be remove from cache */
+	font->addRef();
+	Global::fontTTFMgr()->add(FS_BUILDIN_FONT_NAME,font);
+
+	return 0;
+}
+
 
 int FsFaeris_ConfigENV(FsDict* dict)
 {

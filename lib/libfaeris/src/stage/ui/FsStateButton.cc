@@ -94,19 +94,12 @@ bool StateButton::init(int state_nu)
 	m_size.set(0.0f,0.0f);
 	m_anchor.set(0.5f,0.5f);
 
+	m_textureUrl="";
 	m_texture=NULL;
 
-	static ProgramSource* S_programSource=NULL;
-	if(S_programSource==NULL)
-	{
-		S_programSource=(ProgramSource*)Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F);
-
-	}
-	setProgramSource(S_programSource);
-
-
-
+	setTexture(NULL);
 	setTouchEnabled(true);
+
 	return true;
 }
 
@@ -161,54 +154,71 @@ float StateButton::getOpacity(int st) const
 }
 
 /* texture */
-
-void StateButton::setTexture(const char* filename)
+void StateButton::setTextureUrl(const char* filename)
 {
 	Texture2D* tex=Global::textureMgr()->loadTexture(filename);
 	FS_TRACE_WARN_ON(tex==NULL,"Can't Load Texture(%s) For StateButton",filename);
 	setTexture(tex);
+	if(tex==NULL)
+	{
+		m_textureUrl=filename;
+	}
 }
 
-void StateButton::setTexture(const char* filename,float width,float height)
+const char* StateButton::getTextureUrl()
 {
-	Texture2D* tex=Global::textureMgr()->loadTexture(filename);
-	FS_TRACE_WARN_ON(tex==NULL,"Can't Load Texture(%s) For StateButton",filename);
-	setTexture(tex,width,height);
+	return m_textureUrl.c_str();
 }
 
-
-void StateButton::setTexture(const char* filename,const Vector2& size)
-{
-	setTexture(filename,size.x,size.y);
-}
 
 void StateButton::setTexture(Texture2D* tex)
 {
 	FS_SAFE_ASSIGN(m_texture,tex);
 	if(m_texture)
 	{
-		m_size.x=(float)m_texture->getWidth();
-		m_size.y=(float)m_texture->getHeight();
+		if(m_size.x==0)
+		{
+			m_size.x=(float)m_texture->getWidth();
+		}
+
+		if(m_size.y==0)
+		{
+			m_size.y=(float)m_texture->getHeight();
+		}
+
+		m_textureUrl=m_texture->getResourceUrl();
+	}
+
+	if(m_texture)
+	{
+		static ProgramSource* S_programSourceTex=NULL;
+
+		/* Change Shader To Color Mode */
+		if(S_programSourceTex==NULL)
+		{
+			S_programSourceTex=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F_T2F);
+		}
+		setProgramSource(S_programSourceTex);
+
 	}
 	else 
 	{
-		m_size.set(0,0);
+		static ProgramSource* S_programSourceColor=NULL;
+		if(S_programSourceColor==NULL)
+		{
+			S_programSourceColor=(ProgramSource*) Global::programSourceMgr()->load(FS_PRE_PROGRAM_SOURCE_V4F);
+		}
+
+		setProgramSource(S_programSourceColor);
 	}
 
 
+
+
+
 }
 
-void StateButton::setTexture(Texture2D* tex,float width,float height)
-{
-	setTexture(tex);
-	Entity2D::setSize(Vector2(width,height));
-}
 
-void StateButton::setTexture(Texture2D* tex,const Vector2& size)
-{
-	setTexture(tex);
-	Entity2D::setSize(size);
-}
 
 Texture2D* StateButton::getTexture()const 
 {
@@ -217,27 +227,26 @@ Texture2D* StateButton::getTexture()const
 
 
 
-void StateButton::setTexture(int st,const char* filename)
+void StateButton::setTextureUrl(int st,const char* filename)
 {
 	FS_CHECK_STATE_VALID(st);
 	Texture2D* tex=Global::textureMgr()->loadTexture(filename);
 	FS_TRACE_WARN_ON(tex==NULL,"Can't Load Texture(%s) For StateButton",filename);
+
 	setTexture(st,tex);
+	
+	if(tex==NULL)
+	{
+		FS_CHECK_STATE_VALID(st);
+		m_states[st].m_textureUrl=filename;
+	}
+
 }
 
-
-void StateButton::setTexture(int st,const char* filename,float width,float height)
+const char* StateButton::getTextureUrl(int st)
 {
-	FS_CHECK_STATE_VALID(st);
-	Texture2D* tex=Global::textureMgr()->loadTexture(filename);
-	FS_TRACE_WARN_ON(tex==NULL,"Can't Load Texture(%s) For StateButton",filename);
-	setTexture(st,tex,width,height);
-}
-
-
-void StateButton::setTexture(int st,const char* filename,const Vector2& size)
-{
-	setTexture(st,filename,size.x,size.y);
+		FS_CHECK_STATE_VALID(st);
+		return m_states[st].m_textureUrl.c_str();
 }
 
 
@@ -251,23 +260,9 @@ void StateButton::setTexture(int st,Texture2D* tex)
 		m_states[st].m_size.set((float)tex->getWidth(),(float)tex->getHeight());
 	}
 
-
 	markStateDirty();
 }
 
-void StateButton::setTexture(int st,Texture2D* tex,float width,float height)
-{
-	FS_CHECK_STATE_VALID(st);
-	FS_SAFE_ASSIGN(m_states[st].m_texture,tex);
-	m_states[st].m_size.set(width,height);
-	markStateDirty();
-
-}
-void StateButton::setTexture(int st,Texture2D* tex,const Vector2& size)
-{
-	setTexture(st,tex,size.x,size.y);
-
-}
 
 Texture2D* StateButton::getTexture(int st) const
 {
@@ -303,7 +298,7 @@ Vector2 StateButton::getSize(int st) const
 void StateButton::setAnchor(int st,float x,float y)
 {
 	FS_CHECK_STATE_VALID(st);
-	m_states[st].m_anchor.set(x,y);
+	m_states[st].m_anchor.set(x,y); 
 	markStateDirty();
 }
 
@@ -425,6 +420,162 @@ void StateButton::clearTweenFlags()
 	markStateDirty();
 }
 
+
+void StateButton::setTweenColorEnabled(bool value)
+{
+	if(value)
+	{
+		m_tweenFlags|=E_ButtonTweenFlag::COLOR;
+	}
+	else 
+	{
+		m_tweenFlags &=~E_ButtonTweenFlag::COLOR;
+	}
+
+}
+
+bool StateButton::getTweenColorEnabled()
+{
+	return m_tweenFlags&E_ButtonTweenFlag::COLOR ;
+}
+
+
+
+void StateButton::setTweenOpacityEnabled(bool value)
+{
+	if(value)
+	{
+		m_tweenFlags|=E_ButtonTweenFlag::OPACITY;
+	}
+	else 
+	{
+		m_tweenFlags &=~E_ButtonTweenFlag::OPACITY;
+	}
+}
+
+bool StateButton::getTweenOpacityEnabled()
+{
+	return (m_tweenFlags&E_ButtonTweenFlag::OPACITY)!=0;
+}
+
+
+void StateButton::setTweenTextureEnabled(bool value)
+{
+
+	if(value)
+	{
+		m_tweenFlags|=E_ButtonTweenFlag::TEXTURE;
+	}
+	else 
+	{
+		m_tweenFlags &=~E_ButtonTweenFlag::TEXTURE;
+	}
+}
+
+
+
+
+bool StateButton::getTweenTextureEnabled()
+{
+	return (m_tweenFlags&E_ButtonTweenFlag::TEXTURE)!=0;
+}
+
+
+
+void StateButton::setTweenSizeEnabled(bool value)
+{
+
+	if(value)
+	{
+		m_tweenFlags|=E_ButtonTweenFlag::SIZE;
+	}
+	else 
+	{
+		m_tweenFlags &=~E_ButtonTweenFlag::SIZE;
+	}
+}
+
+bool StateButton::getTweenSizeEnabled()
+{
+	return (m_tweenFlags&E_ButtonTweenFlag::SIZE)!=0;
+}
+
+
+void StateButton::setTweenAnchorEnabled(bool value)
+{
+	if(value)
+	{
+		m_tweenFlags|=E_ButtonTweenFlag::ANCHOR;
+	}
+	else 
+	{
+		m_tweenFlags &=~E_ButtonTweenFlag::ANCHOR;
+	}
+}
+
+bool StateButton::getTweenAnchorEnabled()
+{
+	return (m_tweenFlags&E_ButtonTweenFlag::ANCHOR)!=0;
+}
+
+
+void StateButton::setTweenRotateEnabled(bool value)
+{
+
+	if(value)
+	{
+		m_tweenFlags|=E_ButtonTweenFlag::ROTATE;
+	}
+	else 
+	{
+		m_tweenFlags &=~E_ButtonTweenFlag::ROTATE;
+	}
+}
+
+bool StateButton::getTweenRotateEnabled()
+{
+	return (m_tweenFlags&E_ButtonTweenFlag::ROTATE)!=0;
+}
+
+void StateButton::setTweenScaleEnabled(bool value)
+{
+	if(value)
+	{
+		m_tweenFlags|=E_ButtonTweenFlag::SCALE;
+	}
+	else 
+	{
+		m_tweenFlags &=~E_ButtonTweenFlag::SCALE;
+	}
+
+}
+
+bool StateButton::getTweenScaleEnabled()
+{
+	return (m_tweenFlags&E_ButtonTweenFlag::SCALE)!=0;
+}
+
+void StateButton::setTweenChildrenEnabled(bool value)
+{
+
+	if(value)
+	{
+		m_tweenFlags|=E_ButtonTweenFlag::CHILDREN;
+	}
+	else 
+	{
+		m_tweenFlags &=~E_ButtonTweenFlag::CHILDREN;
+	}
+}
+
+bool StateButton::getTweenChildrenEnabled()
+{
+	return (m_tweenFlags&E_ButtonTweenFlag::CHILDREN)!=0;
+}
+
+
+
+
 void StateButton::addTweenFlags(uint32_t flags)
 {
 	m_tweenFlags|=flags;
@@ -473,7 +624,8 @@ void StateButton::setState(int st)
 
 		if(m_tweenFlags&E_ButtonTweenFlag::TEXTURE)
 		{
-			FS_SAFE_ASSIGN(m_texture,m_tweenToState->m_texture);
+			setTexture(m_tweenToState->m_texture);
+			//FS_SAFE_ASSIGN(m_texture,m_tweenToState->m_texture);
 		}
 
 		if(m_tweenFlags&E_ButtonTweenFlag::CHILDREN)
@@ -573,7 +725,8 @@ void StateButton::setAttributeWithState(StateAttr* st)
 
 	if(m_tweenFlags&E_ButtonTweenFlag::TEXTURE)
 	{
-		FS_SAFE_ASSIGN(m_texture,st->m_texture);
+		setTexture(st->m_texture);
+		//FS_SAFE_ASSIGN(m_texture,st->m_texture);
 	}
 
 	if(m_tweenFlags&E_ButtonTweenFlag::CHILDREN)
@@ -644,7 +797,7 @@ void StateButton::update(float dt)
 void StateButton::draw(RenderDevice* rd,bool update_matrix)
 {
 	Program* prog=getProgram(NULL);
-	if(!m_texture||!prog)
+	if(!prog)
 	{
 		return;
 	}
@@ -659,7 +812,10 @@ void StateButton::draw(RenderDevice* rd,bool update_matrix)
 
 	m_material->configRenderDevice(rd);
 
-	rd->bindTexture(m_texture,0);
+	if(m_texture)
+	{
+		rd->bindTexture(m_texture,0);
+	}
 
 
 	float x=-m_size.x*m_anchor.x;
@@ -733,7 +889,7 @@ static void StateButton_setTweenFlag(StateButton* sb,FsArray* tweens)
 
 void FsStateButton_SetState(StateButton* sb,int state,FsDict* dict)
 {
-	FsVariant color=FsVariant(dict->lookup("color")).getCast(FsType::FT_COLOR_4);
+	FsVariant color=FsVariant(dict->lookup("color")).getCast(E_FsType::FT_COLOR_4);
 	if(color.isValid())
 	{
 		sb->setColor(state,*((Color4f*)color.getValue()));
@@ -742,7 +898,7 @@ void FsStateButton_SetState(StateButton* sb,int state,FsDict* dict)
 	FsString* tex_url=dict->lookupString("textureUrl");
 	if(tex_url)
 	{
-		sb->setTexture(state,tex_url->cstr());
+		sb->setTextureUrl(state,tex_url->cstr());
 	}
 
 
@@ -863,12 +1019,36 @@ void FsStateButton_SetState(StateButton* sb,int state,FsDict* dict)
 
 FS_CLASS_ATTR_SET_FUNCTION(StateButton,setLinearTween,float);
 
+FS_CLASS_ATTR_SET_GET_FUNCTION(StateButton,setTweenColorEnabled,getTweenColorEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(StateButton,setTweenOpacityEnabled,getTweenOpacityEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(StateButton,setTweenTextureEnabled,getTweenTextureEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(StateButton,setTweenSizeEnabled,getTweenSizeEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(StateButton,setTweenAnchorEnabled,getTweenAnchorEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(StateButton,setTweenRotateEnabled,getTweenRotateEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(StateButton,setTweenScaleEnabled,getTweenScaleEnabled,bool);
+FS_CLASS_ATTR_SET_GET_FUNCTION(StateButton,setTweenChildrenEnabled,getTweenChildrenEnabled,bool);
+
+FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(StateButton,setTextureUrl,getTextureUrl);
+
+
 
 
 static FsClass::FsAttributeDeclare S_StateButton_Main_Attr[]={
-	FS_CLASS_ATTR_DECLARE("linearTweenTime",FsType::FT_F_1,NULL,StateButton_setLinearTween,0),
-	FS_CLASS_ATTR_DECLARE("tweenFlags",FsType::FT_ARRAY,NULL,StateButton_setTweenFlag,0),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+
+	FS_CLASS_ATTR_DECLARE("linearTweenTime",E_FsType::FT_F_1,NULL,StateButton_setLinearTween,0),
+	FS_CLASS_ATTR_DECLARE("tweenFlags",E_FsType::FT_ARRAY,NULL,StateButton_setTweenFlag,0),
+
+	FS_CLASS_ATTR_DECLARE("tweenColorEnabled",E_FsType::FT_B_1,NULL,StateButton_setTweenColorEnabled,StateButton_getTweenColorEnabled),
+	FS_CLASS_ATTR_DECLARE("tweenOpacityEnabled",E_FsType::FT_B_1,NULL,StateButton_setTweenOpacityEnabled,StateButton_getTweenOpacityEnabled),
+	FS_CLASS_ATTR_DECLARE("tweenTextureEnabled",E_FsType::FT_B_1,NULL,StateButton_setTweenTextureEnabled,StateButton_getTweenTextureEnabled),
+	FS_CLASS_ATTR_DECLARE("tweenSizeEnabled",E_FsType::FT_B_1,NULL,StateButton_setTweenSizeEnabled,StateButton_getTweenSizeEnabled),
+	FS_CLASS_ATTR_DECLARE("tweenAnchorEnabled",E_FsType::FT_B_1,NULL,StateButton_setTweenAnchorEnabled,StateButton_getTweenAnchorEnabled),
+	FS_CLASS_ATTR_DECLARE("tweenRotateEnabled",E_FsType::FT_B_1,NULL,StateButton_setTweenRotateEnabled,StateButton_getTweenRotateEnabled),
+	FS_CLASS_ATTR_DECLARE("tweenScaleEnabled",E_FsType::FT_B_1,NULL,StateButton_setTweenScaleEnabled,StateButton_getTweenScaleEnabled),
+	FS_CLASS_ATTR_DECLARE("tweenChildrenEnabled",E_FsType::FT_B_1,NULL,StateButton_setTweenChildrenEnabled,StateButton_getTweenChildrenEnabled),
+	FS_CLASS_ATTR_DECLARE("textureUrl",E_FsType::FT_CHARS,NULL,StateButton_setTextureUrl,StateButton_getTextureUrl),
+
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 

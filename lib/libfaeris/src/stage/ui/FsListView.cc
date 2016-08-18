@@ -478,6 +478,10 @@ ListView* ListView::create()
 	return ret;
 }
 
+ListView::ListView()
+{
+	init(E_ScrollDirection::VERTICAL,0,0);
+}
 
 ListView::ListView(float width,float height)
 {
@@ -508,10 +512,14 @@ void ListView::init(E_ScrollDirection mode,float w,float h)
 
 	if(mode==E_ScrollDirection::VERTICAL)
 	{
+		setScrollXEnabled(false);
+		setScrollYEnabled(true);
 		setContentAlign(E_AlignH::CENTER,E_AlignV::TOP);
 	}
 	else 
 	{
+		setScrollXEnabled(true);
+		setScrollYEnabled(false);
 		setContentAlign(E_AlignH::LEFT,E_AlignV::CENTER);
 	}
 	setSize(w,h);
@@ -524,10 +532,19 @@ void ListView::init(E_ScrollDirection mode,float w,float h)
 
 void ListView::setMode(E_ScrollDirection mode)
 {
-	setScrollMode(mode);
+	//setScrollMode(mode);
 	m_contentPanel->setMode(mode);
 
 	adjustContentSize();
+
+	float x=getScrollPercentX();
+	float y=getScrollPercentY();
+	setScrollPercent(x,y);
+}
+
+E_ScrollDirection ListView::getMode()
+{
+	return m_contentPanel->getMode();
 }
 
 void ListView::setListGap(float value)
@@ -666,7 +683,7 @@ void ListView::layout()
 }
 
 
-void ListView::scrollChange(float x,float y)
+void ListView::layoutContentWidget(float x,float y)
 {
 	//FS_TRACE_WARN("x=%f,y=%f",x,y);
 
@@ -799,7 +816,35 @@ void ListView::removeChild(Entity* en)
 
 /** Used For ListView FsClass */
 
-FS_CLASS_IMPLEMENT_WITH_BASE(ListView,ScrollWidget,0,0);
+static ListView* S_ListView_NewInstance(FsDict* attr)
+{
+	ListView* ret=ListView::create();
+	if(attr)
+	{
+		ret->setAttributes(attr);
+	}
+
+	return ret;
+
+}
+
+static void S_ListView_setListItem(ListView* view,FsArray* attr)
+{
+
+}
+
+
+FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(ListView,setMode,getMode,ScrollDirection);
+FS_CLASS_ATTR_SET_GET_FUNCTION(ListView,setListGap,getListGap,float);
+
+
+static FsClass::FsAttributeDeclare S_ListView_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("mode",E_FsType::FT_CHARS,0,ListView_setMode,ListView_getMode),
+	FS_CLASS_ATTR_DECLARE("listGap",E_FsType::FT_F_1,0,ListView_setListGap,ListView_getListGap),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
+};
+
+FS_CLASS_IMPLEMENT_WITH_BASE(ListView,ScrollWidget,S_ListView_NewInstance,S_ListView_Main_Attr);
 
 
 NS_FS_END

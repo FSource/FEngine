@@ -31,7 +31,7 @@
 #define _FS_LAYER_H_
 #include <functional>
 #include <vector>
-#include "stage/FsActionTarget.h"
+#include "stage/animation/FsAnimator.h"
 #include "math/FsRect2D.h"
 #include "math/FsVector3.h"
 #include "math/FsVector2.h"
@@ -45,7 +45,7 @@ class FsSlowDict;
 class TouchEvent;
 class Entity;
 
-class Layer:public ActionTarget
+class Layer:public Animator 
 {
 	public:
 		FS_CLASS_DECLARE(Layer);

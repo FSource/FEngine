@@ -135,7 +135,7 @@ NS_FS_END
 
 
 /* PreLoad FsClass */
-
+#include "FsObject.h"
 #include "stage/entity/FsEntity.h"
 #include "stage/entity/FsQuad2D.h"
 #include "stage/entity/FsLabelTTF.h"
@@ -157,6 +157,11 @@ NS_FS_END
 #include "stage/layer/FsLayer.h"
 #include "stage/layer/FsLayer2D.h"
 
+#include "stage/animation/FsAnimation.h"
+#include "stage/animation/FsTrackAnimation.h"
+#include "stage/animation/FsAttributeAnimation.h"
+#include "stage/animation/FsParallelAnimation.h"
+
 
 NS_FS_BEGIN
 
@@ -165,6 +170,7 @@ NS_FS_BEGIN
 
 void ClassMgr::preRegisterClass()
 {
+	FS_REGISTER_CLASS(FsObject);
 	FS_REGISTER_CLASS(Entity);
 	FS_REGISTER_CLASS(Quad2D);
 	FS_REGISTER_CLASS(LabelTTF);
@@ -181,7 +187,10 @@ void ClassMgr::preRegisterClass()
 	FS_REGISTER_CLASS(Scene);
 	FS_REGISTER_CLASS(Layer);
 	FS_REGISTER_CLASS(Layer2D);
-
+	FS_REGISTER_CLASS(Animation);
+	FS_REGISTER_CLASS(TrackAnimation);
+	FS_REGISTER_CLASS(AttributeAnimation);
+	FS_REGISTER_CLASS(ParallelAnimation);
 }
 
 NS_FS_END

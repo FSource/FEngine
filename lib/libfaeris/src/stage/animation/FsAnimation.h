@@ -6,18 +6,14 @@
 
 NS_FS_BEGIN
 
-class FsAnimation:public FsObject
+class Animator;
+class Animation:public FsObject
 {
 	public:
-		void setAnimType(E_AnimType type);
-		E_AnimType getAnimTye();
+		FS_CLASS_DECLARE(Animation);
 	public:
-		FS_VIRTUAL void update(Animator* at,float time,float dt);
-		FS_VIRTUAL float getTimeLength();
-
-	protected:
-		E_AnimType m_animType;
-		std::string m_animTypeName;
+		FS_VIRTUAL void update(Animator* at,float time,float dt)=0;
+		FS_VIRTUAL float getTimeLength()=0;
 };
 
 NS_FS_END

@@ -59,6 +59,10 @@ class LabelTTF:public Entity2D
 		static LabelTTF* create(const char* font,int size,const char* text);
 
 	public:
+		virtual void setSize(const Vector2f& v);
+		virtual Vector2f getSize();
+
+	public:
 		void setString(const char* string);
 		const char* getString();
 

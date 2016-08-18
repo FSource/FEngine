@@ -230,7 +230,7 @@ bool FsArray::remove(ulong index)
 
 	if(m_obs[index]) m_obs[index]->decRef();
 
-	for(ulong i=index;i<m_size;i++)
+	for(ulong i=index;i<m_size-1;i++)
 	{
 		m_obs[i]=m_obs[i+1];
 	}

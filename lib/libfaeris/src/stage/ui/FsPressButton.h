@@ -64,7 +64,7 @@ class PressButton:public StateButton
 		static PressButton* create();
 		static PressButton* createWithDarkStyle(const char* filename,const Color4f& dark);
 		static PressButton* createWithDarkStyle(Texture2D* tex,const Color4f& dark);
-
+		 
 		static PressButton* createWithColorStyle(const char* filename,const Color4f& normal,const Color4f& press);
 		static PressButton* createWithColorStyle(Texture2D* tex,const Color4f& normal,const Color4f& press);
 

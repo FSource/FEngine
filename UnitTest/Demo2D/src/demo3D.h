@@ -3,7 +3,7 @@
 #include "FsObject.h"
 #include "FsMacros.h"
 #include "FsEnums.h"
-#include "stage/FsActionTarget.h"
+
 #include "stage/FsScene.h"
 #include "stage/entity/FsEntity.h"
 #include "stage/entity/FsQuad2D.h"
@@ -75,17 +75,13 @@
 #include "sys/event/FsTouchDispatcher.h"
 #include "sys/event/FsSysDispatcher.h"
 #include "sys/event/FsKeypadDispatcher.h"
-#include "stage/action/FsAction.h"
+
 #include "media/FsAudioEngine.h"
 #include "sys/network/FsHttpEngine.h"
 #include "sys/network/FsHttpReponse.h"
 
 #include "support/util/FsScriptUtil.h"
-#include "stage/action/FsMoveAction.h"
-#include "stage/action/FsPauseAction.h"
-#include "stage/action/FsRotateAction.h"
-#include "stage/action/FsScaleAction.h"
-#include "stage/action/FsSeqAction.h"
+
 
 
 

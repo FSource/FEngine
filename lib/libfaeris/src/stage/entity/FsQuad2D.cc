@@ -115,6 +115,7 @@ void Quad2D::setTexture(Texture2D* tex)
 	{
 		m_size.x=(float)m_texture->getWidth();
 		m_size.y=(float)m_texture->getHeight();
+		m_resourceUrl=tex->getResourceUrl();
 	}
 	m_vertiesDirty=true;
 
@@ -145,6 +146,7 @@ void Quad2D::setTexture(Texture2D* tex)
 
 void Quad2D::setTexture(const char* filename)
 {
+	m_resourceUrl=filename;
 	Texture2D* tex=Global::textureMgr()->loadTexture(filename);
 	setTexture(tex);
 }
@@ -153,6 +155,11 @@ void Quad2D::setTexture(const char* filename)
 void Quad2D::setResourceUrl(const char* name)
 {
 	setTexture(name);
+}
+
+const char* Quad2D::getResourceUrl()
+{
+	return m_resourceUrl.c_str();
 }
 
 
@@ -231,7 +238,7 @@ void Quad2D::setRegionRect(float x,float y,float w,float h)
 	m_vertiesMode=E_DrawMode::TRIANGLE_STRIP;
 
 	m_vertiesDirty=true;
-
+	m_resourceUrl="";
 }
 
 void Quad2D::setRegionRect(const Rect2D& rect)
@@ -669,14 +676,14 @@ static void Quad2D_setTextureDict(Quad2D* q,FsDict* attr)
 }
 
 
-FS_CLASS_ATTR_SET_CHARS_FUNCTION(Quad2D,setTexture);
+FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(Quad2D,setResourceUrl,getResourceUrl);
 
 
 static FsClass::FsAttributeDeclare S_Quad2D_Main_Attr[]={
 
-	FS_CLASS_ATTR_DECLARE("textureUrl",FsType::FT_CHARS,NULL,Quad2D_setTexture,0),
-	FS_CLASS_ATTR_DECLARE("texture",FsType::FT_DICT,NULL,Quad2D_setTextureDict,0),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("resourceUrl",E_FsType::FT_CHARS,NULL,Quad2D_setResourceUrl,Quad2D_getResourceUrl),
+	FS_CLASS_ATTR_DECLARE("texture",E_FsType::FT_DICT,NULL,Quad2D_setTextureDict,0),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 

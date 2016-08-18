@@ -281,10 +281,10 @@ FS_CLASS_ATTR_SET_GET_ENUM_CHAR_FUNCTION(VertexPolygon,setMode,getMode,DrawMode)
 
 static FsClass::FsAttributeDeclare  S_VertexPolygon_Main_Attr[]=
 {
-	FS_CLASS_ATTR_DECLARE("vertices",FsType::FT_ARRAY,NULL,VertexPolygon_setVertices,0),
-	FS_CLASS_ATTR_DECLARE("mode",FsType::FT_CHARS,NULL,VertexPolygon_setMode,VertexPolygon_getMode),
+	FS_CLASS_ATTR_DECLARE("vertices",E_FsType::FT_ARRAY,NULL,VertexPolygon_setVertices,0),
+	FS_CLASS_ATTR_DECLARE("mode",E_FsType::FT_CHARS,NULL,VertexPolygon_setMode,VertexPolygon_getMode),
 
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(VertexPolygon,Entity2D,VertexPolygon_NewInstance,S_VertexPolygon_Main_Attr);

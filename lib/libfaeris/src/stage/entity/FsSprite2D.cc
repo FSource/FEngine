@@ -162,14 +162,7 @@ void Sprite2D::updateAnimation(float dt)
 			case E_AnimPlayMode::LOOP:
 				m_curFrame=m_curFrame%total_frame;
 				break;
-			case E_AnimPlayMode::START:
-				m_curFrame=0;
-				m_stop=true;
-				break;
-			case E_AnimPlayMode::END:
-				m_curFrame=total_frame-1;
-				m_stop=true;
-				break;
+
 		}
 	}
 }
@@ -231,7 +224,6 @@ int Sprite2D::getTotalFrame()
 
 void Sprite2D::update(float dt)
 {
-	updateAction(dt);
 	updateAnimation(dt);
 }
 

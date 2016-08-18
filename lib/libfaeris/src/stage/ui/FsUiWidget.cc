@@ -136,7 +136,7 @@ void UiWidget::setScale(const Vector3f& v)
 
 void UiWidget::setRotate(const Vector3f& v)
 {
-	Entity2D::setScale(v);
+	Entity2D::setRotate(v);
 	if(m_signalParentTSAEnabled&&m_parentWidget&&m_parentWidget->m_listenChildTSAEnabled)
 	{
 		m_parentWidget->childTransformChanged(this);
@@ -190,21 +190,27 @@ void UiWidget::setBgTexture(Texture2D* tex)
 	}
 }
 
-void UiWidget::setBgTexture(const char* filename)
+void UiWidget::setBgTextureUrl(const char* filename)
 {
 	if(!filename)
 	{
 		setBgTexture((Texture2D*)NULL);
+		m_bgTextureUrl=filename;
 		return;
 	}
 
 	Texture2D* tex=(Texture2D*)Global::textureMgr()->load(filename);
 	setBgTexture(tex);
+	m_bgTextureUrl=filename;
 }
 
+const char* UiWidget::getBgTextureUrl()
+{
+	return m_bgTextureUrl.c_str();
+}
 void UiWidget::setBgEnabled(bool value)
 {
-	m_bgEnabled=true;
+	m_bgEnabled=value;
 }
 
 
@@ -509,7 +515,7 @@ static UiWidget* UiWidget_NewInstace(FsDict* attr)
 
 
 FS_CLASS_ATTR_SET_GET_FUNCTION(UiWidget,setBgColor,getBgColor,Color4f);
-FS_CLASS_ATTR_SET_CHARS_FUNCTION(UiWidget,setBgTexture);
+FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(UiWidget,setBgTextureUrl,getBgTextureUrl);
 FS_CLASS_ATTR_SET_GET_FUNCTION(UiWidget,setBgEnabled,getBgEnabled,bool);
 
 
@@ -519,11 +525,11 @@ FS_CLASS_ATTR_SET_GET_FUNCTION(UiWidget,setScissorEnabled,getScissorEnabled,bool
 
 static FsClass::FsAttributeDeclare S_UiWidget_Main_Attr[]=
 {
-	FS_CLASS_ATTR_DECLARE("bgColor",FsType::FT_COLOR_4,NULL,UiWidget_setBgColor,UiWidget_getBgColor),
-	FS_CLASS_ATTR_DECLARE("bgTextureUrl",FsType::FT_CHARS,NULL,UiWidget_setBgTexture,0),
-	FS_CLASS_ATTR_DECLARE("bgEnabled",FsType::FT_B_1,NULL,UiWidget_setBgEnabled,UiWidget_getBgEnabled),
-	FS_CLASS_ATTR_DECLARE("scissorEnabled",FsType::FT_B_1,NULL,UiWidget_setScissorEnabled,UiWidget_getScissorEnabled),
-	FS_CLASS_ATTR_DECLARE(NULL,FsType::FT_IN_VALID,NULL,0,0)
+	FS_CLASS_ATTR_DECLARE("bgColor",E_FsType::FT_COLOR_4,NULL,UiWidget_setBgColor,UiWidget_getBgColor),
+	FS_CLASS_ATTR_DECLARE("bgTextureUrl",E_FsType::FT_CHARS,NULL,UiWidget_setBgTextureUrl,UiWidget_getBgTextureUrl),
+	FS_CLASS_ATTR_DECLARE("bgEnabled",E_FsType::FT_B_1,NULL,UiWidget_setBgEnabled,UiWidget_getBgEnabled),
+	FS_CLASS_ATTR_DECLARE("scissorEnabled",E_FsType::FT_B_1,NULL,UiWidget_setScissorEnabled,UiWidget_getScissorEnabled),
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
 };
 
 FS_CLASS_IMPLEMENT_WITH_BASE(UiWidget,Entity2D,UiWidget_NewInstace,S_UiWidget_Main_Attr);

@@ -56,9 +56,6 @@
     <Filter Include="src\stage\layer">
       <UniqueIdentifier>{3732c5c0-f93c-42f0-9bdf-0770c1c311e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\stage\action">
-      <UniqueIdentifier>{fa0d1b4f-7cfa-43db-b86c-ce07849836f5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\stage\ui">
       <UniqueIdentifier>{aaec03dc-d85f-43b8-95b9-c125897b5a40}</UniqueIdentifier>
     </Filter>
@@ -85,6 +82,12 @@
     </Filter>
     <Filter Include="src\stage\filter">
       <UniqueIdentifier>{855d387a-a895-4c16-9d39-c905bff269ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stage\animation">
+      <UniqueIdentifier>{87c67f93-db09-4939-beae-117102410e04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mgr\buildin">
+      <UniqueIdentifier>{825a2b9c-ec91-43ee-8ca7-104465a52e38}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -238,9 +241,6 @@
     <ClInclude Include="..\..\src\scheduler\FsTask.h">
       <Filter>src\scheduler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\stage\FsActionTarget.h">
-      <Filter>src\stage</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\stage\FsDirector.h">
       <Filter>src\stage</Filter>
     </ClInclude>
@@ -257,9 +257,6 @@
       <Filter>src\stage\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\stage\ui\FsPressButton.h">
-      <Filter>src\stage\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\ui\FsScroller.h">
       <Filter>src\stage\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\stage\ui\FsScrollView.h">
@@ -315,33 +312,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\stage\entity\FsVertexPolygon.h">
       <Filter>src\stage\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\action\FsAction.h">
-      <Filter>src\stage\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\action\FsCurve3Action.h">
-      <Filter>src\stage\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\action\FsFixTimeAction.h">
-      <Filter>src\stage\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\action\FsLoopAction.h">
-      <Filter>src\stage\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\action\FsMoveAction.h">
-      <Filter>src\stage\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\action\FsPauseAction.h">
-      <Filter>src\stage\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\action\FsRotateAction.h">
-      <Filter>src\stage\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\action\FsScaleAction.h">
-      <Filter>src\stage\action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\stage\action\FsSeqAction.h">
-      <Filter>src\stage\action</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\support\data\FsBase64.h">
       <Filter>src\support\data</Filter>
@@ -619,6 +589,45 @@
     <ClInclude Include="..\..\src\FsFaeris.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsAnimation.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsAnimationPlayer.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsAnimator.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsAttributeAnimation.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsKeyFrame.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsLoopAnimation.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsParallelAnimation.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsPauseAnimation.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsPoseAnimation.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsSeqAnimation.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsTrackAnimation.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\stage\animation\FsAnimationEvent.h">
+      <Filter>src\stage\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mgr\buildin\FsSysResource_Font.h">
+      <Filter>src\mgr\buildin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\extends\FsScriptEngine.cc">
@@ -738,9 +747,6 @@
     <ClCompile Include="..\..\src\scheduler\FsTask.cc">
       <Filter>src\scheduler</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\stage\FsActionTarget.cc">
-      <Filter>src\stage</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\stage\FsDirector.cc">
       <Filter>src\stage</Filter>
     </ClCompile>
@@ -757,9 +763,6 @@
       <Filter>src\stage\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stage\ui\FsPressButton.cc">
-      <Filter>src\stage\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\ui\FsScroller.cc">
       <Filter>src\stage\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\stage\ui\FsScrollView.cc">
@@ -815,33 +818,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\stage\entity\FsVertexPolygon.cc">
       <Filter>src\stage\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\action\FsAction.cc">
-      <Filter>src\stage\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\action\FsCurve3Action.cc">
-      <Filter>src\stage\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\action\FsFixTimeAction.cc">
-      <Filter>src\stage\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\action\FsLoopAction.cc">
-      <Filter>src\stage\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\action\FsMoveAction.cc">
-      <Filter>src\stage\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\action\FsPauseAction.cc">
-      <Filter>src\stage\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\action\FsRotateAction.cc">
-      <Filter>src\stage\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\action\FsScaleAction.cc">
-      <Filter>src\stage\action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\stage\action\FsSeqAction.cc">
-      <Filter>src\stage\action</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\support\data\FsBase64.cc">
       <Filter>src\support\data</Filter>
@@ -1106,6 +1082,33 @@
     </ClCompile>
     <ClCompile Include="..\..\src\stage\filter\FsOpacityFilter.cc">
       <Filter>src\stage\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsAnimator.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsAttributeAnimation.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsTrackAnimation.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsAnimationEvent.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsAnimationPlayer.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsAnimation.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsKeyFrame.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\stage\animation\FsParallelAnimation.cc">
+      <Filter>src\stage\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mgr\buildin\FsSysResource_Font.cc">
+      <Filter>src\mgr\buildin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

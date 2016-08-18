@@ -71,3 +71,4 @@ temp
 lib/library/win32/obj
 lib/library/linux/obj
 application/L_Faeris/bin
+/UnitTest/Demo2D/proj.win32/vs2012/*.vspx

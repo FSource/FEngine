@@ -1,31 +1,18 @@
 #ifndef _FS_TRACK_ANIMATION_H_ 
 #define _FS_TRACK_ANIMATION_H_ 
 
+#include <vector>
 #include "FsMacros.h"
 #include "FsAnimation.h"
 
 NS_FS_BEGIN 
 
-class FsKeyFrame;
+class KeyFrame;
 
-class FsTrackAnimation:public FsAnimation
+class TrackAnimation:public Animation
 {
 	public:
-		static FsTrackAnimation* createMoveFromTo(const Vector3& f,const Vector3& t,float time);
-		static FsTrackAnimation* createMoveXFromTo(const float& f,const float& t,float time);
-		static FsTrackAnimation* createMoveYFromTo(const float& f,const float& t,float time);
-		static FsTrackAnimation* createMoveZFromTo(const float& f,const float& t,float time);
-
-		static FsTrackAnimation* createRotateFromTo(const Vector3& f,const Vector3& t,float time);
-		static FsTrackAnimation* createRotateXFromTo(const float& f,const float& t,float time);
-		static FsTrackAnimation* createRotateYFromTo(const float& f,const float& t,float time);
-		static FsTrackAnimation* createRotateZFromTo(const float& f,const float& t,float time);
-
-		static FsTrackAnimation* createScaleFromTo(const Vector3& f,const Vector3& t,float time);
-		static FsTrackAnimation* createScaleXFromTo(const float& f,const float& t,float time);
-		static FsTrackAnimation* createScaleYFromTo(const float& f,const float& t,float time);
-		static FsTrackAnimation* createScaleZFromTo(const float& f,const float& t,float time);
-
+		FS_CLASS_DECLARE(TrackAnimation);
 
 	public:
 		void update(Animator* at,float time,float dt) FS_OVERRIDE;
@@ -33,21 +20,35 @@ class FsTrackAnimation:public FsAnimation
 
 	public:
 		void setLerpMode(E_LerpMode mode);
-		E_LerpMode getLerpMode();
-
-		void setValueType(FsType type);
-		FsType getValueType()
+		E_LerpMode getLerpMode() const;
 
 	public:
-		void insert(FsKeyFrame* keyframe);
-		void remove(FsKeyFrame* keyframe);
+		void insertKeyFrame(KeyFrame* frame);
+		void removeTime(float time);
+		void removeRange(float begin,float end);
+		int getKeyFrameNu();
+		void clearKeyFrame();
 
-	private:
-		FsType m_valueType;
+		KeyFrame* getKeyFrame(int index);
+
+	protected:
+		TrackAnimation();
+		~TrackAnimation();
+
+	protected:
+		int getNearBeforeIndex(float time);
+		int getNearAfterIndex(float time);
+		void calTotoalTime();
+
+		void getNearKeyFrame(float time,KeyFrame** prev,KeyFrame** next);
+		std::vector<KeyFrame*> getKeyFrame(float beign,float end);
+
+
+	protected:
 		E_LerpMode m_lerpMode;
 
 		float m_totalTime;
-		std::set<FsKeyFrame*> m_keyFrame;
+		std::vector<KeyFrame*> m_keyFrames;
 };
 
 NS_FS_END

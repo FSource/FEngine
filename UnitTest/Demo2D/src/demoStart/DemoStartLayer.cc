@@ -31,7 +31,7 @@ bool DemoStartLayer::init()
 	add(back);
     
 
-	LabelTTF * label = LabelTTF::create("font/wawati.ttc", 60, "RealityEngine  Demo");
+	LabelTTF * label = LabelTTF::create("font/wawati.ttc", 60, "FSource Game Engine  Demo");
 	label->setPosition(GAME_WIDTH/2, GAME_HEIGHT/2 + 150);
 	label->setColor(Color(255, 0, 204));
 	add(label);

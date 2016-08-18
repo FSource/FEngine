@@ -38,6 +38,7 @@
 #include "math/FsVector4.h"
 #include "math/FsMatrix4.h"
 #include "graphics/FsColor.h"
+#include "math/FsRect2D.h"
 
 
 NS_FS_BEGIN
@@ -51,7 +52,7 @@ class FsVariant
 	public:
 		FsVariant();
 
-		FsVariant(FsType t,const void* value);
+		FsVariant(E_FsType t,const void* value);
 
 		FsVariant(float v);
 		FsVariant(const Vector2& v);
@@ -63,8 +64,12 @@ class FsVariant
 		FsVariant(const Vector3i& v);
 		FsVariant(const Vector4i& v);
 
+		FsVariant(const Color4f& v);
+		FsVariant(const Color3f& v);
 
 		FsVariant(const Matrix4& v);
+		FsVariant(const Rect2D& v);
+		
 		FsVariant(const char* v);
 
 		FsVariant(FsObject* v);
@@ -72,31 +77,35 @@ class FsVariant
 		FsVariant(FsDict*  v);
 		FsVariant(FsArray* v);
 
+	
+
 		FsVariant(const FsVariant& value);
 		~FsVariant();
 
 
 		FsVariant& operator= (const FsVariant& v);
+		FsVariant operator* (float value) const;
+		FsVariant operator+ (const FsVariant& value) const;
 
 
 	public:
-		FsType getType() const;
+		E_FsType getType() const;
 		void* getValue() const;
 
 		bool isValid() const;
-		FsVariant getCast(FsType t) const;
+		FsVariant getCast(E_FsType t) const;
 
 
 
 	protected:
-		void init(FsType t,const void* value);
+		void init(E_FsType t,const void* value);
 		void destruct();
 
 
 
 
 	private:
-		FsType m_type;
+		E_FsType m_type;
 		union 
 		{
 			bool* m_b1;
@@ -119,6 +128,8 @@ class FsVariant
 			Color4f* m_c4;
 
 			Matrix4* m_mat4;
+			Rect2D* m_rect2d;
+
 			char* m_chars;
 
 

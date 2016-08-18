@@ -44,10 +44,17 @@ class Rect2D
 		void set(float _x,float _y,float _width,float _height);
 
 	public:
-		float x;
-		float y;
-		float width;
-		float height;
+		union 
+		{
+			struct
+			{
+				float x;
+				float y;
+				float width;
+				float height;
+			};
+			float v[4];
+		};
 };
 
 NS_FS_END

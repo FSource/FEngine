@@ -59,10 +59,37 @@ NS_FS_BEGIN
 			p++; \
 		} \
 		return  map[0].m_enum; \
-	}
+	} \
+	const char* FsEnum_##t##GetEnumName(int index){return map[index].m_name;} \
 
 
 
+
+/* E_FsType */
+
+static EnumStrPair<E_FsType> S_E_FsTypeStrMap[]={
+	EnumStrPair<E_FsType>(E_FsType::FT_IN_VALID,"invalid"),
+	EnumStrPair<E_FsType>(E_FsType::FT_B_1,"boolean"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_1,"float"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_2,"vector2f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_3,"vector3f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_4,"vector4f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_I_1,"integer"),
+	EnumStrPair<E_FsType>(E_FsType::FT_I_2,"vector2i"),
+	EnumStrPair<E_FsType>(E_FsType::FT_I_3,"vector3i"),
+	EnumStrPair<E_FsType>(E_FsType::FT_I_4,"vector4i"),
+	EnumStrPair<E_FsType>(E_FsType::FT_COLOR_3,"color3f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_COLOR_4,"color4f"),
+	EnumStrPair<E_FsType>(E_FsType::FT_MAT4,"mat4"),
+	EnumStrPair<E_FsType>(E_FsType::FT_F_RECT2D,"rect2df"),
+	EnumStrPair<E_FsType>(E_FsType::FT_CHARS,"string"),
+	EnumStrPair<E_FsType>(E_FsType::FT_OBJECT,"fobject"),
+	EnumStrPair<E_FsType>(E_FsType::FT_STRING,"fstring"),
+	EnumStrPair<E_FsType>(E_FsType::FT_DICT,"fdict"),
+	EnumStrPair<E_FsType>(E_FsType::FT_ARRAY,"farray"),
+	EnumStrPair<E_FsType>(E_FsType::FT_IN_VALID,NULL),
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(FsType,S_E_FsTypeStrMap) 
 
 
 
@@ -170,6 +197,44 @@ static EnumStrPair<E_ButtonTweenFlag> S_E_ButtonTweenFlag[]={
 	EnumStrPair<E_ButtonTweenFlag>(E_ButtonTweenFlag::ANCHOR,NULL)
 };
 FS_ENUM_TO_STR_MAP_IMPLEMENT(ButtonTweenFlag,S_E_ButtonTweenFlag);
+
+
+
+
+static EnumStrPair<E_LerpMode> S_E_LerpMode[]={
+	EnumStrPair<E_LerpMode>(E_LerpMode::FLAT,"flat"),
+	EnumStrPair<E_LerpMode>(E_LerpMode::SMOOTH,"smooth"),
+	EnumStrPair<E_LerpMode>(E_LerpMode::FLAT,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(LerpMode,S_E_LerpMode);
+
+static EnumStrPair<E_ScrollDirection> S_E_ScrollDirection[]={
+	EnumStrPair<E_ScrollDirection>(E_ScrollDirection::VERTICAL,"vertical"),
+	EnumStrPair<E_ScrollDirection>(E_ScrollDirection::HORIZONTAL,"horizontal"),
+	EnumStrPair<E_ScrollDirection>(E_ScrollDirection::ALL,"all"),
+	EnumStrPair<E_ScrollDirection>(E_ScrollDirection::HORIZONTAL,NULL),
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(ScrollDirection,S_E_ScrollDirection);
+
+
+static EnumStrPair<E_AlignH> S_E_AlignH[]={
+	EnumStrPair<E_AlignH>(E_AlignH::LEFT,"left"),
+	EnumStrPair<E_AlignH>(E_AlignH::CENTER,"center"),
+	EnumStrPair<E_AlignH>(E_AlignH::RIGHT,"right"),
+	EnumStrPair<E_AlignH>(E_AlignH::RIGHT,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(AlignH,S_E_AlignH);
+
+static EnumStrPair<E_AlignV> S_E_AlignV[]={
+	EnumStrPair<E_AlignV>(E_AlignV::TOP,"top"),
+	EnumStrPair<E_AlignV>(E_AlignV::CENTER,"center"),
+	EnumStrPair<E_AlignV>(E_AlignV::BOTTOM,"bottom"),
+	EnumStrPair<E_AlignV>(E_AlignV::BOTTOM,NULL)
+};
+FS_ENUM_TO_STR_MAP_IMPLEMENT(AlignV,S_E_AlignV);
+
+
+
 
 
 NS_FS_END 

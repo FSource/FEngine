@@ -52,7 +52,8 @@ class EnumStrPair
 
 #define FS_ENUM_TO_STR_MAP_DECLARE(t) \
 	const char* FsEnum_##t##ToStr(const E_##t& t);   \
-	E_##t FsEnum_StrTo##t(const char* name) 
+	E_##t FsEnum_StrTo##t(const char* name);  \
+	const char* FsEnum_##t##GetEnumName(int index) 
 
 
 
@@ -121,7 +122,7 @@ enum
 };
 
 
-enum class FsType
+enum class E_FsType
 {
 	FT_IN_VALID,
 
@@ -142,6 +143,8 @@ enum class FsType
 	FT_COLOR_4,
 
 	FT_MAT4,
+	FT_F_RECT2D,
+
 
 	FT_CHARS,
 
@@ -150,6 +153,7 @@ enum class FsType
 	FT_DICT,
 	FT_ARRAY,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(FsType);
 
 
 
@@ -435,9 +439,8 @@ FS_ENUM_TO_STR_MAP_DECLARE(DrawMode);
 
 enum class E_AnimPlayMode 
 {
+	NORMAL,
 	LOOP,
-	START,
-	END
 };
 
 
@@ -577,8 +580,9 @@ enum class E_ScrollDirection
 	VERTICAL,
 	HORIZONTAL,
 	ALL
-		
 };
+FS_ENUM_TO_STR_MAP_DECLARE(ScrollDirection);
+
 
 enum class E_AxisDirection 
 {
@@ -593,6 +597,7 @@ enum class E_AlignH
 	CENTER,
 	RIGHT,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(AlignH);
 
 enum class E_AlignV 
 {
@@ -600,44 +605,22 @@ enum class E_AlignV
 	CENTER,
 	BOTTOM
 };
+FS_ENUM_TO_STR_MAP_DECLARE(AlignV);
 
 enum class E_LerpMode
 {
 	FLAT=0,
 	SMOOTH=1,
 };
+FS_ENUM_TO_STR_MAP_DECLARE(LerpMode);
 
-enum class E_AnimType 
+
+
+enum class E_AnimEventType 
 {
 	UNKOWN=0,
-
-	TRANSLATE=1,
-	TRANSLATE_X=2,
-	TRANSLATE_Y=3,
-	TRANSLATE_Z=4,
-
-	ROTATE=11,
-	ROTATE_X=12,
-	ROTATE_Y=13,
-	ROTATE_Z=14,
-
-	SCALE=21,
-	SCALE_X=22,
-	SCALE_Y=23,
-	SCALE_Z=24,
-
-	COLOR=31,
-	COLOR_R=32,
-	COLOR_G=33,
-	COLOR_B=34,
-	COLOR_A=35,
-
-	OPACITY=40,
-	VISIBALE=50,
-
-
-
-	USER_DEFINE1=100,
+	ATTRIBUTE=1,
+	EVENT_TIGGER=2,
 };
 
 

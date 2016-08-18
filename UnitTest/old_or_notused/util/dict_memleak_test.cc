@@ -3,9 +3,8 @@
 #include <string.h>
 #include <time.h>
 
-
-#include "util/FsDict.h"
-#include "util/FsString.h"
+#include "support/util/FsDict.h"
+#include "support/util/FsString.h"
 
 using namespace Faeris;
 
@@ -21,13 +20,11 @@ void test_insert()
 	FsString* key=new FsString("key");
 	FsString* value=new FsString("value");
 	dict->insert(key,value);
-	key->decRef();
-	value->decRef();
-
 	dict->decRef();
 }
 void test_reinsert()
 {
+
 	FsDict* dict=new FsDict();
 	FsString* key=new FsString("key");
 	FsString* value1=new  FsString("value1");
@@ -37,9 +34,6 @@ void test_reinsert()
 	dict->insert(key,value1);
 	dict->insert(key,value2);
 
-	key->decRef();
-	value1->decRef();
-	value2->decRef();
 	dict->decRef();
 }
 void test_remove()
@@ -51,8 +45,6 @@ void test_remove()
 	dict->insert(key,value);
 	dict->remove(key);
 
-	key->decRef();
-	value->decRef();
 	dict->decRef();
 }
 
@@ -62,14 +54,12 @@ void test_lookup()
 	FsString* key=new FsString("key");
 	FsString* value=new FsString("value");
 
-	FsObject* ret;
+	FsObject* ret=NULL;
 
 	dict->insert(key,value);
 	ret=dict->lookup(key);
+	(void)ret;
 
-	ret->decRef();
-	key->decRef();
-	value->decRef();
 	dict->decRef();
 }
 

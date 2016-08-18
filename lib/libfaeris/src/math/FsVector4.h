@@ -54,7 +54,7 @@ class TVector4
 		TVector4<T>();
 		TVector4<T> add(const TVector4<T>& v)const ;
 		TVector4<T> sub(const TVector4<T>& v)const;
-		TVector4<T> scale(T k)const ;
+		TVector4<T> scale(float k)const ;
 		T dot(const TVector4<T>& v)const;
 
 		TVector4<T> normal() const ;

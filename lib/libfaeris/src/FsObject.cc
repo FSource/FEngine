@@ -39,7 +39,6 @@ NS_FS_BEGIN
 
 
 
-FS_CLASS_IMPLEMENT(FsObject,0,NULL)
 
 
 int FsObject::m_objectNu=0;
@@ -71,20 +70,6 @@ bool FsObject::equal(FsObject* ob)
 
 
 
-#if FS_CONFIG(FS_SCRIPT_SUPPORT)
-void FsObject::dropScriptData()
-{
-	if(m_scriptData!=-1)
-	{
-		ScriptEngine* se=Global::scriptEngine();
-		if(se!=NULL)
-		{
-			se->releaseData(m_scriptData);
-		}
-		m_scriptData=-1;
-	}
-}
-#endif 
 
 void FsObject::finalize()
 {
@@ -108,7 +93,93 @@ void FsObject::setAttributes(FsDict* dict)
 	fsl->callSets(this,dict);
 }
 
+void FsObject::setObjectName(const char* name)
+{
+	int length=strlen(name);
+	if(m_objectName)
+	{
+		delete[] m_objectName;
+		m_objectName=NULL;
+	}
+	m_objectName= new char[length+1];
+	memcpy(m_objectName,name,length+1);
 
+}
+const char* FsObject::getObjectName()
+{
+	if(m_objectName==NULL)
+	{
+		return "";
+	}
+	return m_objectName;
+}
+
+#if FS_CONFIG(FS_SCRIPT_SUPPORT)
+void FsObject::dropScriptData()
+{
+	if(m_scriptData!=-1)
+	{
+		ScriptEngine* se=Global::scriptEngine();
+		if(se!=NULL)
+		{
+			se->releaseData(m_scriptData);
+		}
+		m_scriptData=-1;
+	}
+}
+
+void FsObject::setScriptUrl(const char* url)
+{
+	int length=strlen(url);
+	if(m_scriptUrl)
+	{
+		delete[] m_scriptUrl;
+		m_scriptUrl=NULL;
+	}
+	m_scriptUrl=new char[length+1];
+	memcpy(m_scriptUrl,url,length+1);
+
+	ScriptEngine* se=Global::scriptEngine();
+	if(se!=NULL)
+	{
+		se->loadScript(this,url);
+	}
+
+}
+
+const char* FsObject::getScriptUrl()
+{
+	if(m_scriptUrl==NULL)
+	{
+		return "";
+	}
+	return m_scriptUrl;
+}
+
+#endif 
+
+
+
+/* Attribute Used For FsObject */
+FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(FsObject,setObjectName,getObjectName);
+FS_CLASS_ATTR_GET_CHARS_FUNCTION(FsObject,className);
+
+#if FS_CONFIG(FS_SCRIPT_SUPPORT) 
+FS_CLASS_ATTR_SET_GET_CHARS_FUNCTION(FsObject,setScriptUrl,getScriptUrl);
+#endif 
+
+static FsClass::FsAttributeDeclare S_Object_Main_Attr[]={
+	FS_CLASS_ATTR_DECLARE("className",E_FsType::FT_CHARS,NULL,0,FsObject_className),
+	FS_CLASS_ATTR_DECLARE("objectName",E_FsType::FT_CHARS,NULL,FsObject_setObjectName,FsObject_getObjectName),
+
+#if FS_CONFIG(FS_SCRIPT_SUPPORT) 
+	FS_CLASS_ATTR_DECLARE("scriptUrl",E_FsType::FT_CHARS,NULL,FsObject_setScriptUrl,FsObject_getScriptUrl),
+#endif 
+
+	FS_CLASS_ATTR_DECLARE(NULL,E_FsType::FT_IN_VALID,NULL,0,0)
+};
+
+FS_CLASS_IMPLEMENT(FsObject,NULL,S_Object_Main_Attr);
 
 NS_FS_END 
 

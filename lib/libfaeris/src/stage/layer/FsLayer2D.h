@@ -60,7 +60,21 @@ class Layer2D:public Layer
 
 	public:
 		void setViewArea(const Rect2D& area);
+
+		void setViewAreaX(float x);
+		float getViewAreaX();
+
+		void setViewAreaY(float y);
+		float getViewAreaY();
+
+		void setViewAreaWidth(float w);
+		float getViewAreaWidth();
+
+		void setViewAreaHeight(float h);
+		float getViewAreaHeight();
+
 		Rect2D getViewArea() const;
+
 		void setViewArea(float x,float y,float width,float height);
 		void getViewArea(float* x,float* y,float* width,float* height);
 
@@ -79,10 +93,12 @@ class Layer2D:public Layer
 
 
 		/* entity */
-		void add(Entity2D* entity);
-		void remove(Entity2D* entity);
+		void addEntity2D(Entity2D* entity);
+		void removeEntity2D(Entity2D* entity);
 
 		int getEntityNu();
+
+		void traverseEntity(std::function<void(Entity2D*)> fn);
 
 
 	public:

@@ -30,6 +30,7 @@
 #ifndef _FS_UTIL_DICT_H_
 #define _FS_UTIL_DICT_H_
 
+#include <vector>
 #include "FsMacros.h"
 #include "FsObject.h"
 
@@ -43,6 +44,17 @@ class FsString;
 class  FsDict:public FsObject
 {
 	public:
+		class DictEntry
+		{
+			public:
+				long m_code;
+				FsObject* m_key;
+				FsObject* m_value;
+
+				DictEntry* m_prev;
+				DictEntry* m_next;
+		};
+	public:
 		class Iterator
 		{
 			FS_FEATURE:
@@ -53,30 +65,71 @@ class  FsDict:public FsObject
 					m_dict=dict;
 					dict->addRef();
 					m_curPos=-1;
+					if(dict->m_entryListHead!=NULL)
+					{
+						DictEntry* p=dict->m_entryListHead;
+						while(p)
+						{
+							DictEntry* entry=new DictEntry;
+							entry->m_key=p->m_key;
+							entry->m_key->addRef();
+
+							entry->m_value=p->m_value;
+							entry->m_value->addRef();
+
+							entry->m_code=0;
+							entry->m_prev=NULL;
+							entry->m_next=NULL;
+
+							m_entries.push_back(entry);
+							p=p->m_next;
+						}
+					}
 					findNext();
 				}
 				~Iterator()
 				{
+					int size=m_entries.size();
+
+					for(int i=0;i<size;i++)
+					{
+						DictEntry* entry=m_entries[i];
+						entry->m_key->decRef();
+						entry->m_value->decRef();
+						delete entry;
+					}
+					m_entries.clear();
+
+
 					m_dict->decRef();
 				}
 			public:
 				FsObject* getKey()
 				{
-					FsObject* ret= m_dict->m_table[m_curPos].m_key;
+					if(m_curPos>=(int)m_entries.size())
+					{
+						return NULL;
+					}
+					FsObject* ret= m_entries[m_curPos]->m_key;
 					return ret;
 				}
 				FsObject* getValue()
 				{
-					FsObject* ret=m_dict->m_table[m_curPos].m_value;
+					if(m_curPos>=(int)m_entries.size())
+					{
+						return NULL;
+					}
+
+					FsObject* ret=m_entries[m_curPos]->m_value;
 					return ret;
 				}
 				bool done()
 				{
-					return m_curPos>(long)m_dict->m_mask;
+					return m_curPos>=(int)m_entries.size();
 				}
 				bool next()
 				{
-					if(m_curPos>(long)m_dict->m_mask)
+					if(m_curPos>=(int)m_entries.size())
 					{
 						return false;
 					}
@@ -85,31 +138,18 @@ class  FsDict:public FsObject
 			protected:
 				bool findNext()
 				{
-					if(m_curPos>(long)m_dict->m_mask)
+					int size=m_entries.size();
+					++m_curPos;
+					if(m_curPos<size)
 					{
-						return false;
-					}
-					while(++m_curPos<(long)((m_dict->m_mask+1)))
-					{
-						if(m_dict->validEntry(m_dict->m_table+m_curPos))
-						{
-							return true;
-						}
+						return true;
 					}
 					return false ;
 				}
 			private:
 				FsDict* m_dict;
-				long m_curPos;
-				//long m_iterNu;
-		};
-		class DictEntry
-		{
-			public:
-				long m_code;
-				FsObject* m_key;
-				FsObject* m_value;
-			public:
+				int m_curPos;
+				std::vector<DictEntry*> m_entries;
 		};
 	public:
 		static FsDict* create();
@@ -123,7 +163,7 @@ class  FsDict:public FsObject
 		FsObject* lookup(FsObject* key);
 		FsObject* lookup(const char* key);
 		bool insert(FsObject* key,FsObject* value);
-		bool insertWithNewKey(FsObject* key,FsObject* value);
+		//bool insertWithNewKey(FsObject* key,FsObject* value);
 		bool remove(FsObject* key);
 		void clear();
 		FS_FEATURE_NEW_OBJECT(Iterator*) takeIterator();
@@ -140,12 +180,21 @@ class  FsDict:public FsObject
 		void resize(long minisize);
 		void simpleInsert(FsObject* key,long hcode,FsObject* value);
 		bool validEntry(DictEntry* entry);
+
+		void addEntryToList(DictEntry* en);
+		void removeEntryFromList(DictEntry* en);
+
 	private:
 		long m_fill;  /* slot already filled include dummy */
 		long m_used;  /* real key num */
 		ulong m_mask;
 		DictEntry* m_table;
+
+		DictEntry* m_entryListHead;
+		DictEntry* m_entryListTail;
+
 };
+
 NS_FS_END 
 
 #endif /*_FS_UTIL_DICT_H_*/

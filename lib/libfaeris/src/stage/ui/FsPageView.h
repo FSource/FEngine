@@ -61,7 +61,12 @@ class PageView:public UiWidget
 		void addPage(int index,UiWidget* widget,E_AlignH alignh,E_AlignV alignv);
 
 		void setPageAlign(int index,E_AlignH alignh,E_AlignV alignv);
+		E_AlignH getPageAlignH(int index);
+		E_AlignV getPageAlignV(int index);
+
+
 		void setPageAlign(UiWidget* widget,E_AlignH alignh,E_AlignV alignv);
+
 
 		void removePage(UiWidget* widget);
 		void removePage(int index);
@@ -79,6 +84,12 @@ class PageView:public UiWidget
 
 		void setCurrentPage(UiWidget* widget);
 		UiWidget* getCurrentPage();
+
+		void setCurrentPageAlignH(E_AlignH h);
+		E_AlignH getCurrentPageAlignH();
+
+		void setCurrentPageAlignV(E_AlignV v);
+		E_AlignV getCurrentPageAlignV();
 
 		void slideToPage(UiWidget* widget);
 		void slideToPageIndex(int index);
@@ -121,7 +132,9 @@ class PageView:public UiWidget
 
 
 	protected:
+		PageView();
 		PageView(E_ScrollDirection mode,float width,float height);
+		void init(E_ScrollDirection mode ,float width,float height);
 		virtual ~PageView();
 
 		void adjustContentPanel();
@@ -129,7 +142,7 @@ class PageView:public UiWidget
 		void scrollXBy(float value);
 		void scrollYBy(float value);
 		void scrollXTo(float value);
-		void scrollYTo(float value);
+		void scrollYTo(float value);    
 		void checkPageAlign();
 		void checkPageAlign(float v);
 		void updateScroll(float dt);

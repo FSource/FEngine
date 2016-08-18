@@ -1,8 +1,8 @@
 #include "support/felis/xir_scanner.h"
 #include "support/felis/xir_token.h"
 #include "support/felis/sl_state.h"
-#include "fsys/FsVFS.h"
-#include "fsys/FsSysFile.h"
+#include "sys/io/FsVFS.h"
+#include "sys/io/FsSysFile.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,7 +16,7 @@ int main(int argc,char** argv)
 		exit(-1);
 	}
 
-	SysFile* f=SysFile::open(argv[1]);
+	SysFile* f=SysFile::create(argv[1]);
 	if(f==NULL)
 	{
 		printf("Open File(%s) Failed\n",argv[1]);
@@ -37,7 +37,6 @@ int main(int argc,char** argv)
 		printf("%d:%s:<%s>\n",s->curLine(),s->curTokenName(),s->curString());
 	}
 	delete s;
-	delete f;
 	return 0;
 }
 

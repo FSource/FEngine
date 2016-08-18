@@ -132,6 +132,6 @@ NS_FS_END
 
 #elif FS_PLATFORM_OS(FS_OS_ANDROID) 
 	#include "platform/FsLogAndroid.cc"
-#elif 
+#else
     #error "Unkown Platform For Log"
 #endif
