@@ -116,11 +116,15 @@ class StateButton:public Entity2D
 		/* State Attribute Setting */
 
 		/* color */
+		using Entity2D::setColor;
+		using Entity2D::getColor;
 		void setColor(int state,const Color4f& value);
 		Color4f getColor(int state) const ;
 
 
 		/* opacity */
+		using Entity2D::setOpacity;
+		using Entity2D::getOpacity;
 		void setOpacity(int state,float value);
 		float getOpacity(int state) const;
 

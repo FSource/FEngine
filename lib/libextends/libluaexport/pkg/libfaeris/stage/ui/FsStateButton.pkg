@@ -15,11 +15,17 @@ class StateButton:public Entity2D
 		/* State Attribute Setting */
 
 		/* color */
+		void setColor(Color c);
+		void setColor(const Color4f& c);
+		Color4f getColor();
 		void setColor(int state,const Color4f& value);
+		void setColor(int state,const Color& value);
 		Color4f getColor(int state) const ;
 
 
 		/* opacity */
+		void setOpacity(float opacity);
+		float getOpacity();
 		void setOpacity(int state,float value);
 		float getOpacity(int state) const;
 
@@ -30,11 +36,21 @@ class StateButton:public Entity2D
 		void setTexture(int state,Texture2D* tex);
 		Texture2D* getTexture(int state) const;
 
+		void setSize(const Vector2f& v);
+		Vector2f getSize();
 
+		/* size */
+		void setSize(float x,float y);
+		void getSize(float* x,float* y);
 		void setSize(int state,float x,float y);
 		void setSize(int state,const Vector2& size);
 		Vector2 getSize(int state) const;
 
+		/* anchor */
+		void setAnchor(const Vector2f& v);
+		Vector2f getAnchor();
+		void setAnchor(float x,float y);
+		void getAnchor(float* x,float* y);
 		void setAnchor(int state,float x,float y);
 		void setAnchor(int state,const Vector2& size);
 		Vector2 getAnchor(int state)const ;
@@ -42,12 +58,16 @@ class StateButton:public Entity2D
 
 
 		/* rotate */
+		void setRotate(const Vector3& r);
+		Vector3 getRotate();
 		void setRotate(int state,float x,float y,float z);
 		void setRotate(int state,const Vector3& value);
 		Vector3 getRotate(int state)const ;
 
 
 		/* scale */
+		void setScale(const Vector3& s);
+		Vector3 getScale();
 		void setScale(int state,float x,float y,float z);
 		void setScale(int state,const Vector3& value);
 		Vector3 getScale(int state)const ;

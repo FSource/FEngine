@@ -31,6 +31,9 @@ class UiWidget:public Entity2D
 		void setBgTextureUrl(const char* filename);
 		const char* getBgTextureUrl();
 
+		void setBgEnabled(bool value);
+		bool getBgEnabled();
+
 	public:
 		void setParentWidget(UiWidget* widget);
 		UiWidget* getParentWidget();
